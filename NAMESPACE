@@ -1,0 +1,4 @@
+export(get_statfi)
+export(is.url)
+export(list_eurostat_files)
+export(list_statfi_files)

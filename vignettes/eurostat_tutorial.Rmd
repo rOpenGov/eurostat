@@ -1,0 +1,99 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
+-->
+
+Eurostat R tools
+===========
+
+This R package provides tools to access open data from [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes). 
+
+The present implementation retrieves the Eurostat data through the [Statistics
+Finland](http://www.stat.fi/tup/tilastotietokannat/index_fi.html) data portal. Pull requests for extensions are welcome.
+
+This R package is part of the [rOpenGov](http://ropengov.github.io)
+project.
+
+The listings of [Eurostat](http://www.stat.fi/org/lainsaadanto/avoin_data.html) data sets are available for browsing in [PCAxis](http://pxweb2.stat.fi/Database/Eurostat/databasetree_fi.asp) and [CSV](http://pxweb2.stat.fi/database/Eurostatn/Eurostatn_rap.csv) formats.
+
+
+## Installation
+
+Release version for general use:
+
+```{r install, eval=FALSE}
+install.packages("eurostat")
+library(eurostat)
+```
+
+Development version (potentially unstable):
+
+```{r install2, eval=FALSE}
+install.packages("devtools")
+library(devtools)
+install_github("eurostat", "ropengov")
+library(eurostat)
+```
+
+
+### Browsing the data
+
+List of the data sets is available in R:
+
+```{r tilastokeskus-1, warning=FALSE, message=FALSE}
+# Load the library
+library(eurostat)
+
+# Eurostat open data listing
+datasets.eurostat <- list_eurostat_files()
+
+# Descriptions of the first entries
+head(datasets.eurostat$DESCRIPTION)
+
+# Investigate the first entry 
+print(datasets.eurostat[1,])
+```
+
+## Retrieving the data
+
+Retrieve data from Eurostat by defining URL of the data set. For the
+listing of available data sets and their corresponding URLs, see
+above.
+
+```{r tilastokeskus-2, warning=FALSE, message=FALSE}
+library(eurostat)
+
+# Define URL (see list_eurostat_files())
+url <- "http://pxweb2.stat.fi/Database/Eurostat/ymp/t2020_30.px"
+
+# Download the data
+df <- get_eurostat(url)
+
+# Inspect the first entries..
+df[1:3,]
+```
+
+
+## Licensing and Citations
+
+### Citing the Data
+
+Regarding the data, kindly cite [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/search_database). 
+
+
+### Citing the R tools
+
+This work can be freely used, modified and distributed under the
+[Two-clause FreeBSD
+license](http://en.wikipedia.org/wiki/BSD\_licenses). Kindly cite the
+R package as 'Leo Lahti, Juuso Parkkinen ja Joona Lehtomäki (C)
+2014. eurostat R package. URL: http://ropengov.github.io/eurostat'.
+
+
+### Session info
+
+This tutorial was created with
+
+```{r sessioninfo, message=FALSE, warning=FALSE}
+sessionInfo()
+```
