@@ -80,8 +80,6 @@ http://www.inside-r.org/packages/cran/datamart/docs/eurostat
 
 http://stackoverflow.com/questions/12762431/is-this-the-solution-to-get-data-from-eurostat-into-r
 
-http://rpubs.com/adam_dennett/8955
-
 http://r.789695.n4.nabble.com/Download-CSV-Files-from-EUROSTAT-Website-td4679464.html
 
 
