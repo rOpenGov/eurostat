@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: eurostat R tools
-Version: 0.9.01
-Date: 2013-04-21
+Version: 0.9.1
+Date: 2013-04-23
 Author: Leo Lahti, Juuso Parkkinen, Joona Lehtomaki
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 Description: Eurostat Open Data R Tools
