@@ -1,22 +1,22 @@
 #' Brief summary of the eurostat package
 #'
 #' \tabular{ll}{
-#' Package: \tab statfi\cr
+#' Package: \tab eurostat\cr
 #' Type: \tab Package\cr
 #' Version: \tab See sessionInfo() or DESCRIPTION file\cr
 #' Date: \tab 2014\cr
-#' License: \tab FreeBSD\cr
+#' License: \tab GPL-3\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #'
 #' R Tools for Eurostat Open Data
 #'
-#' @name statfi-package
-#' @aliases statfi
+#' @name eurostat-package
+#' @aliases eurostat
 #' @docType package
 #' @title R Tools for Eurostat open data
 #'
-#' @author Leo Lahti, Juuso Parkkinen and Joona Lehtomaki \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
 #' @references
 #' See citation("eurostat")
 #' \url{http://github.com/ropengov/eurostat}

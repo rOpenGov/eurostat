@@ -1,19 +1,17 @@
 citHeader("Kindly cite the eurostat R package as follows:")
 
 citEntry(entry="misc",
-         title = "statfi R package",
+         title = "eurostat R package",
          author = personList(
-	   person(given ="Leo", family="Lahti", email = "leo.lahti@iki.fi"),
-	   person(given ="Juuso", family="Parkkinen"),
-	   person(given ="Joona", family="Lehtomaki")
+	   person(given ="Leo", family="Lahti", email = "louhos@googlegroups.com"),
+	   person(given ="Przemyslaw", family="Biecek")
          ),
 	 journal = "",
 	 year = "2014",
          textVersion =
-         paste("(C) Leo Lahti, Juuso Parkkinen and Joona Lehtomaki 2014.",
+         paste("(C) Leo Lahti and Przemyslaw Biecek 2014.",
                "eurostat R package",
                sep=" ")
          )
 
-citFooter("\nMany thanks for all contributors! For more info, see: http://ropengov.github.com/eurostat")
 

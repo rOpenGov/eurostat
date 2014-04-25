@@ -2,14 +2,20 @@ Package: eurostat
 Type: Package
 Title: eurostat R tools
 Version: 0.9.1
-Date: 2013-04-23
-Author: Leo Lahti, Juuso Parkkinen, Joona Lehtomaki
+Date: 2014-04-24
+Author: Leo Lahti and Przemyslaw Biecek
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 Description: Eurostat Open Data R Tools
-License: BSD_2_clause + file LICENSE
+License: GPL-3
 Depends:
     R (>= 3.0.2),
+    reshape,
+    rjson,
     statfi,
     pxR
 URL: https://github.com/ropengov/eurostat
 LazyLoad: yes
+LazyData: yes
+NeedsCompilation: no
+Repository: CRAN
+
