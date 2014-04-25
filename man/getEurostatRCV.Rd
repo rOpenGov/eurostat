@@ -1,0 +1,58 @@
+\name{getEurostatRCV}
+\alias{getEurostatRCV}
+\title{Download a dataset from the eurostat database (ec.europa.eu/eurostat).}
+\usage{
+getEurostatRCV(kod = "educ_iste")
+}
+\arguments{
+  \item{kod}{A code name for the data set of interest. See
+  the table of contents of eurostat datasets for details.
+
+  Returns:}
+}
+\value{
+A dataset in the molten format with the last column
+'value'. See the melt function from reshape package for
+more details.
+}
+\description{
+Download a dataset from the eurostat database. The dataset
+is transformed into the molten / row-column-value format
+(RCV).
+
+Arguments:
+}
+\details{
+Data is downloaded from
+\code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing}
+website.
+}
+\examples{
+\dontrun{
+   tmp <- getEurostatRCV(kod = "educ_iste")
+   head(tmp)
+   t1 <- getEurostatRCV("tsdtr420")
+   tmp <- cast(t1, geo ~ time , mean, subset=victim=="KIL_MIO_POP")
+   tmp2 <- tmp[c(1:10,14:30),1:19]
+   tmp3 <- tmp2
+   rownames(tmp3) <- tmp2[,1]
+   tmp3 <- tmp3[c("UK", "SK", "FR", "PL", "ES", "PT", "LV"),]
+   matplot(1991:2008, t(tmp3[,-1]), type="o",
+           pch=19, lty=1, las=1,
+	      xlab="", ylab="", yaxt="n")
+   }
+}
+\author{
+Przemyslaw Biecek and Leo Lahti
+\email{louhos@googlegroups.com}
+}
+\references{
+see citation("eurostat").
+}
+\seealso{
+\code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}},
+\code{\link{grepEurostatTOC}}
+}
+\keyword{database}
+\keyword{utilities}
+

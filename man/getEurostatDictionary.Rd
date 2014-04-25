@@ -1,0 +1,46 @@
+\name{getEurostatDictionary}
+\alias{getEurostatDictionary}
+\title{getEurostatDictionary}
+\usage{
+getEurostatDictionary(dictname)
+}
+\arguments{
+  \item{dictname}{Character, dictionary for given variable
+  name will be downloaded.
+
+  Returns:}
+}
+\value{
+A data.frame with two columns, first with code names and
+second with full names.
+}
+\description{
+Download a dictionary for given coded variable from
+Eurostat (ec.europa.eu/eurostat).
+
+Arguments:
+}
+\details{
+The TOC is downloaded from the
+\code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?file=dic....}
+}
+\examples{
+\dontrun{
+	       tmp <- getEurostatDictionary("crop_pro")
+	       head(tmp)
+	     }
+}
+\author{
+Przemyslaw Biecek and Leo Lahti
+\email{louhos@googlegroups.com}
+}
+\references{
+see citation("eurostat").
+}
+\seealso{
+\code{\link{getEurostatRCV}}, \code{\link{getEurostatRaw}},
+\code{\link{grepEurostatTOC}}.
+}
+\keyword{database}
+\keyword{utilities}
+

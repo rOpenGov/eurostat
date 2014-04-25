@@ -2,14 +2,12 @@
 # <ropengov.github.com>. All rights reserved.
 
 #' List the open Eurostat data available through Statistics Finland database
-#' 
-#' Arguments:
+#' Not exported at present, problems with the URL source. 
+#'
 #'  @param ... Arguments to be passed
 #'
-#' Returns:
 #'  @return table
 #'
-#' @export
 #' @references
 #' See citation("eurostat") 
 #' @author Leo Lahti \email{louhos@@googlegroups.com}
@@ -44,13 +42,11 @@ list_eurostat_files <- function (...) {
 #' Get PC Axis data with custom preprocessing for PC Axis 
 #' files from Statistics Finland (Tilastokeskus) http://www.stat.fi/
 #'
-#' Arguments:
-#'  @param url or local file name of the Eurostat file
-#'  @param format One of the following: "px", "csv", "xml". Specifies the desired format of the source file.
-#'  @param verbose verbose
+#' @param url or local file name of the Eurostat file
+#' @param format One of the following: "px", "csv", "xml". Specifies the desired format of the source file.
+#' @param verbose verbose
 #'
-#' Returns:
-#'  @return data.frame
+#' @return data.frame
 #'
 #' @details If the reading of PX file fails, CSV is used instead.
 #'

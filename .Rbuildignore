@@ -1,5 +1,5 @@
 # Extra material related but not to be included in the package
-./inst/extras/statfi.Rcheck/*
+./inst/extras/eurostat.Rcheck/*
 ./inst/extras/..Rcheck/*
 ./inst/extras/...Rcheck/*
 ./inst/extras/*
