@@ -6,7 +6,8 @@ R tools for Eurostat open data
 [![Build Status](https://api.travis-ci.org/rOpenGov/eurostat.png)](https://travis-ci.org/rOpenGov/eurostat)
 [![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)
 
-+ Maintainer: Leo Lahti
++ Maintainer: Leo Lahti <louhos@googlegroups.com>
++ Authors: Leo Lahti and Przemyslaw Biecek
 + License: GPL-3
 
 
