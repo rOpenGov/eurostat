@@ -50,6 +50,7 @@ list_eurostat_files <- function (...) {
 #'
 #' @details If the reading of PX file fails, CSV is used instead.
 #'
+#' @import pxR statfi
 #' @export
 #' @references
 #' See citation("eurostat") 

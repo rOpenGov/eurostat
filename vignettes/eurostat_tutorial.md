@@ -154,8 +154,8 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5      eurostat_0.9.1 statfi_0.9.06  pxR_0.29      
-## [5] stringr_0.6.2  rjson_0.2.13   reshape_0.8.5  devtools_1.5  
+## [1] knitr_1.5      eurostat_0.9.2 statfi_0.9.06  pxR_0.29      
+## [5] stringr_0.6.2  reshape_0.8.5  devtools_1.5  
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.3 

@@ -12,6 +12,7 @@
 #' Returns:
 #'  @return A dataset in the molten format with the last column 'value'. See the melt function from reshape package for more details.
 #'
+#' @importFrom reshape melt
 #' @export
 #' @seealso \code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}
 #' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
