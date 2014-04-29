@@ -131,7 +131,10 @@ df[1:3, ]
 ```
 
 ```
-## Error: incorrect number of dimensions
+##   time     geo   dat
+## 1 1990 Austria 100.0
+## 2 1991 Austria 105.2
+## 3 1992 Austria  96.8
 ```
 
 
@@ -166,25 +169,21 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.2 (2013-09-25)
-## Platform: x86_64-w64-mingw32/x64 (64-bit)
+## R version 3.0.3 (2014-03-06)
+## Platform: x86_64-apple-darwin10.8.0 (64-bit)
 ## 
 ## locale:
-## [1] LC_COLLATE=English_United States.1252 
-## [2] LC_CTYPE=English_United States.1252   
-## [3] LC_MONETARY=English_United States.1252
-## [4] LC_NUMERIC=C                          
-## [5] LC_TIME=English_United States.1252    
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] plotrix_3.5-5  eurostat_0.9.2 statfi_0.9.06  pxR_0.40.0    
-##  [5] RJSONIO_1.0-3  reshape2_1.2.2 stringr_0.6.2  reshape_0.8.4 
-##  [9] plyr_1.8       knitr_1.5     
+## [1] plotrix_3.5-5  eurostat_0.9.2 statfi_0.9.06  pxR_0.29      
+## [5] stringr_0.6.2  reshape_0.8.5  knitr_1.5     
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.1 formatR_0.10   tools_3.0.2
+## [1] evaluate_0.5.3 formatR_0.10   plyr_1.8.1     Rcpp_0.11.1   
+## [5] tools_3.0.3
 ```
 
