@@ -1,7 +1,3 @@
-# Copyright (C) 2014 Leo Lahti and Przemyslaw Biecek
-# All rights reserved.
-# This software is part of rOpenGov <ropengov.github.com>
-
 #' setEurostatTOC
 #' 
 #' @description For internal use

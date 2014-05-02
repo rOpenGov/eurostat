@@ -3,7 +3,8 @@
 #' @description This function downloads list of all datasets available on eurostat and return list of names of datasets that contains particular pattern in the dataset description. E.g. all datasets related to education of teaching.
 #'
 #' Arguments:
-#'  @param pattern Character, only datasets that contains this pattern in the description will be returned.
+#'  @param pattern Character, datasets, folder or tables with this pattern in the description will be returned (depending on the 'type' argument)
+#'  @param type Grep the Eurostat table of contents either for 'dataset', 'folder' or 'table'.
 #'
 #' Returns:
 #'  @return A data.frame with eight columns
@@ -20,10 +21,9 @@
 #' @examples \dontrun{tmp <- grepEurostatTOC("education"); head(tmp)}
 #' @keywords utilities database
 
-grepEurostatTOC <-
-function(pattern) {
+grepEurostatTOC <- function(pattern, type = "dataset") {
   setEurostatTOC()
   tmp <- get(".eurostatTOC", envir = .SmarterPolandEnv)
-  tmp <- tmp[tmp[,3]=="dataset",]
-  tmp[grep(as.character(tmp[,1]), pattern=pattern),]
+  tmp <- tmp[tmp[, "type"] == type,]
+  tmp[grep(as.character(tmp[, "title"]), pattern=pattern),]
 }

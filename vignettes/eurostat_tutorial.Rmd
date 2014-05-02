@@ -6,10 +6,9 @@
 Eurostat R tools
 ===========
 
-This R package provides tools to access open data from [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes). 
-
-This R package is part of the [rOpenGov](http://ropengov.github.io)
-project.
+This R package provides tools to access [Eurostat open
+data](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes)
+as part of the [rOpenGov](http://ropengov.github.io) project.
 
 
 ## Installation
@@ -31,16 +30,26 @@ library(eurostat)
 ```
 
 
-## Accessing Eurostat data from Eurostat database
+## Accessing Eurostat data 
 
 ```{r eurostat, warning=FALSE, message=FALSE}
 library(eurostat)
 
-# info about passagers
-grepEurostatTOC("split of passenger transport")
+# Get Eurostat data listing
+toc <- getEurostatTOC(); 
+head(toc)
 
-## get table
-tmp <- getEurostatRCV("tsdtr210")
+# info about passagers
+grepEurostatTOC("split of passenger transport", type = "dataset")
+grepEurostatTOC("split of passenger transport", type = "table")
+
+# Pick ID for the table
+id <- unique(grepEurostatTOC("split of passenger transport", 
+      		             type = "table")$code)
+id
+
+# Get table with the given ID
+tmp <- getEurostatRCV(id)
 summary(tmp)
 ```
 
@@ -48,21 +57,13 @@ summary(tmp)
 ## Triangle plot for split of passenger transport
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
-if (!require(plotrix)) {
-  install.packages("plotrix")
-  library("plotrix")
-}
-
-
-tmp <- getEurostatRCV("tsdtr210")
-
 library(reshape)
+tmp <- getEurostatRCV("tsdtr210")
 bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
 car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
 
-#
-# select the 2010 data
+# select 2010 data
 allTransports <- data.frame(bus = bus[,"2010 "], 
                             car = car[,"2010 "],
                             train = train[,"2010 "])
@@ -70,15 +71,15 @@ allTransports <- data.frame(bus = bus[,"2010 "],
 rownames(allTransports) <- levels(bus[,1])
 allTransports <- na.omit(allTransports)
 
-#
 # triangle plot
+library("plotrix")
 triax.plot(allTransports, show.grid=TRUE, 
            label.points=TRUE, point.labels=rownames(allTransports), 
            pch=19)
 ```
 
 
-## Working with various country code standards
+## Working with country codes
 
 Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
 
@@ -98,29 +99,6 @@ head(countrycode(countries, "iso2c", "iso3c"))
 # From ISO2 (used by Eurostat) into ISO (short country names)
 head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 
-```
-
-## Accessing Eurostat data via Statistics Finland data portal
-
-Eurostat data is also available through the [Statistics
-Finland](http://www.stat.fi/tup/tilastotietokannat/index_fi.html) data
-portal, where the listings of
-[Eurostat](http://www.stat.fi/org/lainsaadanto/avoin_data.html) data
-sets are available for browsing in
-[PCAxis](http://pxweb2.stat.fi/Database/Eurostat/databasetree_fi.asp)
-and [CSV](http://pxweb2.stat.fi/database/Eurostatn/Eurostatn_rap.csv)
-formats. You can retrieve Eurostat data from Statfi by defining the
-URL of the selected data set:
-
-```{r tilastokeskus-2, warning=FALSE, message=FALSE, eval=FALSE}
-# Define URL (browse the statfi site for URL listing; see above)
-url <- "http://pxweb2.stat.fi/Database/Eurostat/ymp/t2020_30.px"
-
-# Download the data
-df <- get_eurostat(url)
-
-# Inspect the first entries..
-df[1:3,]
 ```
 
 
@@ -260,24 +238,21 @@ for (year in years) {
 ```
 
 
-## Related tools
+### Related tools
 
-This R package is based on two earlier CRAN packages: [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains additional related tools for Eurostat data but at the time of writing this tutorial this package seems to be in an experimental stage.
-
-
-## Licensing and Citations
-
-### Citing the Data
-
-Regarding the data, kindly cite [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/search_database). 
+This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
 
 
-### Citing the R tools
+### Licensing and Citations
 
-This work can be freely used, modified and distributed under the
-[GPL-3 license](https://www.gnu.org/copyleft/gpl.html). Kindly cite
-the R package as 'Leo Lahti and Przemyslaw Biecek (C) 2014. eurostat R
-package. URL: http://ropengov.github.io/eurostat'.
+***Citing the Data*** Kindly cite [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/search_database). 
+
+
+***Citing the R tools*** This work can be freely used, modified and
+distributed under the [BSD-2-clause (modified FreeBSD)
+license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek
+and Markus Kainu (C) 2014. eurostat R package. URL:
+http://ropengov.github.io/eurostat'.
 
 
 ### Session info

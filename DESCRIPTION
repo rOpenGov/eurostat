@@ -14,6 +14,7 @@ Depends:
     pxR
 Suggests:
     countrycode,
+    mapproj,
     plotrix
 URL: https://github.com/ropengov/eurostat
 LazyLoad: yes
