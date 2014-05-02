@@ -76,12 +76,7 @@ grepEurostatTOC("split of passenger transport", type = "dataset")
 ```
 
 ```
-##                                                   title          code
-## 4829                 Modal split of passenger transport tran_hv_psmod
-##         type last.update.of.data last.table.structure.change data.start
-## 4829 dataset          04.09.2013                  03.09.2013       1990
-##      data.end values
-## 4829     2011     NA
+## Error: unused argument (type = "dataset")
 ```
 
 ```r
@@ -89,48 +84,43 @@ grepEurostatTOC("split of passenger transport", type = "table")
 ```
 
 ```
-##                                                       title     code  type
-## 6960                     Modal split of passenger transport tsdtr210 table
-## 7472                     Modal split of passenger transport tsdtr210 table
-## 7596                     Modal split of passenger transport tsdtr210 table
-##      last.update.of.data last.table.structure.change data.start data.end
-## 6960          19.03.2014                  19.03.2014       1990     2011
-## 7472          19.03.2014                  19.03.2014       1990     2011
-## 7596          19.03.2014                  19.03.2014       1990     2011
-##      values
-## 6960     NA
-## 7472     NA
-## 7596     NA
+## Error: unused argument (type = "table")
 ```
 
 ```r
 
 # Pick ID for the table
 id <- unique(grepEurostatTOC("split of passenger transport", type = "table")$code)
+```
+
+```
+## Error: unused argument (type = "table")
+```
+
+```r
 id
 ```
 
 ```
-## [1] tsdtr210
-## 6844 Levels: aact aact_ali aact_ali01 aact_ali02 aact_eaa ... yth_volunt_010
+## Error: object 'id' not found
 ```
 
 ```r
 
 # Get table with the given ID
 tmp <- getEurostatRCV(id)
+```
+
+```
+## Error: object 'id' not found
+```
+
+```r
 summary(tmp)
 ```
 
 ```
-##     vehicle         geo            time          value     
-##  BUS_TOT:748   AT     :  66   1990   : 102   Min.   : 0.0  
-##  CAR    :748   BE     :  66   1991   : 102   1st Qu.: 6.8  
-##  TRN    :748   BG     :  66   1992   : 102   Median :13.0  
-##                CH     :  66   1993   : 102   Mean   :33.6  
-##                CY     :  66   1994   : 102   3rd Qu.:77.3  
-##                CZ     :  66   1995   : 102   Max.   :93.4  
-##                (Other):1848   (Other):1632   NA's   :363
+## Error: object 'tmp' not found
 ```
 
 
@@ -168,10 +158,7 @@ Eurostat is using ISO2 format for country names, OECD is using ISO3 for their st
 
 
 ```r
-if (!require(countrycode)) {
-    install.packages("countrycode")
-    library("countrycode")
-}
+library("countrycode")
 
 # Use the country codes from previous examples
 countries <- rownames(allTransports)
@@ -254,7 +241,7 @@ map_nuts2 <- subset(map, STAT_LEVL_ == 2)
 ```
 
 
-### Merge the tabular data with spatial data into single `SpatialPolygonDataFrame`
+### Merge the tabular data with spatial data into single SpatialPolygonDataFrame
 
 Third, we will make the both datas of same lenght, give then identical rownames and then merge the tabular data with the spatial data.
 
@@ -403,16 +390,14 @@ sessionInfo()
 ## other attached packages:
 ##  [1] mapproj_1.2-2    maps_2.3-6       scales_0.2.4     reshape2_1.2.2  
 ##  [5] rgeos_0.3-4      ggplot2_0.9.3.1  maptools_0.8-29  rgdal_0.8-16    
-##  [9] sp_1.0-15        countrycode_0.16 plotrix_3.5-5    knitr_1.5       
-## [13] eurostat_0.9.31  statfi_0.9.06    pxR_0.29         stringr_0.6.2   
-## [17] reshape_0.8.5    devtools_1.5    
+##  [9] sp_1.0-15        countrycode_0.16 plotrix_3.5-5    eurostat_0.9.3  
+## [13] statfi_0.9.06    pxR_0.29         stringr_0.6.2    reshape_0.8.5   
+## [17] knitr_1.5       
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] brew_1.0-6       codetools_0.2-8  colorspace_1.2-4 digest_0.6.4    
-##  [5] evaluate_0.5.3   foreign_0.8-61   formatR_0.10     grid_3.0.2      
-##  [9] gtable_0.1.2     httr_0.3         labeling_0.2     lattice_0.20-29 
-## [13] MASS_7.3-31      memoise_0.2.1    munsell_0.4.2    parallel_3.0.2  
-## [17] plyr_1.8.1       proto_0.3-10     Rcpp_0.11.1      RCurl_1.95-4.1  
-## [21] roxygen2_3.1.0   tools_3.0.2      whisker_0.4
+##  [1] colorspace_1.2-4 digest_0.6.4     evaluate_0.5.3   foreign_0.8-61  
+##  [5] formatR_0.10     grid_3.0.2       gtable_0.1.2     labeling_0.2    
+##  [9] lattice_0.20-29  MASS_7.3-31      munsell_0.4.2    plyr_1.8.1      
+## [13] proto_0.3-10     Rcpp_0.11.1      tools_3.0.2
 ```
 
