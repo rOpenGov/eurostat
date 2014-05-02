@@ -18,3 +18,5 @@ inst/extras/.RData
 ./.*~
 ./*~
 
+^.*\.Rproj$
+^\.Rproj\.user$
