@@ -47,11 +47,11 @@ grepEurostatTOC("split of passenger transport")
 
 ```
 ##                                                   title          code
-## 4827                 Modal split of passenger transport tran_hv_psmod
+## 4829                 Modal split of passenger transport tran_hv_psmod
 ##         type last.update.of.data last.table.structure.change data.start
-## 4827 dataset          04.09.2013                  03.09.2013       1990
+## 4829 dataset          04.09.2013                  03.09.2013       1990
 ##      data.end values
-## 4827     2011     NA
+## 4829     2011     NA
 ```
 
 ```r
@@ -83,7 +83,10 @@ if (!require(plotrix)) {
     library("plotrix")
 }
 
+
 tmp <- getEurostatRCV("tsdtr210")
+
+library(reshape)
 bus <- cast(tmp, geo ~ time, mean, subset = vehicle == "BUS_TOT")
 car <- cast(tmp, geo ~ time, mean, subset = vehicle == "CAR")
 train <- cast(tmp, geo ~ time, mean, subset = vehicle == "TRN")
@@ -104,9 +107,49 @@ triax.plot(allTransports, show.grid = TRUE, label.points = TRUE, point.labels = 
 
 
 
+## Working with various country code standards
+
+Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
 
 
-## Accessing Eurostat data from Statistics Finland 
+```r
+if (!require(countrycode)) {
+    install.packages("countrycode")
+    library("countrycode")
+}
+
+# Use the country codes from previous examples
+countries <- rownames(allTransports)
+head(countries)
+```
+
+```
+## [1] "AT" "BE" "BG" "CH" "CZ" "DE"
+```
+
+```r
+
+# From ISO2 (used by Eurostat) into ISO3 (used by OECD)
+head(countrycode(countries, "iso2c", "iso3c"))
+```
+
+```
+## [1] "AUT" "BEL" "BGR" "CHE" "CZE" "DEU"
+```
+
+```r
+
+# From ISO2 (used by Eurostat) into ISO (short country names)
+head(countrycode(rownames(allTransports), "iso2c", "country.name"))
+```
+
+```
+## [1] "AUSTRIA"        "BELGIUM"        "BULGARIA"       "SWITZERLAND"   
+## [5] "CZECH REPUBLIC" "GERMANY"
+```
+
+
+## Accessing Eurostat data via Statistics Finland data portal
 
 Eurostat data is also available through the [Statistics
 Finland](http://www.stat.fi/tup/tilastotietokannat/index_fi.html) data
@@ -141,7 +184,7 @@ df[1:3, ]
 
 ## Related tools
 
-This R package is based on two earlier CRAN packages: statfi and smarterpoland. The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains additional related tools for Eurostat data but at the time of writing this tutorial this package seems to be in an experimental stage.
+This R package is based on two earlier CRAN packages: [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains additional related tools for Eurostat data but at the time of writing this tutorial this package seems to be in an experimental stage.
 
 
 ## Licensing and Citations
@@ -169,21 +212,29 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.3 (2014-03-06)
-## Platform: x86_64-apple-darwin10.8.0 (64-bit)
+## R version 3.0.2 (2013-09-25)
+## Platform: x86_64-pc-linux-gnu (64-bit)
 ## 
 ## locale:
-## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] plotrix_3.5-5  eurostat_0.9.2 statfi_0.9.06  pxR_0.29      
-## [5] stringr_0.6.2  reshape_0.8.5  knitr_1.5     
+## [1] countrycode_0.16 plotrix_3.5-5    knitr_1.5        eurostat_0.9.3  
+## [5] statfi_0.9.06    pxR_0.29         stringr_0.6.2    reshape_0.8.5   
+## [9] devtools_1.5    
 ## 
 ## loaded via a namespace (and not attached):
-## [1] evaluate_0.5.3 formatR_0.10   plyr_1.8.1     Rcpp_0.11.1   
-## [5] tools_3.0.3
+##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.3 
+##  [5] formatR_0.10    httr_0.3        memoise_0.2.1   parallel_3.0.2 
+##  [9] plyr_1.8.1      Rcpp_0.11.1     RCurl_1.95-4.1  roxygen2_3.1.0 
+## [13] tools_3.0.2     whisker_0.4
 ```
 

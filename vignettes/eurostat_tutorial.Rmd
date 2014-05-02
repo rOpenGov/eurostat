@@ -82,7 +82,7 @@ triax.plot(allTransports, show.grid=TRUE,
 
 Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
 
-```{r plotGallery, warning=FALSE, message=FALSE}
+```{r countrycodes, warning=FALSE, message=FALSE}
 if (!require(countrycode)) {
   install.packages("countrycode")
   library("countrycode")
@@ -126,7 +126,7 @@ df[1:3,]
 
 ## Related tools
 
-This R package is based on two earlier CRAN packages: statfi and smarterpoland. The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains additional related tools for Eurostat data but at the time of writing this tutorial this package seems to be in an experimental stage.
+This R package is based on two earlier CRAN packages: [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains additional related tools for Eurostat data but at the time of writing this tutorial this package seems to be in an experimental stage.
 
 
 ## Licensing and Citations
