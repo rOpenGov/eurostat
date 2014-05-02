@@ -2,11 +2,15 @@
 \alias{grepEurostatTOC}
 \title{Lists names of dataset from eurostat with the particular pattern in the description.}
 \usage{
-grepEurostatTOC(pattern)
+grepEurostatTOC(pattern, type = "dataset")
 }
 \arguments{
-  \item{pattern}{Character, only datasets that contains
-  this pattern in the description will be returned.
+  \item{pattern}{Character, datasets, folder or tables with
+  this pattern in the description will be returned
+  (depending on the 'type' argument)}
+
+  \item{type}{Grep the Eurostat table of contents either
+  for 'dataset', 'folder' or 'table'.
 
   Returns:}
 }

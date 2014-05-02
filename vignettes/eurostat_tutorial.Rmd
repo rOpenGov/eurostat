@@ -220,14 +220,14 @@ for (year in years) {
                colour="white", 
                size=.2) +
   geom_polygon(data = map.df.l, aes(long,lat), 
-               fill=NA, 
-               color = "white",
-               size=0.1) + # white borders
+               fill=NA,
+               colour="white", 
+               size = 0.1) + 
   scale_fill_gradient2(low="#d8b365", 
                        high="#5ab4ac", 
                        midpoint=median_in_data) +
   coord_map(project="orthographic", xlim=c(-22,34),
-            ylim=c(35,70)) + # projection
+            ylim=c(35,70)) + 
   labs(title = paste0("Year ",
                       year,
                       ". Median of \n regional incomes (tgs00026)  is ",
