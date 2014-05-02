@@ -45,6 +45,36 @@ summary(tmp)
 ```
 
 
+## Triangle plot for split of passenger transport
+
+```{r plotGallery, warning=FALSE, message=FALSE}
+if (!require(plotrix)) {
+  install.packages("plotrix")
+  library("plotrix")
+}
+
+tmp <- getEurostatRCV("tsdtr210")
+bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
+car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
+train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
+
+#
+# select the 2010 data
+allTransports <- data.frame(bus = bus[,"2010 "], 
+                            car = car[,"2010 "],
+                            train = train[,"2010 "])
+# add countrynames
+rownames(allTransports) <- levels(bus[,1])
+allTransports <- na.omit(allTransports)
+
+#
+# triangle plot
+triax.plot(allTransports, show.grid=TRUE, 
+           label.points=TRUE, point.labels=rownames(allTransports), 
+           pch=19)
+```
+
+
 
 
 ## Accessing Eurostat data via Statistics Finland data portal

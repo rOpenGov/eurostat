@@ -74,6 +74,36 @@ summary(tmp)
 
 
 
+## Triangle plot for split of passenger transport
+
+
+```r
+if (!require(plotrix)) {
+    install.packages("plotrix")
+    library("plotrix")
+}
+
+tmp <- getEurostatRCV("tsdtr210")
+bus <- cast(tmp, geo ~ time, mean, subset = vehicle == "BUS_TOT")
+car <- cast(tmp, geo ~ time, mean, subset = vehicle == "CAR")
+train <- cast(tmp, geo ~ time, mean, subset = vehicle == "TRN")
+
+# select the 2010 data
+allTransports <- data.frame(bus = bus[, "2010 "], car = car[, "2010 "], train = train[, 
+    "2010 "])
+# add countrynames
+rownames(allTransports) <- levels(bus[, 1])
+allTransports <- na.omit(allTransports)
+
+# triangle plot
+triax.plot(allTransports, show.grid = TRUE, label.points = TRUE, point.labels = rownames(allTransports), 
+    pch = 19)
+```
+
+![plot of chunk plotGallery](figure/plotGallery.png) 
+
+
+
 
 
 ## Accessing Eurostat data from Statistics Finland 
@@ -139,28 +169,21 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.2 (2013-09-25)
-## Platform: x86_64-pc-linux-gnu (64-bit)
+## R version 3.0.3 (2014-03-06)
+## Platform: x86_64-apple-darwin10.8.0 (64-bit)
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] knitr_1.5      eurostat_0.9.2 statfi_0.9.06  pxR_0.29      
-## [5] stringr_0.6.2  reshape_0.8.5  devtools_1.5  
+## [1] plotrix_3.5-5  eurostat_0.9.2 statfi_0.9.06  pxR_0.29      
+## [5] stringr_0.6.2  reshape_0.8.5  knitr_1.5     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] brew_1.0-6      codetools_0.2-8 digest_0.6.4    evaluate_0.5.3 
-##  [5] formatR_0.10    httr_0.3        memoise_0.2.1   parallel_3.0.2 
-##  [9] plyr_1.8.1      Rcpp_0.11.1     RCurl_1.95-4.1  roxygen2_3.1.0 
-## [13] tools_3.0.2     whisker_0.4
+## [1] evaluate_0.5.3 formatR_0.10   plyr_1.8.1     Rcpp_0.11.1   
+## [5] tools_3.0.3
 ```
 
