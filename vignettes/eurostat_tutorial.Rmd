@@ -84,10 +84,7 @@ triax.plot(allTransports, show.grid=TRUE,
 Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
 
 ```{r countrycodes, warning=FALSE, message=FALSE}
-if (!require(countrycode)) {
-  install.packages("countrycode")
-  library("countrycode")
-} 
+library("countrycode")
 
 # Use the country codes from previous examples
 countries <- rownames(allTransports)
@@ -137,7 +134,7 @@ map <- readOGR(dsn = "./NUTS_2010_60M_SH/data", layer = "NUTS_RG_60M_2010")
 map_nuts2 <- subset(map, STAT_LEVL_ == 2)
 ```
 
-### Merge the tabular data with spatial data into single `SpatialPolygonDataFrame`
+### Merge the tabular data with spatial data into single SpatialPolygonDataFrame
 
 Third, we will make the both datas of same lenght, give then identical rownames and then merge the tabular data with the spatial data.
 
