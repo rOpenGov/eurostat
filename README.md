@@ -8,7 +8,7 @@ R tools for Eurostat open data
 
 + Maintainer: Leo Lahti <louhos@googlegroups.com>
 + Authors: Leo Lahti and Przemyslaw Biecek
-+ License: GPL-3
++ License: BSD-2-clause (see file [LICENSE](LICENSE))
 
 
 ### Overview

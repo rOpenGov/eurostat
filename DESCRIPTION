@@ -12,6 +12,9 @@ Depends:
     reshape,
     statfi,
     pxR
+Suggests:
+    countrycode,
+    plotrix
 URL: https://github.com/ropengov/eurostat
 LazyLoad: yes
 LazyData: yes

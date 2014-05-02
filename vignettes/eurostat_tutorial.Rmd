@@ -53,7 +53,10 @@ if (!require(plotrix)) {
   library("plotrix")
 }
 
+
 tmp <- getEurostatRCV("tsdtr210")
+
+library(reshape)
 bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
 car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
@@ -75,7 +78,27 @@ triax.plot(allTransports, show.grid=TRUE,
 ```
 
 
+## Working with various country code standards
 
+Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
+
+```{r plotGallery, warning=FALSE, message=FALSE}
+if (!require(countrycode)) {
+  install.packages("countrycode")
+  library("countrycode")
+} 
+
+# Use the country codes from previous examples
+countries <- rownames(allTransports)
+head(countries)
+
+# From ISO2 (used by Eurostat) into ISO3 (used by OECD)
+head(countrycode(countries, "iso2c", "iso3c"))
+
+# From ISO2 (used by Eurostat) into ISO (short country names)
+head(countrycode(rownames(allTransports), "iso2c", "country.name"))
+
+```
 
 ## Accessing Eurostat data via Statistics Finland data portal
 
