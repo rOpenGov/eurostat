@@ -10,6 +10,7 @@ This R package provides tools to access [Eurostat open
 data](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes)
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
+For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
 ## Installation
 
