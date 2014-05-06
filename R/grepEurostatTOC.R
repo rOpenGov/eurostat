@@ -24,6 +24,6 @@
 grepEurostatTOC <- function(pattern, type = "dataset") {
   setEurostatTOC()
   tmp <- get(".eurostatTOC", envir = .SmarterPolandEnv)
-  tmp <- tmp[tmp[, "type"] == type,]
+  tmp <- tmp[tmp[, "type"] %in% type,]
   tmp[grep(as.character(tmp[, "title"]), pattern=pattern),]
 }
