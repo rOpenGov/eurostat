@@ -10,6 +10,7 @@ This R package provides tools to access [Eurostat open
 data](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes)
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
+For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
 ## Installation
 
@@ -20,7 +21,6 @@ Release version for general use:
 install.packages("eurostat")
 library(eurostat)
 ```
-
 
 Development version (potentially unstable):
 
@@ -33,7 +33,6 @@ library(eurostat)
 ```
 
 
-
 ## Accessing Eurostat data 
 
 
@@ -41,7 +40,7 @@ library(eurostat)
 library(eurostat)
 
 # Get Eurostat data listing
-toc <- getEurostatTOC()
+toc <- getEurostatTOC(); 
 head(toc)
 ```
 
@@ -59,29 +58,28 @@ head(toc)
 ## 3   euroind  folder                                                
 ## 4    ei_bcs  folder                                                
 ## 5 ei_bcs_cs  folder                                                
-## 6 ei_bsco_m dataset          29.04.2014                  29.04.2014
+## 6 ei_bsco_m dataset          26.06.2014                  26.06.2014
 ##   data.start data.end values
 ## 1                         NA
 ## 2                         NA
 ## 3                         NA
 ## 4                         NA
 ## 5                         NA
-## 6    1985M01  2014M04     NA
+## 6    1985M01  2014M06     NA
 ```
 
 ```r
-
 # info about passagers
 grepEurostatTOC("split of passenger transport", type = "dataset")
 ```
 
 ```
 ##                                                   title          code
-## 4829                 Modal split of passenger transport tran_hv_psmod
+## 4894                 Modal split of passenger transport tran_hv_psmod
 ##         type last.update.of.data last.table.structure.change data.start
-## 4829 dataset          04.09.2013                  03.09.2013       1990
+## 4894 dataset          25.06.2014                  25.06.2014       1990
 ##      data.end values
-## 4829     2011     NA
+## 4894     2012     NA
 ```
 
 ```r
@@ -90,33 +88,32 @@ grepEurostatTOC("split of passenger transport", type = "table")
 
 ```
 ##                                                       title     code  type
-## 6960                     Modal split of passenger transport tsdtr210 table
-## 7472                     Modal split of passenger transport tsdtr210 table
-## 7596                     Modal split of passenger transport tsdtr210 table
+## 7038                     Modal split of passenger transport tsdtr210 table
+## 7551                     Modal split of passenger transport tsdtr210 table
+## 7675                     Modal split of passenger transport tsdtr210 table
 ##      last.update.of.data last.table.structure.change data.start data.end
-## 6960          19.03.2014                  19.03.2014       1990     2011
-## 7472          19.03.2014                  19.03.2014       1990     2011
-## 7596          19.03.2014                  19.03.2014       1990     2011
+## 7038          25.06.2014                  25.06.2014       1990     2012
+## 7551          25.06.2014                  25.06.2014       1990     2012
+## 7675          25.06.2014                  25.06.2014       1990     2012
 ##      values
-## 6960     NA
-## 7472     NA
-## 7596     NA
+## 7038     NA
+## 7551     NA
+## 7675     NA
 ```
 
 ```r
-
 # Pick ID for the table
-id <- unique(grepEurostatTOC("split of passenger transport", type = "table")$code)
+id <- unique(grepEurostatTOC("split of passenger transport", 
+      		             type = "table")$code)
 id
 ```
 
 ```
 ## [1] tsdtr210
-## 6844 Levels: aact aact_ali aact_ali01 aact_ali02 aact_eaa ... yth_volunt_010
+## 6922 Levels:   aact aact_ali aact_ali01 aact_ali02 aact_eaa ... yth_volunt_010
 ```
 
 ```r
-
 # Get table with the given ID
 tmp <- getEurostatRCV(id)
 summary(tmp)
@@ -124,15 +121,14 @@ summary(tmp)
 
 ```
 ##     vehicle         geo            time          value     
-##  BUS_TOT:748   AT     :  66   1990   : 102   Min.   : 0.0  
-##  CAR    :748   BE     :  66   1991   : 102   1st Qu.: 6.8  
-##  TRN    :748   BG     :  66   1992   : 102   Median :13.0  
-##                CH     :  66   1993   : 102   Mean   :33.6  
-##                CY     :  66   1994   : 102   3rd Qu.:77.3  
-##                CZ     :  66   1995   : 102   Max.   :93.4  
-##                (Other):1848   (Other):1632   NA's   :363
+##  BUS_TOT:805   AT     :  69   1990   : 105   Min.   : 0.7  
+##  CAR    :805   BE     :  69   1991   : 105   1st Qu.: 7.0  
+##  TRN    :805   BG     :  69   1992   : 105   Median :13.2  
+##                CH     :  69   1993   : 105   Mean   :34.1  
+##                CY     :  69   1994   : 105   3rd Qu.:77.6  
+##                CZ     :  69   1995   : 105   Max.   :92.0  
+##                (Other):2001   (Other):1785   NA's   :424
 ```
-
 
 
 ## Triangle plot for split of passenger transport
@@ -141,25 +137,35 @@ summary(tmp)
 ```r
 library(reshape)
 tmp <- getEurostatRCV("tsdtr210")
-bus <- cast(tmp, geo ~ time, mean, subset = vehicle == "BUS_TOT")
-car <- cast(tmp, geo ~ time, mean, subset = vehicle == "CAR")
-train <- cast(tmp, geo ~ time, mean, subset = vehicle == "TRN")
+bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
+car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
+train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
 
 # select 2010 data
-allTransports <- data.frame(bus = bus[, "2010 "], car = car[, "2010 "], train = train[, 
-    "2010 "])
+allTransports <- data.frame(bus = bus[,"2010 "], 
+                            car = car[,"2010 "],
+                            train = train[,"2010 "])
 # add countrynames
-rownames(allTransports) <- levels(bus[, 1])
+rownames(allTransports) <- levels(bus[,1])
 allTransports <- na.omit(allTransports)
 
 # triangle plot
 library("plotrix")
-triax.plot(allTransports, show.grid = TRUE, label.points = TRUE, point.labels = rownames(allTransports), 
-    pch = 19)
 ```
 
-![plot of chunk plotGallery](figure/plotGallery.png) 
+```
+## Error: there is no package called 'plotrix'
+```
 
+```r
+triax.plot(allTransports, show.grid=TRUE, 
+           label.points=TRUE, point.labels=rownames(allTransports), 
+           pch=19)
+```
+
+```
+## Error: could not find function "triax.plot"
+```
 
 
 ## Working with country codes
@@ -169,7 +175,13 @@ Eurostat is using ISO2 format for country names, OECD is using ISO3 for their st
 
 ```r
 library("countrycode")
+```
 
+```
+## Error: there is no package called 'countrycode'
+```
+
+```r
 # Use the country codes from previous examples
 countries <- rownames(allTransports)
 head(countries)
@@ -180,26 +192,22 @@ head(countries)
 ```
 
 ```r
-
 # From ISO2 (used by Eurostat) into ISO3 (used by OECD)
 head(countrycode(countries, "iso2c", "iso3c"))
 ```
 
 ```
-## [1] "AUT" "BEL" "BGR" "CHE" "CZE" "DEU"
+## Error: could not find function "countrycode"
 ```
 
 ```r
-
 # From ISO2 (used by Eurostat) into ISO (short country names)
 head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 ```
 
 ```
-## [1] "AUSTRIA"        "BELGIUM"        "BULGARIA"       "SWITZERLAND"   
-## [5] "CZECH REPUBLIC" "GERMANY"
+## Error: could not find function "countrycode"
 ```
-
 
 
 ## Mapping the household incomes at NUTS2 level
@@ -220,7 +228,6 @@ df$unit <- lapply(strsplit(as.character(df$xx), ","), "[", 2)
 df$geo <- lapply(strsplit(as.character(df$xx), ","), "[", 3)
 ```
 
-
 ### Retrieving and manipulating the spatial data from GISCO
 
 Second, we will download the zipped shapefile in 1:60 million scale from year 2010 and subset it at the level of NUTS2.
@@ -230,7 +237,7 @@ Second, we will download the zipped shapefile in 1:60 million scale from year 20
 ```r
 # Load the GISCO shapefile
 download.file("http://epp.eurostat.ec.europa.eu/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", 
-    destfile = "NUTS_2010_60M_SH.zip")
+    destfile="NUTS_2010_60M_SH.zip")
 # unzip
 unzip("NUTS_2010_60M_SH.zip")
 library(rgdal)
@@ -249,7 +256,6 @@ map <- readOGR(dsn = "./NUTS_2010_60M_SH/data", layer = "NUTS_RG_60M_2010")
 # subset the spatialpolygondataframe at NUTS2-level
 map_nuts2 <- subset(map, STAT_LEVL_ == 2)
 ```
-
 
 ### Merge the tabular data with spatial data into single SpatialPolygonDataFrame
 
@@ -276,13 +282,13 @@ dim(df)
 ```
 
 ```r
-# Spatial dataframe has 467 rows and attribute data 275.  We need to make
-# attribute data to have similar number of rows
+# Spatial dataframe has 467 rows and attribute data 275. 
+# We need to make attribute data to have similar number of rows
 NUTS_ID <- as.character(map_nuts2$NUTS_ID)
 VarX <- rep(NA, 316)
-dat <- data.frame(NUTS_ID, VarX)
+dat <- data.frame(NUTS_ID,VarX)
 # then we shall merge this with Eurostat data.frame
-dat2 <- merge(dat, df, by.x = "NUTS_ID", by.y = "geo", all.x = TRUE)
+dat2 <- merge(dat,df,by.x="NUTS_ID",by.y="geo", all.x=TRUE)
 ## merge this manipulated attribute data with the spatialpolygondataframe
 ## rownames
 row.names(dat2) <- dat2$NUTS_ID
@@ -295,7 +301,6 @@ library(maptools)
 dat2$NUTS_ID <- NULL
 shape <- spCbind(map_nuts2, dat2)
 ```
-
 
 
 ### Fortify the shapefile into data.frame and ready for ggplot-plotting
@@ -311,22 +316,26 @@ library(rgeos)
 shape$id <- rownames(shape@data)
 map.points <- fortify(shape, region = "id")
 map.df <- merge(map.points, shape, by = "id")
-# As we want to plot map faceted by years from 2003 to 2011 we have to melt
-# it into long format (variable with numerical names got X-prefix during the
-# spCbind-merge, therefore the X-prefix in variable names)
+# As we want to plot map faceted by years from 2003 to 2011
+# we have to melt it into long format 
+#
+# (variable with numerical names got X-prefix during the spCbind-merge, 
+# therefore the X-prefix in variable names)
 
 library(reshape2)
-map.df.l <- melt(data = map.df, id.vars = c("id", "long", "lat", "group", "NUTS_ID"), 
-    measure.vars = c("X2000", "X2001", "X2002", "X2003", "X2004", "X2005", "X2006", 
-        "X2007", "X2008", "X2009", "X2010", "X2011"))
-# year variable (variable) is class string and type X20xx.  Lets remove the
-# X and convert it to numerical
+map.df.l <- melt(data = map.df, 
+                 id.vars = c("id","long","lat","group","NUTS_ID"), 
+                 measure.vars = c("X2000","X2001","X2002",
+                                  "X2003","X2004","X2005",
+                                  "X2006","X2007","X2008",
+                                  "X2009","X2010","X2011"))
+# year variable (variable) is class string and type X20xx. 
+# Lets remove the X and convert it to numerical
 library(stringr)
-map.df.l$variable <- str_replace_all(map.df.l$variable, "X", "")
+map.df.l$variable <- str_replace_all(map.df.l$variable, "X","")
 map.df.l$variable <- factor(map.df.l$variable)
 map.df.l$variable <- as.numeric(levels(map.df.l$variable))[map.df.l$variable]
 ```
-
 
 ### And finally the plot using ggplot2
 
@@ -337,23 +346,34 @@ Map shows the distribution of *disposable income of private households* at NUTS2
 library(ggplot2)
 library(scales)
 # lets choose only three years
-map.df.l <- map.df.l[map.df.l$variable == c(2000, 2005, 2011), ]
+map.df.l <- map.df.l[map.df.l$variable == c(2000,2005,2011), ]
 # years for for loop
 years <- unique(map.df.l$variable)
 for (year in years) {
-    median_in_data <- median(map.df.l[map.df.l$variable == year, ]$value, na.rm = TRUE)
-    print(ggplot(data = map.df.l[map.df.l$variable == year, ], aes(long, lat, 
-        group = group)) + geom_polygon(aes(fill = value), colour = "white", 
-        size = 0.2) + geom_polygon(data = map.df.l, aes(long, lat), fill = NA, 
-        colour = "white", size = 0.1) + scale_fill_gradient2(low = "#d8b365", 
-        high = "#5ab4ac", midpoint = median_in_data) + coord_map(project = "orthographic", 
-        xlim = c(-22, 34), ylim = c(35, 70)) + labs(title = paste0("Year ", 
-        year, ". Median of \n regional incomes (tgs00026)  is ", median_in_data)))
-}
+  median_in_data <- median(map.df.l[map.df.l$variable == year,]$value, na.rm = TRUE)
+  print(ggplot(data=map.df.l[map.df.l$variable == year,], 
+         aes(long,lat,group=group)) +
+  geom_polygon(aes(fill = value), 
+               colour="white", 
+               size=.2) +
+  geom_polygon(data = map.df.l, aes(long,lat), 
+               fill=NA,
+               colour="white", 
+               size = 0.1) + 
+  scale_fill_gradient2(low="#d8b365", 
+                       high="#5ab4ac", 
+                       midpoint=median_in_data) +
+  coord_map(project="orthographic", xlim=c(-22,34),
+            ylim=c(35,70)) + 
+  labs(title = paste0("Year ",
+                      year,
+                      ". Median of \n regional incomes (tgs00026)  is ",
+                      median_in_data))
+       )
+  }
 ```
 
 ![plot of chunk eurostat_map4](figure/eurostat_map41.png) ![plot of chunk eurostat_map4](figure/eurostat_map42.png) ![plot of chunk eurostat_map4](figure/eurostat_map43.png) 
-
 
 
 
@@ -396,18 +416,16 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] mapproj_1.2-2    maps_2.3-6       scales_0.2.4     reshape2_1.2.2  
-##  [5] rgeos_0.3-4      ggplot2_0.9.3.1  maptools_0.8-29  rgdal_0.8-16    
-##  [9] sp_1.0-15        countrycode_0.16 plotrix_3.5-5    knitr_1.5       
-## [13] eurostat_0.9.31  statfi_0.9.06    pxR_0.29         stringr_0.6.2   
-## [17] reshape_0.8.5    devtools_1.5    
+##  [1] mapproj_1.2-2   maps_2.3-7      scales_0.2.4    rgeos_0.3-5    
+##  [5] ggplot2_1.0.0   maptools_0.8-30 rgdal_0.8-16    sp_1.0-15      
+##  [9] knitr_1.6       eurostat_0.9.33 statfi_0.9.06   pxR_0.40.0     
+## [13] plyr_1.8.1      RJSONIO_1.2-0.2 reshape2_1.4    stringr_0.6.2  
+## [17] reshape_0.8.5   devtools_1.5   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] brew_1.0-6       codetools_0.2-8  colorspace_1.2-4 digest_0.6.4    
-##  [5] evaluate_0.5.3   foreign_0.8-61   formatR_0.10     grid_3.0.2      
-##  [9] gtable_0.1.2     httr_0.3         labeling_0.2     lattice_0.20-29 
-## [13] MASS_7.3-31      memoise_0.2.1    munsell_0.4.2    parallel_3.0.2  
-## [17] plyr_1.8.1       proto_0.3-10     Rcpp_0.11.1      RCurl_1.95-4.1  
-## [21] roxygen2_3.1.0   tools_3.0.2      whisker_0.4
+##  [1] colorspace_1.2-4 digest_0.6.4     evaluate_0.5.5   foreign_0.8-59  
+##  [5] formatR_0.10     grid_3.0.2       gtable_0.1.2     httr_0.3        
+##  [9] labeling_0.2     lattice_0.20-29  MASS_7.3-33      memoise_0.2.1   
+## [13] munsell_0.4.2    parallel_3.0.2   proto_0.3-10     Rcpp_0.11.2     
+## [17] RCurl_1.95-4.1   roxygen2_4.0.1   tools_3.0.2      whisker_0.4
 ```
-
