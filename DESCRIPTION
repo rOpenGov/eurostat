@@ -12,7 +12,8 @@ Depends:
     R (>= 3.0.2),
     reshape,
     statfi,
-    pxR
+    pxR,
+    plyr
 Suggests:
     countrycode,
     mapproj,
