@@ -14,16 +14,16 @@
 #'  If \code{NULL} (default) dictionry names taken from column names of the data.frame. 
 #' @import plyr
 #' @export
-#' @author Janne Huovari <janne.huovari@ptt.fi>
+#' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @return a vector or a data.frame.
 #' @examples
-#' donotrun{
-#' lp <- getEurostatRCV("nama_aux_lp")
-#' lpl <- label_eurostat_vars(lp)
-#' str(lpl)
-#' label_eurostat_vars(names(lp))
-#' label_eurostat_tables("nama_aux_lp")
-#' }
+#'  \dontrun{
+#'    lp <- getEurostatRCV("nama_aux_lp")
+#'    lpl <- label_eurostat_vars(lp)
+#'    str(lpl)
+#'    label_eurostat_vars(names(lp))
+#'    label_eurostat_tables("nama_aux_lp")
+#'  }
 
 label_eurostat <- function(x, dic = NULL){
   if (is.data.frame(x)){
