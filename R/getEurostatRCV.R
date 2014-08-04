@@ -12,12 +12,12 @@
 #' Returns:
 #'  @return A dataset in the molten format with the last column 'value'. See the melt function from reshape package for more details.
 #'
-#' @importFrom reshape melt
+#' @import tidyr
 #' @export
 #' @seealso \code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}
 #' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
 #' @references see citation("eurostat"). 
-#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek, Leo Lahti \email{louhos@@googlegroups.com} and Janne Huovari \email{janne.huovari@ptt.fi}
 #' @examples \dontrun{
 #'    tmp <- getEurostatRCV(kod = "educ_iste")
 #'    head(tmp)
@@ -34,19 +34,16 @@
 #' @keywords utilities database
 
 getEurostatRCV <-
-function(kod = "educ_iste") {
-
-  dat <- getEurostatRaw(kod)
-  dat2 <- t(as.data.frame(strsplit(as.character(dat[,1]), split=",")))
-  cnames <- strsplit(colnames(dat)[1], split="[,\\\\]")[[1]]
-  colnames(dat2) <- cnames[-length(cnames)]
-  rownames(dat2) <- dat[,1]
-  rownames(dat) <- dat[,1]
-  dat3 <- data.frame(dat2, dat[,-1])
-  colnames(dat3) <- c(colnames(dat2), colnames(dat)[-1])
-  dat4 <- melt(dat3, id=cnames[-length(cnames)])
-  colnames(dat4)[ncol(dat4)-1] = cnames[length(cnames)]
-
-  dat4
-
-}
+  function(kod = "educ_iste") {
+    
+    dat <- getEurostatRaw(kod)
+    cnames <- strsplit(colnames(dat)[1], split="[,\\\\]")[[1]]
+    cnames1 <- cnames[-length(cnames)]
+    cnames2 <- cnames[length(cnames)]
+    names(dat)[1] <- "varcol"
+    dat2 <- tidyr::separate(dat, col = varcol, 
+                       into = cnames1, 
+                       sep = ",", convert = TRUE)
+    dat3 <- tidyr::gather_(dat2, cnames2, "value", names(dat2)[-c(1:length(cnames1))])
+    dat3
+  }
