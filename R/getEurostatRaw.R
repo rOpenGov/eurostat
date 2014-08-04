@@ -16,7 +16,7 @@
 #' @seealso \code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
 #' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
 #' @references see citation("eurostat"). 
-#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek, Leo Lahti \email{louhos@@googlegroups.com} and Janne Huovari \email{janne.huovari@ptt.fi}
 #' @examples \dontrun{
 #' 	       tmp <- getEurostatRaw(kod = "educ_iste")
 #' 	       head(tmp)
@@ -38,9 +38,7 @@ function(kod = "educ_iste") {
 
   #  remove additional marks
   for (i in 2:ncol(dat)) {
-    tmp <- sapply(strsplit(as.character(dat[,i]), split = ' '), `[`, 1)
-    tmp[tmp==":"] = NA
-    dat[,i] <-as.numeric(tmp)
+    dat[,i] <- extract_numeric(dat[,i])
   }
   dat
 }
