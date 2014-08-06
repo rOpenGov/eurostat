@@ -40,6 +40,7 @@ get_eurostat <-
     cnames <- strsplit(colnames(dat)[1], split="[,\\\\]")[[1]]
     cnames1 <- cnames[-length(cnames)]
     cnames2 <- cnames[length(cnames)]
+    varcol <- NULL # to avoid warnings in pkg build!
     names(dat)[1] <- "varcol"
     dat2 <- tidyr::separate(dat, col = varcol, 
                        into = cnames1, 
