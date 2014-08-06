@@ -13,7 +13,7 @@
 #'  @return A dataset in data.frame format. First column contains names of cases. Column names usually corresponds to years.
 #'
 #' @export
-#' @seealso \code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+#' @seealso \code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}.
 #' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti \email{louhos@@googlegroups.com} and Janne Huovari \email{janne.huovari@@ptt.fi}

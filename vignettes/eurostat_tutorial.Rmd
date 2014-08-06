@@ -50,7 +50,7 @@ id <- unique(grepEurostatTOC("split of passenger transport",
 id
 
 # Get table with the given ID
-tmp <- eurostat(id)
+tmp <- get_eurostat(id)
 summary(tmp)
 ```
 
@@ -59,7 +59,7 @@ summary(tmp)
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
 library(reshape)
-tmp <- eurostat("tsdtr210")
+tmp <- get_eurostat("tsdtr210")
 bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
 car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
@@ -246,9 +246,7 @@ This R package is based on earlier CRAN packages [statfi](http://cran.r-project.
 
 **Citing the R tools** This work can be freely used, modified and
 distributed under the [BSD-2-clause (modified FreeBSD)
-license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek
-and Markus Kainu (C) 2014. eurostat R package. URL:
-http://ropengov.github.io/eurostat'.
+license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu (C) 2014. eurostat R package. URL: http://ropengov.github.io/eurostat'.
 
 
 ### Session info
