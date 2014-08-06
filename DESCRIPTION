@@ -9,8 +9,6 @@ Description: Eurostat Open Data R Tools
 License: BSD_2_clause + file LICENSE
 Depends:
     R (>= 3.0.2),
-    statfi,
-    pxR,
     plyr,
     tidyr
 Suggests:
