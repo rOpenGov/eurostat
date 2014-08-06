@@ -7,6 +7,9 @@
 ./inst/extras/*.Rmd
 inst/extras/.RData
 
+# Vignette
+./vignettes/NUTS_2010_60M_SH/*
+./vignettes/NUTS_2010_60M_SH.zip
 
 # Git related
 ./.git*
