@@ -1,10 +1,9 @@
 Package: eurostat
 Type: Package
 Title: eurostat R tools
-Version: 0.9.33
-Date: 2014-05-06
-Author: Leo Lahti and Przemyslaw Biecek
-Contributors: Janne Huovari
+Version: 0.9.34
+Date: 2014-08-06
+Author: Leo Lahti, Przemyslaw Biecek and Janne Huovari
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 Description: Eurostat Open Data R Tools
 License: BSD_2_clause + file LICENSE

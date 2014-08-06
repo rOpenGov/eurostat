@@ -7,7 +7,7 @@
 #' @description Download a dataset from the eurostat database. The dataset is transformed into the tabular format.
 #' 
 #' Arguments:
-#'  @param kod A code name for the data set of interested. See the table of contents of eurostat datasets for more details.
+#'  @param id A code name for the data set of interested. See the table of contents of eurostat datasets for more details.
 #'
 #' Returns:
 #'  @return A dataset in data.frame format. First column contains names of cases. Column names usually corresponds to years.
@@ -18,15 +18,15 @@
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti \email{louhos@@googlegroups.com} and Janne Huovari \email{janne.huovari@ptt.fi}
 #' @examples \dontrun{
-#' 	       tmp <- getEurostatRaw(kod = "educ_iste")
+#' 	       tmp <- getEurostatRaw("educ_iste")
 #' 	       head(tmp)
 #'	     }
 #' @keywords utilities database
 
 getEurostatRaw <-
-function(kod = "educ_iste") {
+function(id = "educ_iste") {
 
-  adres <- paste("http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?sort=1&file=data%2F",kod,".tsv.gz",sep="")
+  adres <- paste("http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?sort=1&file=data%2F",id,".tsv.gz",sep="")
   tfile <- tempfile()
 
   #  download and read file
