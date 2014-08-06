@@ -6,7 +6,7 @@
 #' vector of definations. For vectors a dictorionay name have to be supplied.
 #' For data.frames dictonary names are taken from column names. 
 #' "time" and "value" columns are returned as they were, so you can supply 
-#' data.frame from \code{\link{getEurostatRCV}} and get data.frame with 
+#' data.frame from \code{\link{eurostat}} and get data.frame with 
 #' definations instead of codes.
 #' 
 #' @param x a vector or a data.frame. 
@@ -18,7 +18,7 @@
 #' @return a vector or a data.frame.
 #' @examples
 #'  \dontrun{
-#'    lp <- getEurostatRCV("nama_aux_lp")
+#'    lp <- eurostat("nama_aux_lp")
 #'    lpl <- label_eurostat_vars(lp)
 #'    str(lpl)
 #'    label_eurostat_vars(names(lp))

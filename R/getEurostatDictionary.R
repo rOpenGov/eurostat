@@ -13,7 +13,7 @@
 #'  @return A data.frame with two columns, first with code names and second with full names.
 #'
 #' @export
-#' @seealso \code{\link{getEurostatRCV}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+#' @seealso \code{\link{eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
 #' @details The TOC is downloaded from the \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?file=dic....}
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}

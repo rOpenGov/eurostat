@@ -10,12 +10,12 @@
 #'
 #'  @return A data.frame with eight columns
 #'      \item{title}{The name of dataset of theme}
-#'      \item{code}{The codename of dataset of theme, will be used by the getEurostatRCV and getEurostatRaw functions.}
+#'      \item{code}{The codename of dataset of theme, will be used by the eurostat and getEurostatRaw functions.}
 #'      \item{type}{Is it a dataset, folder or table.}
 #'      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 #'
 #' @export
-#' @seealso \code{\link{getEurostatRCV}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+#' @seealso \code{\link{eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
 #' @details The TOC is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
 #' @references
 #' To cite the R package, see citation("eurostat"). 

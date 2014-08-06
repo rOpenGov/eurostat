@@ -50,7 +50,7 @@ id <- unique(grepEurostatTOC("split of passenger transport",
 id
 
 # Get table with the given ID
-tmp <- getEurostatRCV(id)
+tmp <- eurostat(id)
 summary(tmp)
 ```
 
@@ -59,7 +59,7 @@ summary(tmp)
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
 library(reshape)
-tmp <- getEurostatRCV("tsdtr210")
+tmp <- eurostat("tsdtr210")
 bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
 car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
