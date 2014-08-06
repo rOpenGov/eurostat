@@ -7,7 +7,7 @@
 #' @description Download a dataset from the eurostat database. The dataset is transformed into the molten / row-column-value format (RCV).
 #' 
 #' Arguments:
-#'  @param kod A code name for the data set of interest. See the table of contents of eurostat datasets for details.
+#'  @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
 #'
 #' Returns:
 #'  @return A dataset in the molten format with the last column 'value'. See the melt function from reshape package for more details.
@@ -19,7 +19,7 @@
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti \email{louhos@@googlegroups.com} and Janne Huovari \email{janne.huovari@ptt.fi}
 #' @examples \dontrun{
-#'    tmp <- getEurostatRCV(kod = "educ_iste")
+#'    tmp <- getEurostatRCV(id = "educ_iste")
 #'    head(tmp)
 #'    t1 <- getEurostatRCV("tsdtr420")
 #'    tmp <- cast(t1, geo ~ time , mean, subset=victim=="KIL_MIO_POP")
@@ -34,9 +34,9 @@
 #' @keywords utilities database
 
 getEurostatRCV <-
-  function(kod = "educ_iste") {
+  function(id = "educ_iste") {
     
-    dat <- getEurostatRaw(kod)
+    dat <- getEurostatRaw(id)
     cnames <- strsplit(colnames(dat)[1], split="[,\\\\]")[[1]]
     cnames1 <- cnames[-length(cnames)]
     cnames2 <- cnames[length(cnames)]
