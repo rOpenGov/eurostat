@@ -13,7 +13,7 @@ Package: \tab eurostat\cr
 Type: \tab Package\cr
 Version: \tab See sessionInfo() or DESCRIPTION file\cr
 Date: \tab 2014\cr
-License: \tab GPL-3\cr
+License: \tab BSD_2_clause + LICENSE\cr
 LazyLoad: \tab yes\cr
 }
 
@@ -23,7 +23,7 @@ R Tools for Eurostat Open Data
 library(eurostat)
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com}
 }
 \references{
 See citation("eurostat")

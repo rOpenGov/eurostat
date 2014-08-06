@@ -12,7 +12,7 @@ Depends:
     statfi,
     pxR,
     plyr,
-    tidyr    
+    tidyr
 Suggests:
     countrycode,
     mapproj,

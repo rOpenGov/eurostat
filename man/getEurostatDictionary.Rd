@@ -34,7 +34,7 @@ Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
 see citation("eurostat").
 }
 \seealso{
-\code{\link{getEurostatRCV}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+\code{\link{eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
 }
 \keyword{database}
 \keyword{utilities}

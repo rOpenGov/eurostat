@@ -3,10 +3,10 @@
 \alias{getEurostatRaw}
 \title{Download a dataset from the eurostat database (ec.europa.eu/eurostat).}
 \usage{
-getEurostatRaw(kod = "educ_iste")
+getEurostatRaw(id = "educ_iste")
 }
 \arguments{
-\item{kod}{A code name for the data set of interested. See the table of contents of eurostat datasets for more details.
+\item{id}{A code name for the data set of interested. See the table of contents of eurostat datasets for more details.
 
 Returns:}
 }
@@ -23,12 +23,12 @@ Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/ever
 }
 \examples{
 \dontrun{
-	       tmp <- getEurostatRaw(kod = "educ_iste")
+	       tmp <- getEurostatRaw("educ_iste")
 	       head(tmp)
 	     }
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
+Przemyslaw Biecek, Leo Lahti \email{louhos@googlegroups.com} and Janne Huovari \email{janne.huovari@ptt.fi}
 }
 \references{
 see citation("eurostat").

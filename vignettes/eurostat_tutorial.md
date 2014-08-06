@@ -58,14 +58,14 @@ head(toc)
 ## 3   euroind  folder                                                
 ## 4    ei_bcs  folder                                                
 ## 5 ei_bcs_cs  folder                                                
-## 6 ei_bsco_m dataset          26.06.2014                  26.06.2014
+## 6 ei_bsco_m dataset          29.07.2014                  29.07.2014
 ##   data.start data.end values
 ## 1                         NA
 ## 2                         NA
 ## 3                         NA
 ## 4                         NA
 ## 5                         NA
-## 6    1985M01  2014M06     NA
+## 6    1985M01  2014M07     NA
 ```
 
 ```r
@@ -75,11 +75,11 @@ grepEurostatTOC("split of passenger transport", type = "dataset")
 
 ```
 ##                                                   title          code
-## 4894                 Modal split of passenger transport tran_hv_psmod
+## 4948                 Modal split of passenger transport tran_hv_psmod
 ##         type last.update.of.data last.table.structure.change data.start
-## 4894 dataset          25.06.2014                  25.06.2014       1990
+## 4948 dataset          25.06.2014                  25.06.2014       1990
 ##      data.end values
-## 4894     2012     NA
+## 4948     2012     NA
 ```
 
 ```r
@@ -88,17 +88,17 @@ grepEurostatTOC("split of passenger transport", type = "table")
 
 ```
 ##                                                       title     code  type
-## 7038                     Modal split of passenger transport tsdtr210 table
-## 7551                     Modal split of passenger transport tsdtr210 table
-## 7675                     Modal split of passenger transport tsdtr210 table
+## 7106                     Modal split of passenger transport tsdtr210 table
+## 7621                     Modal split of passenger transport tsdtr210 table
+## 7745                     Modal split of passenger transport tsdtr210 table
 ##      last.update.of.data last.table.structure.change data.start data.end
-## 7038          25.06.2014                  25.06.2014       1990     2012
-## 7551          25.06.2014                  25.06.2014       1990     2012
-## 7675          25.06.2014                  25.06.2014       1990     2012
+## 7106          25.06.2014                  25.06.2014       1990     2012
+## 7621          25.06.2014                  25.06.2014       1990     2012
+## 7745          25.06.2014                  25.06.2014       1990     2012
 ##      values
-## 7038     NA
-## 7551     NA
-## 7675     NA
+## 7106     NA
+## 7621     NA
+## 7745     NA
 ```
 
 ```r
@@ -110,12 +110,12 @@ id
 
 ```
 ## [1] tsdtr210
-## 6922 Levels:   aact aact_ali aact_ali01 aact_ali02 aact_eaa ... yth_volunt_010
+## 7015 Levels:   aact aact_ali aact_ali01 aact_ali02 aact_eaa ... yth_volunt_010
 ```
 
 ```r
 # Get table with the given ID
-tmp <- getEurostatRCV(id)
+tmp <- eurostat(id)
 summary(tmp)
 ```
 
@@ -136,11 +136,31 @@ summary(tmp)
 
 ```r
 library(reshape)
-tmp <- getEurostatRCV("tsdtr210")
+tmp <- eurostat("tsdtr210")
 bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
-car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
-train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
+```
 
+```
+## Error: Casting formula contains variables not found in molten data: time
+```
+
+```r
+car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
+```
+
+```
+## Error: Casting formula contains variables not found in molten data: time
+```
+
+```r
+train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
+```
+
+```
+## Error: Casting formula contains variables not found in molten data: time
+```
+
+```r
 # select 2010 data
 allTransports <- data.frame(bus = bus[,"2010 "], 
                             car = car[,"2010 "],
@@ -151,21 +171,12 @@ allTransports <- na.omit(allTransports)
 
 # triangle plot
 library("plotrix")
-```
-
-```
-## Error: there is no package called 'plotrix'
-```
-
-```r
 triax.plot(allTransports, show.grid=TRUE, 
            label.points=TRUE, point.labels=rownames(allTransports), 
            pch=19)
 ```
 
-```
-## Error: could not find function "triax.plot"
-```
+![plot of chunk plotGallery](figure/plotGallery.png) 
 
 
 ## Working with country codes
@@ -175,13 +186,7 @@ Eurostat is using ISO2 format for country names, OECD is using ISO3 for their st
 
 ```r
 library("countrycode")
-```
 
-```
-## Error: there is no package called 'countrycode'
-```
-
-```r
 # Use the country codes from previous examples
 countries <- rownames(allTransports)
 head(countries)
@@ -197,7 +202,7 @@ head(countrycode(countries, "iso2c", "iso3c"))
 ```
 
 ```
-## Error: could not find function "countrycode"
+## [1] "AUT" "BEL" "BGR" "CHE" "CZE" "DEU"
 ```
 
 ```r
@@ -206,7 +211,8 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 ```
 
 ```
-## Error: could not find function "countrycode"
+## [1] "Austria"        "Belgium"        "Bulgaria"       "Switzerland"   
+## [5] "Czech Republic" "Germany"
 ```
 
 
@@ -222,7 +228,7 @@ First, we shall retrieve the nuts2-level figures of variable `tgs00026` (Disposa
 
 ```r
 library(eurostat)
-df <- getEurostatRaw(kod = "tgs00026")
+df <- getEurostatRaw("tgs00026")
 names(df) <- c("xx", 2011:2000)
 df$unit <- lapply(strsplit(as.character(df$xx), ","), "[", 2)
 df$geo <- lapply(strsplit(as.character(df$xx), ","), "[", 3)
@@ -401,7 +407,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.0.2 (2013-09-25)
+## R version 3.1.1 (2014-07-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## 
 ## locale:
@@ -416,16 +422,17 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] mapproj_1.2-2   maps_2.3-7      scales_0.2.4    rgeos_0.3-5    
-##  [5] ggplot2_1.0.0   maptools_0.8-30 rgdal_0.8-16    sp_1.0-15      
-##  [9] knitr_1.6       eurostat_0.9.33 statfi_0.9.06   pxR_0.40.0     
-## [13] plyr_1.8.1      RJSONIO_1.2-0.2 reshape2_1.4    stringr_0.6.2  
-## [17] reshape_0.8.5   devtools_1.5   
+##  [1] mapproj_1.2-2    maps_2.3-7       scales_0.2.4     rgeos_0.3-6     
+##  [5] ggplot2_1.0.0    maptools_0.8-30  rgdal_0.8-16     sp_1.0-15       
+##  [9] countrycode_0.17 plotrix_3.5-7    reshape_0.8.5    knitr_1.6       
+## [13] eurostat_0.9.34  tidyr_0.1        statfi_0.9.8     pxR_0.40.0      
+## [17] plyr_1.8.1       RJSONIO_1.3-0    reshape2_1.4     stringr_0.6.2   
+## [21] devtools_1.5    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] colorspace_1.2-4 digest_0.6.4     evaluate_0.5.5   foreign_0.8-59  
-##  [5] formatR_0.10     grid_3.0.2       gtable_0.1.2     httr_0.3        
+##  [1] colorspace_1.2-4 digest_0.6.4     evaluate_0.5.5   foreign_0.8-61  
+##  [5] formatR_0.10     grid_3.1.1       gtable_0.1.2     httr_0.4        
 ##  [9] labeling_0.2     lattice_0.20-29  MASS_7.3-33      memoise_0.2.1   
-## [13] munsell_0.4.2    parallel_3.0.2   proto_0.3-10     Rcpp_0.11.2     
-## [17] RCurl_1.95-4.1   roxygen2_4.0.1   tools_3.0.2      whisker_0.4
+## [13] munsell_0.4.2    parallel_3.1.1   proto_0.3-10     Rcpp_0.11.2     
+## [17] RCurl_1.95-4.3   roxygen2_4.0.1   tools_3.1.1      whisker_0.4
 ```

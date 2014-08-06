@@ -11,7 +11,7 @@ getEurostatTOC(...)
 \value{
 A data.frame with eight columns
      \item{title}{The name of dataset of theme}
-     \item{code}{The codename of dataset of theme, will be used by the getEurostatRCV and getEurostatRaw functions.}
+     \item{code}{The codename of dataset of theme, will be used by the eurostat and getEurostatRaw functions.}
      \item{type}{Is it a dataset, folder or table.}
      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 }
@@ -31,7 +31,7 @@ Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
 To cite the R package, see citation("eurostat").
 }
 \seealso{
-\code{\link{getEurostatRCV}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+\code{\link{eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
 }
 \keyword{database}
 \keyword{utilities}
