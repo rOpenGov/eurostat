@@ -111,7 +111,7 @@ First, we shall retrieve the nuts2-level figures of variable `tgs00026` (Disposa
 
 ```{r eurostat_map0, warning=FALSE, message=FALSE}
 library(eurostat)
-df <- getEurostatRaw(kod = "tgs00026")
+df <- getEurostatRaw("tgs00026")
 names(df) <- c("xx", 2011:2000)
 df$unit <- lapply(strsplit(as.character(df$xx), ","), "[", 2)
 df$geo <- lapply(strsplit(as.character(df$xx), ","), "[", 3)

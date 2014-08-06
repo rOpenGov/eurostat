@@ -5,7 +5,7 @@
 #' Type: \tab Package\cr
 #' Version: \tab See sessionInfo() or DESCRIPTION file\cr
 #' Date: \tab 2014\cr
-#' License: \tab GPL-3\cr
+#' License: \tab BSD_2_clause + LICENSE\cr
 #' LazyLoad: \tab yes\cr
 #' }
 #'
@@ -16,7 +16,7 @@
 #' @docType package
 #' @title R Tools for Eurostat open data
 #'
-#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com}
 #' @references
 #' See citation("eurostat")
 #' \url{http://github.com/ropengov/eurostat}
