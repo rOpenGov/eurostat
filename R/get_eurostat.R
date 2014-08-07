@@ -36,15 +36,22 @@
 get_eurostat <-
   function(id = "educ_iste") {
     
-    dat <- getEurostatRaw(id)
-    cnames <- strsplit(colnames(dat)[1], split="[,\\\\]")[[1]]
+    dat <- get_eurostat_raw(id)
+    
+    # Separate codes to columns
+    cnames <- strsplit(colnames(dat)[1], split="\\.")[[1]]
     cnames1 <- cnames[-length(cnames)]
     cnames2 <- cnames[length(cnames)]
-    varcol <- NULL # to avoid warnings in pkg build!
-    names(dat)[1] <- "varcol"
-    dat2 <- tidyr::separate(dat, col = varcol, 
+    dat2 <- tidyr::separate_(dat, col = colnames(dat)[1], 
                        into = cnames1, 
                        sep = ",", convert = TRUE)
+    
+    # To long format
+    names(dat2) <- gsub("X", "", names(dat2))
     dat3 <- tidyr::gather_(dat2, cnames2, "value", names(dat2)[-c(1:length(cnames1))])
+    
+    # remove flags
+    dat3$value <- tidyr::extract_numeric(dat3$value)
+    
     dat3
   }
