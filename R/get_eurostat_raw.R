@@ -23,8 +23,6 @@
 #'  \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing}
 #'  website.
 #'@references see citation("eurostat").
-#'@author Przemyslaw Biecek, Leo Lahti \email{louhos@@googlegroups.com} and
-#'  Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @examples \dontrun{
 #' 	       tmp <- get_eurostat_raw("educ_iste")
 #' 	       head(tmp)
