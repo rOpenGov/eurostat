@@ -8,3 +8,7 @@ vignettes/*_tutorial.md
 vignettes/*~
 .Rproj.user
 eurostat.Rproj
+vignettes/NUTS_2010.xls
+vignettes/zipfile
+NUTS_2010.xls
+zipfile
