@@ -31,7 +31,7 @@ Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
 To cite the R package, see citation("eurostat").
 }
 \seealso{
-\code{\link{get_eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+\code{\link{get_eurostat}}, \code{\link{grepEurostatTOC}}.
 }
 \keyword{database}
 \keyword{utilities}

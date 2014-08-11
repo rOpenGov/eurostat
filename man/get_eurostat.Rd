@@ -40,7 +40,7 @@ Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/ever
 see citation("eurostat").
 }
 \seealso{
-\code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}
+\code{\link{getEurostatTOC}}, \code{\link{get_eurostat_raw}}
 }
 \keyword{database}
 \keyword{utilities}

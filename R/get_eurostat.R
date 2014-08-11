@@ -14,7 +14,7 @@
 #'
 #' @import tidyr
 #' @export
-#' @seealso \code{\link{getEurostatTOC}}, \code{\link{getEurostatRaw}}
+#' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat_raw}}
 #' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
 #' @references see citation("eurostat"). 
 #' @examples \dontrun{

@@ -15,7 +15,7 @@
 #'      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 #'
 #' @export
-#' @seealso \code{\link{get_eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{grepEurostatTOC}}.
+#' @seealso \code{\link{get_eurostat}}, \code{\link{grepEurostatTOC}}.
 #' @details The TOC is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
 #' @references
 #' To cite the R package, see citation("eurostat"). 
