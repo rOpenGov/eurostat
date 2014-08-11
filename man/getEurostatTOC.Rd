@@ -11,7 +11,7 @@ getEurostatTOC(...)
 \value{
 A data.frame with eight columns
      \item{title}{The name of dataset of theme}
-     \item{code}{The codename of dataset of theme, will be used by the eurostat and getEurostatRaw functions.}
+     \item{code}{The codename of dataset of theme, will be used by the eurostat and get_eurostat_raw functions.}
      \item{type}{Is it a dataset, folder or table.}
      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 }

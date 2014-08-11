@@ -15,7 +15,7 @@ Returns:}
 \value{
 A data.frame with eight columns
  	    \item{title}{The name of dataset of theme}
-	    \item{code}{The codename of dataset of theme, will be used by the get_eurostat and getEurostatRaw functions.}
+	    \item{code}{The codename of dataset of theme, will be used by the get_eurostat and get_eurostat_raw functions.}
 	    \item{type}{Is it a dataset, folder or table.}
 	    \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 }
@@ -34,7 +34,7 @@ Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
 See citation("eurostat")
 }
 \seealso{
-\code{\link{get_eurostat}}, \code{\link{getEurostatRaw}}, \code{\link{getEurostatTOC}}
+\code{\link{get_eurostat}}, \code{\link{get_eurostat_raw}}, \code{\link{getEurostatTOC}}
 }
 \keyword{database}
 \keyword{utilities}
