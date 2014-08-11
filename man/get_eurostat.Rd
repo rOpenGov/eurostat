@@ -36,9 +36,6 @@ Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/ever
 	      xlab="", ylab="", yaxt="n")
    }
 }
-\author{
-Przemyslaw Biecek, Leo Lahti \email{louhos@googlegroups.com} and Janne Huovari \email{janne.huovari@ptt.fi}
-}
 \references{
 see citation("eurostat").
 }
