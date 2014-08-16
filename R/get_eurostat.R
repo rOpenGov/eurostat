@@ -43,7 +43,10 @@ get_eurostat <-
     cnames2 <- cnames[length(cnames)]
     dat2 <- tidyr::separate_(dat, col = colnames(dat)[1], 
                        into = cnames1, 
-                       sep = ",", convert = TRUE)
+                       sep = ",", convert = FALSE)
+    # columns from cnames1 are converted into factors
+    # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
+    for (cname in cnames1) dat2[,cname] <- factor(dat2[,cname])
     
     # To long format
     names(dat2) <- gsub("X", "", names(dat2))
