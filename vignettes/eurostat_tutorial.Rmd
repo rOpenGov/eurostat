@@ -32,43 +32,77 @@ library(eurostat)
 ```
 
 
-## Accessing Eurostat data 
+## Finding the data
 
-```{r eurostat, warning=FALSE, message=FALSE}
+
+Function `getEurostatTOC` downloads a table of contents of eurostat datasets. Note that the values in column 'code' should be used to download a selected dataset.
+
+```{r getEurostatTOC, warning=FALSE, message=FALSE}
 library(eurostat)
 
 # Get Eurostat data listing
-toc <- getEurostatTOC(); 
-head(toc)
+toc <- getEurostatTOC()
+toc[200:210,]
+```
 
-# info about passagers
-grepEurostatTOC("split of passenger transport", type = "dataset")
-grepEurostatTOC("split of passenger transport", type = "table")
+With `grepEurostatTOC` you can search through the table of content for particular patterns, e.g. all datasets related to income.
 
-# Pick ID for the table
-id <- unique(grepEurostatTOC("split of passenger transport", 
-      		             type = "table")$code)
-id
-
-# Get table with the given ID
-tmp <- get_eurostat(id)
-summary(tmp)
+```{r grepEurostatTOC, warning=FALSE, message=FALSE}
+# info about passengers
+head(grepEurostatTOC("income", type = "dataset"))
+grepEurostatTOC("Disposable income", type = "table")
 ```
 
 
-## Triangle plot for split of passenger transport
+## Downloading the data 
+
+Package has two functions for downloading the data. When using `get_eurostat_raw` the data is transformed into the tabular format, whereas `get_eurostat` returns dataset transformed into the molten / row-column-value format (RCV). Let's focus on indicator ([Disposable income of private households by NUTS 2 regions](http://epp.eurostat.ec.europa.eu/portal/page/portal/product_details/dataset?p_product_code=TGS00026)) in this chapter. See the examples below.
+
+
+```{r get_eurostat_raw, warning=FALSE, message=FALSE, results='asis'}
+# Pick ID for the table
+id <- unique(grepEurostatTOC("Disposable income", 
+        	             type = "table")$code)
+# Get table with the given ID
+dat_raw <- get_eurostat_raw(id)
+# lets use kable function from knitr for nicer table outputs
+library(knitr)
+kable(head(dat_raw))
+```
+
+
+```{r get_eurostat, warning=FALSE, message=FALSE, results='asis'}
+dat <- get_eurostat(id)
+kable(head(dat))
+```
+
+
+### Labelling the data
+
+Function `label_eurostat`  replaces the eurostat codes with definitions from Eurostat dictionaries for data frames created using `get_eurostat`-function.
+
+```{r label_eurostat, warning=FALSE, message=FALSE, results='asis'}
+datl <- label_eurostat(dat)
+
+kable(head(datl))
+```
+
+
+## Some plotting examples and working with country/region names
+
+### Triangle plot for split of passenger transport
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
 library(reshape)
 tmp <- get_eurostat("tsdtr210")
-bus  <- cast(tmp, geo ~ variable , mean, subset= vehicle=="BUS_TOT")
-car <- cast(tmp, geo ~ variable , mean, subset= vehicle=="CAR")
-train   <- cast(tmp, geo ~ variable , mean, subset= vehicle=="TRN")
+bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
+car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
+train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
 
 # select 2010 data
-allTransports <- data.frame(bus = bus[,"2010 "], 
-                            car = car[,"2010 "],
-                            train = train[,"2010 "])
+allTransports <- data.frame(bus = bus[,"2010"], 
+                            car = car[,"2010"],
+                            train = train[,"2010"])
 # add countrynames
 rownames(allTransports) <- levels(bus[,1])
 allTransports <- na.omit(allTransports)
@@ -81,11 +115,20 @@ triax.plot(allTransports, show.grid=TRUE,
 ```
 
 
-## Working with country codes
+### Working with country codes
 
-Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
+Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. There are (at least) two ways to solve the issue. First one is to apply `label_eurostat`-function to your dataset.
 
-```{r countrycodes, warning=FALSE, message=FALSE, eval=FALSE}
+```{r countrycodes1, warning=FALSE, message=FALSE}
+tmp <- get_eurostat("tsdtr210")
+tmpl <- label_eurostat(tmp)
+
+head(tmpl)
+```
+
+A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
+
+```{r countrycodes, warning=FALSE, message=FALSE}
 library("countrycode")
 
 # Use the country codes from previous examples
@@ -97,59 +140,38 @@ head(countrycode(countries, "iso2c", "iso3c"))
 
 # From ISO2 (used by Eurostat) into ISO (short country names)
 head(countrycode(rownames(allTransports), "iso2c", "country.name"))
-
 ```
 
 
-## Working with Regional level data from Eurostat
+### Working with regional level data from Eurostat
 
 For most part the Eurostat datasets are of country-year -type. However, many indicators have are also provided at lower level of regional breakdown following the [NUTS-scheme](http://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics). (Look [this document](http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?TargetUrl=DSP_GEN_DESC_VIEW_NOHDR&StrNom=NUTS_33&StrLanguageCode=EN) for more details by Eurostat).
 
-In this exercise we plot nuts2-level figures of variable `tgs00026` ([Disposable income of private households by NUTS 2 regions](http://epp.eurostat.ec.europa.eu/portal/page/portal/product_details/dataset?p_product_code=TGS00026)).
+In this exercise we plot nuts2-level figures of variable `tgs00026`.
 
 First, we shall retrieve the data and munge the raw data to extract the information for creating id-variables `unit`, `region`, `cntry` and `countryname`.
 
 ```{r eurostat_region_data, warning=FALSE, message=FALSE}
 library(eurostat)
-dat <- getEurostatRaw("tgs00026")
-# Replace the varnames
-names(dat) <- c("xx", 2011:2000)
-# Extract the information on unit of measurement
-dat$unit <- as.character(lapply(strsplit(as.character(dat$xx), ","), "[", 2))
-# Extract the information on region in question
-dat$region <- as.character(lapply(strsplit(as.character(dat$xx), ","), "[", 3))
+dat <- get_eurostat("tgs00026")
 # Extract the information on country in question. (First two character in region string mark the country)
-dat$cntry <- substr(dat$region, 1,2)
+dat$cntry <- substr(dat$geo, 1,2)
 # Create the variable for proper countrynames using countryname-package
 library(countrycode)
 dat$countryname <- countrycode(dat$cntry, "iso2c", "country.name")
 
-# drop out the xx var as no longer needed
-dat <- dat[,-1]
-# convert data into long format for plotting
-library(reshape2)
-dat.l <- melt(data = dat, 
-                 id.vars = c("unit","region","cntry","countryname"), 
-                 measure.vars = 1:12)
-dat.l$variable <- as.numeric(levels(dat.l$variable))[dat.l$variable]
-# remove all the rows that have NA in value
-dat.l <- dat.l[!is.na(dat.l$value), ]
-# print the first six rows
-head(dat.l)
-```
-
-After the data is in long format it is a straightforward task to plot is using ggplot2-package.
-
-```{r eurostat_plot1, warning=FALSE, message=FALSE}
 library(ggplot2)
-ggplot(dat.l, aes(x=variable,y=value,
-                  group=region,
+# convert time column from factor to numeric
+dat$time <- as.numeric(levels(dat$time))[dat$time]
+
+ggplot(dat, aes(x=time,y=value,
+                  group=geo,
                   color=cntry)) +
   geom_point() + geom_line() + 
-  geom_text(data=merge(dat.l, 
-                         aggregate(variable ~ region, dat.l, max),
-                         by=c("variable","region")),
-              aes(x=variable, y = value, label=region),
+  geom_text(data=merge(dat, 
+                         aggregate(time ~ geo, dat, max),
+                         by=c("time","geo")),
+              aes(x=time, y = value, label=geo),
               hjust=-0.5,vjust=-1,size=3) +
   coord_cartesian(xlim=c(2000:2014)) +
   labs(x="Year",
@@ -157,43 +179,50 @@ ggplot(dat.l, aes(x=variable,y=value,
 ```
 
 
-### Adding region names
+#### Adding region names
 
-As the NUTS codes are not informative *per se*, Eurostat's [Ramon metadata server](http://ec.europa.eu/eurostat/ramon/index.cfm?TargetUrl=DSP_PUB_WELC) provides keys for linking the the NUTS codes with original names of the regions in native languages. 
+Again, there are two options for adding the region names. Eurostat's [Ramon metadata server](http://ec.europa.eu/eurostat/ramon/index.cfm?TargetUrl=DSP_PUB_WELC) provides keys for linking the the NUTS codes with original names of the regions in native languages. This [zipfile](http://ec.europa.eu/eurostat/ramon/documents/nuts/NUTS_2010.zip) contains the NUTS codes with region names and hierarchy levels from 2010.
 
-The following code downloads the zipfile, unzips it and reads the key data into R. (There are some issues with character encodings when reading the .xls-file). For clarity, we shall subset first four countries from the data in alphabetical order and plot the same indicator as above from those countries includin the native region names.
+However, using `label_eurostat` is more straightforward. For clarity, we shall subset first four countries from the data in alphabetical order and plot the same indicator as above from those countries including the region names.
 
 ```{r eurostat_region_names, warning=FALSE, message=FALSE, fig.height=12}
-# download, unzip and read the key table forregion names
-download.file("http://ec.europa.eu/eurostat/ramon/documents/nuts/NUTS_2010.zip", 
-              destfile = "zipfile")
-unzip("zipfile")
-library(gdata)
-region_map <- read.xls("NUTS_2010.xls", sheet=1)
-# merge the region key with the income data data (subset the four countries at the same time)
-dat.l2 <- merge(dat.l[dat.l$cntry %in% c("AT","BE","BG","CZ"),],
-                region_map,
-                by.x="region",
-                by.y="NUTS.CODE")
+dat <- get_eurostat("tgs00026")
+
+# Extract the information on country in question. (First two character in region string mark the country)
+cntry <- substr(dat$geo, 1,2)
+# apply the definitions from dictionary
+datl <- label_eurostat(dat)
+# add the countrycodes as a new column
+datl$cntry <- cntry
+# use countrycode-package to convert them to country names
+library(countrycode)
+datl$cntry <- countrycode(datl$cntry, "iso2c", "country.name")
+
 # plot the data using country facets
 library(ggplot2)
-ggplot(dat.l2, aes(x=variable,y=value,
-                  group=region)) +
-  geom_point() + geom_line() + 
-  geom_text(data=merge(dat.l2, 
-                         aggregate(variable ~ NUTS.LABEL, dat.l2, max),
-                         by=c("variable","NUTS.LABEL")),
-              aes(x=variable, y = value, label=NUTS.LABEL),
-            vjust=-1,size=3) +
+# convert time column from factor to numeric
+datl$time <- as.numeric(levels(datl$time))[datl$time]
+# subset the countries
+datl2 <- datl[datl$cntry %in% c("Austria","Belgium","Bulgaria","Czech Republic"),]
+
+ggplot(datl2, 
+       aes(x=time,y=value,
+                  group=geo)) +
+  geom_point(color="grey") + geom_line(color="grey") + 
+  geom_text(data=merge(datl2, 
+                         aggregate(time ~ geo, datl2, max),
+                         by=c("time","geo")),
+              aes(x=time, y = value, label=geo),
+            vjust=1,size=3) +
   coord_cartesian(xlim=c(2000:2014)) +
-  facet_wrap(~countryname, scales = "free", ncol = 1) +
+  facet_wrap(~cntry, scales = "free", ncol = 1) +
   labs(x="Year",
        y="Disposable income of private households (€ per year)")
 ```
 
 For spatial illustrations of regional data, see this post: [rOpenGov.github.io](http://ropengov.github.io/) at rOpenGov blog.
 
-### Citing the package
+## Citing the package
 
 This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
 
@@ -205,7 +234,7 @@ distributed under the [BSD-2-clause (modified FreeBSD)
 license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu (C) 2014. eurostat R package. URL: http://ropengov.github.io/eurostat'.
 
 
-### Session info
+## Session info
 
 This tutorial was created with
 
