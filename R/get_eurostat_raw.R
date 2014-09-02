@@ -23,6 +23,7 @@
 #'  \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing}
 #'  website.
 #'@references see citation("eurostat").
+#'@author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com}
 #' @examples \dontrun{
 #' 	       tmp <- get_eurostat_raw("educ_iste")
 #' 	       head(tmp)
@@ -40,7 +41,11 @@ function(id) {
   download.file(adres, tfile)
   dat <- read.table(gzfile(tfile), sep="\t", na.strings = ": ", 
                     header = TRUE, stringsAsFactors = FALSE)
-  if (grepl("does not exist or is not readable on the server", dat[1])) stop("Error: ", id, " does not exist or is not readable on the Eurostat server")
-  
+  # check if valid
+  if (ncol(dat) < 2 | nrow(dat) < 1) {
+    if (grepl("does not exist or is not readable on the server", dat[1])) stop(id, " does not exist or is not readable on the Eurostat server")
+    else stop("Could not download ", id, " from the Eurostat server")
+  }
+    
   dat
 }
