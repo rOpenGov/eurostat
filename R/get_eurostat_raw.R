@@ -40,6 +40,7 @@ function(id) {
   download.file(adres, tfile)
   dat <- read.table(gzfile(tfile), sep="\t", na.strings = ": ", 
                     header = TRUE, stringsAsFactors = FALSE)
+  if (grepl("does not exist or is not readable on the server", dat[1])) stop("Error: ", id, " does not exist or is not readable on the Eurostat server")
   
   dat
 }
