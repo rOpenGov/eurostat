@@ -25,7 +25,7 @@ Get definitions for Eurostat codes from Eurostat dictionaries
 }
 \details{
 A string or a factor vector of codes returns  a corresponding
-vector of definations. For vectors a dictorionay name have to be supplied.
+vector of definations. For vectors a dictionary name have to be supplied.
 For data.frames dictonary names are taken from column names.
 "time" and "value" columns are returned as they were, so you can supply
 data.frame from \code{\link{get_eurostat}} and get data.frame with

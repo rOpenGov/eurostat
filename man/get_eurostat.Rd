@@ -26,15 +26,18 @@ Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/ever
    tmp <- get_eurostat("educ_iste")
    head(tmp)
    t1 <- get_eurostat("tsdtr420")
-   tmp <- cast(t1, geo ~ time , mean, subset=victim=="KIL_MIO_POP")
-   tmp2 <- tmp[c(1:10,14:30),1:19]
-   tmp3 <- tmp2
-   rownames(tmp3) <- tmp2[,1]
-   tmp3 <- tmp3[c("UK", "SK", "FR", "PL", "ES", "PT", "LV"),]
-   matplot(1991:2008, t(tmp3[,-1]), type="o",
+   tmp <- cast(t1, geo ~ time , mean)
+   tmp2 <- tmp[,-1]
+   rownames(tmp2) <- tmp[,1]
+   head(tmp2)
+   tmp3 <- tmp2[c("UK", "SK", "FR", "PL", "ES", "PT", "LV"),]
+   matplot(as.numeric(colnames(tmp3)), t(tmp3), type="o",
            pch=19, lty=1, las=1,
 	      xlab="", ylab="", yaxt="n")
    }
+}
+\author{
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
 \references{
 see citation("eurostat").

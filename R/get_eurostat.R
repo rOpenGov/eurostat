@@ -17,7 +17,7 @@
 #' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat_raw}}
 #' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
 #' @references see citation("eurostat"). 
-#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples \dontrun{
 #'    tmp <- get_eurostat("educ_iste")
 #'    head(tmp)

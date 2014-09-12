@@ -34,6 +34,9 @@ Data is downloaded from
 	       head(tmp)
 	     }
 }
+\author{
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com}
+}
 \references{
 see citation("eurostat").
 }
