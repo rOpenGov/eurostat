@@ -8,6 +8,12 @@
 #' 
 #' Arguments:
 #'  @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
+#'  @param time_for a string giving a type of the conversion of the time column from 
+#'         the eurostat format. A "date" (default) convers to a \code{\link{Date}} with a first 
+#'         date of the period. A "date_last" convers to a \code{\link{Date}} with 
+#'         a last date of the period. A "num" convers to a numeric and "raw" 
+#'         does not do conversion. See \code{\link{eurotime2date}} and 
+#'         \code{\link{eurotime2num}}.
 #'
 #' Returns:
 #'  @return A dataset in the molten format with the last column 'value'. See the melt function from reshape package for more details.
@@ -19,7 +25,7 @@
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples \dontrun{
-#'    tmp <- get_eurostat("educ_iste")
+#'    tmp <- get_eurostat("educ_iste", time_for = "num")
 #'    head(tmp)
 #'    t1 <- get_eurostat("tsdtr420")
 #'    tmp <- cast(t1, geo ~ time , mean)
@@ -34,7 +40,7 @@
 #' @keywords utilities database
 
 get_eurostat <-
-  function(id = "educ_iste") {
+  function(id = "educ_iste", time_for = "date") {
     
     dat <- get_eurostat_raw(id)
     
@@ -56,6 +62,17 @@ get_eurostat <-
     # remove flags
     dat3$value <- tidyr::extract_numeric(dat3$value)
     colnames(dat3)[length(cnames1) + 1] <- cnames2
+    
+    # convert time column
+    if (time_for == "date"){
+      dat3$time <- eurotime2date(dat3$time, last = FALSE)
+    } else if (time_for == "date_last"){
+      dat3$time <- eurotime2date(dat3$time, last = TRUE)
+    } else if (time_for == "num"){
+      dat3$time <- eurotime2num(dat3$time)
+    } else if (!(time_for == "raw")) {
+      stop("An unknown time argument: ", time, " Allowed are date, date_last, num and raw")
+    }
     
     dat3
   }
