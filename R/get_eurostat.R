@@ -25,7 +25,7 @@
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples \dontrun{
-#'    tmp <- get_eurostat("educ_iste", time_for = "num")
+#'    tmp <- get_eurostat("educ_iste")
 #'    head(tmp)
 #'    t1 <- get_eurostat("tsdtr420")
 #'    tmp <- cast(t1, geo ~ time , mean)
@@ -53,7 +53,7 @@ get_eurostat <-
                        sep = ",", convert = FALSE)
     # columns from cnames1 are converted into factors
     # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
-    for (cname in cnames1) dat2[,cname] <- factor(dat2[,cname])
+    for (cname in cnames1) dat2[,cname] <- factor(dat2[,cname], levels = unique(dat2[,cname]))
     
     # To long format
     names(dat2) <- gsub("X", "", names(dat2))
