@@ -1,9 +1,13 @@
-#' A funtion to read data from Eurostat database.
+#' Read data from Eurostat database.
 #' 
-#' Download a dataset from the eurostat database (ec.europa.eu/eurostat). 
+#' Download a dataset from the Eurostat database (\url{ec.europa.eu/eurostat}). 
 #' The dataset is transformed into the molten / row-column-value format (RCV).
 #' 
-#' Cache as default
+#' Datasets are downloaded from the Eurostat bulk download facility 
+#' (\url{http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/bulk_download}). 
+#' 
+#' By default datasets are cached. In a temporary directory by default or in a named directory if cache_dir
+#' or option eurostat_cache_dir is defined.
 #' 
 #' @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
 #' @param time_format a string giving a type of the conversion of the time column from 
@@ -13,42 +17,52 @@
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
 #'
-#' @param cache \code{TRUE} to temp-directory, \code{FALSE} to turn off 
-#' or a directory. Also \code{option} eurostat_cache_dir
+#' @param cache a logical wheather to do caching. Default is \code{TRUE}.
 #' @param update_cache a locigal wheater to update cache. Can be set also with
 #' options(eurostat_update = TRUE)
+#' @param cache_dir a path to cache directory. The \code{NULL} uses direcotry from
+#'  \code{link{temp.dir}}. Directory can be set also with \code{option} eurostat_cache_dir.
 #' 
 #' @export
+#' @return a data.frame. One column for each dimension in the data and the value column for numerical values. 
+#' the time column for a time dimension. 
 #' @examples \dontrun{
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", update_cache = TRUE)
-#' dir.create("r_cache")
-#' k <- get_eurostat("namq_aux_lp", cache = "r_cache")
+#' dir.create("r_cache4")
+#' k <- get_eurostat("namq_aux_lp", cache_dir = "r_cache")
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("namq_aux_lp")
 #' options(eurostat_cache_dir = "r_cache")
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", cache = FALSE)
 #' }
-get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = FALSE){
-  if (!update_cache & getOption("eurostat_update", FALSE)) update_cache = TRUE
-  if (is.character(cache)){
-    if (!file.exists(cache)) stop("The folder ", cache, " Does not exist")
-    cache_file <- file.path(cache, paste0(id, ".rds"))
-  } else if (cache) {
-    cache_file <- file.path(getOption("eurostat_cache_dir", tempdir()), 
-                            paste0(id, ".rds"))
+get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = FALSE, cache_dir = NULL){
+
+  if (cache){  
+    # check option for update
+    update_cache <- update_cache | getOption("eurostat_update", FALSE)
+    # get cache directory
+    if (is.null(cache_dir)) cache_dir <- getOption("eurostat_cache_dir", tempdir())
+    if (!file.exists(cache_dir)) stop("The folder ", cache_dir, " does not exist")
+    
+    cache_file <- file.path(cache_dir, paste0(id, ".rds"))
   }
-      
-  if (is.logical(cache) && !cache){
-    x <- tidy_eurostat(id, time_format)
-  } else if (update_cache || !file.exists(cache_file)) {
-    x <- tidy_eurostat(id, time_format)
-    saveRDS(x, file = cache_file)
-    message("Table ", id, " cached at ", path.expand(cache_file))
+  
+  # if cache = FALSE or update or new: dowload else read from cache
+  if (!cache || update_cache || !file.exists(cache_file)){
+    x <- get_eurostat_raw(id)
+    y <- tidy_eurostat(x, time_format)
   } else {
-    x <- readRDS(cache_file)
-    message("Table ", id, " read from cache file: ", path.expand(cache_file))
+    y <- readRDS(cache_file)
+    message("Table ", id, " read from cache file: ", path.expand(cache_file))    
   }
-  x    
+  
+  # if update or new: save
+  if (cache && (update_cache || !file.exists(cache_file))){
+    saveRDS(y, file = cache_file)
+    message("Table ", id, " cached at ", path.expand(cache_file))    
+  }
+
+  y    
 }

@@ -7,7 +7,7 @@
 #' @description Download a dataset from the eurostat database. The dataset is transformed into the molten / row-column-value format (RCV).
 #' 
 #' Arguments:
-#'  @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
+#'  @param dat a data.frame from \code{\link{get_eurostat_raw}}.
 #'  @param time_format a string giving a type of the conversion of the time column from 
 #'         the eurostat format. A "date" (default) convers to a \code{\link{Date}} with a first 
 #'         date of the period. A "date_last" convers to a \code{\link{Date}} with 
@@ -39,10 +39,8 @@
 #' @keywords utilities database
 
 tidy_eurostat <-
-  function(id, time_format = "date") {
-    
-    dat <- get_eurostat_raw(id)
-    
+  function(dat, time_format = "date") {
+ 
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split="\\.")[[1]]
     cnames1 <- cnames[-length(cnames)]
