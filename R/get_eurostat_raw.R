@@ -17,7 +17,6 @@
 #'  are years with preceding X. Data is in character format as it contains values
 #'  together with eurostat flags for data.
 #'  
-#'@export
 #'@seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}.
 #'@details Data is downloaded from
 #'  \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing}
