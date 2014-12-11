@@ -29,7 +29,7 @@
 #' @examples \dontrun{
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", update_cache = TRUE)
-#' dir.create("r_cache4")
+#' dir.create("r_cache")
 #' k <- get_eurostat("namq_aux_lp", cache_dir = "r_cache")
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("namq_aux_lp")
