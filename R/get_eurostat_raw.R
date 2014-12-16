@@ -32,7 +32,7 @@
 get_eurostat_raw <-
 function(id) {
 
-  adres <- paste("http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?sort=1&file=data%2F",id,".tsv.gz",sep="")
+  adres <- paste("http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",id,".tsv.gz",sep="")
   tfile <- tempfile()
   on.exit(unlink(tfile))
   
