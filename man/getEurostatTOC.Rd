@@ -2,7 +2,7 @@
 % Please edit documentation in R/getEurostatTOC.R
 \name{getEurostatTOC}
 \alias{getEurostatTOC}
-\title{Download a table of contents of eurostat datasets (ec.europa.eu/eurostat).}
+\title{Download a table of contents of eurostat datasets.}
 \usage{
 getEurostatTOC(...)
 }
@@ -17,10 +17,12 @@ A data.frame with eight columns
      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 }
 \description{
-Download a table of contents of eurostat datasets. Note that the values in column 'code' should be used to download a selected dataset.
+Download a table of contents of eurostat datasets.
+             Note that the values in column 'code' should be used
+		to download a selected dataset.
 }
 \details{
-The TOC is downloaded from \code{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
+The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
 }
 \examples{
 \dontrun{tmp <- getEurostatTOC(); head(tmp)}
@@ -29,7 +31,7 @@ The TOC is downloaded from \code{http://ec.europa.eu/eurostat/estat-navtree-port
 Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
 }
 \references{
-To cite the R package, see citation("eurostat").
+See citation("eurostat").
 }
 \seealso{
 \code{\link{get_eurostat}}, \code{\link{grepEurostatTOC}}.

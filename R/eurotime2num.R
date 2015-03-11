@@ -1,12 +1,14 @@
 #' A conversion of a Eurostat time format to numeric
 #' 
-#' A function to convert Eurostat time values to a numeric. Bi-annual, quarterly and monthly
-#' data is presented as fraction of the year in beginning of the period.  
+#' A function to convert Eurostat time values to a numeric. 
+#' Bi-annual, quarterly and monthly data is presented as 
+#' fraction of the year in beginning of the period.  
 #' 
 #' @param x a charter string with time information in Eurostat time format.
 #' @export
 #' @return see \code{\link{as.numeric}}.
-#' @author Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Janne Huovari \email{louhos@@googlegroups.com} 
+#' 	                 \url{http://github.com/ropengov/eurostat}
 #' @examples \dontrun{
 #'    lp <- get_eurostat("namq_aux_lp", time_format = "raw")
 #'    lp$time <- eurotime2num(x = lp$time)

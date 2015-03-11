@@ -1,22 +1,20 @@
-#'Download a dataset from the eurostat database (ec.europa.eu/eurostat).
+#'Download a dataset from the eurostat database
 #'
-#'@description Download a dataset from the eurostat database. The dataset is
-#'  transformed into the tabular format.
+#'@description Download a dataset from the eurostat database. 
+#'  	       The dataset is transformed into the tabular format.
 #'  
-#'  Arguments:
 #'@param id A code name for the data set of interested. See the table of
 #'  contents of eurostat datasets for more details.
 #'  
-#'  Returns:
-#'@return A dataset in data.frame format. First column contains comma separated
-#'  codes of cases. Other columns usually corresponds to years and column names 
-#'  are years with preceding X. Data is in character format as it contains values
-#'  together with eurostat flags for data.
+#'@return A dataset in data.frame format. First column contains comma 
+#' 	  separated codes of cases. Other columns usually corresponds to 
+#'	  years and column names are years with preceding X. Data is in 
+#'	  character format as it contains values together with eurostat 
+#'	  flags for data.
 #'  
 #'@seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}.
 #'@details Data is downloaded from
-#'  \code{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
-#'  website.
+#'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
 #'@references see citation("eurostat").
 #'@author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com}
 #' @examples \dontrun{
@@ -25,7 +23,6 @@
 #'	     }
 #'@export
 #'@keywords utilities database
-
 get_eurostat_raw <-
 function(id) {
 

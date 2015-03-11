@@ -1,4 +1,5 @@
-.SmarterPolandEnv <- new.env()
+
+.EurostatEnv <- new.env()
 
 .onAttach <- function(lib, pkg)
 {

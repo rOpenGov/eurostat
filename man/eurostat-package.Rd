@@ -24,7 +24,7 @@ R Tools for Eurostat Open Data
 library(eurostat)
 }
 \author{
-Leo Lahti, Przemyslaw Biecek, Janne Huovari, Markus Kainu \email{louhos@googlegroups.com}
+Leo Lahti, Przemyslaw Biecek, Janne Huovari, Markus Kainu \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
 \references{
 See citation("eurostat")

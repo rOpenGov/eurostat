@@ -1,6 +1,8 @@
-#' Download a table of contents of eurostat datasets (ec.europa.eu/eurostat).
+#' Download a table of contents of eurostat datasets.
 #' 
-#' @description Download a table of contents of eurostat datasets. Note that the values in column 'code' should be used to download a selected dataset.
+#' @description Download a table of contents of eurostat datasets. 
+#'              Note that the values in column 'code' should be used 
+#'		to download a selected dataset.
 #' 
 #'  @param ... Arguments to be passed
 #'
@@ -12,14 +14,12 @@
 #'
 #' @export
 #' @seealso \code{\link{get_eurostat}}, \code{\link{grepEurostatTOC}}.
-#' @details The TOC is downloaded from \code{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
-#' @references
-#' To cite the R package, see citation("eurostat"). 
+#' @details The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
+#' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples \dontrun{tmp <- getEurostatTOC(); head(tmp)}
 #' @keywords utilities database
-
 getEurostatTOC <- function(...) {
   setEurostatTOC()
-  invisible(get(".eurostatTOC", envir = .SmarterPolandEnv))
+  invisible(get(".eurostatTOC", envir = .EurostatEnv))
 }

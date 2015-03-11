@@ -6,13 +6,14 @@
 #' Datasets are downloaded from the Eurostat bulk download facility 
 #' (\url{http://ec.europa.eu/eurostat/portal/page/portal/statistics/bulk_download}). 
 #' 
-#' By default datasets are cached. In a temporary directory by default or in a named directory if cache_dir
-#' or option eurostat_cache_dir is defined.
+#' By default datasets are cached. In a temporary directory by default or in 
+#' a named directory if cache_dir or option eurostat_cache_dir is defined.
 #' 
 #' @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
-#' @param time_format a string giving a type of the conversion of the time column from 
-#'         the eurostat format. A "date" (default) convers to a \code{\link{Date}} with a first 
-#'         date of the period. A "date_last" convers to a \code{\link{Date}} with 
+#' @param time_format a string giving a type of the conversion of the time 
+#' 	  column from the eurostat format. A "date" (default) convers to 
+#'	  a \code{\link{Date}} with a first date of the period. 
+#'	  A "date_last" convers to a \code{\link{Date}} with 
 #'         a last date of the period. A "num" convers to a numeric and "raw" 
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.

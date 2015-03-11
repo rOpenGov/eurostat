@@ -16,7 +16,7 @@
 #' @docType package
 #' @title R Tools for Eurostat open data
 #'
-#' @author Leo Lahti, Przemyslaw Biecek, Janne Huovari, Markus Kainu \email{louhos@@googlegroups.com}
+#' @author Leo Lahti, Przemyslaw Biecek, Janne Huovari, Markus Kainu \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @references
 #' See citation("eurostat")
 #' \url{http://github.com/ropengov/eurostat}

@@ -306,7 +306,7 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 
 ## Citing the package
 
-**Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/portal/page/portal/statistics/search_database). 
+**Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 
 **Citing the R tools** This work can be freely used, modified and
 distributed under the [BSD-2-clause (modified FreeBSD)
@@ -321,13 +321,14 @@ citation("eurostat")
 ## 
 ## Kindly cite the eurostat R package as follows:
 ## 
-##   (C) Leo Lahti and Przemyslaw Biecek 2014. eurostat R package
+##   (C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu
+##   2014. eurostat R package
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
 ##   @Misc{,
 ##     title = {eurostat R package},
-##     author = {Leo Lahti and Przemyslaw Biecek},
+##     author = {Leo Lahti and Przemyslaw Biecek and Janne Huovari and Markus Kainu},
 ##     year = {2014},
 ##   }
 ```
@@ -362,8 +363,8 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] countrycode_0.18 knitr_1.9        plotrix_3.5-11   eurostat_0.9.36 
-## [5] tidyr_0.2.0.9000 plyr_1.8.1       reshape_0.8.5   
+## [1] countrycode_0.18 plotrix_3.5-11   reshape_0.8.5    eurostat_0.9.99 
+## [5] tidyr_0.2.0.9000 plyr_1.8.1       knitr_1.9       
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] evaluate_0.5.5 formatR_1.0    Rcpp_0.11.4    reshape2_1.4.1
