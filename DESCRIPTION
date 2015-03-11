@@ -1,11 +1,12 @@
 Package: eurostat
 Type: Package
-Title: eurostat R tools
-Version: 0.9.36
+Title: Eurostat tools
+Version: 0.9.99
 Date: 2015-03-11
 Author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
 Maintainer: Leo Lahti <louhos@googlegroups.com>
-Description: Eurostat Open Data R Tools
+MailingList: rOpenGov <ropengov-forum@googlegroups.com>
+Description: Eurostat Open Data API tools.
 License: BSD_2_clause + file LICENSE
 Depends:
     R (>= 3.0.2),
@@ -13,10 +14,12 @@ Depends:
     tidyr
 Suggests:
     countrycode,
+    knitr,
     mapproj,
-    plotrix
+    plotrix,
+    reshape,
 URL: https://github.com/ropengov/eurostat
-LazyLoad: yes
-LazyData: yes
+BugReports: https://github.com/ropengov/eurostat/issues
+VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
