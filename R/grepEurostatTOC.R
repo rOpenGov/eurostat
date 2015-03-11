@@ -1,4 +1,5 @@
-#' Lists names of dataset from eurostat with the particular pattern in the description. 
+#' Lists names of dataset from eurostat with the particular pattern in
+#' the description.
 #' 
 #' @description This function downloads list of all datasets available on eurostat and return list of names of datasets that contains particular pattern in the dataset description. E.g. all datasets related to education of teaching.
 #'

@@ -6,7 +6,7 @@
 #'  @param ... Arguments to be passed
 #'
 #' Returns:
-#'  @return TBA
+#'  @return Empty element
 #'
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}

@@ -1,7 +1,3 @@
-# Copyright (C) 2014 Leo Lahti and Przemyslaw Biecek
-# All rights reserved.
-# This software is part of rOpenGov <ropengov.github.com>
-
 #'Download a dataset from the eurostat database (ec.europa.eu/eurostat).
 #'
 #'@description Download a dataset from the eurostat database. The dataset is
@@ -19,7 +15,7 @@
 #'  
 #'@seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}.
 #'@details Data is downloaded from
-#'  \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing}
+#'  \code{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
 #'  website.
 #'@references see citation("eurostat").
 #'@author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com}

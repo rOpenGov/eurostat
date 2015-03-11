@@ -20,25 +20,20 @@ For contact information and source code, see the [github page](https://github.co
 
 ## Installation
 
-Release version for general use:
+Release version:
 
 ```{r install, eval=FALSE}
 install.packages("eurostat")
-library(eurostat)
 ```
 
-Development version (potentially unstable):
+Development version:
 
 ```{r install2, eval=FALSE}
-install.packages("devtools")
 library(devtools)
-install_github("eurostat", "ropengov")
-library(eurostat)
+install_github("ropengov/eurostat")
 ```
 
-
 ## Finding the data
-
 
 Function `getEurostatTOC` downloads a table of contents of eurostat datasets. Note that the values in column 'code' should be used to download a selected dataset.
 
