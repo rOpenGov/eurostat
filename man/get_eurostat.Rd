@@ -35,7 +35,7 @@ The dataset is transformed into the molten / row-column-value format (RCV).
 }
 \details{
 Datasets are downloaded from the Eurostat bulk download facility
-(\url{http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/bulk_download}).
+(\url{http://ec.europa.eu/eurostat/portal/page/portal/statistics/bulk_download}).
 
 By default datasets are cached. In a temporary directory by default or in a named directory if cache_dir
 or option eurostat_cache_dir is defined.

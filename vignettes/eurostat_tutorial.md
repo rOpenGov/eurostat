@@ -13,7 +13,7 @@ Eurostat R tools
 ===========
 
 This R package provides tools to access [Eurostat open
-data](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes)
+data](http://ec.europa.eu/eurostat/portal/page/portal/statistics/themes)
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
@@ -145,9 +145,10 @@ head(grepEurostatTOC("passenger transport", type = "table"))
 ```
 
 
+
 ## Downloading the data 
 
-Package has two functions for downloading the data. When using `get_eurostat_raw` the data is transformed into the tabular format, whereas `get_eurostat` returns dataset transformed into the molten / row-column-value format (RCV). Let's focus on indicator ([Modal split of passenger transport](http://epp.eurostat.ec.europa.eu/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. 
+Package has two functions for downloading the data. When using `get_eurostat_raw` the data is transformed into the tabular format, whereas `get_eurostat` returns dataset transformed into the molten / row-column-value format (RCV). Let's focus on indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. 
 
 >This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection methodology is not harmonised at the EU level. 
 
@@ -160,21 +161,21 @@ id <- unique(grepEurostatTOC("Modal split of passenger transport",
         	             type = "table")$code)
 # Get table with the given ID
 dat_raw <- get_eurostat_raw(id)
-```
-
-```
-## Error in eval(expr, envir, enclos): could not find function "get_eurostat_raw"
-```
-
-```r
 # lets use kable function from knitr for nicer table outputs
 library(knitr)
 kable(head(dat_raw))
 ```
 
-```
-## Error in head(dat_raw): object 'dat_raw' not found
-```
+
+
+|vehicle.geo.time |X1990 |X1991  |X1992  |X1993  |X1994  |X1995  |X1996  |X1997  |X1998  |X1999  |X2000  |X2001  |X2002  |X2003  |X2004  |X2005  |X2006  |X2007  |X2008  |X2009  |X2010  |X2011  |X2012  |
+|:----------------|:-----|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|
+|BUS_TOT,AT       |NA    |10.6   |10.5   |10.7   |10.6   |10.9   |10.7   |10.9   |10.9   |10.7   |11     |10.9   |10.9   |10.9   |11     |10.5   |10.4   |10.8   |10.2   |9.6    |10.3   |10.1   |10     |
+|BUS_TOT,BE       |NA    |10.1 e |10.3 e |10.3 e |10.4 e |11.2   |11.2 e |11.1   |11.1   |10.7 e |10.5   |10.7   |11.4   |12.5   |12.7   |13     |13.2   |13.4   |12.5   |12.5   |12.2   |12.3   |12.4   |
+|BUS_TOT,BG       |NA    |NA     |NA     |NA     |NA     |28.0 e |26.3 e |28.5 e |30.3 e |33.5 e |31.4 b |32     |33.4   |28.1   |25     |24.3   |22.7   |21.8   |20.8   |16.8   |16.4   |15.9   |16.9   |
+|BUS_TOT,CH       |NA    |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |5.2    |5.2    |5.1    |5.2    |5.2    |5.3    |5.6    |5.5    |5.1    |5.1    |5.1    |5.1    |5.1    |
+|BUS_TOT,CY       |NA    |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |22.3 e |22.5 e |22.6 e |23.6 e |21.2 e |20.8 e |20.4 e |19.7 e |18.8 e |17.6 e |18.1 e |18.3 e |18.7 e |
+|BUS_TOT,CZ       |NA    |NA     |NA     |19.1 e |17.0 e |15.8 e |20.1 e |19.0 e |18.5 e |18.2 e |18.6   |19.9   |18.7   |17.2   |16     |17.2   |17.3   |17     |16.9   |16     |18.9   |17     |16.8   |
 
 
 
@@ -335,7 +336,7 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 
 This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
 
-**Citing the Data** Kindly cite [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/search_database). 
+**Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/portal/page/portal/statistics/search_database). 
 
 
 **Citing the R tools** This work can be freely used, modified and
