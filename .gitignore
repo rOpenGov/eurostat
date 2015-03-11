@@ -9,6 +9,7 @@ vignettes/*~
 .Rproj.user
 eurostat.Rproj
 vignettes/NUTS_2010.xls
+vignettes/NUTS_2010_60M_SH*
 vignettes/zipfile
 NUTS_2010.xls
 zipfile
