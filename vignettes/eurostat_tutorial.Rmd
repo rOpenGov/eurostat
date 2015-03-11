@@ -13,7 +13,7 @@ Eurostat R tools
 ===========
 
 This R package provides tools to access [Eurostat open
-data](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes)
+data](http://ec.europa.eu/eurostat/portal/page/portal/statistics/themes)
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
@@ -54,9 +54,10 @@ head(grepEurostatTOC("passenger transport", type = "table"))
 ```
 
 
+
 ## Downloading the data 
 
-Package has two functions for downloading the data. When using `get_eurostat_raw` the data is transformed into the tabular format, whereas `get_eurostat` returns dataset transformed into the molten / row-column-value format (RCV). Let's focus on indicator ([Modal split of passenger transport](http://epp.eurostat.ec.europa.eu/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. 
+Package has two functions for downloading the data. When using `get_eurostat_raw` the data is transformed into the tabular format, whereas `get_eurostat` returns dataset transformed into the molten / row-column-value format (RCV). Let's focus on indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. 
 
 >This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection methodology is not harmonised at the EU level. 
 
@@ -147,7 +148,7 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 
 This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
 
-**Citing the Data** Kindly cite [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/search_database). 
+**Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/portal/page/portal/statistics/search_database). 
 
 
 **Citing the R tools** This work can be freely used, modified and
