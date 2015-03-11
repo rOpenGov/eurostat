@@ -102,9 +102,9 @@ car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
 
 # select 2010 data
-allTransports <- data.frame(bus = bus[,"2010"], 
-                            car = car[,"2010"],
-                            train = train[,"2010"])
+allTransports <- data.frame(bus = bus[,"2010-01-01"], 
+                            car = car[,"2010-01-01"],
+                            train = train[,"2010-01-01"])
 # add countrynames
 rownames(allTransports) <- levels(bus[,1])
 allTransports <- na.omit(allTransports)
@@ -128,7 +128,7 @@ tmpl <- label_eurostat(tmp)
 kable(head(tmpl))
 ```
 
-A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
+A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package to convert between these formats.
 
 ```{r countrycodes, warning=FALSE, message=FALSE}
 library("countrycode")
@@ -146,14 +146,19 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 
 ## Citing the package
 
-This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
-
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/portal/page/portal/statistics/search_database). 
-
 
 **Citing the R tools** This work can be freely used, modified and
 distributed under the [BSD-2-clause (modified FreeBSD)
-license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu (C) 2014. eurostat R package. URL: http://ropengov.github.io/eurostat'.
+license]. Kindly cite the R package as follows:
+
+```{r citation, message=FALSE, eval=TRUE}
+citation("eurostat")
+```
+
+## Acknowledgements
+
+This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage.
 
 
 ## Session info

@@ -230,33 +230,13 @@ car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
 
 # select 2010 data
-allTransports <- data.frame(bus = bus[,"2010"], 
-                            car = car[,"2010"],
-                            train = train[,"2010"])
-```
-
-```
-## Error in `[.data.frame`(bus, , "2010"): undefined columns selected
-```
-
-```r
+allTransports <- data.frame(bus = bus[,"2010-01-01"], 
+                            car = car[,"2010-01-01"],
+                            train = train[,"2010-01-01"])
 # add countrynames
 rownames(allTransports) <- levels(bus[,1])
-```
-
-```
-## Error in rownames(allTransports) <- levels(bus[, 1]): object 'allTransports' not found
-```
-
-```r
 allTransports <- na.omit(allTransports)
-```
 
-```
-## Error in na.omit(allTransports): object 'allTransports' not found
-```
-
-```r
 # triangle plot
 library("plotrix")
 triax.plot(allTransports, show.grid=TRUE, 
@@ -264,9 +244,7 @@ triax.plot(allTransports, show.grid=TRUE,
            pch=19)
 ```
 
-```
-## Error in is.data.frame(x): object 'allTransports' not found
-```
+![plot of chunk plotGallery](figure/plotGallery-1.png) 
 
 
 ## Working with country codes
@@ -292,7 +270,7 @@ kable(head(tmpl))
 |Motor coaches, buses and trolley buses |Cyprus         |1990-01-01 |    NA|
 |Motor coaches, buses and trolley buses |Czech Republic |1990-01-01 |    NA|
 
-A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
+A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package to convert between these formats.
 
 
 ```r
@@ -300,18 +278,11 @@ library("countrycode")
 
 # Use the country codes from previous examples
 countries <- rownames(allTransports)
-```
-
-```
-## Error in rownames(allTransports): object 'allTransports' not found
-```
-
-```r
 head(countries)
 ```
 
 ```
-## Error in head(countries): object 'countries' not found
+## [1] "AT" "BE" "BG" "CH" "CZ" "DE"
 ```
 
 ```r
@@ -320,7 +291,7 @@ head(countrycode(countries, "iso2c", "iso3c"))
 ```
 
 ```
-## Error in countrycode(countries, "iso2c", "iso3c"): object 'countries' not found
+## [1] "AUT" "BEL" "BGR" "CHE" "CZE" "DEU"
 ```
 
 ```r
@@ -329,19 +300,41 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 ```
 
 ```
-## Error in rownames(allTransports): object 'allTransports' not found
+## [1] "Austria"        "Belgium"        "Bulgaria"       "Switzerland"   
+## [5] "Czech Republic" "Germany"
 ```
 
 ## Citing the package
 
-This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
-
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/portal/page/portal/statistics/search_database). 
-
 
 **Citing the R tools** This work can be freely used, modified and
 distributed under the [BSD-2-clause (modified FreeBSD)
-license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu (C) 2014. eurostat R package. URL: http://ropengov.github.io/eurostat'.
+license]. Kindly cite the R package as follows:
+
+
+```r
+citation("eurostat")
+```
+
+```
+## 
+## Kindly cite the eurostat R package as follows:
+## 
+##   (C) Leo Lahti and Przemyslaw Biecek 2014. eurostat R package
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Misc{,
+##     title = {eurostat R package},
+##     author = {Leo Lahti and Przemyslaw Biecek},
+##     year = {2014},
+##   }
+```
+
+## Acknowledgements
+
+This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage.
 
 
 ## Session info
@@ -369,8 +362,8 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] countrycode_0.18 plotrix_3.5-11   reshape_0.8.5    eurostat_0.9.36 
-## [5] tidyr_0.2.0.9000 plyr_1.8.1       knitr_1.9       
+## [1] countrycode_0.18 knitr_1.9        plotrix_3.5-11   eurostat_0.9.36 
+## [5] tidyr_0.2.0.9000 plyr_1.8.1       reshape_0.8.5   
 ## 
 ## loaded via a namespace (and not attached):
 ## [1] evaluate_0.5.5 formatR_1.0    Rcpp_0.11.4    reshape2_1.4.1
