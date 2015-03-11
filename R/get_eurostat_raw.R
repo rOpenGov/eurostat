@@ -23,6 +23,7 @@
 #' 	       tmp <- get_eurostat_raw("educ_iste")
 #' 	       head(tmp)
 #'	     }
+#'@export
 #'@keywords utilities database
 
 get_eurostat_raw <-
