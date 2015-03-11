@@ -6,7 +6,7 @@ Date: 2015-03-11
 Author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
-Description: Eurostat Open Data API tools.
+Description: Eurostat Open Data tools.
 License: BSD_2_clause + file LICENSE
 Depends:
     R (>= 3.0.2),
