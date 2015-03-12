@@ -1,7 +1,7 @@
 #'Download a dataset from the eurostat database
 #'
-#'@description Download a dataset from the eurostat database. 
-#'  	       The dataset is transformed into the tabular format.
+#'@description Downloads datasets from the eurostat database and 
+#'	       transforms into tabular format.
 #'  
 #'@param id A code name for the data set of interested. See the table of
 #'  contents of eurostat datasets for more details.
@@ -21,23 +21,29 @@
 #' 	       tmp <- get_eurostat_raw("educ_iste")
 #' 	       head(tmp)
 #'	     }
-#'@export
 #'@keywords utilities database
-get_eurostat_raw <-
-function(id) {
+get_eurostat_raw <- function(id) {
 
-  adres <- paste("http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",id,".tsv.gz",sep="")
+  base <- eurostat_url()		   
+
+  url <- paste(base, 
+    "estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",
+    id, ".tsv.gz", sep="")
+
   tfile <- tempfile()
   on.exit(unlink(tfile))
   
-  #  download and read file
-  download.file(adres, tfile)
+  # download and read file
+  download.file(url, tfile)
   dat <- read.table(gzfile(tfile), sep="\t", na.strings = ": ", 
                     header = TRUE, stringsAsFactors = FALSE)
-  # check if valid
+  # check validity
   if (ncol(dat) < 2 | nrow(dat) < 1) {
-    if (grepl("does not exist or is not readable on the server", dat[1])) stop(id, " does not exist or is not readable on the Eurostat server")
-    else stop("Could not download ", id, " from the Eurostat server")
+    if (grepl("does not exist or is not readable", dat[1])) {
+      stop(id, " does not exist or is not readable")
+    } else { 
+      stop(paste("Could not download ", id))
+    }
   }
     
   dat

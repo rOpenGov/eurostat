@@ -3,8 +3,7 @@
 #' Download a dataset from the Eurostat database (\url{ec.europa.eu/eurostat}). 
 #' The dataset is transformed into the molten / row-column-value format (RCV).
 #' 
-#' Datasets are downloaded from the Eurostat bulk download facility 
-#' (\url{http://ec.europa.eu/eurostat/portal/page/portal/statistics/bulk_download}). 
+#' Datasets are downloaded from the Eurostat bulk download facility (\url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing})
 #' 
 #' By default datasets are cached. In a temporary directory by default or in 
 #' a named directory if cache_dir or option eurostat_cache_dir is defined.
@@ -20,9 +19,12 @@
 #'
 #' @param cache a logical wheather to do caching. Default is \code{TRUE}.
 #' @param update_cache a locigal wheater to update cache. Can be set also with
-#' options(eurostat_update = TRUE)
-#' @param cache_dir a path to cache directory. The \code{NULL} uses direcotry from
-#'  \code{link{temp.dir}}. Directory can be set also with \code{option} eurostat_cache_dir.
+#' 	  options(eurostat_update = TRUE)
+#' @param cache_dir a path to cache directory. The \code{NULL} uses directory 
+#'        from \code{link{temp.dir}}. Directory can be set also with 
+#'	  \code{option} eurostat_cache_dir.
+#' @param output Return the data either in "table" or "molten" 
+#' 	  (row-column-value / RCV) format.
 #' 
 #' @export
 #' @return a data.frame. One column for each dimension in the data and the value column for numerical values. 
@@ -38,7 +40,7 @@
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", cache = FALSE)
 #' }
-get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = FALSE, cache_dir = NULL){
+get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = FALSE, cache_dir = NULL, output = "molten"){
 
   if (cache){  
     # check option for update
@@ -53,10 +55,14 @@ get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = 
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
     x <- get_eurostat_raw(id)
+    
+    if (output == "table") { return (x) }
+
     y <- tidy_eurostat(x, time_format)
+
   } else {
     y <- readRDS(cache_file)
-    message("Table ", id, " read from cache file: ", path.expand(cache_file))    
+    message("Table ", id, " read from cache file: ", path.expand(cache_file))   
   }
   
   # if update or new: save

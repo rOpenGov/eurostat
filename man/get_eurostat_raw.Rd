@@ -18,8 +18,8 @@ A dataset in data.frame format. First column contains comma
 	  flags for data.
 }
 \description{
-Download a dataset from the eurostat database.
- 	       The dataset is transformed into the tabular format.
+Downloads datasets from the eurostat database and
+	       transforms into tabular format.
 }
 \details{
 Data is downloaded from

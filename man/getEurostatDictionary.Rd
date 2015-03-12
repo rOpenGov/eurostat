@@ -23,7 +23,7 @@ Download a dictionary for given coded variable from
 Arguments:
 }
 \details{
-The TOC is downloaded from the \code{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?file=dic....}
+The TOC is downloaded from the \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&dir=dic}
 }
 \examples{
 \dontrun{

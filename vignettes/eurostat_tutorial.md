@@ -1,11 +1,15 @@
 ---
+title: "eurostat tutorial for R"
+author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
+date: "2015-03-12"
 output:
   html_document:
-    theme: united
+    theme: flatly
 ---
 <!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{eurostat Markdown Vignette}
+%\usepackage[utf8]{inputenc}
 -->
 
 
@@ -13,8 +17,8 @@ Eurostat R tools
 ===========
 
 This R package provides tools to access [Eurostat open
-data](http://ec.europa.eu/eurostat/portal/page/portal/statistics/themes)
-as part of the [rOpenGov](http://ropengov.github.io) project.
+data](http://ec.europa.eu/eurostat/) as part of the
+[rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
@@ -37,7 +41,7 @@ install_github("ropengov/eurostat")
 
 ## Finding the data
 
-Function `getEurostatTOC` downloads a table of contents of eurostat datasets. Note that the values in column 'code' should be used to download a selected dataset.
+Function `getEurostatTOC` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
 
 ```r
@@ -87,7 +91,7 @@ toc[200:210,]
 ## 210       2000     2011     NA
 ```
 
-With `grepEurostatTOC` you can search through the table of content for particular patterns, e.g. all datasets related to *passenger transport*.
+With `grepEurostatTOC` you can search the table of content for particular patterns, e.g. all datasets related to *passenger transport*.
 
 
 ```r
@@ -144,15 +148,11 @@ head(grepEurostatTOC("passenger transport", type = "table"))
 ## 7975       1995     2012     NA
 ```
 
+## Downloading data 
 
+The downloaded data can be returned either in table or molten (row-column-value / RCV) format.
 
-## Downloading the data 
-
-Package has two functions for downloading the data. When using `get_eurostat_raw` the data is transformed into the tabular format, whereas `get_eurostat` returns dataset transformed into the molten / row-column-value format (RCV). Let's focus on indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. 
-
->This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection methodology is not harmonised at the EU level. 
-
-
+Here an example of indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonised at the EU level. 
 
 
 ```r
@@ -160,10 +160,9 @@ Package has two functions for downloading the data. When using `get_eurostat_raw
 id <- unique(grepEurostatTOC("Modal split of passenger transport", 
         	             type = "table")$code)
 # Get table with the given ID
-dat_raw <- get_eurostat_raw(id)
+dat_raw <- get_eurostat(id, output = "table")
 # lets use kable function from knitr for nicer table outputs
-library(knitr)
-kable(head(dat_raw))
+knitr::kable(head(dat_raw))
 ```
 
 
@@ -177,11 +176,12 @@ kable(head(dat_raw))
 |BUS_TOT,CY       |NA    |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |22.3 e |22.5 e |22.6 e |23.6 e |21.2 e |20.8 e |20.4 e |19.7 e |18.8 e |17.6 e |18.1 e |18.3 e |18.7 e |
 |BUS_TOT,CZ       |NA    |NA     |NA     |19.1 e |17.0 e |15.8 e |20.1 e |19.0 e |18.5 e |18.2 e |18.6   |19.9   |18.7   |17.2   |16     |17.2   |17.3   |17     |16.9   |16     |18.9   |17     |16.8   |
 
+Example of the molten output:
 
 
 ```r
-dat <- get_eurostat(id)
-kable(head(dat))
+dat <- get_eurostat(id, output = "molten")
+knitr::kable(head(dat))
 ```
 
 
@@ -198,13 +198,13 @@ kable(head(dat))
 
 ### Labelling the data
 
-Function `label_eurostat`  replaces the eurostat codes with definitions from Eurostat dictionaries for data frames created using `get_eurostat`-function.
+Function `label_eurostat` replaces the eurostat codes with definitions from Eurostat dictionaries for data frames created using `get_eurostat`-function.
 
 
 ```r
 datl <- label_eurostat(dat)
 
-kable(head(datl))
+knitr::kable(head(datl))
 ```
 
 
@@ -256,7 +256,7 @@ Eurostat is using ISO2 format for country names, OECD is using ISO3 for their st
 tmp <- get_eurostat("tsdtr210")
 tmpl <- label_eurostat(tmp)
 
-kable(head(tmpl))
+knitr::kable(head(tmpl))
 ```
 
 
@@ -335,7 +335,7 @@ citation("eurostat")
 
 ## Acknowledgements
 
-This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage.
+This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
 
 
 ## Session info
@@ -363,7 +363,7 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] countrycode_0.18 plotrix_3.5-11   reshape_0.8.5    eurostat_0.9.99 
+## [1] countrycode_0.18 plotrix_3.5-11   reshape_0.8.5    eurostat_1.0.01 
 ## [5] tidyr_0.2.0.9000 plyr_1.8.1       knitr_1.9       
 ## 
 ## loaded via a namespace (and not attached):
