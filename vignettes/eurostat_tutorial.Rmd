@@ -139,8 +139,7 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 
 **Citing the R tools** This work can be freely used, modified and
-distributed under the [BSD-2-clause (modified FreeBSD)
-license]. Kindly cite the R package as follows:
+distributed under the BSD-2-clause (modified FreeBSD) license:
 
 ```{r citation, message=FALSE, eval=TRUE}
 citation("eurostat")
