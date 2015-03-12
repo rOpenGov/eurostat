@@ -1,17 +1,16 @@
-#' Get definitions for Eurostat codes
-#' 
 #' Get definitions for Eurostat codes from Eurostat dictionaries
 #' 
-#' A string or a factor vector of codes returns  a corresponding 
-#' vector of definations. For vectors a dictionary name have to be supplied.
+#' A string or a factor vector of codes returns a corresponding 
+#' vector of definitions. For vectors a dictionary name have to be supplied.
 #' For data.frames dictonary names are taken from column names. 
 #' "time" and "value" columns are returned as they were, so you can supply 
 #' data.frame from \code{\link{get_eurostat}} and get data.frame with 
-#' definations instead of codes.
+#' definitions instead of codes.
 #' 
 #' @param x a vector or a data.frame. 
 #' @param dic a string (vector) naming eurostat dictionary or dictionaries.
-#'  If \code{NULL} (default) dictionry names taken from column names of the data.frame. 
+#'  If \code{NULL} (default) dictionry names taken from column names of 
+#'  the data.frame. 
 #' @import plyr
 #' @export
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
@@ -41,12 +40,12 @@ label_eurostat <- function(x, dic = NULL){
   y
 }
   
-#' @describeIn label_eurostat Get definations for variable (column) names
+#' @describeIn label_eurostat Get definitions for variable (column) names
 label_eurostat_vars <- function(x){
   label_eurostat(x, dic = "dimlst")
 }
 
-#' @describeIn label_eurostat Get definations for table names
+#' @describeIn label_eurostat Get definitions for table names
 label_eurostat_tables <- function(x){
   label_eurostat(x, dic = "table_dic")
 }

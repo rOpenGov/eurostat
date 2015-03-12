@@ -1,5 +1,6 @@
 # Extra material related but not to be included in the package
 ./inst/extras/eurostat.Rcheck/*
+./inst/extras/*.tar.gz
 ./inst/extras/..Rcheck/*
 ./inst/extras/...Rcheck/*
 ./inst/extras/*

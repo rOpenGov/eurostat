@@ -4,12 +4,14 @@ citEntry(entry="misc",
          title = "eurostat R package",
          author = personList(
 	   person(given ="Leo", family="Lahti", email = "louhos@googlegroups.com"),
-	   person(given ="Przemyslaw", family="Biecek")
+	   person(given = "Przemyslaw", family="Biecek"),
+	   person(given = "Janne", family="Huovari"),
+	   person(given = "Markus", family="Kainu")
          ),
 	 journal = "",
 	 year = "2014",
          textVersion =
-         paste("(C) Leo Lahti and Przemyslaw Biecek 2014.",
+         paste("(C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu 2014.",
                "eurostat R package",
                sep=" ")
          )

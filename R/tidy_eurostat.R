@@ -1,27 +1,24 @@
-# Copyright (C) 2014 Leo Lahti and Przemyslaw Biecek
-# All rights reserved.
-# This software is part of rOpenGov <ropengov.github.com>
-
-#' Download a dataset from the eurostat database (ec.europa.eu/eurostat).  
 #' 
-#' @description Download a dataset from the eurostat database. The dataset is transformed into the molten / row-column-value format (RCV).
+#' Transforms Eurostat data table into the row-column-value format (RCV).
 #' 
-#' Arguments:
-#'  @param dat a data.frame from \code{\link{get_eurostat_raw}}.
-#'  @param time_format a string giving a type of the conversion of the time column from 
-#'         the eurostat format. A "date" (default) convers to a \code{\link{Date}} with a first 
-#'         date of the period. A "date_last" convers to a \code{\link{Date}} with 
+#' @param dat a data.frame from \code{\link{get_eurostat}}.
+#' @param time_format a string giving a type of the conversion of the 
+#'                    time column from the eurostat format. 
+#' 		      A "date" (default) convers to a \code{\link{Date}} 
+#'		      with a first date of the period. A "date_last" 
+#'		      convers to a \code{\link{Date}} with 
 #'         a last date of the period. A "num" convers to a numeric and "raw" 
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
 #'
 #' Returns:
-#'  @return A dataset in the molten format with the last column 'value'. See the melt function from reshape package for more details.
+#'  @return A dataset in the molten format with the last column 'value'. 
+#'  	    See the melt function from reshape package for more details.
 #'
 #' @import tidyr
-#' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat_raw}}
-#' @details Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
-#' @references see citation("eurostat"). 
+#' @export
+#' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}
+#' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples \dontrun{
 #'    tmp <- tidy_eurostat("educ_iste")
@@ -68,7 +65,8 @@ tidy_eurostat <-
     } else if (time_format == "num"){
       dat3$time <- eurotime2num(dat3$time)
     } else if (!(time_format == "raw")) {
-      stop("An unknown time argument: ", time, " Allowed are date, date_last, num and raw")
+      stop("An unknown time argument: ", time, 
+      	       " Allowed are date, date_last, num and raw")
     }
     
     dat3
