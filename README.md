@@ -8,8 +8,8 @@ R tools for [Eurostat open data](http://epp.eurostat.ec.europa.eu/portal/page/po
 
 For installation and usage, check the [tutorial page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md).  
 
-Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Markus Kainu](https://github.com/muuankarski)
-  
+Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Markus Kainu](https://github.com/muuankarski) 
+ 
 You are welcome to contact us:
 
   * [submit suggestions and bug reports](https://github.com/ropengov/eurostat/issues)
