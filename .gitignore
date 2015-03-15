@@ -1,7 +1,6 @@
 *Rcheck*
 inst/extras
 inst/extras/..Rcheck
-inst/extras/..Rcheck
 *~
 */~
 vignettes/*_tutorial.md
@@ -12,3 +11,5 @@ vignettes/NUTS_2010.xls
 vignettes/zipfile
 NUTS_2010.xls
 zipfile
+packrat/lib*/
+.Rhistory

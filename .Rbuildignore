@@ -14,16 +14,14 @@ inst/extras/.RData
 ./vignettes/zipfile
 ./NUTS_2010.xls
 ./zipfile
-
 # Git related
 ./.git*
-
 # Travis scripts
 .travis.yml
-
 # Misc
 ./.*~
 ./*~
-
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^packrat/
+^\.Rprofile$
