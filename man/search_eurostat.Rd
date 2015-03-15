@@ -48,7 +48,7 @@ Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
 See citation("eurostat")
 }
 \seealso{
-\code{\link{get_eurostat}}, \code{\link{get_eurostat_TOC}}
+\code{\link{get_eurostat}}, \code{\link{get_eurostat_toc}}
 }
 \keyword{database}
 \keyword{utilities}

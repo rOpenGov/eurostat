@@ -5,11 +5,11 @@
 #  library(devtools)
 #  install_github("ropengov/eurostat")
 
-## ----get_eurostat_TOC, warning=FALSE, message=FALSE----------------------
+## ----get_eurostat_toc, warning=FALSE, message=FALSE----------------------
 library(eurostat)
 
 # Get Eurostat data listing
-toc <- get_eurostat_TOC()
+toc <- get_eurostat_toc()
 toc[10:15,]
 
 ## ----search_eurostat, warning=FALSE, message=FALSE-----------------------

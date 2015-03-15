@@ -20,14 +20,14 @@
 #'	\item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 #'
 #' @export
-#' @seealso \code{\link{get_eurostat}}, \code{\link{get_eurostat_TOC}}
+#' @seealso \code{\link{get_eurostat}}, \code{\link{get_eurostat_toc}}
 #' @references
 #' See citation("eurostat") 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
 #' @examples \dontrun{tmp <- search_eurostat("education"); head(tmp)}
 #' @keywords utilities database
 search_eurostat <- function(pattern, type = "dataset") {
-  set_eurostat_TOC()
+  set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
   tmp <- tmp[tmp[, "type"] %in% type,]
   tmp[grep(as.character(tmp[, "title"]), pattern=pattern),]

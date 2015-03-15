@@ -1,9 +1,7 @@
-#' set_eurostat_TOC
+#' set_eurostat_toc
 #' 
 #' @description For internal use
 #' 
-#' Arguments:
-#'  @param ... Arguments to be passed
 #'
 #' Returns:
 #'  @return Empty element
@@ -11,7 +9,7 @@
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
 #' @keywords internal
-set_eurostat_TOC <- function(...) {
+set_eurostat_toc <- function() {
    if (!exists(".eurostatTOC", envir = .EurostatEnv)) {
    base <- eurostat_url()
    url <- paste(base, "estat-navtree-portlet-prod/", 

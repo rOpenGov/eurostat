@@ -15,18 +15,18 @@
 #' @details The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
-#' @examples \dontrun{tmp <- get_eurostat_TOC(); head(tmp)}
+#' @examples \dontrun{tmp <- get_eurostat_toc(); head(tmp)}
 #' @keywords utilities database
-get_eurostat_TOC <- function() {
-  set_eurostat_TOC()
+get_eurostat_toc <- function() {
+  set_eurostat_toc()
   invisible(get(".eurostatTOC", envir = .EurostatEnv))
 }
 
-#' @describeIn get_eurostat_TOC Old depricated version
+#' @describeIn get_eurostat_toc Old depricated version
 #' @export
 getEurostatTOC <- function() {
-  .Deprecated("get_eurostat_TOC")
-  get_eurostat_TOC()
+  .Deprecated("get_eurostat_toc")
+  get_eurostat_toc()
 }
 
 

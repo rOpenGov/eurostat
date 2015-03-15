@@ -87,11 +87,11 @@ install_github(&quot;ropengov/eurostat&quot;)</code></pre>
 </div>
 <div id="finding-the-data" class="section level2">
 <h2>Finding the data</h2>
-<p>Function <code>get_eurostat_TOC()</code> downloads a table of contents of eurostat datasets. The values in column ‘code’ should be used to download a selected dataset.</p>
+<p>Function <code>get_eurostat_toc()</code> downloads a table of contents of eurostat datasets. The values in column ‘code’ should be used to download a selected dataset.</p>
 <pre class="r"><code>library(eurostat)
 
 # Get Eurostat data listing
-toc &lt;- get_eurostat_TOC()
+toc &lt;- get_eurostat_toc()
 toc[10:15,]</code></pre>
 <pre><code>##                                                          title      code
 ## 10                                     Industry - monthly data ei_bsin_m
@@ -568,18 +568,25 @@ triax.plot(allTransports[, -1], show.grid = TRUE,
 <p><strong>Citing the R tools</strong> This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
 <pre class="r"><code>citation(&quot;eurostat&quot;)</code></pre>
 <pre><code>## 
-## Kindly cite the eurostat R package as follows:
+## To cite package 'eurostat' in publications use:
 ## 
-##   (C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu
-##   2014. eurostat R package
+##   Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
+##   (2015). eurostat: Tools for Eurostat Data. R package version
+##   1.0.11. http://CRAN.R-project.org/package=eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
-##   @Misc{,
-##     title = {eurostat R package},
-##     author = {Leo Lahti and Przemyslaw Biecek and Janne Huovari and Markus Kainu},
-##     year = {2014},
-##   }</code></pre>
+##   @Manual{,
+##     title = {eurostat: Tools for Eurostat Data},
+##     author = {Leo Lahti and Przemyslaw Biecek and Markus Kainu and Janne Huovari},
+##     year = {2015},
+##     note = {R package version 1.0.11},
+##     url = {http://CRAN.R-project.org/package=eurostat},
+##   }
+## 
+## ATTENTION: This citation information has been auto-generated from
+## the package DESCRIPTION file and may need manual editing, see
+## 'help(&quot;citation&quot;)'.</code></pre>
 </div>
 <div id="acknowledgements" class="section level2">
 <h2>Acknowledgements</h2>
@@ -602,8 +609,8 @@ triax.plot(allTransports[, -1], show.grid = TRUE,
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] plotrix_3.5-11  reshape_0.8.5   ggplot2_1.0.0   testthat_0.9.1 
-## [5] eurostat_1.0.11 tidyr_0.2.0     plyr_1.8.1      devtools_1.7.0 
+## [1] eurostat_1.0.11 plotrix_3.5-11  reshape_0.8.5   ggplot2_1.0.0  
+## [5] testthat_0.9.1  tidyr_0.2.0     plyr_1.8.1      devtools_1.7.0 
 ## [9] jtools_1.8     
 ## 
 ## loaded via a namespace (and not attached):
@@ -612,8 +619,8 @@ triax.plot(allTransports[, -1], show.grid = TRUE,
 ##  [9] gtable_0.1.2     htmltools_0.2.6  knitr_1.9        labeling_0.3    
 ## [13] magrittr_1.5     MASS_7.3-39      memoise_0.2.1    munsell_0.4.2   
 ## [17] parallel_3.1.3   proto_0.3-10     Rcpp_0.11.5      reshape2_1.4.1  
-## [21] rmarkdown_0.5.1  scales_0.2.4     stringi_0.4-1    stringr_0.6.2   
-## [25] tools_3.1.3      whisker_0.3-2    yaml_2.1.13</code></pre>
+## [21] rmarkdown_0.5.1  roxygen2_4.1.0   scales_0.2.4     stringi_0.4-1   
+## [25] stringr_0.6.2    tools_3.1.3      yaml_2.1.13</code></pre>
 </div>
 </div>
 

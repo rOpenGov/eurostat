@@ -39,13 +39,13 @@ install_github("ropengov/eurostat")
 
 ## Finding the data
 
-Function `get_eurostat_TOC()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
+Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
-```{r get_eurostat_TOC, warning=FALSE, message=FALSE}
+```{r get_eurostat_toc, warning=FALSE, message=FALSE}
 library(eurostat)
 
 # Get Eurostat data listing
-toc <- get_eurostat_TOC()
+toc <- get_eurostat_toc()
 toc[10:15,]
 ```
 
