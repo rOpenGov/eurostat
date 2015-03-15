@@ -1,12 +1,12 @@
 Package: eurostat
 Type: Package
-Title: Tools for Eurostat Open Data
+Title: Tools for Eurostat Data
 Version: 1.0.11
 Date: 2015-03-12
 Author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
-Description: Tools to download data sets from the Eurostat. Additional processing and visualization functions are also provided.
+Description: Tools to download data from the Eurostat database.
 License: BSD_2_clause + file LICENSE
 Depends: 
     R (>= 3.0.2),
