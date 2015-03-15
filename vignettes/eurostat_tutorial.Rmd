@@ -59,80 +59,118 @@ head(grepEurostatTOC("passenger transport", type = "table"))
 
 ## Downloading data 
 
-The downloaded data can be returned either in table or molten (row-column-value / RCV) format.
-
 Here an example of indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonised at the EU level. 
 
-```{r get_eurostat_raw, warning=FALSE, message=FALSE, results='asis'}
-# Pick ID for the table
-id <- unique(grepEurostatTOC("Modal split of passenger transport", 
-        	             type = "table")$code)
-# Get table with the given ID
-dat <- get_eurostat(id)
-# lets use kable function from knitr for nicer table outputs
+Pick the code of the data you want to download: 
+```{r get_code, warning=FALSE, message=FALSE, results='asis'}
+
+id <- grepEurostatTOC("Modal split of passenger transport", 
+        	             type = "table")$code[1]
+```
+
+Get table with the code. As the table is yearly data, it is more
+convient to get time variable as numeric rather than in default date format
+
+```{r get_eurostat, warning=FALSE, message=FALSE, results='asis'}
+dat <- get_eurostat(id, time_format = "num")
+
+```
+
+Get idea what data includes
+```{r str_dat, warning=FALSE, message=FALSE, results='asis'}
+str(dat)
 knitr::kable(head(dat))
 ```
 
-### Tidying up the output
+### Replace codes with labels
 
-Tidy up the output (separate codes into columns, remove flags, harmonize formats). Function `label_eurostat` replaces the eurostat codes with definitions from Eurostat dictionaries for data frames.
+Eurostat codes can be replaced with more labels. 
+Function `label_eurostat()` replaces the eurostat codes with definitions 
+from Eurostat dictionaries.
 
-```{r get_eurostat, warning=FALSE, message=FALSE, results='asis'}
-datl <- label_eurostat(tidy_eurostat(dat))
+```{r labels, warning=FALSE, message=FALSE, results='asis'}
+datl <- label_eurostat(dat)
 knitr::kable(head(datl))
 ```
 
+Vehicle information has 3 levels. They are:
+```{r vehicle_levels}
+levels(datl$vehicle)
+```
+
+You can get also labels for variable names
+```{r name_labels}
+
+label_eurostat_vars(names(datl))
+```
+
+
+## Selecting and modifing data
+
+### EU data from 2012 in all vehicles:
+
+```{r eu_12}
+
+dat_eu12 <- subset(datl, geo == "European Union (28 countries)" & time == 2012)
+knitr::kable(dat_eu12, row.names = FALSE)
+```
+
+### EU data from 2000 - 2012 with vehicle types as variables:
+Reshaping the data is best done with `spread()` in `tidyr`.
+```{r eu_vehicles_table}
+library("tidyr")
+dat_eu_0012 <- subset(dat, geo == "EU28" & 
+                        time %in% 2000:2012)
+dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, value)
+knitr::kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
+```
+
+### Train passanger for selected EU countries in 2000 - 2012
+
+```{r trains_table}
+dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
+                     & time %in% 2000:2012 
+                     & vehicle == "Trains")
+
+dat_trains_wide <- spread(dat_trains, geo, value) 
+knitr::kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
+```
+
+## Plot with ggplot2
+
+The plotting is best done with package `ggplot2`
+
+The train passanger data:
+
+```{r trains_plot}
+library("ggplot2")
+
+ggplot(dat_trains, aes(x = time, y = value, colour = geo)) +
+  geom_line()
+```
+
+
+
 ## Triangle plot for split of passenger transport
+
+With 2012 data for all countries with data.
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
 library(reshape)
-tmp <- tidy_eurostat(get_eurostat("tsdtr210"))
 
-bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
-car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
-train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
+allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, value)
 
-# select 2010 data
-allTransports <- data.frame(bus = bus[,"2010-01-01"], 
-                            car = car[,"2010-01-01"],
-                            train = train[,"2010-01-01"])
-# add countrynames
-rownames(allTransports) <- levels(bus[,1])
 allTransports <- na.omit(allTransports)
 
 # triangle plot
 library("plotrix")
-triax.plot(allTransports, show.grid=TRUE, 
-           label.points=TRUE, point.labels=rownames(allTransports), 
-           pch=19)
+triax.plot(allTransports[, -1], show.grid = TRUE, 
+           label.points = TRUE, point.labels = allTransports$geo, 
+           pch = 19)
 ```
 
 
-## Working with country codes
 
-Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. There are (at least) two ways to solve the issue. First one is to apply `label_eurostat`-function to your dataset.
-
-```{r countrycodes1, warning=FALSE, message=FALSE, results='asis'}
-tmp <- get_eurostat("tsdtr210")
-tmpl <- label_eurostat(tidy_eurostat(tmp))
-knitr::kable(head(tmpl))
-```
-
-A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package to convert between these formats.
-
-```{r countrycodes, warning=FALSE, message=FALSE}
-library("countrycode")
-
-# Use the country codes from previous examples
-countries <- rownames(allTransports)
-head(countries)
-
-# From ISO2 (used by Eurostat) into ISO3 (used by OECD)
-head(countrycode(countries, "iso2c", "iso3c"))
-
-# From ISO2 (used by Eurostat) into ISO (short country names)
-head(countrycode(rownames(allTransports), "iso2c", "country.name"))
-```
 
 ## Citing the package
 
