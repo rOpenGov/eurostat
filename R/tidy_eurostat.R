@@ -1,7 +1,6 @@
+#' Transforms raw Eurostat data table into the row-column-value format (RCV).
 #' 
-#' Transforms Eurostat data table into the row-column-value format (RCV).
-#' 
-#' @param dat a data.frame from \code{\link{get_eurostat}}.
+#' @param dat a data.frame from \code{\link{get_eurostat_raw}}.
 #' @param time_format a string giving a type of the conversion of the 
 #'                    time column from the eurostat format. 
 #' 		      A "date" (default) convers to a \code{\link{Date}} 
@@ -13,10 +12,8 @@
 #'
 #' Returns:
 #'  @return A dataset in the molten format with the last column 'value'. 
-#'  	    See the melt function from reshape package for more details.
-#'
+#'  	    
 #' @import tidyr
-#' @export
 #' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}

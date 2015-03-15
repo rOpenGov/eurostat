@@ -66,7 +66,8 @@ get_eurostat <- function(id, time_format = "date", cache = TRUE,
   
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
-    y <- get_eurostat_raw(id)
+    y_raw <- get_eurostat_raw(id)
+    y <- tidy_eurostat(y_raw, time_format)
   } else {
     y <- readRDS(cache_file)
     message("Table ", id, " read from cache file: ", path.expand(cache_file))   
