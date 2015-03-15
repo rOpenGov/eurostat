@@ -12,15 +12,12 @@ setEurostatTOC(...)
 Returns:}
 }
 \value{
-TBA
+Empty element
 }
 \description{
 For internal use
 
 Arguments:
-}
-\examples{
-#
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}

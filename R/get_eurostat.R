@@ -3,30 +3,32 @@
 #' Download a dataset from the Eurostat database (\url{ec.europa.eu/eurostat}). 
 #' The dataset is transformed into the molten / row-column-value format (RCV).
 #' 
-#' Datasets are downloaded from the Eurostat bulk download facility 
-#' (\url{http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/bulk_download}). 
+#' Datasets are downloaded from the Eurostat bulk download facility (\url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing})
 #' 
-#' By default datasets are cached. In a temporary directory by default or in a named directory if cache_dir
-#' or option eurostat_cache_dir is defined.
+#' By default datasets are cached. In a temporary directory by default or in 
+#' a named directory if cache_dir or option eurostat_cache_dir is defined.
 #' 
 #' @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
-#' @param time_format a string giving a type of the conversion of the time column from 
-#'         the eurostat format. A "date" (default) convers to a \code{\link{Date}} with a first 
-#'         date of the period. A "date_last" convers to a \code{\link{Date}} with 
+#' @param time_format a string giving a type of the conversion of the time 
+#' 	  column from the eurostat format. A "date" (default) convers to 
+#'	  a \code{\link{Date}} with a first date of the period. 
+#'	  A "date_last" convers to a \code{\link{Date}} with 
 #'         a last date of the period. A "num" convers to a numeric and "raw" 
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
-#'
-#' @param cache A logical wheather to do caching. Default is \code{TRUE}.
-#' @param update_cache A locigal wheater to update cache. Can be set also with
-#' options(eurostat_update = TRUE)
-#' @param cache_dir A path to cache directory. The \code{NULL} (default) uses eurostat 
-#' directory in the temporary directory given by \code{link{tempdir}}. 
-#' Directory can be set also with \code{option} eurostat_cache_dir.
+#' @param cache a logical wheather to do caching. Default is \code{TRUE}.
+#' @param update_cache a locigal wheater to update cache. Can be set also with
+#' 	  options(eurostat_update = TRUE)
+#' @param cache_dir a path to cache directory. The \code{NULL} uses directory 
+#'        eurostat directory in the temporary directory from 
+#'        \code{\link{temp.dir}}. Directory can be set also with 
+#'        \code{option} eurostat_cache_dir.
 #' 
 #' @export
-#' @return a data.frame. One column for each dimension in the data and the value column for numerical values. 
-#' the time column for a time dimension. 
+#' @return a data.frame. One column for each dimension in the data and 
+#'    the value column for numerical values. 
+#'    the time column for a time dimension. 
+#' @seealso \code{{\link{tidy_eurostat}}}
 #' @examples \dontrun{
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", update_cache = TRUE)
@@ -38,7 +40,8 @@
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", cache = FALSE)
 #' }
-get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = FALSE, cache_dir = NULL){
+get_eurostat <- function(id, time_format = "date", cache = TRUE, 
+                         update_cache = FALSE, cache_dir = NULL){
 
   if (cache){  
     # check option for update
@@ -51,7 +54,9 @@ get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = 
         cache_dir <- file.path(tempdir(), "eurostat")
         if (!file.exists(cache_dir)) dir.create(cache_dir)
       } else {
-        if (!file.exists(cache_dir)) stop("The folder ", cache_dir, " does not exist")
+        if (!file.exists(cache_dir)) {
+          stop("The folder ", cache_dir, " does not exist")
+          }
       }
     }
     
@@ -61,11 +66,10 @@ get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = 
   
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
-    x <- get_eurostat_raw(id)
-    y <- tidy_eurostat(x, time_format)
+    y <- get_eurostat_raw(id)
   } else {
     y <- readRDS(cache_file)
-    message("Table ", id, " read from cache file: ", path.expand(cache_file))    
+    message("Table ", id, " read from cache file: ", path.expand(cache_file))   
   }
   
   # if update or new: save

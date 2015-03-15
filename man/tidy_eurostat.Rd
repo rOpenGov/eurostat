@@ -2,16 +2,18 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{tidy_eurostat}
 \alias{tidy_eurostat}
-\title{Download a dataset from the eurostat database (ec.europa.eu/eurostat).}
+\title{Transforms Eurostat data table into the row-column-value format (RCV).}
 \usage{
 tidy_eurostat(dat, time_format = "date")
 }
 \arguments{
-\item{dat}{a data.frame from \code{\link{get_eurostat_raw}}.}
+\item{dat}{a data.frame from \code{\link{get_eurostat}}.}
 
-\item{time_format}{a string giving a type of the conversion of the time column from
-        the eurostat format. A "date" (default) convers to a \code{\link{Date}} with a first
-        date of the period. A "date_last" convers to a \code{\link{Date}} with
+\item{time_format}{a string giving a type of the conversion of the
+                   time column from the eurostat format.
+              A "date" (default) convers to a \code{\link{Date}}
+              with a first date of the period. A "date_last"
+              convers to a \code{\link{Date}} with
         a last date of the period. A "num" convers to a numeric and "raw"
         does not do conversion. See \code{\link{eurotime2date}} and
         \code{\link{eurotime2num}}.
@@ -19,15 +21,11 @@ tidy_eurostat(dat, time_format = "date")
 Returns:}
 }
 \value{
-A dataset in the molten format with the last column 'value'. See the melt function from reshape package for more details.
+A dataset in the molten format with the last column 'value'.
+ 	    See the melt function from reshape package for more details.
 }
 \description{
-Download a dataset from the eurostat database. The dataset is transformed into the molten / row-column-value format (RCV).
-
-Arguments:
-}
-\details{
-Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing} website.
+Transforms Eurostat data table into the row-column-value format (RCV).
 }
 \examples{
 \dontrun{
@@ -48,10 +46,10 @@ Data is downloaded from \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/ever
 Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
 \references{
-see citation("eurostat").
+See citation("eurostat").
 }
 \seealso{
-\code{\link{getEurostatTOC}}, \code{\link{get_eurostat_raw}}
+\code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}
 }
 \keyword{database}
 \keyword{utilities}

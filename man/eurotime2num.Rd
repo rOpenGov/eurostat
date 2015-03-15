@@ -13,8 +13,10 @@ eurotime2num(x)
 see \code{\link{as.numeric}}.
 }
 \description{
+
 A function to convert Eurostat time values to a numeric. Bi-annual, quarterly and monthly
 data is presented as fraction of the year in beginning of the period.
+
 }
 \examples{
 \dontrun{
@@ -29,6 +31,7 @@ data is presented as fraction of the year in beginning of the period.
    }
 }
 \author{
-Janne Huovari \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Janne Huovari \email{louhos@googlegroups.com}
+	                 \url{http://github.com/ropengov/eurostat}
 }
 

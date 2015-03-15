@@ -7,20 +7,23 @@
 getEurostatDictionary(dictname)
 }
 \arguments{
-\item{dictname}{Character, dictionary for given variable name will be downloaded.
+\item{dictname}{Character, dictionary for given variable name
+        will be downloaded.
 
 Returns:}
 }
 \value{
-A data.frame with two columns, first with code names and second with full names.
+A data.frame with two columns, first with code names and
+         second with full names.
 }
 \description{
-Download a dictionary for given coded variable from Eurostat (ec.europa.eu/eurostat).
+Download a dictionary for given coded variable from
+             Eurostat (ec.europa.eu/eurostat).
 
 Arguments:
 }
 \details{
-The TOC is downloaded from the \code{http://epp.eurostat.ec.europa.eu/NavTree_prod/everybody/BulkDownloadListing?file=dic....}
+The TOC is downloaded from the \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&dir=dic}
 }
 \examples{
 \dontrun{

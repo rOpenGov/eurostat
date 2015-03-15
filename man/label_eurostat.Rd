@@ -4,7 +4,7 @@
 \alias{label_eurostat}
 \alias{label_eurostat_tables}
 \alias{label_eurostat_vars}
-\title{Get definitions for Eurostat codes}
+\title{Get definitions for Eurostat codes from Eurostat dictionaries}
 \usage{
 label_eurostat(x, dic = NULL)
 
@@ -16,27 +16,25 @@ label_eurostat_tables(x)
 \item{x}{a vector or a data.frame.}
 
 \item{dic}{a string (vector) naming eurostat dictionary or dictionaries.
-If \code{NULL} (default) dictionry names taken from column names of the data.frame.}
+If \code{NULL} (default) dictionry names taken from column names of
+the data.frame.}
 }
 \value{
 a vector or a data.frame.
 }
 \description{
-Get definitions for Eurostat codes from Eurostat dictionaries
-}
-\details{
-A string or a factor vector of codes returns  a corresponding
-vector of definations. For vectors a dictionary name have to be supplied.
+A string or a factor vector of codes returns a corresponding
+vector of definitions. For vectors a dictionary name have to be supplied.
 For data.frames dictonary names are taken from column names.
 "time" and "value" columns are returned as they were, so you can supply
 data.frame from \code{\link{get_eurostat}} and get data.frame with
-definations instead of codes.
+definitions instead of codes.
 }
 \section{Functions}{
 \itemize{
 \item \code{label_eurostat_vars}: Get definations for variable (column) names
-
 \item \code{label_eurostat_tables}: Get definations for table names
+
 }}
 \examples{
 \dontrun{

@@ -13,7 +13,7 @@ Brief summary of the eurostat package
 Package: \tab eurostat\cr
 Type: \tab Package\cr
 Version: \tab See sessionInfo() or DESCRIPTION file\cr
-Date: \tab 2014\cr
+Date: \tab 2014-2015\cr
 License: \tab BSD_2_clause + LICENSE\cr
 LazyLoad: \tab yes\cr
 }
@@ -24,7 +24,7 @@ R Tools for Eurostat Open Data
 library(eurostat)
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com}
+Leo Lahti, Przemyslaw Biecek, Janne Huovari, Markus Kainu \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
 \references{
 See citation("eurostat")

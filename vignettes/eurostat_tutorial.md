@@ -1,170 +1,217 @@
+---
+title: "eurostat tutorial for R"
+author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
+date: "2015-03-12"
+output:
+  html_document:
+    theme: flatly
+---
 <!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{An R Markdown Vignette made with knitr}
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{eurostat Markdown Vignette}
+%\usepackage[utf8]{inputenc}
 -->
+
 
 Eurostat R tools
 ===========
 
 This R package provides tools to access [Eurostat open
-data](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/themes)
-as part of the [rOpenGov](http://ropengov.github.io) project.
+data](http://ec.europa.eu/eurostat/) as part of the
+[rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
 ## Installation
 
-Release version for general use:
+Release version:
 
 
 ```r
 install.packages("eurostat")
-library(eurostat)
 ```
 
-Development version (potentially unstable):
+Development version:
 
 
 ```r
-install.packages("devtools")
 library(devtools)
-install_github("eurostat", "ropengov")
-library(eurostat)
+install_github("ropengov/eurostat")
 ```
 
+## Finding the data
 
-## Accessing Eurostat data 
+Function `getEurostatTOC` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
 
 ```r
 library(eurostat)
 
 # Get Eurostat data listing
-toc <- getEurostatTOC(); 
-head(toc)
+toc <- getEurostatTOC()
+toc[200:210,]
+```
+
+```
+##                                                                                                   title
+## 200                                   Population by sex, age group, household status and NUTS 3 regions
+## 201                                  Population by sex, age group, size of household and NUTS 3 regions
+## 202                                          Private households by composition, size and NUTS 3 regions
+## 203                         Private households by composition, age group of children and NUTS 3 regions
+## 204                                                                                           Dwellings
+## 205                                           Dwellings by type of housing, building and NUTS 3 regions
+## 206                                                    Dwellings by type of building and NUTS 3 regions
+## 207                                                                  Regional economic accounts - ESA95
+## 208                                                           Gross domestic product indicators - ESA95
+## 209                             Gross domestic product (GDP) at current market prices by NUTS 2 regions
+## 210                             Gross domestic product (GDP) at current market prices by NUTS 3 regions
+##               code    type last.update.of.data last.table.structure.change
+## 200  cens_01rhtype dataset          26.03.2009                  14.01.2014
+## 201  cens_01rhsize dataset          09.02.2011                  14.01.2014
+## 202   cens_01rheco dataset          26.03.2009                  14.01.2014
+## 203 cens_01rhagchi dataset          26.03.2009                  05.11.2014
+## 204    cens_01rdws  folder                                                
+## 205    cens_01rdhh dataset          10.09.2009                  14.01.2014
+## 206 cens_01rdbuild dataset          26.03.2009                  14.01.2014
+## 207        reg_eco  folder                                                
+## 208     reg_ecogdp  folder                                                
+## 209   nama_r_e2gdp dataset          03.03.2014                  03.03.2014
+## 210   nama_r_e3gdp dataset          28.02.2014                  28.02.2014
+##     data.start data.end values
+## 200       2001     2001     NA
+## 201       2001     2001     NA
+## 202       2001     2001     NA
+## 203       2001     2001     NA
+## 204                         NA
+## 205       2001     2001     NA
+## 206       2001     2001     NA
+## 207                         NA
+## 208                         NA
+## 209       2000     2011     NA
+## 210       2000     2011     NA
+```
+
+With `grepEurostatTOC` you can search the table of content for particular patterns, e.g. all datasets related to *passenger transport*.
+
+
+```r
+# info about passengers
+head(grepEurostatTOC("passenger transport", type = "dataset"))
+```
+
+```
+##                                                                                                                                         title
+## 5164                                                                                            Volume of passenger transport relative to GDP
+## 5165                                                                                                       Modal split of passenger transport
+## 5204                                                          Railway transport - Total annual passenger transport (1 000 pass., million pkm)
+## 5208                 International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)
+## 5209                    International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)
+## 5560                                                                                             Air passenger transport by reporting country
+##                 code    type last.update.of.data
+## 5164   tran_hv_pstra dataset          25.06.2014
+## 5165   tran_hv_psmod dataset          25.06.2014
+## 5204   rail_pa_total dataset          10.03.2015
+## 5208 rail_pa_intgong dataset          03.03.2015
+## 5209 rail_pa_intcmng dataset          03.03.2015
+## 5560       avia_paoc dataset          10.02.2015
+##      last.table.structure.change data.start data.end values
+## 5164                  25.06.2014       1995     2012     NA
+## 5165                  25.06.2014       1990     2012     NA
+## 5204                  10.07.2014       2004     2013     NA
+## 5208                  26.02.2015       2002     2013     NA
+## 5209                  26.02.2015       2002     2013     NA
+## 5560                  10.02.2015       1993   2014Q4     NA
+```
+
+```r
+head(grepEurostatTOC("passenger transport", type = "table"))
 ```
 
 ```
 ##                                                              title
-## 1                                               Database by themes
-## 2                                  General and regional statistics
-## 3         European and national indicators for short-term analysis
-## 4                 Business and consumer surveys (source: DG ECFIN)
-## 5                              Consumer surveys (source: DG ECFIN)
-## 6                                         Consumers - monthly data
-##        code    type last.update.of.data last.table.structure.change
-## 1      data  folder                                                
-## 2   general  folder                                                
-## 3   euroind  folder                                                
-## 4    ei_bcs  folder                                                
-## 5 ei_bcs_cs  folder                                                
-## 6 ei_bsco_m dataset          29.07.2014                  29.07.2014
-##   data.start data.end values
-## 1                         NA
-## 2                         NA
-## 3                         NA
-## 4                         NA
-## 5                         NA
-## 6    1985M01  2014M07     NA
+## 7353                 Volume of passenger transport relative to GDP
+## 7354                            Modal split of passenger transport
+## 7848                            Modal split of passenger transport
+## 7972                            Modal split of passenger transport
+## 7975                 Volume of passenger transport relative to GDP
+##          code  type last.update.of.data last.table.structure.change
+## 7353 tsdtr240 table          04.03.2015                  04.03.2015
+## 7354 tsdtr210 table          04.03.2015                  04.03.2015
+## 7848 tsdtr210 table          04.03.2015                  04.03.2015
+## 7972 tsdtr210 table          04.03.2015                  04.03.2015
+## 7975 tsdtr240 table          04.03.2015                  04.03.2015
+##      data.start data.end values
+## 7353       1995     2012     NA
+## 7354       1990     2012     NA
+## 7848       1990     2012     NA
+## 7972       1990     2012     NA
+## 7975       1995     2012     NA
 ```
 
-```r
-# info about passagers
-grepEurostatTOC("split of passenger transport", type = "dataset")
-```
+## Downloading data 
 
-```
-##                                                   title          code
-## 4948                 Modal split of passenger transport tran_hv_psmod
-##         type last.update.of.data last.table.structure.change data.start
-## 4948 dataset          25.06.2014                  25.06.2014       1990
-##      data.end values
-## 4948     2012     NA
-```
+The downloaded data can be returned either in table or molten (row-column-value / RCV) format.
 
-```r
-grepEurostatTOC("split of passenger transport", type = "table")
-```
+Here an example of indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonised at the EU level. 
 
-```
-##                                                       title     code  type
-## 7106                     Modal split of passenger transport tsdtr210 table
-## 7621                     Modal split of passenger transport tsdtr210 table
-## 7745                     Modal split of passenger transport tsdtr210 table
-##      last.update.of.data last.table.structure.change data.start data.end
-## 7106          25.06.2014                  25.06.2014       1990     2012
-## 7621          25.06.2014                  25.06.2014       1990     2012
-## 7745          25.06.2014                  25.06.2014       1990     2012
-##      values
-## 7106     NA
-## 7621     NA
-## 7745     NA
-```
 
 ```r
 # Pick ID for the table
-id <- unique(grepEurostatTOC("split of passenger transport", 
-      		             type = "table")$code)
-id
+id <- unique(grepEurostatTOC("Modal split of passenger transport", 
+        	             type = "table")$code)
+# Get table with the given ID
+dat <- get_eurostat(id)
+# lets use kable function from knitr for nicer table outputs
+knitr::kable(head(dat))
 ```
 
-```
-## [1] tsdtr210
-## 7015 Levels:   aact aact_ali aact_ali01 aact_ali02 aact_eaa ... yth_volunt_010
-```
+
+
+|vehicle.geo.time |X1990 |X1991  |X1992  |X1993  |X1994  |X1995  |X1996  |X1997  |X1998  |X1999  |X2000  |X2001  |X2002  |X2003  |X2004  |X2005  |X2006  |X2007  |X2008  |X2009  |X2010  |X2011  |X2012  |
+|:----------------|:-----|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|:------|
+|BUS_TOT,AT       |NA    |10.6   |10.5   |10.7   |10.6   |10.9   |10.7   |10.9   |10.9   |10.7   |11     |10.9   |10.9   |10.9   |11     |10.5   |10.4   |10.8   |10.2   |9.6    |10.3   |10.1   |10     |
+|BUS_TOT,BE       |NA    |10.1 e |10.3 e |10.3 e |10.4 e |11.2   |11.2 e |11.1   |11.1   |10.7 e |10.5   |10.7   |11.4   |12.5   |12.7   |13     |13.2   |13.4   |12.5   |12.5   |12.2   |12.3   |12.4   |
+|BUS_TOT,BG       |NA    |NA     |NA     |NA     |NA     |28.0 e |26.3 e |28.5 e |30.3 e |33.5 e |31.4 b |32     |33.4   |28.1   |25     |24.3   |22.7   |21.8   |20.8   |16.8   |16.4   |15.9   |16.9   |
+|BUS_TOT,CH       |NA    |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |5.2    |5.2    |5.1    |5.2    |5.2    |5.3    |5.6    |5.5    |5.1    |5.1    |5.1    |5.1    |5.1    |
+|BUS_TOT,CY       |NA    |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |NA     |22.3 e |22.5 e |22.6 e |23.6 e |21.2 e |20.8 e |20.4 e |19.7 e |18.8 e |17.6 e |18.1 e |18.3 e |18.7 e |
+|BUS_TOT,CZ       |NA    |NA     |NA     |19.1 e |17.0 e |15.8 e |20.1 e |19.0 e |18.5 e |18.2 e |18.6   |19.9   |18.7   |17.2   |16     |17.2   |17.3   |17     |16.9   |16     |18.9   |17     |16.8   |
+
+### Tidying up the output
+
+Tidy up the output (separate codes into columns, remove flags, harmonize formats). Function `label_eurostat` replaces the eurostat codes with definitions from Eurostat dictionaries for data frames.
+
 
 ```r
-# Get table with the given ID
-tmp <- eurostat(id)
-summary(tmp)
+datl <- label_eurostat(tidy_eurostat(dat))
+knitr::kable(head(datl))
 ```
 
-```
-##     vehicle         geo            time          value     
-##  BUS_TOT:805   AT     :  69   1990   : 105   Min.   : 0.7  
-##  CAR    :805   BE     :  69   1991   : 105   1st Qu.: 7.0  
-##  TRN    :805   BG     :  69   1992   : 105   Median :13.2  
-##                CH     :  69   1993   : 105   Mean   :34.1  
-##                CY     :  69   1994   : 105   3rd Qu.:77.6  
-##                CZ     :  69   1995   : 105   Max.   :92.0  
-##                (Other):2001   (Other):1785   NA's   :424
-```
 
+
+|vehicle                                |geo            |time       | value|
+|:--------------------------------------|:--------------|:----------|-----:|
+|Motor coaches, buses and trolley buses |Austria        |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Belgium        |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Bulgaria       |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Switzerland    |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Cyprus         |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Czech Republic |1990-01-01 |    NA|
 
 ## Triangle plot for split of passenger transport
 
 
 ```r
 library(reshape)
-tmp <- eurostat("tsdtr210")
+tmp <- tidy_eurostat(get_eurostat("tsdtr210"))
+
 bus  <- cast(tmp, geo ~ time , mean, subset= vehicle=="BUS_TOT")
-```
-
-```
-## Error: Casting formula contains variables not found in molten data: time
-```
-
-```r
 car <- cast(tmp, geo ~ time , mean, subset= vehicle=="CAR")
-```
-
-```
-## Error: Casting formula contains variables not found in molten data: time
-```
-
-```r
 train   <- cast(tmp, geo ~ time , mean, subset= vehicle=="TRN")
-```
 
-```
-## Error: Casting formula contains variables not found in molten data: time
-```
-
-```r
 # select 2010 data
-allTransports <- data.frame(bus = bus[,"2010 "], 
-                            car = car[,"2010 "],
-                            train = train[,"2010 "])
+allTransports <- data.frame(bus = bus[,"2010-01-01"], 
+                            car = car[,"2010-01-01"],
+                            train = train[,"2010-01-01"])
 # add countrynames
 rownames(allTransports) <- levels(bus[,1])
 allTransports <- na.omit(allTransports)
@@ -176,12 +223,32 @@ triax.plot(allTransports, show.grid=TRUE,
            pch=19)
 ```
 
-![plot of chunk plotGallery](figure/plotGallery.png) 
+![plot of chunk plotGallery](figure/plotGallery-1.png) 
 
 
 ## Working with country codes
 
-Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. The [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package can be used to convert between these formats.
+Eurostat is using ISO2 format for country names, OECD is using ISO3 for their studies, and Statistics Finland uses full country names. There are (at least) two ways to solve the issue. First one is to apply `label_eurostat`-function to your dataset.
+
+
+```r
+tmp <- get_eurostat("tsdtr210")
+tmpl <- label_eurostat(tidy_eurostat(tmp))
+knitr::kable(head(tmpl))
+```
+
+
+
+|vehicle                                |geo            |time       | value|
+|:--------------------------------------|:--------------|:----------|-----:|
+|Motor coaches, buses and trolley buses |Austria        |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Belgium        |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Bulgaria       |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Switzerland    |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Cyprus         |1990-01-01 |    NA|
+|Motor coaches, buses and trolley buses |Czech Republic |1990-01-01 |    NA|
+
+A second option is to use [countrycode](http://cran.r-project.org/web/packages/countrycode/index.html) package to convert between these formats.
 
 
 ```r
@@ -215,189 +282,41 @@ head(countrycode(rownames(allTransports), "iso2c", "country.name"))
 ## [5] "Czech Republic" "Germany"
 ```
 
+## Citing the package
 
-## Mapping the household incomes at NUTS2 level
-
-In the following exercise we are plotting household income data from Eurostat on map from three different years. In addition to downloading and manipulating data from EUROSTAT, you will learn how to access and use spatial shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://epp.eurostat.ec.europa.eu/portal/page/portal/gisco_Geographical_information_maps/popups/references/administrative_units_statistical_units_1). 
-
-### Retrieving and manipulating the data tabular data from Eurostat
-
-First, we shall retrieve the nuts2-level figures of variable `tgs00026` (Disposable income of private households by NUTS 2 regions) and manipulate the extract the information for creating `unit` and `geo` variables.
-
-
-
-```r
-library(eurostat)
-df <- getEurostatRaw("tgs00026")
-names(df) <- c("xx", 2011:2000)
-df$unit <- lapply(strsplit(as.character(df$xx), ","), "[", 2)
-df$geo <- lapply(strsplit(as.character(df$xx), ","), "[", 3)
-```
-
-### Retrieving and manipulating the spatial data from GISCO
-
-Second, we will download the zipped shapefile in 1:60 million scale from year 2010 and subset it at the level of NUTS2.
-
-
-
-```r
-# Load the GISCO shapefile
-download.file("http://epp.eurostat.ec.europa.eu/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", 
-    destfile="NUTS_2010_60M_SH.zip")
-# unzip
-unzip("NUTS_2010_60M_SH.zip")
-library(rgdal)
-# read into SpatialPolygonsDataFrame
-map <- readOGR(dsn = "./NUTS_2010_60M_SH/data", layer = "NUTS_RG_60M_2010")
-```
-
-```
-## OGR data source with driver: ESRI Shapefile 
-## Source: "./NUTS_2010_60M_SH/data", layer: "NUTS_RG_60M_2010"
-## with 1920 features and 4 fields
-## Feature type: wkbPolygon with 2 dimensions
-```
-
-```r
-# subset the spatialpolygondataframe at NUTS2-level
-map_nuts2 <- subset(map, STAT_LEVL_ == 2)
-```
-
-### Merge the tabular data with spatial data into single SpatialPolygonDataFrame
-
-Third, we will make the both datas of same lenght, give then identical rownames and then merge the tabular data with the spatial data.
-
-
-
-```r
-# dim show how many regions are in the spatialpolygondataframe
-dim(map_nuts2)
-```
-
-```
-## [1] 316   4
-```
-
-```r
-# dim show how many regions are in the data.frame
-dim(df)
-```
-
-```
-## [1] 275  15
-```
-
-```r
-# Spatial dataframe has 467 rows and attribute data 275. 
-# We need to make attribute data to have similar number of rows
-NUTS_ID <- as.character(map_nuts2$NUTS_ID)
-VarX <- rep(NA, 316)
-dat <- data.frame(NUTS_ID,VarX)
-# then we shall merge this with Eurostat data.frame
-dat2 <- merge(dat,df,by.x="NUTS_ID",by.y="geo", all.x=TRUE)
-## merge this manipulated attribute data with the spatialpolygondataframe
-## rownames
-row.names(dat2) <- dat2$NUTS_ID
-row.names(map_nuts2) <- as.character(map_nuts2$NUTS_ID)
-## order data
-dat2 <- dat2[order(row.names(dat2)), ]
-map_nuts2 <- map_nuts2[order(row.names(map_nuts2)), ]
-## join
-library(maptools)
-dat2$NUTS_ID <- NULL
-shape <- spCbind(map_nuts2, dat2)
-```
-
-
-### Fortify the shapefile into data.frame and ready for ggplot-plotting
-
-As we are using ggplot2-package for plotting, we have to fortify the `SpatialPolygonDataFrame` into regular `data.frame`-class. As we have income data from several years, we have to also melt the data into long format for plotting.
-
-
-
-```r
-## fortify spatialpolygondataframe into data.frame
-library(ggplot2)
-library(rgeos)
-shape$id <- rownames(shape@data)
-map.points <- fortify(shape, region = "id")
-map.df <- merge(map.points, shape, by = "id")
-# As we want to plot map faceted by years from 2003 to 2011
-# we have to melt it into long format 
-#
-# (variable with numerical names got X-prefix during the spCbind-merge, 
-# therefore the X-prefix in variable names)
-
-library(reshape2)
-map.df.l <- melt(data = map.df, 
-                 id.vars = c("id","long","lat","group","NUTS_ID"), 
-                 measure.vars = c("X2000","X2001","X2002",
-                                  "X2003","X2004","X2005",
-                                  "X2006","X2007","X2008",
-                                  "X2009","X2010","X2011"))
-# year variable (variable) is class string and type X20xx. 
-# Lets remove the X and convert it to numerical
-library(stringr)
-map.df.l$variable <- str_replace_all(map.df.l$variable, "X","")
-map.df.l$variable <- factor(map.df.l$variable)
-map.df.l$variable <- as.numeric(levels(map.df.l$variable))[map.df.l$variable]
-```
-
-### And finally the plot using ggplot2
-
-Map shows the distribution of *disposable income of private households* at NUTS2 level and the color coding is done so that middle of the scale (white color) is the median count from that particular year. **It is important to note that it is not the median income of European households, but the median of the NUTS2-level aggregates**
-
-
-```r
-library(ggplot2)
-library(scales)
-# lets choose only three years
-map.df.l <- map.df.l[map.df.l$variable == c(2000,2005,2011), ]
-# years for for loop
-years <- unique(map.df.l$variable)
-for (year in years) {
-  median_in_data <- median(map.df.l[map.df.l$variable == year,]$value, na.rm = TRUE)
-  print(ggplot(data=map.df.l[map.df.l$variable == year,], 
-         aes(long,lat,group=group)) +
-  geom_polygon(aes(fill = value), 
-               colour="white", 
-               size=.2) +
-  geom_polygon(data = map.df.l, aes(long,lat), 
-               fill=NA,
-               colour="white", 
-               size = 0.1) + 
-  scale_fill_gradient2(low="#d8b365", 
-                       high="#5ab4ac", 
-                       midpoint=median_in_data) +
-  coord_map(project="orthographic", xlim=c(-22,34),
-            ylim=c(35,70)) + 
-  labs(title = paste0("Year ",
-                      year,
-                      ". Median of \n regional incomes (tgs00026)  is ",
-                      median_in_data))
-       )
-  }
-```
-
-![plot of chunk eurostat_map4](figure/eurostat_map41.png) ![plot of chunk eurostat_map4](figure/eurostat_map42.png) ![plot of chunk eurostat_map4](figure/eurostat_map43.png) 
-
-
-
-### Citing the package
-
-This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) package contains related tools for Eurostat but at the time of writing this tutorial this package seems to be in an experimental stage.
-
-**Citing the Data** Kindly cite [Eurostat](http://epp.eurostat.ec.europa.eu/portal/page/portal/statistics/search_database). 
-
+**Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 
 **Citing the R tools** This work can be freely used, modified and
 distributed under the [BSD-2-clause (modified FreeBSD)
-license]. Kindly cite the R package as 'Leo Lahti, Przemyslaw Biecek
-and Markus Kainu (C) 2014. eurostat R package. URL:
-http://ropengov.github.io/eurostat'.
+license]. Kindly cite the R package as follows:
 
 
-### Session info
+```r
+citation("eurostat")
+```
+
+```
+## 
+## Kindly cite the eurostat R package as follows:
+## 
+##   (C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu
+##   2014. eurostat R package
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Misc{,
+##     title = {eurostat R package},
+##     author = {Leo Lahti and Przemyslaw Biecek and Janne Huovari and Markus Kainu},
+##     year = {2014},
+##   }
+```
+
+## Acknowledgements
+
+This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
+
+
+## Session info
 
 This tutorial was created with
 
@@ -407,7 +326,7 @@ sessionInfo()
 ```
 
 ```
-## R version 3.1.1 (2014-07-10)
+## R version 3.1.2 (2014-10-31)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## 
 ## locale:
@@ -422,17 +341,10 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] mapproj_1.2-2    maps_2.3-7       scales_0.2.4     rgeos_0.3-6     
-##  [5] ggplot2_1.0.0    maptools_0.8-30  rgdal_0.8-16     sp_1.0-15       
-##  [9] countrycode_0.17 plotrix_3.5-7    reshape_0.8.5    knitr_1.6       
-## [13] eurostat_0.9.34  tidyr_0.1        statfi_0.9.8     pxR_0.40.0      
-## [17] plyr_1.8.1       RJSONIO_1.3-0    reshape2_1.4     stringr_0.6.2   
-## [21] devtools_1.5    
+## [1] countrycode_0.18 plotrix_3.5-11   reshape_0.8.5    eurostat_1.0.11 
+## [5] tidyr_0.2.0      plyr_1.8.1       knitr_1.9       
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] colorspace_1.2-4 digest_0.6.4     evaluate_0.5.5   foreign_0.8-61  
-##  [5] formatR_0.10     grid_3.1.1       gtable_0.1.2     httr_0.4        
-##  [9] labeling_0.2     lattice_0.20-29  MASS_7.3-33      memoise_0.2.1   
-## [13] munsell_0.4.2    parallel_3.1.1   proto_0.3-10     Rcpp_0.11.2     
-## [17] RCurl_1.95-4.3   roxygen2_4.0.1   tools_3.1.1      whisker_0.4
+## [1] evaluate_0.5.5 formatR_1.0    Rcpp_0.11.4    reshape2_1.4.1
+## [5] stringi_0.4-1  stringr_0.6.2  tools_3.1.2
 ```
