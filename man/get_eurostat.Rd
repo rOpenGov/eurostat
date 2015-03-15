@@ -25,7 +25,7 @@ options(eurostat_update = TRUE)}
 
 \item{cache_dir}{a path to cache directory. The \code{NULL} uses directory
        eurostat directory in the temporary directory from
-       \code{\link{temp.dir}}. Directory can be set also with
+       \code{\link{tempdir}}. Directory can be set also with
        \code{option} eurostat_cache_dir.}
 }
 \value{

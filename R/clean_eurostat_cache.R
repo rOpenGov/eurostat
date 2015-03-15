@@ -11,6 +11,10 @@
 clean_eurostat_cache <- function(cache_dir = NULL){
   if (is.null(cache_dir)){
     cache_dir <- getOption("eurostat_cache_dir", file.path(tempdir(), "eurostat"))
+    if (!file.exists(cache_dir)) {
+      message("The cache does not exist") 
+      return(invisible(TRUE))
+      }
   }
   if (!file.exists(cache_dir)) stop("The cache folder ", cache_dir, " does not exist")
   
@@ -21,4 +25,5 @@ clean_eurostat_cache <- function(cache_dir = NULL){
     unlink(files)
     message("Deleted .rds files from ", cache_dir)    
   }
+  invisible(TRUE)
 }
