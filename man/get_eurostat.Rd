@@ -24,12 +24,14 @@ A "date_last" convers to a \code{\link{Date}} with
 options(eurostat_update = TRUE)}
 
 \item{cache_dir}{a path to cache directory. The \code{NULL} uses directory
-       from \code{link{temp.dir}}. Directory can be set also with
-      \code{option} eurostat_cache_dir.}
+       eurostat directory in the temporary directory from
+       \code{\link{temp.dir}}. Directory can be set also with
+       \code{option} eurostat_cache_dir.}
 }
 \value{
-a data.frame. One column for each dimension in the data and the value column for numerical values.
-the time column for a time dimension.
+a data.frame. One column for each dimension in the data and
+   the value column for numerical values.
+   the time column for a time dimension.
 }
 \description{
 Download a dataset from the Eurostat database (\url{ec.europa.eu/eurostat}).

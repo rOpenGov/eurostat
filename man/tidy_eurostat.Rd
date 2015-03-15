@@ -2,12 +2,12 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{tidy_eurostat}
 \alias{tidy_eurostat}
-\title{Transforms Eurostat data table into the row-column-value format (RCV).}
+\title{Transforms raw Eurostat data table into the row-column-value format (RCV).}
 \usage{
 tidy_eurostat(dat, time_format = "date")
 }
 \arguments{
-\item{dat}{a data.frame from \code{\link{get_eurostat}}.}
+\item{dat}{a data.frame from \code{\link{get_eurostat_raw}}.}
 
 \item{time_format}{a string giving a type of the conversion of the
                    time column from the eurostat format.
@@ -22,10 +22,9 @@ Returns:}
 }
 \value{
 A dataset in the molten format with the last column 'value'.
- 	    See the melt function from reshape package for more details.
 }
 \description{
-Transforms Eurostat data table into the row-column-value format (RCV).
+Transforms raw Eurostat data table into the row-column-value format (RCV).
 }
 \examples{
 \dontrun{

@@ -32,9 +32,9 @@ definitions instead of codes.
 }
 \section{Functions}{
 \itemize{
-\item \code{label_eurostat_vars}: Get definations for variable (column) names
-\item \code{label_eurostat_tables}: Get definations for table names
+\item \code{label_eurostat_vars}: Get definitions for variable (column) names
 
+\item \code{label_eurostat_tables}: Get definitions for table names
 }}
 \examples{
 \dontrun{

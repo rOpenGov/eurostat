@@ -17,19 +17,6 @@
 #' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
-#' @examples \dontrun{
-#'    tmp <- tidy_eurostat("educ_iste")
-#'    head(tmp)
-#'    t1 <- tidy_eurostat("tsdtr420")
-#'    tmp <- cast(t1, geo ~ time , mean)
-#'    tmp2 <- tmp[,-1]
-#'    rownames(tmp2) <- tmp[,1]
-#'    head(tmp2)
-#'    tmp3 <- tmp2[c("UK", "SK", "FR", "PL", "ES", "PT", "LV"),]
-#'    matplot(as.numeric(colnames(tmp3)), t(tmp3), type="o", 
-#'            pch=19, lty=1, las=1, 
-#'	      xlab="", ylab="", yaxt="n")
-#'    }
 #' @keywords utilities database
 
 tidy_eurostat <-
