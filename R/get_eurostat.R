@@ -17,11 +17,12 @@
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
 #'
-#' @param cache a logical wheather to do caching. Default is \code{TRUE}.
-#' @param update_cache a locigal wheater to update cache. Can be set also with
+#' @param cache A logical wheather to do caching. Default is \code{TRUE}.
+#' @param update_cache A locigal wheater to update cache. Can be set also with
 #' options(eurostat_update = TRUE)
-#' @param cache_dir a path to cache directory. The \code{NULL} uses direcotry from
-#'  \code{link{temp.dir}}. Directory can be set also with \code{option} eurostat_cache_dir.
+#' @param cache_dir A path to cache directory. The \code{NULL} (default) uses eurostat 
+#' directory in the temporary directory given by \code{link{tempdir}}. 
+#' Directory can be set also with \code{option} eurostat_cache_dir.
 #' 
 #' @export
 #' @return a data.frame. One column for each dimension in the data and the value column for numerical values. 
@@ -42,10 +43,19 @@ get_eurostat <- function(id, time_format = "date", cache = TRUE, update_cache = 
   if (cache){  
     # check option for update
     update_cache <- update_cache | getOption("eurostat_update", FALSE)
-    # get cache directory
-    if (is.null(cache_dir)) cache_dir <- getOption("eurostat_cache_dir", tempdir())
-    if (!file.exists(cache_dir)) stop("The folder ", cache_dir, " does not exist")
     
+    # get cache directory
+    if (is.null(cache_dir)){
+      cache_dir <- getOption("eurostat_cache_dir", NULL)
+      if (is.null(cache_dir)){
+        cache_dir <- file.path(tempdir(), "eurostat")
+        if (!file.exists(cache_dir)) dir.create(cache_dir)
+      } else {
+        if (!file.exists(cache_dir)) stop("The folder ", cache_dir, " does not exist")
+      }
+    }
+    
+    # cache filename
     cache_file <- file.path(cache_dir, paste0(id, ".rds"))
   }
   
