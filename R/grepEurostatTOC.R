@@ -20,7 +20,7 @@
 #'	\item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 #'
 #' @export
-#' @seealso \code{\link{get_eurostat}}, \code{\link{get_eurostat_raw}}, \code{\link{getEurostatTOC}}
+#' @seealso \code{\link{get_eurostat}}, \code{\link{getEurostatTOC}}
 #' @references
 #' See citation("eurostat") 
 #' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}

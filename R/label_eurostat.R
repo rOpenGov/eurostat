@@ -35,17 +35,19 @@ label_eurostat <- function(x, dic = NULL){
     dic_df <- getEurostatDictionary(dic)
     # in case of column names (not factors), change to upper case
     if (!is.factor(x)) x <- toupper(x)
-    y <- mapvalues(x, dic_df[,1], dic_df[,2], warn_missing = FALSE)
+    y <- plyr::mapvalues(x, dic_df[,1], dic_df[,2], warn_missing = FALSE)
   }
   y
 }
   
 #' @describeIn label_eurostat Get definitions for variable (column) names
+#' @export
 label_eurostat_vars <- function(x){
   label_eurostat(x, dic = "dimlst")
 }
 
 #' @describeIn label_eurostat Get definitions for table names
+#' @export
 label_eurostat_tables <- function(x){
   label_eurostat(x, dic = "table_dic")
 }
