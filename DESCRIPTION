@@ -8,17 +8,18 @@ Maintainer: Leo Lahti <louhos@googlegroups.com>
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data sets from the Eurostat. Additional processing and visualization functions are also provided.
 License: BSD_2_clause + file LICENSE
-Depends:
+Depends: 
     R (>= 3.0.2),
     plyr,
     tidyr
-Suggests:
+Suggests: 
     knitr,
     mapproj,
     plotrix,
     reshape,
     rmarkdown,
-    ggplot2
+    ggplot2,
+    testthat
 URL: https://github.com/ropengov/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr

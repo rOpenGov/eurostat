@@ -14,10 +14,10 @@
 #'  @return A dataset in the molten format with the last column 'value'. 
 #'  	    
 #' @import tidyr
-#' @seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}
+#' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
-#' @keywords utilities database
+#' @keywords internal utilities database
 
 tidy_eurostat <-
   function(dat, time_format = "date") {

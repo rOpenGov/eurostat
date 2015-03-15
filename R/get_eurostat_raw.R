@@ -12,7 +12,7 @@
 #'	  character format as it contains values together with eurostat 
 #'	  flags for data.
 #'  
-#'@seealso \code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}.
+#'@seealso \code{\link{get_eurostat}}.
 #'@details Data is downloaded from
 #'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
 #'@references see citation("eurostat").

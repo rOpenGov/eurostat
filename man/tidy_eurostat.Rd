@@ -33,8 +33,9 @@ Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com} \
 See citation("eurostat").
 }
 \seealso{
-\code{\link{getEurostatTOC}}, \code{\link{get_eurostat}}
+\code{\link{get_eurostat}}
 }
 \keyword{database}
+\keyword{internal}
 \keyword{utilities}
 

@@ -32,7 +32,7 @@ label_eurostat <- function(x, dic = NULL){
     }
   } else {
     if (is.null(dic)) stop("Dictionary information is missing")
-    dic_df <- getEurostatDictionary(dic)
+    dic_df <- get_eurostat_dic(dic)
     # in case of column names (not factors), change to upper case
     if (!is.factor(x)) x <- toupper(x)
     y <- plyr::mapvalues(x, dic_df[,1], dic_df[,2], warn_missing = FALSE)
