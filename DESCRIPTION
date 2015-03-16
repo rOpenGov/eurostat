@@ -9,7 +9,8 @@ MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database.
 License: BSD_2_clause + file LICENSE
 Depends: 
-    R (>= 3.0.2),
+    R (>= 3.0.2)
+Imports:
     plyr,
     tidyr
 Suggests: 

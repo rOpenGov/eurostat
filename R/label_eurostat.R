@@ -11,7 +11,6 @@
 #' @param dic a string (vector) naming eurostat dictionary or dictionaries.
 #'  If \code{NULL} (default) dictionry names taken from column names of 
 #'  the data.frame. 
-#' @import plyr
 #' @export
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @return a vector or a data.frame.
