@@ -21,9 +21,8 @@
 #'
 #' @export
 #' @seealso \code{\link{get_eurostat}}, \code{\link{get_eurostat_toc}}
-#' @references
-#' See citation("eurostat") 
-#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
+#' @references See citation("eurostat") 
+#' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{tmp <- search_eurostat("education"); head(tmp)}
 #' @keywords utilities database
 search_eurostat <- function(pattern, type = "dataset") {

@@ -1,4 +1,4 @@
-#' Transforms raw Eurostat data table into the row-column-value format (RCV).
+#' Transform raw Eurostat data table into the row-column-value format (RCV).
 #' 
 #' @param dat a data.frame from \code{\link{get_eurostat_raw}}.
 #' @param time_format a string giving a type of the conversion of the 
@@ -10,13 +10,12 @@
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
 #'
-#' Returns:
-#'  @return A dataset in the molten format with the last column 'value'. 
+#'  @return data.frame in the molten format with the last column 'value'. 
 #'  	    
 #' @import tidyr
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat"). 
-#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @keywords internal utilities database
 
 tidy_eurostat <-

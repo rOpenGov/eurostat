@@ -7,7 +7,7 @@
 #'  @return Empty element
 #'
 #' @references see citation("eurostat"). 
-#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @keywords internal
 set_eurostat_toc <- function() {
    if (!exists(".eurostatTOC", envir = .EurostatEnv)) {
@@ -21,5 +21,3 @@ set_eurostat_toc <- function() {
   }
   invisible(0)
 }
-
-

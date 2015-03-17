@@ -8,7 +8,7 @@
 #'        the period.
 #' @export
 #' @return an object of class \code{\link{Date}}.
-#' @author Janne Huovari \email{louhos@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples \dontrun{
 #'    lp <- get_eurostat("namq_aux_lp", time_format = "raw")
 #'    lp$time <- eurotime2date(x = lp$time)

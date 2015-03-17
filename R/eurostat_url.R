@@ -9,7 +9,7 @@
 #'  @return url
 #'
 #' @references see citation("eurostat"). 
-#' @author Leo Lahti \email{louhos@@googlegroups.com}
+#' @author Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @keywords internal
 eurostat_url <- function(...) {
   "http://ec.europa.eu/eurostat/"

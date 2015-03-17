@@ -1,6 +1,6 @@
 #' Download a table of contents of eurostat datasets.
 #' 
-#' @description Download a table of contents of eurostat datasets. 
+#' @description Download table of contents (TOC) of eurostat datasets. 
 #'              Note that the values in column 'code' should be used 
 #'		to download a selected dataset.
 #' 
@@ -14,7 +14,7 @@
 #' @seealso \code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
 #' @details The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
 #' @references See citation("eurostat"). 
-#' @author Przemyslaw Biecek and Leo Lahti \email{louhos@@googlegroups.com}
+#' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{tmp <- get_eurostat_toc(); head(tmp)}
 #' @keywords utilities database
 get_eurostat_toc <- function() {
@@ -28,5 +28,4 @@ getEurostatTOC <- function() {
   .Deprecated("get_eurostat_toc")
   get_eurostat_toc()
 }
-
 

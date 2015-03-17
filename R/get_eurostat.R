@@ -1,12 +1,6 @@
 #' Read data from Eurostat database.
 #' 
-#' Download a dataset from the Eurostat database (\url{ec.europa.eu/eurostat}). 
-#' The dataset is transformed into the molten / row-column-value format (RCV).
-#' 
-#' Datasets are downloaded from the Eurostat bulk download facility (\url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing})
-#' 
-#' By default datasets are cached. In a temporary directory by default or in 
-#' a named directory if cache_dir or option eurostat_cache_dir is defined.
+#' Download dataset from the Eurostat database (\url{ec.europa.eu/eurostat}). 
 #' 
 #' @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
 #' @param time_format a string giving a type of the conversion of the time 
@@ -25,6 +19,13 @@
 #'        \code{option} eurostat_cache_dir.
 #' 
 #' @export
+#' @details Datasets are downloaded from the Eurostat bulk download facility 
+#' \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}. The data is transformed into the molten row-column-value format (RCV).
+#' 
+#' By default datasets are cached. In a temporary directory by default or in 
+#' a named directory if cache_dir or option eurostat_cache_dir is defined.
+#'
+#'
 #' @return a data.frame. One column for each dimension in the data and 
 #'    the value column for numerical values. 
 #'    the time column for a time dimension. 

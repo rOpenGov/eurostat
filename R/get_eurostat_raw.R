@@ -1,27 +1,27 @@
-#'Download a dataset from the eurostat database
+#' Download data from the eurostat database
 #'
-#'@description Downloads datasets from the eurostat database and 
+#' @description Downloads datasets from the eurostat database and 
 #'	       transforms into tabular format.
 #'  
-#'@param id A code name for the data set of interested. See the table of
+#' @param id A code name for the data set of interested. See the table of
 #'  contents of eurostat datasets for more details.
 #'  
-#'@return A dataset in data.frame format. First column contains comma 
+#' @return A dataset in data.frame format. First column contains comma 
 #' 	  separated codes of cases. Other columns usually corresponds to 
 #'	  years and column names are years with preceding X. Data is in 
 #'	  character format as it contains values together with eurostat 
 #'	  flags for data.
 #'  
-#'@seealso \code{\link{get_eurostat}}.
-#'@details Data is downloaded from
+#' @seealso \code{\link{get_eurostat}}.
+#' @details Data is downloaded from
 #'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
-#'@references see citation("eurostat").
-#'@author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@@googlegroups.com}
+#' @references see citation("eurostat").
+#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{
 #' 	       tmp <- get_eurostat_raw("educ_iste")
 #' 	       head(tmp)
 #'	     }
-#'@keywords utilities database
+#' @keywords utilities database
 get_eurostat_raw <- function(id) {
 
   base <- eurostat_url()		   
