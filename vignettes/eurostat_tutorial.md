@@ -24,16 +24,16 @@ For contact information and source code, see the [github page](https://github.co
 
 ## Available tools
 
- +[Installation](#installation)  
- +[Finding data](#search)  
- +[Downloading data](#download)  
- +[Replacing codes with labels](#labeling)  
- +[Selecting and modifying data](#select)  
- +[Visualization](#visualization)  
-   * [Triangle plot](#triangle)  
- +[Citing the package](#citing)  
- +[Acknowledgements](#acknowledgements)  
- +[Session info](#session)  
+*[Installation](#installation)  
+*[Finding data](#search)  
+*[Downloading data](#download)  
+*[Replacing codes with labels](#labeling)  
+*[Selecting and modifying data](#select)  
+*[Visualization](#visualization)  
+  * [Triangle plot](#triangle)  
+*[Citing the package](#citing)  
+*[Acknowledgements](#acknowledgements)  
+*[Session info](#session)  
 
 
 ## <a name="installation"></a>Installation
