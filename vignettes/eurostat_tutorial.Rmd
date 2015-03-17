@@ -24,7 +24,7 @@ For contact information and source code, see the [github page](https://github.co
 
 ## Available tools
 
- + [Installation](#installation)  
+ * [Installation](#installation)  
  * [Finding data](#search)  
  * [Downloading data](#download)  
  * [Replacing codes with labels](#labeling)  
