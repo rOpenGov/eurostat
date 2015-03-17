@@ -22,7 +22,21 @@ data](http://ec.europa.eu/eurostat/) as part of the
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
-## Installation
+## Available tools
+
+[Installation](#installation)  
+[Finding data](#search)  
+[Downloading data](#download)  
+[Replacing codes with labels](#labeling)  
+[Selecting and modifying data](#select)  
+[Visualization](#visualization)  
+ * [Triangle plot](#triangle)  
+[Citing the package](#citing)  
+[Acknowledgements](#acknowledgements)  
+[Session info](#session)  
+
+
+## <a name="installation"></a>Installation
 
 Release version:
 
@@ -37,7 +51,7 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
-## Finding data
+## <a name="search"></a>Finding data
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
@@ -53,20 +67,14 @@ library(knitr)
 kable(head(toc))
 ```
 
-With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output:
+With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 
 ```{r search_eurostat, warning=FALSE, message=FALSE}
 # info about passengers
-kable(head(search_eurostat("passenger transport", type = "dataset")))
+kable(head(search_eurostat("passenger transport")))
 ```
 
-Instead of datasets you can look for tables:
-
-```{r search_eurostat2, warning=FALSE, message=FALSE}
-kable(head(search_eurostat("passenger transport", type = "table")))
-```
-
-## Downloading data 
+## <a name="download"></a>Downloading data 
 
 Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
@@ -90,7 +98,7 @@ str(dat)
 kable(head(dat))
 ```
 
-### Replace codes with labels
+### <a name="labeling"></a>Replacing codes with labels
 
 Eurostat variable IDs can be replaced with human-readable labels.
 Function `label_eurostat()` replaces the eurostat IDs based on
@@ -113,7 +121,7 @@ label_eurostat_vars(names(datl))
 ```
 
 
-## Selecting and modifying data
+## <a name="select"></a>Selecting and modifying data
 
 ### EU data from 2012 in all vehicles:
 
@@ -123,6 +131,7 @@ kable(dat_eu12, row.names = FALSE)
 ```
 
 ### EU data from 2000 - 2012 with vehicle types as variables:
+
 Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table}
 library("tidyr")
@@ -142,11 +151,11 @@ dat_trains_wide <- spread(dat_trains, geo, value)
 kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 ```
 
-## Plot with ggplot2
 
-The plotting is best done with package `ggplot2`
 
-The train passenger data:
+## <a name="visualization"></a>Visualization
+
+Visualizing train passenger data with `ggplot2`:
 
 ```{r trains_plot, fig.width=10, fig.height=4}
 library(ggplot2)
@@ -155,11 +164,9 @@ p <- p + geom_line()
 print(p)
 ```
 
+### <a name="triangle"></a>Triangle plot
 
-
-## Triangle plot on passenger transport distributions
-
-With 2012 data for all countries with data.
+Triangle plot on passenger transport distributions with 2012 data for all countries with data.
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
 library(reshape2)
@@ -176,9 +183,7 @@ triax.plot(allTransports[, -1], show.grid = TRUE,
 ```
 
 
-
-
-## Citing the package
+## <a name="citing"></a>Citing the package
 
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 
@@ -189,12 +194,14 @@ distributed under the BSD-2-clause (modified FreeBSD) license:
 citation("eurostat")
 ```
 
-## Acknowledgements
+## <a name="acknowledgements"></a>Acknowledgements
 
-This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
+We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for the open data portal! This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets. 
 
 
-## Session info
+
+
+## <a name="session"></a>Session info
 
 This tutorial was created with
 

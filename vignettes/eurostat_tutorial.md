@@ -22,7 +22,21 @@ data](http://ec.europa.eu/eurostat/) as part of the
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
-## Installation
+## Available tools
+
+[Installation](#installation)  
+[Finding data](#search)  
+[Downloading data](#download)  
+[Replacing codes with labels](#labeling)  
+[Selecting and modifying data](#select)  
+[Visualization](#visualization)  
+ * [Triangle plot](#triangle)  
+[Citing the package](#citing)  
+[Acknowledgements](#acknowledgements)  
+[Session info](#session)  
+
+
+## <a name="installation"></a>Installation
 
 Release version:
 
@@ -39,7 +53,7 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
-## Finding data
+## <a name="search"></a>Finding data
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
@@ -52,40 +66,27 @@ library(eurostat)
 toc <- get_eurostat_toc()
 
 # Check the first items
-head(toc)
+library(knitr)
+kable(head(toc))
 ```
 
-```
-##                                                              title
-## 1                                               Database by themes
-## 2                                  General and regional statistics
-## 3         European and national indicators for short-term analysis
-## 4                 Business and consumer surveys (source: DG ECFIN)
-## 5                              Consumer surveys (source: DG ECFIN)
-## 6                                         Consumers - monthly data
-##        code    type last.update.of.data last.table.structure.change
-## 1      data  folder                                                
-## 2   general  folder                                                
-## 3   euroind  folder                                                
-## 4    ei_bcs  folder                                                
-## 5 ei_bcs_cs  folder                                                
-## 6 ei_bsco_m dataset          25.02.2015                  25.02.2015
-##   data.start data.end values
-## 1                         NA
-## 2                         NA
-## 3                         NA
-## 4                         NA
-## 5                         NA
-## 6    1985M01  2015M02     NA
-```
 
-With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output:
+
+|title                                                            |code      |type    |last.update.of.data |last.table.structure.change |data.start |data.end | values|
+|:----------------------------------------------------------------|:---------|:-------|:-------------------|:---------------------------|:----------|:--------|------:|
+|Database by themes                                               |data      |folder  |                    |                            |           |         |     NA|
+|    General and regional statistics                              |general   |folder  |                    |                            |           |         |     NA|
+|        European and national indicators for short-term analysis |euroind   |folder  |                    |                            |           |         |     NA|
+|            Business and consumer surveys (source: DG ECFIN)     |ei_bcs    |folder  |                    |                            |           |         |     NA|
+|                Consumer surveys (source: DG ECFIN)              |ei_bcs_cs |folder  |                    |                            |           |         |     NA|
+|                    Consumers - monthly data                     |ei_bsco_m |dataset |25.02.2015          |25.02.2015                  |1985M01    |2015M02  |     NA|
+
+With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 
 
 ```r
 # info about passengers
-library(knitr)
-kable(head(search_eurostat("passenger transport", type = "dataset")))
+kable(head(search_eurostat("passenger transport")))
 ```
 
 
@@ -99,24 +100,7 @@ kable(head(search_eurostat("passenger transport", type = "dataset")))
 |5211 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
 |5562 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |     NA|
 
-Instead of datasets you can look for tables:
-
-
-```r
-kable(head(search_eurostat("passenger transport", type = "table")))
-```
-
-
-
-|     |title                                                         |code     |type  |last.update.of.data |last.table.structure.change |data.start |data.end | values|
-|:----|:-------------------------------------------------------------|:--------|:-----|:-------------------|:---------------------------|:----------|:--------|------:|
-|7354 |            Volume of passenger transport relative to GDP     |tsdtr240 |table |12.03.2015          |12.03.2015                  |1995       |2012     |     NA|
-|7355 |            Modal split of passenger transport                |tsdtr210 |table |12.03.2015          |12.03.2015                  |1990       |2012     |     NA|
-|7849 |                    Modal split of passenger transport        |tsdtr210 |table |12.03.2015          |12.03.2015                  |1990       |2012     |     NA|
-|7973 |                Modal split of passenger transport            |tsdtr210 |table |12.03.2015          |12.03.2015                  |1990       |2012     |     NA|
-|7976 |                Volume of passenger transport relative to GDP |tsdtr240 |table |12.03.2015          |12.03.2015                  |1995       |2012     |     NA|
-
-## Downloading data 
+## <a name="download"></a>Downloading data 
 
 Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
@@ -165,7 +149,7 @@ kable(head(dat))
 |BUS_TOT |CY  | 1990|    NA|
 |BUS_TOT |CZ  | 1990|    NA|
 
-### Replace codes with labels
+### <a name="labeling"></a>Replacing codes with labels
 
 Eurostat variable IDs can be replaced with human-readable labels.
 Function `label_eurostat()` replaces the eurostat IDs based on
@@ -214,7 +198,7 @@ label_eurostat_vars(names(datl))
 ```
 
 
-## Selecting and modifying data
+## <a name="select"></a>Selecting and modifying data
 
 ### EU data from 2012 in all vehicles:
 
@@ -233,6 +217,7 @@ kable(dat_eu12, row.names = FALSE)
 |Trains                                 |European Union (28 countries) | 2012|   7.4|
 
 ### EU data from 2000 - 2012 with vehicle types as variables:
+
 Reshaping the data is best done with `spread()` in `tidyr`.
 
 ```r
@@ -290,11 +275,11 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 | 2011|    11.0|     7.4|     5.0|    8.8|
 | 2012|    11.5|     7.1|     5.3|    9.1|
 
-## Plot with ggplot2
 
-The plotting is best done with package `ggplot2`
 
-The train passenger data:
+## <a name="visualization"></a>Visualization
+
+Visualizing train passenger data with `ggplot2`:
 
 
 ```r
@@ -306,11 +291,9 @@ print(p)
 
 ![plot of chunk trains_plot](figure/trains_plot-1.png) 
 
+### <a name="triangle"></a>Triangle plot
 
-
-## Triangle plot on passenger transport distributions
-
-With 2012 data for all countries with data.
+Triangle plot on passenger transport distributions with 2012 data for all countries with data.
 
 
 ```r
@@ -330,9 +313,7 @@ triax.plot(allTransports[, -1], show.grid = TRUE,
 ![plot of chunk plotGallery](figure/plotGallery-1.png) 
 
 
-
-
-## Citing the package
+## <a name="citing"></a>Citing the package
 
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 
@@ -362,12 +343,14 @@ citation("eurostat")
 ##   }
 ```
 
-## Acknowledgements
+## <a name="acknowledgements"></a>Acknowledgements
 
-This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
+We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for the open data portal! This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets. 
 
 
-## Session info
+
+
+## <a name="session"></a>Session info
 
 This tutorial was created with
 
