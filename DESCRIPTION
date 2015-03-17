@@ -17,7 +17,7 @@ Suggests:
     knitr,
     mapproj,
     plotrix,
-    reshape,
+    reshape2,
     rmarkdown,
     ggplot2,
     testthat

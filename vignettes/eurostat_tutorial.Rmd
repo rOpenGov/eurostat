@@ -157,7 +157,7 @@ ggplot(dat_trains, aes(x = time, y = value, colour = geo)) +
 With 2012 data for all countries with data.
 
 ```{r plotGallery, warning=FALSE, message=FALSE}
-library(reshape)
+library(reshape2)
 
 allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, value)
 

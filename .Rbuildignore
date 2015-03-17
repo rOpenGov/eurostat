@@ -1,24 +1,18 @@
 # Extra material related but not to be included in the package
-./inst/extras/eurostat.Rcheck/*
-./inst/extras/*.tar.gz
-./inst/extras/..Rcheck/*
-./inst/extras/...Rcheck/*
-./inst/extras/*
-./inst/extras/.*
-./inst/extras/*.Rmd
-inst/extras/.RData
+inst/extras
 
 # Vignette
 ./vignettes/NUTS_2010_60M_SH/*
 ./vignettes/NUTS_2010_60M_SH.zip
 ./vignettes/NUTS_2010.xls
 ./vignettes/zipfile
-./NUTS_2010.xls
-./zipfile
+
 # Git related
 ./.git*
+
 # Travis scripts
 .travis.yml
+
 # Misc
 ./.*~
 ./*~

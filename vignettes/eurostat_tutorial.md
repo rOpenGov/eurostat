@@ -1,7 +1,7 @@
 ---
 title: "eurostat tutorial for R"
 author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
-date: "2015-03-16"
+date: "2015-03-17"
 output:
   html_document:
     theme: flatly
@@ -86,26 +86,26 @@ head(search_eurostat("passenger transport", type = "dataset"))
 
 ```
 ##                                                                                                                                         title
-## 5164                                                                                            Volume of passenger transport relative to GDP
-## 5165                                                                                                       Modal split of passenger transport
-## 5204                                                          Railway transport - Total annual passenger transport (1 000 pass., million pkm)
-## 5208                 International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)
-## 5209                    International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)
-## 5560                                                                                             Air passenger transport by reporting country
+## 5166                                                                                            Volume of passenger transport relative to GDP
+## 5167                                                                                                       Modal split of passenger transport
+## 5206                                                          Railway transport - Total annual passenger transport (1 000 pass., million pkm)
+## 5210                 International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)
+## 5211                    International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)
+## 5562                                                                                             Air passenger transport by reporting country
 ##                 code    type last.update.of.data
-## 5164   tran_hv_pstra dataset          25.06.2014
-## 5165   tran_hv_psmod dataset          25.06.2014
-## 5204   rail_pa_total dataset          10.03.2015
-## 5208 rail_pa_intgong dataset          03.03.2015
-## 5209 rail_pa_intcmng dataset          03.03.2015
-## 5560       avia_paoc dataset          10.02.2015
+## 5166   tran_hv_pstra dataset          25.06.2014
+## 5167   tran_hv_psmod dataset          25.06.2014
+## 5206   rail_pa_total dataset          10.03.2015
+## 5210 rail_pa_intgong dataset          03.03.2015
+## 5211 rail_pa_intcmng dataset          03.03.2015
+## 5562       avia_paoc dataset          10.02.2015
 ##      last.table.structure.change data.start data.end values
-## 5164                  25.06.2014       1995     2012     NA
-## 5165                  25.06.2014       1990     2012     NA
-## 5204                  10.07.2014       2004     2013     NA
-## 5208                  26.02.2015       2002     2013     NA
-## 5209                  26.02.2015       2002     2013     NA
-## 5560                  10.02.2015       1993   2014Q4     NA
+## 5166                  25.06.2014       1995     2012     NA
+## 5167                  25.06.2014       1990     2012     NA
+## 5206                  10.07.2014       2004     2013     NA
+## 5210                  26.02.2015       2002     2013     NA
+## 5211                  26.02.2015       2002     2013     NA
+## 5562                  10.02.2015       1993   2014Q4     NA
 ```
 
 ```r
@@ -114,23 +114,23 @@ head(search_eurostat("passenger transport", type = "table"))
 
 ```
 ##                                                              title
-## 7352                 Volume of passenger transport relative to GDP
-## 7353                            Modal split of passenger transport
-## 7847                            Modal split of passenger transport
-## 7971                            Modal split of passenger transport
-## 7974                 Volume of passenger transport relative to GDP
+## 7354                 Volume of passenger transport relative to GDP
+## 7355                            Modal split of passenger transport
+## 7849                            Modal split of passenger transport
+## 7973                            Modal split of passenger transport
+## 7976                 Volume of passenger transport relative to GDP
 ##          code  type last.update.of.data last.table.structure.change
-## 7352 tsdtr240 table          12.03.2015                  12.03.2015
-## 7353 tsdtr210 table          12.03.2015                  12.03.2015
-## 7847 tsdtr210 table          12.03.2015                  12.03.2015
-## 7971 tsdtr210 table          12.03.2015                  12.03.2015
-## 7974 tsdtr240 table          12.03.2015                  12.03.2015
+## 7354 tsdtr240 table          12.03.2015                  12.03.2015
+## 7355 tsdtr210 table          12.03.2015                  12.03.2015
+## 7849 tsdtr210 table          12.03.2015                  12.03.2015
+## 7973 tsdtr210 table          12.03.2015                  12.03.2015
+## 7976 tsdtr240 table          12.03.2015                  12.03.2015
 ##      data.start data.end values
-## 7352       1995     2012     NA
-## 7353       1990     2012     NA
-## 7847       1990     2012     NA
-## 7971       1990     2012     NA
-## 7974       1995     2012     NA
+## 7354       1995     2012     NA
+## 7355       1990     2012     NA
+## 7849       1990     2012     NA
+## 7973       1990     2012     NA
+## 7976       1995     2012     NA
 ```
 
 ## Downloading data 
@@ -332,7 +332,7 @@ With 2012 data for all countries with data.
 
 
 ```r
-library(reshape)
+library(reshape2)
 
 allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, value)
 
@@ -408,14 +408,14 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] plotrix_3.5-11   reshape_0.8.5    ggplot2_1.0.0    eurostat_1.0.11 
-## [5] tidyr_0.2.0.9000 plyr_1.8.1       knitr_1.9       
+## [1] reshape2_1.4.1   plotrix_3.5-11   reshape_0.8.5    ggplot2_1.0.0   
+## [5] tidyr_0.2.0.9000 eurostat_1.0.14  knitr_1.9       
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] assertthat_0.1   colorspace_1.2-6 DBI_0.3.1        digest_0.6.8    
 ##  [5] dplyr_0.4.1      evaluate_0.5.5   formatR_1.0      grid_3.1.2      
 ##  [9] gtable_0.1.2     labeling_0.3     magrittr_1.5     MASS_7.3-39     
-## [13] munsell_0.4.2    parallel_3.1.2   proto_0.3-10     Rcpp_0.11.5     
-## [17] reshape2_1.4.1   scales_0.2.4     stringi_0.4-1    stringr_0.6.2   
+## [13] munsell_0.4.2    parallel_3.1.2   plyr_1.8.1       proto_0.3-10    
+## [17] Rcpp_0.11.5      scales_0.2.4     stringi_0.4-1    stringr_0.6.2   
 ## [21] tools_3.1.2
 ```
