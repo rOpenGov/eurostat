@@ -49,14 +49,14 @@ library(eurostat)
 toc <- get_eurostat_toc()
 
 # Check the first items
-head(toc)
+library(knitr)
+kable(head(toc))
 ```
 
 With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output:
 
 ```{r search_eurostat, warning=FALSE, message=FALSE}
 # info about passengers
-library(knitr)
 kable(head(search_eurostat("passenger transport", type = "dataset")))
 ```
 
