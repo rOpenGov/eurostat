@@ -30,7 +30,7 @@ fraction of the year in beginning of the period.
    }
 }
 \author{
-Janne Huovari \email{louhos@googlegroups.com}
+Janne Huovari \email{ropengov-forum@googlegroups.com}
 	                 \url{http://github.com/ropengov/eurostat}
 }
 

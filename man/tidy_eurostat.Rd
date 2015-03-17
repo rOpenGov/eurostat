@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{tidy_eurostat}
 \alias{tidy_eurostat}
-\title{Transforms raw Eurostat data table into the row-column-value format (RCV).}
+\title{Transform raw Eurostat data table into the row-column-value format (RCV).}
 \usage{
 tidy_eurostat(dat, time_format = "date")
 }
@@ -16,18 +16,16 @@ tidy_eurostat(dat, time_format = "date")
               convers to a \code{\link{Date}} with
         a last date of the period. A "num" convers to a numeric and "raw"
         does not do conversion. See \code{\link{eurotime2date}} and
-        \code{\link{eurotime2num}}.
-
-Returns:}
+        \code{\link{eurotime2num}}.}
 }
 \value{
-A dataset in the molten format with the last column 'value'.
+data.frame in the molten format with the last column 'value'.
 }
 \description{
-Transforms raw Eurostat data table into the row-column-value format (RCV).
+Transform raw Eurostat data table into the row-column-value format (RCV).
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
 \references{
 See citation("eurostat").

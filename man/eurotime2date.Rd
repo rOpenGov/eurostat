@@ -32,6 +32,6 @@ A function to convert Eurostat time values to objects of class \code{\link{Date}
    }
 }
 \author{
-Janne Huovari \email{louhos@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
 

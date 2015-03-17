@@ -10,11 +10,11 @@ citEntry(entry="misc",
          ),
 	 journal = "",
 	 year = "2014",
-	 url = "https://github.com/rOpenGov/eurostat"
+	 url = "https://github.com/rOpenGov/eurostat",
          textVersion =
          paste("(C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu 2014.",
                "eurostat R package",
-	       "URL: https://github.com/rOpenGov/eurostat"
+	       "URL: https://github.com/rOpenGov/eurostat",
                sep=" ")
          )
 

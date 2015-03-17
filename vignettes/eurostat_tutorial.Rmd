@@ -56,12 +56,13 @@ With `search_eurostat()` you can search the table of contents for particular pat
 
 ```{r search_eurostat, warning=FALSE, message=FALSE}
 # info about passengers
+library(knitr)
 kable(head(search_eurostat("passenger transport", type = "dataset")))
 ```
 
 Instead of datasets you can look for tables:
 
-```{r search_eurostat, warning=FALSE, message=FALSE}
+```{r search_eurostat2, warning=FALSE, message=FALSE}
 kable(head(search_eurostat("passenger transport", type = "table")))
 ```
 

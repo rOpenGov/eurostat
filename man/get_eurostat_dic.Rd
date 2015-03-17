@@ -22,14 +22,14 @@ A data.frame with two columns, first with code names and
 \description{
 Download a dictionary for given coded variable from
              Eurostat (ec.europa.eu/eurostat). Dictionaries link
-             codes with labels. To translate codes to labels
-             use \code{\link{label_eurostat}}.
+             codes with human-readable labels. To translate codes to labels
+             with \code{\link{label_eurostat}}.
 
 Arguments:
 }
 \section{Functions}{
 \itemize{
-\item \code{getEurostatDictionary}: Old depricated version
+\item \code{getEurostatDictionary}: Old deprecated version
 }}
 \examples{
 \dontrun{
@@ -38,7 +38,7 @@ Arguments:
 	     }
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
+Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
 }
 \references{
 see citation("eurostat").

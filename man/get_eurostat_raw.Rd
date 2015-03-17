@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_raw.R
 \name{get_eurostat_raw}
 \alias{get_eurostat_raw}
-\title{Download a dataset from the eurostat database}
+\title{Download data from the eurostat database}
 \usage{
 get_eurostat_raw(id)
 }
@@ -32,7 +32,7 @@ Data is downloaded from
 	     }
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{louhos@googlegroups.com}
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com}
 }
 \references{
 see citation("eurostat").

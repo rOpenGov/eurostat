@@ -17,7 +17,7 @@ A data.frame with eight columns
      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 }
 \description{
-Download a table of contents of eurostat datasets.
+Download table of contents (TOC) of eurostat datasets.
              Note that the values in column 'code' should be used
 		to download a selected dataset.
 }
@@ -32,7 +32,7 @@ The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portl
 \dontrun{tmp <- get_eurostat_toc(); head(tmp)}
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{louhos@googlegroups.com}
+Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
 }
 \references{
 See citation("eurostat").

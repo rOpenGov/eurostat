@@ -20,7 +20,7 @@ Base url
 Arguments:
 }
 \author{
-Leo Lahti \email{louhos@googlegroups.com}
+Leo Lahti \email{ropengov-forum@googlegroups.com}
 }
 \references{
 see citation("eurostat").
