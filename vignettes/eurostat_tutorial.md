@@ -1,7 +1,7 @@
 ---
 title: "eurostat tutorial for R"
 author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
-date: "2015-03-17"
+date: "2015-03-18"
 output:
   html_document:
     theme: flatly
@@ -39,123 +39,106 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
-## Finding the data
+## Finding data
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
 
 ```r
+# Load the package
 library(eurostat)
 
 # Get Eurostat data listing
 toc <- get_eurostat_toc()
-toc[10:15,]
-```
 
-```
-##                                                          title      code
-## 10                                     Industry - monthly data ei_bsin_m
-## 11                                   Industry - quarterly data ei_bsin_q
-## 12                                 Construction - monthly data ei_bsbu_m
-## 13                               Construction - quarterly data ei_bsbu_q
-## 14                                  Retail sale - monthly data ei_bsrt_m
-## 15                         Sentiment indicators - monthly data ei_bssi_m
-##       type last.update.of.data last.table.structure.change data.start
-## 10 dataset          05.03.2011                                1985M01
-## 11 dataset          05.03.2011                                 1985Q1
-## 12 dataset          05.03.2011                                1985M01
-## 13 dataset          05.03.2011                                 1985Q1
-## 14 dataset          05.03.2011                                1985M01
-## 15 dataset          05.03.2011                                1985M01
-##    data.end values
-## 10  2010M12     NA
-## 11   2010Q4     NA
-## 12  2010M12     NA
-## 13   2010Q4     NA
-## 14  2011M01     NA
-## 15  2011M01     NA
-```
-
-With `search_eurostat()` you can search the table of content for particular patterns, e.g. all datasets related to *passenger transport*.
-
-
-```r
-# info about passengers
-head(search_eurostat("passenger transport", type = "dataset"))
-```
-
-```
-##                                                                                                                                         title
-## 5166                                                                                            Volume of passenger transport relative to GDP
-## 5167                                                                                                       Modal split of passenger transport
-## 5206                                                          Railway transport - Total annual passenger transport (1 000 pass., million pkm)
-## 5210                 International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)
-## 5211                    International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)
-## 5562                                                                                             Air passenger transport by reporting country
-##                 code    type last.update.of.data
-## 5166   tran_hv_pstra dataset          25.06.2014
-## 5167   tran_hv_psmod dataset          25.06.2014
-## 5206   rail_pa_total dataset          10.03.2015
-## 5210 rail_pa_intgong dataset          03.03.2015
-## 5211 rail_pa_intcmng dataset          03.03.2015
-## 5562       avia_paoc dataset          10.02.2015
-##      last.table.structure.change data.start data.end values
-## 5166                  25.06.2014       1995     2012     NA
-## 5167                  25.06.2014       1990     2012     NA
-## 5206                  10.07.2014       2004     2013     NA
-## 5210                  26.02.2015       2002     2013     NA
-## 5211                  26.02.2015       2002     2013     NA
-## 5562                  10.02.2015       1993   2014Q4     NA
-```
-
-```r
-head(search_eurostat("passenger transport", type = "table"))
+# Check the first items
+head(toc)
 ```
 
 ```
 ##                                                              title
-## 7354                 Volume of passenger transport relative to GDP
-## 7355                            Modal split of passenger transport
-## 7849                            Modal split of passenger transport
-## 7973                            Modal split of passenger transport
-## 7976                 Volume of passenger transport relative to GDP
-##          code  type last.update.of.data last.table.structure.change
-## 7354 tsdtr240 table          12.03.2015                  12.03.2015
-## 7355 tsdtr210 table          12.03.2015                  12.03.2015
-## 7849 tsdtr210 table          12.03.2015                  12.03.2015
-## 7973 tsdtr210 table          12.03.2015                  12.03.2015
-## 7976 tsdtr240 table          12.03.2015                  12.03.2015
-##      data.start data.end values
-## 7354       1995     2012     NA
-## 7355       1990     2012     NA
-## 7849       1990     2012     NA
-## 7973       1990     2012     NA
-## 7976       1995     2012     NA
+## 1                                               Database by themes
+## 2                                  General and regional statistics
+## 3         European and national indicators for short-term analysis
+## 4                 Business and consumer surveys (source: DG ECFIN)
+## 5                              Consumer surveys (source: DG ECFIN)
+## 6                                         Consumers - monthly data
+##        code    type last.update.of.data last.table.structure.change
+## 1      data  folder                                                
+## 2   general  folder                                                
+## 3   euroind  folder                                                
+## 4    ei_bcs  folder                                                
+## 5 ei_bcs_cs  folder                                                
+## 6 ei_bsco_m dataset          25.02.2015                  25.02.2015
+##   data.start data.end values
+## 1                         NA
+## 2                         NA
+## 3                         NA
+## 4                         NA
+## 5                         NA
+## 6    1985M01  2015M02     NA
 ```
+
+With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output:
+
+
+```r
+# info about passengers
+library(knitr)
+kable(head(search_eurostat("passenger transport", type = "dataset")))
+```
+
+
+
+|     |title                                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end | values|
+|:----|:----------------------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|------:|
+|5166 |                Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |25.06.2014                  |1995       |2012     |     NA|
+|5167 |                Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |25.06.2014                  |1990       |2012     |     NA|
+|5206 |                Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |10.03.2015          |10.07.2014                  |2004       |2013     |     NA|
+|5210 |                International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
+|5211 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
+|5562 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |     NA|
+
+Instead of datasets you can look for tables:
+
+
+```r
+kable(head(search_eurostat("passenger transport", type = "table")))
+```
+
+
+
+|     |title                                                         |code     |type  |last.update.of.data |last.table.structure.change |data.start |data.end | values|
+|:----|:-------------------------------------------------------------|:--------|:-----|:-------------------|:---------------------------|:----------|:--------|------:|
+|7354 |            Volume of passenger transport relative to GDP     |tsdtr240 |table |12.03.2015          |12.03.2015                  |1995       |2012     |     NA|
+|7355 |            Modal split of passenger transport                |tsdtr210 |table |12.03.2015          |12.03.2015                  |1990       |2012     |     NA|
+|7849 |                    Modal split of passenger transport        |tsdtr210 |table |12.03.2015          |12.03.2015                  |1990       |2012     |     NA|
+|7973 |                Modal split of passenger transport            |tsdtr210 |table |12.03.2015          |12.03.2015                  |1990       |2012     |     NA|
+|7976 |                Volume of passenger transport relative to GDP |tsdtr240 |table |12.03.2015          |12.03.2015                  |1995       |2012     |     NA|
 
 ## Downloading data 
 
-Here an example of indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonised at the EU level. 
+Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
-Pick the code of the data you want to download: 
+Pick and print the id of the data set to download: 
 
 ```r
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
-id
+print(id)
 ```
 
 [1] "tsdtr210"
 
-Get table with the code. As the table is yearly data, it is more
-convient to get time variable as numeric rather than in default date format
+Get the corersponding table. As the table is annual data, it is more
+convient to use a numeric time variable than use the default date format:
 
 
 ```r
 dat <- get_eurostat(id, time_format = "num")
 ```
 
-Get idea what data includes
+Investigate the structure of the downloaded data set:
 
 ```r
 str(dat)
@@ -168,7 +151,7 @@ str(dat)
  $ value  : num  NA NA NA NA NA NA NA NA NA NA ...
 
 ```r
-knitr::kable(head(dat))
+kable(head(dat))
 ```
 
 
@@ -184,14 +167,14 @@ knitr::kable(head(dat))
 
 ### Replace codes with labels
 
-Eurostat codes can be replaced with more labels. 
-Function `label_eurostat()` replaces the eurostat codes with definitions 
-from Eurostat dictionaries.
+Eurostat variable IDs can be replaced with human-readable labels.
+Function `label_eurostat()` replaces the eurostat IDs based on
+definitions from Eurostat dictionaries.
 
 
 ```r
 datl <- label_eurostat(dat)
-knitr::kable(head(datl))
+kable(head(datl))
 ```
 
 
@@ -231,14 +214,14 @@ label_eurostat_vars(names(datl))
 ```
 
 
-## Selecting and modifing data
+## Selecting and modifying data
 
 ### EU data from 2012 in all vehicles:
 
 
 ```r
 dat_eu12 <- subset(datl, geo == "European Union (28 countries)" & time == 2012)
-knitr::kable(dat_eu12, row.names = FALSE)
+kable(dat_eu12, row.names = FALSE)
 ```
 
 
@@ -254,10 +237,9 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 
 ```r
 library("tidyr")
-dat_eu_0012 <- subset(dat, geo == "EU28" & 
-                        time %in% 2000:2012)
+dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
 dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, value)
-knitr::kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
+kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
 
@@ -278,7 +260,7 @@ knitr::kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 | 2011|     9.1| 83.7| 7.1|
 | 2012|     9.2| 83.3| 7.4|
 
-### Train passanger for selected EU countries in 2000 - 2012
+### Train passengers for selected EU countries in 2000 - 2012
 
 
 ```r
@@ -287,7 +269,7 @@ dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
                      & vehicle == "Trains")
 
 dat_trains_wide <- spread(dat_trains, geo, value) 
-knitr::kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
+kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 ```
 
 
@@ -312,21 +294,21 @@ knitr::kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 The plotting is best done with package `ggplot2`
 
-The train passanger data:
+The train passenger data:
 
 
 ```r
-library("ggplot2")
-
-ggplot(dat_trains, aes(x = time, y = value, colour = geo)) +
-  geom_line()
+library(ggplot2)
+p <- ggplot(dat_trains, aes(x = time, y = value, colour = geo)) 
+p <- p + geom_line()
+print(p)
 ```
 
 ![plot of chunk trains_plot](figure/trains_plot-1.png) 
 
 
 
-## Triangle plot for split of passenger transport
+## Triangle plot on passenger transport distributions
 
 With 2012 data for all countries with data.
 
@@ -339,7 +321,7 @@ allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, valu
 allTransports <- na.omit(allTransports)
 
 # triangle plot
-library("plotrix")
+library(plotrix)
 triax.plot(allTransports[, -1], show.grid = TRUE, 
            label.points = TRUE, point.labels = allTransports$geo, 
            pch = 19)
@@ -367,7 +349,8 @@ citation("eurostat")
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu
-##   2014. eurostat R package
+##   2014. eurostat R package URL:
+##   https://github.com/rOpenGov/eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
@@ -375,12 +358,13 @@ citation("eurostat")
 ##     title = {eurostat R package},
 ##     author = {Leo Lahti and Przemyslaw Biecek and Janne Huovari and Markus Kainu},
 ##     year = {2014},
+##     url = {https://github.com/rOpenGov/eurostat},
 ##   }
 ```
 
 ## Acknowledgements
 
-This R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
+This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
 
 
 ## Session info
@@ -408,8 +392,8 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] reshape2_1.4.1   plotrix_3.5-11   reshape_0.8.5    ggplot2_1.0.0   
-## [5] tidyr_0.2.0.9000 eurostat_1.0.14  knitr_1.9       
+## [1] plotrix_3.5-11   reshape2_1.4.1   ggplot2_1.0.0    tidyr_0.2.0.9000
+## [5] eurostat_1.0.14  knitr_1.9       
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] assertthat_0.1   colorspace_1.2-6 DBI_0.3.1        digest_0.6.8    
