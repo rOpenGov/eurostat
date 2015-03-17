@@ -37,61 +37,67 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
-## Finding the data
+## Finding data
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
 ```{r get_eurostat_toc, warning=FALSE, message=FALSE}
+# Load the package
 library(eurostat)
 
 # Get Eurostat data listing
 toc <- get_eurostat_toc()
-toc[10:15,]
+
+# Check the first items
+head(toc)
 ```
 
-With `search_eurostat()` you can search the table of content for particular patterns, e.g. all datasets related to *passenger transport*.
+With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output:
 
 ```{r search_eurostat, warning=FALSE, message=FALSE}
 # info about passengers
-head(search_eurostat("passenger transport", type = "dataset"))
-head(search_eurostat("passenger transport", type = "table"))
+kable(head(search_eurostat("passenger transport", type = "dataset")))
+```
+
+Instead of datasets you can look for tables:
+
+```{r search_eurostat, warning=FALSE, message=FALSE}
+kable(head(search_eurostat("passenger transport", type = "table")))
 ```
 
 ## Downloading data 
 
-Here an example of indicator ([Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210)) in this document. This indicator is defined as the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm). It is based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonised at the EU level. 
+Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
-Pick the code of the data you want to download: 
-```{r get_code, warning=FALSE, message=FALSE, results='asis'}
-
+Pick and print the id of the data set to download: 
+```{r get_id, warning=FALSE, message=FALSE, results='asis'}
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
-id
+print(id)
 ```
 
-Get table with the code. As the table is yearly data, it is more
-convient to get time variable as numeric rather than in default date format
+Get the corersponding table. As the table is annual data, it is more
+convient to use a numeric time variable than use the default date format:
 
 ```{r get_eurostat, warning=FALSE, message=FALSE, results='asis'}
 dat <- get_eurostat(id, time_format = "num")
-
 ```
 
-Get idea what data includes
+Investigate the structure of the downloaded data set:
 ```{r str_dat, warning=FALSE, message=FALSE, results='asis'}
 str(dat)
-knitr::kable(head(dat))
+kable(head(dat))
 ```
 
 ### Replace codes with labels
 
-Eurostat codes can be replaced with more labels. 
-Function `label_eurostat()` replaces the eurostat codes with definitions 
-from Eurostat dictionaries.
+Eurostat variable IDs can be replaced with human-readable labels.
+Function `label_eurostat()` replaces the eurostat IDs based on
+definitions from Eurostat dictionaries.
 
 ```{r labels, warning=FALSE, message=FALSE, results='asis'}
 datl <- label_eurostat(dat)
-knitr::kable(head(datl))
+kable(head(datl))
 ```
 
 Vehicle information has 3 levels. They are:
@@ -106,27 +112,25 @@ label_eurostat_vars(names(datl))
 ```
 
 
-## Selecting and modifing data
+## Selecting and modifying data
 
 ### EU data from 2012 in all vehicles:
 
 ```{r eu_12}
-
 dat_eu12 <- subset(datl, geo == "European Union (28 countries)" & time == 2012)
-knitr::kable(dat_eu12, row.names = FALSE)
+kable(dat_eu12, row.names = FALSE)
 ```
 
 ### EU data from 2000 - 2012 with vehicle types as variables:
 Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table}
 library("tidyr")
-dat_eu_0012 <- subset(dat, geo == "EU28" & 
-                        time %in% 2000:2012)
+dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
 dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, value)
-knitr::kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
+kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
-### Train passanger for selected EU countries in 2000 - 2012
+### Train passengers for selected EU countries in 2000 - 2012
 
 ```{r trains_table}
 dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
@@ -134,25 +138,25 @@ dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
                      & vehicle == "Trains")
 
 dat_trains_wide <- spread(dat_trains, geo, value) 
-knitr::kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
+kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 ```
 
 ## Plot with ggplot2
 
 The plotting is best done with package `ggplot2`
 
-The train passanger data:
+The train passenger data:
 
-```{r trains_plot}
-library("ggplot2")
-
-ggplot(dat_trains, aes(x = time, y = value, colour = geo)) +
-  geom_line()
+```{r trains_plot, fig.width=10, fig.height=4}
+library(ggplot2)
+p <- ggplot(dat_trains, aes(x = time, y = value, colour = geo)) 
+p <- p + geom_line()
+print(p)
 ```
 
 
 
-## Triangle plot for split of passenger transport
+## Triangle plot on passenger transport distributions
 
 With 2012 data for all countries with data.
 
@@ -164,7 +168,7 @@ allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, valu
 allTransports <- na.omit(allTransports)
 
 # triangle plot
-library("plotrix")
+library(plotrix)
 triax.plot(allTransports[, -1], show.grid = TRUE, 
            label.points = TRUE, point.labels = allTransports$geo, 
            pch = 19)
