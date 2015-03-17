@@ -30,7 +30,7 @@ For contact information and source code, see the [github page](https://github.co
 [Replacing codes with labels](#labeling)  
 [Selecting and modifying data](#select)  
 [Visualization](#visualization)  
- * [Triangle plot](#triangle)  
+ * [Triangle plot](#triangle)
 [Citing the package](#citing)  
 [Acknowledgements](#acknowledgements)  
 [Session info](#session)  
