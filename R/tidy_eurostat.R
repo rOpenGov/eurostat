@@ -10,7 +10,7 @@
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
 #'
-#'  @return data.frame in the molten format with the last column 'value'. 
+#'  @return data.frame in the molten format with the last column 'values'. 
 #'  	    
 #' @import tidyr
 #' @seealso \code{\link{get_eurostat}}
@@ -34,10 +34,10 @@ tidy_eurostat <-
     
     # To long format
     names(dat2) <- gsub("X", "", names(dat2))
-    dat3 <- tidyr::gather_(dat2, cnames2, "value", names(dat2)[-c(1:length(cnames1))])
+    dat3 <- tidyr::gather_(dat2, cnames2, "values", names(dat2)[-c(1:length(cnames1))])
     
     # remove flags
-    dat3$value <- tidyr::extract_numeric(dat3$value)
+    dat3$values <- tidyr::extract_numeric(dat3$values)
     colnames(dat3)[length(cnames1) + 1] <- cnames2
     
     # convert time column

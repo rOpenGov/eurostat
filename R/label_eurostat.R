@@ -3,7 +3,7 @@
 #' A string or a factor vector of codes returns a corresponding 
 #' vector of definitions. For vectors a dictionary name have to be supplied.
 #' For data.frames dictonary names are taken from column names. 
-#' "time" and "value" columns are returned as they were, so you can supply 
+#' "time" and "values" columns are returned as they were, so you can supply 
 #' data.frame from \code{\link{get_eurostat}} and get data.frame with 
 #' definitions instead of codes.
 #' 
@@ -26,7 +26,7 @@
 label_eurostat <- function(x, dic = NULL){
   if (is.data.frame(x)){
     y <- x
-    for (i in names(y)[!(names(y) %in% c("time", "value"))]){
+    for (i in names(y)[!(names(y) %in% c("time", "values"))]){
       y[[i]] <- label_eurostat(y[[i]], i)
     }
   } else {

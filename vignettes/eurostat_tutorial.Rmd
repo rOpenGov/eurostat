@@ -16,9 +16,9 @@ output:
 Eurostat R tools
 ===========
 
-This R package provides tools to access [Eurostat open
-data](http://ec.europa.eu/eurostat/) as part of the
-[rOpenGov](http://ropengov.github.io) project.
+This R package provides tools to access 
+[Eurostat database](http://ec.europa.eu/eurostat/) 
+as part of the [rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
@@ -136,7 +136,7 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table}
 library("tidyr")
 dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
-dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, value)
+dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
 kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
@@ -147,7 +147,7 @@ dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
                      & time %in% 2000:2012 
                      & vehicle == "Trains")
 
-dat_trains_wide <- spread(dat_trains, geo, value) 
+dat_trains_wide <- spread(dat_trains, geo, values) 
 kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 ```
 
@@ -159,7 +159,7 @@ Visualizing train passenger data with `ggplot2`:
 
 ```{r trains_plot, fig.width=10, fig.height=4}
 library(ggplot2)
-p <- ggplot(dat_trains, aes(x = time, y = value, colour = geo)) 
+p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
 p <- p + geom_line()
 print(p)
 ```
@@ -171,7 +171,7 @@ Triangle plot on passenger transport distributions with 2012 data for all countr
 ```{r plotGallery, warning=FALSE, message=FALSE}
 library(reshape2)
 
-allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, value)
+allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, values)
 
 allTransports <- na.omit(allTransports)
 

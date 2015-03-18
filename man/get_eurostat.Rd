@@ -30,8 +30,8 @@ options(eurostat_update = TRUE)}
 }
 \value{
 a data.frame. One column for each dimension in the data and
-   the value column for numerical values.
-   the time column for a time dimension.
+   the values column for numerical values.
+   The time column for a time dimension.
 }
 \description{
 Download dataset from the Eurostat database (\url{ec.europa.eu/eurostat}).

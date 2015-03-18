@@ -19,7 +19,7 @@ tidy_eurostat(dat, time_format = "date")
         \code{\link{eurotime2num}}.}
 }
 \value{
-data.frame in the molten format with the last column 'value'.
+data.frame in the molten format with the last column 'values'.
 }
 \description{
 Transform raw Eurostat data table into the row-column-value format (RCV).
