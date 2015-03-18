@@ -4,7 +4,7 @@ eurostat
 [![Build Status](https://api.travis-ci.org/rOpenGov/eurostat.png)](https://travis-ci.org/rOpenGov/eurostat)
 [![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)
 
-R tools to access data from [Eurostat open data portal](http://ec.europa.eu/eurostat). The package offers tool to search, download, analyze and visualize content of the Eurostat database.
+R tools to access data from [Eurostat](http://ec.europa.eu/eurostat). The package offers tool to search, download and manipulate data from the Eurostat database.
 
 For installation and usage, check the [tutorial page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md).  
 
