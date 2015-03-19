@@ -2,7 +2,7 @@ Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
 Version: 1.0.14
-Date: 2015-03-18
+Date: 2015-03-19
 Author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>

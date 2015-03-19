@@ -1,7 +1,7 @@
 ---
 title: "eurostat tutorial for R"
 author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
-date: "2015-03-18"
+date: "2015-03-19"
 output:
   html_document:
     theme: flatly
@@ -16,15 +16,15 @@ output:
 Eurostat R tools
 ===========
 
-This R package provides tools to access [Eurostat open
-data](http://ec.europa.eu/eurostat/) as part of the
-[rOpenGov](http://ropengov.github.io) project.
+This R package provides tools to access 
+[Eurostat database](http://ec.europa.eu/eurostat/) 
+as part of the [rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
 
 ## Available tools
 
- + [Installation](#installation)  
+ * [Installation](#installation)  
  * [Finding data](#search)  
  * [Downloading data](#download)  
  * [Replacing codes with labels](#labeling)  
@@ -93,12 +93,12 @@ kable(head(search_eurostat("passenger transport")))
 
 |     |title                                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end | values|
 |:----|:----------------------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|------:|
-|5166 |                Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |25.06.2014                  |1995       |2012     |     NA|
-|5167 |                Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |25.06.2014                  |1990       |2012     |     NA|
-|5206 |                Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |10.03.2015          |10.07.2014                  |2004       |2013     |     NA|
-|5210 |                International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
-|5211 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
-|5562 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |     NA|
+|5192 |                Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |25.06.2014                  |1995       |2012     |     NA|
+|5193 |                Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |25.06.2014                  |1990       |2012     |     NA|
+|5232 |                Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |10.03.2015          |10.07.2014                  |2004       |2013     |     NA|
+|5236 |                International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
+|5237 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
+|5588 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |     NA|
 
 ## <a name="download"></a>Downloading data 
 
@@ -132,7 +132,7 @@ str(dat)
  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ geo    : Factor w/ 35 levels "AT","BE","BG",..: 1 2 3 4 5 6 7 8 9 10 ...
  $ time   : num  1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...
- $ value  : num  NA NA NA NA NA NA NA NA NA NA ...
+ $ values : num  NA NA NA NA NA NA NA NA NA NA ...
 
 ```r
 kable(head(dat))
@@ -140,14 +140,14 @@ kable(head(dat))
 
 
 
-|vehicle |geo | time| value|
-|:-------|:---|----:|-----:|
-|BUS_TOT |AT  | 1990|    NA|
-|BUS_TOT |BE  | 1990|    NA|
-|BUS_TOT |BG  | 1990|    NA|
-|BUS_TOT |CH  | 1990|    NA|
-|BUS_TOT |CY  | 1990|    NA|
-|BUS_TOT |CZ  | 1990|    NA|
+|vehicle |geo | time| values|
+|:-------|:---|----:|------:|
+|BUS_TOT |AT  | 1990|     NA|
+|BUS_TOT |BE  | 1990|     NA|
+|BUS_TOT |BG  | 1990|     NA|
+|BUS_TOT |CH  | 1990|     NA|
+|BUS_TOT |CY  | 1990|     NA|
+|BUS_TOT |CZ  | 1990|     NA|
 
 ### <a name="labeling"></a>Replacing codes with labels
 
@@ -163,14 +163,14 @@ kable(head(datl))
 
 
 
-|vehicle                                |geo            | time| value|
-|:--------------------------------------|:--------------|----:|-----:|
-|Motor coaches, buses and trolley buses |Austria        | 1990|    NA|
-|Motor coaches, buses and trolley buses |Belgium        | 1990|    NA|
-|Motor coaches, buses and trolley buses |Bulgaria       | 1990|    NA|
-|Motor coaches, buses and trolley buses |Switzerland    | 1990|    NA|
-|Motor coaches, buses and trolley buses |Cyprus         | 1990|    NA|
-|Motor coaches, buses and trolley buses |Czech Republic | 1990|    NA|
+|vehicle                                |geo            | time| values|
+|:--------------------------------------|:--------------|----:|------:|
+|Motor coaches, buses and trolley buses |Austria        | 1990|     NA|
+|Motor coaches, buses and trolley buses |Belgium        | 1990|     NA|
+|Motor coaches, buses and trolley buses |Bulgaria       | 1990|     NA|
+|Motor coaches, buses and trolley buses |Switzerland    | 1990|     NA|
+|Motor coaches, buses and trolley buses |Cyprus         | 1990|     NA|
+|Motor coaches, buses and trolley buses |Czech Republic | 1990|     NA|
 
 Vehicle information has 3 levels. They are:
 
@@ -194,7 +194,7 @@ label_eurostat_vars(names(datl))
 ## [1] "Vehicles"                                                                            
 ## [2] "Geopolitical entity (reporting)"                                                     
 ## [3] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
-## [4] "Monetary value by size class"
+## [4] "VALUES"
 ```
 
 
@@ -210,11 +210,11 @@ kable(dat_eu12, row.names = FALSE)
 
 
 
-|vehicle                                |geo                           | time| value|
-|:--------------------------------------|:-----------------------------|----:|-----:|
-|Motor coaches, buses and trolley buses |European Union (28 countries) | 2012|   9.2|
-|Passenger cars                         |European Union (28 countries) | 2012|  83.3|
-|Trains                                 |European Union (28 countries) | 2012|   7.4|
+|vehicle                                |geo                           | time| values|
+|:--------------------------------------|:-----------------------------|----:|------:|
+|Motor coaches, buses and trolley buses |European Union (28 countries) | 2012|    9.2|
+|Passenger cars                         |European Union (28 countries) | 2012|   83.3|
+|Trains                                 |European Union (28 countries) | 2012|    7.4|
 
 ### EU data from 2000 - 2012 with vehicle types as variables:
 
@@ -223,7 +223,7 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 ```r
 library("tidyr")
 dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
-dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, value)
+dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
 kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
@@ -253,7 +253,7 @@ dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
                      & time %in% 2000:2012 
                      & vehicle == "Trains")
 
-dat_trains_wide <- spread(dat_trains, geo, value) 
+dat_trains_wide <- spread(dat_trains, geo, values) 
 kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 ```
 
@@ -284,7 +284,7 @@ Visualizing train passenger data with `ggplot2`:
 
 ```r
 library(ggplot2)
-p <- ggplot(dat_trains, aes(x = time, y = value, colour = geo)) 
+p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
 p <- p + geom_line()
 print(p)
 ```
@@ -299,7 +299,7 @@ Triangle plot on passenger transport distributions with 2012 data for all countr
 ```r
 library(reshape2)
 
-allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, value)
+allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, values)
 
 allTransports <- na.omit(allTransports)
 
