@@ -17,4 +17,5 @@ inst/extras
 ^\.Rproj\.user$
 ^packrat/
 ^\.Rprofile$
-^\.\./NEWS\.md$
+^NEWS.md$
+^cran-comments\.md$

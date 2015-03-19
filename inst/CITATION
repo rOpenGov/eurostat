@@ -12,7 +12,7 @@ citEntry(entry="misc",
 	 year = "2014",
 	 url = "https://github.com/rOpenGov/eurostat",
          textVersion =
-         paste("(C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu 2014.",
+         paste("(C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu 2014-2015.",
                "eurostat R package",
 	       "URL: https://github.com/rOpenGov/eurostat",
                sep=" ")
