@@ -5,27 +5,28 @@
 ## R CMD check results
 There were no ERRORs or WARNINGs. 
 
-There was 1 NOTE:
+There were 2 NOTEs:
 
-* checking dependencies in R code ... NOTE
-  Namespace in Imports field not imported from: 'R6'
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Leo Lahti <louhos@googlegroups.com>’
+New submission
+Components with restrictions and base license permitting such:
+  BSD_2_clause + file LICENSE
+File 'LICENSE':
+  YEAR: 2014-2015
+  COPYRIGHT HOLDER: Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu
 
-  R6 is a build-time dependency.
+* checking package dependencies ... NOTE
+  No repository set, so cyclic dependency check skipped
 
-## Downstream dependencies
-I have also run R CMD check on downstream dependencies of httr 
-(https://github.com/wch/checkresults/blob/master/httr/r-release). 
-All packages that I could install passed except:
-
-* Ecoengine: this appears to be a failure related to config on 
-  that machine. I couldn't reproduce it locally, and it doesn't 
-  seem to be related to changes in httr (the same problem exists 
-  with httr 0.4).
 
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Converted the DESCRIPTION title to title case.
+* Added a period at the end of the Description field in DESCRIPTION file
 
-* More clearly identified the copyright holders in the DESCRIPTION
-  and LICENSE files.
+* Removed mentions of API in documentation and DESCRIPTION file
+
+* Moved NEWS file into markdown format (NEWS.md; in .Rbuildignore)
+
+* In general polished the package for the first release
