@@ -6,13 +6,10 @@ inst/extras
 ./vignettes/NUTS_2010_60M_SH.zip
 ./vignettes/NUTS_2010.xls
 ./vignettes/zipfile
-
 # Git related
 ./.git*
-
 # Travis scripts
 .travis.yml
-
 # Misc
 ./.*~
 ./*~
@@ -20,3 +17,4 @@ inst/extras
 ^\.Rproj\.user$
 ^packrat/
 ^\.Rprofile$
+^\.\./NEWS\.md$
