@@ -17,6 +17,10 @@ check("../../")
 # revdep_check("../../")
 # add_rstudio_project("../../")
 # use_build_ignore("../NEWS.md", pkg = "../../") # NEWS.md not supported by CRAN
+# use_package("dplyr") # add package to imports
+# load_all(".") # Reload the package
+# test() # Run tests
+# run_examples()
 
 # Vignettes:
 #

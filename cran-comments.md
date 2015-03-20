@@ -23,10 +23,6 @@ File 'LICENSE':
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Added a period at the end of the Description field in DESCRIPTION file
+* Added Eurostat data URL in DESCRIPTION file
 
-* Removed mentions of API in documentation and DESCRIPTION file
-
-* Moved NEWS file into markdown format (NEWS.md; in .Rbuildignore)
-
-* In general polished the package for the first release
+* Starting to use Authors@R format in DESCRIPTION
