@@ -1,8 +1,13 @@
-CHANGES IN VERSION 1.0.14 (2015-03-19)
- o Package largely rewritten
- o Vignette added
- o Changed the value column to values in the get_eurostat output
+# eurostat 1.0.16
 
-CHANGES IN VERSION 0.9.1 (2014-04-24)
+* Fixed vignette error
 
- o Package collected from statfi and smarterpoland
+# eurostat 1.0.14 (2015-03-19)
+
+* Package largely rewritten
+* Vignette added
+* Changed the value column to values in the get_eurostat output
+
+# eurostat 0.9.1 (2014-04-24)
+
+* Package collected from statfi and smarterpoland
