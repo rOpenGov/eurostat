@@ -8,8 +8,7 @@ There were no ERRORs or WARNINGs.
 There were 2 NOTEs:
 
 * checking CRAN incoming feasibility ... NOTE
-Maintainer: ‘Leo Lahti <louhos@googlegroups.com>’
-New submission
+Maintainer: ‘Lahti Leo <louhos@googlegroups.com>’
 Components with restrictions and base license permitting such:
   BSD_2_clause + file LICENSE
 File 'LICENSE':
@@ -23,6 +22,5 @@ File 'LICENSE':
 ## Resubmission
 This is a resubmission. In this version I have:
 
-* Added Eurostat data URL in DESCRIPTION file
+* Fixed the vignette problem in a more stable way
 
-* Starting to use Authors@R format in DESCRIPTION

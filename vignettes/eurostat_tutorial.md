@@ -1,7 +1,7 @@
 ---
 title: "eurostat tutorial for R"
 author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
-date: "2015-03-19"
+date: "2015-03-27"
 output:
   html_document:
     theme: flatly
@@ -72,14 +72,14 @@ kable(head(toc))
 
 
 
-|title                                                            |code      |type    |last.update.of.data |last.table.structure.change |data.start |data.end | values|
-|:----------------------------------------------------------------|:---------|:-------|:-------------------|:---------------------------|:----------|:--------|------:|
-|Database by themes                                               |data      |folder  |                    |                            |           |         |     NA|
-|    General and regional statistics                              |general   |folder  |                    |                            |           |         |     NA|
-|        European and national indicators for short-term analysis |euroind   |folder  |                    |                            |           |         |     NA|
-|            Business and consumer surveys (source: DG ECFIN)     |ei_bcs    |folder  |                    |                            |           |         |     NA|
-|                Consumer surveys (source: DG ECFIN)              |ei_bcs_cs |folder  |                    |                            |           |         |     NA|
-|                    Consumers - monthly data                     |ei_bsco_m |dataset |25.02.2015          |25.02.2015                  |1985M01    |2015M02  |     NA|
+|title                                                            |code      |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:----------------------------------------------------------------|:---------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|Database by themes                                               |data      |folder  |                    |                            |           |         |NA     |
+|    General and regional statistics                              |general   |folder  |                    |                            |           |         |NA     |
+|        European and national indicators for short-term analysis |euroind   |folder  |                    |                            |           |         |NA     |
+|            Business and consumer surveys (source: DG ECFIN)     |ei_bcs    |folder  |                    |                            |           |         |NA     |
+|                Consumer surveys (source: DG ECFIN)              |ei_bcs_cs |folder  |                    |                            |           |         |NA     |
+|                    Consumers - monthly data                     |ei_bsco_m |dataset |25.02.2015          |25.02.2015                  |1985M01    |2015M02  |NA     |
 
 With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 
@@ -91,14 +91,14 @@ kable(head(search_eurostat("passenger transport")))
 
 
 
-|     |title                                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end | values|
-|:----|:----------------------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|------:|
-|5192 |                Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |25.06.2014                  |1995       |2012     |     NA|
-|5193 |                Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |25.06.2014                  |1990       |2012     |     NA|
-|5232 |                Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |10.03.2015          |10.07.2014                  |2004       |2013     |     NA|
-|5236 |                International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
-|5237 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |     NA|
-|5588 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |     NA|
+|     |title                                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:----|:----------------------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|5262 |                Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |24.03.2015                  |1995       |2012     |NA     |
+|5263 |                Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |24.03.2015                  |1990       |2012     |NA     |
+|5302 |                Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |10.03.2015          |10.07.2014                  |2004       |2013     |NA     |
+|5306 |                International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |NA     |
+|5307 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |NA     |
+|5658 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |NA     |
 
 ## <a name="download"></a>Downloading data 
 
@@ -128,7 +128,8 @@ Investigate the structure of the downloaded data set:
 str(dat)
 ```
 
-'data.frame':	2415 obs. of  4 variables:
+'data.frame':	2415 obs. of  5 variables:
+ $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
  $ geo    : Factor w/ 35 levels "AT","BE","BG",..: 1 2 3 4 5 6 7 8 9 10 ...
  $ time   : num  1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...
@@ -140,14 +141,14 @@ kable(head(dat))
 
 
 
-|vehicle |geo | time| values|
-|:-------|:---|----:|------:|
-|BUS_TOT |AT  | 1990|     NA|
-|BUS_TOT |BE  | 1990|     NA|
-|BUS_TOT |BG  | 1990|     NA|
-|BUS_TOT |CH  | 1990|     NA|
-|BUS_TOT |CY  | 1990|     NA|
-|BUS_TOT |CZ  | 1990|     NA|
+|unit |vehicle |geo | time| values|
+|:----|:-------|:---|----:|------:|
+|PC   |BUS_TOT |AT  | 1990|     NA|
+|PC   |BUS_TOT |BE  | 1990|     NA|
+|PC   |BUS_TOT |BG  | 1990|     NA|
+|PC   |BUS_TOT |CH  | 1990|     NA|
+|PC   |BUS_TOT |CY  | 1990|     NA|
+|PC   |BUS_TOT |CZ  | 1990|     NA|
 
 ### <a name="labeling"></a>Replacing codes with labels
 
@@ -163,14 +164,14 @@ kable(head(datl))
 
 
 
-|vehicle                                |geo            | time| values|
-|:--------------------------------------|:--------------|----:|------:|
-|Motor coaches, buses and trolley buses |Austria        | 1990|     NA|
-|Motor coaches, buses and trolley buses |Belgium        | 1990|     NA|
-|Motor coaches, buses and trolley buses |Bulgaria       | 1990|     NA|
-|Motor coaches, buses and trolley buses |Switzerland    | 1990|     NA|
-|Motor coaches, buses and trolley buses |Cyprus         | 1990|     NA|
-|Motor coaches, buses and trolley buses |Czech Republic | 1990|     NA|
+|unit       |vehicle                                |geo            | time| values|
+|:----------|:--------------------------------------|:--------------|----:|------:|
+|Percentage |Motor coaches, buses and trolley buses |Austria        | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Belgium        | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Bulgaria       | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Switzerland    | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Cyprus         | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Czech Republic | 1990|     NA|
 
 Vehicle information has 3 levels. They are:
 
@@ -191,10 +192,11 @@ label_eurostat_vars(names(datl))
 ```
 
 ```
-## [1] "Vehicles"                                                                            
-## [2] "Geopolitical entity (reporting)"                                                     
-## [3] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
-## [4] "VALUES"
+## [1] "Unit of measure"                                                                     
+## [2] "Vehicles"                                                                            
+## [3] "Geopolitical entity (reporting)"                                                     
+## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
+## [5] "VALUES"
 ```
 
 
@@ -210,11 +212,11 @@ kable(dat_eu12, row.names = FALSE)
 
 
 
-|vehicle                                |geo                           | time| values|
-|:--------------------------------------|:-----------------------------|----:|------:|
-|Motor coaches, buses and trolley buses |European Union (28 countries) | 2012|    9.2|
-|Passenger cars                         |European Union (28 countries) | 2012|   83.3|
-|Trains                                 |European Union (28 countries) | 2012|    7.4|
+|unit       |vehicle                                |geo                           | time| values|
+|:----------|:--------------------------------------|:-----------------------------|----:|------:|
+|Percentage |Motor coaches, buses and trolley buses |European Union (28 countries) | 2012|    9.2|
+|Percentage |Passenger cars                         |European Union (28 countries) | 2012|   83.3|
+|Percentage |Trains                                 |European Union (28 countries) | 2012|    7.4|
 
 ### EU data from 2000 - 2012 with vehicle types as variables:
 
@@ -229,21 +231,21 @@ kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 
 
 
-| time| BUS_TOT|  CAR| TRN|
-|----:|-------:|----:|---:|
-| 2000|     9.9| 82.9| 7.2|
-| 2001|     9.8| 83.2| 7.1|
-| 2002|     9.6| 83.6| 6.8|
-| 2003|     9.5| 83.9| 6.7|
-| 2004|     9.4| 83.8| 6.8|
-| 2005|     9.5| 83.7| 6.9|
-| 2006|     9.2| 83.7| 7.0|
-| 2007|     9.3| 83.6| 7.1|
-| 2008|     9.1| 83.7| 7.2|
-| 2009|     8.7| 84.3| 7.0|
-| 2010|     8.7| 84.2| 7.1|
-| 2011|     9.1| 83.7| 7.1|
-| 2012|     9.2| 83.3| 7.4|
+|unit | time| BUS_TOT|  CAR| TRN|
+|:----|----:|-------:|----:|---:|
+|PC   | 2000|     9.9| 82.9| 7.2|
+|PC   | 2001|     9.8| 83.2| 7.1|
+|PC   | 2002|     9.6| 83.6| 6.8|
+|PC   | 2003|     9.5| 83.9| 6.7|
+|PC   | 2004|     9.4| 83.8| 6.8|
+|PC   | 2005|     9.5| 83.7| 6.9|
+|PC   | 2006|     9.2| 83.7| 7.0|
+|PC   | 2007|     9.3| 83.6| 7.1|
+|PC   | 2008|     9.1| 83.7| 7.2|
+|PC   | 2009|     8.7| 84.3| 7.0|
+|PC   | 2010|     8.7| 84.2| 7.1|
+|PC   | 2011|     9.1| 83.7| 7.1|
+|PC   | 2012|     9.2| 83.3| 7.4|
 
 ### Train passengers for selected EU countries in 2000 - 2012
 
@@ -259,21 +261,21 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 
 
-| time| Austria| Belgium| Finland| Sweden|
-|----:|-------:|-------:|-------:|------:|
-| 2000|     9.8|     6.1|     5.1|    7.5|
-| 2001|     9.7|     6.2|     4.8|    7.9|
-| 2002|     9.7|     6.3|     4.8|    7.8|
-| 2003|     9.5|     6.3|     4.7|    7.7|
-| 2004|     9.5|     6.8|     4.7|    7.5|
-| 2005|     9.8|     6.3|     4.8|    7.7|
-| 2006|    10.0|     6.6|     4.8|    8.3|
-| 2007|    10.1|     6.7|     5.0|    8.7|
-| 2008|    11.1|     7.2|     5.4|    9.4|
-| 2009|    11.1|     7.2|     5.1|    9.5|
-| 2010|    11.0|     7.4|     5.2|    9.4|
-| 2011|    11.0|     7.4|     5.0|    8.8|
-| 2012|    11.5|     7.1|     5.3|    9.1|
+|unit       | time| Austria| Belgium| Finland| Sweden|
+|:----------|----:|-------:|-------:|-------:|------:|
+|Percentage | 2000|     9.8|     6.1|     5.1|    7.5|
+|Percentage | 2001|     9.7|     6.2|     4.8|    7.9|
+|Percentage | 2002|     9.7|     6.3|     4.8|    7.8|
+|Percentage | 2003|     9.5|     6.3|     4.7|    7.7|
+|Percentage | 2004|     9.5|     6.8|     4.7|    7.5|
+|Percentage | 2005|     9.8|     6.3|     4.8|    7.7|
+|Percentage | 2006|    10.0|     6.6|     4.8|    8.3|
+|Percentage | 2007|    10.1|     6.7|     5.0|    8.7|
+|Percentage | 2008|    11.1|     7.2|     5.4|    9.4|
+|Percentage | 2009|    11.1|     7.2|     5.1|    9.5|
+|Percentage | 2010|    11.0|     7.4|     5.2|    9.4|
+|Percentage | 2011|    11.0|     7.4|     5.0|    8.8|
+|Percentage | 2012|    11.5|     7.1|     5.3|    9.1|
 
 
 
@@ -297,16 +299,16 @@ Triangle plot on passenger transport distributions with 2012 data for all countr
 
 
 ```r
-library(reshape2)
+library(tidyr)
 
-allTransports <- spread(subset(dat, time == 2012, select = -time), vehicle, values)
+transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
 
-allTransports <- na.omit(allTransports)
+transports <- na.omit(transports)
 
 # triangle plot
 library(plotrix)
-triax.plot(allTransports[, -1], show.grid = TRUE, 
-           label.points = TRUE, point.labels = allTransports$geo, 
+triax.plot(transports[, -1], show.grid = TRUE, 
+           label.points = TRUE, point.labels = transports$geo, 
            pch = 19)
 ```
 
@@ -330,7 +332,7 @@ citation("eurostat")
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu
-##   2014. eurostat R package URL:
+##   2014-2015. eurostat R package URL:
 ##   https://github.com/rOpenGov/eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -375,14 +377,14 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] plotrix_3.5-11   reshape2_1.4.1   ggplot2_1.0.0    tidyr_0.2.0.9000
-## [5] eurostat_1.0.14  knitr_1.9       
+## [1] plotrix_3.5-11   ggplot2_1.0.0    tidyr_0.2.0.9000 eurostat_1.0.14 
+## [5] knitr_1.9       
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] assertthat_0.1   colorspace_1.2-6 DBI_0.3.1        digest_0.6.8    
 ##  [5] dplyr_0.4.1      evaluate_0.5.5   formatR_1.0      grid_3.1.2      
 ##  [9] gtable_0.1.2     labeling_0.3     magrittr_1.5     MASS_7.3-39     
 ## [13] munsell_0.4.2    parallel_3.1.2   plyr_1.8.1       proto_0.3-10    
-## [17] Rcpp_0.11.5      scales_0.2.4     stringi_0.4-1    stringr_0.6.2   
-## [21] tools_3.1.2
+## [17] Rcpp_0.11.5      reshape2_1.4.1   scales_0.2.4     stringi_0.4-1   
+## [21] stringr_0.6.2    tools_3.1.2
 ```
