@@ -1,3 +1,7 @@
+# eurostat 1.1.9000
+
+* Development version
+
 # eurostat 1.0.16
 
 * Fixed vignette error
