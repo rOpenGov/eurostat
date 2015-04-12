@@ -12,7 +12,6 @@
 #'
 #'  @return data.frame in the molten format with the last column 'values'. 
 #'  	    
-#' @import tidyr
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
