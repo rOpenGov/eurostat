@@ -10,6 +10,13 @@
 #'         a last date of the period. A "num" convers to a numeric and "raw" 
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
+#' @param select_time a character symbol for a time frequence or NULL (default).
+#'    Most of the datasets have just one time frequency, in which case 
+#'    the \code{NULL} is of. However, some of the datasets 
+#'    includes multible time frequences. Use symbols to 
+#'    select one of them with: Y = annual, S = semi-annual, Q = quarterly, M = monthly. 
+#'    For all frequencies in same data.frame \code{time_format = "raw"} 
+#'    should be used. 
 #' @param cache a logical wheather to do caching. Default is \code{TRUE}.
 #' @param update_cache a locigal wheater to update cache. Can be set also with
 #' 	  options(eurostat_update = TRUE)
@@ -40,9 +47,10 @@
 #' options(eurostat_cache_dir = "r_cache")
 #' k <- get_eurostat("namq_aux_lp")
 #' k <- get_eurostat("namq_aux_lp", cache = FALSE)
+#' k <- get_eurostat("avia_goincc", select_time = "Y", cache = FALSE)
 #' }
-get_eurostat <- function(id, time_format = "date", cache = TRUE, 
-                         update_cache = FALSE, cache_dir = NULL){
+get_eurostat <- function(id, time_format = "date", select_time = NULL, 
+                         cache = TRUE, update_cache = FALSE, cache_dir = NULL){
 
   if (cache){  
     # check option for update
@@ -68,7 +76,7 @@ get_eurostat <- function(id, time_format = "date", cache = TRUE,
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
     y_raw <- get_eurostat_raw(id)
-    y <- tidy_eurostat(y_raw, time_format)
+    y <- tidy_eurostat(y_raw, time_format, select_time)
   } else {
     y <- readRDS(cache_file)
     message("Table ", id, " read from cache file: ", path.expand(cache_file))   
