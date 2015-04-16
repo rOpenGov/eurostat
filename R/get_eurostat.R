@@ -27,27 +27,30 @@
 #' 
 #' @export
 #' @details Datasets are downloaded from the Eurostat bulk download facility 
-#' \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}. The data is transformed into the molten row-column-value format (RCV).
+#' \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}. 
+#' The data is transformed into the molten row-column-value format (RCV).
 #' 
 #' By default datasets are cached. In a temporary directory by default or in 
 #' a named directory if cache_dir or option eurostat_cache_dir is defined.
+#' The cache can be emptied with \code{\link{clean_eurostat_cache}}.
 #'
 #'
 #' @return a data.frame. One column for each dimension in the data and 
 #'    the values column for numerical values. 
 #'    The time column for a time dimension. 
-#' @seealso \code{{\link{tidy_eurostat}}}
+#' @seealso \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 #' @examples \dontrun{
-#' k <- get_eurostat("namq_aux_lp")
-#' k <- get_eurostat("namq_aux_lp", update_cache = TRUE)
+#' k <- get_eurostat("nama_10_lp_ulc")
+#' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
+#' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 #' dir.create("r_cache")
-#' k <- get_eurostat("namq_aux_lp", cache_dir = "r_cache")
+#' k <- get_eurostat("nama_10_lp_ulc", cache_dir = "r_cache")
 #' options(eurostat_update = TRUE)
-#' k <- get_eurostat("namq_aux_lp")
+#' k <- get_eurostat("nama_10_lp_ulc")
 #' options(eurostat_cache_dir = "r_cache")
-#' k <- get_eurostat("namq_aux_lp")
-#' k <- get_eurostat("namq_aux_lp", cache = FALSE)
-#' k <- get_eurostat("avia_goincc", select_time = "Y", cache = FALSE)
+#' k <- get_eurostat("nama_10_lp_ulc")
+#' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
+#' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 #' }
 get_eurostat <- function(id, time_format = "date", select_time = NULL, 
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL){
@@ -70,7 +73,9 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
     }
     
     # cache filename
-    cache_file <- file.path(cache_dir, paste0(id, ".rds"))
+    cache_file <- file.path(cache_dir, 
+                            paste0(id, "_", time_format, 
+                                   "_", select_time, ".rds"))
   }
   
   # if cache = FALSE or update or new: dowload else read from cache
