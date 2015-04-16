@@ -74,6 +74,11 @@ With `search_eurostat()` you can search the table of contents for particular pat
 kable(head(search_eurostat("passenger transport")))
 ```
 
+Codes for the dataset can be searched also from the Eurostat database 
+\url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+database gives codes in the Data Navigation Tree after every dataset 
+in parenthesis.
+
 ## <a name="download"></a>Downloading data 
 
 Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 

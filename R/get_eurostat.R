@@ -2,7 +2,8 @@
 #' 
 #' Download dataset from the Eurostat database (\url{ec.europa.eu/eurostat}). 
 #' 
-#' @param id A code name for the data set of interest. See the table of contents of eurostat datasets for details.
+#' @param id A code name for the dataset of interest. 
+#' See \code{\link{search_eurostat}} or details for how to get code.
 #' @param time_format a string giving a type of the conversion of the time 
 #' 	  column from the eurostat format. A "date" (default) convers to 
 #'	  a \code{\link{Date}} with a first date of the period. 
@@ -34,6 +35,11 @@
 #' a named directory if cache_dir or option eurostat_cache_dir is defined.
 #' The cache can be emptied with \code{\link{clean_eurostat_cache}}.
 #'
+#' The \code{id}, a code, for the dataset can be searched with 
+#' the \code{\link{search_eurostat}} or from the Eurostat database 
+#' \url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+#' database gives codes in the Data Navigation Tree after every dataset 
+#' in parenthesis.
 #'
 #' @return a data.frame. One column for each dimension in the data and 
 #'    the values column for numerical values. 

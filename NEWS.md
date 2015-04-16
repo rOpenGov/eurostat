@@ -5,6 +5,7 @@
   in case of multi-frequency datasets. Now the `get_eurostat()` also gives an
   error if you try to get multi-frequency with other time formats
   than `time_format = "raw"`. (#30) 
+* `get_eurostat()` cache filenames includes now all relevant arguments. (#28)
 
 # eurostat 1.0.16
 

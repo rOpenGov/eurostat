@@ -8,7 +8,8 @@ get_eurostat(id, time_format = "date", select_time = NULL, cache = TRUE,
   update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
-\item{id}{A code name for the data set of interest. See the table of contents of eurostat datasets for details.}
+\item{id}{A code name for the dataset of interest.
+See \code{\link{search_eurostat}} or details for how to get code.}
 
 \item{time_format}{a string giving a type of the conversion of the time
 column from the eurostat format. A "date" (default) convers to
@@ -46,26 +47,35 @@ Download dataset from the Eurostat database (\url{ec.europa.eu/eurostat}).
 }
 \details{
 Datasets are downloaded from the Eurostat bulk download facility
-\url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}. The data is transformed into the molten row-column-value format (RCV).
+\url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}.
+The data is transformed into the molten row-column-value format (RCV).
 
 By default datasets are cached. In a temporary directory by default or in
 a named directory if cache_dir or option eurostat_cache_dir is defined.
+The cache can be emptied with \code{\link{clean_eurostat_cache}}.
+
+The \code{id}, a code, for the dataset can be searched with
+the \code{\link{search_eurostat}} or from the Eurostat database
+\url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+database gives codes in the Data Navigation Tree after every dataset
+in parenthesis.
 }
 \examples{
 \dontrun{
-k <- get_eurostat("namq_aux_lp")
-k <- get_eurostat("namq_aux_lp", update_cache = TRUE)
+k <- get_eurostat("nama_10_lp_ulc")
+k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
+k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 dir.create("r_cache")
-k <- get_eurostat("namq_aux_lp", cache_dir = "r_cache")
+k <- get_eurostat("nama_10_lp_ulc", cache_dir = "r_cache")
 options(eurostat_update = TRUE)
-k <- get_eurostat("namq_aux_lp")
+k <- get_eurostat("nama_10_lp_ulc")
 options(eurostat_cache_dir = "r_cache")
-k <- get_eurostat("namq_aux_lp")
-k <- get_eurostat("namq_aux_lp", cache = FALSE)
-k <- get_eurostat("avia_goincc", select_time = "Y", cache = FALSE)
+k <- get_eurostat("nama_10_lp_ulc")
+k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
+k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 }
 }
 \seealso{
-\code{{\link{tidy_eurostat}}}
+\code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 }
 
