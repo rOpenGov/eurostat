@@ -4,8 +4,8 @@
 \alias{get_eurostat}
 \title{Read data from Eurostat database.}
 \usage{
-get_eurostat(id, time_format = "date", cache = TRUE, update_cache = FALSE,
-  cache_dir = NULL)
+get_eurostat(id, time_format = "date", select_time = NULL, cache = TRUE,
+  update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
 \item{id}{A code name for the data set of interest. See the table of contents of eurostat datasets for details.}
@@ -17,6 +17,14 @@ A "date_last" convers to a \code{\link{Date}} with
   a last date of the period. A "num" convers to a numeric and "raw"
   does not do conversion. See \code{\link{eurotime2date}} and
   \code{\link{eurotime2num}}.}
+
+\item{select_time}{a character symbol for a time frequence or NULL (default).
+Most of the datasets have just one time frequency, in which case
+the \code{NULL} is of. However, some of the datasets
+includes multible time frequences. Use symbols to
+select one of them with: Y = annual, S = semi-annual, Q = quarterly, M = monthly.
+For all frequencies in same data.frame \code{time_format = "raw"}
+should be used.}
 
 \item{cache}{a logical wheather to do caching. Default is \code{TRUE}.}
 
@@ -54,6 +62,7 @@ k <- get_eurostat("namq_aux_lp")
 options(eurostat_cache_dir = "r_cache")
 k <- get_eurostat("namq_aux_lp")
 k <- get_eurostat("namq_aux_lp", cache = FALSE)
+k <- get_eurostat("avia_goincc", select_time = "Y", cache = FALSE)
 }
 }
 \seealso{

@@ -53,7 +53,7 @@ tidy_eurostat <-
         "No data selected with select_time:", dQuote(select_time), "\n",
         "Available frequencies: ", shQuote(available_freq(freq_names)))
     } else {
-      if (length(available_freq(freq_names) > 1 & time_format != "raw")) stop(
+      if (length(available_freq(freq_names)) > 1 & time_format != "raw") stop(
         "Data includes several time frequencies. Select frequency with 
          select_time or use time_format = \"raw\". 
          Available frequencies: ", shQuote(available_freq(freq_names)))

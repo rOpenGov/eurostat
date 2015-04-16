@@ -1,6 +1,10 @@
 # eurostat 1.1.9000
 
 * Development version
+* New `select_time` argument for `get_eurostat()` to select a time frequency 
+  in case of multi-frequency datasets. Now the `get_eurostat()` also gives an
+  error if you try to get multi-frequency with other time formats
+  than `time_format = "raw"`. (#30) 
 
 # eurostat 1.0.16
 

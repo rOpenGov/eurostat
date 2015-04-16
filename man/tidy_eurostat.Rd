@@ -4,19 +4,21 @@
 \alias{tidy_eurostat}
 \title{Transform raw Eurostat data table into the row-column-value format (RCV).}
 \usage{
-tidy_eurostat(dat, time_format = "date")
+tidy_eurostat(dat, time_format = "date", select_time = NULL)
 }
 \arguments{
 \item{dat}{a data.frame from \code{\link{get_eurostat_raw}}.}
 
 \item{time_format}{a string giving a type of the conversion of the
-                   time column from the eurostat format.
-              A "date" (default) convers to a \code{\link{Date}}
-              with a first date of the period. A "date_last"
-              convers to a \code{\link{Date}} with
-        a last date of the period. A "num" convers to a numeric and "raw"
-        does not do conversion. See \code{\link{eurotime2date}} and
-        \code{\link{eurotime2num}}.}
+                  time column from the eurostat format.
+             A "date" (default) convers to a \code{\link{Date}}
+             with a first date of the period. A "date_last"
+             convers to a \code{\link{Date}} with
+       a last date of the period. A "num" convers to a numeric and "raw"
+       does not do conversion. See \code{\link{eurotime2date}} and
+       \code{\link{eurotime2num}}.}
+
+\item{select_time}{a character symbol for a time frequence or NULL (default).}
 }
 \value{
 data.frame in the molten format with the last column 'values'.
