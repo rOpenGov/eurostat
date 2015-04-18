@@ -63,7 +63,11 @@ tidy_eurostat <-
 
     # To long format
     names(dat2) <- gsub("X", "", names(dat2))
-    dat3 <- tidyr::gather_(dat2, cnames2, "values", names(dat2)[-c(1:length(cnames1))])
+    dat3 <- tidyr::gather_(dat2, cnames2, "value", names(dat2)[-c(1:length(cnames1))])
+    
+    # fix for issue #27, tidyr can't name value col if reshape attached.
+    # Named here separately
+    names(dat3)[match("value", names(dat3))] <- "values"
     
     # remove flags
     dat3$values <- tidyr::extract_numeric(dat3$values)
