@@ -6,18 +6,21 @@
 \alias{label_eurostat_vars}
 \title{Get definitions for Eurostat codes from Eurostat dictionaries}
 \usage{
-label_eurostat(x, dic = NULL)
+label_eurostat(x, dic = NULL, code = NULL)
 
 label_eurostat_vars(x)
 
 label_eurostat_tables(x)
 }
 \arguments{
-\item{x}{a vector or a data.frame.}
+\item{x}{A vector or a data.frame.}
 
-\item{dic}{a string (vector) naming eurostat dictionary or dictionaries.
+\item{dic}{A string (vector) naming eurostat dictionary or dictionaries.
 If \code{NULL} (default) dictionry names taken from column names of
 the data.frame.}
+
+\item{code}{For data.frames names of the column for which also codes
+should be retained. The suffix "_code" is added to code column names.}
 }
 \value{
 a vector or a data.frame.
@@ -39,8 +42,9 @@ definitions instead of codes.
 \examples{
 \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lpl <- label_eurostat_vars(lp)
+   lpl <- label_eurostat(lp)
    str(lpl)
+   lpl_code <- label_eurostat(lp, code = "unit")
    label_eurostat_vars(names(lp))
    label_eurostat_tables("nama_aux_lp")
  }

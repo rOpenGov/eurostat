@@ -7,6 +7,8 @@
   than `time_format = "raw"`. (#30) 
 * `get_eurostat()` cache filenames includes now all relevant arguments. (#28)
 * For `search_eurostat()` a new type option `type = "all"` to search all types.
+* For `label_eurostat()` a new argument `code` to retain also codes 
+  for spesified colums. 
 
 # eurostat 1.0.16
 
