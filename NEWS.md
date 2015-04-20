@@ -6,6 +6,7 @@
   error if you try to get multi-frequency with other time formats
   than `time_format = "raw"`. (#30) 
 * `get_eurostat()` cache filenames includes now all relevant arguments. (#28)
+* For `search_eurostat()` a new type option `type = "all"` to search all types.
 
 # eurostat 1.0.16
 

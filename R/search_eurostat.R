@@ -10,7 +10,7 @@
 #'  @param pattern Character, datasets, folder or tables with this pattern in 
 #'  	   the description will be returned (depending on the 'type' argument)
 #'  @param type Grep the Eurostat table of contents either for 
-#'  	   	'dataset', 'folder' or 'table'.
+#'  	   	'dataset' (default), 'folder', 'table' or "all" (for all types) .
 #'
 #' Returns:
 #'  @return A data.frame with eight columns
@@ -28,7 +28,7 @@
 search_eurostat <- function(pattern, type = "dataset") {
   set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-  tmp <- tmp[tmp[, "type"] %in% type,]
+  if (type != "all") tmp <- tmp[tmp[, "type"] %in% type,]
   tmp[grep(as.character(tmp[, "title"]), pattern=pattern),]
 }
 

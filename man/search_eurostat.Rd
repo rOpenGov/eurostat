@@ -15,7 +15,7 @@ grepEurostatTOC(pattern, type = "dataset")
        the description will be returned (depending on the 'type' argument)}
 
 \item{type}{Grep the Eurostat table of contents either for
-            'dataset', 'folder' or 'table'.
+            'dataset' (default), 'folder', 'table' or "all" (for all types) .
 
 Returns:}
 }
