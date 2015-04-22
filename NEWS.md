@@ -9,6 +9,9 @@
 * For `search_eurostat()` a new type option `type = "all"` to search all types.
 * For `label_eurostat()` a new argument `code` to retain also codes 
   for spesified colums. 
+* Now `label_eurostat_vars(x)` gives labels for names, if x is other than
+  a character or a factor and `label_eurostat_tables(x)` does not accept other
+  than a character or a factor.
 
 # eurostat 1.0.16
 
