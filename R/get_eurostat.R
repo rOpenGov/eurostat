@@ -21,10 +21,11 @@
 #' @param cache a logical wheather to do caching. Default is \code{TRUE}.
 #' @param update_cache a locigal wheater to update cache. Can be set also with
 #' 	  options(eurostat_update = TRUE)
-#' @param cache_dir a path to cache directory. The \code{NULL} uses directory 
-#'        eurostat directory in the temporary directory from 
-#'        \code{\link{tempdir}}. Directory can be set also with 
-#'        \code{option} eurostat_cache_dir.
+#' @param cache_dir a path to a cache directory. The directory have to exist.
+#'    The \code{NULL} (default) uses and creates 
+#'    'eurostat' directory in the temporary directory from 
+#'    \code{\link{tempdir}}. Directory can also be set with 
+#'    \code{option} eurostat_cache_dir.
 #' 
 #' @export
 #' @details Datasets are downloaded from the Eurostat bulk download facility 
@@ -53,6 +54,7 @@
 #' k <- get_eurostat("nama_10_lp_ulc", cache_dir = "r_cache")
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("nama_10_lp_ulc")
+#' options(eurostat_update = FALSE)
 #' options(eurostat_cache_dir = "r_cache")
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
@@ -71,10 +73,10 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
       if (is.null(cache_dir)){
         cache_dir <- file.path(tempdir(), "eurostat")
         if (!file.exists(cache_dir)) dir.create(cache_dir)
-      } else {
-        if (!file.exists(cache_dir)) {
-          stop("The folder ", cache_dir, " does not exist")
-          }
+      } 
+    } else {
+      if (!file.exists(cache_dir)) {
+        stop("The folder ", cache_dir, " does not exist")
       }
     }
     
@@ -95,7 +97,7 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
   
   # if update or new: save
   if (cache && (update_cache || !file.exists(cache_file))){
-    saveRDS(y, file = cache_file)
+    saveRDS(y, file = cache_file, compress = FALSE)
     message("Table ", id, " cached at ", path.expand(cache_file))    
   }
 

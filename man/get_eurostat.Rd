@@ -32,10 +32,11 @@ should be used.}
 \item{update_cache}{a locigal wheater to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
-\item{cache_dir}{a path to cache directory. The \code{NULL} uses directory
-       eurostat directory in the temporary directory from
-       \code{\link{tempdir}}. Directory can be set also with
-       \code{option} eurostat_cache_dir.}
+\item{cache_dir}{a path to a cache directory. The directory have to exist.
+   The \code{NULL} (default) uses and creates
+   'eurostat' directory in the temporary directory from
+   \code{\link{tempdir}}. Directory can also be set with
+   \code{option} eurostat_cache_dir.}
 }
 \value{
 a data.frame. One column for each dimension in the data and
@@ -69,6 +70,7 @@ dir.create("r_cache")
 k <- get_eurostat("nama_10_lp_ulc", cache_dir = "r_cache")
 options(eurostat_update = TRUE)
 k <- get_eurostat("nama_10_lp_ulc")
+options(eurostat_update = FALSE)
 options(eurostat_cache_dir = "r_cache")
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)

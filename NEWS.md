@@ -12,6 +12,7 @@
 * Now `label_eurostat_vars(x)` gives labels for names, if x is other than
   a character or a factor and `label_eurostat_tables(x)` does not accept other
   than a character or a factor.
+* Cache files are now longer compressed.
 
 # eurostat 1.0.16
 
