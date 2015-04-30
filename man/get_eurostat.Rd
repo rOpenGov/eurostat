@@ -5,7 +5,8 @@
 \title{Read data from Eurostat database.}
 \usage{
 get_eurostat(id, time_format = "date", select_time = NULL, cache = TRUE,
-  update_cache = FALSE, cache_dir = NULL)
+  update_cache = FALSE, cache_dir = NULL,
+  stringsAsFactors = default.stringsAsFactors())
 }
 \arguments{
 \item{id}{A code name for the dataset of interest.
@@ -33,10 +34,14 @@ should be used.}
 options(eurostat_update = TRUE)}
 
 \item{cache_dir}{a path to a cache directory. The directory have to exist.
-   The \code{NULL} (default) uses and creates
-   'eurostat' directory in the temporary directory from
-   \code{\link{tempdir}}. Directory can also be set with
-   \code{option} eurostat_cache_dir.}
+  The \code{NULL} (default) uses and creates
+  'eurostat' directory in the temporary directory from
+  \code{\link{tempdir}}. Directory can also be set with
+  \code{option} eurostat_cache_dir.}
+
+\item{stringsAsFactors}{if \code{TRUE} (the default) variables are
+        converted to factors in original Eurostat order. If \code{FALSE}
+        they are returned as a character.}
 }
 \value{
 a data.frame. One column for each dimension in the data and

@@ -13,6 +13,15 @@ test_that("get_eurostat works with multi-frequency",{
   matches("-01-01", unique(get_eurostat("avia_gonc", select_time = "Y" , cache = FALSE)$time))
 })
 
+test_that("get_eurostat return right classes",{
+  skip_on_cran()
+  expect_true(all(c("factor", "numeric") %in% 
+                    sapply(get_eurostat("namq_aux_lp"), class)))
+  expect_true(all(c("character", "numeric") %in% 
+                    sapply(get_eurostat("namq_aux_lp", stringsAsFactors = FALSE), 
+                           class)))
+})
+
 context("cache")
 
 test_that("Cache give error if cache dir does not exist", {

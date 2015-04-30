@@ -26,6 +26,9 @@
 #'    'eurostat' directory in the temporary directory from 
 #'    \code{\link{tempdir}}. Directory can also be set with 
 #'    \code{option} eurostat_cache_dir.
+#'  @param stringsAsFactors if \code{TRUE} (the default) variables are
+#'         converted to factors in original Eurostat order. If \code{FALSE}
+#'         they are returned as a character.
 #' 
 #' @export
 #' @details Datasets are downloaded from the Eurostat bulk download facility 
@@ -61,7 +64,8 @@
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 #' }
 get_eurostat <- function(id, time_format = "date", select_time = NULL, 
-                         cache = TRUE, update_cache = FALSE, cache_dir = NULL){
+                         cache = TRUE, update_cache = FALSE, cache_dir = NULL,
+                         stringsAsFactors = default.stringsAsFactors()){
 
   if (cache){  
     # check option for update
@@ -83,13 +87,15 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
     # cache filename
     cache_file <- file.path(cache_dir, 
                             paste0(id, "_", time_format, 
-                                   "_", select_time, ".rds"))
+                                   "_", select_time, "_", stringsAsFactors,
+                                   ".rds"))
   }
   
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
     y_raw <- get_eurostat_raw(id)
-    y <- tidy_eurostat(y_raw, time_format, select_time)
+    y <- tidy_eurostat(y_raw, time_format, select_time, 
+                       stringsAsFactors = stringsAsFactors)
   } else {
     y <- readRDS(cache_file)
     message("Table ", id, " read from cache file: ", path.expand(cache_file))   
