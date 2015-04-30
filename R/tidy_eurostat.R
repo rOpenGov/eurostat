@@ -10,6 +10,9 @@
 #'         does not do conversion. See \code{\link{eurotime2date}} and 
 #'         \code{\link{eurotime2num}}.
 #'  @param select_time a character symbol for a time frequence or NULL (default). 
+#'  @param stringsAsFactors if \code{TRUE} (the default) variables are
+#'         converted to factors in original Eurostat order. If \code{FALSE}
+#'         they are returned as strings.
 #'
 #'  @return data.frame in the molten format with the last column 'values'. 
 #'  	    
@@ -19,7 +22,8 @@
 #' @keywords internal utilities database
 
 tidy_eurostat <-
-  function(dat, time_format = "date", select_time = NULL) {
+  function(dat, time_format = "date", select_time = NULL, 
+           stringsAsFactors = default.stringsAsFactors()) {
  
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split="\\.")[[1]]
@@ -28,10 +32,13 @@ tidy_eurostat <-
     dat2 <- tidyr::separate_(dat, col = colnames(dat)[1], 
                        into = cnames1, 
                        sep = ",", convert = FALSE)
+
     # columns from cnames1 are converted into factors
     # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
-    for (cname in cnames1) dat2[,cname] <- factor(dat2[,cname], levels = unique(dat2[,cname]))
-
+    if (stringsAsFactors){
+      dat2[,cnames1] <- lapply(dat2[, cnames1], 
+                              function(x) factor(x, levels = unique(x)))
+    }
     
     # selector for mixed time format data
     

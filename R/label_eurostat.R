@@ -1,33 +1,48 @@
 #' Get definitions for Eurostat codes from Eurostat dictionaries
 #' 
-#' A string or a factor vector of codes returns a corresponding 
-#' vector of definitions. For vectors a dictionary name have to be supplied.
+#' A character or a factor vector of codes returns a corresponding 
+#' vector of definitions. \code{label_eurostat} labels also for data.frames
+#' from \code{\link{get_eurostat}}.
+#' 
+#' For vectors a dictionary name have to be supplied.
 #' For data.frames dictonary names are taken from column names. 
 #' "time" and "values" columns are returned as they were, so you can supply 
 #' data.frame from \code{\link{get_eurostat}} and get data.frame with 
 #' definitions instead of codes.
-#' 
-#' @param x a vector or a data.frame. 
-#' @param dic a string (vector) naming eurostat dictionary or dictionaries.
+#'  
+#' @param x A character or a factor vector or a data.frame. 
+#' @param dic A string (vector) naming eurostat dictionary or dictionaries.
 #'  If \code{NULL} (default) dictionry names taken from column names of 
-#'  the data.frame. 
+#'  the data.frame.
+#' @param code For data.frames names of the column for which also codes
+#'   should be retained. The suffix "_code" is added to code column names.  
 #' @export
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @return a vector or a data.frame.
 #' @examples
 #'  \dontrun{
 #'    lp <- get_eurostat("nama_aux_lp")
-#'    lpl <- label_eurostat_vars(lp)
+#'    lpl <- label_eurostat(lp)
 #'    str(lpl)
+#'    lpl_code <- label_eurostat(lp, code = "unit")
 #'    label_eurostat_vars(names(lp))
 #'    label_eurostat_tables("nama_aux_lp")
 #'  }
 
-label_eurostat <- function(x, dic = NULL){
+label_eurostat <- function(x, dic = NULL, code = NULL){
   if (is.data.frame(x)){
     y <- x
     for (i in names(y)[!(names(y) %in% c("time", "values"))]){
       y[[i]] <- label_eurostat(y[[i]], i)
+    }
+    
+    #codes added if asked
+    if (!is.null(code)){
+      code_in <- code %in% names(y)
+      if (!all(code_in)) stop("code column name(s) ", shQuote(code[!code_in])," not found on x")
+      y_code <- x[, code, drop = FALSE]
+      names(y_code) <- paste0(names(y_code), "_code")
+      y <- cbind(y_code, y)
     }
   } else {
     if (is.null(dic)) stop("Dictionary information is missing")
@@ -39,15 +54,18 @@ label_eurostat <- function(x, dic = NULL){
   y
 }
   
-#' @describeIn label_eurostat Get definitions for variable (column) names
+#' @describeIn label_eurostat Get definitions for variable (column) names. For
+#'  objects other than characters or factors definitions are get for names.
 #' @export
 label_eurostat_vars <- function(x){
+  if(!(is.character(x) | is.factor(x))) x <- names(x)
   label_eurostat(x, dic = "dimlst")
 }
 
 #' @describeIn label_eurostat Get definitions for table names
 #' @export
 label_eurostat_tables <- function(x){
+  if(!(is.character(x) | is.factor(x))) stop("x have to be a character or a factor")
   label_eurostat(x, dic = "table_dic")
 }
 

@@ -6,6 +6,15 @@
   error if you try to get multi-frequency with other time formats
   than `time_format = "raw"`. (#30) 
 * `get_eurostat()` cache filenames includes now all relevant arguments. (#28)
+* For `search_eurostat()` a new type option `type = "all"` to search all types.
+* For `label_eurostat()` a new argument `code` to retain also codes 
+  for spesified colums. 
+* Now `label_eurostat_vars(x)` gives labels for names, if x is other than
+  a character or a factor and `label_eurostat_tables(x)` does not accept other
+  than a character or a factor.
+* Cache files are now longer compressed.
+* For `get_eurostat()` a new argument `stringsAsFactors` to control the
+  factor conversion of variables.
 
 # eurostat 1.0.16
 
