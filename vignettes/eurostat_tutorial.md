@@ -1,7 +1,7 @@
 ---
 title: "eurostat tutorial for R"
 author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
-date: "2015-03-27"
+date: "2015-04-30"
 output:
   html_document:
     theme: flatly
@@ -72,14 +72,14 @@ kable(head(toc))
 
 
 
-|title                                                            |code      |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
-|:----------------------------------------------------------------|:---------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
-|Database by themes                                               |data      |folder  |                    |                            |           |         |NA     |
-|    General and regional statistics                              |general   |folder  |                    |                            |           |         |NA     |
-|        European and national indicators for short-term analysis |euroind   |folder  |                    |                            |           |         |NA     |
-|            Business and consumer surveys (source: DG ECFIN)     |ei_bcs    |folder  |                    |                            |           |         |NA     |
-|                Consumer surveys (source: DG ECFIN)              |ei_bcs_cs |folder  |                    |                            |           |         |NA     |
-|                    Consumers - monthly data                     |ei_bsco_m |dataset |25.02.2015          |25.02.2015                  |1985M01    |2015M02  |NA     |
+|title                                                    |code      |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:--------------------------------------------------------|:---------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|Database by themes                                       |data      |folder  |                    |                            |           |         |NA     |
+|General and regional statistics                          |general   |folder  |                    |                            |           |         |NA     |
+|European and national indicators for short-term analysis |euroind   |folder  |                    |                            |           |         |NA     |
+|Business and consumer surveys (source: DG ECFIN)         |ei_bcs    |folder  |                    |                            |           |         |NA     |
+|Consumer surveys (source: DG ECFIN)                      |ei_bcs_cs |folder  |                    |                            |           |         |NA     |
+|Consumers - monthly data                                 |ei_bsco_m |dataset |29.04.2015          |29.04.2015                  |1985M01    |2015M04  |NA     |
 
 With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 
@@ -91,14 +91,19 @@ kable(head(search_eurostat("passenger transport")))
 
 
 
-|     |title                                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
-|:----|:----------------------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
-|5262 |                Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |24.03.2015                  |1995       |2012     |NA     |
-|5263 |                Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |24.03.2015                  |1990       |2012     |NA     |
-|5302 |                Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |10.03.2015          |10.07.2014                  |2004       |2013     |NA     |
-|5306 |                International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |NA     |
-|5307 |                International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |03.03.2015          |26.02.2015                  |2002       |2013     |NA     |
-|5658 |                    Air passenger transport by reporting country                                                                         |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |NA     |
+|     |title                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:----|:------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|5265 |Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |25.06.2014          |24.03.2015                  |1995       |2012     |NA     |
+|5266 |Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |25.06.2014          |24.03.2015                  |1990       |2012     |NA     |
+|5305 |Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |21.04.2015          |10.07.2014                  |2004       |2013     |NA     |
+|5309 |International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |21.04.2015          |26.02.2015                  |2002       |2013     |NA     |
+|5310 |International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |21.04.2015          |26.02.2015                  |2002       |2013     |NA     |
+|5661 |Air passenger transport by reporting country                                                                             |avia_paoc       |dataset |10.02.2015          |10.02.2015                  |1993       |2014Q4   |NA     |
+
+Codes for the dataset can be searched also from the Eurostat database 
+\url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+database gives codes in the Data Navigation Tree after every dataset 
+in parenthesis.
 
 ## <a name="download"></a>Downloading data 
 
@@ -362,8 +367,9 @@ sessionInfo()
 ```
 
 ```
-## R version 3.1.2 (2014-10-31)
-## Platform: x86_64-pc-linux-gnu (64-bit)
+## R version 3.2.0 (2015-04-16)
+## Platform: x86_64-unknown-linux-gnu (64-bit)
+## Running under: Ubuntu 14.10
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -377,14 +383,14 @@ sessionInfo()
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] plotrix_3.5-11   ggplot2_1.0.0    tidyr_0.2.0.9000 eurostat_1.0.14 
-## [5] knitr_1.9       
+## [1] plotrix_3.5-11     ggplot2_1.0.1      tidyr_0.2.0       
+## [4] eurostat_1.1.9001  knitr_1.10         scimapClient_0.2.1
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] assertthat_0.1   colorspace_1.2-6 DBI_0.3.1        digest_0.6.8    
-##  [5] dplyr_0.4.1      evaluate_0.5.5   formatR_1.0      grid_3.1.2      
-##  [9] gtable_0.1.2     labeling_0.3     magrittr_1.5     MASS_7.3-39     
-## [13] munsell_0.4.2    parallel_3.1.2   plyr_1.8.1       proto_0.3-10    
-## [17] Rcpp_0.11.5      reshape2_1.4.1   scales_0.2.4     stringi_0.4-1   
-## [21] stringr_0.6.2    tools_3.1.2
+##  [1] Rcpp_0.11.5      magrittr_1.5     MASS_7.3-40      munsell_0.4.2   
+##  [5] colorspace_1.2-6 stringr_1.0.0    highr_0.5        plyr_1.8.2      
+##  [9] dplyr_0.4.1      tools_3.2.0      parallel_3.2.0   grid_3.2.0      
+## [13] gtable_0.1.2     DBI_0.3.1        assertthat_0.1   digest_0.6.8    
+## [17] RJSONIO_1.3-0    reshape2_1.4.1   formatR_1.2      evaluate_0.7    
+## [21] labeling_0.3     stringi_0.4-1    scales_0.2.4     proto_0.3-10
 ```
