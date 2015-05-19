@@ -16,6 +16,8 @@
 #'  the data.frame.
 #' @param code For data.frames names of the column for which also codes
 #'   should be retained. The suffix "_code" is added to code column names.  
+#' @param eu_order Logical. Should Eurostat ordering used for label levels. 
+#'   Affects only factors.
 #' @export
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @return a vector or a data.frame.
@@ -24,16 +26,17 @@
 #'    lp <- get_eurostat("nama_aux_lp")
 #'    lpl <- label_eurostat(lp)
 #'    str(lpl)
+#'    lpl_order <- label_eurostat(lp, eu_order = TRUE)
 #'    lpl_code <- label_eurostat(lp, code = "unit")
 #'    label_eurostat_vars(names(lp))
 #'    label_eurostat_tables("nama_aux_lp")
 #'  }
 
-label_eurostat <- function(x, dic = NULL, code = NULL){
+label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE){
   if (is.data.frame(x)){
     y <- x
     for (i in names(y)[!(names(y) %in% c("time", "values"))]){
-      y[[i]] <- label_eurostat(y[[i]], i)
+      y[[i]] <- label_eurostat(y[[i]], i, eu_order = eu_order)
     }
     
     #codes added if asked
@@ -47,9 +50,24 @@ label_eurostat <- function(x, dic = NULL, code = NULL){
   } else {
     if (is.null(dic)) stop("Dictionary information is missing")
     dic_df <- get_eurostat_dic(dic)
-    # in case of column names (not factors), change to upper case
-    if (!is.factor(x)) x <- toupper(x)
-    y <- plyr::mapvalues(x, dic_df[,1], dic_df[,2], warn_missing = FALSE)
+    if (is.factor(x)){
+      if (eu_order) {
+        ord <- dic_order(levels(x), dic_df, "code")
+      } else {
+        ord <- seq_along(levels(x))
+      }
+      
+      y <- factor(x, levels(x)[ord], 
+                  labels = dic_df[[2]][match(levels(x), dic_df[[1]])][ord])
+    } else {
+      # dics are in upper case, change if x is not
+      test_n <- min(length(x), 5)
+      if (!all(toupper(x[1:test_n ]) == x[1:test_n])) x <- toupper(x)
+      # mapvalues
+      y <- dic_df[[2]][match(x, dic_df[[1]])]      
+    }
+
+    if (any(is.na(y))) warning("All labels for ", dic, " were not found.")
   }
   y
 }
@@ -69,4 +87,34 @@ label_eurostat_tables <- function(x){
   label_eurostat(x, dic = "table_dic")
 }
 
+#' Order of variable levels from Eurostat dictionary.
+#' 
+#' Some variables, like classifications, have logical or conventional ordering. 
+#' Eurostat data tables are nor neccessary ordered in this order. 
+#' The function \code{dic_order} get the ordering from Eurostat classifications
+#' dictionaries.
+#' 
+#' The function \code{\link{label_eurostat}} can also order factor levels of
+#' labels with argument \code{eu_order = TRUE}.
+#' 
+#' @param x a variable (code or labelled) to get order for.
+#' @param dic a name of the dictionary. Correspond a variable name in the 
+#'    data.frame from \code{\link{get_eurostat}}. Can be also data.frame from
+#'    \code{\link{get_eurostat_dic}}.
+#' @param type a type of the x. Could be \code{code} or \code{label}.
+#' 
+#' @export
+#' @return A numeric vector of orders.
 
+dic_order <- function(x, dic, type) {
+  if (!is.data.frame(dic)) dic <- get_eurostat_dic(dic)
+  
+  # code or label
+  n_type <- match(type, c("code", "label"))
+  if (is.na(n_type)) stop("Invalid type.")
+  
+  # get order
+  y <- order(match(x, dic[[n_type]]))
+  if (any(is.na(y))) stop("All orders were not found.")
+  y
+}

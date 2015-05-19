@@ -7,8 +7,9 @@
   than `time_format = "raw"`. (#30) 
 * `get_eurostat()` cache filenames includes now all relevant arguments. (#28)
 * For `search_eurostat()` a new type option `type = "all"` to search all types.
-* For `label_eurostat()` a new argument `code` to retain also codes 
-  for spesified colums. 
+* For `label_eurostat()` new arguments. A `code` to retain also codes 
+  for spesified colums. A `eu_order` to order facor levels in Eurostat order, 
+  which uses the new function `dic_order()`. 
 * Now `label_eurostat_vars(x)` gives labels for names, if x is other than
   a character or a factor and `label_eurostat_tables(x)` does not accept other
   than a character or a factor.

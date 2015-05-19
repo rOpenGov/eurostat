@@ -62,3 +62,10 @@ test_that("Variable names are labeled",{
                           get_eurostat("namq_aux_lp"), code = "geo")))))
 })
 
+test_that("Label ordering is ordered", {
+  skip_on_cran()
+  expect_equal(c("European Union (28 countries)", "Finland", "United States"),
+               levels(label_eurostat(factor(c("FI", "US", "EU28")), 
+                              dic = "geo", eu_order = TRUE)))
+})
+

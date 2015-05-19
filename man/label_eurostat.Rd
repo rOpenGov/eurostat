@@ -6,7 +6,7 @@
 \alias{label_eurostat_vars}
 \title{Get definitions for Eurostat codes from Eurostat dictionaries}
 \usage{
-label_eurostat(x, dic = NULL, code = NULL)
+label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE)
 
 label_eurostat_vars(x)
 
@@ -21,6 +21,9 @@ the data.frame.}
 
 \item{code}{For data.frames names of the column for which also codes
 should be retained. The suffix "_code" is added to code column names.}
+
+\item{eu_order}{Logical. Should Eurostat ordering used for label levels.
+Affects only factors.}
 }
 \value{
 a vector or a data.frame.
@@ -49,6 +52,7 @@ objects other than characters or factors definitions are get for names.
    lp <- get_eurostat("nama_aux_lp")
    lpl <- label_eurostat(lp)
    str(lpl)
+   lpl_order <- label_eurostat(lp, eu_order = TRUE)
    lpl_code <- label_eurostat(lp, code = "unit")
    label_eurostat_vars(names(lp))
    label_eurostat_tables("nama_aux_lp")
