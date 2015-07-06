@@ -10,14 +10,15 @@ eurotime2date(x, last = FALSE)
 \item{x}{a charter string with time information in Eurostat time format.}
 
 \item{last}{a logical. If \code{FALsE} (default) the date  is
-the first date of the period (month, quarter or year). If \code{TRUE} the date is the last date of
-the period.}
+the first date of the period (month, quarter or year). If \code{TRUE}
+the date is the last date of the period.}
 }
 \value{
 an object of class \code{\link{Date}}.
 }
 \description{
-A function to convert Eurostat time values to objects of class \code{\link{Date}} representing calendar dates.
+A function to convert Eurostat time values to objects of class
+\code{\link{Date}} representing calendar dates.
 }
 \examples{
 \dontrun{
@@ -29,6 +30,9 @@ A function to convert Eurostat time values to objects of class \code{\link{Date}
 
    lpa <- get_eurostat("nama_aux_lp", time_format = "raw")
    lpa$time <- eurotime2date(x = lpa$time)
+
+   eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
+   eur_d$time <- eurotime2date(x = eur_d$time)
    }
 }
 \author{

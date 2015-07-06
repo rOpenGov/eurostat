@@ -18,22 +18,38 @@
 #'    
 #'    lpa <- get_eurostat("nama_aux_lp", time_format = "raw")
 #'    lpa$time <- eurotime2num(x = lpa$time)
+#'    
+#'    eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
+#'    eur_d$time <- eurotime2num(x = eur_d$time)
 #'    }
 eurotime2num <- function(x){
   times <- levels(x)
 
-  tcode <- substr(times[1], 5, 5)  # type of time data
-  if (tcode == "") tcode <- "Y"
+  if (nchar(times[1]) > 7){
+    tcode <- substr(times[1], 8, 8) # daily
+  } else {
+    tcode <- substr(times[1], 5, 5)  # type of time data
+    if (tcode == "") tcode <- "Y"    
+  }
+
   
   # check input type  
   if (!(tcode %in% c("Y", "S", "Q", "M"))) {
-    warning("Unknown time code, ", tcode, ". No date conversion was made.\nPlease fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+    if (tcode == "D"){
+      warning("For daily data there is not a numeric conversion available. 
+              No conversion made.")
+    } else {
+      warning("Unknown time code, ", tcode, ". No date conversion was made.
+            \nPlease fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+    }
+    
     return(x)   
   }
   
   year <- substr(times, 1, 4)
   subyear <- substr(times, 6, 7)
   subyear[subyear == ""] <- 1
+
   
   levels(x) <- as.numeric(year) + 
     (as.numeric(subyear) - 1) * 1/c(Y = 1, S = 2, Q = 4, M = 12)[tcode]

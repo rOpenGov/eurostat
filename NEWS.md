@@ -16,6 +16,7 @@
 * Cache files are now longer compressed.
 * For `get_eurostat()` a new argument `stringsAsFactors` to control the
   factor conversion of variables.
+* `eurotime2date` (and `get_eurostat`) convers now also daily data.
 
 # eurostat 1.0.16
 
