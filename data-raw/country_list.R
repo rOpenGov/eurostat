@@ -28,4 +28,6 @@ ea_countries <- ea_country_html %>%
   inner_join(eu_countries, .)                    # Get eu order and codes
   
 
+# save 
 
+devtools::use_data(eu_countries, ea_countries, efta_countries, candidate_countries)
