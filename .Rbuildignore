@@ -10,7 +10,6 @@ inst/extras
 ./.git*
 # Travis scripts
 .travis.yml
-
 # Misc
 ./.*~
 ./*~
@@ -20,3 +19,4 @@ inst/extras
 ^\.Rprofile$
 ^NEWS.md$
 ^cran-comments\.md$
+^data-raw$

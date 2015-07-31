@@ -24,7 +24,11 @@ Suggests:
     reshape2,
     rmarkdown,
     ggplot2,
-    testthat
+    testthat,
+    rvest,
+    dplyr,
+    devtools
+LazyData: true
 URL: https://github.com/ropengov/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
