@@ -28,12 +28,12 @@
 search_eurostat <- function(pattern, type = "dataset") {
   set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-  if (type != "all") tmp <- tmp[tmp[, "type"] %in% type,]
-  tmp[grep(as.character(tmp[, "title"]), pattern=pattern),]
+  if (type != "all") tmp <- tmp[ tmp[, "type"] %in% type, ]
+  tmp[ grep(as.character(tmp[, "title"]), pattern = pattern), ]
 }
 
 
-#' @describeIn search_eurostat Old depricated version
+#' @describeIn search_eurostat Old deprecated version
 #' @export
 grepEurostatTOC <- function(pattern, type = "dataset"){
   .Deprecated("search_eurostat")

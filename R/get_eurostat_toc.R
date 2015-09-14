@@ -22,7 +22,7 @@ get_eurostat_toc <- function() {
   invisible(get(".eurostatTOC", envir = .EurostatEnv))
 }
 
-#' @describeIn get_eurostat_toc Old depricated version
+#' @describeIn get_eurostat_toc Old deprecated version
 #' @export
 getEurostatTOC <- function() {
   .Deprecated("get_eurostat_toc")

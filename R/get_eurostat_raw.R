@@ -28,14 +28,14 @@ get_eurostat_raw <- function(id) {
 
   url <- paste(base, 
     "estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",
-    id, ".tsv.gz", sep="")
+    id, ".tsv.gz", sep = "")
 
   tfile <- tempfile()
   on.exit(unlink(tfile))
   
   # download and read file
   download.file(url, tfile)
-  dat <- read.table(gzfile(tfile), sep="\t", na.strings = ": ", 
+  dat <- read.table(gzfile(tfile), sep = "\t", na.strings = ": ", 
                     header = TRUE, stringsAsFactors = FALSE)
   # check validity
   if (ncol(dat) < 2 | nrow(dat) < 1) {

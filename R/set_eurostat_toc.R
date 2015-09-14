@@ -15,8 +15,8 @@ set_eurostat_toc <- function() {
    url <- paste(base, "estat-navtree-portlet-prod/", 
        	 "BulkDownloadListing?sort=1&downfile=table_of_contents_en.txt", 
 	 sep = "")
-   .eurostatTOC <-  read.table(file = url, sep="\t", header=T, quote="\"", 
-   		    	        fill = TRUE, comment.char = "", stringsAsFactors = FALSE)
+   .eurostatTOC <- read.table(file = url, sep = "\t", header = TRUE, quote = "\"", 
+                              fill = TRUE, comment.char = "", stringsAsFactors = FALSE)
     assign(".eurostatTOC", .eurostatTOC, envir = .EurostatEnv)
   }
   invisible(0)
