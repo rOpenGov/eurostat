@@ -36,6 +36,7 @@ eurotime2date <- function(x, last = FALSE){
   if (tcode == "") tcode <- "Y"
   
   day <- "01"    # default for day
+  
   # for yearly data
   if (tcode == "Y") {
     period <- "01"
@@ -56,10 +57,12 @@ eurotime2date <- function(x, last = FALSE){
     day <- gsub("D", "", days)
   # for year intervals
   } else if (tcode == "_") {
+    warning("Time format is a year interval. No date conversion was made.")
     return(x)
   # for unkown
   } else {
-    warning("Unknown time code, ", tcode, ". No date conversion was made.\nPlease fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+    warning("Unknown time code, ", tcode, ". No date conversion was made.\n
+            Please fill bug report at https://github.com/rOpenGov/eurostat/issues.")
     return(x)
   }
   
