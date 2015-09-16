@@ -28,7 +28,7 @@ eurotime2date <- function(x, last = FALSE){
   year <- substr(times, 1, 4)
   subyear <- substr(times, 5, 7)
   tcode <- substr(subyear[1], 1, 1)  # type of time data
-  if (nchar(times[1]) > 7){
+  if (tcode != "_" && nchar(times[1]) > 7){
     days <- substr(times, 8, 10)
     tcode <- substr(days[1], 1, 1)  # type of time data if daily
   }
@@ -36,27 +36,33 @@ eurotime2date <- function(x, last = FALSE){
   if (tcode == "") tcode <- "Y"
   
   day <- "01"    # default for day
+  
   # for yearly data
-  if (tcode == "Y"){          
+  if (tcode == "Y") {
     period <- "01"
     # for bi-annual
-  } else if (tcode == "S"){
+  } else if (tcode == "S") {
     lookup <- c(S1 = "01", S2 = "07")
     period <- lookup[subyear] 
   # for quarterly
-  } else if (tcode == "Q"){
+  } else if (tcode == "Q") {
     lookup <- c(Q1 = "01", Q2 = "04", Q3 = "07", Q4 = "10")
     period <- lookup[subyear] 
   # for montly
-  } else if (tcode == "M"){
+  } else if (tcode == "M") {
     period <- gsub("M", "", subyear)
   # for daily
-  } else if (tcode == "D"){
+  } else if (tcode == "D") {
     period <- gsub("M", "", subyear)
     day <- gsub("D", "", days)
+  # for year intervals
+  } else if (tcode == "_") {
+    warning("Time format is a year interval. No date conversion was made.")
+    return(x)
   # for unkown
   } else {
-    warning("Unknown time code, ", tcode, ". No date conversion was made.\nPlease fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+    warning("Unknown time code, ", tcode, ". No date conversion was made.\n
+            Please fill bug report at https://github.com/rOpenGov/eurostat/issues.")
     return(x)
   }
   

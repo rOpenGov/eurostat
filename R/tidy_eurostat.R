@@ -26,7 +26,7 @@ tidy_eurostat <-
            stringsAsFactors = default.stringsAsFactors()) {
  
     # Separate codes to columns
-    cnames <- strsplit(colnames(dat)[1], split="\\.")[[1]]
+    cnames <- strsplit(colnames(dat)[1], split = "\\.")[[1]]
     cnames1 <- cnames[-length(cnames)]
     cnames2 <- cnames[length(cnames)]
     dat2 <- tidyr::separate_(dat, col = colnames(dat)[1], 

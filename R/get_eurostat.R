@@ -18,8 +18,8 @@
 #'    select one of them with: Y = annual, S = semi-annual, Q = quarterly, M = monthly. 
 #'    For all frequencies in same data.frame \code{time_format = "raw"} 
 #'    should be used. 
-#' @param cache a logical wheather to do caching. Default is \code{TRUE}.
-#' @param update_cache a locigal wheater to update cache. Can be set also with
+#' @param cache a logical whether to do caching. Default is \code{TRUE}.
+#' @param update_cache a locigal whether to update cache. Can be set also with
 #' 	  options(eurostat_update = TRUE)
 #' @param cache_dir a path to a cache directory. The directory have to exist.
 #'    The \code{NULL} (default) uses and creates 

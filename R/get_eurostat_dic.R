@@ -29,9 +29,9 @@ function(dictname) {
   url <- eurostat_url()		   
   read.table(paste(url, 
    "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2Fen%2F",
-   dictname, ".dic", sep=""),
-   sep="\t", header=F, stringsAsFactors=FALSE, quote = "\"",
-   fileEncoding="Windows-1252")
+   dictname, ".dic", sep = ""),
+   sep = "\t", header = FALSE, stringsAsFactors = FALSE, quote = "\"",
+   fileEncoding = "Windows-1252")
 }
 
 #' @describeIn get_eurostat_dic Old deprecated version

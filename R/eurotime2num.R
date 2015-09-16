@@ -34,13 +34,18 @@ eurotime2num <- function(x){
 
   
   # check input type  
-  if (!(tcode %in% c("Y", "S", "Q", "M"))) {
+  if (!(tcode %in% c("Y", "S", "Q", "M", "_"))) {
+
+    # for daily
     if (tcode == "D"){
-      warning("For daily data there is not a numeric conversion available. 
-              No conversion made.")
+      warning("Time format is daily data. No numeric conversion was made.")
+    # for year intervals
+    } else if (tcode == "_") {
+      warning("Time format is a year interval. No numeric conversion was made.")
+    # for unkown
     } else {
-      warning("Unknown time code, ", tcode, ". No date conversion was made.
-            \nPlease fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+      warning("Unknown time code, ", tcode, ". No numeric conversion was made.\n
+              Please fill bug report at https://github.com/rOpenGov/eurostat/issues.")
     }
     
     return(x)   
