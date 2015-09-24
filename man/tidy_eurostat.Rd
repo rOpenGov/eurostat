@@ -5,16 +5,16 @@
 \title{Transform raw Eurostat data table into the row-column-value format (RCV).}
 \usage{
 tidy_eurostat(dat, time_format = "date", select_time = NULL,
-  stringsAsFactors = default.stringsAsFactors())
+  stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE)
 }
 \arguments{
 \item{dat}{a data.frame from \code{\link{get_eurostat_raw}}.}
 
 \item{time_format}{a string giving a type of the conversion of the
                   time column from the eurostat format.
-             A "date" (default) convers to a \code{\link{Date}}
-             with a first date of the period. A "date_last"
-             convers to a \code{\link{Date}} with
+                  A "date" (default) convers to a \code{\link{Date}}
+                  with a first date of the period. A "date_last"
+                  convers to a \code{\link{Date}} with
        a last date of the period. A "num" convers to a numeric and "raw"
        does not do conversion. See \code{\link{eurotime2date}} and
        \code{\link{eurotime2num}}.}
@@ -22,8 +22,12 @@ tidy_eurostat(dat, time_format = "date", select_time = NULL,
 \item{select_time}{a character symbol for a time frequence or NULL (default).}
 
 \item{stringsAsFactors}{if \code{TRUE} (the default) variables are
-        converted to factors in original Eurostat order. If \code{FALSE}
-        they are returned as strings.}
+converted to factors in original Eurostat order. If \code{FALSE}
+they are returned as strings.}
+
+\item{keepFlags}{a logical whether the flags (e.g. "confidential",
+    "provisional") should be kept in a separate column or if they
+    can be removed. Default is \code{FALSE}}
 }
 \value{
 data.frame in the molten format with the last column 'values'.

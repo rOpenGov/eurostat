@@ -36,7 +36,7 @@ Arguments:
 }
 \section{Functions}{
 \itemize{
-\item \code{grepEurostatTOC}: Old depricated version
+\item \code{grepEurostatTOC}: Old deprecated version
 }}
 \examples{
 \dontrun{tmp <- search_eurostat("education"); head(tmp)}
