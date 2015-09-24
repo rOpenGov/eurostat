@@ -27,6 +27,7 @@ Suggests:
     testthat,
     rvest,
     dplyr,
+    stringi,
     devtools
 LazyData: true
 URL: https://github.com/ropengov/eurostat

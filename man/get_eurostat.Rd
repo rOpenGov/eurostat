@@ -5,8 +5,8 @@
 \title{Read data from Eurostat database.}
 \usage{
 get_eurostat(id, time_format = "date", select_time = NULL, cache = TRUE,
-  update_cache = FALSE, cache_dir = NULL,
-  stringsAsFactors = default.stringsAsFactors())
+  update_cache = FALSE, cache_dir = NULL, compress_file = TRUE,
+  stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE)
 }
 \arguments{
 \item{id}{A code name for the dataset of interest.
@@ -16,9 +16,9 @@ See \code{\link{search_eurostat}} or details for how to get code.}
 column from the eurostat format. A "date" (default) convers to
 a \code{\link{Date}} with a first date of the period.
 A "date_last" convers to a \code{\link{Date}} with
-  a last date of the period. A "num" convers to a numeric and "raw"
-  does not do conversion. See \code{\link{eurotime2date}} and
-  \code{\link{eurotime2num}}.}
+ a last date of the period. A "num" convers to a numeric and "raw"
+ does not do conversion. See \code{\link{eurotime2date}} and
+ \code{\link{eurotime2num}}.}
 
 \item{select_time}{a character symbol for a time frequence or NULL (default).
 Most of the datasets have just one time frequency, in which case
@@ -28,20 +28,27 @@ select one of them with: Y = annual, S = semi-annual, Q = quarterly, M = monthly
 For all frequencies in same data.frame \code{time_format = "raw"}
 should be used.}
 
-\item{cache}{a logical wheather to do caching. Default is \code{TRUE}.}
+\item{cache}{a logical whether to do caching. Default is \code{TRUE}.}
 
-\item{update_cache}{a locigal wheater to update cache. Can be set also with
+\item{update_cache}{a locigal whether to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
 \item{cache_dir}{a path to a cache directory. The directory have to exist.
-  The \code{NULL} (default) uses and creates
-  'eurostat' directory in the temporary directory from
-  \code{\link{tempdir}}. Directory can also be set with
-  \code{option} eurostat_cache_dir.}
+The \code{NULL} (default) uses and creates
+'eurostat' directory in the temporary directory from
+\code{\link{tempdir}}. Directory can also be set with
+\code{option} eurostat_cache_dir.}
+
+\item{compress_file}{a logical whether to compress the
+   RDS-file. Default is \code{TRUE}}
 
 \item{stringsAsFactors}{if \code{TRUE} (the default) variables are
-        converted to factors in original Eurostat order. If \code{FALSE}
-        they are returned as a character.}
+converted to factors in original Eurostat order. If \code{FALSE}
+they are returned as a character.}
+
+\item{keepFlags}{a logical whether the flags (e.g. "confidential",
+    "provisional") should be kept in a separate column or if they
+    can be removed. Default is \code{FALSE}}
 }
 \value{
 a data.frame. One column for each dimension in the data and

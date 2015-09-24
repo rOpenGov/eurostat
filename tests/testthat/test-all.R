@@ -3,7 +3,7 @@ context("Get")
 
 test_that("get_eurostat includes time and value",{
   skip_on_cran()
-  expect_true(all(c("time", "values") %in% 
+  expect_true(all(c("time", "values") %in%
                     names(get_eurostat("namq_aux_lp"))))
 })
 
@@ -15,10 +15,10 @@ test_that("get_eurostat works with multi-frequency",{
 
 test_that("get_eurostat return right classes",{
   skip_on_cran()
-  expect_true(all(c("factor", "numeric") %in% 
+  expect_true(all(c("factor", "numeric") %in%
                     sapply(get_eurostat("namq_aux_lp"), class)))
-  expect_true(all(c("character", "numeric") %in% 
-                    sapply(get_eurostat("namq_aux_lp", stringsAsFactors = FALSE), 
+  expect_true(all(c("character", "numeric") %in%
+                    sapply(get_eurostat("namq_aux_lp", stringsAsFactors = FALSE),
                            class)))
 })
 
@@ -66,7 +66,7 @@ context("Label")
 test_that("Variable names are labeled",{
   skip_on_cran()
   expect_equal(label_eurostat_vars("geo"), "Geopolitical entity (reporting)")
-  expect_true(any(grepl("_code", 
+  expect_true(any(grepl("_code",
                         names(label_eurostat(
                           get_eurostat("namq_aux_lp"), code = "geo")))))
 })
@@ -74,7 +74,21 @@ test_that("Variable names are labeled",{
 test_that("Label ordering is ordered", {
   skip_on_cran()
   expect_equal(c("European Union (28 countries)", "Finland", "United States"),
-               levels(label_eurostat(factor(c("FI", "US", "EU28")), 
+               levels(label_eurostat(factor(c("FI", "US", "EU28")),
                               dic = "geo", eu_order = TRUE)))
 })
 
+
+context("Flags")
+
+test_that("get_eurostat includes flags",{
+  skip_on_cran()
+  expect_true(all(c("flags") %in%
+                    names(get_eurostat("namq_aux_lp", keepFlags = TRUE))))
+})
+
+test_that("flags contain some confidential flagged fields",{
+  skip_on_cran()
+  expect_true(c("c") %in%
+              unique(get_eurostat("naio_10_cp1620", keepFlags = TRUE)$flags))
+})

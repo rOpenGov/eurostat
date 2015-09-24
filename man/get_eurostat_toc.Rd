@@ -26,7 +26,7 @@ The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portl
 }
 \section{Functions}{
 \itemize{
-\item \code{getEurostatTOC}: Old depricated version
+\item \code{getEurostatTOC}: Old deprecated version
 }}
 \examples{
 \dontrun{tmp <- get_eurostat_toc(); head(tmp)}
