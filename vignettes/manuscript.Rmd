@@ -1,0 +1,220 @@
+---
+title: "eurostat R package"
+author: Przemyslaw Biecek, Janne Huovari, Markus Kainu, Leo Lahti
+date: "`r Sys.Date()`"
+bibliography: 
+- bibliography.bib
+- references.bib
+output: 
+  md_document:
+    variant: markdown_github
+---
+<!--
+%\VignetteEngine{knitr::rmarkdown}
+%\VignetteIndexEntry{eurostat Markdown Vignette}
+%\usepackage[utf8]{inputenc}
+-->
+
+
+```{r, echo=FALSE, message=FALSE}
+# Handle citations
+require(knitcitations)
+cleanbib()
+#options("citation_format" = "pandoc")
+bib <- read.bibtex("bibliography.bib")
+#bib2 <- read.bibtex("references.bib")
+#opts_chunk$set(fig.width=4, fig.height=3, par=TRUE, out.width='2in', fig.pos='H')
+#knitr::opts_chunk$set(fig.path = "figure/")
+```
+
+
+## Introduction 
+
+This R package provides open source tools to access [open data from
+Eurostat](http://ec.europa.eu/eurostat/) in [R statistical programming
+language](http://www.r-project.org) `r citep(bib[["rcore13"]])`.
+
+The Eurostat open data portal currently includes ... data sets on
+... between years ...
+
+The eurostat package is based on the earlier CRAN packages
+[statfi](http://cran.r-project.org/web/packages/statfi/index.html) and
+[smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The package has been actively used and has been actively developed by
+several independent contributors and based on the community feedback in Github.
+The package is part of the [rOpenGov](http://ropengov.github.io) collection `r citep(bib[["Lahti13icml"]])`, which provides reproducible research tools `r citep(bib[["Gandrud13"]])` for computational social science and digital humanities.
+
+The source code can be freely used, modified and distributed under the
+BSD-2-clause (modified FreeBSD) license. The package utilizes
+functionality from the following external R packages: devtools `r citep(citation("devtools"))`, dplyr `r citep(citation("dplyr"))`, knitr `r citep(citation("knitr"))`, ggplot2 `r citep(citation("ggplot2"))`, mapproj `r citep(citation("mapproj"))`, plotrix `r citep(citation("plotrix"))`, reshape2 `r citep(citation("reshape2"))`, rmarkdown `r citep(citation("rmarkdown"))`, stringi `r citep(citation("stringi"))`, testthat `r citep(citation("testthat"))`, tidyr `r citep(citation("tidyr"))`.
+
+The
+[datamart](http://cran.r-project.org/web/packages/datamart/index.html)
+and the
+[quandl](http://cran.r-project.org/web/packages/Quandl/index.html) R packages [ADD REFS!!!] provide also access to certain
+versions of eurostat data. In contrast to these generic database
+packages, our work is fully focused on the Eurostat open data portal
+and provides specific functionality suited for this data
+collection. There is a development version for R package
+[reurostat](https://github.com/Tungurahua/reurostat) but it does not
+seem to be actively maintained at the moment (last commits at ...).
+
+
+## Overview of the functionality
+
+Complete detailed and reproducible installation instructions and usage
+examples of the eurostat R package are provided in the [package
+vignette](https://github.com/rOpenGov/eurostat/vignette/eurostat_tutorial.Rmd). The
+package includes tools to search and retrieve specific data sets from
+the Eurostat open data portal, converting identifiers in
+human-readable formats, selecting, modifying and visualizing the data.
+
+Here we describe the functionality of the current CRAN release version
+(1.2.1). To install this, simply use
+
+```{r install, eval=FALSE}
+install.packages("eurostat")
+```
+
+The development version is available via Github, see instructions at
+the package [github page](https://github.com/rOpenGov/eurostat).
+
+
+
+* **Finding data** You can download the list of available data sets with the `get_eurostat_toc()` function
+* With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*.
+
+```{r search_eurostat, warning=FALSE, message=FALSE, eval = FALSE}
+# Load the package
+library(eurostat)
+# info about passengers
+library(knitr)
+kable(head(search_eurostat("passenger transport")))
+```
+
+Codes for the dataset can be searched also from the Eurostat database
+\url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+database gives codes in the Data Navigation Tree after every dataset
+in parenthesis.
+
+* **Downloading data** Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
+
+Pick and print the id of the data set to download: 
+```{r get_id, warning=FALSE, message=FALSE, results='asis', eval = FALSE}
+id <- search_eurostat("Modal split of passenger transport", type = "table")$code[1]
+print(id)
+```
+
+Get the corresponding table. As the table is annual data, it is more
+convient to use a numeric time variable than use the default date format:
+
+```{r get_eurostat, warning=FALSE, message=FALSE, results='asis', eval=FALSE}
+dat <- get_eurostat(id, time_format = "num")
+```
+
+
+Eurostat variable IDs can be replaced with human-readable labels with
+the `label_eurostat()` function. This replaces the eurostat IDs based
+on definitions from Eurostat dictionaries. For examples, see the
+package vignette.
+
+
+## Selecting and modifying data
+
+```{r labels, warning=FALSE, message=FALSE, results='asis', eval=FALSE}
+datl <- label_eurostat(dat)
+label_eurostat_vars(names(datl))
+```
+
+EU data from 2012 in all vehicles:
+
+```{r eu_12, eval=FALSE}
+dat_eu12 <- subset(datl, geo == "European Union (28 countries)" & time == 2012)
+kable(dat_eu12, row.names = FALSE)
+```
+
+EU data from 2000 - 2012 with vehicle types as variables:
+
+Reshaping the data is best done with `spread()` in `tidyr`.
+```{r eu_vehicles_table, eval=FALSE}
+library("tidyr")
+dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
+dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
+kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
+```
+
+Train passengers for selected EU countries in 2000 - 2012
+
+```{r trains_table, eval=FALSE}
+dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
+                     & time %in% 2000:2012
+                     & vehicle == "Trains")
+dat_trains_wide <- spread(dat_trains, geo, values) 
+kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
+```
+
+
+
+Finally, by combining the data with available map information we can visualize train passenger data with `ggplot2`:
+
+```{r trains_plot, fig.width=10, fig.height=4, eval=FALSE}
+library(ggplot2)
+p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
+p <- p + geom_line()
+print(p)
+```
+
+
+Triangle plot on passenger transport distributions with 2012 data for all countries with data.
+
+```{r plotGallery, warning=FALSE, message=FALSE, eval=FALSE}
+library(tidyr)
+
+transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
+
+transports <- na.omit(transports)
+
+# triangle plot
+library(plotrix)
+triax.plot(transports[, -1], show.grid = TRUE, 
+           label.points = TRUE, point.labels = transports$geo, 
+           pch = 19)
+```
+
+
+## Future plans
+
+Possible extensions
+
+Other implications of the package
+
+Shortcomings and pitfalls
+
+Issues, bug reports and other feedback can be given via the github site.
+
+This exemplifies more widely the challenges and possible solutions to automated data retrieval from governmental open data portals..
+
+## Acknowledgements
+
+We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for
+maintaining the open data portal and the
+[rOpenGov](https://github.ropengov.io) collection for supporting the
+package development. This work has been partially funded by Academy of
+Finland (decision ...).
+
+
+
+### References
+
+```{r, echo=FALSE, message=FALSE}
+#You can embed citations, for example: `r citep(bib[["lahti14natcomm"]])`
+#You can embed citations, for example2: @lahti14natcomm
+#Cite with DOI: `r citep("10.1890/11-0011.1")`
+#Cite URL `r citep("http://knowledgeblog.org/greycite")`
+#For automated markdown citations, check [this](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html), [this](https://github.com/cboettig/knitcitations), and [this](http://www.carlboettiger.info/2012/03/24/citations-in-markdown-using-knitr.html). 
+#write.bibtex(file="references.bib")
+```
+
+```{r, echo=FALSE, message=FALSE, results='asis'}
+bibliography()
+```
+
