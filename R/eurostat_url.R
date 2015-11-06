@@ -1,13 +1,7 @@
-#' eurostat_url
-#' 
+#' @title eurostat_url 
 #' @description Base url
-#' 
-#' Arguments:
-#'  @param ... Arguments to be passed
-#'
-#' Returns:
-#'  @return url
-#'
+#' @param ... Arguments to be passed
+#' @return url
 #' @references see citation("eurostat"). 
 #' @author Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @keywords internal

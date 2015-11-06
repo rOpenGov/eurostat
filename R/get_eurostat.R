@@ -1,7 +1,6 @@
-#' Read data from Eurostat database.
-#'
-#' Download dataset from the Eurostat database (\url{ec.europa.eu/eurostat}).
-#'
+#' @title get_eurostat
+#' @description Download dataset from the Eurostat database
+#' (\url{ec.europa.eu/eurostat}).
 #' @param id A code name for the dataset of interest.
 #' See \code{\link{search_eurostat}} or details for how to get code.
 #' @param time_format a string giving a type of the conversion of the time
@@ -15,7 +14,8 @@
 #'    Most of the datasets have just one time frequency, in which case
 #'    the \code{NULL} is of. However, some of the datasets
 #'    includes multible time frequences. Use symbols to
-#'    select one of them with: Y = annual, S = semi-annual, Q = quarterly, M = monthly.
+#'    select one of them with:
+#'    Y = annual, S = semi-annual, Q = quarterly, M = monthly.
 #'    For all frequencies in same data.frame \code{time_format = "raw"}
 #'    should be used.
 #' @param cache a logical whether to do caching. Default is \code{TRUE}.
@@ -28,28 +28,24 @@
 #'    \code{option} eurostat_cache_dir.
 #' @param compress_file a logical whether to compress the
 #'     RDS-file. Default is \code{TRUE}
-#'  @param stringsAsFactors if \code{TRUE} (the default) variables are
+#' @param stringsAsFactors if \code{TRUE} (the default) variables are
 #'         converted to factors in original Eurostat order. If \code{FALSE}
 #'         they are returned as a character.
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'     "provisional") should be kept in a separate column or if they
 #'     can be removed. Default is \code{FALSE}
-#'
 #' @export
 #' @details Datasets are downloaded from the Eurostat bulk download facility
 #' \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}.
 #' The data is transformed into the molten row-column-value format (RCV).
-#'
 #' By default datasets are cached. In a temporary directory by default or in
 #' a named directory if cache_dir or option eurostat_cache_dir is defined.
 #' The cache can be emptied with \code{\link{clean_eurostat_cache}}.
-#'
 #' The \code{id}, a code, for the dataset can be searched with
 #' the \code{\link{search_eurostat}} or from the Eurostat database
 #' \url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
 #' database gives codes in the Data Navigation Tree after every dataset
 #' in parenthesis.
-#'
 #' @return a data.frame. One column for each dimension in the data and
 #'    the values column for numerical values.
 #'    The time column for a time dimension.
@@ -68,7 +64,6 @@
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 #' }
-
 get_eurostat <- function(id, time_format = "date", select_time = NULL,
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL,
                          compress_file = TRUE,

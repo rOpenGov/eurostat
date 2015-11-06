@@ -58,6 +58,7 @@ Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets
 ```{r get_eurostat_toc, warning=FALSE, message=FALSE}
 # Load the package
 library(eurostat)
+library(rvest)
 
 # Get Eurostat data listing
 toc <- get_eurostat_toc()

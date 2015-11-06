@@ -3,8 +3,9 @@
 # Documentation, Build and Check
 library(devtools)
 document("../../")
-build("../../")
-check("../../")
+#build("../../")
+#build(vignettes = FALSE)
+#check("../../", vignettes = FALSE)
 
 # Submissions:
 #

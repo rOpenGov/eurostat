@@ -1,5 +1,6 @@
-#' Transform raw Eurostat data table into the row-column-value format (RCV).
-#'
+#' @title tidy_eurostat
+#' @description Transform raw Eurostat data table into the row-column-value
+#' format (RCV).
 #' @param dat a data.frame from \code{\link{get_eurostat_raw}}.
 #' @param time_format a string giving a type of the conversion of the
 #'                    time column from the eurostat format.
@@ -9,21 +10,19 @@
 #'         a last date of the period. A "num" convers to a numeric and "raw"
 #'         does not do conversion. See \code{\link{eurotime2date}} and
 #'         \code{\link{eurotime2num}}.
-#'  @param select_time a character symbol for a time frequence or NULL (default).
-#'  @param stringsAsFactors if \code{TRUE} (the default) variables are
+#' @param select_time a character symbol for a time frequence or NULL
+#'  (default).
+#' @param stringsAsFactors if \code{TRUE} (the default) variables are
 #'         converted to factors in original Eurostat order. If \code{FALSE}
 #'         they are returned as strings.
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'     "provisional") should be kept in a separate column or if they
 #'     can be removed. Default is \code{FALSE}
-#'
-#'  @return data.frame in the molten format with the last column 'values'.
-#'
+#' @return data.frame in the molten format with the last column 'values'.
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat").
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @keywords internal utilities database
-
 tidy_eurostat <-
   function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = default.stringsAsFactors(),

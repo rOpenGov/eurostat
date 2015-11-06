@@ -1,15 +1,11 @@
-#' set_eurostat_toc
-#' 
+#' @title set_eurostat_toc
 #' @description For internal use
-#' 
-#'
-#' Returns:
-#'  @return Empty element
-#'
+#' @param ... Arguments to be passed
+#' @return Empty element
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @keywords internal
-set_eurostat_toc <- function() {
+set_eurostat_toc <- function(...) {
    if (!exists(".eurostatTOC", envir = .EurostatEnv)) {
    base <- eurostat_url()
    url <- paste(base, "estat-navtree-portlet-prod/", 

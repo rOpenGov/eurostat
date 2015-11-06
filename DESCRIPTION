@@ -9,15 +9,15 @@ Authors@R: c(
     person("Kainu", "Markus", role = "aut"),
     person("Huovari", "Janne", role = "aut"))
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
-Description: Tools to download data from the Eurostat database 
-    http://ec.europa.eu/eurostat/ together with search and manipulation 
+Description: Tools to download data from the Eurostat database
+    http://ec.europa.eu/eurostat/ together with search and manipulation
     utilities.
 License: BSD_2_clause + file LICENSE
-Depends: 
+Depends:
     R (>= 3.0.2)
 Imports:
     tidyr
-Suggests: 
+Suggests:
     knitr,
     mapproj,
     plotrix,
@@ -25,7 +25,6 @@ Suggests:
     rmarkdown,
     ggplot2,
     testthat,
-    rvest,
     dplyr,
     stringi,
     devtools
@@ -35,3 +34,4 @@ BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
+RoxygenNote: 5.0.0

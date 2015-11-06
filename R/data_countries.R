@@ -1,8 +1,6 @@
-#' Countries and country codes 
-#' 
-#' Data.frames for countries and country codes in EU, Euro are, EFTA and
-#' EU candidate countries.
-#' 
+#' @title eu_countries
+#' @description Countries and country codes. Data.frames for countries and
+#' country codes in EU, Euro are, EFTA and EU candidate countries.
 #' @format A data.frame:
 #' \describe{
 #'   \item{code}{eurostat code of the country}

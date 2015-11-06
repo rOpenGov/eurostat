@@ -1,13 +1,10 @@
-#' Clean Eurostat Cache
-#' 
-#' Delete all .rds files from the eurostat cache directory. 
-#' See \code{\link{get_eurostat}} for more on cache.
-#' 
+#' @title clean_eurostat_cache
+#' @description Clean Eurostat Cache. Delete all .rds files from the eurostat
+#' cache directory. See \code{\link{get_eurostat}} for more on cache.
 #' @param cache_dir A path to cache directory. If \code{NULL} (default)
 #'  tries to clean default temporary cache directory.
 #' @export
-#' @examples clean_eurostat_cache()
-#' 
+#' @examples clean_eurostat_cache() 
 clean_eurostat_cache <- function(cache_dir = NULL){
   if (is.null(cache_dir)){
     cache_dir <- getOption("eurostat_cache_dir", file.path(tempdir(), "eurostat"))

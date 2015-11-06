@@ -1,8 +1,7 @@
-#' Date conversion from Eurostat time format
-#' 
-#' A function to convert Eurostat time values to objects of class 
-#' \code{\link{Date}} representing calendar dates.
-#' 
+#' @title eurotime2date
+#' @description Date conversion from Eurostat time format. A function to
+#' convert Eurostat time values to objects of class \code{\link{Date}}
+#' representing calendar dates.
 #' @param x a charter string with time information in Eurostat time format.
 #' @param last a logical. If \code{FALsE} (default) the date  is 
 #'        the first date of the period (month, quarter or year). If \code{TRUE} 

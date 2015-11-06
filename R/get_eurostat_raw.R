@@ -1,17 +1,13 @@
-#' Download data from the eurostat database
-#'
-#' @description Downloads datasets from the eurostat database and 
-#'	       transforms into tabular format.
-#'  
+#' @title get_eurostat_raw
+#' @description Download data from the eurostat database. Downloads datasets
+#' from the eurostat database and transforms into tabular format.
 #' @param id A code name for the data set of interested. See the table of
 #'  contents of eurostat datasets for more details.
-#'  
 #' @return A dataset in data.frame format. First column contains comma 
 #' 	  separated codes of cases. Other columns usually corresponds to 
 #'	  years and column names are years with preceding X. Data is in 
 #'	  character format as it contains values together with eurostat 
 #'	  flags for data.
-#'  
 #' @seealso \code{\link{get_eurostat}}.
 #' @details Data is downloaded from
 #'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}

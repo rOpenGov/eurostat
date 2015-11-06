@@ -1,6 +1,5 @@
 # Small utility functions used by other eurostat functions
 # Should not be exported
-
 # Return vector of available frequencies
 # param x a vector of "raw" time variable
 available_freq <- function(x){
