@@ -10,14 +10,13 @@
 #'         a last date of the period. A "num" convers to a numeric and "raw"
 #'         does not do conversion. See \code{\link{eurotime2date}} and
 #'         \code{\link{eurotime2num}}.
-#' @param select_time a character symbol for a time frequence or NULL (default).
-#'    Most of the datasets have just one time frequency, in which case
-#'    the \code{NULL} is of. However, some of the datasets
-#'    includes multible time frequences. Use symbols to
-#'    select one of them with:
-#'    Y = annual, S = semi-annual, Q = quarterly, M = monthly.
-#'    For all frequencies in same data.frame \code{time_format = "raw"}
-#'    should be used.
+#' @param select_time a character symbol for a time frequence or NULL,
+#'        which is used by default as most datasets have just one time
+#'        frequency. For datasets with multiple time
+#'        frequencies, select the desired time format with:
+#'    	  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
+#'        For all frequencies in same data.frame \code{time_format = "raw"}
+#'        should be used.
 #' @param cache a logical whether to do caching. Default is \code{TRUE}.
 #' @param update_cache a locigal whether to update cache. Can be set also with
 #'        options(eurostat_update = TRUE)
