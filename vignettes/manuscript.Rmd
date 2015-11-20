@@ -33,6 +33,8 @@ library(knitr)
 opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,fig.height=10,fig.width=10))
 ```
 
+To be submitted to [R Journal](https://journal.r-project.org/) ?
+
 ## Introduction
 
 Governmental institutions have started to release increasing amount of
