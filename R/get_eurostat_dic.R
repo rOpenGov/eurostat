@@ -8,6 +8,7 @@
 #' @return A data.frame with two columns, first with code names and 
 #'          second with full names.
 #' @export
+#' @importFrom utils read.table
 #' @seealso \code{\link{label_eurostat}}, \code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
 #' @references see citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}

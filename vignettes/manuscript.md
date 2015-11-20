@@ -219,7 +219,7 @@ We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for
 maintaining the open data portal and the
 [rOpenGov](https://github.ropengov.io) collection for supporting the
 package development. This work has been partially funded by Academy of
-Finland (decision ...). We also wish to thank Juuso Parkkinen and Joona Lehtomäki for their valuable feedback on this work.
+Finland (decision ...). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their valuable feedback on this work.
 
 
 ## References

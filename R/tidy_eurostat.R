@@ -28,6 +28,8 @@ tidy_eurostat <-
            stringsAsFactors = default.stringsAsFactors(),
            keepFlags = FALSE) {
 
+
+
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split = "\\.")[[1]]
     cnames1 <- cnames[-length(cnames)]
@@ -90,6 +92,7 @@ tidy_eurostat <-
 
 
     # convert time column
+    time <- NULL # to avoid cran build warnings
     if (time_format == "date"){
       dat3$time <- eurotime2date(dat3$time, last = FALSE)
     } else if (time_format == "date_last"){

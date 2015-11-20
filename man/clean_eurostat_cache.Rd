@@ -11,8 +11,8 @@ clean_eurostat_cache(cache_dir = NULL)
 tries to clean default temporary cache directory.}
 }
 \description{
-Clean Eurostat Cache. Delete all .rds files from the eurostat
-cache directory. See \code{\link{get_eurostat}} for more on cache.
+Delete all .rds files from the eurostat cache directory.
+             See \code{\link{get_eurostat}} for more on cache.
 }
 \examples{
 clean_eurostat_cache() 

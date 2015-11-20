@@ -20,12 +20,11 @@ A "date_last" convers to a \code{\link{Date}} with
  does not do conversion. See \code{\link{eurotime2date}} and
  \code{\link{eurotime2num}}.}
 
-\item{select_time}{a character symbol for a time frequence or NULL (default).
-Most of the datasets have just one time frequency, in which case
-the \code{NULL} is of. However, some of the datasets
-includes multible time frequences. Use symbols to
-select one of them with:
-Y = annual, S = semi-annual, Q = quarterly, M = monthly.
+\item{select_time}{a character symbol for a time frequence or NULL,
+which is used by default as most datasets have just one time
+frequency. For datasets with multiple time
+frequencies, select the desired time format with:
+  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
 For all frequencies in same data.frame \code{time_format = "raw"}
 should be used.}
 

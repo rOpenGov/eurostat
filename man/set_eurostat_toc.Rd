@@ -19,7 +19,7 @@ For internal use
 Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
 }
 \references{
-see citation("eurostat").
+see citation("eurostat")
 }
 \keyword{internal}
 

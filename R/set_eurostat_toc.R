@@ -2,7 +2,8 @@
 #' @description For internal use
 #' @param ... Arguments to be passed
 #' @return Empty element
-#' @references see citation("eurostat"). 
+#' @references see citation("eurostat")
+#' @importFrom utils read.table
 #' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @keywords internal
 set_eurostat_toc <- function(...) {

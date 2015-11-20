@@ -35,7 +35,7 @@ Data is downloaded from
 Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com}
 }
 \references{
-see citation("eurostat").
+see citation("eurostat")
 }
 \seealso{
 \code{\link{get_eurostat}}.

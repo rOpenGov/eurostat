@@ -11,7 +11,9 @@
 #' @seealso \code{\link{get_eurostat}}.
 #' @details Data is downloaded from
 #'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
-#' @references see citation("eurostat").
+#' @references see citation("eurostat")
+#' @importFrom utils download.file
+#' @importFrom utils read.table
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{
 #' 	       tmp <- get_eurostat_raw("educ_iste")
