@@ -202,9 +202,9 @@ stringr `r citep(citation("stringr"))`.
 Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
-For the map example, look at Figure `r fig$ref("mapexample")`.
+For the map example, look at Figure `r fig$ref("2015-manu-RJournal_map_example")`.
 
-```{r 2015-manu-RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=TRUE, fig.cap=fig$cap("mapexample", "Eurostat spatial visualization example.")}
+```{r 2015-manu-RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=TRUE, fig.cap=fig$cap("2015-manu-RJournal_map_example", "Eurostat spatial visualization example.")}
 # Clean the cache
 clean_eurostat_cache()
 
@@ -370,7 +370,7 @@ To make a triangle map from the plotrix `r citep(citation("plotrix"))`
 package provides an example on visualizing passenger transport data
 distributions (Figure YYY):
 
-```{r 2015-manu-searchdata, echo=FALSE, eval=TRUE, fig.width=5, fig.height=5}
+```{r 2015-manu-searchdata, echo=FALSE, eval=TRUE, fig.width=8, fig.height=5, fig.cap=fig$cap("2015-manu-searchdata", "Triangle plot example.")}
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
 
@@ -415,7 +415,7 @@ The package or its predecessors have already been applied in several case studie
 
 The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
 
-```{r 2015-manu-roadaccidents, echo=FALSE, eval=TRUE, fig.width=5, fig.height=5, fig.cap="Caption for this figure goes here."}
+```{r 2015-manu-roadaccidents, echo=FALSE, eval=TRUE, fig.width=6, fig.height=5, fig.cap=fig$cap("2015-manu-roadaccidents", "Road accidents.")}
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
 
@@ -427,7 +427,7 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
 
 We can also look at the distribution of BMI between different age groups:
 
-```{r 2015-manu-bmi, echo=FALSE, eval=TRUE} 
+```{r 2015-manu-bmi, echo=FALSE, eval=TRUE, fig.width=6, fig.height=5} 
 summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
 tmp1 %>%
   dplyr::filter( isced97 == "TOTAL" ,
@@ -456,7 +456,7 @@ the manuscript text along with up-to-date figures and tables with the
 latest version of the eurostat data. Manuscript automation provides
 transparent documentation with full algorithmic details on how to
 access, preprocess, analyse, and report data and analyses, thus
-serving a template for good reproducible research practice. This article is written with a reproducible source code available at [eurostat github page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd).
+serving a template for good reproducible research practice. The reproducible source code for this manuscript is available at [eurostat github page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd).
 
 The package exemplifies also the challenges and possible solutions to
 reproducible research and automated open data retrieval. Possible
@@ -470,9 +470,6 @@ issues, bug reports and other feedback via [this development
 site](https://github.com/ropengov/eurostat).
 
 
-
-
-
 ## Acknowledgements
 
 We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for
@@ -480,7 +477,6 @@ maintaining the open data portal and the
 [rOpenGov](https://github.ropengov.io) collection for supporting the
 package development. This work has been partially funded by Academy of
 Finland (decision ...). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their valuable feedback on this work.
-
 
 
 ## References

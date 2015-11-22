@@ -225,7 +225,7 @@ distributions (Figure YYY):
 ## [5] NA
 ```
 
-![plot of chunk 2015-manu-searchdata](2015-manuscript-figures/2015-manu-searchdata-1.png) ![plot of chunk 2015-manu-searchdata](2015-manuscript-figures/2015-manu-searchdata-2.png) 
+![Figure 2: Triangle plot example.](2015-manuscript-figures/2015-manu-searchdata-1.png) ![Figure 2: Triangle plot example.](2015-manuscript-figures/2015-manu-searchdata-2.png) 
 
 To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package (Arel-Bundock, 2014). To retrieve the eurostat country code list for EFTA, for instance, use:
 
