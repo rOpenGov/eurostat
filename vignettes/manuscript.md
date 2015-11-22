@@ -1,7 +1,7 @@
 ---
 title: "eurostat R package"
 author: Przemyslaw Biecek, Janne Huovari, Markus Kainu, Leo Lahti
-date: "2015-11-19"
+date: "2015-11-22"
 bibliography: 
 - bibliography.bib
 - references.bib
@@ -19,6 +19,8 @@ output:
 
 
 
+
+To be submitted to [R Journal](https://journal.r-project.org/) ?
 
 ## Introduction
 
@@ -46,7 +48,10 @@ package has been actively developed by several independent
 contributors and based on the community feedback in Github, and its
 first CRAN release was on.. We are now reporting the first mature
 version of the package that has been improved and tested by multiple
-users.
+users, and includes features like cache, handling dates, and using the
+tidy data principles , with the help of
+the tidyr R package (Wickham, 2015a).
+
 
 The work is based on our earlier CRAN packages
 [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and
@@ -82,6 +87,7 @@ Juuso Parkkinen and Kainu, 2013), which provides reproducible research
 tools for computational social science and digital humanities.
 
 
+
 ## Overview of the functionality
 
 The package includes tools to search and retrieve specific data sets
@@ -89,7 +95,7 @@ from the Eurostat open data portal, converting identifiers in
 human-readable formats, selecting, modifying and visualizing the
 data. Detailed installation instructions and usage examples are
 provided in the [package
-vignette](https://github.com/rOpenGov/eurostat/vignette/eurostat_tutorial.Rmd).
+vignette](https://github.com/rOpenGov/eurostat/vignette/eurostat_tutorial.Rmd), and the [introductory blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples).
 
 The unified interface to data sets can make data analysis more
 straightforward and transparent by providing a standardized and
@@ -111,6 +117,15 @@ library(eurostat)
 results <- search_eurostat("disposable income", type = "dataset")
 kable(head(results))
 ```
+
+
+
+|     |title                                                                                                               |code        |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:----|:-------------------------------------------------------------------------------------------------------------------|:-----------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|1975 |Share of housing cost in disposable income by level of activity limitation, sex and age                             |hlth_dhc050 |dataset |17.07.2015          |17.07.2015                  |2005       |2013     |NA     |
+|3733 |Gini coefficient of equivalised disposable income (source: SILC)                                                    |ilc_di12    |dataset |30.10.2015          |16.02.2015                  |1995       |2014     |NA     |
+|3734 |Gini coefficient of equivalised disposable income before social transfers (pensions included in social transfers)   |ilc_di12b   |dataset |30.10.2015          |16.02.2015                  |2003       |2014     |NA     |
+|3735 |Gini coefficient of equivalised disposable income before social transfers (pensions excluded from social transfers) |ilc_di12c   |dataset |30.10.2015          |16.02.2015                  |2003       |2014     |NA     |
 
 The data type to search for is also specified. The options include 'table', 'dataset' or 'folder', referring to different levels of hierarchy in data organization: a 'table' resides in 'dataset' that are stored in a 'folder'. You can focus the search on a selected type.
 
@@ -144,12 +159,12 @@ results afterwards even if the source database has been updated.
 Data sets containing geographic information can be visualized on a
 map. Most indicators are of country-year -type, although some
 indicators have data also at lower level of regional breakdown. The
-disposable income of private households by NUTS 2 regions can be
-visualized, for instance, as follows [PLACE THE FIGURE FROM MARKUS
+disposable income of private households at [NUTS2](http://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics) level can be
+visualized, for instance, as in Figure XXX [PLACE THE FIGURE FROM MARKUS
 BLOG POST WITH HIDDEN SOURCE CODE HERE]. For a more detailed treatment
-of this example, see a related blog post [ADD LINK].
+of this example, see our related blog post [ADD LINK]. See more information on regional classification [here](http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?TargetUrl=DSP_GEN_DESC_VIEW_NOHDR&StrNom=NUTS_33&StrLanguageCode=EN).
 
-In this visualization, we combine the data retrieved with the eurostat package with additional map visualization tools and utilities including
+Here, we have combined the data retrieved with the eurostat package with additional map visualization tools and utilities including
 grid (R Core Team, 2015),
 maptools (Bivand and Lewin-Koh, 2015),
 rgdal (Bivand, Keitt, and Rowlingson, 2015),
@@ -157,15 +172,55 @@ rgeos (Bivand and Rundel, 2015),
 scales (Wickham, 2015b), and
 stringr (Wickham, 2015c).
 
+Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
 
+```
+## [[1]]
+## [1] TRUE
+## 
+## [[2]]
+## [1] TRUE
+## 
+## [[3]]
+## [1] TRUE
+## 
+## [[4]]
+## [1] TRUE
+## 
+## [[5]]
+## [1] TRUE
+## 
+## [[6]]
+## [1] TRUE
+```
 
-To triangle map from the
-plotrix (J, 2006) package, support by 
-rvest [ADD CITATION - IF / WHERE IS THIS USED??] provides an example on visualizing passenger transport data distributions [TRIANGLE PLOT HERE WITH HIDDEN SOURCE CODE]:
+```
+## OGR data source with driver: ESRI Shapefile 
+## Source: "./NUTS_2010_60M_SH/Data", layer: "NUTS_RG_60M_2010"
+## with 1920 features
+## It has 4 fields
+```
+
+![plot of chunk 2015-manu-RJournal_map_example](figure/2015-manu-RJournal_map_example-1.png) 
 
 
+To make a triangle map from the plotrix (J, 2006)
+package, support by rvest [ADD CITATION - IF / WHERE IS THIS USED??]
+provides an example on visualizing passenger transport data
+distributions [TRIANGLE PLOT HERE WITH HIDDEN SOURCE CODE]:
+
+
+```
+## [1] "Unit of measure"                                                                     
+## [2] "Vehicles"                                                                            
+## [3] "Geopolitical entity (reporting)"                                                     
+## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
+## [5] NA
+```
+
+![plot of chunk 2015-manu-searchdata](figure/2015-manu-searchdata-1.png) ![plot of chunk 2015-manu-searchdata](figure/2015-manu-searchdata-2.png) 
 
 To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package (Arel-Bundock, 2014). To retrieve the eurostat country code list for EFTA, for instance, use:
 
@@ -184,6 +239,65 @@ kable(efta_countries)
 |NO   |Norway        |
 |CH   |Switzerland   |
 
+## Applications
+
+The package or its predecessors have already been applied in several case studies by us and independent developers. Financial Times, for instance, [have used R to access data from Eurostat](http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html) using functions from SmarterPoland, the basis for our revised and expanded eurostat package.
+
+The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
+
+
+```r
+t1 <- get_eurostat("tsdtr420") %>%
+  dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
+
+ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
+  geom_point(size=4) +
+  geom_line() + theme_bw() + ggtitle("People killed in road accidents")
+```
+
+![plot of chunk 2015-manu-roadaccidents](figure/2015-manu-roadaccidents-1.png) 
+
+
+We can also look at the distribution of BMI between different age groups:
+
+
+```r
+summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
+```
+
+```
+##    time           bmi       sex           age            geo      
+##  2008:7468   18P5-25:1900   F:2516   TOTAL  : 864   AT     : 432  
+##              25-30  :1900   M:2412   Y18-24 : 864   BE     : 432  
+##              GE30   :1896   T:2540   Y25-34 : 860   DE     : 432  
+##              LT18P5 :1772            Y45-54 : 860   ES     : 432  
+##                                      Y35-44 : 848   FR     : 432  
+##                                      Y65-74 : 844   HU     : 432  
+##                                      (Other):2328   (Other):4876  
+##   isced97         values    
+##  TOTAL:1867   Min.   : 0.1  
+##  ED0.2:1867   1st Qu.: 7.9  
+##  ED3_4:1867   Median :24.9  
+##  ED5_6:1867   Mean   :26.4  
+##               3rd Qu.:41.3  
+##               Max.   :88.6  
+##               NA's   :879
+```
+
+```r
+tmp1 %>%
+  dplyr::filter( isced97 == "TOTAL" ,
+          sex != "T",
+          age != "TOTAL", geo == "PL") %>%
+  ggplot(aes(y=values, x=age, fill=bmi)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~sex) + coord_flip() +
+  theme(legend.position="top")
+```
+
+![plot of chunk 2015-manu-bmi](figure/2015-manu-bmi-1.png) 
+ 
+
 
 ## Discussion
 
@@ -200,7 +314,7 @@ the manuscript text along with up-to-date figures and tables with the
 latest version of the eurostat data. Manuscript automation provides
 transparent documentation with full algorithmic details on how to
 access, preprocess, analyse, and report data and analyses, thus
-serving a template for good reproducible research practice.
+serving a template for good reproducible research practice. This article is written with a reproducible source code available at [eurostat github page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd).
 
 The package exemplifies also the challenges and possible solutions to
 reproducible research and automated open data retrieval. Possible
@@ -213,6 +327,10 @@ the [github site](https://github.com/rOpenGov/eurostat). We welcome
 issues, bug reports and other feedback via [this development
 site](https://github.com/ropengov/eurostat).
 
+
+
+
+
 ## Acknowledgements
 
 We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for
@@ -220,6 +338,7 @@ maintaining the open data portal and the
 [rOpenGov](https://github.ropengov.io) collection for supporting the
 package development. This work has been partially funded by Academy of
 Finland (decision ...). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their valuable feedback on this work.
+
 
 
 ## References

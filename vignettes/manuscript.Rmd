@@ -61,7 +61,10 @@ package has been actively developed by several independent
 contributors and based on the community feedback in Github, and its
 first CRAN release was on.. We are now reporting the first mature
 version of the package that has been improved and tested by multiple
-users.
+users, and includes features like cache, handling dates, and using the
+tidy data principles `r citep(bib[["tidydata"]])`, with the help of
+the tidyr R package `r citep(citation("tidyr"))`.
+
 
 The work is based on our earlier CRAN packages
 [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and
@@ -96,6 +99,7 @@ The eurostat R package is part of the
 tools for computational social science and digital humanities.
 
 
+
 ## Overview of the functionality
 
 The package includes tools to search and retrieve specific data sets
@@ -103,7 +107,7 @@ from the Eurostat open data portal, converting identifiers in
 human-readable formats, selecting, modifying and visualizing the
 data. Detailed installation instructions and usage examples are
 provided in the [package
-vignette](https://github.com/rOpenGov/eurostat/vignette/eurostat_tutorial.Rmd).
+vignette](https://github.com/rOpenGov/eurostat/vignette/eurostat_tutorial.Rmd), and the [introductory blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples).
 
 The unified interface to data sets can make data analysis more
 straightforward and transparent by providing a standardized and
@@ -111,14 +115,14 @@ automated way to access the data sets. Here we describe the
 functionality of the current CRAN release version (1.2.1). To install
 this, simply use
 
-```{r install, eval=FALSE}
+```{r 2015-manu-install, eval=FALSE}
 install.packages("eurostat")
 ```
 
 You can download the complete table of contents of the database with the function `get_eurostat_toc()`, or use `search_eurostat()` to make a more focused search over the table of contents. To retrieve data sets for 'disposable income', for instance, use:
 
 
-```{r, eval=FALSE}
+```{r 2015-manu-init, eval=TRUE}
 library(eurostat)
 results <- search_eurostat("disposable income", type = "dataset")
 kable(head(results))
@@ -132,7 +136,7 @@ codes in the Data Navigation Tree after every dataset in parenthesis.
 
 Download the selected data with `get_eurostat()`. To retrieve the data set with a particular identifier, use 
 
-```{r get_eurostat, warning=FALSE, message=FALSE, results='asis', eval=FALSE}
+```{r 2015-manu-get_eurostat, warning=FALSE, message=FALSE, results='asis', eval=TRUE}
 dat <- get_eurostat(id, time_format = "num")
 ```
 
@@ -155,12 +159,12 @@ results afterwards even if the source database has been updated.
 Data sets containing geographic information can be visualized on a
 map. Most indicators are of country-year -type, although some
 indicators have data also at lower level of regional breakdown. The
-disposable income of private households by NUTS 2 regions can be
-visualized, for instance, as follows [PLACE THE FIGURE FROM MARKUS
+disposable income of private households at [NUTS2](http://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics) level can be
+visualized, for instance, as in Figure XXX [PLACE THE FIGURE FROM MARKUS
 BLOG POST WITH HIDDEN SOURCE CODE HERE]. For a more detailed treatment
-of this example, see a related blog post [ADD LINK].
+of this example, see our related blog post [ADD LINK]. See more information on regional classification [here](http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?TargetUrl=DSP_GEN_DESC_VIEW_NOHDR&StrNom=NUTS_33&StrLanguageCode=EN).
 
-In this visualization, we combine the data retrieved with the eurostat package with additional map visualization tools and utilities including
+Here, we have combined the data retrieved with the eurostat package with additional map visualization tools and utilities including
 grid `r citep(citation("grid"))`,
 maptools `r citep(citation("maptools"))`,
 rgdal `r citep(citation("rgdal"))`,
@@ -168,88 +172,16 @@ rgeos `r citep(citation("rgeos"))`,
 scales `r citep(citation("scales"))`, and
 stringr `r citep(citation("stringr"))`.
 
+Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
-```{r RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=FALSE}
-# Let us first download the data and convert the time column into numeric format
-library(eurostat)
 
-# Clean the cache first
+```{r 2015-manu-RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=TRUE}
+# Clean the cache
 clean_eurostat_cache()
 
-# Download the income variable
-dat <- get_eurostat("tgs00026", time_format = "raw")
-
-# Extract the information on country in question.
-# (First two character in region string mark the country)
-dat$cntry <- substr(dat$geo, 1,2)
-
-# Create the variable for proper countrynames using countryname-package
-library(countrycode)
-dat$countryname <- countrycode(dat$cntry, "iso2c", "country.name")
-
-# convert time column from Date to numeric
-dat$time <- eurotime2num(dat$time)
-kable(head(dat))
-
-# Plot the data at the regional level and color the lines using country names:
-library(ggplot2)
-p <- ggplot(dat, aes(x=time,y=values,group=geo,color=countryname))
-p <- p + geom_point() + geom_line()
-
-# Add the region names at the end of each line
-p <- p + geom_text(data=merge(dat, aggregate(time ~ geo, dat, max), 
-                              by=c("time","geo")), 
-                   aes(x=time, y = values, label=geo), hjust=-0.5,vjust=-1,size=3)
-p <- p + labs(x="Year", y="Disposable income of private households (€ per year)")
-
-# Place the legend with country names on top in three rows
-p <- p + theme(legend.direction = "horizontal", legend.position = "top")
-p <- p + guides(color = guide_legend(title = "Country",
-                                     title.position = "top", 
-                                     title.hjust=.5,
-                                     nrow=3,
-                                     byrow=TRUE))
-print(p)
-
-# Labelling the data
-# Remove the cntry and countrycode columns that were added manually
-cntry_cols <- dat[ , names(dat) %in% c("cntry","countryname")]
-dat <- dat[ , !names(dat) %in% c("cntry","countryname")]
-
-# apply the definitions from dictionary
-datl <- label_eurostat(dat)
-
-# Bind the country name columns back to the labelled data 
-datl2 <- cbind(datl,cntry_cols)
-
-# Plot four countries in alphabetical order in their own facets with
-# region names.
-
-# Subset the first 4 countries in albhabetical order
-datl3 <- datl2[datl2$countryname %in% sort(unique(datl2$countryname))[1:4],]
-
-# plot the data using country facets
-library(ggplot2)
-p <- ggplot(datl3, aes(x = time, y = values, group = geo))
-p <- p + geom_point(color="grey") + geom_line(color="grey")
-p <- p + geom_text(data=merge(datl3, aggregate(time ~ geo, datl3, max), 
-                              by=c("time","geo")), 
-                   aes(x=time, y = values, label=geo), vjust=1,size=3)
-p <- p + coord_cartesian(xlim=c(min(datl2$time):max(datl2$time)+3))
-p <- p + facet_wrap(~countryname, scales = "free", ncol = 1)
-p <- p + labs(title=paste0(unique(datl3$indic_na),"\n(",unique(datl3$unit),")"),
-                x="Year",y="Disposable income of private households (€ per year)")
-p
-
-# Install some more dependencies
+# Load dependencies
 PACKAGES <- c("rgdal","maptools","rgeos","stringr","scales","grid")
-#  Install packages
-inst <- match(PACKAGES, .packages(all=TRUE))
-need <- which(is.na(inst))
-if (length(need) > 0) install.packages(PACKAGES[need])
-# Load packages
 lapply(PACKAGES, require, character.only=T)
-
 
 # Downloading and manipulating the tabular data
 df <- get_eurostat("tgs00026", time_format = "raw")
@@ -257,8 +189,8 @@ df <- get_eurostat("tgs00026", time_format = "raw")
 # convert time column from Date to numeric
 df$time <- eurotime2num(df$time)
 
-# subset time to have data for 2000, 2005 and 2011
-df <- df[df$time %in% c(2000,2005,2011),]
+# subset time to have data for 
+df <- df[df$time %in% c(2005,2010,2011),]
 
 # spread the data into wide format
 library(tidyr)
@@ -267,16 +199,14 @@ dw <- spread(df, time, values)
 # Downloading and manipulating the spatial data
 # We download the zipped shapefile in 1:60 million scale from year
 # 2010 and subset it at the level of NUTS2.
-
 # Load the GISCO shapefile
 download.file("http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", destfile="NUTS_2010_60M_SH.zip")
-
 # unzip
 unzip("NUTS_2010_60M_SH.zip")
-library(rgdal)
 
 # read into SpatialPolygonsDataFrame
-map <- readOGR(dsn = "./NUTS_2010_60M_SH/NUTS_2010_60M_SH/data", layer = "NUTS_RG_60M_2010")
+library(rgdal)
+map <- readOGR(dsn = "./NUTS_2010_60M_SH/Data", layer = "NUTS_RG_60M_2010")
 
 # subset the spatialpolygondataframe at NUTS2-level
 map_nuts2 <- subset(map, STAT_LEVL_ == 2)
@@ -285,11 +215,6 @@ map_nuts2 <- subset(map, STAT_LEVL_ == 2)
 # Third, we will make the both datas of same length,
 # give then identical rownames and then merge the tabular data with the
 # spatial data.
-# dim show how many regions are in the spatialpolygondataframe
-dim(map_nuts2)
-
-# dim show how many regions are in the data.frame
-dim(dw)
 
 # Spatial dataframe has 467 rows and attribute data 275.
 # We need to make attribute data to have similar number of rows
@@ -298,7 +223,7 @@ VarX <- rep(NA, 316)
 dat <- data.frame(NUTS_ID,VarX)
 
 # then we shall merge this with Eurostat data.frame
-dat2 <- merge(dat,dw,by.x="NUTS_ID",by.y="geo", all.x=TRUE)
+dat2 <- merge(dat, dw, by.x="NUTS_ID", by.y="geo", all.x=TRUE)
 
 # merge this manipulated attribute data with the spatialpolygondataframe
 # rownames
@@ -371,8 +296,8 @@ categories <- function(x, cat = 5) {
   y <- factor(y, levels=c("No Data",labs[1:cat]))
 }
 
-# years for for loop
-years <- unique(map.df.l$year)
+# years for for loop - now show just one year
+years <- unique(map.df.l$year)[[1]]
 
 # Loop over the three years
 for (year in years) {
@@ -412,13 +337,13 @@ for (year in years) {
 ```
 
 
-To triangle map from the
-plotrix `r citep(citation("plotrix"))` package, support by 
-rvest [ADD CITATION - IF / WHERE IS THIS USED??] provides an example on visualizing passenger transport data distributions [TRIANGLE PLOT HERE WITH HIDDEN SOURCE CODE]:
+To make a triangle map from the plotrix `r citep(citation("plotrix"))`
+package, support by rvest [ADD CITATION - IF / WHERE IS THIS USED??]
+provides an example on visualizing passenger transport data
+distributions [TRIANGLE PLOT HERE WITH HIDDEN SOURCE CODE]:
 
-```{r, echo=FALSE, eval=FALSE}
-library(eurostat)
-library(rvest)
+```{r 2015-manu-searchdata, echo=FALSE, eval=TRUE}
+# library(rvest)
 
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
@@ -453,10 +378,41 @@ triax.plot(na.omit(transports)[, -1], show.grid = TRUE,
 
 To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package `r citep(citation("countrycode"))`. To retrieve the eurostat country code list for EFTA, for instance, use:
 
-```{r, echo=TRUE, eval=TRUE}
+```{r 2015-manu-efta, echo=TRUE, eval=TRUE}
 data(efta_countries)
 kable(efta_countries)
 ```
+
+## Applications
+
+The package or its predecessors have already been applied in several case studies by us and independent developers. Financial Times, for instance, [have used R to access data from Eurostat](http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html) using functions from SmarterPoland, the basis for our revised and expanded eurostat package.
+
+The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
+
+```{r 2015-manu-roadaccidents, echo=TRUE, eval=TRUE}
+t1 <- get_eurostat("tsdtr420") %>%
+  dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
+
+ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
+  geom_point(size=4) +
+  geom_line() + theme_bw() + ggtitle("People killed in road accidents")
+```
+
+
+We can also look at the distribution of BMI between different age groups:
+
+```{r 2015-manu-bmi, echo=TRUE, eval=TRUE} 
+summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
+tmp1 %>%
+  dplyr::filter( isced97 == "TOTAL" ,
+          sex != "T",
+          age != "TOTAL", geo == "PL") %>%
+  ggplot(aes(y=values, x=age, fill=bmi)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~sex) + coord_flip() +
+  theme(legend.position="top")
+```
+ 
 
 
 ## Discussion
@@ -474,7 +430,7 @@ the manuscript text along with up-to-date figures and tables with the
 latest version of the eurostat data. Manuscript automation provides
 transparent documentation with full algorithmic details on how to
 access, preprocess, analyse, and report data and analyses, thus
-serving a template for good reproducible research practice.
+serving a template for good reproducible research practice. This article is written with a reproducible source code available at [eurostat github page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd).
 
 The package exemplifies also the challenges and possible solutions to
 reproducible research and automated open data retrieval. Possible
@@ -487,6 +443,10 @@ the [github site](https://github.com/rOpenGov/eurostat). We welcome
 issues, bug reports and other feedback via [this development
 site](https://github.com/ropengov/eurostat).
 
+
+
+
+
 ## Acknowledgements
 
 We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for
@@ -494,6 +454,7 @@ maintaining the open data portal and the
 [rOpenGov](https://github.ropengov.io) collection for supporting the
 package development. This work has been partially funded by Academy of
 Finland (decision ...). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their valuable feedback on this work.
+
 
 
 ## References

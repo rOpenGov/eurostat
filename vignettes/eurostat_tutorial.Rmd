@@ -82,9 +82,9 @@ With `search_eurostat()` you can search the table of contents for particular pat
 kable(head(search_eurostat("passenger transport")))
 ```
 
-Codes for the dataset can be searched also from the Eurostat database 
-\url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
-database gives codes in the Data Navigation Tree after every dataset 
+Codes for the dataset can be searched also from the [Eurostat
+database](http://ec.europa.eu/eurostat/data/database). The Eurostat
+database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 
 ## <a name="download"></a>Downloading data 
