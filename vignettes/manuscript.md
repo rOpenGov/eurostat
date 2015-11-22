@@ -179,6 +179,9 @@ stringr (Wickham, 2015c).
 Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
+Also testing kfigr 'r figr("2015-manu-RJournal_map_example")'
+
+<a name="2015-manu-RJournal_map_example"></a>
 
 ```
 ## [[1]]
@@ -208,6 +211,8 @@ Example on spatio-temporal data visualization: let us look at the indicator [`tg
 ```
 
 ![Figure 1: Eurostat spatial visualization example.](2015-manuscript-figures/2015-manu-RJournal_map_example-1.png) 
+
+Also testing kfigr 'r figr("2015-manu-RJournal_map_example")'
 
 For the map example, look at Figure 1.
 
