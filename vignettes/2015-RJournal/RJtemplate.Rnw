@@ -498,7 +498,8 @@ Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehto
 \email{author3@work}
 
 \address{Przemyslaw Biecek\\
-  Affiliation\\
-  Address\\
-  Country\\}
-\email{author3@work}
+  Faculty of Mathematics, Informatics, and Mechanics\\
+  University of Warsaw\\
+  Banacha 2, 02-097 Warsaw\\
+  Poland\\}
+\email{P.Biecek@mimuw.edu.pl}
