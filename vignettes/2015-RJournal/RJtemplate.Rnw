@@ -423,10 +423,14 @@ tmp1 %>%
   dplyr::filter( isced97 == "TOTAL" ,
           sex != "T",
           age != "TOTAL", geo == "PL") %>%
-  ggplot(aes(y=values, x=age, fill=bmi)) +
+  mutate(BMI = factor(bmi, 
+                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
+                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
+  arrange(BMI) %>%
+  ggplot(aes(y=values, x=age, fill=BMI)) +
   geom_bar(stat="identity") +
   facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top")
+  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
 @
  
 
