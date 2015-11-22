@@ -407,10 +407,11 @@ The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivi
 <<2015-manu-roadaccidents, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE>>=
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
-
-ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
-  geom_point(size=4) +
-  geom_line() + theme_bw() + ggtitle("People killed in road accidents")
+t1$Country <- t1$geo
+ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
+  geom_point(size=4) + 
+  geom_line() + theme_bw() + ggtitle("People killed in road accidents")+
+  xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
 @
 
 
