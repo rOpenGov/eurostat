@@ -202,8 +202,6 @@ stringr `r citep(citation("stringr"))`.
 Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
-For the map example, look at Figure `r fig$ref("2015-manu-RJournal_map_example")`.
-
 ```{r 2015-manu-RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=TRUE, fig.cap=fig$cap("2015-manu-RJournal_map_example", "Eurostat spatial visualization example.")}
 # Clean the cache
 clean_eurostat_cache()
@@ -364,6 +362,9 @@ for (year in years) {
   print(p)
 }
 ```
+
+For the map example, look at Figure `r fig$ref("2015-manu-RJournal_map_example")`.
+
 
 
 To make a triangle map from the plotrix `r citep(citation("plotrix"))`

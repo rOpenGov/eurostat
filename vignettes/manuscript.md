@@ -179,8 +179,6 @@ stringr (Wickham, 2015c).
 Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
-For the map example, look at Figure .
-
 
 ```
 ## [[1]]
@@ -210,6 +208,9 @@ For the map example, look at Figure .
 ```
 
 ![Figure 1: Eurostat spatial visualization example.](2015-manuscript-figures/2015-manu-RJournal_map_example-1.png) 
+
+For the map example, look at Figure 1.
+
 
 
 To make a triangle map from the plotrix (J, 2006)
@@ -250,7 +251,7 @@ The package or its predecessors have already been applied in several case studie
 
 The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
 
-![Caption for this figure goes here.](2015-manuscript-figures/2015-manu-roadaccidents-1.png) 
+![Figure 3: Road accidents.](2015-manuscript-figures/2015-manu-roadaccidents-1.png) 
 
 
 We can also look at the distribution of BMI between different age groups:
@@ -294,7 +295,7 @@ the manuscript text along with up-to-date figures and tables with the
 latest version of the eurostat data. Manuscript automation provides
 transparent documentation with full algorithmic details on how to
 access, preprocess, analyse, and report data and analyses, thus
-serving a template for good reproducible research practice. This article is written with a reproducible source code available at [eurostat github page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd).
+serving a template for good reproducible research practice. The reproducible source code for this manuscript is available at [eurostat github page](https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd).
 
 The package exemplifies also the challenges and possible solutions to
 reproducible research and automated open data retrieval. Possible
@@ -308,9 +309,6 @@ issues, bug reports and other feedback via [this development
 site](https://github.com/ropengov/eurostat).
 
 
-
-
-
 ## Acknowledgements
 
 We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for
@@ -318,7 +316,6 @@ maintaining the open data portal and the
 [rOpenGov](https://github.ropengov.io) collection for supporting the
 package development. This work has been partially funded by Academy of
 Finland (decision ...). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their valuable feedback on this work.
-
 
 
 ## References
