@@ -38,6 +38,26 @@ library(knitr)
 opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,fig.height=10,fig.width=10))
 ```
 
+```{r 2015-manu-functions, include=FALSE}
+# One way for automated figure numbering and citing, borrowed from
+# http://stackoverflow.com/questions/13848137/figure-captions-references-using-knitr-and-markdown-to-html
+
+# A function for captioning and referencing images
+fig <- local({
+    i <- 0
+    ref <- list()
+    list(
+        cap=function(refName, text) {
+            i <<- i + 1
+            ref[[refName]] <<- i
+            paste("Figure ", i, ": ", text, sep="")
+        },
+        ref=function(refName) {
+            ref[[refName]]
+        })
+})
+```
+
 To be submitted to [R Journal](https://journal.r-project.org/) ?
 
 ## Introduction
@@ -103,29 +123,8 @@ The eurostat R package is part of the
 `r citep(bib[["Lahti13icml"]])`, which provides reproducible research
 tools for computational social science and digital humanities.
 
-## Fig referencing
 
-```{r functions, include=FALSE}
-# A function for captioning and referencing images
-fig <- local({
-    i <- 0
-    ref <- list()
-    list(
-        cap=function(refName, text) {
-            i <<- i + 1
-            ref[[refName]] <<- i
-            paste("Figure ", i, ": ", text, sep="")
-        },
-        ref=function(refName) {
-            ref[[refName]]
-        })
-})
-```
-```{r cars, echo=FALSE, fig.cap=fig$cap("cars", "Here you see some interesting stuff about cars and such.")}
-plot(cars)
-```
 
-What you always wanted to know about cars is shown in figure `r fig$ref("cars")`
 
 
 ## Overview of the functionality
@@ -203,7 +202,9 @@ stringr `r citep(citation("stringr"))`.
 Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
-```{r 2015-manu-RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=TRUE}
+For the map example, look at Figure `r fig$ref("mapexample")`.
+
+```{r 2015-manu-RJournal_map_example, warning=FALSE, message=FALSE, echo=FALSE, eval=TRUE, fig.cap=fig$cap("mapexample", "Eurostat spatial visualization example.")}
 # Clean the cache
 clean_eurostat_cache()
 

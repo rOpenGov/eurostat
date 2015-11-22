@@ -20,6 +20,8 @@ output:
 
 
 
+
+
 To be submitted to [R Journal](https://journal.r-project.org/) ?
 
 ## Introduction
@@ -86,12 +88,8 @@ The eurostat R package is part of the
 Juuso Parkkinen and Kainu, 2013), which provides reproducible research
 tools for computational social science and digital humanities.
 
-## Fig referencing
 
 
-![Figure 1: Here you see some interesting stuff about cars and such.](figure/cars-1.png) 
-
-What you always wanted to know about cars is shown in figure 1
 
 
 ## Overview of the functionality
@@ -181,6 +179,8 @@ stringr (Wickham, 2015c).
 Example on spatio-temporal data visualization: let us look at the indicator [`tgs00026`](http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026), (*Disposable income of private households by NUTS 2 regions*) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at [Administrative units / Statistical units](http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 
+For the map example, look at Figure .
+
 
 ```
 ## [[1]]
@@ -209,7 +209,7 @@ Example on spatio-temporal data visualization: let us look at the indicator [`tg
 ## It has 4 fields
 ```
 
-![plot of chunk 2015-manu-RJournal_map_example](figure/2015-manu-RJournal_map_example-1.png) 
+![Figure 1: Eurostat spatial visualization example.](2015-manuscript-figures/2015-manu-RJournal_map_example-1.png) 
 
 
 To make a triangle map from the plotrix (J, 2006)
@@ -225,7 +225,7 @@ distributions (Figure YYY):
 ## [5] NA
 ```
 
-![plot of chunk 2015-manu-searchdata](figure/2015-manu-searchdata-1.png) ![plot of chunk 2015-manu-searchdata](figure/2015-manu-searchdata-2.png) 
+![plot of chunk 2015-manu-searchdata](2015-manuscript-figures/2015-manu-searchdata-1.png) ![plot of chunk 2015-manu-searchdata](2015-manuscript-figures/2015-manu-searchdata-2.png) 
 
 To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package (Arel-Bundock, 2014). To retrieve the eurostat country code list for EFTA, for instance, use:
 
@@ -250,7 +250,7 @@ The package or its predecessors have already been applied in several case studie
 
 The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
 
-![Caption for this figure goes here.](figure/2015-manu-roadaccidents-1.png) 
+![Caption for this figure goes here.](2015-manuscript-figures/2015-manu-roadaccidents-1.png) 
 
 
 We can also look at the distribution of BMI between different age groups:
@@ -275,7 +275,7 @@ We can also look at the distribution of BMI between different age groups:
 ##               NA's   :879
 ```
 
-![plot of chunk 2015-manu-bmi](figure/2015-manu-bmi-1.png) 
+![plot of chunk 2015-manu-bmi](2015-manuscript-figures/2015-manu-bmi-1.png) 
  
 
 
