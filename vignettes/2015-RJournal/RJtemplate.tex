@@ -1,0 +1,204 @@
+% !TeX root = RJwrapper.tex
+\title{eurostat: R tools for eurostat open data}
+\author{Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek}
+
+\maketitle
+
+\abstract{
+An abstract of less than 150 words.
+}
+
+
+
+Introductory section which may include references in parentheses
+\citep{R}.
+
+Governmental institutions have started to release increasing amount of
+their data resources for the public as open data in the recent
+years. This is opening novel opportunities for research and citizen
+science. Eurostat, for instance, provides a rich collection of
+demographic and economic data through its open data portal. The portal
+currently includes ... data sets on ... between years ...
+
+Efficient tools to access and analyse such data collections can
+greatly benefit reproducible research. When the data is available, the
+analytical methodology spanning from raw data to the final publication
+can also be made available following reproducible research principles
+\citep{Gandrud13}. Standardization and automatization of
+common data analysis tasks via dedicated software packages can greatly
+facilitate reproducibility and code sharing, making the research more
+transparent and efficient.
+
+Here, we introduce the eurostat R package that implements automated
+tools for R to access open data from
+Eurostat \footnote{http://ec.europa.eu/eurostat} in
+R \citep{R}. The package has been actively developed by several
+independent contributors and based on the community feedback in
+Github, and its first CRAN release was on.. We are now reporting the
+first mature version of the package that has been improved and tested
+by multiple users, and includes features like cache, handling dates,
+and using the tidy data principles \citep{wickham2014}, with the help of
+the tidyr R package \citep{tidyr}.
+
+Despite many efforts to this direction, a dedicated R package for
+eurostat open data has been missing. Our work extends our earlier CRAN
+packages statfi \citep{statfi} and
+smarterpoland \citep{smarterpoland}. Compared to this earlier work, we
+have now implemented an expanded set of tools specifically focusing on
+the eurostat data collection. The datamart \citep{datamart} and the
+quandl \citep{quandl} R packages provide also access to certain
+versions of eurostat data. In contrast to these generic database
+packages, our work is fully focused on the Eurostat open data portal
+and provides specific functionality suited for this data
+collection. There is a development version for R package
+reurostat\footnote{https://github.com/Tungurahua/reurostat} but it
+does not seem to be actively maintained at the moment. The eurostat R
+package takes advantage of the following external R packages:
+devtools \citep{devtools}, dplyr \citep{dplyr}, knitr \citep{knitr},
+ggplot2 \citep{ggplot2}, mapproj \citep{mapproj},
+plotrix \citep{plotrix}, reshape2 \citep{reshape2},
+rmarkdown \citep{rmarkdown}, stringi \citep{stringi},
+testthat \citep{testthat}, tidyr \citep{tidyr}. The eurostat R package
+is part of the rOpenGov project
+\citep{Lahti13icml}, which provides reproducible research
+tools for computational social science and digital humanities.
+
+
+\section{Overview of the functionality}
+
+
+
+This section may contain a figure such as Figure~\ref{figure:rlogo}.
+
+\begin{figure}[htbp]
+  \centering
+  \includegraphics{Rlogo}
+  \caption{The logo of R.}
+  \label{figure:rlogo}
+\end{figure}
+
+The package includes tools to search and retrieve specific data sets
+from the Eurostat open data portal, converting identifiers in
+human-readable formats, selecting, modifying and visualizing the
+data. Further examples are provided in the package
+vignette\footnote{https://github.com/rOpenGov/eurostat/vignette/eurostat\_tutorial.Rmd},
+and a blog
+post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}.
+
+The unified interface to data sets can make data analysis more
+straightforward and transparent by providing a standardized and
+automated way to access the data sets. Here we describe the
+functionality of the current CRAN release version (1.2.1). To install
+this, simply use
+
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("eurostat")
+\end{Sinput}
+\end{Schunk}
+
+You can download the complete table of contents of the database with the function `get\_eurostat\_toc()`, or use `search\_eurostat()` to make a more focused search over the table of contents. To retrieve data sets for 'disposable income', for instance, use:
+
+
+\begin{Schunk}
+\begin{Sinput}
+> library(eurostat)
+> results <- search_eurostat("disposable income", type = "dataset")
+> library(knitr)
+> kable(head(results))
+\end{Sinput}
+\end{Schunk}
+
+The data type to search for is also specified. The options include 'table', 'dataset' or 'folder', referring to different levels of hierarchy in data organization: a 'table' resides in 'dataset' that are stored in a 'folder'. You can focus the search on a selected type.
+
+The first lines of the output are shown above. Use values from the `code` column to refer to a specific data set in the subsequent download commands. The dataset identifier codes can also be browsed at the Eurostat
+database\footnote{http://ec.europa.eu/eurostat/data/database}, which gives
+codes in the Data Navigation Tree after every dataset in parenthesis.
+
+Download the selected data with `get\_eurostat()`. To retrieve the data set with a particular identifier, use 
+
+\begin{Schunk}
+\begin{Sinput}
+> dat <- get_eurostat(id, time_format = "num")
+\end{Sinput}
+\end{Schunk}
+
+The original data is annual in this example, hence we have here
+selected a numeric time variable as it is more convient for annual
+time series than the default date format. To improve the
+interpretability of the output, the eurostat variable identifiers
+could be further replaced with human-readable labels based on
+definitions from Eurostat dictionaries with the `label\_eurostat()`
+function. The data is provided in the standard data.frame format, and
+all standard tools for data subsetting and reshaping can be
+conveniently applied.
+
+The downloaded data sets are stored in cache by default. This can help
+to avoid repeated downloading of identical data and helps to speed up
+the analysis. Another advantage is that by storing an exact copy of
+the data on the hard disk, it is possible to reproduce the analysis
+results afterwards even if the source database has been updated.
+
+Data sets containing geographic information can be visualized on a
+map. Most indicators are of country-year -type, although some
+indicators have data also at lower level of regional breakdown
+%\footnote{http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm\?TargetUrl=DSP\_GEN\_DESC\_VIEW\_NOHDR\&StrNom=NUTS\_33\&StrLanguageCode=EN}.
+
+The disposable income of private households at
+NUTS2\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
+level can be visualized, for instance, as in
+Figure~\ref{fig:markus}. For a more detailed treatment of this
+example, see our related blog
+post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}.
+
+
+Here, we have combined the data retrieved with the eurostat package
+with additional map visualization tools and utilities including
+grid \citep{grid}, maptools \citep{maptools}, rgdal \citep{rgdal},
+rgeos \citep{rgeos}, scales \citep{scales}, and
+stringr \citep{stringr}.
+
+Example on spatio-temporal data visualization: let us look at the indicator tgs00026\footnote{http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026}, (Disposable income of private households by NUTS 2 regions) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at Administrative units / Statistical units\footnote{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
+
+
+
+\section{Another section}
+
+There will likely be several sections, perhaps including code snippets, such as:
+
+\begin{example}
+  x <- 1:10
+  result <- myFunction(x)
+\end{example}
+
+
+
+\begin{Schunk}
+\begin{Soutput}
+[[1]]
+[1] TRUE
+
+[[2]]
+[1] TRUE
+
+[[3]]
+[1] TRUE
+
+[[4]]
+[1] TRUE
+
+[[5]]
+[1] TRUE
+
+[[6]]
+[1] TRUE
+\end{Soutput}
+\begin{Soutput}
+OGR data source with driver: ESRI Shapefile 
+Source: "./NUTS_2010_60M_SH/Data", layer: "NUTS_RG_60M_2010"
+with 1920 features
+It has 4 fields
+\end{Soutput}
+\end{Schunk}
+
+\begin{figure}

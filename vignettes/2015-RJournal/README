@@ -1,0 +1,11 @@
+To reproduce the manuscript PDF do the following:
+
+Sweave("RJtemplate.Rnw")
+
+# On command line:
+pdflatex RJwrapper.tex
+pdflatex RJwrapper.tex
+bibtex RJwrapper
+pdflatex RJwrapper.tex
+pdflatex RJwrapper.tex
+evince RJwrapper.pdf
