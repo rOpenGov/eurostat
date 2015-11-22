@@ -16,7 +16,7 @@ output:
 -->
 
 
-```{r, echo=FALSE, message=FALSE}
+```{r 2015-manu-init0, echo=FALSE, message=FALSE}
 # Handle citations
 require(knitcitations)
 cleanbib()
@@ -24,10 +24,15 @@ cleanbib()
 bib <- read.bibtex("bibliography.bib")
 #bib2 <- read.bibtex("references.bib")
 #opts_chunk$set(fig.width=4, fig.height=3, par=TRUE, out.width='2in', fig.pos='H')
-#knitr::opts_chunk$set(fig.path = "figure/")
+
+# figure folder
+knitr::opts_chunk$set(fig.path = "2015-manuscript-figures/")
+
+# ggplot theme
+theme_set(theme_bw(20))
 ```
 
-```{r, echo=FALSE}
+```{r 2015-manu-opts, echo=FALSE}
 library(eurostat)
 library(knitr)
 opts_chunk$set(list(echo=TRUE,eval=TRUE,cache=FALSE,warning=FALSE,message=FALSE,fig.height=10,fig.width=10))
@@ -98,6 +103,29 @@ The eurostat R package is part of the
 `r citep(bib[["Lahti13icml"]])`, which provides reproducible research
 tools for computational social science and digital humanities.
 
+## Fig referencing
+
+```{r functions, include=FALSE}
+# A function for captioning and referencing images
+fig <- local({
+    i <- 0
+    ref <- list()
+    list(
+        cap=function(refName, text) {
+            i <<- i + 1
+            ref[[refName]] <<- i
+            paste("Figure ", i, ": ", text, sep="")
+        },
+        ref=function(refName) {
+            ref[[refName]]
+        })
+})
+```
+```{r cars, echo=FALSE, fig.cap=fig$cap("cars", "Here you see some interesting stuff about cars and such.")}
+plot(cars)
+```
+
+What you always wanted to know about cars is shown in figure `r fig$ref("cars")`
 
 
 ## Overview of the functionality
@@ -338,13 +366,10 @@ for (year in years) {
 
 
 To make a triangle map from the plotrix `r citep(citation("plotrix"))`
-package, support by rvest [ADD CITATION - IF / WHERE IS THIS USED??]
-provides an example on visualizing passenger transport data
-distributions [TRIANGLE PLOT HERE WITH HIDDEN SOURCE CODE]:
+package provides an example on visualizing passenger transport data
+distributions (Figure YYY):
 
-```{r 2015-manu-searchdata, echo=FALSE, eval=TRUE}
-# library(rvest)
-
+```{r 2015-manu-searchdata, echo=FALSE, eval=TRUE, fig.width=5, fig.height=5}
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
 
@@ -389,7 +414,7 @@ The package or its predecessors have already been applied in several case studie
 
 The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
 
-```{r 2015-manu-roadaccidents, echo=TRUE, eval=TRUE}
+```{r 2015-manu-roadaccidents, echo=FALSE, eval=TRUE, fig.width=5, fig.height=5, fig.cap="Caption for this figure goes here."}
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
 
@@ -401,7 +426,7 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
 
 We can also look at the distribution of BMI between different age groups:
 
-```{r 2015-manu-bmi, echo=TRUE, eval=TRUE} 
+```{r 2015-manu-bmi, echo=FALSE, eval=TRUE} 
 summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
 tmp1 %>%
   dplyr::filter( isced97 == "TOTAL" ,

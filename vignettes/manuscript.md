@@ -86,6 +86,12 @@ The eurostat R package is part of the
 Juuso Parkkinen and Kainu, 2013), which provides reproducible research
 tools for computational social science and digital humanities.
 
+## Fig referencing
+
+
+![Figure 1: Here you see some interesting stuff about cars and such.](figure/cars-1.png) 
+
+What you always wanted to know about cars is shown in figure 1
 
 
 ## Overview of the functionality
@@ -207,9 +213,8 @@ Example on spatio-temporal data visualization: let us look at the indicator [`tg
 
 
 To make a triangle map from the plotrix (J, 2006)
-package, support by rvest [ADD CITATION - IF / WHERE IS THIS USED??]
-provides an example on visualizing passenger transport data
-distributions [TRIANGLE PLOT HERE WITH HIDDEN SOURCE CODE]:
+package provides an example on visualizing passenger transport data
+distributions (Figure YYY):
 
 
 ```
@@ -245,25 +250,11 @@ The package or its predecessors have already been applied in several case studie
 
 The [archivist](http://pbiecek.github.io/archivist) R package for archivisation of objects [has exemplified](http://pbiecek.github.io/archivist/justGetIT.html) its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
 
-
-```r
-t1 <- get_eurostat("tsdtr420") %>%
-  dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
-
-ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
-  geom_point(size=4) +
-  geom_line() + theme_bw() + ggtitle("People killed in road accidents")
-```
-
-![plot of chunk 2015-manu-roadaccidents](figure/2015-manu-roadaccidents-1.png) 
+![Caption for this figure goes here.](figure/2015-manu-roadaccidents-1.png) 
 
 
 We can also look at the distribution of BMI between different age groups:
 
-
-```r
-summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
-```
 
 ```
 ##    time           bmi       sex           age            geo      
@@ -282,17 +273,6 @@ summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
 ##               3rd Qu.:41.3  
 ##               Max.   :88.6  
 ##               NA's   :879
-```
-
-```r
-tmp1 %>%
-  dplyr::filter( isced97 == "TOTAL" ,
-          sex != "T",
-          age != "TOTAL", geo == "PL") %>%
-  ggplot(aes(y=values, x=age, fill=bmi)) +
-  geom_bar(stat="identity") +
-  facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top")
 ```
 
 ![plot of chunk 2015-manu-bmi](figure/2015-manu-bmi-1.png) 
