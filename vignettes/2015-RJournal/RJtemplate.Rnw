@@ -16,6 +16,9 @@ An abstract of less than 150 words.
       x, "\\end{lstlisting}\n", sep = "")
   }
   knit_hooks$set(source=listing, output=listing)
+  
+  # Global options
+  opts_chunk$set(comment=NA, fig.width=6, fig.height=6, fig.path='fig/')  
 @
 
 
@@ -99,17 +102,15 @@ automated way to access the data sets. Here we describe the
 functionality of the current CRAN release version (1.2.1). To install
 this, simply use
 
-<<2015-manu-install, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE>>=
+<<2015-manu-install, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE, tidy=TRUE>>=
 install.packages("eurostat")
 @
 
 You can download the complete table of contents of the database with the function `get\_eurostat\_toc()`, or use `search\_eurostat()` to make a more focused search over the table of contents. To retrieve data sets for 'disposable income', for instance, use:
 
-
-<<2015-manu-init, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE>>=
+<<2015-manu-init, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, results=tex>>=
 library(eurostat)
-x <- search_eurostat("disposable income", type = "dataset")
-xtable(head(x))
+income <- search_eurostat("disposable income", type = "dataset")
 @
 
 The data type to search for is also specified. The options include 'table', 'dataset' or 'folder', referring to different levels of hierarchy in data organization: a 'table' resides in 'dataset' that are stored in a 'folder'. You can focus the search on a selected type.
@@ -120,12 +121,10 @@ codes in the Data Navigation Tree after every dataset in parenthesis.
 
 Download the selected data with `get\_eurostat()`. To retrieve the data set with a particular identifier, use 
 
-\begin{example}
-<<2015-manu-getdata, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE>>=
+<<2015-manu-getdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, results=tex>>=
 dat <- get_eurostat(id, time_format = "num")
-latex(as.tabular(head(dat)))
+print(xtable(head(dat)))
 @
-\end{example}
 
 The original data is annual in this example, hence we have here
 selected a numeric time variable as it is more convient for annual
@@ -148,34 +147,16 @@ map. Most indicators are of country-year -type, although some
 indicators have data also at lower level of regional breakdown
 %\footnote{http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm\?TargetUrl=DSP\_GEN\_DESC\_VIEW\_NOHDR\&StrNom=NUTS\_33\&StrLanguageCode=EN}.
 
-The disposable income of private households at
-NUTS2\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
-level can be visualized, for instance, as in
-Figure~\ref{fig:mapexample}. For a more detailed treatment of this
-example, see our related blog
-post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}.
-
-
-Here, we have combined the data retrieved with the eurostat package
-with additional map visualization tools and utilities including
-grid \citep{grid}, maptools \citep{maptools}, rgdal \citep{rgdal},
-rgeos \citep{rgeos}, scales \citep{scales}, and
-stringr \citep{stringr}.
-
-Example on spatio-temporal data visualization: let us look at the indicator tgs00026\footnote{http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026}, (Disposable income of private households by NUTS 2 regions) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at Administrative units / Statistical units\footnote{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
-
-
-
-\section{Another section}
-
 \begin{figure}
-<<2015-manu-mapexample, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig.width=7, fig.height=7, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis', fig=TRUE, dpi=300, cache=TRUE>>=
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
+<<2015-manu-mapexample, echo=FALSE, warning=FALSE, error=FALSE, message=FALSE, eval=TRUE, fig.width=7, fig.height=7, fig=TRUE, dpi=300, cache=TRUE>>=
 # Clean the cache
 clean_eurostat_cache()
 
 # Load dependencies
 PACKAGES <- c("rgdal","maptools","rgeos","stringr","scales","grid")
-lapply(PACKAGES, require, character.only=T)
+tmp <- lapply(PACKAGES, require, character.only=TRUE)
 
 # Downloading and manipulating the tabular data
 df <- get_eurostat("tgs00026", time_format = "raw")
@@ -194,13 +175,13 @@ dw <- spread(df, time, values)
 # We download the zipped shapefile in 1:60 million scale from year
 # 2010 and subset it at the level of NUTS2.
 # Load the GISCO shapefile
-download.file("http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", destfile="NUTS_2010_60M_SH.zip")
+f <- download.file("http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", destfile="NUTS_2010_60M_SH.zip")
 # unzip
-unzip("NUTS_2010_60M_SH.zip")
+uz <- unzip("NUTS_2010_60M_SH.zip")
 
 # read into SpatialPolygonsDataFrame
 library(rgdal)
-map <- readOGR(dsn = "./NUTS_2010_60M_SH/Data", layer = "NUTS_RG_60M_2010")
+map <- readOGR(dsn = "./NUTS_2010_60M_SH/Data", layer = "NUTS_RG_60M_2010", verbose=FALSE)
 
 # subset the spatialpolygondataframe at NUTS2-level
 map_nuts2 <- subset(map, STAT_LEVL_ == 2)
@@ -329,21 +310,40 @@ for (year in years) {
 }
 print(p)
 @
+\caption{Test caption.}
 \label{fig:mapexample}
-\caption{Eurostat map example.}
+\end{center}
 \end{figure}
 
 
-For the map example, look at Figure~\ref{fig:mapexample}.
+The disposable income of private households at
+NUTS2\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
+level can be visualized, for instance, as in
+Figure~\ref{fig:mapexample}. For a more detailed treatment of this
+example, see our related blog
+post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}.
+
+
+Here, we have combined the data retrieved with the eurostat package
+with additional map visualization tools and utilities including
+grid \citep{grid}, maptools \citep{maptools}, rgdal \citep{rgdal},
+rgeos \citep{rgeos}, scales \citep{scales}, and
+stringr \citep{stringr}.
+
+Example on spatio-temporal data visualization: let us look at the indicator tgs00026\footnote{http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026}, (Disposable income of private households by NUTS 2 regions) from Eurostat. We are looking at the disposable household income. In addition to downloading and manipulating data from EUROSTAT, we demonstrate how to access and use shapefiles of Europe published by EUROSTAT at Administrative units / Statistical units\footnote{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
+
 
 
 \section{Further examples}
 
 To make a triangle map from the plotrix \citep{plotrix}
 package provides an example on visualizing passenger transport data
-distributions (Figure~\ref{fig:xxx}):
+distributions (Figure~\ref{fig:plotrix}):
 
-<<2015-manu-searchdata, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, cache=TRUE, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
+<<2015-manu-searchdata, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, cache=TRUE, fig.show='asis'>>=
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
 
@@ -359,12 +359,16 @@ plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE,
            label.points = TRUE, point.labels = transports$geo, 
            pch = 19)
 @
+\end{center}
+\caption{Test caption2.}
+\label{fig:plotrix}
+\end{figure}
 
 To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package \citep{countrycode}. To retrieve the eurostat country code list for EFTA, for instance, use:
 
-<<2015-manu-searchdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE>>=
+<<2015-manu-searchdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, results=tex>>=
 data(efta_countries)
-xtable(efta_countries)
+print(xtable(efta_countries))
 @
 
 
@@ -372,9 +376,15 @@ xtable(efta_countries)
 
 The package or its predecessors have already been applied in several case studies by us and independent developers. Financial Times, for instance, have used R to access data from Eurostat\footnote{http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html} using functions from SmarterPoland, the direct predecessor of our revised and expanded eurostat package.
 
-The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivisation of objects has exemplified\footnote{http://pbiecek.github.io/archivist/justGetIT.html} its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
+The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivisation of objects has exemplified\footnote{http://pbiecek.github.io/archivist/justGetIT.html} its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries (Figure~\ref{fig:roadaccidents}).
 
-<<2015-manu-roadaccidents, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
+We can also look at the distribution of BMI between different age groups (Figure~\ref{fig:bmi}).
+
+
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
+<<2015-manu-roadaccidents, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, out.width=5cm, fig.align='center', fig.show='asis'>>=
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
 t1$Country <- t1$geo
@@ -383,12 +393,18 @@ ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country
   geom_line() + theme_bw() + ggtitle("People killed in road accidents")+
   xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
 @
+\end{center}
+\caption{Road accidents caption}
+\label{fig:roadaccidents}
+\end{figure}
 
 
-We can also look at the distribution of BMI between different age groups:
-
-<<2015-manu-bmi, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
-summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
+<<2015-manu-bmi, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, out.width='.5\\linewidth', fig.align='center', fig.show='asis'>>=
+library(dplyr)
+tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
 tmp1 %>%
   dplyr::filter( isced97 == "TOTAL" ,
           sex != "T",
@@ -402,7 +418,11 @@ tmp1 %>%
   facet_wrap(~sex) + coord_flip() +
   theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
 @
- 
+\end{center}
+\caption{BMI caption}
+\label{fig:bmi}
+\end{figure}
+
 
 
 
@@ -442,9 +462,6 @@ maintaining the open data portal and the
 rOpenGov\footnote{https://github.ropengov.io} for supporting 
 package development. This work has been partially funded by Academy of
 Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their feedback on this work.
-
-
-
 
 
 \bibliography{RJreferences}

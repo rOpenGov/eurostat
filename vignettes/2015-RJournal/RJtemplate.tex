@@ -90,12 +90,10 @@ this, simply use
 
 You can download the complete table of contents of the database with the function `get\_eurostat\_toc()`, or use `search\_eurostat()` to make a more focused search over the table of contents. To retrieve data sets for 'disposable income', for instance, use:
 
-
 \begin{Schunk}
 \begin{Sinput}
 > library(eurostat)
-> x <- search_eurostat("disposable income", type = "dataset")
-> xtable(head(x))
+> income <- search_eurostat("disposable income", type = "dataset")
 \end{Sinput}
 \end{Schunk}
 
@@ -107,14 +105,28 @@ codes in the Data Navigation Tree after every dataset in parenthesis.
 
 Download the selected data with `get\_eurostat()`. To retrieve the data set with a particular identifier, use 
 
-\begin{example}
 \begin{Schunk}
 \begin{Sinput}
 > dat <- get_eurostat(id, time_format = "num")
-> latex(as.tabular(head(dat)))
+> print(xtable(head(dat)))
 \end{Sinput}
-\end{Schunk}
-\end{example}
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Mon Nov 23 13:41:40 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rlllrr}
+  \hline
+ & unit & vehicle & geo & time & values \\ 
+  \hline
+1 & PC & BUS\_TOT & AT & 1990.00 & 11.00 \\ 
+  2 & PC & BUS\_TOT & BE & 1990.00 & 10.60 \\ 
+  3 & PC & BUS\_TOT & BG & 1990.00 &  \\ 
+  4 & PC & BUS\_TOT & CH & 1990.00 & 3.70 \\ 
+  5 & PC & BUS\_TOT & CY & 1990.00 &  \\ 
+  6 & PC & BUS\_TOT & CZ & 1990.00 &  \\ 
+   \hline
+\end{tabular}
+\end{table}\end{Schunk}
 
 The original data is annual in this example, hence we have here
 selected a numeric time variable as it is more convient for annual
@@ -137,6 +149,16 @@ map. Most indicators are of country-year -type, although some
 indicators have data also at lower level of regional breakdown
 %\footnote{http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm\?TargetUrl=DSP\_GEN\_DESC\_VIEW\_NOHDR\&StrNom=NUTS\_33\&StrLanguageCode=EN}.
 
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
+\includegraphics{RJtemplate-2015-manu-mapexample}
+\caption{Test caption.}
+\label{fig:mapexample}
+\end{center}
+\end{figure}
+
+
 The disposable income of private households at
 NUTS2\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
 level can be visualized, for instance, as in
@@ -155,63 +177,30 @@ Example on spatio-temporal data visualization: let us look at the indicator tgs0
 
 
 
-\section{Another section}
-
-\begin{figure}
-\begin{Schunk}
-\begin{Soutput}
-[[1]]
-[1] TRUE
-
-[[2]]
-[1] TRUE
-
-[[3]]
-[1] TRUE
-
-[[4]]
-[1] TRUE
-
-[[5]]
-[1] TRUE
-
-[[6]]
-[1] TRUE
-\end{Soutput}
-\begin{Soutput}
-OGR data source with driver: ESRI Shapefile 
-Source: "./NUTS_2010_60M_SH/Data", layer: "NUTS_RG_60M_2010"
-with 1920 features
-It has 4 fields
-\end{Soutput}
-\end{Schunk}
-\includegraphics{RJtemplate-2015-manu-mapexample}
-\label{fig:mapexample}
-\caption{Eurostat map example.}
-\end{figure}
-
-
-For the map example, look at Figure~\ref{fig:mapexample}.
-
-
 \section{Further examples}
 
 To make a triangle map from the plotrix \citep{plotrix}
 package provides an example on visualizing passenger transport data
-distributions (Figure~\ref{fig:xxx}):
+distributions (Figure~\ref{fig:plotrix}):
 
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
 \includegraphics{RJtemplate-2015-manu-searchdata}
+\end{center}
+\caption{Test caption2.}
+\label{fig:plotrix}
+\end{figure}
 
 To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package \citep{countrycode}. To retrieve the eurostat country code list for EFTA, for instance, use:
 
 \begin{Schunk}
 \begin{Sinput}
 > data(efta_countries)
-> xtable(efta_countries)
+> print(xtable(efta_countries))
 \end{Sinput}
-\begin{Soutput}
 % latex table generated in R 3.2.2 by xtable 1.8-0 package
-% Mon Nov 23 12:22:09 2015
+% Mon Nov 23 13:41:58 2015
 \begin{table}[ht]
 \centering
 \begin{tabular}{rll}
@@ -224,44 +213,37 @@ To facilitate fast plotting of standard European geographic areas, the package p
   4 & CH & Switzerland \\ 
    \hline
 \end{tabular}
-\end{table}
-\end{Soutput}
-\end{Schunk}
+\end{table}\end{Schunk}
 
 
 \section{Applications}
 
 The package or its predecessors have already been applied in several case studies by us and independent developers. Financial Times, for instance, have used R to access data from Eurostat\footnote{http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html} using functions from SmarterPoland, the direct predecessor of our revised and expanded eurostat package.
 
-The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivisation of objects has exemplified\footnote{http://pbiecek.github.io/archivist/justGetIT.html} its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
+The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivisation of objects has exemplified\footnote{http://pbiecek.github.io/archivist/justGetIT.html} its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries (Figure~\ref{fig:roadaccidents}).
 
+We can also look at the distribution of BMI between different age groups (Figure~\ref{fig:bmi}).
+
+
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
 \includegraphics{RJtemplate-2015-manu-roadaccidents}
+\end{center}
+\caption{Road accidents caption}
+\label{fig:roadaccidents}
+\end{figure}
 
 
-We can also look at the distribution of BMI between different age groups:
-
-\begin{Schunk}
-\begin{Soutput}
-   time           bmi       sex           age      
- 2008:7468   18P5-25:1900   F:2516   TOTAL  : 864  
-             25-30  :1900   M:2412   Y18-24 : 864  
-             GE30   :1896   T:2540   Y25-34 : 860  
-             LT18P5 :1772            Y45-54 : 860  
-                                     Y35-44 : 848  
-                                     Y65-74 : 844  
-                                     (Other):2328  
-      geo        isced97         values    
- AT     : 432   TOTAL:1867   Min.   : 0.1  
- BE     : 432   ED0.2:1867   1st Qu.: 7.9  
- DE     : 432   ED3_4:1867   Median :24.9  
- ES     : 432   ED5_6:1867   Mean   :26.4  
- FR     : 432                3rd Qu.:41.3  
- HU     : 432                Max.   :88.6  
- (Other):4876                NA's   :879   
-\end{Soutput}
-\end{Schunk}
+\begin{figure}
+\setkeys{Gin}{width=0.5\textwidth}
+\begin{center}
 \includegraphics{RJtemplate-2015-manu-bmi}
- 
+\end{center}
+\caption{BMI caption}
+\label{fig:bmi}
+\end{figure}
+
 
 
 
@@ -303,9 +285,6 @@ package development. This work has been partially funded by Academy of
 Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their feedback on this work.
 
 
-
-
-
 \bibliography{RJreferences}
 
 \address{Leo Lahti\\
@@ -327,7 +306,8 @@ Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehto
 \email{author3@work}
 
 \address{Przemyslaw Biecek\\
-  Affiliation\\
-  Address\\
-  Country\\}
-\email{author3@work}
+  Faculty of Mathematics, Informatics, and Mechanics\\
+  University of Warsaw\\
+  Banacha 2, 02-097 Warsaw\\
+  Poland\\}
+\email{P.Biecek@mimuw.edu.pl}
