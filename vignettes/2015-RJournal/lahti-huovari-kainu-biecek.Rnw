@@ -1,5 +1,5 @@
 % !TeX root = RJwrapper.tex
-\title{eurostat: R tools for eurostat open data}
+\title{\pkg{eurostat}: R Tools for Eurostat Open Data}
 \author{Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek}
 
 \maketitle
@@ -41,10 +41,8 @@ common data analysis tasks via dedicated software packages can greatly
 facilitate reproducibility and code sharing, making the research more
 transparent and efficient.
 
-Here, we introduce the eurostat R package that implements automated
-tools for R to access open data from
-Eurostat \footnote{http://ec.europa.eu/eurostat} in
-R \citep{R}. The package has been actively developed by several
+Here, we introduce the eurostat R package that implements R tools to access open data from
+Eurostat \footnote{\url{http://ec.europa.eu/eurostat}}. The package has been actively developed by several
 independent contributors and based on the community feedback in
 Github, and its first CRAN release was on.. We are now reporting the
 first mature version of the package that has been improved and tested
@@ -54,26 +52,27 @@ the tidyr R package \citep{tidyr}.
 
 Despite many efforts to this direction, a dedicated R package for
 eurostat open data has been missing. Our work extends our earlier CRAN
-packages statfi \citep{statfi} and
-smarterpoland \citep{smarterpoland}. Compared to this earlier work, we
-have now implemented an expanded set of tools specifically focusing on
-the eurostat data collection. The datamart \citep{datamart} and the
-quandl \citep{quandl} R packages provide also access to certain
-versions of eurostat data. In contrast to these generic database
-packages, our work is fully focused on the Eurostat open data portal
-and provides specific functionality suited for this data
-collection. There is a development version for R package
+packages statfi \citep{statfi} and smarterpoland
+\citep{smarterpoland}. Compared to this earlier work, we have now
+implemented an expanded set of tools specifically focusing on the
+eurostat data collection. The datamart \citep{datamart} and the quandl
+\citep{quandl} R packages provide also access to certain versions of
+eurostat data. In contrast to these generic database packages, our
+work is fully focused on the Eurostat open data portal and provides
+specific functionality suited for this data collection. There is a
+development version for R package
 reurostat\footnote{https://github.com/Tungurahua/reurostat} but it
 does not seem to be actively maintained at the moment. The eurostat R
 package takes advantage of the following external R packages:
-devtools \citep{devtools}, dplyr \citep{dplyr}, knitr \citep{knitr},
-ggplot2 \citep{ggplot2}, mapproj \citep{mapproj},
-plotrix \citep{plotrix}, reshape2 \citep{reshape2},
-rmarkdown \citep{rmarkdown}, stringi \citep{stringi},
-testthat \citep{testthat}, tidyr \citep{tidyr}. The eurostat R package
-is part of the rOpenGov project
-\citep{Lahti13icml}, which provides reproducible research
-tools for computational social science and digital humanities.
+\CRANpkg{devtools} \citep{devtools}, \CRANpkg{dplyr} \citep{dplyr},
+\CRANpkg{knitr} \citep{knitr}, \CRANpkg{ggplot2} \citep{ggplot2},
+\CRANpkg{mapproj} \citep{mapproj}, \CRANpkg{plotrix} \citep{plotrix},
+\CRANpkg{reshape2} \citep{reshape2}, \CRANpkg{rmarkdown}
+\citep{rmarkdown}, \CRANpkg{stringi} \citep{stringi},
+\CRANpkg{testthat} \citep{testthat}, and \CRANpkg{tidyr}
+\citep{tidyr}. The eurostat R package is part of the rOpenGov project
+\citep{Lahti13icml}, which provides reproducible research tools for
+computational social science and digital humanities.
 
 
 \section{Overview of the functionality}
@@ -102,18 +101,25 @@ automated way to access the data sets. Here we describe the
 functionality of the current CRAN release version (1.2.1). To install
 this, simply use
 
+
 <<2015-manu-install, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE, tidy=TRUE>>=
 install.packages("eurostat")
 @
 
-You can download the complete table of contents of the database with the function `get\_eurostat\_toc()`, or use `search\_eurostat()` to make a more focused search over the table of contents. To retrieve data sets for 'disposable income', for instance, use:
+\code{
+install.packages("eurostat")
+}
+
+
+
+You can download the complete table of contents of the database with the function \code{get\_eurostat\_toc()}, or use `search\_eurostat()` to make a more focused search over the table of contents. To retrieve data sets for 'disposable income', for instance, use:
 
 <<2015-manu-init, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, results=tex>>=
 library(eurostat)
 income <- search_eurostat("disposable income", type = "dataset")
 @
 
-The data type to search for is also specified. The options include 'table', 'dataset' or 'folder', referring to different levels of hierarchy in data organization: a 'table' resides in 'dataset' that are stored in a 'folder'. You can focus the search on a selected type.
+The data type to search for is also specified. The options include \dfn{table}, \dfn{dataset} or \dfn{folder}, referring to different levels of hierarchy in data organization: a 'table' resides in 'dataset' that are stored in a 'folder'. You can focus the search on a selected type.
 
 The first lines of the output are shown above. Use values from the `code` column to refer to a specific data set in the subsequent download commands. The dataset identifier codes can also be browsed at the Eurostat
 database\footnote{http://ec.europa.eu/eurostat/data/database}, which gives
@@ -123,8 +129,20 @@ Download the selected data with `get\_eurostat()`. To retrieve the data set with
 
 <<2015-manu-getdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, results=tex>>=
 dat <- get_eurostat(id, time_format = "num")
-print(xtable(head(dat)))
 @
+
+
+
+
+%\toprule
+<<2015-manu-getdata-table, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, results=tex>>=
+print(xtable(head(dat), caption = "This is a table.", label = "tab:getdatatable"))
+@
+%\bottomrule
+
+
+
+This looks like Table~\ref{tab:getdatatable}
 
 The original data is annual in this example, hence we have here
 selected a numeric time variable as it is more convient for annual
@@ -490,3 +508,4 @@ Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehto
   Banacha 2, 02-097 Warsaw\\
   Poland\\}
 \email{P.Biecek@mimuw.edu.pl}
+
