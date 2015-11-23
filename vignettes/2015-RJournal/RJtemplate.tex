@@ -68,15 +68,6 @@ tools for computational social science and digital humanities.
 
 
 
-This section may contain a figure such as Figure~\ref{figure:rlogo}.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics{Rlogo}
-  \caption{The logo of R.}
-  \label{figure:rlogo}
-\end{figure}
-
 The package includes tools to search and retrieve specific data sets
 from the Eurostat open data portal, converting identifiers in
 human-readable formats, selecting, modifying and visualizing the
@@ -103,9 +94,8 @@ You can download the complete table of contents of the database with the functio
 \begin{Schunk}
 \begin{Sinput}
 > library(eurostat)
-> results <- search_eurostat("disposable income", type = "dataset")
-> library(knitr)
-> kable(head(results))
+> x <- search_eurostat("disposable income", type = "dataset")
+> xtable(head(x))
 \end{Sinput}
 \end{Schunk}
 
@@ -117,11 +107,14 @@ codes in the Data Navigation Tree after every dataset in parenthesis.
 
 Download the selected data with `get\_eurostat()`. To retrieve the data set with a particular identifier, use 
 
+\begin{example}
 \begin{Schunk}
 \begin{Sinput}
 > dat <- get_eurostat(id, time_format = "num")
+> latex(as.tabular(head(dat)))
 \end{Sinput}
 \end{Schunk}
+\end{example}
 
 The original data is annual in this example, hence we have here
 selected a numeric time variable as it is more convient for annual
@@ -147,7 +140,7 @@ indicators have data also at lower level of regional breakdown
 The disposable income of private households at
 NUTS2\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
 level can be visualized, for instance, as in
-Figure~\ref{fig:markus}. For a more detailed treatment of this
+Figure~\ref{fig:mapexample}. For a more detailed treatment of this
 example, see our related blog
 post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}.
 
@@ -164,15 +157,7 @@ Example on spatio-temporal data visualization: let us look at the indicator tgs0
 
 \section{Another section}
 
-There will likely be several sections, perhaps including code snippets, such as:
-
-\begin{example}
-  x <- 1:10
-  result <- myFunction(x)
-\end{example}
-
-
-
+\begin{figure}
 \begin{Schunk}
 \begin{Soutput}
 [[1]]
@@ -200,5 +185,149 @@ with 1920 features
 It has 4 fields
 \end{Soutput}
 \end{Schunk}
+\includegraphics{RJtemplate-2015-manu-mapexample}
+\label{fig:mapexample}
+\caption{Eurostat map example.}
+\end{figure}
 
-\begin{figure}
+
+For the map example, look at Figure~\ref{fig:mapexample}.
+
+
+\section{Further examples}
+
+To make a triangle map from the plotrix \citep{plotrix}
+package provides an example on visualizing passenger transport data
+distributions (Figure~\ref{fig:xxx}):
+
+\includegraphics{RJtemplate-2015-manu-searchdata}
+
+To facilitate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the countrycode R package \citep{countrycode}. To retrieve the eurostat country code list for EFTA, for instance, use:
+
+\begin{Schunk}
+\begin{Sinput}
+> data(efta_countries)
+> xtable(efta_countries)
+\end{Sinput}
+\begin{Soutput}
+% latex table generated in R 3.2.2 by xtable 1.8-0 package
+% Mon Nov 23 12:22:09 2015
+\begin{table}[ht]
+\centering
+\begin{tabular}{rll}
+  \hline
+ & code & name \\ 
+  \hline
+1 & IS & Iceland \\ 
+  2 & LI & Liechtenstein \\ 
+  3 & NO & Norway \\ 
+  4 & CH & Switzerland \\ 
+   \hline
+\end{tabular}
+\end{table}
+\end{Soutput}
+\end{Schunk}
+
+
+\section{Applications}
+
+The package or its predecessors have already been applied in several case studies by us and independent developers. Financial Times, for instance, have used R to access data from Eurostat\footnote{http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html} using functions from SmarterPoland, the direct predecessor of our revised and expanded eurostat package.
+
+The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivisation of objects has exemplified\footnote{http://pbiecek.github.io/archivist/justGetIT.html} its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
+
+\includegraphics{RJtemplate-2015-manu-roadaccidents}
+
+
+We can also look at the distribution of BMI between different age groups:
+
+\begin{Schunk}
+\begin{Soutput}
+   time           bmi       sex           age      
+ 2008:7468   18P5-25:1900   F:2516   TOTAL  : 864  
+             25-30  :1900   M:2412   Y18-24 : 864  
+             GE30   :1896   T:2540   Y25-34 : 860  
+             LT18P5 :1772            Y45-54 : 860  
+                                     Y35-44 : 848  
+                                     Y65-74 : 844  
+                                     (Other):2328  
+      geo        isced97         values    
+ AT     : 432   TOTAL:1867   Min.   : 0.1  
+ BE     : 432   ED0.2:1867   1st Qu.: 7.9  
+ DE     : 432   ED3_4:1867   Median :24.9  
+ ES     : 432   ED5_6:1867   Mean   :26.4  
+ FR     : 432                3rd Qu.:41.3  
+ HU     : 432                Max.   :88.6  
+ (Other):4876                NA's   :879   
+\end{Soutput}
+\end{Schunk}
+\includegraphics{RJtemplate-2015-manu-bmi}
+ 
+
+
+
+\section{Summary}
+
+The eurostat R package provides convenient tools to access open data
+from Eurostat. When automated access to the data sets is integrated
+with data analytical tools from other packages, this allows a seamless
+automation of the data analytical process from raw data access to
+statistical analysis and the final publication.
+
+The package source code can be freely used, modified and distributed
+under the BSD-2-clause (modified FreeBSD) license. A reproducible
+version of this article is available at .. and can be used to generate
+the manuscript text along with up-to-date figures and tables with the
+latest version of the eurostat data. Manuscript automation provides
+transparent documentation with full algorithmic details on how to
+access, preprocess, analyse, and report data and analyses, thus
+serving a template for good reproducible research practice. The reproducible source code for this manuscript is available at eurostat github page\footnote{https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd}.
+
+The package exemplifies also the challenges and possible solutions to
+reproducible research and automated open data retrieval. Possible
+future extensions and improvements include design of specific data
+representation class structures. This could facilitate harmonization
+of the data representation with similar governmental data sets and
+subsequent tool development. The latest development version of the
+package can be installed from Github by following the instructions at
+the github site\footnote{https://github.com/rOpenGov/eurostat}. We welcome
+issues, bug reports and other feedback via the development
+site\footnote{https://github.com/ropengov/eurostat}.
+
+
+\section*{Acknowledgements}
+
+We are grateful to Eurostat\footnote{http://ec.europa.eu/eurostat} for
+maintaining the open data portal and the
+rOpenGov\footnote{https://github.ropengov.io} for supporting 
+package development. This work has been partially funded by Academy of
+Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their feedback on this work.
+
+
+
+
+
+\bibliography{RJreferences}
+
+\address{Leo Lahti\\
+  Department of Mathematics and Statistics\\
+  PO Box 20014 University of Turku\\
+  Finland\\}
+\email{leo.lahti@iki.fi}
+
+\address{Janne Huovari\\
+  Affiliation\\
+  Address\\
+  Country\\}
+\email{author2@work}
+
+\address{Markus Kainu\\
+  Affiliation\\
+  Address\\
+  Country\\}
+\email{author3@work}
+
+\address{Przemyslaw Biecek\\
+  Affiliation\\
+  Address\\
+  Country\\}
+\email{author3@work}

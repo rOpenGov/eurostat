@@ -78,17 +78,12 @@ tools for computational social science and digital humanities.
 <<2015-manu-initchunk, echo=FALSE, warning=FALSE, error=FALSE>>=
 library(eurostat)
 library(knitr)
+library(xtable)
+library(tidyr)
+library(plotrix)
+library(ggplot2)
 @
 
-
-This section may contain a figure such as Figure~\ref{figure:rlogo}.
-
-\begin{figure}[htbp]
-  \centering
-  \includegraphics{Rlogo}
-  \caption{The logo of R.}
-  \label{figure:rlogo}
-\end{figure}
 
 The package includes tools to search and retrieve specific data sets
 from the Eurostat open data portal, converting identifiers in
@@ -113,9 +108,8 @@ You can download the complete table of contents of the database with the functio
 
 <<2015-manu-init, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE>>=
 library(eurostat)
-results <- search_eurostat("disposable income", type = "dataset")
-library(knitr)
-kable(head(results))
+x <- search_eurostat("disposable income", type = "dataset")
+xtable(head(x))
 @
 
 The data type to search for is also specified. The options include 'table', 'dataset' or 'folder', referring to different levels of hierarchy in data organization: a 'table' resides in 'dataset' that are stored in a 'folder'. You can focus the search on a selected type.
@@ -126,9 +120,12 @@ codes in the Data Navigation Tree after every dataset in parenthesis.
 
 Download the selected data with `get\_eurostat()`. To retrieve the data set with a particular identifier, use 
 
+\begin{example}
 <<2015-manu-getdata, echo=TRUE, warning=FALSE, error=FALSE, eval=FALSE>>=
 dat <- get_eurostat(id, time_format = "num")
+latex(as.tabular(head(dat)))
 @
+\end{example}
 
 The original data is annual in this example, hence we have here
 selected a numeric time variable as it is more convient for annual
@@ -154,7 +151,7 @@ indicators have data also at lower level of regional breakdown
 The disposable income of private households at
 NUTS2\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
 level can be visualized, for instance, as in
-Figure~\ref{fig:markus}. For a more detailed treatment of this
+Figure~\ref{fig:mapexample}. For a more detailed treatment of this
 example, see our related blog
 post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}.
 
@@ -171,16 +168,8 @@ Example on spatio-temporal data visualization: let us look at the indicator tgs0
 
 \section{Another section}
 
-There will likely be several sections, perhaps including code snippets, such as:
-
-\begin{example}
-  x <- 1:10
-  result <- myFunction(x)
-\end{example}
-
-
-
-<<2015-manu-getdata, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig.width=10, fig.height=7, out.width='1\\linewidth', fig.path='fig/', fig.align='center'>>=
+\begin{figure}
+<<2015-manu-mapexample, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig.width=7, fig.height=7, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis', fig=TRUE, dpi=300, cache=TRUE>>=
 # Clean the cache
 clean_eurostat_cache()
 
@@ -338,14 +327,10 @@ for (year in years) {
                                      title.position = "top", 
                                      title.hjust=0))
 }
-@
-
-\begin{figure}
-<<2015-manu-mappic, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, fig.width=10, fig.height=7, out.width='1\\linewidth', fig.align='center', fig.show='asis'>>=
 print(p)
 @
 \label{fig:mapexample}
-\caption{Map example}
+\caption{Eurostat map example.}
 \end{figure}
 
 
@@ -358,34 +343,19 @@ To make a triangle map from the plotrix \citep{plotrix}
 package provides an example on visualizing passenger transport data
 distributions (Figure~\ref{fig:xxx}):
 
-<<2015-manu-searchdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE>>=
+<<2015-manu-searchdata, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, cache=TRUE, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
 
 dat <- get_eurostat(id, time_format = "num")
 
-# Get labels for variable names
-datl <- label_eurostat(dat)
-label_eurostat_vars(names(datl))
-dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
-                     & time %in% 2000:2012 
-                     & vehicle == "Trains")
-
-# Visualizing train passenger data
-library(ggplot2)
-p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
-p <- p + geom_line()
-print(p)
-
 # Triangle plot on passenger transport distributions with 2012 data for
 # all countries with data 
-library(tidyr)
-transports <- spread(subset(dat, time == 2012,
+transports <- tidyr::spread(subset(dat, time == 2012,
 	   select = c(geo, vehicle, values)), vehicle, values)
 
 # triangle plot
-library(plotrix)
-triax.plot(na.omit(transports)[, -1], show.grid = TRUE, 
+plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE, 
            label.points = TRUE, point.labels = transports$geo, 
            pch = 19)
 @
@@ -394,7 +364,7 @@ To facilitate fast plotting of standard European geographic areas, the package p
 
 <<2015-manu-searchdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE>>=
 data(efta_countries)
-kable(efta_countries)
+xtable(efta_countries)
 @
 
 
@@ -404,7 +374,7 @@ The package or its predecessors have already been applied in several case studie
 
 The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivisation of objects has exemplified\footnote{http://pbiecek.github.io/archivist/justGetIT.html} its functionality by using eurostat to plot the number of people killed by road accidents, showing a decreasing trend of road accidents in many countries.
 
-<<2015-manu-roadaccidents, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE>>=
+<<2015-manu-roadaccidents, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
 
@@ -416,7 +386,7 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
 
 We can also look at the distribution of BMI between different age groups:
 
-<<2015-manu-bmi, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE>>=
+<<2015-manu-bmi, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
 summary(tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw"))
 tmp1 %>%
   dplyr::filter( isced97 == "TOTAL" ,
