@@ -1,6 +1,6 @@
 To reproduce the manuscript PDF do the following:
 
-Sweave("RJtemplate.Rnw")
+Sweave("lahti-huovari-kainu-biecek.Rnw")
 
 # On command line:
 pdflatex RJwrapper.tex
