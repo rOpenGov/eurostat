@@ -377,10 +377,11 @@ The archivist R package\footnote{http://pbiecek.github.io/archivist} for archivi
 <<2015-manu-roadaccidents, echo=FALSE, warning=FALSE, error=FALSE, eval=TRUE, fig=TRUE, fig.width=7, fig.height=7, dpi=300, out.width='.8\\linewidth', fig.path='fig/', fig.align='center', fig.show='asis'>>=
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
-
-ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
-  geom_point(size=4) +
-  geom_line() + theme_bw() + ggtitle("People killed in road accidents")
+t1$Country <- t1$geo
+ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
+  geom_point(size=4) + 
+  geom_line() + theme_bw() + ggtitle("People killed in road accidents")+
+  xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
 @
 
 
@@ -392,10 +393,14 @@ tmp1 %>%
   dplyr::filter( isced97 == "TOTAL" ,
           sex != "T",
           age != "TOTAL", geo == "PL") %>%
-  ggplot(aes(y=values, x=age, fill=bmi)) +
+  mutate(BMI = factor(bmi, 
+                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
+                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
+  arrange(BMI) %>%
+  ggplot(aes(y=values, x=age, fill=BMI)) +
   geom_bar(stat="identity") +
   facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top")
+  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
 @
  
 
@@ -463,7 +468,8 @@ Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehto
 \email{author3@work}
 
 \address{Przemyslaw Biecek\\
-  Affiliation\\
-  Address\\
-  Country\\}
-\email{author3@work}
+  Faculty of Mathematics, Informatics, and Mechanics\\
+  University of Warsaw\\
+  Banacha 2, 02-097 Warsaw\\
+  Poland\\}
+\email{P.Biecek@mimuw.edu.pl}
