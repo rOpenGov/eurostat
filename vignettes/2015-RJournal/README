@@ -1,11 +1,5 @@
 To reproduce the manuscript PDF do the following:
 
-Sweave("lahti-huovari-kainu-biecek.Rnw")
+Run in R:
+source("main.R")
 
-# On command line:
-pdflatex RJwrapper.tex
-pdflatex RJwrapper.tex
-bibtex RJwrapper
-pdflatex RJwrapper.tex
-pdflatex RJwrapper.tex
-evince RJwrapper.pdf
