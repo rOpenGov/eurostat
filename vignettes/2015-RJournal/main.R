@@ -2,11 +2,11 @@
 
 # Generate tex file
 #Sweave("lahti-huovari-kainu-biecek.Rnw")
-library(knitr)
-knit("lahti-huovari-kainu-biecek.Rmd")
-
 #library(rmarkdown)
 #render("lahti-huovari-kainu-biecek.Rmd", output_format = "pdf_document")
+
+library(knitr)
+knit("lahti-huovari-kainu-biecek.Rmd")
 
 # Convert tex to PDF
 tools::texi2pdf("RJwrapper.tex")

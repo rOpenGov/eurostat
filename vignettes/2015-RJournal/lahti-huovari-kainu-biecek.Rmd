@@ -53,7 +53,7 @@ income <- search_eurostat("disposable income", type = "dataset")
 ```
 
 ```{r 2015-manu-get, echo=FALSE, message=FALSE}
-dat <- get_eurostat(id, time_format = "num")
+dat <- get_eurostat(id = "tsdtr210", time_format = "num")
 ```
 
 ```{r 2015-manu-getdata, echo=FALSE, message=FALSE}

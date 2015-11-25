@@ -1,5 +1,4 @@
-To reproduce the manuscript PDF do the following:
-
-Run in R:
+To reproduce the manuscript PDF run in R:
 source("main.R")
+
 
