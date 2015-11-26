@@ -17,11 +17,11 @@ output:
 This document provides [reproducible source
 code](lahti-huovari-kainu-biecek.Rmd) to generate the figures and
 tables for [our manuscript (in
-preparation)](lahti-huovari-kainu-biecek.pdf) introducing the eurostat
-R package.
+preparation)](lahti-huovari-kainu-biecek.pdf) introducing the [eurostat
+R package](https://github.com/rOpenGov/eurostat).
 
-You can reproduce this markdown document by downloading the  [Rmarkdown source
-code](lahti-huovari-kainu-biecek.Rmd) and converting it in R with:
+You can reproduce this markdown document by converting the [Rmarkdown
+source code](lahti-huovari-kainu-biecek.Rmd) in R with:
 
 ```{r 2015-manu-generate, echo=TRUE, message=FALSE}
 library(knitr)
@@ -38,15 +38,9 @@ tools::texi2pdf("RJwrapper.tex")
 ```
 
 
+Let us first load some external R packages
 
-```{r 2015-manu-init0, echo=FALSE, message=FALSE}
-# Handle citations
-require(knitcitations)
-cleanbib()
-
-# figure folder
-knitr::opts_chunk$set(fig.path = "./")
-
+```{r 2015-manu-init0, echo=TRUE, message=FALSE}
 # Load libraries
 library(eurostat)
 library(knitr)
@@ -55,7 +49,7 @@ library(tidyr)
 library(plotrix)
 library(ggplot2)
 
-# ggplot theme
+# Set ggplot theme
 theme_set(theme_bw(20))
 ```
 
@@ -91,7 +85,9 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ## Map visualization
 
-```{r 2015-manu-mapexample, echo=FALSE, message=FALSE, dev=c('pdf', 'png')}
+The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+
+```{r 2015-manu-mapexample, echo=FALSE, message=FALSE}
 # Clean the cache
 clean_eurostat_cache()
 
@@ -283,7 +279,7 @@ print(xtable(efta_countries))
 
 ## Road accidents
 
-```{r 2015-manu-roadacc, echo=TRUE, message=FALSE}
+```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE}
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
 t1$Country <- t1$geo

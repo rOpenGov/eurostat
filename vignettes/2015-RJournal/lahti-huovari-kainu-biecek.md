@@ -17,11 +17,11 @@ output:
 This document provides [reproducible source
 code](lahti-huovari-kainu-biecek.Rmd) to generate the figures and
 tables for [our manuscript (in
-preparation)](lahti-huovari-kainu-biecek.pdf) introducing the eurostat
-R package.
+preparation)](lahti-huovari-kainu-biecek.pdf) introducing the [eurostat
+R package](https://github.com/rOpenGov/eurostat).
 
-You can reproduce this markdown document by downloading the  [Rmarkdown source
-code](lahti-huovari-kainu-biecek.Rmd) and converting it in R with:
+You can reproduce this markdown document by converting the [Rmarkdown
+source code](lahti-huovari-kainu-biecek.Rmd) in R with:
 
 
 ```r
@@ -44,8 +44,21 @@ tools::texi2pdf("RJwrapper.tex")
 ```
 
 
+Let us first load some external R packages
 
 
+```r
+# Load libraries
+library(eurostat)
+library(knitr)
+library(xtable)
+library(tidyr)
+library(plotrix)
+library(ggplot2)
+
+# Set ggplot theme
+theme_set(theme_bw(20))
+```
 
 ## Installation
 
@@ -84,7 +97,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:07:57 2015
+## % Thu Nov 26 00:18:48 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -105,7 +118,9 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ## Map visualization
 
-![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.pdf) 
+The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+
+![plot of chunk 2015-manu-mapexample](figure/2015-manu-mapexample-1.png) 
 
 
 ## Passenger transport
@@ -128,7 +143,7 @@ plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE,
            pch = 19)
 ```
 
-![plot of chunk 2015-manu-search2](./2015-manu-search2-1.png) 
+![plot of chunk 2015-manu-search2](figure/2015-manu-search2-1.png) 
 
 
 ## Country code tables
@@ -142,7 +157,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:08:21 2015
+## % Thu Nov 26 00:19:17 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}
@@ -171,33 +186,7 @@ ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country
   xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
 ```
 
-```
-## Warning: The shape palette can deal with a maximum of 6 discrete values
-## because more than 6 becomes difficult to discriminate; you have 7.
-## Consider specifying shapes manually if you must have them.
-```
-
-```
-## Warning: The shape palette can deal with a maximum of 6 discrete values
-## because more than 6 becomes difficult to discriminate; you have 7.
-## Consider specifying shapes manually if you must have them.
-```
-
-```
-## Warning: Removed 25 rows containing missing values (geom_point).
-```
-
-```
-## Warning: Removed 10 rows containing missing values (geom_path).
-```
-
-```
-## Warning: The shape palette can deal with a maximum of 6 discrete values
-## because more than 6 becomes difficult to discriminate; you have 7.
-## Consider specifying shapes manually if you must have them.
-```
-
-![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png) 
+![plot of chunk 2015-manu-roadacc](figure/2015-manu-roadacc-1.png) 
 
 
 ## Body-mass index
@@ -220,5 +209,5 @@ tmp1 %>%
   theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
 ```
 
-![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png) 
+![plot of chunk 2015-manu-bmi](figure/2015-manu-bmi-1.png) 
 
