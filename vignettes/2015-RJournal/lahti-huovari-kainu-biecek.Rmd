@@ -57,7 +57,7 @@ dat <- get_eurostat(id = "tsdtr210", time_format = "num")
 ```
 
 ```{r 2015-manu-getdata, echo=TRUE, message=FALSE}
-print(xtable(head(dat), caption = "This is a table.", label = "tab:getdatatable"))
+print(xtable(head(dat), label = "tab:getdatatable"))
 ```
 
 
