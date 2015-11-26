@@ -19,45 +19,49 @@ output:
 Installing the CRAN release version:
 
 
+```r
+install.packages("eurostat")
+```
 
 Installing the Github development version:
 
 
-
-
-```
-## Warning in file(file, "rt"): unable to resolve 'ec.europa.eu'
-```
-
-```
-## Error in file(file, "rt"): cannot open the connection
+```r
+library(devtools)
+install_github("ropengov/eurostat")
 ```
 
 
-```
-## Warning in download.file(url, tfile): unable to resolve 'ec.europa.eu'
-```
-
-```
-## Error in download.file(url, tfile): cannot open URL 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Ftsdtr210.tsv.gz'
+```r
+library(eurostat)
+income <- search_eurostat("disposable income", type = "dataset")
 ```
 
+
+```r
+dat <- get_eurostat(id = "tsdtr210", time_format = "num")
+```
+
+
+```r
+print(xtable(head(dat), caption = "This is a table.", label = "tab:getdatatable"))
+```
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Wed Nov 25 23:28:14 2015
+## % Wed Nov 25 23:57:37 2015
 ## \begin{table}[ht]
 ## \centering
-## \begin{tabular}{rll}
+## \begin{tabular}{rlllrr}
 ##   \hline
-##  & NUTS\_ID & VarX \\ 
+##  & unit & vehicle & geo & time & values \\ 
 ##   \hline
-## 1 & AT11 &  \\ 
-##   2 & AT12 &  \\ 
-##   3 & AT13 &  \\ 
-##   4 & AT21 &  \\ 
-##   5 & AT22 &  \\ 
-##   6 & AT31 &  \\ 
+## 1 & PC & BUS\_TOT & AT & 1990.00 & 11.00 \\ 
+##   2 & PC & BUS\_TOT & BE & 1990.00 & 10.60 \\ 
+##   3 & PC & BUS\_TOT & BG & 1990.00 &  \\ 
+##   4 & PC & BUS\_TOT & CH & 1990.00 & 3.70 \\ 
+##   5 & PC & BUS\_TOT & CY & 1990.00 &  \\ 
+##   6 & PC & BUS\_TOT & CZ & 1990.00 &  \\ 
 ##    \hline
 ## \end{tabular}
 ## \caption{This is a table.} 
@@ -66,130 +70,39 @@ Installing the Github development version:
 ```
 
 
-
-```
-## Warning in download.file(url, tfile): unable to resolve 'ec.europa.eu'
-```
-
-```
-## Error in download.file(url, tfile): cannot open URL 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Ftgs00026.tsv.gz'
-```
-
-```
-## Error in df$time: object of type 'closure' is not subsettable
-```
-
-```
-## Error in df$time: object of type 'closure' is not subsettable
-```
-
-```
-## Error: Key column 'time' does not exist in input.
-```
-
-```
-## Warning in download.file("http://ec.europa.eu/eurostat/cache/GISCO/
-## geodatafiles/NUTS_2010_60M_SH.zip", : unable to resolve 'ec.europa.eu'
-```
-
-```
-## Error in download.file("http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", : cannot open URL 'http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip'
-```
-
-```
-## Warning in unzip("NUTS_2010_60M_SH.zip"): error 1 in extracting from zip
-## file
-```
-
-```
-## Error in merge(dat, dw, by.x = "NUTS_ID", by.y = "geo", all.x = TRUE): error in evaluating the argument 'y' in selecting a method for function 'merge': Error: object 'dw' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'dat2' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'dat2' not found
-```
-
-```
-## Error in dat2$NUTS_ID <- NULL: object 'dat2' not found
-```
-
-```
-## Error in spCbind(map_nuts2, dat2): error in evaluating the argument 'x' in selecting a method for function 'spCbind': Error: object 'dat2' not found
-```
-
-```
-## Error in rownames(shape@data): object 'shape' not found
-```
-
-```
-## Error in fortify(shape, region = "id"): object 'shape' not found
-```
-
-```
-## Error in merge(map.points, shape, by = "id"): error in evaluating the argument 'x' in selecting a method for function 'merge': Error: object 'map.points' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'map.df' not found
-```
-
-```
-## Error in setNames(as.list(seq_along(vars)), vars): object 'map.df' not found
-```
-
-```
-## Error in stri_replace_all_regex(string, pattern, replacement, vectorize_all = vec, : object 'map.df.l' not found
-```
-
-```
-## Error in factor(map.df.l$year): object 'map.df.l' not found
-```
-
-```
-## Error in levels(map.df.l$year): object 'map.df.l' not found
-```
-
-```
-## Error in unique(map.df.l$year): object 'map.df.l' not found
-```
-
-```
-## Error in eval(expr, envir, enclos): object 'years' not found
-```
-
-```
-## Error in print(p): object 'p' not found
-```
+![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.pdf) 
 
 
-```
-## Warning in file(file, "rt"): unable to resolve 'ec.europa.eu'
+```r
+## ----2015-manu-searchdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, fig.width=7, fig.height=7, dpi=300, cache=TRUE, fig.show='asis'----
+id <- search_eurostat("Modal split of passenger transport", 
+        	             type = "table")$code[1]
+
+dat <- get_eurostat(id, time_format = "num")
+
+# Triangle plot on passenger transport distributions with 2012 data for
+# all countries with data 
+transports <- tidyr::spread(subset(dat, time == 2012,
+	   select = c(geo, vehicle, values)), vehicle, values)
+
+# triangle plot
+plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE, 
+           label.points = TRUE, point.labels = transports$geo, 
+           pch = 19)
 ```
 
-```
-## Error in file(file, "rt"): cannot open the connection
-```
+![plot of chunk 2015-manu-search2](./2015-manu-search2-1.png) 
 
-```
-## Error in paste0(id, "_", time_format, "_", select_time, "_", stringsAsFactors, : cannot coerce type 'closure' to vector of type 'character'
-```
 
+```r
+library(eurostat)
+data(efta_countries)
+print(xtable(efta_countries))
 ```
-## Error in time == 2012: comparison (1) is possible only for atomic and list types
-```
-
-```
-## Error in na.omit(transports): object 'transports' not found
-```
-
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Wed Nov 25 23:28:15 2015
+## % Wed Nov 25 23:58:05 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}
@@ -206,33 +119,62 @@ Installing the Github development version:
 ```
 
 
-```
-## Warning in download.file(url, tfile): unable to resolve 'ec.europa.eu'
-```
-
-```
-## Error in download.file(url, tfile): cannot open URL 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Ftsdtr420.tsv.gz'
-```
-
-```
-## Error in eval(expr, envir, enclos): object 't1' not found
+```r
+t1 <- get_eurostat("tsdtr420") %>%
+  dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
+t1$Country <- t1$geo
+ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
+  geom_point(size=4) + 
+  geom_line() + theme_bw() + ggtitle("People killed in road accidents")+
+  xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
 ```
 
 ```
-## Error in ggplot(t1, aes(x = time, y = values, color = Country, group = Country, : object 't1' not found
-```
-
-
-
-```
-## Warning in download.file(url, tfile): unable to resolve 'ec.europa.eu'
+## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.
 ```
 
 ```
-## Error in download.file(url, tfile): cannot open URL 'http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2Fhlth_ehis_de1.tsv.gz'
+## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.
 ```
 
 ```
-## Error in eval(expr, envir, enclos): object 'tmp1' not found
+## Warning: Removed 25 rows containing missing values (geom_point).
 ```
+
+```
+## Warning: Removed 10 rows containing missing values (geom_path).
+```
+
+```
+## Warning: The shape palette can deal with a maximum of 6 discrete values
+## because more than 6 becomes difficult to discriminate; you have 7.
+## Consider specifying shapes manually if you must have them.
+```
+
+![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png) 
+
+
+
+```r
+library(dplyr)
+tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
+tmp1 %>%
+  dplyr::filter( isced97 == "TOTAL" ,
+          sex != "T",
+          age != "TOTAL", geo == "PL") %>%
+  mutate(BMI = factor(bmi, 
+                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
+                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
+  arrange(BMI) %>%
+  ggplot(aes(y=values, x=age, fill=BMI)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~sex) + coord_flip() +
+  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
+```
+
+![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png) 
 
