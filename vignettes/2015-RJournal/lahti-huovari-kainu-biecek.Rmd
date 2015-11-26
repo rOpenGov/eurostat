@@ -23,7 +23,7 @@ R package](https://github.com/rOpenGov/eurostat).
 You can reproduce this markdown document by converting the [Rmarkdown
 source code](lahti-huovari-kainu-biecek.Rmd) in R with:
 
-```{r 2015-manu-generate, echo=TRUE, message=FALSE}
+```{r 2015-manu-generate, echo=TRUE, message=FALSE, eval=FALSE}
 library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
@@ -33,7 +33,7 @@ repository](https://github.com/rOpenGov/eurostat/), navigate in the
 [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
 folder, and run in R:
 
-```{r 2015-manu-manuscript, echo=TRUE, message=FALSE}
+```{r 2015-manu-manuscript, echo=TRUE, message=FALSE, eval=FALSE}
 tools::texi2pdf("RJwrapper.tex")
 ```
 

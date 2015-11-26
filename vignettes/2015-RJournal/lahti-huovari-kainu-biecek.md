@@ -29,10 +29,6 @@ library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
-```
-## Error in parse_block(g[-1], g[1], params.src): duplicate label '2015-manu-generate'
-```
-
 To reproduce the article PDF, clone [this
 repository](https://github.com/rOpenGov/eurostat/), navigate in the
 [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
@@ -97,7 +93,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:18:48 2015
+## % Thu Nov 26 00:21:05 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -157,7 +153,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:19:17 2015
+## % Thu Nov 26 00:21:50 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}
