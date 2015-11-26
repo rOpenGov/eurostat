@@ -17,7 +17,7 @@ output:
 This document provides [reproducible source
 code](lahti-huovari-kainu-biecek.Rmd) to generate the figures and
 tables for [our manuscript (in
-preparation)](lahti-huovari-kainu-biecek.pdf) introducing the [eurostat
+preparation)](RJwrapper.pdf) introducing the [eurostat
 R package](https://github.com/rOpenGov/eurostat).
 
 You can reproduce this markdown document by converting the [Rmarkdown

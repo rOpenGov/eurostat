@@ -17,7 +17,7 @@ output:
 This document provides [reproducible source
 code](lahti-huovari-kainu-biecek.Rmd) to generate the figures and
 tables for [our manuscript (in
-preparation)](lahti-huovari-kainu-biecek.pdf) introducing the [eurostat
+preparation)](RJwrapper.pdf) introducing the [eurostat
 R package](https://github.com/rOpenGov/eurostat).
 
 You can reproduce this markdown document by converting the [Rmarkdown
@@ -96,7 +96,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:27:20 2015
+## % Thu Nov 26 00:31:33 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -156,7 +156,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:27:45 2015
+## % Thu Nov 26 00:31:57 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}

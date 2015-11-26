@@ -1,4 +1,4 @@
-To reproduce the manuscript PDF run in R:
+To reproduce the figures, tables, and manuscript PDF run in R:
 source("main.R")
 
 
