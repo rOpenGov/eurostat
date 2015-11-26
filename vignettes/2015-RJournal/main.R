@@ -5,6 +5,7 @@
 #library(rmarkdown)
 #render("lahti-huovari-kainu-biecek.Rmd", output_format = "pdf_document")
 
+# Generate the examples, figures and tables
 library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 
