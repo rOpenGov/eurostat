@@ -1,7 +1,7 @@
 ---
-title: "eurostat R package"
+title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2015-11-25"
+date: "2015-11-26"
 bibliography: 
 - references.bib
 output: 
@@ -14,7 +14,40 @@ output:
 %\usepackage[utf8]{inputenc}
 -->
 
+This document provides [reproducible source
+code](lahti-huovari-kainu-biecek.Rmd) to generate the figures and
+tables for [our manuscript (in
+preparation)](lahti-huovari-kainu-biecek.pdf) introducing the eurostat
+R package.
 
+You can reproduce this markdown document by downloading the  [Rmarkdown source
+code](lahti-huovari-kainu-biecek.Rmd) and converting it in R with:
+
+
+```r
+library(knitr)
+knit("lahti-huovari-kainu-biecek.Rmd")
+```
+
+```
+## Error in parse_block(g[-1], g[1], params.src): duplicate label '2015-manu-generate'
+```
+
+To reproduce the article PDF, clone [this
+repository](https://github.com/rOpenGov/eurostat/), navigate in the
+[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
+folder, and run in R:
+
+
+```r
+tools::texi2pdf("RJwrapper.tex")
+```
+
+
+
+
+
+## Installation
 
 Installing the CRAN release version:
 
@@ -31,6 +64,8 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
+## Search and download
+
 
 ```r
 library(eurostat)
@@ -44,12 +79,12 @@ dat <- get_eurostat(id = "tsdtr210", time_format = "num")
 
 
 ```r
-print(xtable(head(dat), caption = "This is a table.", label = "tab:getdatatable"))
+print(xtable(head(dat), label = "tab:getdatatable"))
 ```
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Wed Nov 25 23:57:37 2015
+## % Thu Nov 26 00:07:57 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -64,17 +99,19 @@ print(xtable(head(dat), caption = "This is a table.", label = "tab:getdatatable"
 ##   6 & PC & BUS\_TOT & CZ & 1990.00 &  \\ 
 ##    \hline
 ## \end{tabular}
-## \caption{This is a table.} 
 ## \label{tab:getdatatable}
 ## \end{table}
 ```
 
+## Map visualization
 
 ![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.pdf) 
 
 
+## Passenger transport
+
+
 ```r
-## ----2015-manu-searchdata, echo=TRUE, warning=FALSE, error=FALSE, eval=TRUE, fig.width=7, fig.height=7, dpi=300, cache=TRUE, fig.show='asis'----
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
 
@@ -94,6 +131,9 @@ plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE,
 ![plot of chunk 2015-manu-search2](./2015-manu-search2-1.png) 
 
 
+## Country code tables
+
+
 ```r
 library(eurostat)
 data(efta_countries)
@@ -102,7 +142,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Wed Nov 25 23:58:05 2015
+## % Thu Nov 26 00:08:21 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}
@@ -117,6 +157,8 @@ print(xtable(efta_countries))
 ## \end{tabular}
 ## \end{table}
 ```
+
+## Road accidents
 
 
 ```r
@@ -157,6 +199,8 @@ ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country
 
 ![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png) 
 
+
+## Body-mass index
 
 
 ```r
