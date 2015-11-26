@@ -51,6 +51,9 @@ library(ggplot2)
 
 # Set ggplot theme
 theme_set(theme_bw(20))
+
+# Set figure folder
+knitr::opts_chunk$set(fig.path = "./")
 ```
 
 ## Installation

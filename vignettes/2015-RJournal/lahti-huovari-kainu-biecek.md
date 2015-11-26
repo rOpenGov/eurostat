@@ -54,6 +54,9 @@ library(ggplot2)
 
 # Set ggplot theme
 theme_set(theme_bw(20))
+
+# Set figure folder
+knitr::opts_chunk$set(fig.path = "./")
 ```
 
 ## Installation
@@ -93,7 +96,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:21:05 2015
+## % Thu Nov 26 00:27:20 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -116,7 +119,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
-![plot of chunk 2015-manu-mapexample](figure/2015-manu-mapexample-1.png) 
+![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png) 
 
 
 ## Passenger transport
@@ -139,7 +142,7 @@ plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE,
            pch = 19)
 ```
 
-![plot of chunk 2015-manu-search2](figure/2015-manu-search2-1.png) 
+![plot of chunk 2015-manu-search2](./2015-manu-search2-1.png) 
 
 
 ## Country code tables
@@ -153,7 +156,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:21:50 2015
+## % Thu Nov 26 00:27:45 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}
@@ -182,7 +185,7 @@ ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country
   xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
 ```
 
-![plot of chunk 2015-manu-roadacc](figure/2015-manu-roadacc-1.png) 
+![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png) 
 
 
 ## Body-mass index
@@ -205,5 +208,5 @@ tmp1 %>%
   theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
 ```
 
-![plot of chunk 2015-manu-bmi](figure/2015-manu-bmi-1.png) 
+![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png) 
 
