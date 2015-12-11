@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2015-11-26"
+date: "2015-12-10"
 bibliography: 
 - references.bib
 output: 
@@ -96,7 +96,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:31:33 2015
+## % Thu Dec 10 21:11:58 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -115,6 +115,32 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 ## \end{table}
 ```
 
+
+```r
+print(xtable(head(label_eurostat(dat)), label = "tab:getdatatable2"))
+```
+
+```
+## % latex table generated in R 3.2.2 by xtable 1.8-0 package
+## % Thu Dec 10 21:12:00 2015
+## \begin{table}[ht]
+## \centering
+## \begin{tabular}{rlllrr}
+##   \hline
+##  & unit & vehicle & geo & time & values \\ 
+##   \hline
+## 1 & Percentage & Motor coaches, buses and trolley buses & Austria & 1990.00 & 11.00 \\ 
+##   2 & Percentage & Motor coaches, buses and trolley buses & Belgium & 1990.00 & 10.60 \\ 
+##   3 & Percentage & Motor coaches, buses and trolley buses & Bulgaria & 1990.00 &  \\ 
+##   4 & Percentage & Motor coaches, buses and trolley buses & Switzerland & 1990.00 & 3.70 \\ 
+##   5 & Percentage & Motor coaches, buses and trolley buses & Cyprus & 1990.00 &  \\ 
+##   6 & Percentage & Motor coaches, buses and trolley buses & Czech Republic & 1990.00 &  \\ 
+##    \hline
+## \end{tabular}
+## \label{tab:getdatatable2}
+## \end{table}
+```
+
 ## Map visualization
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
@@ -126,8 +152,7 @@ The source code for the detailed map visualization is hidden but [available](htt
 
 
 ```r
-id <- search_eurostat("Modal split of passenger transport", 
-        	             type = "table")$code[1]
+id <- search_eurostat("Modal split of passenger transport", type = "table")$code[1]
 
 dat <- get_eurostat(id, time_format = "num")
 
@@ -156,7 +181,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Nov 26 00:31:57 2015
+## % Thu Dec 10 21:12:37 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}

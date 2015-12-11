@@ -1,128 +1,153 @@
-\title{\pkg{eurostat}: Eurostat Open Data R Tools\\DRAFT VERSION IN PROGRESS}
+\title{\CRANpkg{eurostat}: Eurostat Open Data R Tools\\DRAFT VERSION IN PROGRESS}
 \author{Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek}
 
 \maketitle
 
 %An abstract of less than 150 words.
-\abstract{Governmental institutions have started to release increasing amount of
-their data resources for the public as open data in the recent
-years. This is opening novel opportunities for research and citizen
-science. The eurostat R package provides a suite of tools to access open data from Eurostat, including functions to search, download, and manipulate these data sets in an automated and reproducible manner. The online documentation provides further examples on how to visualize, summarize and interpret these spatio-temporal data sets. The package builds on and extends the preceding SmarterPoland and statfi packages and has been extensively tested by the user community. This package contributes to the growing ecosystem of R packages that provide generic tools for reproducible computational research in social science and humanities.}
+\abstract{Whereas open data released by governmental institutions are
+opening up novel opportunities for research and citizen science,
+efficient tools to access and analyze these data sets are needed to
+realize the full potential of these information resources. We
+introduce here the \CRANpkg{eurostat} R package that provides a suite
+of tools to access open data from Eurostat, including functions to
+search, download, and manipulate Eurostat data in an automated and
+reproducible manner. The online documentation provides detailed
+examples on how to access, summarize and visualize these
+spatio-temporal data sets. The package expands previous related work
+and has been extensively tested by the user community. This
+contributes to the growing ecosystem of R packages that provide
+algorithmic tools for reproducible computational research in social
+science and humanities.}
 
-Efficient tools to access and analyse data collections from the public
-domain can greatly benefit reproducible research \citep{Gandrud13,
-Boettiger2015}. When the data is available, the complete analytical
+Eurostat\footnote{\url{http://ec.europa.eu/eurostat/data/database}},
+the statistical office of the European Union, is providing a rich
+collection of European level demographic and economic data through its
+open data service, which currently includes over 8800 data sets on
+European demography, economics, health, infrastructure, traffic and
+other topics. In many cases the statistics are available with great
+geographical resolution and as time series spanning over several years
+or decades.
+
+The availability of tools to access and analyse data collections from
+the public domain can greatly benefit reproducible
+research \citep{Gandrud13, Boettiger2015}. When the data resources and
+analysis algorithms are openly available, the complete analytical
 workflow spanning from raw data to the final publication can be made
-available. Standardization and automatization of common data analysis
-tasks via dedicated software packages can help to automate the
-analysis workflow, thus greatly facilitate reproducibility and code
-sharing and making data analysis more transparent and efficient.
+fully automated and transparent. Standardization of common data
+analysis tasks via dedicated software packages can help to automate
+the analysis workflow, greatly facilitating reproducibility and code
+sharing, and making the data analysis more efficient. At the same
+time, the algorithms need to be customized for variations in data
+formats, access details, and typical use cases.
 
-Here, we introduce the eurostat R package that implements R tools to
-access open data from
-Eurostat \footnote{\url{http://ec.europa.eu/eurostat}}. Eurostat
-provides a rich collection of demographic and economic data through
-its open data portal. The portal currently includes ... data sets on
-... between years ...
+Here, we introduce the \CRANpkg{eurostat} R package that implements R
+tools specifically designed to facilitate such automated access to
+open data from
+Eurostat \footnote{\url{http://ec.europa.eu/eurostat}}. Despite
+earlier efforts, a dedicated R package for eurostat open data has been
+missing. The eurostat R package introduced here brings together
+earlier efforts from our earlier CRAN
+packages \CRANpkg{statfi} \citep{statfi} and \CRANpkg{smarterpoland}
+\citep{smarterpoland}. Compared to this earlier work, we have combined the
+relevant parts of these two packages and implemented an expanded set
+of tools with a specific focus on the Eurostat data collection. The
+first version of the new \CRANpkg{eurostat} package was released in
+CRAN in 2014. It has been actively developed by several contributors
+and based on community feedback in Github. We are now reporting the
+first mature version of the package that has been improved and tested
+by multiple users. The package and its predecessors have been applied
+in several case studies by us and others\footnote{See
+e.g. http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}.
 
-Despite many efforts to this direction, a dedicated R package for
-eurostat open data has been missing. Our work extends our earlier CRAN
-packages statfi \citep{statfi} and smarterpoland
-\citep{smarterpoland}. Compared to this earlier work, we have now
-implemented an expanded set of tools specifically focusing on the
-eurostat data collection. The eurostat R package hence brings together
-earlier, independent efforts by the package developers. It has been
-actively developed by several contributors and based on the community
-feedback in Github, with its first CRAN release in 2014. We are now
-reporting the first mature version of the package that has been
-improved and tested by multiple users, and includes features like
-cache, handling dates, and using the tidy data
-principles \citep{wickham2014}, with the help of the tidyr R
-package \citep{tidyr}. The package or its predecessors have been
-applied in several case studies by us and independent users including
-Financial
-Times\footnote{http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}.
-
-The datamart \citep{datamart} and the quandl
-\citep{quandl} R packages provide generic tools that can be used to access
-certain versions of eurostat data. In contrast to these generic
-database packages, our the eurostat package provides functionality
-that is particularly tailored for this data collection. There is also
-a development version for R package
-\pkg{reurostat}\footnote{https://github.com/Tungurahua/reurostat} but this
-does not seem to be actively maintained. The package
-depends on or imports the following external R packages:
+Related work includes the \CRANpkg{datamart} \citep{datamart} and the
+\CRANpkg{quandl}
+\citep{quandl} R packages that provide generic tools that can be used to access
+certain versions of Eurostat data. In contrast to these generic
+database packages, our eurostat package provides functionality that is
+particularly tailored for the Eurostat open data service. The
+development version of another related R package
+\pkg{reurostat}\footnote{https://github.com/Tungurahua/reurostat} does not seem to be actively maintained at the moment.
+Moreover, our \CRANpkg{eurostat} package depends, imports or suggests
+the following external R packages:
 \CRANpkg{devtools} \citep{devtools}, \CRANpkg{dplyr} \citep{dplyr},
 \CRANpkg{knitr} \citep{knitr}, \CRANpkg{ggplot2} \citep{ggplot2},
 \CRANpkg{mapproj} \citep{mapproj}, \CRANpkg{plotrix} \citep{plotrix},
 \CRANpkg{reshape2} \citep{reshape2}, \CRANpkg{rmarkdown}
 \citep{rmarkdown}, \CRANpkg{stringi} \citep{stringi},
 \CRANpkg{testthat} \citep{testthat}, and \CRANpkg{tidyr}
-\citep{tidyr}. The eurostat R package is
-part of the rOpenGov project
-\citep{Lahti13icml}, which provides reproducible research tools for
+\citep{tidyr}. The \CRANpkg{eurostat} R package is
+part of rOpenGov collection
+\citep{Lahti13icml} that provides reproducible research tools for
 computational social science and digital humanities.
 
-
-The package provides tools to search and retrieve data from the
-Eurostat open data portal, to convert identifiers in human-readable
-formats and to select, modify and visualize the data. In this
-manuscript, we provide a brief overview of the core functionality in
-the current CRAN release version (1.2.1). For further examples, see
-the package
+In summary, the \CRANpkg{eurostat} package provides custom tools to
+search, retrieve, modify and visualize data from the Eurostat open
+data service. The package supports key features such as data cache,
+date formatting, and tidy data principles \citep{wickham2014} using
+the the \CRANpkg{tidyr} R package \citep{tidyr}. Here, we provide an
+overview of the core functionality in the current CRAN release version
+(1.2.1). For further examples, see the package
 vignette\footnote{https://github.com/rOpenGov/eurostat/vignette/eurostat\_tutorial.Rmd}.
-
 
 
 \section{Search and download commands}
 
-To install the CRAN release version, type in R:
-
-\code{
-install.packages("eurostat")
-}
-
-The complete table of contents of the database can be downloaded in R
-with the function \code{get\_eurostat\_toc()} [HERE LINK TO EUROSTAT
-PAGE WHERE THE DATA CAN BE BROWSED ONLINE]. The
-function \code{search\_eurostat()} can be used to make a more focused
-search over the table of contents. To retrieve data sets for
-'disposable income', for instance, use:
+To install and load the CRAN release version, just type in R:
 
 \begin{example}
-library(eurostat)
-income <- search_eurostat("disposable income", type = "dataset")
+> install.packages("eurostat")
+> library("eurostat")
+\end{example}
+
+The complete table of contents of the database can be browsed
+on-line\footnote{http://ec.europa.eu/eurostat/data/database}, or
+downloaded in R with the command \code{toc <- get\_eurostat\_toc()}. The function \code{search\_eurostat()} is used
+to make a more focused search over the table of contents. To retrieve
+data for 'Modal split of passenger transport', for instance, use:
+
+\begin{example}
+> query <- search_eurostat("Modal split of passenger transport", type = "table")
+\end{example}
+
+The \code{type} argument limits the search on a selected data set type
+in the above example. The options for this argument
+include \dfn{'table'}, \dfn{'dataset'} or \dfn{'folder'}, referring to
+different levels of hierarchy in the data organization: a \code{table}
+resides in \code{dataset}, which is in turn stored in a
+\code{folder}.
+
+Values in the \code{code} column of the \code{search\_eurostat()}
+function output provide data sets identifiers that can be used in
+subsequent download commands. Alternatively, these identifier codes
+can be browsed at the Eurostat open data service; check the codes in
+the Data Navigation Tree listed after each dataset in parentheses. Let
+us look at the data set identifier and title for the first entry of
+the query data:
+
+\begin{example}
+> query$code[[1]]
+[1] "tsdtr210"
+
+> query$title[[1]]
+[1] "Modal split of passenger transport"
 \end{example}
 
 
-The queried data type is specified in the above example with
-the \code{type} argument. The options for this argument
-include \dfn{'table'}, \dfn{'dataset'} or \dfn{'folder'}, referring to
-different levels of hierarchy in the data organization: a table
-resides in dataset, and the datasets are stored in a
-folder. The \code{type} argument limits the search on a selected data
-set type. Values from the code column list identifiers for specific
-data sets. These can be used in subsequent download
-commands. Alternatively, the dataset identifier codes can also be
-browsed at the Eurostat
-website\footnote{http://ec.europa.eu/eurostat/data/database}; check
-the codes in the Data Navigation Tree listed after each dataset (in
-parentheses).
+To retrieve the data set with this identifier, use
 
-To retrieve the data set with a particular identifier (tsdtr210, for
-instance), use
+\begin{example}
+> dat <- get_eurostat(id = "tsdtr210", time_format = "num")
+\end{example}
 
-\code{
-dat <- get\_eurostat(id = 'tsdtr210', time\_format = "num")
-}
+As the original data is annual in this example, we have selected a
+numeric time format. This is more convient for annual time series than
+the default date format. The data sets are provided as standard data
+frames to support standard tools for data subsetting and
+reshaping. The above function call returns a table on transport
+statistics.  The first lines of the output are shown in
+Table~\ref{tab:getdatatable}.
 
-Since the original data is annual in this example, we have selected a
-numeric time variable as this is more convient for annual time series
-than the default date format. The function call returns a table on
-passenger transport statistics in various countries. The first lines
-of the output are shown in Table~\ref{tab:getdatatable}.
-
-\begin{table}[ht]
+\begin{table}[ht!]
 \centering
 \begin{tabular}{rlllrr}
 \toprule
@@ -138,41 +163,78 @@ of the output are shown in Table~\ref{tab:getdatatable}.
    \hline
 \bottomrule   
 \end{tabular}
-\caption{First lines of output from the \code{get\_eurostat} function for the data set with the identifier 'tsdtr210'.}
+\caption{First lines of output from the \code{get\_eurostat()} function for the data set with the identifier 'tsdtr210'.}
 \label{tab:getdatatable}
 \end{table}
 
-Multidimensional data sets can be also visualized as triangular maps
-(Figure~\ref{fig:plotrix}) based on
-the \CRANpkg{plotrix} \citep{plotrix} package.
+\begin{table}[h!]
+\centering
+\begin{tabular}{rlllrr}
+\toprule
+  \hline
+  & unit & vehicle & geo & time & values \\ 
+  \hline
+  1 & Percentage & Motor coaches, buses and trolley buses & Austria & 1990.00 & 11.00 \\ 
+  2 & Percentage & Motor coaches, buses and trolley buses & Belgium & 1990.00 & 10.60 \\ 
+  3 & Percentage & Motor coaches, buses and trolley buses & Bulgaria & 1990.00 &  \\ 
+  4 & Percentage & Motor coaches, buses and trolley buses & Switzerland & 1990.00 & 3.70 \\ 
+  5 & Percentage & Motor coaches, buses and trolley buses & Cyprus & 1990.00 &  \\ 
+  6 & Percentage & Motor coaches, buses and trolley buses & Czech Republic & 1990.00 &  \\ 
+   \hline 
+\bottomrule     
+\end{tabular}
+\caption{The output from \code{get\_eurostat()} (see Table~\ref{tab:getdatatable}), converted into human-readable labels retrieved by \code{label\_eurostat()}.}
+\label{tab:getdatatable2}
+\end{table}
 
+The entries in many columns of the Table~\ref{tab:getdatatable} are as
+such not readily interpretable. To improve interpretability, these
+variable identifiers can be replaced with human-readable labels with
+the \code{label\_eurostat()} function; the simple
+call \code{label\_eurostat(dat)} converts the original identifiers
+into a human-readable version (Table~\ref{tab:getdatatable2}) based on
+translations available from the Eurostat database.
+
+The downloaded data sets are stored in cache by default to avoid
+repeated downloads of identical data sets. This can speed up the
+analysis. Moreover, storing an exact copy of the retrieved raw data on
+the hard disk supports reproducibility when the source database is
+constantly updated.
+
+
+\section{Visualizing the Eurostat data}
+
+The transport data set in our example includes three classes of
+vehicles. Three-dimensional data sets such as this can be conveniently
+visualized as triangular maps by using
+the \CRANpkg{plotrix} \citep{plotrix} package. The
+Figure~\ref{fig:transport}A illustrates the distribution of vehicle
+types in different countries. Interestingly, the Eurostat data also
+reveals a decreasing trend of road accidents in many countries over
+time (Figure~\ref{fig:transport})B as described in more detail in our
+recent blog
+post\footnote{http://pbiecek.github.io/archivist/justGetIT.html}.
 
 \begin{figure}
 \setkeys{Gin}{width=0.5\textwidth}
 \begin{center}
+\begin{tabular}{cc}
 \includegraphics{2015-manu-search2-1}
+\includegraphics{2015-manu-roadacc-1}
+\end{tabular}
 \end{center}
-\caption{Passenger transport data visualization on a triangular map.}
-\label{fig:plotrix}
+\caption{{\bf A} Passenger transport data retrieved with the \CRANpkg{eurostat} package visualized on a triangular \CRANpkg{plotrix} map. {\bf B} Time series of the number of people killed in road accidents.}
+\label{fig:transport}
 \end{figure}
 
 
-To improve the interpretability of the output, the eurostat variable
-identifiers could be further replaced with human-readable labels based
-on definitions from Eurostat dictionaries with
-the \code{label\_eurostat()} function. The data is provided in the
-standard data.frame format, so that all standard tools for data
-subsetting and reshaping are supported.
 
-
-\section{Usage examples}
-
-Eurostat provides a number of data sets of demographics and
-economics. We can look, for instance, at the distribution of body-mass
-index (BMI) indicating differences in obesity between different age
-groups as visualized in Figure~\ref{fig:bmi}, or observe a decreasing
-trend of road accidents in many countries over time
-(Figure~\ref{fig:roadaccidents})\footnote{http://pbiecek.github.io/archivist/justGetIT.html}.
+The Eurostat database includes a variety of demographic and health
+indicators. We see, for instance, that overweight varies remarkably
+across different age groups quantified by the body-mass index (BMI)
+(Figure~\ref{fig:bmi})\footnote{The fully reproducible source code
+of this example is available at
+https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md}.
 
 
 \begin{figure}
@@ -185,39 +247,31 @@ trend of road accidents in many countries over time
 \end{figure}
 
 
-\begin{figure}
-\setkeys{Gin}{width=0.5\textwidth}
-\begin{center}
-\includegraphics{2015-manu-roadacc-1}
-\end{center}
-\caption{Time series of the number of people killed in road accidents.}
-\label{fig:roadaccidents}
-\end{figure}
-
-
-
-
 
 \section{Geospatial information}
 
-Spatial information is conveniently visualized on a map. Most
-indicators are of country/year-type, although sometimes data is
-available also at more detailed levels of regional breakdown. Our
-related blog
-post\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}
-provides a detailed description on geospatial data visualization,
-looking at disposable income of private households (eurostat id
-tgs00026\footnote{http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026})
-at the NUTS2
-regions\footnote{http://en.wikipedia.org/wiki/Nomenclature\_of\_Territorial\_Units\_for\_Statistics}
+The indicators in the Eurostat open data service are typically
+available as annual time series grouped by country, and in some cases
+at more refined temporal or geographic levels. Importantly, Eurostat
+provides complementary geospatial data on administrative statistical
+units, available as standard
+shapefiles\footnote{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}. These
+can be used to visualize the available statistics on the European map
+at the appropriate geographic resolution.
+
+As an example of geospatial data visualization, let us look at
+disposable income of private households (data set identifier
+tgs00026\footnote{http://ec.europa.eu/eurostat/en/web/products-datasets/-/TGS00026}). This
+data set is available at the geographic level of NUTS2 regions, which
+is the intermediate level of territorial units in the Eurostat
+regional classifications, roughly correspond to provinces or states in
+each country\footnote{http://ec.europa.eu/eurostat/web/nuts/overview}
 (Figure~\ref{fig:mapexample}).
 
-In addition to downloading and manipulating data from Eurostat, we
-demonstrate how to access and use the Eurostat geospatial data
-(shapefiles) on administrative statistical
-units\footnote{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
-to visualize the income statistics on the European map. The example
-demonstrates how the Eurostat data sets and geospatial data
+A detailed treatment of this example, together with reproducible
+source code, is available
+on-line\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}. The
+example demonstrates how the Eurostat data sets and geospatial data
 (shapefiles), retrieved with the eurostat package, can be combined
 with additional map visualization tools and other utilities including
 \CRANpkg{grid} \citep{grid}, \CRANpkg{maptools} \citep{maptools}, \CRANpkg{rgdal} \citep{rgdal},
@@ -226,35 +280,35 @@ with additional map visualization tools and other utilities including
 
 
 \begin{figure}
-\setkeys{Gin}{width=0.5\textwidth}
+\setkeys{Gin}{width=0.8\textwidth}
 \begin{center}
 \includegraphics{2015-manu-mapexample-1}
-\caption{Disposable income of private households shown on the European map retrieved with the eurostat package and visualized with the aid of additional R extensions.}
+\caption{Disposable income of private households across NUTS2-level national regions in European countries visualized based on geospatial data available from Eurostat.}
 \label{fig:mapexample}
 \end{center}
 \end{figure}
 
 
-
-
-\section{Other functionality}
-
-To facilitate convenient analysis and visualization of standard
+To further facilitate the analysis and visualization of standard
 European areas, we have included ready-made country code lists for
 certain standard areas. To retrieve, for instance, the eurostat
-country code list for EFTA as shown in Table~\ref{tab:efta}, use:
+country codes for EFTA countries (Table~\ref{tab:efta}), we can use:
 
 \begin{example}
 data(efta_countries)
 \end{example}
 
-Such country listings are available for EFTA (efta\_countries), Euro
-area (ea\_countries), EU (eu\_countries) and EU candidate countries
-(candidate\_countries) [MENTION WHICH COUNTRY CODING SYSTEM IS BEING
-USED HERE]. These auxiliary data sets facilitate fast selection of
-specific country groups. Conversions between different country coding
-standards are available with the \CRANpkg{countrycode} R
-package \citep{countrycode}.
+Similar country listings are available for EFTA (efta\_countries),
+Euro area (ea\_countries), EU (eu\_countries) and EU candidate
+countries (candidate\_countries). These auxiliary data sets facilitate
+fast selection of specific country groups. The full name and a
+two-letter identifier is provided for each country as available from
+the Eurostat database. The country codes follow the ISO 3166-1 alpha-2
+standard, except that GB and GR are replaced by UK (United Kingdom)
+and EL (Greece) in the Eurostat database, respectively. Linking these
+country codes with external data sets can be facilitated by
+conversions between different country coding standards with
+the \CRANpkg{countrycode} R package \citep{countrycode}.
 
 
 \begin{table}[ht]
@@ -272,42 +326,39 @@ package \citep{countrycode}.
 \bottomrule   
 \end{tabular}
 \label{tab:efta}
-\caption{The EFTA country code table as provided by the eurostat R package.}
+\caption{The EFTA country code table from the eurostat R package.}
 \end{table}
 
-The downloaded data sets are stored in cache by default to avoid
-repeated downloads of identical data sets, helping to speed up the
-analysis. Another advantage is that an exact copy of the retrieved
-data on the hard disk makes it possible to reproduce the analysis
-results even when the source database is updated.
 
 
 \section{Summary}
 
 The eurostat R package provides convenient tools to access open data
-from Eurostat. Integrating automated access to the data sets with
-further data analysis and visualization tools provided in other
-packages allows a seamless automation of the data analytical workflow
-from accessing the raw data to statistical analysis and final
-publication. For the full reproducible source code of the figures and
-tables of this manuscript, see the package Github
-site\footnote{https://github.com/rOpenGov/eurostat/blob/master/vignettes/manuscript.Rmd}. The
-reproducible Rmarkdown document provides transparent documentation
-with full algorithmic details on how to access, preprocess, analyse,
-and report data and analyses, and can be also used to update the
-material when new or updated versions of the Eurostat data become
-available.
+from Eurostat. Combining programmatic access to the data sets with
+further analysis and visualization tools allows a seamless and
+reproducible automation of the complete data analytical workflow from
+accessing the raw data to statistical analysis and final
+publication. The full source code of the figures and tables of this
+manuscript are available at the package Github
+site\footnote{https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md}. The
+Rmarkdown document provides transparent documentation with full
+algorithmic details on the analyses, and can be updated when new
+versions of the Eurostat data become available.
 
-The package provides one set of solutions to automated data retrieval
-from independent data repositories, featuring options such as search,
-subsetting and cache. Possible future extensions and improvements
-include implementation of specific data representation formats to
-harmonize the data representation [LINK TO PANEL-SERIES DATA HERE]
-across similar data sources and to facilitate subsequent tool
-development.
+The eurostat package provides an example of automated data retrieval
+from institutional data repositories, featuring options such as
+search, subsetting and cache. Possible future extensions and
+improvements include implementation of specific data representation
+formats to harmonize the data representation across similar data
+sources and to facilitate subsequent tool development. In particular,
+we should take further advantage of the existing spatiotemporal data
+structures available in R, such as those provided by
+the \CRANpkg{spacetime} package \cite{xxx}, and construct wrapper
+functions to speed up routine operations such as visualizing the
+temporal and geospatial data sets from Eurostat.
 
-The latest development version of the package can be installed from
-Github by following the instructions at the github
+To install the latest development version of the eurostat package,
+follow the instructions at the github
 site\footnote{https://github.com/rOpenGov/eurostat}. The package
 source code can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license. We welcome issues, bug
@@ -319,9 +370,10 @@ site\footnote{https://github.com/ropengov/eurostat}.
 
 We are grateful to Eurostat\footnote{http://ec.europa.eu/eurostat} for
 maintaining the open data portal and the
-rOpenGov\footnote{https://github.ropengov.io} for supporting 
-package development. This work has been partially funded by Academy of
-Finland (decision 293316). We also wish to thank Juuso Parkkinen and Joona Lehtomaki for their feedback on this work.
+rOpenGov\footnote{https://github.ropengov.io} for supporting package
+development. This work has been partially funded by Academy of Finland
+(decision 293316). We also wish to thank Juuso Parkkinen and Joona
+Lehtom{\"a}ki for feedback.
 
 
 \bibliography{lahti-huovari-kainu-biecek}
