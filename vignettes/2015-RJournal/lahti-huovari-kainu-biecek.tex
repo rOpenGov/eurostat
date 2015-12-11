@@ -187,8 +187,8 @@ Table~\ref{tab:getdatatable}.
 \label{tab:getdatatable2}
 \end{table}
 
-The entries in many columns of the Table~\ref{tab:getdatatable} are as
-such not readily interpretable. To improve interpretability, these
+The entries in many columns of the Table~\ref{tab:getdatatable} are
+not readily interpretable as such. To improve interpretability, these
 variable identifiers can be replaced with human-readable labels with
 the \code{label\_eurostat()} function; the simple
 call \code{label\_eurostat(dat)} converts the original identifiers
@@ -197,23 +197,45 @@ translations available from the Eurostat database.
 
 The downloaded data sets are stored in cache by default to avoid
 repeated downloads of identical data sets. This can speed up the
-analysis. Moreover, storing an exact copy of the retrieved raw data on
-the hard disk supports reproducibility when the source database is
+analysis. Storing an exact copy of the retrieved raw data on the hard
+disk supports also the reproducibility when the source database is
 constantly updated.
 
-
-\section{Visualizing the Eurostat data}
-
-The transport data set in our example includes three classes of
+The transport data set in the above example includes three classes of
 vehicles. Three-dimensional data sets such as this can be conveniently
 visualized as triangular maps by using
-the \CRANpkg{plotrix} \citep{plotrix} package. The
-Figure~\ref{fig:transport}A illustrates the distribution of vehicle
-types in different countries. Interestingly, the Eurostat data also
-reveals a decreasing trend of road accidents in many countries over
-time (Figure~\ref{fig:transport})B as described in more detail in our
-recent blog
-post\footnote{http://pbiecek.github.io/archivist/justGetIT.html}.
+the \CRANpkg{plotrix} \citep{plotrix} package.
+
+\begin{example}
+# Select data for the year 2012:
+> dats <- subset(dat, time == 2012,
+>	   select = c(geo, vehicle, values))
+
+# Transform into countries x vehicles matrix and remove NAs
+> library(knitr)
+> transports <- tidyr::spread(dats, vehicle, values)
+> transports <- na.omit(transports)
+
+# Triangle plot
+> library(plotrix)
+> plotrix::triax.plot(transports[, c("BUS_TOT", "CAR", "TRN")],
+>            show.grid = TRUE, 
+>            label.points = TRUE, point.labels = transports$geo, 
+>            pch = 19)
+\end{example}
+
+The Figure~\ref{fig:transport}A illustrates the resulting triangular 
+visualization showing the distribution of vehicle types in different
+countries. Interestingly, the Eurostat data also reveals a decreasing
+trend of road accidents in many countries over time
+(Figure~\ref{fig:transport}B). The Eurostat database includes a
+variety of demographic and health indicators. We see, for instance,
+that overweight varies remarkably across different age groups
+quantified by the body-mass index (BMI)
+(Figure~\ref{fig:bmi})\footnote{The fully reproducible source code of
+all examples are available on-line at
+https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md}.
+
 
 \begin{figure}
 \setkeys{Gin}{width=0.5\textwidth}
@@ -223,18 +245,9 @@ post\footnote{http://pbiecek.github.io/archivist/justGetIT.html}.
 \includegraphics{2015-manu-roadacc-1}
 \end{tabular}
 \end{center}
-\caption{{\bf A} Passenger transport data retrieved with the \CRANpkg{eurostat} package visualized on a triangular \CRANpkg{plotrix} map. {\bf B} Time series of the number of people killed in road accidents.}
+\caption{Example visualizations of data sets retrieved with the \CRANpkg{eurostat} package. {\bf A} Passenger transport vehicle types visualized on a triangular \CRANpkg{plotrix} map. The three vehicle types are Motor coaches, buses and trolley buses (BUS\_TOT), Passenger cars (CAR), and Trains (TRN). {\bf B} Timeline of the number of people killed in road accidents.}
 \label{fig:transport}
 \end{figure}
-
-
-
-The Eurostat database includes a variety of demographic and health
-indicators. We see, for instance, that overweight varies remarkably
-across different age groups quantified by the body-mass index (BMI)
-(Figure~\ref{fig:bmi})\footnote{The fully reproducible source code
-of this example is available at
-https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md}.
 
 
 \begin{figure}
@@ -266,9 +279,7 @@ data set is available at the geographic level of NUTS2 regions, which
 is the intermediate level of territorial units in the Eurostat
 regional classifications, roughly correspond to provinces or states in
 each country\footnote{http://ec.europa.eu/eurostat/web/nuts/overview}
-(Figure~\ref{fig:mapexample}).
-
-A detailed treatment of this example, together with reproducible
+(Figure~\ref{fig:mapexample}). A detailed treatment of this example, together with reproducible
 source code, is available
 on-line\footnote{http://ropengov.github.io/r/2015/05/01/eurostat-package-examples}. The
 example demonstrates how the Eurostat data sets and geospatial data
@@ -280,7 +291,7 @@ with additional map visualization tools and other utilities including
 
 
 \begin{figure}
-\setkeys{Gin}{width=0.8\textwidth}
+\setkeys{Gin}{width=0.7\textwidth}
 \begin{center}
 \includegraphics{2015-manu-mapexample-1}
 \caption{Disposable income of private households across NUTS2-level national regions in European countries visualized based on geospatial data available from Eurostat.}
@@ -292,26 +303,13 @@ with additional map visualization tools and other utilities including
 To further facilitate the analysis and visualization of standard
 European areas, we have included ready-made country code lists for
 certain standard areas. To retrieve, for instance, the eurostat
-country codes for EFTA countries (Table~\ref{tab:efta}), we can use:
+country codes for EFTA countries, use:
 
 \begin{example}
 data(efta_countries)
 \end{example}
 
-Similar country listings are available for EFTA (efta\_countries),
-Euro area (ea\_countries), EU (eu\_countries) and EU candidate
-countries (candidate\_countries). These auxiliary data sets facilitate
-fast selection of specific country groups. The full name and a
-two-letter identifier is provided for each country as available from
-the Eurostat database. The country codes follow the ISO 3166-1 alpha-2
-standard, except that GB and GR are replaced by UK (United Kingdom)
-and EL (Greece) in the Eurostat database, respectively. Linking these
-country codes with external data sets can be facilitated by
-conversions between different country coding standards with
-the \CRANpkg{countrycode} R package \citep{countrycode}.
-
-
-\begin{table}[ht]
+\begin{table}[b]
 \centering
 \begin{tabular}{rll}
 \toprule
@@ -326,8 +324,25 @@ the \CRANpkg{countrycode} R package \citep{countrycode}.
 \bottomrule   
 \end{tabular}
 \label{tab:efta}
-\caption{The EFTA country code table from the eurostat R package.}
+\caption{The EFTA country listing from the eurostat R package.}
 \end{table}
+
+
+This provides the EFTA country listing shown in
+Table~\ref{tab:efta}. Similar lists are also available for Euro area
+(ea\_countries), EU (eu\_countries) and the EU candidate countries
+(candidate\_countries). These auxiliary data sets facilitate fast
+selection of specific country groups for a closer analysis. The full
+name and a two-letter identifier are provided for each country as
+provided by the Eurostat database. The country codes follow the ISO
+3166-1 alpha-2 standard, except that GB and GR are replaced by UK
+(United Kingdom) and EL (Greece) in the Eurostat database,
+respectively. Linking these country codes with external data sets can
+be facilitated by conversions between different country coding
+standards with the \CRANpkg{countrycode} R
+package \citep{countrycode}.
+
+
 
 
 
@@ -340,12 +355,12 @@ reproducible automation of the complete data analytical workflow from
 accessing the raw data to statistical analysis and final
 publication. The full source code of the figures and tables of this
 manuscript are available at the package Github
-site\footnote{https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md}. The
-Rmarkdown document provides transparent documentation with full
-algorithmic details on the analyses, and can be updated when new
+site\footnote{https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md},
+where the Rmarkdown document provides reproducible documentation with
+full algorithmic details on the analyses, and can be updated when new
 versions of the Eurostat data become available.
 
-The eurostat package provides an example of automated data retrieval
+The eurostat package provides one example of automated data retrieval
 from institutional data repositories, featuring options such as
 search, subsetting and cache. Possible future extensions and
 improvements include implementation of specific data representation
@@ -353,27 +368,26 @@ formats to harmonize the data representation across similar data
 sources and to facilitate subsequent tool development. In particular,
 we should take further advantage of the existing spatiotemporal data
 structures available in R, such as those provided by
-the \CRANpkg{spacetime} package \cite{xxx}, and construct wrapper
-functions to speed up routine operations such as visualizing the
-temporal and geospatial data sets from Eurostat.
+the \CRANpkg{spacetime} package \cite{spacetime}, and construct
+wrapper functions to speed up routine operations such as visualizing
+the temporal and geospatial data sets from Eurostat.
 
-To install the latest development version of the eurostat package,
-follow the instructions at the github
-site\footnote{https://github.com/rOpenGov/eurostat}. The package
-source code can be freely used, modified and distributed under the
-BSD-2-clause (modified FreeBSD) license. We welcome issues, bug
+The source code and installation instructions for the latest
+development version of the eurostat package are available at the
+github site\footnote{https://github.com/rOpenGov/eurostat}. The
+package source code can be freely used, modified and distributed under
+the BSD-2-clause (modified FreeBSD) license. We welcome issues, bug
 reports and other feedback via the development
 site\footnote{https://github.com/ropengov/eurostat}.
 
 
 \section*{Acknowledgements}
 
-We are grateful to Eurostat\footnote{http://ec.europa.eu/eurostat} for
-maintaining the open data portal and the
-rOpenGov\footnote{https://github.ropengov.io} for supporting package
-development. This work has been partially funded by Academy of Finland
-(decision 293316). We also wish to thank Juuso Parkkinen and Joona
-Lehtom{\"a}ki for feedback.
+We are grateful to Eurostat for maintaining the open data service and
+the rOpenGov\footnote{https://github.ropengov.io} for supporting R
+package development. This work has been partially funded by Academy of
+Finland (decision 293316). We also wish to thank Juuso Parkkinen and
+Joona Lehtom{\"a}ki for feedback.
 
 
 \bibliography{lahti-huovari-kainu-biecek}

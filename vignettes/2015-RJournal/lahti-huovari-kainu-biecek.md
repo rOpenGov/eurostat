@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2015-12-10"
+date: "2015-12-11"
 bibliography: 
 - references.bib
 output: 
@@ -96,7 +96,7 @@ print(xtable(head(dat), label = "tab:getdatatable"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Dec 10 21:11:58 2015
+## % Fri Dec 11 11:41:58 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -122,7 +122,7 @@ print(xtable(head(label_eurostat(dat)), label = "tab:getdatatable2"))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Dec 10 21:12:00 2015
+## % Fri Dec 11 11:41:58 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rlllrr}
@@ -155,10 +155,11 @@ The source code for the detailed map visualization is hidden but [available](htt
 id <- search_eurostat("Modal split of passenger transport", type = "table")$code[1]
 
 dat <- get_eurostat(id, time_format = "num")
+datl <- label_eurostat(dat)
 
 # Triangle plot on passenger transport distributions with 2012 data for
 # all countries with data 
-transports <- tidyr::spread(subset(dat, time == 2012,
+transports <- tidyr::spread(subset(datl, time == 2012,
 	   select = c(geo, vehicle, values)), vehicle, values)
 
 # triangle plot
@@ -181,7 +182,7 @@ print(xtable(efta_countries))
 
 ```
 ## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Thu Dec 10 21:12:37 2015
+## % Fri Dec 11 11:42:13 2015
 ## \begin{table}[ht]
 ## \centering
 ## \begin{tabular}{rll}
