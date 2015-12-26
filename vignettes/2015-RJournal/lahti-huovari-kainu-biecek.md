@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2015-12-11"
+date: "2015-12-26"
 bibliography: 
 - references.bib
 output: 
@@ -78,74 +78,84 @@ install_github("ropengov/eurostat")
 
 ## Search and download
 
+To retrieve data for 'Modal split of passenger transport', for
+instance, use:
+
 
 ```r
 library(eurostat)
-income <- search_eurostat("disposable income", type = "dataset")
+query <- search_eurostat("Modal split of passenger transport", type = "table")
 ```
+
+Investigate the first entry of our query:
+
+
+```r
+query$code[[1]]
+```
+
+```
+## [1] "tsdtr210"
+```
+
+```r
+query$title[[1]]
+```
+
+```
+## [1] "            Modal split of passenger transport"
+```
+
+
+To retrieve the data set with this identifier, use:
 
 
 ```r
 dat <- get_eurostat(id = "tsdtr210", time_format = "num")
 ```
 
-
-```r
-print(xtable(head(dat), label = "tab:getdatatable"))
-```
-
-```
-## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Fri Dec 11 11:41:58 2015
-## \begin{table}[ht]
-## \centering
-## \begin{tabular}{rlllrr}
-##   \hline
-##  & unit & vehicle & geo & time & values \\ 
-##   \hline
-## 1 & PC & BUS\_TOT & AT & 1990.00 & 11.00 \\ 
-##   2 & PC & BUS\_TOT & BE & 1990.00 & 10.60 \\ 
-##   3 & PC & BUS\_TOT & BG & 1990.00 &  \\ 
-##   4 & PC & BUS\_TOT & CH & 1990.00 & 3.70 \\ 
-##   5 & PC & BUS\_TOT & CY & 1990.00 &  \\ 
-##   6 & PC & BUS\_TOT & CZ & 1990.00 &  \\ 
-##    \hline
-## \end{tabular}
-## \label{tab:getdatatable}
-## \end{table}
-```
+This produces a table:
 
 
 ```r
-print(xtable(head(label_eurostat(dat)), label = "tab:getdatatable2"))
+#print(xtable(head(dat), label = "tab:getdatatable"))
+kable(head(dat))
 ```
 
+
+
+|unit |vehicle |geo | time| values|
+|:----|:-------|:---|----:|------:|
+|PC   |BUS_TOT |AT  | 1990|   11.0|
+|PC   |BUS_TOT |BE  | 1990|   10.6|
+|PC   |BUS_TOT |BG  | 1990|     NA|
+|PC   |BUS_TOT |CH  | 1990|    3.7|
+|PC   |BUS_TOT |CY  | 1990|     NA|
+|PC   |BUS_TOT |CZ  | 1990|     NA|
+
+Same with human-readable labels:
+
+
+```r
+# Convert into human readable labels
+datl <- label_eurostat(dat)
+
+# Print the table
+#print(xtable(head(datl), label = "tab:getdatatable2"))
+kable(head(datl))
 ```
-## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Fri Dec 11 11:41:58 2015
-## \begin{table}[ht]
-## \centering
-## \begin{tabular}{rlllrr}
-##   \hline
-##  & unit & vehicle & geo & time & values \\ 
-##   \hline
-## 1 & Percentage & Motor coaches, buses and trolley buses & Austria & 1990.00 & 11.00 \\ 
-##   2 & Percentage & Motor coaches, buses and trolley buses & Belgium & 1990.00 & 10.60 \\ 
-##   3 & Percentage & Motor coaches, buses and trolley buses & Bulgaria & 1990.00 &  \\ 
-##   4 & Percentage & Motor coaches, buses and trolley buses & Switzerland & 1990.00 & 3.70 \\ 
-##   5 & Percentage & Motor coaches, buses and trolley buses & Cyprus & 1990.00 &  \\ 
-##   6 & Percentage & Motor coaches, buses and trolley buses & Czech Republic & 1990.00 &  \\ 
-##    \hline
-## \end{tabular}
-## \label{tab:getdatatable2}
-## \end{table}
-```
 
-## Map visualization
 
-The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
-![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png) 
+|unit       |vehicle                                |geo            | time| values|
+|:----------|:--------------------------------------|:--------------|----:|------:|
+|Percentage |Motor coaches, buses and trolley buses |Austria        | 1990|   11.0|
+|Percentage |Motor coaches, buses and trolley buses |Belgium        | 1990|   10.6|
+|Percentage |Motor coaches, buses and trolley buses |Bulgaria       | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Switzerland    | 1990|    3.7|
+|Percentage |Motor coaches, buses and trolley buses |Cyprus         | 1990|     NA|
+|Percentage |Motor coaches, buses and trolley buses |Czech Republic | 1990|     NA|
+
 
 
 ## Passenger transport
@@ -155,50 +165,30 @@ The source code for the detailed map visualization is hidden but [available](htt
 id <- search_eurostat("Modal split of passenger transport", type = "table")$code[1]
 
 dat <- get_eurostat(id, time_format = "num")
-datl <- label_eurostat(dat)
+#datl <- label_eurostat(dat)
 
 # Triangle plot on passenger transport distributions with 2012 data for
 # all countries with data 
-transports <- tidyr::spread(subset(datl, time == 2012,
+transports <- tidyr::spread(subset(dat, time == 2012,
 	   select = c(geo, vehicle, values)), vehicle, values)
 
+# Remove NAs
+transports <- na.omit(transports)
+
 # triangle plot
-plotrix::triax.plot(na.omit(transports)[, -1], show.grid = TRUE, 
+plotrix::triax.plot(transports[, c("BUS_TOT", "CAR", "TRN")],
+           show.grid = TRUE, 
            label.points = TRUE, point.labels = transports$geo, 
            pch = 19)
 ```
 
-![plot of chunk 2015-manu-search2](./2015-manu-search2-1.png) 
+![plot of chunk 2015-manu-search2b](./2015-manu-search2b-1.png) 
 
-
-## Country code tables
-
-
-```r
-library(eurostat)
-data(efta_countries)
-print(xtable(efta_countries))
-```
-
-```
-## % latex table generated in R 3.2.2 by xtable 1.8-0 package
-## % Fri Dec 11 11:42:13 2015
-## \begin{table}[ht]
-## \centering
-## \begin{tabular}{rll}
-##   \hline
-##  & code & name \\ 
-##   \hline
-## 1 & IS & Iceland \\ 
-##   2 & LI & Liechtenstein \\ 
-##   3 & NO & Norway \\ 
-##   4 & CH & Switzerland \\ 
-##    \hline
-## \end{tabular}
-## \end{table}
-```
 
 ## Road accidents
+
+The original detailed treatment of this example is provided in the related
+[blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
 
 ```r
@@ -235,4 +225,35 @@ tmp1 %>%
 ```
 
 ![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png) 
+
+
+## Map visualization
+
+The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+
+![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png) 
+
+
+
+
+## Country code tables
+
+
+```r
+# Load EFTA country listing
+data(efta_countries)
+
+# Print the table
+#print(xtable(efta_countries))
+kable(efta_countries)
+```
+
+
+
+|code |name          |
+|:----|:-------------|
+|IS   |Iceland       |
+|LI   |Liechtenstein |
+|NO   |Norway        |
+|CH   |Switzerland   |
 

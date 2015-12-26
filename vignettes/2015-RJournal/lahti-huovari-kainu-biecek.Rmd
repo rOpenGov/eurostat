@@ -117,7 +117,7 @@ kable(head(datl))
 
 ## Passenger transport
 
-```{r 2015-manu-search2, echo=TRUE, message=FALSE}
+```{r 2015-manu-search2b, echo=TRUE, message=FALSE, fig.width=5, fig.height=5}
 id <- search_eurostat("Modal split of passenger transport", type = "table")$code[1]
 
 dat <- get_eurostat(id, time_format = "num")
@@ -144,7 +144,7 @@ plotrix::triax.plot(transports[, c("BUS_TOT", "CAR", "TRN")],
 The original detailed treatment of this example is provided in the related
 [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
-```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE}
+```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE, fig.width=4, fig.height=4}
 t1 <- get_eurostat("tsdtr420") %>%
   dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
 t1$Country <- t1$geo
