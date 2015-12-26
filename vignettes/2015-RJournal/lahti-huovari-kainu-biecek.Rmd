@@ -14,22 +14,23 @@ output:
 %\usepackage[utf8]{inputenc}
 -->
 
-This document provides [reproducible source
-code](lahti-huovari-kainu-biecek.Rmd) to generate the figures and
-tables for [our manuscript (in
-preparation)](RJwrapper.pdf) introducing the [eurostat
-R package](https://github.com/rOpenGov/eurostat).
+This document provides reproducible documentation to generate the
+figures and tables for [our manuscript (in
+preparation)](RJwrapper.pdf) introducing the [eurostat R
+package](https://github.com/rOpenGov/eurostat).
 
-You can reproduce this markdown document by converting the [Rmarkdown
-source code](lahti-huovari-kainu-biecek.Rmd) in R with:
+To reproduce the figures and tables, clone the [eurostat
+repository](https://github.com/rOpenGov/eurostat), go to the
+[./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
+subdirectory and convert the [Rmarkdown source
+code](lahti-huovari-kainu-biecek.Rmd) in R with:
 
 ```{r 2015-manu-generate, echo=TRUE, message=FALSE, eval=FALSE}
 library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
-To reproduce the article PDF, clone [this
-repository](https://github.com/rOpenGov/eurostat/), navigate in the
+To reproduce the article PDF, navigate in the
 [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
 folder, and run in R:
 
