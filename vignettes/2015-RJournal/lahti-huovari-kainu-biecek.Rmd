@@ -17,10 +17,11 @@ output:
 This document provides reproducible documentation to generate the
 figures and tables for [our manuscript (in
 preparation)](RJwrapper.pdf) introducing the [eurostat R
-package](https://github.com/rOpenGov/eurostat).
+package](https://github.com/rOpenGov/eurostat). We assume below that
+the required R extensions have already been installed.
 
-To reproduce the figures and tables, clone the [eurostat
-repository](https://github.com/rOpenGov/eurostat), go to the
+To reproduce the manuscript figures and tables, clone the [eurostat
+repository](https://github.com/rOpenGov/eurostat), navigate to the
 [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
 subdirectory and convert the [Rmarkdown source
 code](lahti-huovari-kainu-biecek.Rmd) in R with:
@@ -30,12 +31,13 @@ library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
-To reproduce the article PDF, navigate in the
+This reproduces the manuscript figures as PNG images in the working
+directory. To reproduce the complete manuscript PDF, navigate in the
 [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
 folder, and run in R:
 
 ```{r 2015-manu-manuscript, echo=TRUE, message=FALSE, eval=FALSE}
-tools::texi2pdf("RJwrapper.tex")
+source("main.R")
 ```
 
 

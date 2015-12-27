@@ -18,13 +18,14 @@ Depends:
 Imports:
     tidyr
 Suggests:
+    devtools,
+    dplyr,    
+    ggplot2,    
     knitr,
     mapproj,
     plotrix,
-    ggplot2,
-    dplyr,
     stringi,
-    devtools
+    testthat
 LazyData: true
 URL: https://github.com/ropengov/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues

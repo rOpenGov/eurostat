@@ -6,7 +6,7 @@ eurostat
 
 R tools to access data from [Eurostat](http://ec.europa.eu/eurostat). The package offers tool to search, download and manipulate data from the Eurostat database. Usage examples can be found in the following sources:
 
- * [eurostat tutorial](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md). Installation and standard use.
+ * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md). Installation and standard use.
  * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md). Reproducible examples of our recent manuscript (in preparation).
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examp) by Markus Kainu
 

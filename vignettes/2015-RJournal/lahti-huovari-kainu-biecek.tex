@@ -1,4 +1,4 @@
-\title{\CRANpkg{eurostat}: Eurostat Open Data R Tools\\DRAFT VERSION IN PROGRESS}
+\title{\pkg{eurostat}: Eurostat Open Data R Tools\\DRAFT VERSION IN PROGRESS}
 \author{Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek}
 
 \maketitle
@@ -67,20 +67,18 @@ package and its predecessors have been applied in several case studies
 by us and others\footnote{See
 e.g. http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}.
 
-Also the \CRANpkg{datamart} \citep{datamart} and the
+The \CRANpkg{datamart} \citep{datamart} and the
 \CRANpkg{quandl}
-\citep{quandl} R packages provide tools to access
+\citep{quandl} R packages provide further functions that can be used to access
 certain versions of Eurostat data. In contrast to these generic
 database packages, our eurostat package provides functionality that is
 particularly tailored for the Eurostat open data service.
-The \CRANpkg{eurostat} package greatly benefits from external tools
-available via
+The \CRANpkg{eurostat} package greatly benefits from further tools in
+the
 \CRANpkg{dplyr} \citep{dplyr},
 \CRANpkg{knitr} \citep{knitr}, \CRANpkg{ggplot2} \citep{ggplot2},
-\CRANpkg{mapproj} \citep{mapproj}, 
-\CRANpkg{stringi} \citep{stringi},
-and \CRANpkg{tidyr}
-\citep{tidyr}. The \CRANpkg{eurostat} R package is
+\CRANpkg{mapproj} \citep{mapproj}, and
+\CRANpkg{stringi} \citep{stringi} R packages. The \CRANpkg{eurostat} package is
 part of the rOpenGov collection
 \citep{Lahti13icml} that provides reproducible research tools for
 computational social science and digital humanities.
@@ -91,8 +89,9 @@ data service. The package supports key features such as data cache,
 date formatting, and tidy data principles \citep{wickham2014} using
 the the \CRANpkg{tidyr} R package \citep{tidyr}. Here, we provide an
 overview of the core functionality in the current CRAN release version
-(1.2.1). For further examples, see the package
-vignette\footnote{https://github.com/rOpenGov/eurostat/}.
+(1.2.1). For further documentation and the reproducible source code
+for this article, see the package github
+site \footnote{https://github.com/rOpenGov/eurostat}.
 
 
 \section{Search and download commands}
