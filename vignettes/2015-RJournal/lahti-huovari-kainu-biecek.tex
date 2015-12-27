@@ -20,13 +20,13 @@ contributes to the growing ecosystem of R packages that provide
 algorithmic tools for reproducible computational research in social
 science and humanities.}
 
-Eurostat, the statistical office of the European Union, is providing a rich
-collection of European level demographic and economic data through its
-open data service, which currently includes over 8800 data sets on
-European demography, economics, health, infrastructure, traffic and
-other topics. In many cases the statistics are available with great
-geographical resolution and as time series spanning over several years
-or decades.
+Eurostat, the statistical office of the European Union, provides a
+rich collection of demographic and economic data through its open data
+service, which currently includes over 8800 data sets on European
+demography, economics, health, infrastructure, traffic and other
+topics. In many cases the statistics are available with great
+geographical resolution and including time series spanning over
+several years or decades.
 
 The availability of tools to access and analyse data collections from
 the public domain can greatly benefit reproducible
@@ -36,47 +36,52 @@ workflow spanning from raw data to the final publication can be made
 fully automated and transparent. Standardization of common data
 analysis tasks via dedicated software packages can help to automate
 the analysis workflow, greatly facilitating reproducibility and code
-sharing, and making the data analysis more efficient. At the same
-time, the algorithms need to be customized for variations in data
-formats, access details, and typical use cases.
+sharing, and making the data analysis more efficient. The algorithms
+need to be customized to specific data sources, however, to
+accommodate variations in raw data formats, access details, and
+typical use cases so that the end user can avoid repetitive standard
+programming tasks and spend more time on the actual research tasks. A
+number of packages to access specific data sources from governmental
+and other institutions have been consequently designed to meet these
+demands and to access open data from the Food and Agricultural
+Organization (FAO) of the United Nations
+(\CRANpkg{FAOSTAT}; \cite{FAOSTAT}), World Bank
+(\CRANpkg{WDI}; \cite{WDI}), national statistics authorities
+(\CRANpkg{pxweb}; \cite{pxweb}), Open Street Map
+(\CRANpkg{osmar}; \cite{osmar}) and many other sources.
 
-Here, we introduce the \CRANpkg{eurostat} R package that implements R
-tools specifically designed to facilitate such automated access to
-open data from
-Eurostat\footnote{\url{http://ec.europa.eu/eurostat/data/database}}. A
-dedicated R package for eurostat open data has been missing. The
-eurostat R package introduced here brings together the efforts from
-our CRAN packages \CRANpkg{statfi} \citep{statfi}
-and \CRANpkg{smarterpoland}
-\citep{smarterpoland}. Compared to this earlier work, we have combined the
+A dedicated R package for eurostat open data has been missing,
+however. We introduce the \CRANpkg{eurostat} R package to fill this
+gap. The package facilitates automated access to open data from
+Eurostat\footnote{\url{http://ec.europa.eu/eurostat/data/database}}.
+This brings together our earlier efforts with
+the \CRANpkg{statfi} \citep{statfi} and \CRANpkg{smarterpoland}
+\citep{smarterpoland} packages. Compared to this earlier work, we have now combined the
 relevant parts of these two packages and implemented an expanded set
 of tools with a specific focus on the Eurostat data collection. The
-first version of the new \CRANpkg{eurostat} package was released in
-CRAN in 2014. It has been actively developed by several contributors
-and based on community feedback in Github. We are now reporting the
-first mature version of the package that has been improved and tested
-by multiple users. The package and its predecessors have been applied
-in several case studies by us and others\footnote{See
+first CRAN release of the package was in 2014. Since then it has been
+actively developed by several contributors and based on community
+feedback in Github. We are now reporting the first mature version of
+the package that has been improved and tested by multiple users. The
+package and its predecessors have been applied in several case studies
+by us and others\footnote{See
 e.g. http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}.
 
-Related work includes the \CRANpkg{datamart} \citep{datamart} and the
+Also the \CRANpkg{datamart} \citep{datamart} and the
 \CRANpkg{quandl}
-\citep{quandl} R packages that provide generic tools that can be used to access
+\citep{quandl} R packages provide tools to access
 certain versions of Eurostat data. In contrast to these generic
 database packages, our eurostat package provides functionality that is
-particularly tailored for the Eurostat open data service. The
-development version of another related R package
-\pkg{reurostat}\footnote{https://github.com/Tungurahua/reurostat} does not seem to be actively maintained at the moment.
-Moreover, our \CRANpkg{eurostat} package depends, imports or suggests
-the following external R packages:
-\CRANpkg{devtools} \citep{devtools}, \CRANpkg{dplyr} \citep{dplyr},
+particularly tailored for the Eurostat open data service.
+The \CRANpkg{eurostat} package greatly benefits from external tools
+available via
+\CRANpkg{dplyr} \citep{dplyr},
 \CRANpkg{knitr} \citep{knitr}, \CRANpkg{ggplot2} \citep{ggplot2},
-\CRANpkg{mapproj} \citep{mapproj}, \CRANpkg{plotrix} \citep{plotrix},
-\CRANpkg{reshape2} \citep{reshape2}, \CRANpkg{rmarkdown}
-\citep{rmarkdown}, \CRANpkg{stringi} \citep{stringi},
-\CRANpkg{testthat} \citep{testthat}, and \CRANpkg{tidyr}
+\CRANpkg{mapproj} \citep{mapproj}, 
+\CRANpkg{stringi} \citep{stringi},
+and \CRANpkg{tidyr}
 \citep{tidyr}. The \CRANpkg{eurostat} R package is
-part of rOpenGov collection
+part of the rOpenGov collection
 \citep{Lahti13icml} that provides reproducible research tools for
 computational social science and digital humanities.
 
