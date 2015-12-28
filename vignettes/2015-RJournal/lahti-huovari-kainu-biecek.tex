@@ -236,8 +236,49 @@ trend of road accidents in many countries over time
 (Figure~\ref{fig:transport}B). The Eurostat database includes a
 variety of demographic and health indicators. We see, for instance,
 that overweight varies remarkably across different age groups
-quantified by the body-mass index (BMI) (Figure~\ref{fig:bmi}).
+quantified by the body-mass index (BMI) (Figure~\ref{fig:bmi} A).
 
+Sometimes the data from the eurostat databse requires more complex pre-processing. Let's consider a question about distribution of sources of renewable energy in different European countries. In order to summarise such sources one needs to first aggregate all possible sources into a smaller number of interesting groups. Then with the use of packages like \CRANpkg{dplyr} or \CRANpkg{tidyr} one can process data, chop country names, filter countries depending on production levels, normalize the within country production. After a series of such transformations we can finally plot the data to discover that countries vary a lot in terms of sources of renewable energy (Figure~\ref{fig:bmi} B).
+
+\begin{example}
+# All sources of renewable energy are to be grouped into three sets
+> dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
++          "Biogasoline" = "Biofuels",
++          "Other liquid biofuels" = "Biofuels",
++          "Biodiesels" = "Biofuels",
++          "Biogas" = "Biofuels",
++          "Hydro power" = "Hydro power",
++          "Tide, Wave and Ocean" = "Hydro power",
++          "Solar thermal" = "Wind, solar, waste and Other",
++          "Geothermal Energy" = "Wind, solar, waste and Other",
++          "Solar photovoltaic" = "Wind, solar, waste and Other",
++          "Municipal waste (renewable)" = "Wind, solar, waste and Other",
++          "Wind power" = "Wind, solar, waste and Other",
++          "Bio jet kerosene" = "Wind, solar, waste and Other")
+# Some cleaning of the data is required
+> energy3 <- get_eurostat("ten00081") %>%
++  label_eurostat(dat) %>% 
++  filter(time == "2013-01-01",
++         product != "Renewable energies") %>%
++  mutate(nproduct = dict[as.character(product)], # just three categories
++         geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
++  select(nproduct, geo, values) %>% 
++  group_by(nproduct, geo) %>%
++  summarise(svalue = sum(values)) %>%
++  group_by(geo) %>%
++  mutate(tvalue = sum(svalue),
++         svalue = svalue/sum(svalue)) %>%
++  filter(tvalue > 1000,
++         !grepl(geo, pattern="^Euro")) %>% # only large countrie
++  spread(nproduct, svalue)
+# Triangle plot
+> library(plotrix)
+> par(cex=0.75)
+> plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
++                      show.grid = TRUE,
++                      label.points = TRUE, point.labels = energy3$geo,
++                      pch = 19)
+\end{example}
 
 \begin{figure}
 \setkeys{Gin}{width=0.5\textwidth}
@@ -255,9 +296,12 @@ quantified by the body-mass index (BMI) (Figure~\ref{fig:bmi}).
 \begin{figure}
 \setkeys{Gin}{width=0.5\textwidth}
 \begin{center}
+\begin{tabular}{cc}
 \includegraphics{2015-manu-bmi-1}
+\includegraphics{2015-manu-energy-1}
+\end{tabular}
 \end{center}
-\caption{The body-mass index in different age groups based on Eurostat open data.}
+\caption{{\bf A} The body-mass index in different age groups based on Eurostat open data. {\bf B} Distribution of sources of renewable energy production based on Eurostat table \texttt{ten00081}, year 2013.}
 \label{fig:bmi}
 \end{figure}
 
