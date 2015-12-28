@@ -6,6 +6,8 @@ library(dplyr)
 library(tidyr)
 library(plotrix)
 
+query <- search_eurostat("production of renewable energy", type = "table")
+query$code[[1]]
 
 dat <- get_eurostat("ten00081")
 datl <- label_eurostat(dat)
