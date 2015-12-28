@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2015-12-26"
+date: "2015-12-28"
 bibliography: 
 - references.bib
 output: 
@@ -17,10 +17,11 @@ output:
 This document provides reproducible documentation to generate the
 figures and tables for [our manuscript (in
 preparation)](RJwrapper.pdf) introducing the [eurostat R
-package](https://github.com/rOpenGov/eurostat).
+package](https://github.com/rOpenGov/eurostat). We assume below that
+the required R extensions have already been installed.
 
-To reproduce the figures and tables, clone the [eurostat
-repository](https://github.com/rOpenGov/eurostat), go to the
+To reproduce the manuscript figures and tables, clone the [eurostat
+repository](https://github.com/rOpenGov/eurostat), navigate to the
 [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
 subdirectory and convert the [Rmarkdown source
 code](lahti-huovari-kainu-biecek.Rmd) in R with:
@@ -31,13 +32,14 @@ library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
-To reproduce the article PDF, navigate in the
+This reproduces the manuscript figures as PNG images in the working
+directory. To reproduce the complete manuscript PDF, navigate in the
 [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
 folder, and run in R:
 
 
 ```r
-tools::texi2pdf("RJwrapper.tex")
+source("main.R")
 ```
 
 
@@ -79,13 +81,13 @@ install_github("ropengov/eurostat")
 
 ## Search and download
 
-To retrieve data for 'Modal split of passenger transport', for
+To retrieve data for 'road accidents', for
 instance, use:
 
 
 ```r
 library(eurostat)
-query <- search_eurostat("Modal split of passenger transport", type = "table")
+query <- search_eurostat("road accidents", type = "table")
 ```
 
 Investigate the first entry of our query:
@@ -96,7 +98,7 @@ query$code[[1]]
 ```
 
 ```
-## [1] "tsdtr210"
+## [1] "tsdtr420"
 ```
 
 ```r
@@ -104,7 +106,7 @@ query$title[[1]]
 ```
 
 ```
-## [1] "            Modal split of passenger transport"
+## [1] "            People killed in road accidents"
 ```
 
 
@@ -112,7 +114,7 @@ To retrieve the data set with this identifier, use:
 
 
 ```r
-dat <- get_eurostat(id = "tsdtr210", time_format = "num")
+dat <- get_eurostat(id = "tsdtr420", time_format = "num")
 ```
 
 This produces a table:
@@ -125,14 +127,15 @@ kable(head(dat))
 
 
 
-|unit |vehicle |geo | time| values|
-|:----|:-------|:---|----:|------:|
-|PC   |BUS_TOT |AT  | 1990|   11.0|
-|PC   |BUS_TOT |BE  | 1990|   10.6|
-|PC   |BUS_TOT |BG  | 1990|     NA|
-|PC   |BUS_TOT |CH  | 1990|    3.7|
-|PC   |BUS_TOT |CY  | 1990|     NA|
-|PC   |BUS_TOT |CZ  | 1990|     NA|
+|sex |geo | time| values|
+|:---|:---|----:|------:|
+|T   |AT  | 1999|   1079|
+|T   |BE  | 1999|   1397|
+|T   |BG  | 1999|     NA|
+|T   |CH  | 1999|     NA|
+|T   |CY  | 1999|     NA|
+|T   |CZ  | 1999|   1455|
+
 
 Same with human-readable labels:
 
@@ -148,45 +151,17 @@ kable(head(datl))
 
 
 
-|unit       |vehicle                                |geo            | time| values|
-|:----------|:--------------------------------------|:--------------|----:|------:|
-|Percentage |Motor coaches, buses and trolley buses |Austria        | 1990|   11.0|
-|Percentage |Motor coaches, buses and trolley buses |Belgium        | 1990|   10.6|
-|Percentage |Motor coaches, buses and trolley buses |Bulgaria       | 1990|     NA|
-|Percentage |Motor coaches, buses and trolley buses |Switzerland    | 1990|    3.7|
-|Percentage |Motor coaches, buses and trolley buses |Cyprus         | 1990|     NA|
-|Percentage |Motor coaches, buses and trolley buses |Czech Republic | 1990|     NA|
+|sex   |geo            | time| values|
+|:-----|:--------------|----:|------:|
+|Total |Austria        | 1999|   1079|
+|Total |Belgium        | 1999|   1397|
+|Total |Bulgaria       | 1999|     NA|
+|Total |Switzerland    | 1999|     NA|
+|Total |Cyprus         | 1999|     NA|
+|Total |Czech Republic | 1999|   1455|
 
 
-
-## Passenger transport
-
-
-```r
-id <- search_eurostat("Modal split of passenger transport", type = "table")$code[1]
-
-dat <- get_eurostat(id, time_format = "num")
-#datl <- label_eurostat(dat)
-
-# Triangle plot on passenger transport distributions with 2012 data for
-# all countries with data 
-transports <- tidyr::spread(subset(dat, time == 2012,
-	   select = c(geo, vehicle, values)), vehicle, values)
-
-# Remove NAs
-transports <- na.omit(transports)
-
-# triangle plot
-plotrix::triax.plot(transports[, c("BUS_TOT", "CAR", "TRN")],
-           show.grid = TRUE, 
-           label.points = TRUE, point.labels = transports$geo, 
-           pch = 19)
-```
-
-![plot of chunk 2015-manu-search2b](./2015-manu-search2b-1.png) 
-
-
-## Road accidents
+## Road accidents visualization
 
 The original detailed treatment of this example is provided in the related
 [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
@@ -198,11 +173,62 @@ t1 <- get_eurostat("tsdtr420") %>%
 t1$Country <- t1$geo
 ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
   geom_point(size=4) + 
-  geom_line() + theme_bw() + ggtitle("People killed in road accidents")+
-  xlab("Year") + ylab("Number of killed people") + theme(legend.position="top")
+  geom_line() + theme_bw() + ggtitle("Road accidents")+
+  xlab("Year") + ylab("Victims (n)") + theme(legend.position="top")
 ```
 
 ![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png) 
+
+## Production of renewable energy
+
+
+```r
+dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
+          "Biogasoline" = "Biofuels",
+          "Other liquid biofuels" = "Biofuels",
+          "Biodiesels" = "Biofuels",
+          "Biogas" = "Biofuels",
+          "Hydro power" = "Hydro power",
+          "Tide, Wave and Ocean" = "Hydro power",
+          "Solar thermal" = "Wind, solar, waste and Other",
+          "Geothermal Energy" = "Wind, solar, waste and Other",
+          "Solar photovoltaic" = "Wind, solar, waste and Other",
+          "Municipal waste (renewable)" = "Wind, solar, waste and Other",
+          "Wind power" = "Wind, solar, waste and Other",
+          "Bio jet kerosene" = "Wind, solar, waste and Other")
+
+energy3 <- get_eurostat("ten00081") %>%
+  label_eurostat(dat) %>% 
+  filter(time == "2013-01-01",
+         product != "Renewable energies") %>%
+  mutate(nproduct = dict[as.character(product)], # just three categories
+         geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+  select(nproduct, geo, values) %>% 
+  group_by(nproduct, geo) %>%
+  summarise(svalue = sum(values)) %>%
+  group_by(geo) %>%
+  mutate(tvalue = sum(svalue),
+         svalue = svalue/sum(svalue)) %>%
+  filter(tvalue > 1000,
+         !grepl(geo, pattern="^Euro")) %>% # only large countrie
+  spread(nproduct, svalue)
+```
+
+```
+## Error in match.arg(method): object 'product' not found
+```
+
+```r
+par(cex=1.5)
+plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                      show.grid = TRUE,
+                      label.points = TRUE, point.labels = energy3$geo,cex.ticks=0.75,col.symbols = "red4",
+                      pch = 19)
+```
+
+```
+## Error in as.matrix(energy3[, c(3, 5, 4)]): object 'energy3' not found
+```
 
 
 ## Body-mass index
