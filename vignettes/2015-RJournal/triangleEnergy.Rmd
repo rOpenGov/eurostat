@@ -52,9 +52,9 @@ head(energy3)
 # The plot
 
 ```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
-par(cex=0.7)
+par(cex=0.75)
 triax.plot(as.matrix(energy3[, c(3,5,4)]),
                       show.grid = TRUE,
-                      label.points = TRUE, point.labels = energy3$geo,
+                      label.points = TRUE, point.labels = energy3$geo,cex.ticks=0.75,col.symbols = "red4",
                       pch = 19)
 ```
