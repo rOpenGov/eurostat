@@ -16,7 +16,9 @@ License: BSD_2_clause + file LICENSE
 Depends:
     R (>= 3.0.2)
 Imports:
-    tidyr
+    tidyr,
+    jsonlite
+    httr
 Suggests:
     devtools,
     dplyr,    
