@@ -16,7 +16,8 @@
 #'	                                              indic_na="B1GM")) 
 #'	     }
 #' @keywords utilities database
-get_eurostat_json <- function(id, filters = NULL, lang = c("en", "fr", "de")){
+get_eurostat_json <- function(id, filters = NULL, type = c("code", "label"), 
+                              lang = c("en", "fr", "de")){
   url_list <- list(scheme = "http",
                    hostname = "ec.europa.eu",
                    path = file.path("eurostat/wdds/rest/data/v1.1/json", 
@@ -29,7 +30,14 @@ get_eurostat_json <- function(id, filters = NULL, lang = c("en", "fr", "de")){
   ids <- dims$id
   
   dims_list <- lapply(dims[rev(ids)], function(x){
-    unlist(x$category$label)
+    y <- x$category$label
+    if (type[1] == "label") {
+      y <- unlist(y, use.names = FALSE)
+    } else if (type[1] == "code"){
+      y <- names(unlist(y))
+    } else {
+      stop("Invalid type ", type)
+    }
   })
   
   variables <- expand.grid(dims_list, KEEP.OUT.ATTRS = FALSE)
