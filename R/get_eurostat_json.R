@@ -4,6 +4,7 @@
 #'  contents of eurostat datasets for more details. 
 #' @param filters 
 #' @param lang A language used for metadata (en/fr/de).
+#' @param type A type of variables, code (default) or label.
 #'
 #' @return A dataset in data.frame format.
 #' @export
