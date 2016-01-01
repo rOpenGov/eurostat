@@ -5,13 +5,16 @@
 \alias{get_eurostat_dic}
 \title{get_eurostat_dic}
 \usage{
-get_eurostat_dic(dictname)
+get_eurostat_dic(dictname, lang = "en")
 
 getEurostatDictionary(dictname)
 }
 \arguments{
-\item{dictname}{Character, dictionary for given variable name 
+\item{dictname}{A character, dictionary for given variable name 
 will be downloaded.}
+
+\item{lang}{A character, code for language. Available are "en" (default), 
+"fr" and "de".}
 }
 \value{
 A data.frame with two columns, first with code names and 
@@ -31,6 +34,7 @@ Download a Eurostat dictionary. Download a dictionary for
 \dontrun{
 	       tmp <- get_eurostat_dic("crop_pro")
 	       head(tmp)
+	       tmp <- get_eurostat_dic("crop_pro", lang = "fr")
      }
 }
 \author{
@@ -40,7 +44,8 @@ Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
 see citation("eurostat").
 }
 \seealso{
-\code{\link{label_eurostat}}, \code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
+\code{\link{label_eurostat}}, \code{\link{get_eurostat}}, 
+         \code{\link{search_eurostat}}.
 }
 \keyword{database}
 \keyword{utilities}

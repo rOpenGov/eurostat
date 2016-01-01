@@ -4,7 +4,7 @@
 \alias{dic_order}
 \title{Order of variable levels from Eurostat dictionary.}
 \usage{
-dic_order(x, dic, type)
+dic_order(x, dic, type, lang = "en")
 }
 \arguments{
 \item{x}{a variable (code or labelled) to get order for.}
@@ -14,6 +14,9 @@ data.frame from \code{\link{get_eurostat}}. Can be also data.frame from
 \code{\link{get_eurostat_dic}}.}
 
 \item{type}{a type of the x. Could be \code{code} or \code{label}.}
+
+\item{lang}{A character, code for language. Available are "en" (default), 
+"fr" and "de". Meaningful only for type = "name".}
 }
 \value{
 A numeric vector of orders.

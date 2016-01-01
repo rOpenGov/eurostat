@@ -21,8 +21,8 @@ Imports:
     httr
 Suggests:
     devtools,
-    dplyr,    
-    ggplot2,    
+    dplyr,
+    ggplot2,
     knitr,
     mapproj,
     plotrix,
@@ -34,4 +34,4 @@ BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 5.0.0
+RoxygenNote: 5.0.1
