@@ -1,4 +1,4 @@
-#' @title get_eurostat_toc
+#' @title Download a table of contents of eurostat datasets
 #' @description Download table of contents (TOC) of eurostat datasets. 
 #'              Note that the values in column 'code' should be used 
 #'		to download a selected dataset.

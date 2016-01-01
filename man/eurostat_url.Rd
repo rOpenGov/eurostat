@@ -2,7 +2,7 @@
 % Please edit documentation in R/eurostat_url.R
 \name{eurostat_url}
 \alias{eurostat_url}
-\title{eurostat_url}
+\title{Eurostat database base url}
 \usage{
 eurostat_url(...)
 }

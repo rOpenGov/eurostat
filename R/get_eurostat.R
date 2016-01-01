@@ -1,4 +1,4 @@
-#' @title get_eurostat
+#' @title Generic wrapper to read data from Eurostat
 #' @description Download dataset from the Eurostat database
 #' (\url{ec.europa.eu/eurostat}).
 #' @param id A code name for the dataset of interest.

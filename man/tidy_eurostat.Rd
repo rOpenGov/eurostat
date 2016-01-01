@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{tidy_eurostat}
 \alias{tidy_eurostat}
-\title{tidy_eurostat}
+\title{Transform raw Eurostat data table into row-column-value format (RCV)}
 \usage{
 tidy_eurostat(dat, time_format = "date", select_time = NULL,
   stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE)

@@ -1,4 +1,4 @@
-#' @title get_eurostat_raw
+#' @title Download data from the eurostat database
 #' @description Download data from the eurostat database. Downloads datasets
 #' from the eurostat database and transforms into tabular format.
 #' @param id A code name for the dataset of interested. See the table of

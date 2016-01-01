@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat.R
 \name{get_eurostat}
 \alias{get_eurostat}
-\title{get_eurostat}
+\title{Generic wrapper to read data from Eurostat}
 \usage{
 get_eurostat(id, time_format = "date", select_time = NULL, cache = TRUE,
   update_cache = FALSE, cache_dir = NULL, compress_file = TRUE,

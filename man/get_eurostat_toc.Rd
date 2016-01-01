@@ -3,7 +3,7 @@
 \name{get_eurostat_toc}
 \alias{getEurostatTOC}
 \alias{get_eurostat_toc}
-\title{get_eurostat_toc}
+\title{Download a table of contents of eurostat datasets}
 \usage{
 get_eurostat_toc()
 

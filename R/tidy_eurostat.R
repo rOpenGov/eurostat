@@ -1,4 +1,4 @@
-#' @title tidy_eurostat
+#' @title Transform raw Eurostat data table into row-column-value format (RCV)
 #' @description Transform raw Eurostat data table into the row-column-value
 #' format (RCV).
 #' @param dat a data.frame from \code{\link{get_eurostat_raw}}.

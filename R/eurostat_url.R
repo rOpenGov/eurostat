@@ -1,4 +1,4 @@
-#' @title eurostat_url 
+#' @title Eurostat database base url
 #' @description Base url
 #' @param ... Arguments to be passed
 #' @return url

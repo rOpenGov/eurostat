@@ -4,7 +4,7 @@
 \alias{label_eurostat}
 \alias{label_eurostat_tables}
 \alias{label_eurostat_vars}
-\title{label_eurostat}
+\title{Get definitions for Eurostat codes from Eurostat dictionaries}
 \usage{
 label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE,
   lang = "en")

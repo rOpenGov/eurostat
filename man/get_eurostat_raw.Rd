@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_raw.R
 \name{get_eurostat_raw}
 \alias{get_eurostat_raw}
-\title{get_eurostat_raw}
+\title{Download data from the eurostat database}
 \usage{
 get_eurostat_raw(id)
 }
