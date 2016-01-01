@@ -222,9 +222,9 @@ ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country
 
 Many entries in Table~\ref{tab:getdatatable} are not readily
 interpretable, but a simple call \code{label\_eurostat(dat)} converts
-the original identifier codes into human-readable versions (shown in
+the original identifier codes into human-readable labels (shown in
 Table~\ref{tab:getdatatable2}) based on translations in the Eurostat
-database.
+database. Labels are available in English, France and Germany.
 
 The downloaded data sets are stored in cache by default to avoid
 repeated downloads of identical data sets. This can speed up the

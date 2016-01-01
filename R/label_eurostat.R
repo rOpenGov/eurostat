@@ -16,6 +16,8 @@
 #'   should be retained. The suffix "_code" is added to code column names.  
 #' @param eu_order Logical. Should Eurostat ordering used for label levels. 
 #'   Affects only factors.
+#' @param lang A character, code for language. Available are "en" (default), 
+#'        "fr" and "de".
 #' @export
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @return a vector or a data.frame.
@@ -29,11 +31,12 @@
 #'    label_eurostat_vars(names(lp))
 #'    label_eurostat_tables("nama_aux_lp")
 #'  }
-label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE){
+label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE, 
+                           lang = "en"){
   if (is.data.frame(x)){
     y <- x
     for (i in names(y)[!(names(y) %in% c("time", "values"))]){
-      y[[i]] <- label_eurostat(y[[i]], i, eu_order = eu_order)
+      y[[i]] <- label_eurostat(y[[i]], i, eu_order = eu_order, lang = lang)
     }
     
     #codes added if asked
@@ -46,7 +49,7 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE){
     }
   } else {
     if (is.null(dic)) stop("Dictionary information is missing")
-    dic_df <- get_eurostat_dic(dic)
+    dic_df <- get_eurostat_dic(dic, lang = lang)
     if (is.factor(x)){
       if (eu_order) {
         ord <- dic_order(levels(x), dic_df, "code")
@@ -72,15 +75,15 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE){
 #' @describeIn label_eurostat Get definitions for variable (column) names. For
 #'  objects other than characters or factors definitions are get for names.
 #' @export
-label_eurostat_vars <- function(x){
+label_eurostat_vars <- function(x, lang = "en"){
   if(!(is.character(x) | is.factor(x))) x <- names(x)
-  label_eurostat(x, dic = "dimlst")
+  label_eurostat(x, dic = "dimlst", lang = lang)
 }
 
 #' @describeIn label_eurostat Get definitions for table names
 #' @export
-label_eurostat_tables <- function(x){
+label_eurostat_tables <- function(x, lang = "en"){
   if(!(is.character(x) | is.factor(x))) stop("x have to be a character or a factor")
-  label_eurostat(x, dic = "table_dic")
+  label_eurostat(x, dic = "table_dic", lang = lang)
 }
 

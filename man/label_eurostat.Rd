@@ -6,11 +6,12 @@
 \alias{label_eurostat_vars}
 \title{Get definitions for Eurostat codes from Eurostat dictionaries}
 \usage{
-label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE)
+label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE,
+  lang = "en")
 
-label_eurostat_vars(x)
+label_eurostat_vars(x, lang = "en")
 
-label_eurostat_tables(x)
+label_eurostat_tables(x, lang = "en")
 }
 \arguments{
 \item{x}{A character or a factor vector or a data.frame.}
@@ -24,6 +25,9 @@ should be retained. The suffix "_code" is added to code column names.}
 
 \item{eu_order}{Logical. Should Eurostat ordering used for label levels. 
 Affects only factors.}
+
+\item{lang}{A character, code for language. Available are "en" (default), 
+"fr" and "de".}
 }
 \value{
 a vector or a data.frame.
