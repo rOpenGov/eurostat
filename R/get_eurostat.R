@@ -89,7 +89,9 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
     # cache filename
     cache_file <- file.path(cache_dir,
                             paste0(id, "_", time_format,
-                                   "_", select_time, "_", stringsAsFactors,
+                                   "_", select_time, "_", 
+                                   strtrim(stringsAsFactors, 1),
+                                   strtrim(keepFlags, 1),
                                    ".rds"))
   }
 
