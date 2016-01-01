@@ -2,7 +2,7 @@
 % Please edit documentation in R/eurotime2num.R
 \name{eurotime2num}
 \alias{eurotime2num}
-\title{eurotime2num}
+\title{A conversion of a Eurostat time format to numeric}
 \usage{
 eurotime2num(x)
 }

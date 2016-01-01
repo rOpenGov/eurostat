@@ -2,7 +2,7 @@
 % Please edit documentation in R/clean_eurostat_cache.R
 \name{clean_eurostat_cache}
 \alias{clean_eurostat_cache}
-\title{clean_eurostat_cache}
+\title{Clean Eurostat Cache}
 \usage{
 clean_eurostat_cache(cache_dir = NULL)
 }

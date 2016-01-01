@@ -1,4 +1,4 @@
-#' @title get_eurostat_dic
+#' @title Download a Eurostat dictionary
 #' @description Download a Eurostat dictionary. Download a dictionary for
 #'              given coded variable from Eurostat (ec.europa.eu/eurostat).
 #'              Dictionaries link codes with human-readable labels.

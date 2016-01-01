@@ -1,4 +1,4 @@
-#' @title search_eurostat
+#' @title Grep datasets titles from eurostat
 #' @description Lists names of dataset from eurostat with the particular
 #' pattern in the description. Downloads list of all datasets available on
 #' eurostat and return list of names of datasets that contains particular 

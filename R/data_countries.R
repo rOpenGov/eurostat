@@ -1,4 +1,4 @@
-#' @title eu_countries
+#' @title Countries and country codes 
 #' @description Countries and country codes in EU,
 #' Euro area, EFTA and EU candidate countries.
 #' @format A data.frame:

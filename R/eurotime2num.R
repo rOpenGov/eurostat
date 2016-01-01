@@ -1,4 +1,4 @@
-#' @title eurotime2num
+#' @title A conversion of a Eurostat time format to numeric
 #' @description A conversion of a Eurostat time format to numeric. A function
 #' to convert Eurostat time values to a numeric. Bi-annual, quarterly and
 #' monthly data is presented as fraction of the year in beginning of the

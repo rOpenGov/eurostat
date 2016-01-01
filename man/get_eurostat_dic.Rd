@@ -3,7 +3,7 @@
 \name{get_eurostat_dic}
 \alias{getEurostatDictionary}
 \alias{get_eurostat_dic}
-\title{get_eurostat_dic}
+\title{Download a Eurostat dictionary}
 \usage{
 get_eurostat_dic(dictname)
 

@@ -3,7 +3,7 @@
 \name{search_eurostat}
 \alias{grepEurostatTOC}
 \alias{search_eurostat}
-\title{search_eurostat}
+\title{Grep datasets titles from eurostat}
 \usage{
 search_eurostat(pattern, type = "dataset")
 

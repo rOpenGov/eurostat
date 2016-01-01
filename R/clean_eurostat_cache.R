@@ -1,4 +1,4 @@
-#' @title clean_eurostat_cache
+#' @title Clean Eurostat Cache
 #' @description Delete all .rds files from the eurostat cache directory.
 #'              See \code{\link{get_eurostat}} for more on cache.
 #' @param cache_dir A path to cache directory. If \code{NULL} (default)
