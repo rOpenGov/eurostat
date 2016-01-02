@@ -1,8 +1,9 @@
 ---
 title: "eurostat tutorial for R"
-author: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
+author: Leo Lahti, Markus Kainu, Janne Huovari, Przemyslaw Biecek
 date: "`r Sys.Date()`"
 output:
+  toc: true
   html_document:
     theme: flatly
 ---

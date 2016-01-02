@@ -23,12 +23,9 @@
 #' @references See citation("eurostat").
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @keywords internal utilities database
-tidy_eurostat <-
-  function(dat, time_format = "date", select_time = NULL,
+tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = default.stringsAsFactors(),
            keepFlags = FALSE) {
-
-
 
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split = "\\.")[[1]]
@@ -64,20 +61,20 @@ tidy_eurostat <-
         "No data selected with select_time:", dQuote(select_time), "\n",
         "Available frequencies: ", shQuote(available_freq(freq_names)))
     } else {
+
       if (length(available_freq(freq_names)) > 1 & time_format != "raw") stop(
         "Data includes several time frequencies. Select frequency with
          select_time or use time_format = \"raw\".
          Available frequencies: ", shQuote(available_freq(freq_names)))
-
     }
-
 
       ## To long format
       names(dat2) <- gsub("X", "", names(dat2))
+      
       dat3 <- tidyr::gather_(dat2, cnames2, "value", names(dat2)[-c(1:length(cnames1))])
 
-    # fix for issue #27, tidyr can't name value col if reshape attached.
-    # Named here separately
+     # FIXME for issue #27, tidyr can't name value col if reshape attached.
+     # Named here separately
       names(dat3)[match("value", names(dat3))] <- "values"
 
       ## separate flags into separate column
@@ -88,8 +85,8 @@ tidy_eurostat <-
 
       ## remove flags from values column
       dat3$values <- tidyr::extract_numeric(dat3$values)
-      colnames(dat3)[length(cnames1) + 1] <- cnames2
-
+      # colnames(dat3)[length(cnames1) + 1] <- cnames # Was like this - Bug ???
+      # colnames(dat3)[1:length(cnames)] <- cnames      
 
     # convert time column
     time <- NULL # to avoid cran build warnings

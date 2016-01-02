@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Version: 1.1.9006
-Date: 2016-01-01
+Version: 1.1.9007
+Date: 2016-01-02
 Authors@R: c(
     person("Lahti", "Leo", email = "louhos@googlegroups.com", role = c("aut", "cre")),
     person("Biecek", "Przemyslaw" , role = "aut"),
@@ -32,4 +32,4 @@ BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 5.0.1
+RoxygenNote: 5.0.0

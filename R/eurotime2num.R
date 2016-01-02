@@ -22,6 +22,8 @@
 #'    eur_d$time <- eurotime2num(x = eur_d$time)
 #'    }
 eurotime2num <- function(x){
+
+  x <- as.factor(x)
   times <- levels(x)
 
   if (nchar(times[1]) > 7){
