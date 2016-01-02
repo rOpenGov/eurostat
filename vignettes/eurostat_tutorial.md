@@ -356,7 +356,7 @@ p <- p + geom_line()
 print(p)
 ```
 
-![plot of chunk trains_plot](figure/trains_plot-1.png) 
+![plot of chunk trains_plot](fig/trains_plot-1.png) 
 
 ### <a name="triangle"></a>Triangle plot
 
@@ -377,7 +377,7 @@ triax.plot(transports[, -1], show.grid = TRUE,
            pch = 19)
 ```
 
-![plot of chunk plotGallery](figure/plotGallery-1.png) 
+![plot of chunk plotGallery](fig/plotGallery-1.png) 
 
 For further examples, see also the [blog post on the eurostat R
 package](...).

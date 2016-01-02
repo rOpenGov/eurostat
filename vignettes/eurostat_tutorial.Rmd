@@ -37,7 +37,10 @@ For contact information and source code, see the [github page](https://github.co
  * [Session info](#session)  
 
 
-
+```{r setup, include=FALSE}
+# Global options
+opts_chunk$set(fig.path="fig/")
+```
 
 ## <a name="installation"></a>Installation
 
