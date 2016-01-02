@@ -3,16 +3,16 @@ citHeader("Kindly cite the eurostat R package as follows:")
 citEntry(entry="misc",
          title = "eurostat R package",
          author = personList(
-	   person(given ="Leo", family="Lahti", email = "louhos@googlegroups.com"),
-	   person(given = "Przemyslaw", family="Biecek"),
+	   person(given ="Leo", family="Lahti", email = "leo.lahti@iki.fi"),
 	   person(given = "Janne", family="Huovari"),
-	   person(given = "Markus", family="Kainu")
+	   person(given = "Markus", family="Kainu"),
+	   person(given = "Przemyslaw", family="Biecek")	   
          ),
 	 journal = "",
 	 year = "2014",
 	 url = "https://github.com/rOpenGov/eurostat",
          textVersion =
-         paste("(C) Leo Lahti, Przemyslaw Biecek, Janne Huovari and Markus Kainu 2014-2015.",
+         paste("(C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek 2014-2016.",
                "eurostat R package",
 	       "URL: https://github.com/rOpenGov/eurostat",
                sep=" ")

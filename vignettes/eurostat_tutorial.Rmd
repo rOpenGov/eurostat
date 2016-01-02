@@ -25,8 +25,8 @@ For contact information and source code, see the [github page](https://github.co
 
 ## Available tools
 
- * [Installation](#installation)  
- * [Finding data](#search)  
+ * [Installation](#installation)
+ * [Finding data](#search)
  * [Downloading data](#download)  
  * [Replacing codes with labels](#labeling)  
  * [Selecting and modifying data](#select)  
@@ -35,6 +35,8 @@ For contact information and source code, see the [github page](https://github.co
  * [Citing the package](#citing)  
  * [Acknowledgements](#acknowledgements)  
  * [Session info](#session)  
+
+
 
 
 ## <a name="installation"></a>Installation
@@ -58,6 +60,7 @@ Overall, the eurostat package includes the following functions:
 library(eurostat)
 kable(as.data.frame(ls("package:eurostat")))
 ```
+
 
 ## <a name="search"></a>Finding data
 
@@ -223,9 +226,8 @@ citation("eurostat")
 
 ## <a name="acknowledgements"></a>Acknowledgements
 
-We are grateful to [Eurostat](http://ec.europa.eu/eurostat/) for the open data portal! This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets. 
 
-
+We are grateful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors) and [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](http://cran.r-project.org/web/packages/statfi/index.html) and [smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html). The [datamart](http://cran.r-project.org/web/packages/datamart/index.html) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](http://cran.r-project.org/web/packages/Quandl/index.html) package may also provides access to some versions of eurostat data sets.
 
 
 ## <a name="session"></a>Session info
