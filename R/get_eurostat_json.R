@@ -20,6 +20,9 @@
 #' @param type A type of variables, "code" (default), "label" or "both". The 
 #'        "both" will return a data.frame with names vector, labes as values 
 #'        and codes as names.
+#' @param stringsAsFactors if \code{TRUE} (the default) variables are
+#'         converted to factors in original Eurostat order. If \code{FALSE}
+#'         they are returned as a character.
 #'
 #' @return A dataset as a data.frame.
 #' @export
@@ -34,7 +37,8 @@
 #' @keywords utilities database
 get_eurostat_json <- function(id, filters = NULL, 
                               type = c("code", "label", "both"), 
-                              lang = c("en", "fr", "de")){
+                              lang = c("en", "fr", "de"),
+                              stringsAsFactors = default.stringsAsFactors()){
   
   # prepare filters for query
   filters <- as.list(unlist(filters))
@@ -67,7 +71,8 @@ get_eurostat_json <- function(id, filters = NULL,
     }
   })
   
-  variables <- expand.grid(dims_list, KEEP.OUT.ATTRS = FALSE)
+  variables <- expand.grid(dims_list, KEEP.OUT.ATTRS = FALSE, 
+                           stringsAsFactors = stringsAsFactors)
   
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
   dat
