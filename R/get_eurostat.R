@@ -26,13 +26,13 @@
 #'    \code{\link{tempdir}}. Directory can also be set with
 #'    \code{option} eurostat_cache_dir.
 #' @param compress_file a logical whether to compress the
-#'     RDS-file. Default is \code{TRUE}
+#'     RDS-file in caching. Default is \code{TRUE}.
 #' @param stringsAsFactors if \code{TRUE} (the default) variables are
 #'         converted to factors in original Eurostat order. If \code{FALSE}
 #'         they are returned as a character.
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'     "provisional") should be kept in a separate column or if they
-#'     can be removed. Default is \code{FALSE}
+#'     can be removed. Default is \code{FALSE}.
 #' @export
 #' @details Datasets are downloaded from the Eurostat bulk download facility
 #' \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}.
@@ -67,7 +67,7 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL,
                          compress_file = TRUE,
                          stringsAsFactors = default.stringsAsFactors(),
-                         keepFlags = FALSE){
+                         keepFlags = FALSE, ...){
 
   if (cache){
     # check option for update
