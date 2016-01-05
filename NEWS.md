@@ -4,7 +4,8 @@
 * New `select_time` argument for `get_eurostat()` to select a time frequency 
   in case of multi-frequency datasets. Now the `get_eurostat()` also gives an
   error if you try to get multi-frequency with other time formats
-  than `time_format = "raw"`. (#30) 
+  than `time_format = "raw"`. (#30) `time` column is also now in ascending
+  order.
 * `get_eurostat()` cache filenames includes now all relevant arguments. (#28)
 * For `search_eurostat()` a new type option `type = "all"` to search all types.
 * For `label_eurostat()` new arguments. A `code` to retain also codes 
@@ -16,7 +17,7 @@
 * Cache files are now longer compressed.
 * For `get_eurostat()` a new argument `stringsAsFactors` to control the
   factor conversion of variables.
-* `eurotime2date` (and `get_eurostat`) convers now also daily data.
+* `eurotime2date` (and `get_eurostat`) convers now also daily data. 
 
 # eurostat 1.0.16
 
