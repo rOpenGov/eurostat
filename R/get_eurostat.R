@@ -33,6 +33,13 @@
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'     "provisional") should be kept in a separate column or if they
 #'     can be removed. Default is \code{FALSE}.
+#' @param filters a "none" to get a whole dataset or a list of filters to get 
+#'        just part of the table. If \code{NULL} (default) the whole 
+#'        dataset is returned via API. See more on filters and 
+#'        limitations per query via API from for 
+#'        \code{\link{get_eurostat_json}}.
+#' @param ... further argument for \code{\link{get_eurostat_json}}.
+#'
 #' @export
 #' @details Datasets are downloaded from the Eurostat bulk download facility
 #' \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}.
@@ -63,12 +70,15 @@
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 #' }
-get_eurostat <- function(id, time_format = "date", select_time = NULL,
+get_eurostat <- function(id, time_format = "date", filters = "none", 
+                         select_time = NULL,
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL,
                          compress_file = TRUE,
                          stringsAsFactors = default.stringsAsFactors(),
                          keepFlags = FALSE, ...){
-
+  # No cache for json
+  if (is.null(filters) || filters != "none") cache <- FALSE
+  
   if (cache){
     # check option for update
     update_cache <- update_cache | getOption("eurostat_update", FALSE)
@@ -97,10 +107,21 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
 
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
-    y_raw <- get_eurostat_raw(id)
-    y <- tidy_eurostat(y_raw, time_format, select_time,
-                       stringsAsFactors = stringsAsFactors,
-                       keepFlags = keepFlags)
+    
+    if (is.null(filters) || is.list(filters)){
+      # api download
+      y <- get_eurostat_json(id, filters, 
+                             stringsAsFactors = stringsAsFactors, ...)
+      # TODO add time conversion
+      # bulk download
+
+    } else if (filters == "none") {
+      y_raw <- get_eurostat_raw(id)
+      y <- tidy_eurostat(y_raw, time_format, select_time,
+                         stringsAsFactors = stringsAsFactors,
+                         keepFlags = keepFlags)
+    }
+    
   } else {
     y <- readRDS(cache_file)
     message("Table ", id, " read from cache file: ", path.expand(cache_file))

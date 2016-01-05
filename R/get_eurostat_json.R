@@ -13,7 +13,7 @@
 #'
 #' @param id A code name for the dataset of interested. See the table of
 #'        contents of eurostat datasets for more details. 
-#' @param filters A list or filters. If \code{NULL} (default) the whole 
+#' @param filters A list of filters. If \code{NULL} (default) the whole 
 #'        dataset is returned. See details for more on filters and 
 #'        limitations per query.
 #' @param lang A language used for metadata (en/fr/de).
