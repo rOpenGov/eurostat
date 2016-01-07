@@ -40,21 +40,8 @@ get_eurostat_json <- function(id, filters = NULL,
                               lang = c("en", "fr", "de"),
                               stringsAsFactors = default.stringsAsFactors()){
   
-  # prepare filters for query
-  filters <- as.list(unlist(filters))
-  names(filters) <- gsub("[0-9]", "", names(filters))
-  
-  # prepare url
-  url_list <- list(scheme = "http",
-                   hostname = "ec.europa.eu",
-                   path = file.path("eurostat/wdds/rest/data/v1.1/json", 
-                                    lang[1], id),
-                   query = filters)
-  class(url_list) <- "url"
-  url <- httr::build_url(url_list)
-  
-  
-  jdat <- jsonlite::fromJSON(url)
+  #get json data
+  jdat <- jsonlite::fromJSON(eurostat_json_url(id, filters, lang))
   dims <- jdat[[1]]$dimension
   ids <- dims$id
   
@@ -76,4 +63,22 @@ get_eurostat_json <- function(id, filters = NULL,
   
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
   dat
+}
+
+
+# Internal function to build json url
+eurostat_json_url <- function(id, filters, lang){
+  # prepare filters for query
+  filters <- as.list(unlist(filters))
+  names(filters) <- gsub("[0-9]", "", names(filters))
+  
+  # prepare url
+  url_list <- list(scheme = "http",
+                   hostname = "ec.europa.eu",
+                   path = file.path("eurostat/wdds/rest/data/v1.1/json", 
+                                    lang[1], id),
+                   query = filters)
+  class(url_list) <- "url"
+  url <- httr::build_url(url_list)
+  url
 }

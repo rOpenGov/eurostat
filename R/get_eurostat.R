@@ -69,6 +69,12 @@
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
+#' 
+#' dd <- get_eurostat("namq_aux_lp", 
+#'                      filters = list(geo = "FI", 
+#'                                     indic_na = "RLPH", 
+#'                                     unit = "EUR_HRS",
+#'                                     s_adj = "NSA"))
 #' }
 get_eurostat <- function(id, time_format = "date", filters = "none", 
                          select_time = NULL,
@@ -112,9 +118,9 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
       # api download
       y <- get_eurostat_json(id, filters, 
                              stringsAsFactors = stringsAsFactors, ...)
-      # TODO add time conversion
-      # bulk download
+      y$time <- convert_time_col(y$time, time_format = time_format)
 
+    # bulk download
     } else if (filters == "none") {
       y_raw <- get_eurostat_raw(id)
       y <- tidy_eurostat(y_raw, time_format, select_time,

@@ -92,17 +92,26 @@ tidy_eurostat <-
 
 
     # convert time column
-    time <- NULL # to avoid cran build warnings
-    if (time_format == "date"){
-      dat3$time <- eurotime2date(dat3$time, last = FALSE)
-    } else if (time_format == "date_last"){
-      dat3$time <- eurotime2date(dat3$time, last = TRUE)
-    } else if (time_format == "num"){
-      dat3$time <- eurotime2num(dat3$time)
-    } else if (!(time_format == "raw")) {
-      stop("An unknown time argument: ", time,
-               " Allowed are date, date_last, num and raw")
-    }
+    dat3$time <- convert_time_col(dat3$time, time_format = time_format)
 
     dat3
   }
+
+
+
+#' internal function to convert time column
+convert_time_col <- function(x, time_format){
+  if (time_format == "date"){
+    y <- eurotime2date(x, last = FALSE)
+  } else if (time_format == "date_last"){
+    y <- eurotime2date(x, last = TRUE)
+  } else if (time_format == "num"){
+    y <- eurotime2num(x)
+  } else if (time_format == "raw") {
+    y <- x
+  } else {
+    stop("An unknown time argument: ", time,
+         " Allowed are date, date_last, num and raw")
+  }
+  y
+}
