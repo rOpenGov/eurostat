@@ -30,7 +30,7 @@ Suggests:
 LazyData: true
 URL: https://github.com/ropengov/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
-VignetteBuilder: knitr
+VignetteBuilder: rmarkdown
 NeedsCompilation: no
 Repository: CRAN
 RoxygenNote: 5.0.1
