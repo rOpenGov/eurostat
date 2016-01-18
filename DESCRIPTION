@@ -24,6 +24,7 @@ Suggests:
     knitr,
     mapproj,
     plotrix,
+    rmarkdown,
     stringi,
     testthat
 LazyData: true

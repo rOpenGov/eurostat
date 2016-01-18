@@ -102,8 +102,10 @@ get_eurostat <- function(id, time_format = "date", select_time = NULL,
                        stringsAsFactors = stringsAsFactors,
                        keepFlags = keepFlags)
   } else {
+    cf <- path.expand(cache_file)
+    message(paste("Reading cache file", cf))
     y <- readRDS(cache_file)
-    message("Table ", id, " read from cache file: ", path.expand(cache_file))
+    message(paste("Table ", id, " read from cache file: ", cf))
   }
 
   # if update or new: save
