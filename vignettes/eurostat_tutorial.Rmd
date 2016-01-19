@@ -1,17 +1,9 @@
----
-title: "eurostat tutorial for R"
-author: Leo Lahti, Markus Kainu, Janne Huovari, Przemyslaw Biecek
-date: "`r Sys.Date()`"
-output:
-  toc: true
-  html_document:
-    theme: flatly
----
 <!--
-%\VignetteEngine{rmarkdown::render}
-%\VignetteIndexEntry{eurostat Markdown Vignette}
+%\VignetteIndexEntry{eurostat tutorial}
+%\VignetteEngine{knitr::knitr}
 %\usepackage[utf8]{inputenc}
--->
+-->    
+
 
 
 Eurostat R tools
@@ -39,6 +31,7 @@ For contact information and source code, see the [github page](https://github.co
 
 ```{r setup, include=FALSE}
 # Global options
+library(knitr)
 opts_chunk$set(fig.path="fig/")
 ```
 
