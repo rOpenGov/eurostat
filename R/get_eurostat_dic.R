@@ -23,7 +23,7 @@
 #' @keywords utilities database
 get_eurostat_dic <- function(dictname, lang = "en") {
   url <- eurostat_url()		   
-  read.table(paste0(url, 
+  utils::read.table(paste0(url, 
    "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
    dictname, ".dic"),
    sep = "\t", header = FALSE, stringsAsFactors = FALSE, quote = "\"",

@@ -32,8 +32,8 @@ get_eurostat_raw <- function(id) {
   on.exit(unlink(tfile))
   
   # download and read file
-  download.file(url, tfile)
-  dat <- read.table(gzfile(tfile), sep = "\t", na.strings = ": ", 
+  utils::download.file(url, tfile)
+  dat <- utils::read.table(gzfile(tfile), sep = "\t", na.strings = ": ", 
                     header = TRUE, stringsAsFactors = FALSE)
   # check validity
   if (ncol(dat) < 2 | nrow(dat) < 1) {

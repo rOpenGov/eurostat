@@ -811,14 +811,14 @@ We are grateful to all
 and [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This
 [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN
 packages
-[statfi](http://cran.r-project.org/web/packages/statfi/index.html) and
-[smarterpoland](http://cran.r-project.org/web/packages/SmarterPoland/index.html).
+[statfi](https://cran.r-project.org/package=statfi) and
+[smarterpoland](https://cran.r-project.org/package=SmarterPoland).
 The
-[datamart](http://cran.r-project.org/web/packages/datamart/index.html)
+[datamart](https://cran.r-project.org/package=datamart)
 and [reurostat](https://github.com/Tungurahua/reurostat) packages seem
 to develop related Eurostat tools but at the time of writing this
 tutorial this package seems to be in an experimental stage. The
-[quandl](http://cran.r-project.org/web/packages/Quandl/index.html)
+[quandl](https://cran.r-project.org/package=Quandl)
 package may also provides access to some versions of eurostat data sets.
 
 <a name="session"></a>Session info

@@ -89,7 +89,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
       # colnames(dat3)[1:length(cnames)] <- cnames      
 
     # convert time column
-    time <- NULL # to avoid cran build warnings
+    
     if (time_format == "date"){
       dat3$time <- eurotime2date(dat3$time, last = FALSE)
     } else if (time_format == "date_last"){
@@ -97,7 +97,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     } else if (time_format == "num"){
       dat3$time <- eurotime2num(dat3$time)
     } else if (!(time_format == "raw")) {
-      stop("An unknown time argument: ", time,
+      stop("An unknown time argument: ", time_format,
                " Allowed are date, date_last, num and raw")
     }
 
