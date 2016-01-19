@@ -7,6 +7,7 @@ vignettes/*_tutorial.md
 vignettes/*_tutorial.pdf
 vignettes/*_tutorial.html
 vignettes/*~
+vignettes/fig/*.pdf
 .Rproj.user
 eurostat.Rproj
 vignettes/NUTS_2010.xls
