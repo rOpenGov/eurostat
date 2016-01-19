@@ -4,6 +4,8 @@ inst/extras/..Rcheck
 *~
 */~
 vignettes/*_tutorial.md
+vignettes/*_tutorial.pdf
+vignettes/*_tutorial.html
 vignettes/*~
 .Rproj.user
 eurostat.Rproj
