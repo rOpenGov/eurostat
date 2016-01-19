@@ -1,4 +1,4 @@
-# eurostat 1.2.11
+# eurostat 1.2.12
 
 * New `select_time` argument for `get_eurostat()` to select a time frequency 
   in case of multi-frequency datasets. Now the `get_eurostat()` also gives an

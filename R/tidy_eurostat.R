@@ -27,6 +27,9 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = default.stringsAsFactors(),
            keepFlags = FALSE) {
 
+    # Circumvent build warning
+    time <- NULL
+
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split = "\\.")[[1]]
     cnames1 <- cnames[-length(cnames)]
@@ -89,7 +92,6 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
       # colnames(dat3)[1:length(cnames)] <- cnames      
 
     # convert time column
-    
     if (time_format == "date"){
       dat3$time <- eurotime2date(dat3$time, last = FALSE)
     } else if (time_format == "date_last"){
