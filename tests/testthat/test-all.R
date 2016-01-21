@@ -94,3 +94,15 @@ test_that("flags contain some confidential flagged fields",{
   expect_true(c("c") %in%
               unique(get_eurostat("naio_10_cp1620", keepFlags = TRUE)$flags))
 })
+
+context("json")
+
+test_that("Get json data",{
+  skip_on_cran()
+  expect_named(get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+                                                             unit="EUR_HAB",
+                                                             indic_na="B1GM")),
+               c("geo", "unit", "indic_na", "time", "values"), 
+               ignore.order = TRUE)
+})
+

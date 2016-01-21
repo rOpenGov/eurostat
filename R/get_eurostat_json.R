@@ -44,8 +44,25 @@ get_eurostat_json <- function(id, filters = NULL,
                               lang = c("en", "fr", "de"),
                               stringsAsFactors = default.stringsAsFactors()){
   
-  #get json data
-  jdat <- jsonlite::fromJSON(eurostat_json_url(id, filters, lang))
+  #get response
+  url <- eurostat_json_url(id = id, filters = filters, lang = lang)
+  resp <- httr::GET(url)
+  status <- httr::status_code(resp)
+  
+  # check status and get json
+  if (status == 200){
+    jdat <- jsonlite::fromJSON(url)
+  } else if (status == 400){
+    stop("Failure to get data. Probably invalid dataset id. Status code: ", 
+         status)
+  } else if (status == 500){
+    stop("Failure to get data. Probably filters did not return any data 
+         or data exceeded query size limitation. Status code: ", status)
+  } else {
+    stop("Failure to get data. Status code: ", status)
+  }
+  
+  # get json data
   dims <- jdat[[1]]$dimension
   ids <- dims$id
   
@@ -68,6 +85,7 @@ get_eurostat_json <- function(id, filters = NULL,
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
   dat
 }
+
 
 
 # Internal function to build json url
