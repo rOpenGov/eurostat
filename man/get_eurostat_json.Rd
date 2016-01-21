@@ -32,9 +32,7 @@ A dataset as a data.frame.
 }
 \description{
 Retrive data from 
-   \href{
-   http://ec.europa.eu/eurostat/web/json-and-unicode-web-services
-   }{The Eurostat Web Services}. Data to retrive 
+   \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services}. Data to retrive 
    can be spesified with filters. Normally, it is better to use JSON 
    query thru \code{\link{get_eurostat}}, than to use 
    \code{\link{get_eurostat_json}} directly.

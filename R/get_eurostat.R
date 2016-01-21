@@ -46,9 +46,7 @@
 #'
 #' @export
 #' @details Datasets are downloaded from 
-#' \href{
-#' http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing
-#' }{the Eurostat bulk download facility} or from The Eurostat Web Services 
+#' \href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
 #' \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 #' If only the table \code{id} is given, the whole table is downloaded from the
 #' bulk download facility. If also \code{filters} are defined the JSON API is
