@@ -73,8 +73,9 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
 
       ## To long format
       names(dat2) <- gsub("X", "", names(dat2))
-      
-      dat3 <- tidyr::gather_(dat2, cnames2, "value", names(dat2)[-c(1:length(cnames1))])
+
+      dat3 <- tidyr::gather_(dat2, cnames2, "value", rev(names(dat2)[-c(1:length(cnames1))]))
+
 
      # FIXME for issue #27, tidyr can't name value col if reshape attached.
      # Named here separately
@@ -92,16 +93,29 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
       # colnames(dat3)[1:length(cnames)] <- cnames      
 
     # convert time column
-    if (time_format == "date"){
-      dat3$time <- eurotime2date(dat3$time, last = FALSE)
-    } else if (time_format == "date_last"){
-      dat3$time <- eurotime2date(dat3$time, last = TRUE)
-    } else if (time_format == "num"){
-      dat3$time <- eurotime2num(dat3$time)
-    } else if (!(time_format == "raw")) {
-      stop("An unknown time argument: ", time_format,
-               " Allowed are date, date_last, num and raw")
-    }
+    dat3$time <- convert_time_col(dat3$time, time_format = time_format)
 
     dat3
   }
+
+
+
+#' internal function to convert time column
+#' @param x A time column (vector)
+#' @param time_format see \code{\link{tidy_eruostat}}
+#' @keywords internal
+convert_time_col <- function(x, time_format){
+  if (time_format == "date"){
+    y <- eurotime2date(x, last = FALSE)
+  } else if (time_format == "date_last"){
+    y <- eurotime2date(x, last = TRUE)
+  } else if (time_format == "num"){
+    y <- eurotime2num(x)
+  } else if (time_format == "raw") {
+    y <- x
+  } else {
+    stop("An unknown time argument: ", time,
+         " Allowed are date, date_last, num and raw")
+  }
+  y
+}

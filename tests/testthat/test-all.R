@@ -26,7 +26,7 @@ test_that("get_eurostat handles daily data", {
   skip_on_cran()
   dat <- get_eurostat("ert_bil_eur_d", time_format = "date", cache = FALSE)
   dat1 <- subset(dat, currency == "ARS")
-  expect_equal(as.numeric(difftime(dat1$time[1], dat1$time[2], units = "days")), 1)
+  expect_equal(abs(as.numeric(difftime(dat1$time[1], dat1$time[2], units = "days"))), 1)
 })
 
 
@@ -94,3 +94,15 @@ test_that("flags contain some confidential flagged fields",{
   expect_true(c("c") %in%
               unique(get_eurostat("naio_10_cp1620", keepFlags = TRUE)$flags))
 })
+
+context("json")
+
+test_that("Get json data",{
+  skip_on_cran()
+  expect_named(get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+                                                             unit="EUR_HAB",
+                                                             indic_na="B1GM")),
+               c("geo", "unit", "indic_na", "time", "values"), 
+               ignore.order = TRUE)
+})
+

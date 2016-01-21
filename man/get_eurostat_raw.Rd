@@ -7,7 +7,7 @@
 get_eurostat_raw(id)
 }
 \arguments{
-\item{id}{A code name for the data set of interested. See the table of
+\item{id}{A code name for the dataset of interested. See the table of
 contents of eurostat datasets for more details.}
 }
 \value{
@@ -27,7 +27,7 @@ Data is downloaded from
 }
 \examples{
 \dontrun{
-	       tmp <- get_eurostat_raw("educ_iste")
+	       tmp <- eurostat:::get_eurostat_raw("educ_iste")
 	       head(tmp)
      }
 }
