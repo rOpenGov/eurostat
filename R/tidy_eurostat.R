@@ -100,6 +100,9 @@ tidy_eurostat <-
 
 
 #' internal function to convert time column
+#' @param x A time column (vector)
+#' @param time_format see \code{\link{tidy_eruostat}}
+#' @keywords internal
 convert_time_col <- function(x, time_format){
   if (time_format == "date"){
     y <- eurotime2date(x, last = FALSE)

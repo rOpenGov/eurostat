@@ -16,7 +16,7 @@
 #' @importFrom utils read.table
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{
-#' 	       tmp <- get_eurostat_raw("educ_iste")
+#' 	       tmp <- eurostat:::get_eurostat_raw("educ_iste")
 #' 	       head(tmp)
 #'	     }
 #' @keywords utilities database

@@ -46,8 +46,9 @@
 #'
 #' @export
 #' @details Datasets are downloaded from 
-#' \href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
-#' {the Eurostat bulk download facility} or from The Eurostat Web Services 
+#' \href{
+#' http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing
+#' }{the Eurostat bulk download facility} or from The Eurostat Web Services 
 #' \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 #' If only the table \code{id} is given, the whole table is downloaded from the
 #' bulk download facility. If also \code{filters} are defined the JSON API is
@@ -72,18 +73,19 @@
 #' \url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
 #' database gives codes in the Data Navigation Tree after every dataset
 #' in parenthesis.
-#' 
 #' @return a data.frame. One column for each dimension in the data and
-#'    the values column for numerical values.
-#'    The time column for a time dimension. Data from bulk download facility
-#'    do not include items whose all values are missing. 
+#'         the values column for numerical values.
+#'         The time column for a time dimension. Data from bulk download 
+#'         facility do not include items whose all values are missing. 
 #' @seealso \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
-#' @examples \dontrun{
+#' @examples 
+#' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 #' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
-#' dir.create("r_cache")
-#' k <- get_eurostat("nama_10_lp_ulc", cache_dir = "r_cache")
+#' dir.create(file.path(tempdir(), "r_cache"))
+#' k <- get_eurostat("nama_10_lp_ulc", 
+#'                   cache_dir = file.path(tempdir(), "r_cache"))
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' options(eurostat_update = FALSE)

@@ -1,8 +1,9 @@
 #' @title Get data from The Eurostat APi in JSON 
 #' 
 #' @description Retrive data from 
-#'    \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}
-#'    {The Eurostat Web Services}. Data to retrive 
+#'    \href{
+#'    http://ec.europa.eu/eurostat/web/json-and-unicode-web-services
+#'    }{The Eurostat Web Services}. Data to retrive 
 #'    can be spesified with filters. Normally, it is better to use JSON 
 #'    query thru \code{\link{get_eurostat}}, than to use 
 #'    \code{\link{get_eurostat_json}} directly.
@@ -30,14 +31,13 @@
 #'
 #' @return A dataset as a data.frame.
 #' @export
-#'
-#' @examples \dontrun{
-#' 	       tmp <- get_eurostat_json("cdh_e_fos")
-#'	       yy <- get_eurostat_json("nama_gdp_c", 
-#'	                               filters = list(geo=("EU28", "FI"), 
-#'	                                              unit="EUR_HAB",
-#'	                                              indic_na="B1GM")) 
-#'	     }
+#' @examples
+#'  \dontrun{
+#'    tmp <- get_eurostat_json("cdh_e_fos")
+#'    yy <- get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+#'                                                         unit="EUR_HAB",
+#'                                                         indic_na="B1GM")) 
+#' }
 #' @keywords utilities database
 get_eurostat_json <- function(id, filters = NULL, 
                               type = c("code", "label", "both"), 

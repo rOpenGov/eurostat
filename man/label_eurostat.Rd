@@ -35,7 +35,7 @@ a vector or a data.frame.
 \description{
 Get definitions for Eurostat codes from Eurostat dictionaries.
 A character or a factor vector of codes returns a corresponding vector of
-definitions. \code{label_eurostat} labels also for data.frames
+definitions. \code{label_eurostat} labels also data.frames
 from \code{\link{get_eurostat}}.
 For vectors a dictionary name have to be supplied.
 For data.frames dictonary names are taken from column names. 
