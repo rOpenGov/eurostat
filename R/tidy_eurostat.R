@@ -105,17 +105,22 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
 #' @param time_format see \code{\link{tidy_eruostat}}
 #' @keywords internal
 convert_time_col <- function(x, time_format){
-  if (time_format == "date"){
-    y <- eurotime2date(x, last = FALSE)
-  } else if (time_format == "date_last"){
-    y <- eurotime2date(x, last = TRUE)
-  } else if (time_format == "num"){
-    y <- eurotime2num(x)
-  } else if (time_format == "raw") {
+  if (time_format == "raw"){
     y <- x
   } else {
-    stop("An unknown time argument: ", time,
-         " Allowed are date, date_last, num and raw")
+    x <- factor(x)
+    if (time_format == "date"){
+      y <- eurotime2date(x, last = FALSE)
+    } else if (time_format == "date_last"){
+      y <- eurotime2date(x, last = TRUE)
+    } else if (time_format == "num"){
+      y <- eurotime2num(x)
+    } else if (time_format == "raw") {
+      
+    } else {
+      stop("An unknown time argument: ", time,
+           " Allowed are date, date_last, num and raw")
+    }
   }
   y
 }
