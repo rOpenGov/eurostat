@@ -3,7 +3,9 @@
 #' @description Retrive data from 
 #'    \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}
 #'    {The Eurostat Web Services}. Data to retrive 
-#'    can be spedified with filters.
+#'    can be spesified with filters. Normally, it is better to use JSON 
+#'    query thru \code{\link{get_eurostat}}, than to use 
+#'    \code{\link{get_eurostat_json}} directly.
 #'    
 #' @details Queryes are limited to 50 sub-indicators at a time.
 #'    A time can be filtered with fixed "time" filter or with "sinceTimePeriod"
@@ -13,7 +15,9 @@
 #'
 #' @param id A code name for the dataset of interested. See the table of
 #'        contents of eurostat datasets for more details. 
-#' @param filters A list of filters. If \code{NULL} (default) the whole 
+#' @param filters A named list of filters. Names of list objects are 
+#'        Eurostat variable codes and values are vectors of observation codes. 
+#'        If \code{NULL} (default) the whole 
 #'        dataset is returned. See details for more on filters and 
 #'        limitations per query.
 #' @param lang A language used for metadata (en/fr/de).
@@ -67,7 +71,7 @@ get_eurostat_json <- function(id, filters = NULL,
 
 
 # Internal function to build json url
-eurostat_json_url <- function(id, filters, lang){
+eurostat_json_url <- function(id, filters, lang = "en"){
   # prepare filters for query
   filters <- as.list(unlist(filters))
   names(filters) <- gsub("[0-9]", "", names(filters))
