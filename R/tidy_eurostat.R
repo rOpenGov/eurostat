@@ -99,10 +99,10 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
   }
 
 
-
-#' internal function to convert time column
+#' @title Time column conversions
+#' @description internal function to convert time column
 #' @param x A time column (vector)
-#' @param time_format see \code{\link{tidy_eruostat}}
+#' @param time_format see \code{\link{tidy_eurostat}}
 #' @keywords internal
 convert_time_col <- function(x, time_format){
   if (time_format == "raw"){

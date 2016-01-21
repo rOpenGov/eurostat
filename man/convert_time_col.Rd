@@ -2,14 +2,14 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{convert_time_col}
 \alias{convert_time_col}
-\title{internal function to convert time column}
+\title{Time column conversions}
 \usage{
 convert_time_col(x, time_format)
 }
 \arguments{
 \item{x}{A time column (vector)}
 
-\item{time_format}{see \code{\link{tidy_eruostat}}}
+\item{time_format}{see \code{\link{tidy_eurostat}}}
 }
 \description{
 internal function to convert time column
