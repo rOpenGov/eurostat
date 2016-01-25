@@ -1,6 +1,6 @@
 <!--
-%\VignetteEngine{knitr::rmarkdown}
-%\VignetteIndexEntry{eurostat Markdown Vignette}
+%\VignetteIndexEntry{eurostat tutorial}
+%\VignetteEngine{knitr::knitr}
 %\usepackage[utf8]{inputenc}
 -->
 Eurostat R tools
@@ -58,6 +58,7 @@ eurotime2num
 get\_eurostat  
 get\_eurostat\_dic  
 getEurostatDictionary  
+get\_eurostat\_json  
 get\_eurostat\_toc  
 getEurostatTOC  
 grepEurostatTOC  
@@ -262,6 +263,19 @@ parenthesis.
 <a name="download"></a>Downloading data
 ---------------------------------------
 
+The packeage supports two of the Eurostats download methods: the bulk
+download facility and the Web Services' JSON API. The bulk download
+facility is the fastest method to download whole datasets. It is also
+often the only way as the JSON API has limitation of maximum 50
+sub-indicators at time and whole datasets usually exceeds that. To
+download only a small section of the dataset the JSON API is faster, as
+it allows to make a data selection before downloading.
+
+A user does not usually have to bother with methods, as both are used
+via main function `get_eurostat()`. If only the table id is given, the
+whole table is downloaded from the bulk download facility. If also
+filters are defined the JSON API is used.
+
 Here an example of indicator [Modal split of passenger
 transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210).
 This is the percentage share of each mode of transport in total inland
@@ -278,8 +292,8 @@ Pick and print the id of the data set to download:
 
 [1] "tsdtr210"
 
-Get the corersponding table. As the table is annual data, it is more
-convient to use a numeric time variable than use the default date
+Get the whole corresponding table. As the table is annual data, it is
+more convient to use a numeric time variable than use the default date
 format:
 
     dat <- get_eurostat(id, time_format = "num")
@@ -288,12 +302,12 @@ Investigate the structure of the downloaded data set:
 
     str(dat)
 
-'data.frame': 2520 obs. of 5 variables: $ unit : Factor w/ 1 level "PC":
-1 1 1 1 1 1 1 1 1 1 ... $ vehicle: Factor w/ 3 levels
-"BUS\_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ... $ geo : Factor w/ 35 levels
-"AT","BE","BG",..: 1 2 3 4 5 6 7 8 9 10 ... $ time : num 1990 1990 1990
-1990 1990 1990 1990 1990 1990 1990 ... $ values : num 11 10.6 NA 3.7 NA
-NA 9.1 11.3 NA 32.4 ...
+    ## 'data.frame':    2520 obs. of  5 variables:
+    ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
+    ##  $ geo    : Factor w/ 35 levels "AT","BE","BG",..: 1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ time   : num  2013 2013 2013 2013 2013 ...
+    ##  $ values : num  9.8 15.2 16.2 5.1 18.5 17.9 5.8 9.8 14.4 17.8 ...
 
     kable(head(dat))
 
@@ -312,52 +326,181 @@ NA 9.1 11.3 NA 32.4 ...
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">AT</td>
-<td align="right">1990</td>
-<td align="right">11.0</td>
+<td align="right">2013</td>
+<td align="right">9.8</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">BE</td>
-<td align="right">1990</td>
-<td align="right">10.6</td>
+<td align="right">2013</td>
+<td align="right">15.2</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">BG</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">2013</td>
+<td align="right">16.2</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">CH</td>
-<td align="right">1990</td>
-<td align="right">3.7</td>
+<td align="right">2013</td>
+<td align="right">5.1</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">CY</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">2013</td>
+<td align="right">18.5</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">CZ</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">2013</td>
+<td align="right">17.9</td>
+</tr>
+</tbody>
+</table>
+
+Or you can get only a part of the dataset by defining `filters`
+argument. It should be named list, where names corresponds to variable
+names (lower case) and values are vectors of codes corresponding
+desidered series (upper case). For time variable, in addition to a
+`time`, also a `sinceTimePeriod` and a `lastTimePeriod` can be used.
+
+    dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1), time_format = "num")
+    kable(dat2)
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">unit</th>
+<th align="left">vehicle</th>
+<th align="left">geo</th>
+<th align="right">time</th>
+<th align="right">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">BUS_TOT</td>
+<td align="left">EU28</td>
+<td align="right">2013</td>
+<td align="right">9.2</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">BUS_TOT</td>
+<td align="left">FI</td>
+<td align="right">2013</td>
+<td align="right">9.8</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">CAR</td>
+<td align="left">EU28</td>
+<td align="right">2013</td>
+<td align="right">83.2</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">CAR</td>
+<td align="left">FI</td>
+<td align="right">2013</td>
+<td align="right">84.9</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">TRN</td>
+<td align="left">EU28</td>
+<td align="right">2013</td>
+<td align="right">7.6</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">TRN</td>
+<td align="left">FI</td>
+<td align="right">2013</td>
+<td align="right">5.3</td>
 </tr>
 </tbody>
 </table>
 
 ### <a name="labeling"></a>Replacing codes with labels
 
-Eurostat variable IDs can be replaced with human-readable labels.
-Function `label_eurostat()` replaces the eurostat IDs based on
-definitions from Eurostat dictionaries.
+By default variables are returned as Eurostat codes, but to get
+human-readable labels instead, use a `type = "label"` argument.
+
+    datl2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), 
+                                             lastTimePeriod = 1), 
+                          type = "label", time_format = "num")
+    kable(head(datl2))
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">unit</th>
+<th align="left">vehicle</th>
+<th align="left">geo</th>
+<th align="right">time</th>
+<th align="right">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Motor coaches, buses and trolley buses</td>
+<td align="left">European Union (28 countries)</td>
+<td align="right">2013</td>
+<td align="right">9.2</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Motor coaches, buses and trolley buses</td>
+<td align="left">Finland</td>
+<td align="right">2013</td>
+<td align="right">9.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Passenger cars</td>
+<td align="left">European Union (28 countries)</td>
+<td align="right">2013</td>
+<td align="right">83.2</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Passenger cars</td>
+<td align="left">Finland</td>
+<td align="right">2013</td>
+<td align="right">84.9</td>
+</tr>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Trains</td>
+<td align="left">European Union (28 countries)</td>
+<td align="right">2013</td>
+<td align="right">7.6</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Trains</td>
+<td align="left">Finland</td>
+<td align="right">2013</td>
+<td align="right">5.3</td>
+</tr>
+</tbody>
+</table>
+
+Eurostat codes can be replaced also after downloadind with
+human-readable labels using a function `label_eurostat()`. It replaces
+the eurostat codes based on definitions from Eurostat dictionaries.
 
     datl <- label_eurostat(dat)
     kable(head(datl))
@@ -377,46 +520,56 @@ definitions from Eurostat dictionaries.
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Austria</td>
-<td align="right">1990</td>
-<td align="right">11.0</td>
+<td align="right">2013</td>
+<td align="right">9.8</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Belgium</td>
-<td align="right">1990</td>
-<td align="right">10.6</td>
+<td align="right">2013</td>
+<td align="right">15.2</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Bulgaria</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">2013</td>
+<td align="right">16.2</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Switzerland</td>
-<td align="right">1990</td>
-<td align="right">3.7</td>
+<td align="right">2013</td>
+<td align="right">5.1</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Cyprus</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">2013</td>
+<td align="right">18.5</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Czech Republic</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">2013</td>
+<td align="right">17.9</td>
 </tr>
 </tbody>
 </table>
+
+The `label_eurostat()` allows also conversion of individual variable
+vectors or variable names.
+
+    label_eurostat_vars(names(datl))
+
+    ## [1] "Unit of measure"                                                                     
+    ## [2] "Vehicles"                                                                            
+    ## [3] "Geopolitical entity (reporting)"                                                     
+    ## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
 
 Vehicle information has 3 levels. They are:
 
@@ -425,19 +578,6 @@ Vehicle information has 3 levels. They are:
     ## [1] "Motor coaches, buses and trolley buses"
     ## [2] "Passenger cars"                        
     ## [3] "Trains"
-
-You can get also labels for variable names
-
-    label_eurostat_vars(names(datl))
-
-    ## Warning in label_eurostat(x, dic = "dimlst", lang = lang): All labels for
-    ## dimlst were not found.
-
-    ## [1] "Unit of measure"                                                                     
-    ## [2] "Vehicles"                                                                            
-    ## [3] "Geopolitical entity (reporting)"                                                     
-    ## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
-    ## [5] NA
 
 <a name="select"></a>Selecting and modifying data
 -------------------------------------------------
@@ -810,16 +950,14 @@ We are grateful to all
 [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
 and [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This
 [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN
-packages
-[statfi](https://cran.r-project.org/package=statfi) and
-[smarterpoland](https://cran.r-project.org/package=SmarterPoland).
-The
-[datamart](https://cran.r-project.org/package=datamart)
-and [reurostat](https://github.com/Tungurahua/reurostat) packages seem
-to develop related Eurostat tools but at the time of writing this
-tutorial this package seems to be in an experimental stage. The
-[quandl](https://cran.r-project.org/package=Quandl)
-package may also provides access to some versions of eurostat data sets.
+packages [statfi](https://cran.r-project.org/package=statfi) and
+[smarterpoland](https://cran.r-project.org/package=SmarterPoland). The
+[datamart](https://cran.r-project.org/package=datamart) and
+[reurostat](https://github.com/Tungurahua/reurostat) packages seem to
+develop related Eurostat tools but at the time of writing this tutorial
+this package seems to be in an experimental stage. The
+[quandl](https://cran.r-project.org/package=quandl) package may also
+provides access to some versions of eurostat data sets.
 
 <a name="session"></a>Session info
 ----------------------------------
@@ -844,14 +982,15 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] plotrix_3.6-1   ggplot2_2.0.0   tidyr_0.3.1     rvest_0.3.1    
-    ## [5] xml2_0.1.2      eurostat_1.2.11 rmarkdown_0.9.4 knitr_1.12     
+    ## [1] plotrix_3.6-1        ggplot2_2.0.0        tidyr_0.3.1         
+    ## [4] rvest_0.3.1          xml2_0.1.2           eurostat_1.2.13.9000
+    ## [7] rmarkdown_0.9.4      knitr_1.12          
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.3      magrittr_1.5     munsell_0.4.2    colorspace_1.2-6
     ##  [5] R6_2.1.1         plyr_1.8.3       stringr_1.0.0    httr_1.0.0      
-    ##  [9] highr_0.5.1      dplyr_0.4.3      tcltk_3.2.2      tools_3.2.2     
-    ## [13] parallel_3.2.2   grid_3.2.2       gtable_0.1.2     DBI_0.3.1       
-    ## [17] htmltools_0.3    yaml_2.1.13      digest_0.6.9     assertthat_0.1  
-    ## [21] formatR_1.2.1    evaluate_0.8     labeling_0.3     stringi_1.0-1   
-    ## [25] scales_0.3.0
+    ##  [9] highr_0.5.1      dplyr_0.4.3      tools_3.2.2      parallel_3.2.2  
+    ## [13] grid_3.2.2       gtable_0.1.2     DBI_0.3.1        htmltools_0.3   
+    ## [17] digest_0.6.9     assertthat_0.1   formatR_1.2.1    curl_0.9.4      
+    ## [21] evaluate_0.8     labeling_0.3     stringi_1.0-1    scales_0.3.0    
+    ## [25] jsonlite_0.9.19
