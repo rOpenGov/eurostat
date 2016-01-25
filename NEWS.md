@@ -1,7 +1,10 @@
 # eurostat 1.2.13.9000
 
 * The `get_eurostat()` can now get data also from the Eurostat JSON API via
-  `get_eurostat_json()`
+  `get_eurostat_json()`. It also have a new argument `type` to select labels
+  for vaiable values instead of codes.
+* Fix an error after update to `tidyr 0.4.0` (#47).
+
 
 # eurostat 1.2.13
 

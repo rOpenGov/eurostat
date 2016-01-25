@@ -20,7 +20,7 @@ label_eurostat_tables(x, lang = "en")
 If \code{NULL} (default) dictionry names taken from column names of 
 the data.frame.}
 
-\item{code}{For data.frames names of the column for which also codes
+\item{code}{For data.frames names of the column for which also code columns
 should be retained. The suffix "_code" is added to code column names.}
 
 \item{eu_order}{Logical. Should Eurostat ordering used for label levels. 

@@ -18,6 +18,7 @@
 #'         a last date of the period. A "num" convers to a numeric and "raw"
 #'         does not do conversion. See \code{\link{eurotime2date}} and
 #'         \code{\link{eurotime2num}}.
+#' @param type A type of variables, "code" (default) or "label".
 #' @param select_time a character symbol for a time frequence or NULL,
 #'        which is used by default as most datasets have just one time
 #'        frequency. For datasets with multiple time
@@ -99,6 +100,7 @@
 #'                                     s_adj = "NSA"))
 #' }
 get_eurostat <- function(id, time_format = "date", filters = "none", 
+                         type = "code",
                          select_time = NULL,
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL,
                          compress_file = TRUE,
@@ -127,7 +129,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
     # cache filename
     cache_file <- file.path(cache_dir,
                             paste0(id, "_", time_format,
-                                   "_", select_time, "_", 
+                                   "_", type, select_time, "_", 
                                    strtrim(stringsAsFactors, 1),
                                    strtrim(keepFlags, 1),
                                    ".rds"))
@@ -138,7 +140,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
     
     if (is.null(filters) || is.list(filters)){
       # api download
-      y <- get_eurostat_json(id, filters, 
+      y <- get_eurostat_json(id, filters, type = type,
                              stringsAsFactors = stringsAsFactors, ...)
       y$time <- convert_time_col(factor(y$time), time_format = time_format)
 
@@ -148,6 +150,16 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
       y <- tidy_eurostat(y_raw, time_format, select_time,
                          stringsAsFactors = stringsAsFactors,
                          keepFlags = keepFlags)
+      if (type == "code") {
+        y <- y
+      } else if (type == "label") {
+        y <- label_eurostat(y)
+      } else if (type == "both"){
+        stop("type = \"both\" can be only used with JSON API. Set filters argument")
+      } else {
+        stop("Invalid type.")
+      }
+        
     }
     
   } else {

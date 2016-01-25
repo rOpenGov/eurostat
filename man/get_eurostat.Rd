@@ -4,7 +4,7 @@
 \alias{get_eurostat}
 \title{Generic wrapper to read data from Eurostat}
 \usage{
-get_eurostat(id, time_format = "date", filters = "none",
+get_eurostat(id, time_format = "date", filters = "none", type = "code",
   select_time = NULL, cache = TRUE, update_cache = FALSE,
   cache_dir = NULL, compress_file = TRUE,
   stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE, ...)
@@ -28,6 +28,8 @@ If \code{NULL} the whole
 dataset is returned via API. More on details. See more on filters and 
 limitations per query via API from for 
 \code{\link{get_eurostat_json}}.}
+
+\item{type}{A type of variables, "code" (default) or "label".}
 
 \item{select_time}{a character symbol for a time frequence or NULL,
 which is used by default as most datasets have just one time

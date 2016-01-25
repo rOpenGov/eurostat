@@ -18,7 +18,7 @@ dataset is returned. See details for more on filters and
 limitations per query.}
 
 \item{type}{A type of variables, "code" (default), "label" or "both". The 
-"both" will return a data.frame with names vector, labes as values 
+"both" will return a data.frame with named vectors, labels as values 
 and codes as names.}
 
 \item{lang}{A language used for metadata (en/fr/de).}
