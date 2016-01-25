@@ -21,7 +21,7 @@
 #'        limitations per query.
 #' @param lang A language used for metadata (en/fr/de).
 #' @param type A type of variables, "code" (default), "label" or "both". The 
-#'        "both" will return a data.frame with names vector, labes as values 
+#'        "both" will return a data.frame with named vectors, labels as values 
 #'        and codes as names.
 #' @param stringsAsFactors if \code{TRUE} (the default) variables are
 #'         converted to factors in original Eurostat order. If \code{FALSE}
@@ -71,7 +71,7 @@ get_eurostat_json <- function(id, filters = NULL,
     } else if (type[1] == "code"){
       y <- names(unlist(y))
     } else if (type[1] == "both"){
-      y <- y
+      y <- unlist(y)
     } else {
       stop("Invalid type ", type)
     }
