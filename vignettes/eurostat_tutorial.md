@@ -42,10 +42,11 @@ Development version:
 Overall, the eurostat package includes the following functions:
 
     library(eurostat)
-    kable(as.data.frame(ls("package:eurostat")))
+    eurostat.functions <- as.data.frame(sort(ls("package:eurostat")))
+    kable(eurostat.functions)
 
-ls("package:eurostat")
-----------------------
+sort(ls("package:eurostat"))
+----------------------------
 
 candidate\_countries  
 clean\_eurostat\_cache  
@@ -263,11 +264,11 @@ parenthesis.
 <a name="download"></a>Downloading data
 ---------------------------------------
 
-The packeage supports two of the Eurostats download methods: the bulk
+The package supports two of the Eurostats download methods: the bulk
 download facility and the Web Services' JSON API. The bulk download
 facility is the fastest method to download whole datasets. It is also
 often the only way as the JSON API has limitation of maximum 50
-sub-indicators at time and whole datasets usually exceeds that. To
+sub-indicators at a time and whole datasets usually exceeds that. To
 download only a small section of the dataset the JSON API is faster, as
 it allows to make a data selection before downloading.
 
@@ -594,13 +595,34 @@ systems, see the [countrycode](...) R package. To retrieve the country
 code list for EFTA, for instance, use:
 
     data(efta_countries)
-    print(efta_countries)
+    kable(efta_countries)
 
-    ##   code          name
-    ## 1   IS       Iceland
-    ## 2   LI Liechtenstein
-    ## 3   NO        Norway
-    ## 4   CH   Switzerland
+<table>
+<thead>
+<tr class="header">
+<th align="left">code</th>
+<th align="left">name</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">IS</td>
+<td align="left">Iceland</td>
+</tr>
+<tr class="even">
+<td align="left">LI</td>
+<td align="left">Liechtenstein</td>
+</tr>
+<tr class="odd">
+<td align="left">NO</td>
+<td align="left">Norway</td>
+</tr>
+<tr class="even">
+<td align="left">CH</td>
+<td align="left">Switzerland</td>
+</tr>
+</tbody>
+</table>
 
 ### EU data from 2012 in all vehicles:
 
@@ -895,7 +917,7 @@ Visualizing train passenger data with `ggplot2`:
     print(p)
 
 ![](fig/trains_plot-1.png)  
- \#\#\# <a name="triangle"></a>Triangle plot
+ <a name="triangle"></a>**Triangle plot**
 
 Triangle plot on passenger transport distributions with 2012 data for
 all countries with data.

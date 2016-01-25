@@ -54,7 +54,8 @@ Overall, the eurostat package includes the following functions:
 
 ```{r, echo=TRUE}
 library(eurostat)
-kable(as.data.frame(ls("package:eurostat")))
+eurostat.functions <- as.data.frame(sort(ls("package:eurostat")))
+kable(eurostat.functions)
 ```
 
 
@@ -89,10 +90,10 @@ in parenthesis.
 
 ## <a name="download"></a>Downloading data 
 
-The packeage supports two of the Eurostats download methods: the bulk download 
+The package supports two of the Eurostats download methods: the bulk download 
 facility and the Web Services' JSON API. The bulk download facility is the 
 fastest method to download whole datasets. It is also often the only way as 
-the JSON API has limitation of maximum 50 sub-indicators at time and 
+the JSON API has limitation of maximum 50 sub-indicators at a time and 
 whole datasets usually exceeds that. To download only a small section of the 
 dataset the JSON API is faster, as it allows to make a data selection 
 before downloading.
@@ -184,7 +185,7 @@ To facilititate fast plotting of standard European geographic areas, the package
 
 ```{r, echo=TRUE, eval=TRUE}
 data(efta_countries)
-print(efta_countries)
+kable(efta_countries)
 ```
 
 
@@ -222,14 +223,14 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 Visualizing train passenger data with `ggplot2`:
 
-```{r trains_plot, fig.width=10, fig.height=4}
+```{r trains_plot, fig.width=8, fig.height=3}
 library(ggplot2)
 p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
 p <- p + geom_line()
 print(p)
 ```
 
-### <a name="triangle"></a>Triangle plot
+<a name="triangle"></a>**Triangle plot**
 
 Triangle plot on passenger transport distributions with 2012 data for all countries with data.
 
