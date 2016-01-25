@@ -54,8 +54,8 @@ Overall, the eurostat package includes the following functions:
 
 ```{r, echo=TRUE}
 library(eurostat)
-eurostat.functions <- as.data.frame(sort(ls("package:eurostat")))
-kable(eurostat.functions)
+eurostat.functions <- sort(ls("package:eurostat"))
+kable(as.data.frame(eurostat.functions))
 ```
 
 

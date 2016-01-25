@@ -42,11 +42,11 @@ Development version:
 Overall, the eurostat package includes the following functions:
 
     library(eurostat)
-    eurostat.functions <- as.data.frame(sort(ls("package:eurostat")))
-    kable(eurostat.functions)
+    eurostat.functions <- sort(ls("package:eurostat"))
+    kable(as.data.frame(eurostat.functions))
 
-sort(ls("package:eurostat"))
-----------------------------
+eurostat.functions
+------------------
 
 candidate\_countries  
 clean\_eurostat\_cache  
@@ -58,14 +58,12 @@ eurotime2date
 eurotime2num  
 get\_eurostat  
 get\_eurostat\_dic  
-getEurostatDictionary  
-get\_eurostat\_json  
+getEurostatDictionary get\_eurostat\_json  
 get\_eurostat\_toc  
 getEurostatTOC  
 grepEurostatTOC  
 label\_eurostat  
-label\_eurostat\_tables  
-label\_eurostat\_vars  
+label\_eurostat\_tables label\_eurostat\_vars  
 search\_eurostat
 
 <a name="search"></a>Finding data
