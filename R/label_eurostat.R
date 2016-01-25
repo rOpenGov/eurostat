@@ -12,7 +12,7 @@
 #' @param dic A string (vector) naming eurostat dictionary or dictionaries.
 #'  If \code{NULL} (default) dictionry names taken from column names of 
 #'  the data.frame.
-#' @param code For data.frames names of the column for which also codes
+#' @param code For data.frames names of the column for which also code columns
 #'   should be retained. The suffix "_code" is added to code column names.  
 #' @param eu_order Logical. Should Eurostat ordering used for label levels. 
 #'   Affects only factors.
@@ -77,6 +77,7 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
 #' @export
 label_eurostat_vars <- function(x, lang = "en"){
   if(!(is.character(x) | is.factor(x))) x <- names(x)
+  x <- x[!grepl("values", x)]  # remove values column
   label_eurostat(x, dic = "dimlst", lang = lang)
 }
 
