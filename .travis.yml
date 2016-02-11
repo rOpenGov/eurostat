@@ -2,3 +2,7 @@ language: r
 
 warnings_are_errors: false
 
+before_install:
+  - pip install codecov
+  after_success:
+  - codecov
