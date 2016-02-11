@@ -41,7 +41,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     # columns from cnames1 are converted into factors
     # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
     if (stringsAsFactors){
-      dat2[,cnames1] <- lapply(dat2[, cnames1],
+      dat2[,cnames1] <- lapply(dat2[, cnames1, drop = FALSE],
                               function(x) factor(x, levels = unique(x)))
     }
 
