@@ -152,10 +152,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">07.01.2016</td>
-<td align="left">07.01.2016</td>
+<td align="left">26.02.2016</td>
+<td align="left">26.02.2016</td>
 <td align="left">1985M01</td>
-<td align="left">2015M12</td>
+<td align="left">2016M02</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -186,7 +186,7 @@ instance datasets or tables.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">5562</td>
+<td align="left">5587</td>
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
@@ -197,7 +197,7 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5563</td>
+<td align="left">5588</td>
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
@@ -208,44 +208,44 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5602</td>
+<td align="left">5627</td>
 <td align="left">Railway transport - Total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">12.01.2016</td>
+<td align="left">03.03.2016</td>
 <td align="left">29.10.2015</td>
 <td align="left">2004</td>
 <td align="left">2014</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5606</td>
+<td align="left">5631</td>
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">17.12.2015</td>
-<td align="left">17.12.2015</td>
-<td align="left">2002</td>
+<td align="left">03.03.2016</td>
+<td align="left">19.02.2016</td>
+<td align="left">2014</td>
 <td align="left">2014</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5607</td>
+<td align="left">5632</td>
 <td align="left">International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)</td>
 <td align="left">rail_pa_intcmng</td>
 <td align="left">dataset</td>
-<td align="left">17.12.2015</td>
-<td align="left">17.12.2015</td>
-<td align="left">2002</td>
+<td align="left">03.03.2016</td>
+<td align="left">19.02.2016</td>
+<td align="left">2014</td>
 <td align="left">2014</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5956</td>
+<td align="left">5981</td>
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">13.01.2016</td>
+<td align="left">23.02.2016</td>
 <td align="left">13.01.2016</td>
 <td align="left">1993</td>
 <td align="left">2015Q3</td>
@@ -914,8 +914,9 @@ Visualizing train passenger data with `ggplot2`:
     p <- p + geom_line()
     print(p)
 
-![](fig/trains_plot-1.png)  
- <a name="triangle"></a>**Triangle plot**
+![](fig/trains_plot-1.png)<!-- -->
+
+<a name="triangle"></a>**Triangle plot**
 
 Triangle plot on passenger transport distributions with 2012 data for
 all countries with data.
@@ -932,8 +933,9 @@ all countries with data.
                label.points = TRUE, point.labels = transports$geo, 
                pch = 19)
 
-![](fig/plotGallery-1.png)  
- For further examples, see also the [blog post on the eurostat R
+![](fig/plotGallery-1.png)<!-- -->
+
+For further examples, see also the [blog post on the eurostat R
 package](...).
 
 <a name="citing"></a>Citing the package
@@ -1002,15 +1004,15 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] plotrix_3.6-1        ggplot2_2.0.0        tidyr_0.3.1         
-    ## [4] rvest_0.3.1          xml2_0.1.2           eurostat_1.2.13.9000
-    ## [7] rmarkdown_0.9.4      knitr_1.12          
+    ## [1] plotrix_3.6-1        ggplot2_2.0.0        tidyr_0.4.1         
+    ## [4] rvest_0.3.1          xml2_0.1.2           eurostat_1.2.13.9001
+    ## [7] rmarkdown_0.9.4      knitr_1.12.3        
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.3      magrittr_1.5     munsell_0.4.2    colorspace_1.2-6
-    ##  [5] R6_2.1.1         plyr_1.8.3       stringr_1.0.0    httr_1.0.0      
+    ##  [1] Rcpp_0.12.3      magrittr_1.5     munsell_0.4.3    colorspace_1.2-6
+    ##  [5] R6_2.1.2         plyr_1.8.3       stringr_1.0.0    httr_1.1.0      
     ##  [9] highr_0.5.1      dplyr_0.4.3      tools_3.2.2      parallel_3.2.2  
     ## [13] grid_3.2.2       gtable_0.1.2     DBI_0.3.1        htmltools_0.3   
-    ## [17] digest_0.6.9     assertthat_0.1   formatR_1.2.1    curl_0.9.4      
+    ## [17] digest_0.6.9     assertthat_0.1   formatR_1.2.1    curl_0.9.5      
     ## [21] evaluate_0.8     labeling_0.3     stringi_1.0-1    scales_0.3.0    
     ## [25] jsonlite_0.9.19

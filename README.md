@@ -5,9 +5,9 @@ eurostat
 
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
 [![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eurostat)](http://cran.r-project.org/web/packages/eurostat)
+[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eurostat)](http://cran.r-project.org/package=eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
-[![Cranlogs Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/web/packages/eurostat)
+[![Cranlogs Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/package=eurostat)
 
 
 R tools to access data from [Eurostat](http://ec.europa.eu/eurostat). The package offers tool to search, download and manipulate data from the Eurostat database. Usage examples can be found in the following sources:
