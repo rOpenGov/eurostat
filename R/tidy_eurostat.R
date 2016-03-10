@@ -93,10 +93,12 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
       # colnames(dat3)[1:length(cnames)] <- cnames      
 
     # convert time column
-    dat3$time <- convert_time_col(dat3$time, time_format = time_format)
+    dat3$time <- convert_time_col(dat3$time,
+    	   	                       time_format = time_format)
 
     dat3
-  }
+
+}
 
 
 #' @title Time column conversions
@@ -105,6 +107,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
 #' @param time_format see \code{\link{tidy_eurostat}}
 #' @keywords internal
 convert_time_col <- function(x, time_format){
+
   if (time_format == "raw"){
     y <- x
   } else {
@@ -118,7 +121,7 @@ convert_time_col <- function(x, time_format){
     } else if (time_format == "raw") {
       
     } else {
-      stop("An unknown time argument: ", time,
+      stop("An unknown time_format argument: ", time_format,
            " Allowed are date, date_last, num and raw")
     }
   }

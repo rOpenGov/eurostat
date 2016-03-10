@@ -1,7 +1,7 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Version: 1.2.20.9001
+Version: 1.2.21
 Date: 2016-03-10
 Authors@R: c(
     person("Lahti", "Leo", email = "louhos@googlegroups.com", role = c("aut", "cre")),
@@ -10,7 +10,7 @@ Authors@R: c(
     person("Huovari", "Janne", role = "aut"))
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database
-    http://ec.europa.eu/eurostat/ together with search and manipulation
+    <http://ec.europa.eu/eurostat> together with search and manipulation
     utilities.
 License: BSD_2_clause + file LICENSE
 Depends:
