@@ -31,9 +31,10 @@
 #'    label_eurostat_vars(names(lp))
 #'    label_eurostat_tables("nama_aux_lp")
 #'  }
+#'  
 
 merge_with_geodata <- function(data,geocol="geo",res=60){
-  load(url(paste0("http://koti.kapsi.fi/~muuankarski/ropengov/eurostat_geodata/rdata/NUTS_2013_",
+  load(url(paste0("http://data.okf.fi/ropengov/avoindata/eurostat_geodata/rdata/NUTS_2013_",
                   res,
                   "M_SH_DF.RData")))
   map.df <- get(paste0("NUTS_2013_",res,"M_SH_DF"))
