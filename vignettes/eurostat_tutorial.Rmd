@@ -1,32 +1,21 @@
-<!--
-%\VignetteIndexEntry{eurostat tutorial}
-%\VignetteEngine{knitr::knitr}
-%\usepackage[utf8]{inputenc}
--->    
+---
+title: "Eurostat R tools"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{eurostat tutorial}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
 
-
-
-Eurostat R tools
-===========
 
 This R package provides tools to access 
 [Eurostat database](http://ec.europa.eu/eurostat/) 
 as part of the [rOpenGov](http://ropengov.github.io) project.
 
 For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
-
-## Available tools
-
- * [Installation](#installation)
- * [Finding data](#search)
- * [Downloading data](#download)  
- * [Replacing codes with labels](#labeling)  
- * [Selecting and modifying data](#select)  
- * [Visualization](#visualization)  
-   * [Triangle plot](#triangle)  
- * [Citing the package](#citing)  
- * [Acknowledgements](#acknowledgements)  
- * [Session info](#session)  
 
 
 ```{r setup, include=FALSE}
@@ -35,7 +24,7 @@ library(knitr)
 opts_chunk$set(fig.path="fig/")
 ```
 
-## <a name="installation"></a>Installation
+# Installation
 
 Release version:
 
@@ -50,16 +39,22 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
-Overall, the eurostat package includes the following functions:
-
-```{r, echo=TRUE}
+```{r, echo=FALSE}
 library(eurostat)
-eurostat.functions <- sort(ls("package:eurostat"))
-kable(as.data.frame(eurostat.functions))
+
 ```
 
 
-## <a name="search"></a>Finding data
+Overall, the eurostat package includes the following functions:
+
+```{r, echo=FALSE,comment=NA}
+
+cat(paste0(library(help = "eurostat")$info[[2]], collapse = "\n"))
+
+```
+
+
+# Finding data
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
@@ -88,7 +83,7 @@ database](http://ec.europa.eu/eurostat/data/database). The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 
-## <a name="download"></a>Downloading data 
+# Downloading data 
 
 The package supports two of the Eurostats download methods: the bulk download 
 facility and the Web Services' JSON API. The bulk download facility is the 
@@ -140,7 +135,7 @@ dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1)
 kable(dat2)
 ```
 
-### <a name="labeling"></a>Replacing codes with labels
+## Replacing codes with labels
 
 By default variables are returned as Eurostat codes, but to get human-readable 
 labels instead, use a `type = "label"` argument.  
@@ -177,9 +172,9 @@ levels(datl$vehicle)
 
 
 
-## <a name="select"></a>Selecting and modifying data
+# Selecting and modifying data
 
-### EFTA, Eurozone, EU and EU candidate countries
+## EFTA, Eurozone, EU and EU candidate countries
 
 To facilititate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the [countrycode](...) R package. To retrieve the country code list for EFTA, for instance, use:
 
@@ -189,14 +184,14 @@ kable(efta_countries)
 ```
 
 
-### EU data from 2012 in all vehicles:
+## EU data from 2012 in all vehicles:
 
 ```{r eu_12}
 dat_eu12 <- subset(datl, geo == "European Union (28 countries)" & time == 2012)
 kable(dat_eu12, row.names = FALSE)
 ```
 
-### EU data from 2000 - 2012 with vehicle types as variables:
+## EU data from 2000 - 2012 with vehicle types as variables:
 
 Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table}
@@ -206,7 +201,7 @@ dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
 kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
-### Train passengers for selected EU countries in 2000 - 2012
+## Train passengers for selected EU countries in 2000 - 2012
 
 ```{r trains_table}
 dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
@@ -219,11 +214,11 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 
 
-## <a name="visualization"></a>Visualization
+# Visualization
 
 Visualizing train passenger data with `ggplot2`:
 
-```{r trains_plot, fig.width=8, fig.height=3}
+```{r trains_plot, fig.width=6, fig.height=3}
 library(ggplot2)
 p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
 p <- p + geom_line()
@@ -234,7 +229,7 @@ print(p)
 
 Triangle plot on passenger transport distributions with 2012 data for all countries with data.
 
-```{r plotGallery, warning=FALSE, message=FALSE}
+```{r plotGallery, warning=FALSE, message=FALSE, , fig.width=6, fig.height=6}
 library(tidyr)
 
 transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
@@ -248,11 +243,9 @@ triax.plot(transports[, -1], show.grid = TRUE,
            pch = 19)
 ```
 
-For further examples, see also the [blog post on the eurostat R
-package](...).
 
 
-## <a name="citing"></a>Citing the package
+## Citing the package
 
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 
@@ -263,13 +256,13 @@ distributed under the BSD-2-clause (modified FreeBSD) license:
 citation("eurostat")
 ```
 
-## <a name="acknowledgements"></a>Acknowledgements
+# Acknowledgements
 
 
 We are grateful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors) and [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This [rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN packages [statfi](https://cran.r-project.org/package=statfi) and [smarterpoland](https://cran.r-project.org/package=SmarterPoland). The [datamart](https://cran.r-project.org/package=datamart) and [reurostat](https://github.com/Tungurahua/reurostat) packages seem to develop related Eurostat tools but at the time of writing this tutorial this package seems to be in an experimental stage. The [quandl](https://cran.r-project.org/package=quandl) package may also provides access to some versions of eurostat data sets.
 
 
-## <a name="session"></a>Session info
+# Session info
 
 This tutorial was created with
 
