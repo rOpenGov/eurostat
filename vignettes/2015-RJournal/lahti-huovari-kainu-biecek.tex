@@ -23,7 +23,7 @@ science and humanities.}
 \section{Introduction}
 
 Eurostat, the statistical office of the European Union, provides a
-rich collection of demographic and economic data through its open data
+rich collection of data through its open data
 service, which includes thousands of data sets on European demography,
 economics, health, infrastructure, traffic and other topics. The
 statistics are often available with great geographical resolution and
@@ -66,6 +66,17 @@ improved and tested by multiple users. The package and its
 predecessors have been applied in several case studies by us and
 others\footnote{See
 e.g. http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}.
+
+The eurostat has three services to programmatically access its data: a bulk
+download facility, json/unicode web service and SDMX web service. 
+The \CRANpkg{eurostat} R package provides method to use two first of those. 
+The bulk download facility offers Eurostat dataset as single files for 
+downloading. That is most convenient and fastest method if a whole dataset 
+or a larger part of a dataset is needed. However, datasets can be rather 
+large, and other methods are preferred, if only a fraction of a dataset is 
+needed, as they allow filtering of data before downloading. A disadvantage 
+of json-method, that the \CRANpkg{eurostat} R package is using as alternative, 
+is that query size is limited to maximum of 50 categories. 
 
 The \CRANpkg{datamart} \citep{datamart}, the \CRANpkg{quandl} \citep{quandl} and
 the \CRANpkg{pdfetch} \citep{pdfetch} 
@@ -148,17 +159,23 @@ As the original data is annual in this example, we have selected a
 numeric time format. This is more convient for annual time series than
 the default date format. The data sets are provided as standard data
 frames to support standard tools for data subsetting and
-reshaping. The above function call returns a table on transport
+reshaping. The above function call returns a whole table on transport
 statistics.  The first lines of the output are shown in
-Table~\ref{tab:getdatatable}. Visualization with the following commands
+Table~\ref{tab:getdatatable}. 
+
+If only subset of data is needed, data can be filtered before downloading with
+a \code{filters} argument, that is a named list. Names of list are 
+Eurostat variable codes and values are observation codes. Visualization for
+selected countires with the following commands
 reveals a decreasing trend of road accidents in many countries over
 time (Figure~\ref{fig:transport}):
 
 
 \begin{example}
-t1 <- get_eurostat("tsdtr420") %>%
-  dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
+t1 <- get_eurostat("tsdtr420", 
+  filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
 t1$Country <- t1$geo
+
 ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
   geom_point(size=4) + 
   geom_line() + theme_bw() + ggtitle("Road accidents") +
