@@ -127,10 +127,12 @@ The original detailed treatment of this example is provided in the related
 t1 <- get_eurostat("tsdtr420", 
   filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
 
-ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
+ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
   geom_point(size=4) + 
-  geom_line() + theme_bw() + ggtitle("Road accidents")+
-  xlab("Year") + ylab("Victims (n)") + theme(legend.position="top")
+  geom_line() + theme_bw() + ggtitle("Road accidents") +
+  xlab("Year") + ylab("Victims (n)") +
+  theme(legend.position="top", legend.title = element_blank()) 
+  
 ```
 
 ## Production of renewable energy

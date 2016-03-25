@@ -178,7 +178,8 @@ t1 <- get_eurostat("tsdtr420",
 ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
   geom_point(size=4) + 
   geom_line() + theme_bw() + ggtitle("Road accidents") +
-  xlab("Year") + ylab("Victims (n)") + theme(legend.position="top")
+  xlab("Year") + ylab("Victims (n)") + 
+  theme(legend.position="top", legend.title = element_blank())   
 \end{example}
 
 \begin{figure}
