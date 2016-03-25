@@ -126,7 +126,6 @@ The original detailed treatment of this example is provided in the related
 ```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE, fig.width=4, fig.height=4}
 t1 <- get_eurostat("tsdtr420", 
   filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
-t1$Country <- t1$geo
 
 ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
   geom_point(size=4) + 

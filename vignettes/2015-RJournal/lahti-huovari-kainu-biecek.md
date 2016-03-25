@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2015-12-28"
+date: "2016-03-25"
 bibliography: 
 - references.bib
 output: 
@@ -129,12 +129,12 @@ kable(head(dat))
 
 |sex |geo | time| values|
 |:---|:---|----:|------:|
-|T   |AT  | 1999|   1079|
-|T   |BE  | 1999|   1397|
-|T   |BG  | 1999|     NA|
-|T   |CH  | 1999|     NA|
-|T   |CY  | 1999|     NA|
-|T   |CZ  | 1999|   1455|
+|T   |AT  | 2014|    430|
+|T   |BE  | 2014|     NA|
+|T   |BG  | 2014|     NA|
+|T   |CH  | 2014|    243|
+|T   |CY  | 2014|     45|
+|T   |CZ  | 2014|    688|
 
 
 Same with human-readable labels:
@@ -153,12 +153,12 @@ kable(head(datl))
 
 |sex   |geo            | time| values|
 |:-----|:--------------|----:|------:|
-|Total |Austria        | 1999|   1079|
-|Total |Belgium        | 1999|   1397|
-|Total |Bulgaria       | 1999|     NA|
-|Total |Switzerland    | 1999|     NA|
-|Total |Cyprus         | 1999|     NA|
-|Total |Czech Republic | 1999|   1455|
+|Total |Austria        | 2014|    430|
+|Total |Belgium        | 2014|     NA|
+|Total |Bulgaria       | 2014|     NA|
+|Total |Switzerland    | 2014|    243|
+|Total |Cyprus         | 2014|     45|
+|Total |Czech Republic | 2014|    688|
 
 
 ## Road accidents visualization
@@ -168,16 +168,20 @@ The original detailed treatment of this example is provided in the related
 
 
 ```r
-t1 <- get_eurostat("tsdtr420") %>%
-  dplyr::filter(geo %in% c("UK", "SK", "FR", "PL", "ES", "PT", "LV"))
-t1$Country <- t1$geo
+t1 <- get_eurostat("tsdtr420", 
+  filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
+
 ggplot(t1, aes(x = time, y = values, color=Country, group=Country, shape=Country)) +
   geom_point(size=4) + 
   geom_line() + theme_bw() + ggtitle("Road accidents")+
   xlab("Year") + ylab("Victims (n)") + theme(legend.position="top")
 ```
 
-![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png) 
+```
+## Error in eval(expr, envir, enclos): object 'Country' not found
+```
+
+![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png)
 
 ## Production of renewable energy
 
@@ -212,13 +216,7 @@ energy3 <- get_eurostat("ten00081") %>%
   filter(tvalue > 1000,
          !grepl(geo, pattern="^Euro")) %>% # only large countrie
   spread(nproduct, svalue)
-```
 
-```
-## Error in match.arg(method): object 'product' not found
-```
-
-```r
 par(cex=1.5)
 plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
                       show.grid = TRUE,
@@ -226,9 +224,7 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
                       pch = 19)
 ```
 
-```
-## Error in as.matrix(energy3[, c(3, 5, 4)]): object 'energy3' not found
-```
+![plot of chunk 2015-manu-energy](./2015-manu-energy-1.png)
 
 
 ## Body-mass index
@@ -251,14 +247,14 @@ tmp1 %>%
   theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
 ```
 
-![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png) 
+![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png)
 
 
 ## Map visualization
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
-![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png) 
+![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png)
 
 
 
