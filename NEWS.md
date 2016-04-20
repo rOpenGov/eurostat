@@ -1,4 +1,4 @@
-# eurostat 1.2.13.9000
+# eurostat 1.2.21
 
 * The `get_eurostat()` can now get data also from the Eurostat JSON API via
   `get_eurostat_json()`. It also have a new argument `type` to select labels

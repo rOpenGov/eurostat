@@ -29,7 +29,10 @@ test_that("get_eurostat handles daily data", {
   expect_equal(abs(as.numeric(difftime(dat1$time[1], dat1$time[2], units = "days"))), 1)
 })
 
-
+test_that("get_eurostat get non-normal variable order",{
+  skip_on_cran()
+  expect_gt(nrow(get_eurostat("cens_01rdhh")), 0)
+})
 
 context("cache")
 
