@@ -247,76 +247,61 @@ triax.plot(transports[, -1], show.grid = TRUE,
 
 **Quick demo1 - whole Europe at country level reso 1:60mln**
 
-```{r maps7, eval=FALSE}
+```{r maps7, eval=TRUE}
 # Data from Eurostat
-dat <- eurostat::get_eurostat(id = "tsdtr420", time_format = "num")
-# subset to have only a single row per geo
-dat <- dat %>% dplyr::filter(sex == "T", time %in% 2014)
-
-# merge with geodata
-ff <- merge_with_geodata(data=dat,geocol="geo",res = "60")
-
-# plot map
-ggplot(data=ff, 
-       aes(x=long,y=lat,group=group)) +
+eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(sex == "T", time %in% 2014) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=values),color="white")
 ```
 
 **Quick demo2 - Poland at NUTS3 level reso 1:1mln**
 
-```{r maps8, eval=FALSE}
-# Data from Eurosrat
-dat <- eurostat::get_eurostat("tgs00026", time_format = "raw")
-# subset to have only a single row per geo
-dat <- dat %>% dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4)
-
-# merge with geodata
-ff <- merge_with_geodata(data=dat,geocol="geo",res = "01")
-
-# plot map
-ggplot(data=ff, 
-       aes(x=long,y=lat,group=group)) +
+```{r maps8, eval=TRUE}
+# Data from Eurostat
+eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "01") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=values),color="white")
 ```
 
 **Quick demo3 - whole Europe at country level reso 1:60mln**
 
-```{r maps1, eval=FALSE}
-
+```{r maps1, eval=TRUE}
 # Data from Eurostat
-dat <- eurostat::get_eurostat(id = "tsdtr420", time_format = "num")
-# subset to have only a single row per geo
-dat <- dat %>% dplyr::filter(sex == "T", time == 2014)
-
-# categorise
-dat$cat <- cut_to_classes(dat$values)
-
-# merge with geodata
-ff <- merge_with_geodata(data=dat,geocol="geo",res = "60")
-
-# plot map
-ggplot(data=ff, 
-       aes(x=long,y=lat,group=group)) +
+eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(sex == "T", time == 2014) %>% 
+  # categorise
+  mutate(cat = cut_to_classes(values)) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=cat),color="white") +
   scale_fill_brewer(palette ="Oranges")
 ```
 
 **Quick demo4 - Poland at NUTS3 level reso 1:1mln**
 
-```{r maps2, eval=FALSE}
-dat <- eurostat::get_eurostat("tgs00026", time_format = "raw")
-# subset to have only a single row per geo
-dat <- dat %>% dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4)
-
-# categorise
-dat$cat <- cut_to_classes(dat$values)
-
-# merge with geodata
-ff <- merge_with_geodata(data=dat,geocol="geo",res = "01")
-
-# plot map
-ggplot(data=ff, 
-       aes(x=long,y=lat,group=group)) +
+```{r maps2, eval=TRUE}
+eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
+  # categorise
+  mutate(cat = cut_to_classes(values)) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "01") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=cat),color="white") +
   scale_fill_brewer(palette ="Oranges")
 ```
@@ -326,24 +311,20 @@ ggplot(data=ff,
 ```{r maps4}
 library(eurostat)
 # Downloading and manipulating the tabular data
-df <- get_eurostat("tgs00026", time_format = "raw")
-
-# subsetting to year 2005 and NUTS-3 level
-df <- df %>% dplyr::filter(time == 2005, nchar(as.character(geo)) == 4)
-
-# categorise
-df$cat <- cut_to_classes(df$values)
-
-# merge with geodata
-plot_map <- merge_with_geodata(data=df,geocol="geo",res = "60")
-
-# plot map
-p <- ggplot(data=plot_map, aes(long,lat,group=group))
-p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
-p <- p + scale_fill_manual(values=c("dim grey",RColorBrewer::brewer.pal(n = 5, name = "Oranges"))) 
-p <- p + coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
-p <- p + labs(title = paste0("Disposable household incomes in 2005"))
-p <- p +  theme(legend.position = c(0.03,0.40), 
+get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2005 and NUTS-3 level
+  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+  # categorise
+  mutate(cat = cut_to_classes(values)) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  # plot map
+  ggplot(data=., aes(long,lat,group=group)) + 
+    geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
+    scale_fill_manual(values=c("dim grey",RColorBrewer::brewer.pal(n = 5, name = "Oranges"))) +
+    coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) +
+    labs(title = paste0("Disposable household incomes in 2005")) +
+    theme(legend.position = c(0.03,0.40), 
                 legend.justification=c(0,0),
                 legend.key.size=unit(6,'mm'),
                 legend.direction = "vertical",
@@ -358,11 +339,8 @@ p <- p +  theme(legend.position = c(0.03,0.40),
                 axis.text = element_blank(), 
                 axis.title = element_blank(), 
                 axis.ticks = element_blank(), 
-                plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
-p <- p + guides(fill = guide_legend(title = "EUR per Year",
-                                    title.position = "top", 
-                                    title.hjust=0))
-p
+                plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm")) +
+    guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 ```
 
 
@@ -371,10 +349,9 @@ p
 ```{r maps6}
 library(eurostat)
 # Downloading and manipulating the tabular data
-df <- get_eurostat("tgs00026", time_format = "raw")
-
-# subsetting to year 2005 and NUTS-3 level
-df <- df %>% dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
+df <- get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2005 and NUTS-3 level
+  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
 
 df_lab <- label_eurostat(df)
 names(df_lab) <- paste0("lab",names(df_lab))
