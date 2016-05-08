@@ -254,7 +254,7 @@ eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>%
   # subset to have only a single row per geo
   dplyr::filter(sex == "T", time %in% 2014) %>% 
   # merge with geodata
-  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  merge_with_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
   # plot map
   ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=values),color="white")
@@ -269,7 +269,7 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
   # merge with geodata
-  merge_with_geodata(data=.,geocol="geo",res = "01") %>% 
+  merge_with_geodata(data=.,geocolumn="geo",resolution = "01") %>% 
   # plot map
   ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=values),color="white")
@@ -286,7 +286,7 @@ eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>%
   # categorise
   mutate(cat = cut_to_classes(values)) %>% 
   # merge with geodata
-  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  merge_with_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
   # plot map
   ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=cat),color="white") +
@@ -303,7 +303,7 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   # categorise
   mutate(cat = cut_to_classes(values)) %>% 
   # merge with geodata
-  merge_with_geodata(data=.,geocol="geo",res = "01") %>% 
+  merge_with_geodata(data=.,geocolumn="geo",resolution = "01") %>% 
   # plot map
   ggplot(data=., aes(x=long,y=lat,group=group)) +
   geom_polygon(aes(fill=cat),color="white") +
@@ -321,7 +321,7 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   # categorise
   mutate(cat = cut_to_classes(values)) %>% 
   # merge with geodata
-  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  merge_with_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
   # plot map
   ggplot(data=., aes(long,lat,group=group)) + 
     geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
@@ -366,7 +366,7 @@ df2 <- cbind(df,df_lab)
 df2$cat <- cut_to_classes(df2$values)
 
 # merge with geodata
-plot_map <- merge_with_geodata(data=df2,geocol="geo",res = "60")
+plot_map <- merge_with_geodata(data=df2,geocolumn="geo",resolution = "60")
 
 cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
 cnames <- merge(cnames,df2,by="labgeo")

@@ -2,72 +2,40 @@
 % Please edit documentation in R/cut_to_classes.R
 \name{cut_to_classes}
 \alias{cut_to_classes}
-\title{Cut a value column into classes and polishes the labels}
+\title{Cuts the values column into classes and polishes the labels}
 \usage{
-cut_to_classes(x, n = 5, method = "jenks", manual = FALSE,
-  manual_breaks = NULL, decimals = 0)
+cut_to_classes(x, n = 5, style = "jenks", manual = FALSE,
+  manual_breaks = NULL, decimals = 0, nodata_label = "No data")
 }
 \arguments{
-\item{x}{A character or a factor vector or a data.frame.}
+\item{x}{A numeric vector, eg. \code{values} variable in data returned by  \code{get_eurostat}}
 
-<<<<<<< HEAD
-\item{n}{A string (vector) naming eurostat dictionary or dictionaries.
-If \code{NULL} (default) dictionry names taken from column names of 
-the data.frame.}
+\item{n}{A numeric. number of classes/categories}
 
-\item{method}{For data.frames names of the column for which also code columns
-should be retained. The suffix "_code" is added to code column names.}
+\item{style}{Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", or "jenks"}
 
-\item{manual}{Logical. Should ...}
+\item{manual}{Logical. If manual breaks are being used}
 
-\item{manual_breaks}{}
+\item{decimals}{Number of decimals to include with labels}
 
-\item{decimals}{}
-=======
-\item{dic}{A string (vector) naming eurostat dictionary or dictionaries.
-If \code{NULL} (default) dictionry names taken from column names of 
-the data.frame.}
+\item{nodata_label}{String. Text label for NA category.}
 
-\item{code}{For data.frames names of the column for which also code columns
-should be retained. The suffix "_code" is added to code column names.}
-
-\item{eu_order}{Logical. Should Eurostat ordering used for label levels. 
-Affects only factors.}
-
-\item{lang}{A character, code for language. Available are "en" (default), 
-"fr" and "de".}
->>>>>>> 0a2e28c0fa0ba9750e49739c9a7998fef19be93d
+\item{manual_breaks.}{Numeric vector with manual threshold values}
 }
 \value{
-a vector or a data.frame.
+a factor.
 }
 \description{
-Get definitions for Eurostat codes from Eurostat dictionaries.
-A character or a factor vector of codes returns a corresponding vector of
-definitions. \code{label_eurostat} labels also data.frames
-from \code{\link{get_eurostat}}.
-For vectors a dictionary name have to be supplied.
-For data.frames dictonary names are taken from column names. 
-"time" and "values" columns are returned as they were, so you can supply 
-data.frame from \code{\link{get_eurostat}} and get data.frame with 
-definitions instead of codes.
+Categorises a numeric vector into automatic or manually defined categories 
+and polishes the labels ready for used in mapping with \code{merge_with_geodata} function and ggplot2.
 }
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lpl <- label_eurostat(lp)
-   str(lpl)
-   lpl_order <- label_eurostat(lp, eu_order = TRUE)
-   lpl_code <- label_eurostat(lp, code = "unit")
-   label_eurostat_vars(names(lp))
-   label_eurostat_tables("nama_aux_lp")
+   lp$class <- cut_to_classes(lp$values, n=5, style="jenks",decimals=1)
  }
 }
 \author{
-<<<<<<< HEAD
 Markus Kainu <markuskainu@gmail.com>
-=======
-Janne Huovari <janne.huovari@ptt.fi>
->>>>>>> 0a2e28c0fa0ba9750e49739c9a7998fef19be93d
 }
 

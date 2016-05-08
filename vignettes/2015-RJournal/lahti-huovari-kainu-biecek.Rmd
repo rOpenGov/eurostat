@@ -214,7 +214,7 @@ plot_map <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
-  merge_with_geodata(data=.,geocol="geo",res = "60")
+  merge_with_geodata(data=.,geocolumn="geo",resolution = "60")
 
 # plot map
 p <- ggplot(data=plot_map, aes(long,lat,group=group))
