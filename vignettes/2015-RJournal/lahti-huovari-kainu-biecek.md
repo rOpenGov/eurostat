@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-03-25"
+date: "2016-05-08"
 bibliography: 
 - references.bib
 output: 
@@ -173,12 +173,20 @@ t1 <- get_eurostat("tsdtr420",
 
 ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
   geom_point(size=4) + 
-  geom_line() + theme_bw() + ggtitle("Road accidents") +
+  geom_line() + theme_bw() + ggtitle("Road accidents")+
   xlab("Year") + ylab("Victims (n)") +
-  theme(legend.position="top", legend.title = element_blank()) 
+  # labels
+  theme(legend.position="none") +
+  ggrepel::geom_label_repel(data=t1 %>%  
+                     group_by(Country) %>% 
+                     na.omit() %>% 
+                     filter(time %in% c(min(time),max(time))),
+                   aes(fill=Country,label=Country),color="white")
 ```
 
-![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png)
+```
+## Error in eval(expr, envir, enclos): unknown column 'Country'
+```
 
 ## Production of renewable energy
 
@@ -250,6 +258,39 @@ tmp1 %>%
 ## Map visualization
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+
+
+```r
+library(eurostat)
+# Downloading and manipulating the tabular data
+plot_map <- get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2005 and NUTS-3 level
+  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+  # classifying the values the variable
+  dplyr::mutate(cat = cut_to_classes(values)) %>% 
+  # merge Eurostat data with geodata from Cisco
+  merge_with_geodata(data=.,geocol="geo",res = "60")
+```
+
+```
+## Warning in classIntervals(x, n = n, method = method): var has missing
+## values, omitted in finding classes
+
+## Warning in classIntervals(x, n = n, method = method): var has missing
+## values, omitted in finding classes
+```
+
+```r
+# plot map
+p <- ggplot(data=plot_map, aes(long,lat,group=group))
+p <- p + geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2)
+p <- p + scale_fill_manual(values=c("dim grey",RColorBrewer::brewer.pal(n = 5, name = "Oranges"))) 
+p <- p + coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
+p <- p + labs(title = paste0("Disposable household incomes in 2005"))
+p <- p + theme_minimal()
+p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
+p
+```
 
 ![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png)
 

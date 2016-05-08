@@ -10,18 +10,18 @@ cut_to_classes(x, n = 5, method = "jenks", manual = FALSE,
 \arguments{
 \item{x}{A character or a factor vector or a data.frame.}
 
-\item{dic}{A string (vector) naming eurostat dictionary or dictionaries.
+\item{n}{A string (vector) naming eurostat dictionary or dictionaries.
 If \code{NULL} (default) dictionry names taken from column names of 
 the data.frame.}
 
-\item{code}{For data.frames names of the column for which also code columns
+\item{method}{For data.frames names of the column for which also code columns
 should be retained. The suffix "_code" is added to code column names.}
 
-\item{eu_order}{Logical. Should Eurostat ordering used for label levels. 
-Affects only factors.}
+\item{manual}{Logical. Should ...}
 
-\item{lang}{A character, code for language. Available are "en" (default), 
-"fr" and "de".}
+\item{manual_breaks}{}
+
+\item{decimals}{}
 }
 \value{
 a vector or a data.frame.
@@ -49,6 +49,6 @@ definitions instead of codes.
  }
 }
 \author{
-Janne Huovari <janne.huovari@ptt.fi>
+Markus Kainu <markuskainu@gmail.com>
 }
 

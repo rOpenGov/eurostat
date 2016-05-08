@@ -5,8 +5,39 @@ database](http://ec.europa.eu/eurostat/) as part of the
 For contact information and source code, see the [github
 page](https://github.com/rOpenGov/eurostat)
 
+<<<<<<< HEAD
 Installation
 ============
+=======
+
+Eurostat R tools
+===========
+
+This R package provides tools to access 
+[Eurostat database](http://ec.europa.eu/eurostat/) 
+as part of the [rOpenGov](http://ropengov.github.io) project.
+
+For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
+
+## Available tools
+
+ * [Installation](#installation)
+ * [Finding data](#search)
+ * [Downloading data](#download)  
+ * [Replacing codes with labels](#labeling)  
+ * [Selecting and modifying data](#select)  
+ * [Visualization](#visualization)  
+   * [Triangle plot](#triangle)  
+ * [Maps](#maps)  
+ * [Citing the package](#citing)  
+ * [Acknowledgements](#acknowledgements)  
+ * [Session info](#session)  
+
+
+
+
+## <a name="installation"></a>Installation
+>>>>>>> commit before rebasing
 
 Release version:
 
@@ -19,6 +50,7 @@ Development version:
 
 Overall, the eurostat package includes the following functions:
 
+<<<<<<< HEAD
     clean_eurostat_cache    Clean Eurostat Cache
     dic_order               Order of variable levels from Eurostat
                             dictionary.
@@ -224,6 +256,88 @@ instance datasets or tables.
 </tr>
 </tbody>
 </table>
+=======
+
+```r
+library(eurostat)
+eurostat.functions <- sort(ls("package:eurostat"))
+kable(as.data.frame(eurostat.functions))
+```
+
+
+
+|eurostat.functions    |
+|:---------------------|
+|candidate_countries   |
+|clean_eurostat_cache  |
+|cut_to_classes        |
+|dic_order             |
+|ea_countries          |
+|efta_countries        |
+|eu_countries          |
+|eurotime2date         |
+|eurotime2num          |
+|get_eurostat          |
+|get_eurostat_dic      |
+|get_eurostat_json     |
+|get_eurostat_toc      |
+|getEurostatTOC        |
+|grepEurostatTOC       |
+|label_eurostat        |
+|label_eurostat_tables |
+|label_eurostat_vars   |
+|merge_with_geodata    |
+|search_eurostat       |
+
+
+## <a name="search"></a>Finding data
+
+Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
+
+
+```r
+# Load the package
+library(eurostat)
+library(rvest)
+
+# Get Eurostat data listing
+toc <- get_eurostat_toc()
+
+# Check the first items
+library(knitr)
+kable(head(toc))
+```
+
+
+
+|title                                                    |code      |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:--------------------------------------------------------|:---------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|Database by themes                                       |data      |folder  |                    |                            |           |         |NA     |
+|General and regional statistics                          |general   |folder  |                    |                            |           |         |NA     |
+|European and national indicators for short-term analysis |euroind   |folder  |                    |                            |           |         |NA     |
+|Business and consumer surveys (source: DG ECFIN)         |ei_bcs    |folder  |                    |                            |           |         |NA     |
+|Consumer surveys (source: DG ECFIN)                      |ei_bcs_cs |folder  |                    |                            |           |         |NA     |
+|Consumers - monthly data                                 |ei_bsco_m |dataset |28.04.2016          |28.04.2016                  |1985M01    |2016M04  |NA     |
+
+With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
+
+
+```r
+# info about passengers
+kable(head(search_eurostat("passenger transport")))
+```
+
+
+
+|     |title                                                                                                                    |code            |type    |last.update.of.data |last.table.structure.change |data.start |data.end |values |
+|:----|:------------------------------------------------------------------------------------------------------------------------|:---------------|:-------|:-------------------|:---------------------------|:----------|:--------|:------|
+|5588 |Volume of passenger transport relative to GDP                                                                            |tran_hv_pstra   |dataset |05.06.2015          |04.06.2015                  |1995       |2013     |NA     |
+|5589 |Modal split of passenger transport                                                                                       |tran_hv_psmod   |dataset |05.06.2015          |05.06.2015                  |1990       |2013     |NA     |
+|5628 |Railway transport - Total annual passenger transport (1 000 pass., million pkm)                                          |rail_pa_total   |dataset |14.04.2016          |14.04.2016                  |2004       |2015     |NA     |
+|5632 |International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers) |rail_pa_intgong |dataset |14.04.2016          |14.04.2016                  |2014       |2015     |NA     |
+|5633 |International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)    |rail_pa_intcmng |dataset |14.04.2016          |14.04.2016                  |2014       |2015     |NA     |
+|5982 |Air passenger transport by reporting country                                                                             |avia_paoc       |dataset |25.04.2016          |19.04.2016                  |1993       |2016M02  |NA     |
+>>>>>>> commit before rebasing
 
 Codes for the dataset can be searched also from the [Eurostat
 database](http://ec.europa.eu/eurostat/data/database). The Eurostat
@@ -911,8 +1025,252 @@ all countries with data.
 
 ![](fig/plotGallery-1.png)<!-- -->
 
+<<<<<<< HEAD
 Citing the package
 ------------------
+=======
+## <a name="maps"></a>Maps 
+
+**Quick demo1 - whole Europe at country level reso 1:60mln**
+
+
+```r
+# Data from Eurostat
+eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(sex == "T", time %in% 2014) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
+  geom_polygon(aes(fill=values),color="white")
+```
+
+```
+## Reading cache file /tmp/RtmpFVAwDm/eurostat/tsdtr420_num_code_TF.rds
+```
+
+```
+## Table  tsdtr420  read from cache file:  /tmp/RtmpFVAwDm/eurostat/tsdtr420_num_code_TF.rds
+```
+
+![plot of chunk maps7](fig/maps7-1.png)
+
+**Quick demo2 - Poland at NUTS3 level reso 1:1mln**
+
+
+```r
+# Data from Eurostat
+eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "01") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
+  geom_polygon(aes(fill=values),color="white")
+```
+
+```
+## Reading cache file /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+```
+## Table  tgs00026  read from cache file:  /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+![plot of chunk maps8](fig/maps8-1.png)
+
+**Quick demo3 - whole Europe at country level reso 1:60mln**
+
+
+```r
+# Data from Eurostat
+eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(sex == "T", time == 2014) %>% 
+  # categorise
+  mutate(cat = cut_to_classes(values)) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
+  geom_polygon(aes(fill=cat),color="white") +
+  scale_fill_brewer(palette ="Oranges")
+```
+
+```
+## Reading cache file /tmp/RtmpFVAwDm/eurostat/tsdtr420_num_code_TF.rds
+```
+
+```
+## Table  tsdtr420  read from cache file:  /tmp/RtmpFVAwDm/eurostat/tsdtr420_num_code_TF.rds
+```
+
+```
+## Warning in classIntervals(x, n = n, method = method): var has missing
+## values, omitted in finding classes
+
+## Warning in classIntervals(x, n = n, method = method): var has missing
+## values, omitted in finding classes
+```
+
+![plot of chunk maps1](fig/maps1-1.png)
+
+**Quick demo4 - Poland at NUTS3 level reso 1:1mln**
+
+
+```r
+eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
+  # categorise
+  mutate(cat = cut_to_classes(values)) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "01") %>% 
+  # plot map
+  ggplot(data=., aes(x=long,y=lat,group=group)) +
+  geom_polygon(aes(fill=cat),color="white") +
+  scale_fill_brewer(palette ="Oranges")
+```
+
+```
+## Reading cache file /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+```
+## Table  tgs00026  read from cache file:  /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+![plot of chunk maps2](fig/maps2-1.png)
+
+**Reproducing the map in the paper**
+
+
+```r
+library(eurostat)
+# Downloading and manipulating the tabular data
+get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2005 and NUTS-3 level
+  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+  # categorise
+  mutate(cat = cut_to_classes(values)) %>% 
+  # merge with geodata
+  merge_with_geodata(data=.,geocol="geo",res = "60") %>% 
+  # plot map
+  ggplot(data=., aes(long,lat,group=group)) + 
+    geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
+    scale_fill_manual(values=c("dim grey",RColorBrewer::brewer.pal(n = 5, name = "Oranges"))) +
+    coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) +
+    labs(title = paste0("Disposable household incomes in 2005")) +
+    theme(legend.position = c(0.03,0.40), 
+                legend.justification=c(0,0),
+                legend.key.size=unit(6,'mm'),
+                legend.direction = "vertical",
+                legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
+                legend.text=element_text(size=12), 
+                legend.title=element_text(size=12), 
+                title=element_text(size=16), 
+                panel.background = element_blank(), 
+                plot.background = element_blank(),
+                panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                axis.text = element_blank(), 
+                axis.title = element_blank(), 
+                axis.ticks = element_blank(), 
+                plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm")) +
+    guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
+```
+
+```
+## Reading cache file /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+```
+## Table  tgs00026  read from cache file:  /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+```
+## Warning in classIntervals(x, n = n, method = method): var has missing
+## values, omitted in finding classes
+
+## Warning in classIntervals(x, n = n, method = method): var has missing
+## values, omitted in finding classes
+```
+
+![plot of chunk maps4](fig/maps4-1.png)
+
+
+**Poland with labels**
+
+
+```r
+library(eurostat)
+# Downloading and manipulating the tabular data
+df <- get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2005 and NUTS-3 level
+  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
+```
+
+```
+## Reading cache file /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+```
+## Table  tgs00026  read from cache file:  /tmp/RtmpFVAwDm/eurostat/tgs00026_raw_code_TF.rds
+```
+
+```r
+df_lab <- label_eurostat(df)
+names(df_lab) <- paste0("lab",names(df_lab))
+
+df2 <- cbind(df,df_lab)
+
+# categorise
+df2$cat <- cut_to_classes(df2$values)
+
+# merge with geodata
+plot_map <- merge_with_geodata(data=df2,geocol="geo",res = "60")
+
+cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
+cnames <- merge(cnames,df2,by="labgeo")
+
+# plot map
+p <- ggplot(data=plot_map, aes(long,lat,group=group))
+p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
+p <- p + scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges"))
+p <- p + geom_label(data=cnames, aes(long, lat, label = paste(labgeo,"\n",values,"€"), group=labgeo,fill=cat), 
+                    size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
+p <- p + coord_map(project="orthographic")
+p <- p + labs(title = paste0("Disposable household incomes in 2005"))
+p <- p +  theme(legend.position = c(0.1,0.03), 
+                legend.justification=c(0,0),
+                legend.key.size=unit(6,'mm'),
+                legend.direction = "vertical",
+                legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
+                legend.text=element_text(size=12), 
+                legend.title=element_text(size=12), 
+                title=element_text(size=16), 
+                panel.background = element_blank(), 
+                plot.background = element_blank(),
+                panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                axis.text = element_blank(), 
+                axis.title = element_blank(), 
+                axis.ticks = element_blank(), 
+                plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
+p <- p + guides(fill = guide_legend(title = "EUR per Year",
+                                    title.position = "top", 
+                                    title.hjust=0))
+p
+```
+
+![plot of chunk maps6](fig/maps6-1.png)
+
+
+
+For further examples, see also the [blog post on the eurostat R package](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+>>>>>>> commit before rebasing
 
 **Citing the Data** Kindly cite
 [Eurostat](http://ec.europa.eu/eurostat/).
@@ -959,6 +1317,7 @@ Session info
 
 This tutorial was created with
 
+<<<<<<< HEAD
     sessionInfo()
 
     ## R version 3.2.2 (2015-08-14)
@@ -989,3 +1348,45 @@ This tutorial was created with
     ## [17] yaml_2.1.13      digest_0.6.9     assertthat_0.1   formatR_1.3     
     ## [21] curl_0.9.7       evaluate_0.8.3   labeling_0.3     stringi_1.0-1   
     ## [25] scales_0.4.0     jsonlite_0.9.19
+=======
+
+```r
+sessionInfo()
+```
+
+```
+## R version 3.3.0 (2016-05-03)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 14.04.4 LTS
+## 
+## locale:
+##  [1] LC_CTYPE=fi_FI.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=fi_FI.UTF-8        LC_COLLATE=fi_FI.UTF-8    
+##  [5] LC_MONETARY=fi_FI.UTF-8    LC_MESSAGES=fi_FI.UTF-8   
+##  [7] LC_PAPER=fi_FI.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=fi_FI.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+##  [1] dplyr_0.4.3          xtable_1.8-2         classInt_0.1-23     
+##  [4] stringr_1.0.0        plotrix_3.6-1        tidyr_0.4.1         
+##  [7] rvest_0.3.1          xml2_0.1.2           knitr_1.12.3        
+## [10] ggplot2_2.1.0        eurostat_1.2.21.9003
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.4        magrittr_1.5       maps_3.1.0        
+##  [4] munsell_0.4.3      colorspace_1.2-6   R6_2.1.2          
+##  [7] httr_1.1.0         highr_0.5.1        plyr_1.8.3        
+## [10] tools_3.3.0        parallel_3.3.0     grid_3.3.0        
+## [13] gtable_0.1.2       e1071_1.6-7        DBI_0.3.1         
+## [16] class_7.3-14       lazyeval_0.1.10    assertthat_0.1    
+## [19] digest_0.6.9       mapproj_1.2-4      RColorBrewer_1.1-2
+## [22] formatR_1.3        ggrepel_0.5        curl_0.9.6        
+## [25] mime_0.4           evaluate_0.9       labeling_0.3      
+## [28] stringi_1.0-1      scales_0.3.0       jsonlite_0.9.19   
+## [31] markdown_0.7.7
+```
+>>>>>>> commit before rebasing

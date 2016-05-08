@@ -2,7 +2,7 @@
 % Please edit documentation in R/merge_with_geodata.R
 \name{merge_with_geodata}
 \alias{merge_with_geodata}
-\title{Merge with preprocessed spatial data from CISGO}
+\title{Get preprocessed spatial data from CISGO and merge with}
 \usage{
 merge_with_geodata(data, geocol = "geo", res = 60)
 }
@@ -26,7 +26,8 @@ Affects only factors.}
 a vector or a data.frame.
 }
 \description{
-Get definitions for Eurostat codes from Eurostat dictionaries.
+Get preprocessed data.frame 
+definitions for Eurostat codes from Eurostat dictionaries.
 A character or a factor vector of codes returns a corresponding vector of
 definitions. \code{label_eurostat} labels also data.frames
 from \code{\link{get_eurostat}}.
@@ -39,15 +40,12 @@ definitions instead of codes.
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lpl <- label_eurostat(lp)
+   lpl <- merge_with_geodata(lp, geocol="geo", res=60)
    str(lpl)
-   lpl_order <- label_eurostat(lp, eu_order = TRUE)
-   lpl_code <- label_eurostat(lp, code = "unit")
-   label_eurostat_vars(names(lp))
-   label_eurostat_tables("nama_aux_lp")
  }
+ 
 }
 \author{
-Janne Huovari <janne.huovari@ptt.fi>
+Markus Kainu <markuskainu@gmail.com>
 }
 
