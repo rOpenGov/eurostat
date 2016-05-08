@@ -19,12 +19,13 @@ R tools to access data from [Eurostat](http://ec.europa.eu/eurostat). The packag
 
 Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski). Part of [rOpenGov](http://ropengov.github.io). 
 
+### Contribute
 
-You are welcome to contact us:
+Contributions are very welcome, you can for instance
 
-  * [submit suggestions and bug reports](https://github.com/ropengov/eurostat/issues)
-  * [send a pull request](https://github.com/ropengov/eurostat/)
-  * follow [rOpenGov in social media](http://ropengov.github.io/contribute/)  
+  * Test the tools and provide feedback, submit suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or directly by e-mail.
+  * Fork and [send pull requests](https://github.com/ropengov/eurostat/) to the functions, vignettes, documentation, tests, or use cases. 
+  * Star us on the project page if you deem it appropriate 
 
 
 ### Disclaimer
