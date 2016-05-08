@@ -353,16 +353,9 @@ get_eurostat("tgs00026", time_format = "raw") %>%
 ```{r maps6}
 library(eurostat)
 # Downloading and manipulating the tabular data
-<<<<<<< HEAD
 df <- get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2005 and NUTS-3 level
   dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
-=======
-df <- get_eurostat("tgs00026", time_format = "raw")
-
-# subsetting to year 2005 and NUTS-3 level
-df <- df %>% dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
->>>>>>> 0a2e28c0fa0ba9750e49739c9a7998fef19be93d
 
 df_lab <- label_eurostat(df)
 names(df_lab) <- paste0("lab",names(df_lab))
@@ -409,13 +402,6 @@ p
 ```
 
 
-<<<<<<< HEAD
-=======
-
-
-
-
->>>>>>> 0a2e28c0fa0ba9750e49739c9a7998fef19be93d
 For further examples, see also the [blog post on the eurostat R package](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
 
