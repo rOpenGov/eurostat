@@ -248,7 +248,7 @@ triax.plot(transports[, -1], show.grid = TRUE,
 
 **Quick demo1 - whole Europe at country level reso 1:60mln**
 
-```{r maps7, eval=TRUE}
+```{r maps7, eval=TRUE, fig.width=8, fig.height=8}
 # Data from Eurostat
 eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
   # subset to have only a single row per geo
@@ -263,7 +263,7 @@ eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>%
 **Quick demo2 - Poland at NUTS3 level reso 1:1mln**
 
 
-```{r maps8, eval=TRUE}
+```{r maps8, eval=TRUE, fig.width=8, fig.height=8}
 # Data from Eurostat
 eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
   # subset to have only a single row per geo
@@ -278,13 +278,13 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 **Quick demo3 - whole Europe at country level reso 1:60mln**
 
 
-```{r maps1, eval=TRUE}
+```{r maps1, eval=TRUE, fig.width=8, fig.height=8}
 # Data from Eurostat
 eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
   # subset to have only a single row per geo
   dplyr::filter(sex == "T", time == 2014) %>% 
   # categorise
-  mutate(cat = cut_to_classes(values)) %>% 
+  dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge with geodata
   merge_with_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
   # plot map
@@ -296,12 +296,12 @@ eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>%
 **Quick demo4 - Poland at NUTS3 level reso 1:1mln**
 
 
-```{r maps2, eval=TRUE}
+```{r maps2, eval=TRUE, fig.width=8, fig.height=8}
 eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
   # categorise
-  mutate(cat = cut_to_classes(values)) %>% 
+  dplyr::mutate(cat = cut_to_classes(values, n = 3)) %>% 
   # merge with geodata
   merge_with_geodata(data=.,geocolumn="geo",resolution = "01") %>% 
   # plot map
@@ -312,14 +312,14 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 
 **Reproducing the map in the paper**
 
-```{r maps4}
+```{r maps4, fig.width=8, fig.height=8}
 library(eurostat)
 # Downloading and manipulating the tabular data
 get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2005 and NUTS-3 level
   dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
   # categorise
-  mutate(cat = cut_to_classes(values)) %>% 
+  dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge with geodata
   merge_with_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
   # plot map
@@ -350,7 +350,7 @@ get_eurostat("tgs00026", time_format = "raw") %>%
 
 **Poland with labels**
 
-```{r maps6}
+```{r maps6, fig.width=8, fig.height=8}
 library(eurostat)
 # Downloading and manipulating the tabular data
 df <- get_eurostat("tgs00026", time_format = "raw") %>% 
@@ -405,7 +405,7 @@ p
 For further examples, see also the [blog post on the eurostat R package](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
 
-## Citing the package
+# Citing the package
 
 **Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
 

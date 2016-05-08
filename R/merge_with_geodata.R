@@ -21,7 +21,7 @@ merge_with_geodata <- function(data,geocolumn="geo",resolution=60){
   load(url(paste0("http://data.okf.fi/ropengov/avoindata/eurostat_geodata/rdata/NUTS_2013_",
                   resolution,
                   "M_SH_DF.RData")))
-  map.df <- get(paste0("NUTS_2013_",res,"M_SH_DF"))
+  map.df <- get(paste0("NUTS_2013_",resolution,"M_SH_DF"))
   d <- merge(data,map.df,by.x=geocolumn,by="NUTS_ID",all.x=TRUE)
   d <- d[order(d$order),] 
   return(d)
