@@ -1,6 +1,5 @@
-#' @title Download data from the eurostat database
-#' @description Download data from the eurostat database. Downloads datasets
-#' from the eurostat database and transforms into tabular format.
+#' @title Download Data from Eurostat Database
+#' @description Download data from the eurostat database.
 #' @param id A code name for the dataset of interested. See the table of
 #'  contents of eurostat datasets for more details.
 #' @return A dataset in data.frame format. First column contains comma 
@@ -10,10 +9,8 @@
 #'	  flags for data.
 #' @seealso \code{\link{get_eurostat}}.
 #' @details Data is downloaded from
-#'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
+#'  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
 #' @references see citation("eurostat")
-#' @importFrom utils download.file
-#' @importFrom utils read.table
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{
 #' 	       tmp <- eurostat:::get_eurostat_raw("educ_iste")

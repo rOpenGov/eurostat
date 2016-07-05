@@ -2,7 +2,7 @@
 % Please edit documentation in R/set_eurostat_toc.R
 \name{set_eurostat_toc}
 \alias{set_eurostat_toc}
-\title{set_eurostat_toc}
+\title{Set Eurostat TOC}
 \usage{
 set_eurostat_toc(...)
 }
@@ -13,7 +13,7 @@ set_eurostat_toc(...)
 Empty element
 }
 \description{
-For internal use
+Internal function.
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/eurotime2num.R
 \name{eurotime2num}
 \alias{eurotime2num}
-\title{A conversion of a Eurostat time format to numeric}
+\title{Conversion of Eurostat Time Format to Numeric}
 \usage{
 eurotime2num(x)
 }
@@ -13,10 +13,10 @@ eurotime2num(x)
 see \code{\link{as.numeric}}.
 }
 \description{
-A conversion of a Eurostat time format to numeric. A function
-to convert Eurostat time values to a numeric. Bi-annual, quarterly and
-monthly data is presented as fraction of the year in beginning of the
-period.
+A conversion of a Eurostat time format to numeric.
+}
+\details{
+Bi-annual, quarterly and monthly data is presented as fraction of the year in beginning of the period.
 }
 \examples{
 \dontrun{

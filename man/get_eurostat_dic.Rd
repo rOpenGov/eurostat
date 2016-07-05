@@ -15,8 +15,10 @@ get_eurostat_dic(dictname, lang = "en")
 data.frame with two columns: code names and full names.
 }
 \description{
-Download a Eurostat dictionary for
-   given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
+Download a Eurostat dictionary.
+}
+\details{
+For given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
    The dictionaries link codes with human-readable labels.
    To translate codes to labels, use \code{\link{label_eurostat}}.
 }

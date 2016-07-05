@@ -27,7 +27,6 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = default.stringsAsFactors(),
            keepFlags = FALSE) {
 
-
     # To avoid warnings
     time <- NULL
 
@@ -42,10 +41,11 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
                        sep = ",", convert = FALSE)
     
     # Get variable from column names
+    # na.rm TRUE to save memory
     dat2 <- tidyr::gather_(dat2, cnames2, "values", 
                            names(dat2)[!(names(dat2) %in% cnames1)],
-                           convert = FALSE)
-    
+                           convert = FALSE, na.rm = TRUE)
+
     ## separate flags into separate column
     if(keepFlags == TRUE) {
       dat2$flags <- as.vector(
@@ -55,7 +55,6 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     # clean time and values
     dat2$time <- gsub("X", "", dat2$time)
     dat2$values <- tidyr::extract_numeric(dat2$values)
-    
     
     # variable columns
     var_cols <- names(dat2)[!(names(dat2) %in% c("time", "values"))]
@@ -69,7 +68,6 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
       dat2[,var_cols] <- lapply(dat2[, var_cols, drop = FALSE],
                               function(x) factor(x, levels = unique(x)))
     }
-
 
     # For multiple time frequency
 
@@ -108,8 +106,8 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
 }
 
 
-#' @title Time column conversions
-#' @description internal function to convert time column
+#' @title Time Column Conversions
+#' @description Internal function to convert time column.
 #' @param x A time column (vector)
 #' @param time_format see \code{\link{tidy_eurostat}}
 #' @keywords internal

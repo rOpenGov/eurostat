@@ -1,7 +1,5 @@
-#' @title Download a table of contents of eurostat datasets
+#' @title Download Table of Contents of Eurostat Data Sets
 #' @description Download table of contents (TOC) of eurostat datasets. 
-#'              Note that the values in column 'code' should be used 
-#'		to download a selected dataset.
 #' @return A data.frame with eight columns
 #'    \itemize{
 #'      \item{title}{The name of dataset of theme}
@@ -11,7 +9,7 @@
 #'    }
 #' @export
 #' @seealso \code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
-#' @details The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
+#' @details The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
 #' @examples \dontrun{tmp <- get_eurostat_toc(); head(tmp)}

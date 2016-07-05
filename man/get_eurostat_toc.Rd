@@ -3,7 +3,7 @@
 \name{get_eurostat_toc}
 \alias{getEurostatTOC}
 \alias{get_eurostat_toc}
-\title{Download a table of contents of eurostat datasets}
+\title{Download Table of Contents of Eurostat Data Sets}
 \usage{
 get_eurostat_toc()
 
@@ -19,12 +19,10 @@ A data.frame with eight columns
    }
 }
 \description{
-Download table of contents (TOC) of eurostat datasets. 
-             Note that the values in column 'code' should be used 
-	to download a selected dataset.
+Download table of contents (TOC) of eurostat datasets.
 }
 \details{
-The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}
+The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
 }
 \section{Functions}{
 \itemize{
