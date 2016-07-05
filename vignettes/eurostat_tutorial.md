@@ -28,13 +28,12 @@ Overall, the eurostat package includes the following functions:
     eurotime2num            A conversion of a Eurostat time format to
                             numeric
     get_eurostat            Generic wrapper to read data from Eurostat
-    get_eurostat_dic        Download an Eurostat dictionary
+    get_eurostat_dic        Download Eurostat Dictionary
     get_eurostat_json       Get data from The Eurostat APi in JSON
     get_eurostat_raw        Download data from the eurostat database
     get_eurostat_toc        Download a table of contents of eurostat
                             datasets
-    label_eurostat          Get definitions for Eurostat codes from
-                            Eurostat dictionaries
+    label_eurostat          Get Eurostat Codes
     search_eurostat         Grep datasets titles from eurostat
 
 Finding data
@@ -123,10 +122,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">30.03.2016</td>
-<td align="left">30.03.2016</td>
+<td align="left">29.06.2016</td>
+<td align="left">29.06.2016</td>
 <td align="left">1985M01</td>
-<td align="left">2016M03</td>
+<td align="left">2016M06</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -157,7 +156,7 @@ instance datasets or tables.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">5623</td>
+<td align="left">5612</td>
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
@@ -168,7 +167,7 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5624</td>
+<td align="left">5613</td>
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
@@ -179,44 +178,44 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5663</td>
+<td align="left">5652</td>
 <td align="left">Railway transport - Total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">14.04.2016</td>
-<td align="left">14.04.2016</td>
+<td align="left">21.06.2016</td>
+<td align="left">26.05.2016</td>
 <td align="left">2004</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5667</td>
+<td align="left">5656</td>
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">14.04.2016</td>
-<td align="left">14.04.2016</td>
-<td align="left">2014</td>
+<td align="left">14.06.2016</td>
+<td align="left">26.05.2016</td>
+<td align="left">2002</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5668</td>
+<td align="left">5657</td>
 <td align="left">International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)</td>
 <td align="left">rail_pa_intcmng</td>
 <td align="left">dataset</td>
-<td align="left">14.04.2016</td>
-<td align="left">14.04.2016</td>
-<td align="left">2014</td>
+<td align="left">14.06.2016</td>
+<td align="left">26.05.2016</td>
+<td align="left">2002</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">6017</td>
+<td align="left">6006</td>
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">19.04.2016</td>
+<td align="left">25.04.2016</td>
 <td align="left">19.04.2016</td>
 <td align="left">1993</td>
 <td align="left">2016M02</td>
@@ -260,7 +259,7 @@ Pick and print the id of the data set to download:
                              type = "table")$code[1]
     print(id)
 
-[1] "tsdtr210"
+\[1\] "tsdtr210"
 
 Get the whole corresponding table. As the table is annual data, it is
 more convient to use a numeric time variable than use the default date
@@ -890,7 +889,7 @@ Visualizing train passenger data with `ggplot2`:
     p <- p + geom_line()
     print(p)
 
-![](fig/trains_plot-1.png)<!-- -->
+![](fig/trains_plot-1.png)
 
 <a name="triangle"></a>**Triangle plot**
 
@@ -909,7 +908,7 @@ all countries with data.
                label.points = TRUE, point.labels = transports$geo, 
                pch = 19)
 
-![](fig/plotGallery-1.png)<!-- -->
+![](fig/plotGallery-1.png)
 
 Citing the package
 ------------------
@@ -961,9 +960,9 @@ This tutorial was created with
 
     sessionInfo()
 
-    ## R version 3.2.2 (2015-08-14)
+    ## R version 3.3.0 (2016-05-03)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 15.10
+    ## Running under: Ubuntu 16.04 LTS
     ## 
     ## locale:
     ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -977,15 +976,14 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] plotrix_3.6-1        ggplot2_2.1.0        tidyr_0.4.1         
-    ## [4] rvest_0.3.1          xml2_0.1.2           eurostat_1.2.21.9003
-    ## [7] rmarkdown_0.9.5      knitr_1.12.3        
+    ## [1] plotrix_3.6-2        ggplot2_2.1.0        tidyr_0.5.1         
+    ## [4] rvest_0.3.2          xml2_1.0.0           eurostat_1.2.21.9004
+    ## [7] rmarkdown_0.9.6.11   knitr_1.13          
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.4      magrittr_1.5     munsell_0.4.3    colorspace_1.2-6
-    ##  [5] R6_2.1.2         plyr_1.8.3       stringr_1.0.0    httr_1.1.0      
-    ##  [9] highr_0.5.1      dplyr_0.4.3      tools_3.2.2      grid_3.2.2      
-    ## [13] parallel_3.2.2   gtable_0.2.0     DBI_0.3.1        htmltools_0.3   
-    ## [17] yaml_2.1.13      digest_0.6.9     assertthat_0.1   formatR_1.3     
-    ## [21] curl_0.9.7       evaluate_0.8.3   labeling_0.3     stringi_1.0-1   
-    ## [25] scales_0.4.0     jsonlite_0.9.19
+    ##  [1] Rcpp_0.12.5      magrittr_1.5     munsell_0.4.3    colorspace_1.2-6
+    ##  [5] R6_2.1.2         plyr_1.8.4       stringr_1.0.0    httr_1.2.0      
+    ##  [9] highr_0.6        tools_3.3.0      grid_3.3.0       gtable_0.2.0    
+    ## [13] htmltools_0.3.5  yaml_2.1.13      digest_0.6.9     assertthat_0.1  
+    ## [17] tibble_1.0       formatR_1.4      curl_0.9.7       evaluate_0.9    
+    ## [21] labeling_0.3     stringi_1.1.1    scales_0.4.0     jsonlite_0.9.22

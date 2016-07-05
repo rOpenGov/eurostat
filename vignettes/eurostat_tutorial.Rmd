@@ -41,16 +41,13 @@ install_github("ropengov/eurostat")
 
 ```{r, echo=FALSE}
 library(eurostat)
-
 ```
 
 
 Overall, the eurostat package includes the following functions:
 
 ```{r, echo=FALSE,comment=NA}
-
 cat(paste0(library(help = "eurostat")$info[[2]], collapse = "\n"))
-
 ```
 
 
@@ -130,7 +127,6 @@ time variable, in addition to a `time`, also a `sinceTimePeriod`
 and a `lastTimePeriod` can be used.
 
 ```{r get_eurostat_json, warning=FALSE, message=FALSE, results='asis'}
-
 dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1), time_format = "num")
 kable(dat2)
 ```
@@ -160,7 +156,6 @@ The `label_eurostat()` allows also
 conversion of individual variable vectors or variable names. 
 
 ```{r name_labels}
-
 label_eurostat_vars(names(datl))
 ```
 

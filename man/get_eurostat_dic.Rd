@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_dic.R
 \name{get_eurostat_dic}
 \alias{get_eurostat_dic}
-\title{Download an Eurostat dictionary}
+\title{Download Eurostat Dictionary}
 \usage{
 get_eurostat_dic(dictname, lang = "en")
 }
@@ -16,7 +16,7 @@ data.frame with two columns: code names and full names.
 }
 \description{
 Download a Eurostat dictionary for
-   given coded variable from Eurostat (ec.europa.eu/eurostat).
+   given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
    The dictionaries link codes with human-readable labels.
    To translate codes to labels, use \code{\link{label_eurostat}}.
 }

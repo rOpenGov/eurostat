@@ -1,4 +1,4 @@
-#' @title Transform raw Eurostat data table into row-column-value format (RCV)
+#' @title Transform Data into Row-Column-Value Format
 #' @description Transform raw Eurostat data table into the row-column-value
 #' format (RCV).
 #' @param dat a data.frame from \code{\link{get_eurostat_raw}}.
@@ -27,6 +27,9 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = default.stringsAsFactors(),
            keepFlags = FALSE) {
 
+
+    # To avoid warnings
+    time <- NULL
 
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split = "\\.")[[1]]
