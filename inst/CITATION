@@ -9,7 +9,7 @@ citEntry(entry="misc",
 	   person(given = "Przemyslaw", family="Biecek")	   
          ),
 	 journal = "",
-	 year = "2014",
+	 year = "2014-2016",
 	 url = "https://github.com/rOpenGov/eurostat",
          textVersion =
          paste("(C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek 2014-2016.",
