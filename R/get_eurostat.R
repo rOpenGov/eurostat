@@ -104,8 +104,6 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
                          stringsAsFactors = default.stringsAsFactors(),
                          keepFlags = FALSE, ...){
 
-  #id = "bop_c6_q"; time_format = "date"; filters = "none"; type = "code";select_time = "Q";cache = TRUE; update_cache = FALSE; cache_dir = NULL;compress_file = TRUE;stringsAsFactors = default.stringsAsFactors();keepFlags = FALSE
-
   # No cache for json
   if (is.null(filters) || filters != "none") {
     cache <- FALSE
@@ -178,4 +176,5 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
   }
 
   y
+
 }

@@ -101,6 +101,10 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     dat2$time <- convert_time_col(dat2$time,
     	   	                       time_format = time_format)
 
+
+    # Harmonize country codes				       
+    dat2$geo <- harmonize_country_code(dat2$geo)
+
     dat2
 
 }

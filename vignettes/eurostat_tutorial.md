@@ -20,21 +20,20 @@ Development version:
 Overall, the eurostat package includes the following functions:
 
     clean_eurostat_cache    Clean Eurostat Cache
-    dic_order               Order of variable levels from Eurostat
-                            dictionary.
-    eu_countries            Countries and country codes
+    dic_order               Order of Variable Levels from Eurostat
+                            Dictionary.
+    eu_countries            Countries and Country Codes
     eurostat-package        R Tools for Eurostat open data
-    eurotime2date           Date conversion from Eurostat time format
-    eurotime2num            A conversion of a Eurostat time format to
-                            numeric
-    get_eurostat            Generic wrapper to read data from Eurostat
+    eurotime2date           Date Conversion from Eurostat Time Format
+    eurotime2num            Conversion of Eurostat Time Format to Numeric
+    get_eurostat            Read Eurostat Data
     get_eurostat_dic        Download Eurostat Dictionary
-    get_eurostat_json       Get data from The Eurostat APi in JSON
-    get_eurostat_raw        Download data from the eurostat database
-    get_eurostat_toc        Download a table of contents of eurostat
-                            datasets
+    get_eurostat_json       Get Data from Eurostat API in JSON
+    get_eurostat_raw        Download Data from Eurostat Database
+    get_eurostat_toc        Download Table of Contents of Eurostat Data
+                            Sets
     label_eurostat          Get Eurostat Codes
-    search_eurostat         Grep datasets titles from eurostat
+    search_eurostat         Grep Datasets Titles from Eurostat
 
 Finding data
 ============
@@ -271,18 +270,19 @@ Investigate the structure of the downloaded data set:
 
     str(dat)
 
-    ## 'data.frame':    2520 obs. of  5 variables:
+    ## 'data.frame':    2218 obs. of  5 variables:
     ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ geo    : Factor w/ 35 levels "AT","BE","BG",..: 1 2 3 4 5 6 7 8 9 10 ...
+    ##  $ geo    : chr  "AT" "BE" "CH" "DE" ...
     ##  $ time   : num  1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...
-    ##  $ values : num  11 10.6 NA 3.7 NA NA 9.1 11.3 NA 32.4 ...
+    ##  $ values : num  11 10.6 3.7 9.1 11.3 32.4 14.9 13.5 6 24.8 ...
 
     kable(head(dat))
 
 <table>
 <thead>
 <tr class="header">
+<th align="left"></th>
 <th align="left">unit</th>
 <th align="left">vehicle</th>
 <th align="left">geo</th>
@@ -292,6 +292,7 @@ Investigate the structure of the downloaded data set:
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">AT</td>
@@ -299,6 +300,7 @@ Investigate the structure of the downloaded data set:
 <td align="right">11.0</td>
 </tr>
 <tr class="even">
+<td align="left">2</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">BE</td>
@@ -306,32 +308,36 @@ Investigate the structure of the downloaded data set:
 <td align="right">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">BG</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
+<td align="left">4</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">CH</td>
 <td align="right">1990</td>
 <td align="right">3.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
+<td align="left">7</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
-<td align="left">CY</td>
+<td align="left">DE</td>
 <td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">9.1</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="left">PC</td>
+<td align="left">BUS_TOT</td>
+<td align="left">DK</td>
+<td align="right">1990</td>
+<td align="right">11.3</td>
 </tr>
 <tr class="even">
+<td align="left">10</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
-<td align="left">CZ</td>
+<td align="left">GR</td>
 <td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">32.4</td>
 </tr>
 </tbody>
 </table>
@@ -478,6 +484,7 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <table>
 <thead>
 <tr class="header">
+<th align="left"></th>
 <th align="left">unit</th>
 <th align="left">vehicle</th>
 <th align="left">geo</th>
@@ -487,6 +494,7 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 </thead>
 <tbody>
 <tr class="odd">
+<td align="left">1</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Austria</td>
@@ -494,6 +502,7 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">11.0</td>
 </tr>
 <tr class="even">
+<td align="left">2</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Belgium</td>
@@ -501,32 +510,36 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Bulgaria</td>
-<td align="right">1990</td>
-<td align="right">NA</td>
-</tr>
-<tr class="even">
+<td align="left">4</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Switzerland</td>
 <td align="right">1990</td>
 <td align="right">3.7</td>
 </tr>
-<tr class="odd">
+<tr class="even">
+<td align="left">7</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Cyprus</td>
+<td align="left">Germany (until 1990 former territory of the FRG)</td>
 <td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">9.1</td>
+</tr>
+<tr class="odd">
+<td align="left">8</td>
+<td align="left">Percentage</td>
+<td align="left">Motor coaches, buses and trolley buses</td>
+<td align="left">Denmark</td>
+<td align="right">1990</td>
+<td align="right">11.3</td>
 </tr>
 <tr class="even">
+<td align="left">10</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Czech Republic</td>
+<td align="left">Greece</td>
 <td align="right">1990</td>
-<td align="right">NA</td>
+<td align="right">32.4</td>
 </tr>
 </tbody>
 </table>
@@ -976,9 +989,9 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] plotrix_3.6-2        ggplot2_2.1.0        tidyr_0.5.1         
-    ## [4] rvest_0.3.2          xml2_1.0.0           eurostat_1.2.21.9004
-    ## [7] rmarkdown_0.9.6.11   knitr_1.13          
+    ## [1] plotrix_3.6-2      ggplot2_2.1.0      tidyr_0.5.1       
+    ## [4] rvest_0.3.2        xml2_1.0.0         eurostat_1.2.22   
+    ## [7] rmarkdown_0.9.6.11 knitr_1.13        
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.5      magrittr_1.5     munsell_0.4.3    colorspace_1.2-6

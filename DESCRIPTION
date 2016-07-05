@@ -1,7 +1,7 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Version: 1.2.21.9005
+Version: 1.2.22
 Date: 2016-07-06
 Authors@R: c(
     person("Lahti", "Leo", email = "louhos@googlegroups.com", role = c("aut", "cre")),
@@ -26,7 +26,8 @@ Suggests:
     knitr,
     mapproj,
     plotrix,
-    rvest
+    rvest,
+    testthat
 LazyData: true
 URL: https://github.com/ropengov/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
