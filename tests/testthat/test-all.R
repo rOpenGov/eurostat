@@ -109,3 +109,14 @@ test_that("Get json data",{
                ignore.order = TRUE)
 })
 
+test_that("Handle numbers in filter name",{
+  skip_on_cran()
+  expect_named(get_eurostat(id = "sts_inpr_a", filters = list(geo = "AT",
+                                                              nace_r2 = "B",
+                                                              s_adj = "CA",
+                                                              indic_bt = "PROD",
+                                                              unit = "I10")),
+               c("geo", "nace_r2", "s_adj", "indic_bt", "unit", "time", "values"), 
+               ignore.order = TRUE)
+})
+

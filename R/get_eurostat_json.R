@@ -26,7 +26,7 @@
 #' @examples
 #'  \dontrun{
 #'    tmp <- get_eurostat_json("cdh_e_fos")
-#'    yy <- get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+#'    yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
 #'                                                         unit="EUR_HAB",
 #'                                                         indic_na="B1GM")) 
 #' }
@@ -81,18 +81,18 @@ get_eurostat_json <- function(id, filters = NULL,
 
 
 # Internal function to build json url
-eurostat_json_url <- function(id, filters, lang = "en"){
+eurostat_json_url <- function(id, filters, lang){
 
   # prepare filters for query
-  filters <- as.list(unlist(filters))
-  names(filters) <- gsub("[0-9]", "", names(filters))
+  filters2 <- as.list(unlist(filters))
+  names(filters2) <- rep(names(filters), lapply(filters, length))
   
   # prepare url
   url_list <- list(scheme = "http",
                    hostname = "ec.europa.eu",
                    path = file.path("eurostat/wdds/rest/data/v1.1/json", 
                                     lang[1], id),
-                   query = filters)
+                   query = filters2)
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url
