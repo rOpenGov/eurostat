@@ -45,7 +45,7 @@ Queries are limited to 50 sub-indicators at a time.
 \examples{
  \dontrun{
    tmp <- get_eurostat_json("cdh_e_fos")
-   yy <- get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+   yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
                                                         unit="EUR_HAB",
                                                         indic_na="B1GM")) 
 }

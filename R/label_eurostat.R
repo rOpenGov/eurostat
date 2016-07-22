@@ -46,9 +46,6 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
 
     dic_df <- get_eurostat_dic(dic, lang = lang)
 
-    if (dic == "geo") {
-      dic_df$V1 <- harmonize_country_code(dic_df$V1)
-    }
 
     if (is.factor(x)){
       if (eu_order) {
