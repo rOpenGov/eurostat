@@ -26,6 +26,6 @@ get_eurostat_dic <- function(dictname, lang = "en") {
    colClasses = c('character','character'),
    stringsAsFactors = FALSE,
    quote = "\"",
-   fileEncoding = "UTF-8") # was: Windows-1252
+   fileEncoding = "") # was: Windows-1252 or UTF-8
 }
 

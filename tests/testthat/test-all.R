@@ -83,6 +83,11 @@ test_that("Label ordering is ordered", {
                               dic = "geo", eu_order = TRUE)))
 })
 
+test_that("Dic downloading works", {
+  skip_on_cran()
+  expect_warning(get_eurostat_dic("na_item"), NA)
+})
+
 
 context("Flags")
 
