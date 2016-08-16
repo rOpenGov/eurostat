@@ -155,13 +155,14 @@ kable(head(datl))
 The `label_eurostat()` allows also 
 conversion of individual variable vectors or variable names. 
 
-```{r name_labels}
+```{r name_labels, eval = FALSE}
 label_eurostat_vars(names(datl))
 ```
 
 
-Vehicle information has 3 levels. They are:
-```{r vehicle_levels}
+Vehicle information has 3 levels. You can check them now with:
+
+```{r vehicle_levels, eval = FALSE}
 levels(datl$vehicle)
 ```
 

@@ -32,6 +32,8 @@ Overall, the eurostat package includes the following functions:
     get_eurostat_raw        Download Data from Eurostat Database
     get_eurostat_toc        Download Table of Contents of Eurostat Data
                             Sets
+    harmonize_country_code
+                            Harmonize Country Code
     label_eurostat          Get Eurostat Codes
     search_eurostat         Grep Datasets Titles from Eurostat
 
@@ -121,10 +123,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">29.06.2016</td>
-<td align="left">29.06.2016</td>
+<td align="left">28.07.2016</td>
+<td align="left">28.07.2016</td>
 <td align="left">1985M01</td>
-<td align="left">2016M06</td>
+<td align="left">2016M07</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -155,69 +157,69 @@ instance datasets or tables.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">5612</td>
+<td align="left">5688</td>
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
-<td align="left">05.06.2015</td>
-<td align="left">04.06.2015</td>
-<td align="left">1995</td>
-<td align="left">2013</td>
+<td align="left">03.08.2016</td>
+<td align="left">03.08.2016</td>
+<td align="left">2000</td>
+<td align="left">2014</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5613</td>
+<td align="left">5689</td>
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
-<td align="left">05.06.2015</td>
-<td align="left">05.06.2015</td>
+<td align="left">03.08.2016</td>
+<td align="left">02.08.2016</td>
 <td align="left">1990</td>
-<td align="left">2013</td>
+<td align="left">2014</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5652</td>
+<td align="left">5742</td>
 <td align="left">Railway transport - Total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">21.06.2016</td>
+<td align="left">09.08.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2004</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5656</td>
+<td align="left">5746</td>
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">14.06.2016</td>
+<td align="left">09.08.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5657</td>
+<td align="left">5747</td>
 <td align="left">International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)</td>
 <td align="left">rail_pa_intcmng</td>
 <td align="left">dataset</td>
-<td align="left">14.06.2016</td>
+<td align="left">09.08.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">6006</td>
+<td align="left">6097</td>
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">25.04.2016</td>
-<td align="left">19.04.2016</td>
+<td align="left">15.07.2016</td>
+<td align="left">14.07.2016</td>
 <td align="left">1993</td>
-<td align="left">2016M02</td>
+<td align="left">2016Q1</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -270,10 +272,10 @@ Investigate the structure of the downloaded data set:
 
     str(dat)
 
-    ## 'data.frame':    2218 obs. of  5 variables:
+    ## 'data.frame':    2326 obs. of  5 variables:
     ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ geo    : chr  "AT" "BE" "CH" "DE" ...
+    ##  $ geo    : Factor w/ 35 levels "AT","BE","CH",..: 1 2 3 4 5 6 7 8 9 10 ...
     ##  $ time   : num  1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...
     ##  $ values : num  11 10.6 3.7 9.1 11.3 32.4 14.9 13.5 6 24.8 ...
 
@@ -335,7 +337,7 @@ Investigate the structure of the downloaded data set:
 <td align="left">10</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
-<td align="left">GR</td>
+<td align="left">EL</td>
 <td align="right">1990</td>
 <td align="right">32.4</td>
 </tr>
@@ -366,43 +368,43 @@ desidered series (upper case). For time variable, in addition to a
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">EU28</td>
-<td align="right">2013</td>
-<td align="right">9.2</td>
+<td align="right">2014</td>
+<td align="right">9.1</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">FI</td>
-<td align="right">2013</td>
+<td align="right">2014</td>
 <td align="right">9.8</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="left">CAR</td>
 <td align="left">EU28</td>
-<td align="right">2013</td>
-<td align="right">83.2</td>
+<td align="right">2014</td>
+<td align="right">83.4</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">CAR</td>
 <td align="left">FI</td>
-<td align="right">2013</td>
-<td align="right">84.9</td>
+<td align="right">2014</td>
+<td align="right">85.2</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="left">TRN</td>
 <td align="left">EU28</td>
-<td align="right">2013</td>
+<td align="right">2014</td>
 <td align="right">7.6</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">TRN</td>
 <td align="left">FI</td>
-<td align="right">2013</td>
-<td align="right">5.3</td>
+<td align="right">2014</td>
+<td align="right">5.0</td>
 </tr>
 </tbody>
 </table>
@@ -433,43 +435,43 @@ human-readable labels instead, use a `type = "label"` argument.
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">European Union (28 countries)</td>
-<td align="right">2013</td>
-<td align="right">9.2</td>
+<td align="right">2014</td>
+<td align="right">9.1</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Finland</td>
-<td align="right">2013</td>
+<td align="right">2014</td>
 <td align="right">9.8</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="left">Passenger cars</td>
 <td align="left">European Union (28 countries)</td>
-<td align="right">2013</td>
-<td align="right">83.2</td>
+<td align="right">2014</td>
+<td align="right">83.4</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Passenger cars</td>
 <td align="left">Finland</td>
-<td align="right">2013</td>
-<td align="right">84.9</td>
+<td align="right">2014</td>
+<td align="right">85.2</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="left">Trains</td>
 <td align="left">European Union (28 countries)</td>
-<td align="right">2013</td>
+<td align="right">2014</td>
 <td align="right">7.6</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Trains</td>
 <td align="left">Finland</td>
-<td align="right">2013</td>
-<td align="right">5.3</td>
+<td align="right">2014</td>
+<td align="right">5.0</td>
 </tr>
 </tbody>
 </table>
@@ -549,18 +551,9 @@ vectors or variable names.
 
     label_eurostat_vars(names(datl))
 
-    ## [1] "Unit of measure"                                                                     
-    ## [2] "Vehicles"                                                                            
-    ## [3] "Geopolitical entity (reporting)"                                                     
-    ## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
-
-Vehicle information has 3 levels. They are:
+Vehicle information has 3 levels. You can check them now with:
 
     levels(datl$vehicle)
-
-    ## [1] "Motor coaches, buses and trolley buses"
-    ## [2] "Passenger cars"                        
-    ## [3] "Trains"
 
 Selecting and modifying data
 ============================
@@ -643,7 +636,7 @@ EU data from 2012 in all vehicles:
 <td align="left">Trains</td>
 <td align="left">European Union (28 countries)</td>
 <td align="right">2012</td>
-<td align="right">7.6</td>
+<td align="right">7.7</td>
 </tr>
 </tbody>
 </table>
@@ -758,7 +751,7 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 <td align="right">2012</td>
 <td align="right">9.3</td>
 <td align="right">83.0</td>
-<td align="right">7.6</td>
+<td align="right">7.7</td>
 </tr>
 </tbody>
 </table>
@@ -788,7 +781,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="right">2000</td>
-<td align="right">9.8</td>
+<td align="right">9.7</td>
 <td align="right">6.3</td>
 <td align="right">5.1</td>
 <td align="right">7.5</td>
@@ -820,7 +813,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="right">2004</td>
-<td align="right">9.5</td>
+<td align="right">9.4</td>
 <td align="right">7.1</td>
 <td align="right">4.7</td>
 <td align="right">7.5</td>
@@ -844,7 +837,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="right">2007</td>
-<td align="right">10.1</td>
+<td align="right">10.0</td>
 <td align="right">7.1</td>
 <td align="right">5.0</td>
 <td align="right">8.7</td>
@@ -876,7 +869,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="right">2011</td>
-<td align="right">11.0</td>
+<td align="right">11.3</td>
 <td align="right">7.7</td>
 <td align="right">5.0</td>
 <td align="right">8.8</td>
@@ -884,8 +877,8 @@ Train passengers for selected EU countries in 2000 - 2012
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="right">2012</td>
-<td align="right">11.5</td>
-<td align="right">7.4</td>
+<td align="right">11.8</td>
+<td align="right">7.8</td>
 <td align="right">5.3</td>
 <td align="right">9.1</td>
 </tr>
@@ -946,7 +939,7 @@ distributed under the BSD-2-clause (modified FreeBSD) license:
     ##   @Misc{,
     ##     title = {eurostat R package},
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-    ##     year = {2014},
+    ##     year = {2014-2016},
     ##     url = {https://github.com/rOpenGov/eurostat},
     ##   }
 
@@ -973,7 +966,7 @@ This tutorial was created with
 
     sessionInfo()
 
-    ## R version 3.3.0 (2016-05-03)
+    ## R version 3.3.1 (2016-06-21)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
     ## Running under: Ubuntu 16.04 LTS
     ## 
@@ -991,12 +984,12 @@ This tutorial was created with
     ## other attached packages:
     ## [1] plotrix_3.6-2      ggplot2_2.1.0      tidyr_0.5.1       
     ## [4] rvest_0.3.2        xml2_1.0.0         eurostat_1.2.22   
-    ## [7] rmarkdown_0.9.6.11 knitr_1.13        
+    ## [7] rmarkdown_0.9.6.14 knitr_1.13        
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.5      magrittr_1.5     munsell_0.4.3    colorspace_1.2-6
-    ##  [5] R6_2.1.2         plyr_1.8.4       stringr_1.0.0    httr_1.2.0      
-    ##  [9] highr_0.6        tools_3.3.0      grid_3.3.0       gtable_0.2.0    
+    ##  [5] R6_2.1.2         plyr_1.8.4       stringr_1.0.0    httr_1.2.1      
+    ##  [9] highr_0.6        tools_3.3.1      grid_3.3.1       gtable_0.2.0    
     ## [13] htmltools_0.3.5  yaml_2.1.13      digest_0.6.9     assertthat_0.1  
-    ## [17] tibble_1.0       formatR_1.4      curl_0.9.7       evaluate_0.9    
-    ## [21] labeling_0.3     stringi_1.1.1    scales_0.4.0     jsonlite_0.9.22
+    ## [17] tibble_1.1       formatR_1.4      curl_0.9.7       evaluate_0.9    
+    ## [21] labeling_0.3     stringi_1.1.1    scales_0.4.0     jsonlite_1.0
