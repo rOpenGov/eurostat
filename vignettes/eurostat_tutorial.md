@@ -983,7 +983,7 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ## [1] plotrix_3.6-2      ggplot2_2.1.0      tidyr_0.5.1       
-    ## [4] rvest_0.3.2        xml2_1.0.0         eurostat_1.2.22   
+    ## [4] rvest_0.3.2        xml2_1.0.0         eurostat_1.2.23   
     ## [7] rmarkdown_0.9.6.14 knitr_1.13        
     ## 
     ## loaded via a namespace (and not attached):
