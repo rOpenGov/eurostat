@@ -1,0 +1,62 @@
+# Read data about renewable sources of energy.
+
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+library(eurostat)
+library(dplyr)
+library(tidyr)
+library(plotrix)
+
+query <- search_eurostat("production of renewable energy", type = "table")
+query$code[[1]]
+
+dat <- get_eurostat("ten00081")
+datl <- label_eurostat(dat)
+head(datl)
+```
+
+# Data wrangling. 
+
+Collapsing categories to three  levels. Skipping  countries with small production of energy.
+
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
+          "Biogasoline" = "Biofuels",
+          "Other liquid biofuels" = "Biofuels",
+          "Biodiesels" = "Biofuels",
+          "Biogas" = "Biofuels",
+          "Hydro power" = "Hydro power",
+          "Tide, Wave and Ocean" = "Hydro power",
+          "Solar thermal" = "Wind, solar, waste and Other",
+          "Geothermal Energy" = "Wind, solar, waste and Other",
+          "Solar photovoltaic" = "Wind, solar, waste and Other",
+          "Municipal waste (renewable)" = "Wind, solar, waste and Other",
+          "Wind power" = "Wind, solar, waste and Other",
+          "Bio jet kerosene" = "Wind, solar, waste and Other")
+
+energy3 <- datl %>% # Only 2013 
+  filter(time == "2013-01-01",
+         product != "Renewable energies") %>%
+  mutate(nproduct = dict[as.character(product)], # just three categories
+         geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+  select(nproduct, geo, values) %>% 
+  group_by(nproduct, geo) %>%
+  summarise(svalue = sum(values)) %>%
+  group_by(geo) %>%
+  mutate(tvalue = sum(svalue),
+         svalue = svalue/sum(svalue)) %>%
+  filter(tvalue > 1000,
+         !grepl(geo, pattern="^Euro")) %>% # only large countrie
+  spread(nproduct, svalue)
+
+head(energy3)
+```
+
+# The plot
+
+```{r, warning=FALSE, message=FALSE, fig.width=8, fig.height=8}
+par(cex=0.75)
+triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                      show.grid = TRUE,
+                      label.points = TRUE, point.labels = energy3$geo,cex.ticks=0.75,col.symbols = "red4",
+                      pch = 19)
+```
