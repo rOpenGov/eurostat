@@ -176,6 +176,7 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
 ```
 
 
+
 ## Body-mass index
 
 ```{r 2015-manu-bmi, echo=TRUE, message=FALSE}
@@ -337,7 +338,7 @@ for (year in years) {
   p <- p + geom_polygon(aes(fill = value_cat),colour="white",size=.2)
   p <- p + scale_fill_manual(values=c("Dim Grey","#d7191c","#fdae61","#ffffbf","#a6d96a","#1a9641")) 
   p <- p + coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
-  p <- p + labs(title = paste0("Disposable household incomes in  ",year))
+  p <- p + labs(title = paste0("Disposable household incomes in  ", year))
   p <- p +  theme(legend.position = c(0.03,0.40), 
                           legend.justification=c(0,0),
                           legend.key.size=unit(6,'mm'),

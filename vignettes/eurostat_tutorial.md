@@ -183,7 +183,7 @@ instance datasets or tables.
 <td align="left">Railway transport - Total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">09.08.2016</td>
+<td align="left">18.08.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2004</td>
 <td align="left">2015</td>
@@ -194,7 +194,7 @@ instance datasets or tables.
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">09.08.2016</td>
+<td align="left">18.08.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
@@ -205,7 +205,7 @@ instance datasets or tables.
 <td align="left">International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)</td>
 <td align="left">rail_pa_intcmng</td>
 <td align="left">dataset</td>
-<td align="left">09.08.2016</td>
+<td align="left">18.08.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
@@ -983,7 +983,7 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ## [1] plotrix_3.6-2      ggplot2_2.1.0      tidyr_0.5.1       
-    ## [4] rvest_0.3.2        xml2_1.0.0         eurostat_1.2.23   
+    ## [4] rvest_0.3.2        xml2_1.0.0         eurostat_1.2.24   
     ## [7] rmarkdown_0.9.6.14 knitr_1.13        
     ## 
     ## loaded via a namespace (and not attached):
