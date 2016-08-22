@@ -1,7 +1,5 @@
-#' @title Generic wrapper to read data from Eurostat
-#' @description Download dataset from the Eurostat database
-#' (\url{ec.europa.eu/eurostat}).
-#' 
+#' @title Read Eurostat Data
+#' @description Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
 #' @param id A code name for the dataset of interest.
 #'        See \code{\link{search_eurostat}} or details for how to get code.
 #' @param filters a "none" (default) to get a whole dataset or a named list of 
@@ -44,9 +42,8 @@
 #'        "provisional") should be kept in a separate column or if they
 #'        can be removed. Default is \code{FALSE}.
 #' @param ... further argument for \code{\link{get_eurostat_json}}.
-#'
 #' @export
-#' @details Datasets are downloaded from 
+#' @details Data sets are downloaded from 
 #' \href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
 #' \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 #' If only the table \code{id} is given, the whole table is downloaded from the
@@ -106,8 +103,11 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
                          compress_file = TRUE,
                          stringsAsFactors = default.stringsAsFactors(),
                          keepFlags = FALSE, ...){
+
   # No cache for json
-  if (is.null(filters) || filters != "none") cache <- FALSE
+  if (is.null(filters) || filters != "none") {
+    cache <- FALSE
+  }
   
   if (cache){
     # check option for update
@@ -176,4 +176,5 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
   }
 
   y
+
 }

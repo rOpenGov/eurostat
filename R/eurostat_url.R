@@ -1,5 +1,5 @@
-#' @title Eurostat database base url
-#' @description Base url
+#' @title Eurostat Base URL
+#' @description Base URL
 #' @param ... Arguments to be passed
 #' @return url
 #' @references see citation("eurostat"). 

@@ -181,6 +181,7 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
 ```
 
 
+
 ## Body-mass index
 
 ```{r 2015-manu-bmi, echo=TRUE, message=FALSE}
@@ -208,6 +209,7 @@ The source code for the detailed map visualization is hidden but [available](htt
 ```{r 2015-manu-mapexample, echo=TRUE, message=FALSE}
 library(eurostat)
 # Downloading and manipulating the tabular data
+<<<<<<< HEAD
 plot_map <- get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2005 and NUTS-3 level
   dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
@@ -225,6 +227,158 @@ p <- p + labs(title = paste0("Disposable household incomes in 2005"))
 p <- p + theme_minimal()
 p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 p
+=======
+df <- get_eurostat("tgs00026", time_format = "raw")
+
+# convert time column from Date to numeric
+df$time <- eurotime2num(df$time)
+
+# subset time to have data for 
+df <- df[df$time %in% c(2005,2010,2011),]
+
+# spread the data into wide format
+library(tidyr)
+dw <- spread(df, time, values)
+
+# Downloading and manipulating the spatial data
+# We download the zipped shapefile in 1:60 million scale from year
+# 2010 and subset it at the level of NUTS2.
+# Load the GISCO shapefile
+f <- download.file("http://ec.europa.eu/eurostat/cache/GISCO/geodatafiles/NUTS_2010_60M_SH.zip", destfile="NUTS_2010_60M_SH.zip")
+# unzip
+uz <- unzip("NUTS_2010_60M_SH.zip")
+
+# read into SpatialPolygonsDataFrame
+library(rgdal)
+map <- readOGR(dsn = "./NUTS_2010_60M_SH/Data", layer = "NUTS_RG_60M_2010", verbose=FALSE)
+
+# subset the spatialpolygondataframe at NUTS2-level
+map_nuts2 <- subset(map, STAT_LEVL_ == 2)
+
+# Joining tabular data with spatial data
+# Third, we will make the both datas of same length,
+# give then identical rownames and then merge the tabular data with the
+# spatial data.
+
+# Spatial dataframe has 467 rows and attribute data 275.
+# We need to make attribute data to have similar number of rows
+NUTS_ID <- as.character(map_nuts2$NUTS_ID)
+VarX <- rep(NA, 316)
+dat <- data.frame(NUTS_ID,VarX)
+
+# then we shall merge this with Eurostat data.frame
+dat2 <- merge(dat, dw, by.x="NUTS_ID", by.y="geo", all.x=TRUE)
+
+# merge this manipulated attribute data with the spatialpolygondataframe
+# rownames
+row.names(dat2) <- dat2$NUTS_ID
+row.names(map_nuts2) <- as.character(map_nuts2$NUTS_ID)
+
+# order data
+dat2 <- dat2[order(row.names(dat2)), ]
+map_nuts2 <- map_nuts2[order(row.names(map_nuts2)), ]
+
+# join
+library(maptools)
+dat2$NUTS_ID <- NULL
+shape <- spCbind(map_nuts2, dat2)
+
+# Preparing the data for ggplot2 visualization
+## fortify spatialpolygondataframe into data.frame
+library(ggplot2)
+library(rgeos)
+shape$id <- rownames(shape@data)
+map.points <- fortify(shape, region = "id")
+map.df <- merge(map.points, shape, by = "id")
+
+# As we want to plot map faceted by years from 2003 to 2011
+# we have to melt it into long format
+# (variable with numerical names got X-prefix during the spCbind-merge,
+# therefore the X-prefix in variable names)
+library(tidyr)
+
+# lets convert unit variable (that is a list) into character
+map.df$unit <- as.character(map.df$unit)
+map.df.l <- gather(map.df, "year", "value", 15:17)
+
+# year variable (variable) is class string and type X20xx.
+# Lets remove the X and convert it to numerical
+library(stringr)
+map.df.l$year <- str_replace_all(map.df.l$year, "X","")
+map.df.l$year <- factor(map.df.l$year)
+map.df.l$year <- as.numeric(levels(map.df.l$year))[map.df.l$year]
+
+# Plotting the maps using ggplot2
+library(ggplot2)
+library(scales)
+library(grid)
+
+# Creating a custom function for creating the breaks and makeing them look neat
+categories <- function(x, cat = 5) {
+  
+  library(stringr)
+  levs <- as.data.frame(as.character(levels(cut_interval(x, cat))))
+  names(levs) <- "orig"
+  levs$mod <- str_replace_all(levs$orig, "\\[", "")
+  levs$mod <- str_replace_all(levs$mod, "\\]", "")
+  levs$mod <- str_replace_all(levs$mod, "\\(", "")
+  levs$lower <- gsub(",.*$","", levs$mod)
+  levs$upper <- gsub(".*,","", levs$mod)
+  
+  levs$lower <- factor(levs$lower)
+  levs$lower <- round(as.numeric(levels(levs$lower))[levs$lower],0)
+  
+  levs$upper <- factor(levs$upper)
+  levs$upper <- round(as.numeric(levels(levs$upper))[levs$upper],0)
+  
+  levs$labs <- paste(levs$lower,levs$upper, sep=" - ")
+  
+  labs <- as.character(c(levs$labs))
+  y <- cut_interval(x, cat, right = FALSE, labels = labs)
+  y <- as.character(y)
+  y[is.na(y)] <- "No Data"
+  y <- factor(y, levels=c("No Data",labs[1:cat]))
+}
+
+# years for for loop - now show just one year
+years <- unique(map.df.l$year)[[1]]
+
+# Loop over the three years
+for (year in years) {
+  
+  # subset data
+  plot_map <- map.df.l[map.df.l$year == year,]
+  # set the breaks
+  plot_map$value_cat <- categories(plot_map$value)
+  
+  p <- ggplot(data=plot_map, aes(long,lat,group=group))
+  p <- p + geom_polygon(data = map.df.l, aes(long,lat),fill=NA,colour="white",size = 1)
+  p <- p + geom_polygon(aes(fill = value_cat),colour="white",size=.2)
+  p <- p + scale_fill_manual(values=c("Dim Grey","#d7191c","#fdae61","#ffffbf","#a6d96a","#1a9641")) 
+  p <- p + coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
+  p <- p + labs(title = paste0("Disposable household incomes in  ", year))
+  p <- p +  theme(legend.position = c(0.03,0.40), 
+                          legend.justification=c(0,0),
+                          legend.key.size=unit(6,'mm'),
+                          legend.direction = "vertical",
+                          legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
+                          legend.text=element_text(size=12), 
+                          legend.title=element_text(size=12), 
+                          title=element_text(size=16), 
+                          panel.background = element_blank(), 
+                          plot.background = element_blank(),
+                          panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                          panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                          axis.text = element_blank(), 
+                          axis.title = element_blank(), 
+                          axis.ticks = element_blank(), 
+                          plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
+  p <- p + guides(fill = guide_legend(title = "EUR per Year",
+                                     title.position = "top", 
+                                     title.hjust=0))
+}
+print(p)
+>>>>>>> origin/master
 ```
 
 

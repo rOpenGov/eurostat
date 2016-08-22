@@ -1,13 +1,12 @@
-#' @title Download an Eurostat dictionary
-#' @description Download a Eurostat dictionary for
-#'    given coded variable from Eurostat (ec.europa.eu/eurostat).
+#' @title Download Eurostat Dictionary
+#' @description Download a Eurostat dictionary.
+#' @details For given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
 #'    The dictionaries link codes with human-readable labels.
 #'    To translate codes to labels, use \code{\link{label_eurostat}}.
 #' @param dictname A character, dictionary for the variable to be downloaded.
 #' @param lang A character, language code. Options: "en" (default) / "fr" / "de".
 #' @return data.frame with two columns: code names and full names.
 #' @export
-#' @importFrom utils read.table
 #' @seealso \code{\link{label_eurostat}}, \code{\link{get_eurostat}}, 
 #'          \code{\link{search_eurostat}}.
 #' @references see citation("eurostat"). 
@@ -27,6 +26,6 @@ get_eurostat_dic <- function(dictname, lang = "en") {
    colClasses = c('character','character'),
    stringsAsFactors = FALSE,
    quote = "\"",
-   fileEncoding = "Windows-1252")		 
+   fileEncoding = "") # was: Windows-1252 or UTF-8
 }
 

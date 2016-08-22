@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{convert_time_col}
 \alias{convert_time_col}
-\title{Time column conversions}
+\title{Time Column Conversions}
 \usage{
 convert_time_col(x, time_format)
 }
@@ -12,7 +12,7 @@ convert_time_col(x, time_format)
 \item{time_format}{see \code{\link{tidy_eurostat}}}
 }
 \description{
-internal function to convert time column
+Internal function to convert time column.
 }
 \keyword{internal}
 

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_raw.R
 \name{get_eurostat_raw}
 \alias{get_eurostat_raw}
-\title{Download data from the eurostat database}
+\title{Download Data from Eurostat Database}
 \usage{
 get_eurostat_raw(id)
 }
@@ -18,12 +18,11 @@ A dataset in data.frame format. First column contains comma
   flags for data.
 }
 \description{
-Download data from the eurostat database. Downloads datasets
-from the eurostat database and transforms into tabular format.
+Download data from the eurostat database.
 }
 \details{
 Data is downloaded from
- \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
+ \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
 }
 \examples{
 \dontrun{

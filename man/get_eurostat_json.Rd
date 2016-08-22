@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_json.R
 \name{get_eurostat_json}
 \alias{get_eurostat_json}
-\title{Get data from The Eurostat APi in JSON}
+\title{Get Data from Eurostat API in JSON}
 \usage{
 get_eurostat_json(id, filters = NULL, type = c("code", "label", "both"),
   lang = c("en", "fr", "de"), stringsAsFactors = default.stringsAsFactors())
@@ -31,14 +31,12 @@ they are returned as a character.}
 A dataset as a data.frame.
 }
 \description{
-Retrive data from 
-   \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services}. Data to retrive 
-   can be spesified with filters. Normally, it is better to use JSON 
-   query thru \code{\link{get_eurostat}}, than to use 
-   \code{\link{get_eurostat_json}} directly.
+Retrieve data from Eurostat API in JSON format.
 }
 \details{
-Queryes are limited to 50 sub-indicators at a time.
+Data to retrieve from \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services} can be specified with filters. Normally, it is better to use JSON query through \code{\link{get_eurostat}}, than to use \code{\link{get_eurostat_json}} directly.
+
+Queries are limited to 50 sub-indicators at a time.
    A time can be filtered with fixed "time" filter or with "sinceTimePeriod"
    and "lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
    observations from 2000 to a last available. A \code{lastTimePeriod = 10}
@@ -47,7 +45,7 @@ Queryes are limited to 50 sub-indicators at a time.
 \examples{
  \dontrun{
    tmp <- get_eurostat_json("cdh_e_fos")
-   yy <- get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+   yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
                                                         unit="EUR_HAB",
                                                         indic_na="B1GM")) 
 }

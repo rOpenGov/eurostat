@@ -1,7 +1,11 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
+<<<<<<< HEAD
 date: "2016-05-08"
+=======
+date: "2016-08-22"
+>>>>>>> origin/master
 bibliography: 
 - references.bib
 output: 
@@ -127,14 +131,14 @@ kable(head(dat))
 
 
 
-|sex |geo | time| values|
-|:---|:---|----:|------:|
-|T   |AT  | 2014|    430|
-|T   |BE  | 2014|     NA|
-|T   |BG  | 2014|     NA|
-|T   |CH  | 2014|    243|
-|T   |CY  | 2014|     45|
-|T   |CZ  | 2014|    688|
+|   |unit |sex |geo | time| values|
+|:--|:----|:---|:---|----:|------:|
+|1  |NR   |T   |AT  | 1999|   1079|
+|2  |NR   |T   |BE  | 1999|   1397|
+|6  |NR   |T   |CZ  | 1999|   1455|
+|7  |NR   |T   |DE  | 1999|   7772|
+|8  |NR   |T   |DK  | 1999|    514|
+|10 |NR   |T   |EL  | 1999|   2116|
 
 
 Same with human-readable labels:
@@ -151,14 +155,14 @@ kable(head(datl))
 
 
 
-|sex   |geo            | time| values|
-|:-----|:--------------|----:|------:|
-|Total |Austria        | 2014|    430|
-|Total |Belgium        | 2014|     NA|
-|Total |Bulgaria       | 2014|     NA|
-|Total |Switzerland    | 2014|    243|
-|Total |Cyprus         | 2014|     45|
-|Total |Czech Republic | 2014|    688|
+|   |unit   |sex   |geo                                              | time| values|
+|:--|:------|:-----|:------------------------------------------------|----:|------:|
+|1  |Number |Total |Austria                                          | 1999|   1079|
+|2  |Number |Total |Belgium                                          | 1999|   1397|
+|6  |Number |Total |Czech Republic                                   | 1999|   1455|
+|7  |Number |Total |Germany (until 1990 former territory of the FRG) | 1999|   7772|
+|8  |Number |Total |Denmark                                          | 1999|    514|
+|10 |Number |Total |Greece                                           | 1999|   2116|
 
 
 ## Road accidents visualization
@@ -260,6 +264,7 @@ tmp1 %>%
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
 
+<<<<<<< HEAD
 ```r
 library(eurostat)
 # Downloading and manipulating the tabular data
@@ -290,6 +295,12 @@ p <- p + labs(title = paste0("Disposable household incomes in 2005"))
 p <- p + theme_minimal()
 p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 p
+=======
+```
+## Warning in grid.Call.graphics(L_rect, x$x, x$y, x$width, x$height,
+## resolveHJust(x$just, : semi-transparency is not supported on this device:
+## reported only once per page
+>>>>>>> origin/master
 ```
 
 ![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png)

@@ -1,17 +1,11 @@
-#' @title Get data from The Eurostat APi in JSON 
-#' 
-#' @description Retrive data from 
-#'    \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services}. Data to retrive 
-#'    can be spesified with filters. Normally, it is better to use JSON 
-#'    query thru \code{\link{get_eurostat}}, than to use 
-#'    \code{\link{get_eurostat_json}} directly.
-#'    
-#' @details Queryes are limited to 50 sub-indicators at a time.
+#' @title Get Data from Eurostat API in JSON 
+#' @description Retrieve data from Eurostat API in JSON format.
+#' @details Data to retrieve from \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services} can be specified with filters. Normally, it is better to use JSON query through \code{\link{get_eurostat}}, than to use \code{\link{get_eurostat_json}} directly.
+#' @details Queries are limited to 50 sub-indicators at a time.
 #'    A time can be filtered with fixed "time" filter or with "sinceTimePeriod"
 #'    and "lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
 #'    observations from 2000 to a last available. A \code{lastTimePeriod = 10}
 #'    returns a 10 last observations.
-#'
 #' @param id A code name for the dataset of interested. See the table of
 #'        contents of eurostat datasets for more details. 
 #' @param filters A named list of filters. Names of list objects are 
@@ -32,7 +26,7 @@
 #' @examples
 #'  \dontrun{
 #'    tmp <- get_eurostat_json("cdh_e_fos")
-#'    yy <- get_eurostat_json("nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
+#'    yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"), 
 #'                                                         unit="EUR_HAB",
 #'                                                         indic_na="B1GM")) 
 #' }
@@ -87,17 +81,18 @@ get_eurostat_json <- function(id, filters = NULL,
 
 
 # Internal function to build json url
-eurostat_json_url <- function(id, filters, lang = "en"){
+eurostat_json_url <- function(id, filters, lang){
+
   # prepare filters for query
-  filters <- as.list(unlist(filters))
-  names(filters) <- gsub("[0-9]", "", names(filters))
+  filters2 <- as.list(unlist(filters))
+  names(filters2) <- rep(names(filters), lapply(filters, length))
   
   # prepare url
   url_list <- list(scheme = "http",
                    hostname = "ec.europa.eu",
                    path = file.path("eurostat/wdds/rest/data/v1.1/json", 
                                     lang[1], id),
-                   query = filters)
+                   query = filters2)
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url

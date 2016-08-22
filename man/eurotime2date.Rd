@@ -2,7 +2,7 @@
 % Please edit documentation in R/eurotime2date.R
 \name{eurotime2date}
 \alias{eurotime2date}
-\title{Date conversion from Eurostat time format}
+\title{Date Conversion from Eurostat Time Format}
 \usage{
 eurotime2date(x, last = FALSE)
 }

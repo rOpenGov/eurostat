@@ -6,7 +6,7 @@
 \alias{ea_countries}
 \alias{efta_countries}
 \alias{eu_countries}
-\title{Countries and country codes}
+\title{Countries and Country Codes}
 \format{A data.frame:
 \describe{
   \item{code}{Country code in the eurostat database}

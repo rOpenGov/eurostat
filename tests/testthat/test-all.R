@@ -83,6 +83,11 @@ test_that("Label ordering is ordered", {
                               dic = "geo", eu_order = TRUE)))
 })
 
+test_that("Dic downloading works", {
+  skip_on_cran()
+  expect_warning(get_eurostat_dic("na_item"), NA)
+})
+
 
 context("Flags")
 
@@ -106,6 +111,17 @@ test_that("Get json data",{
                                                              unit="EUR_HAB",
                                                              indic_na="B1GM")),
                c("geo", "unit", "indic_na", "time", "values"), 
+               ignore.order = TRUE)
+})
+
+test_that("Handle numbers in filter name",{
+  skip_on_cran()
+  expect_named(get_eurostat(id = "sts_inpr_a", filters = list(geo = "AT",
+                                                              nace_r2 = "B",
+                                                              s_adj = "CA",
+                                                              indic_bt = "PROD",
+                                                              unit = "I10")),
+               c("geo", "nace_r2", "s_adj", "indic_bt", "unit", "time", "values"), 
                ignore.order = TRUE)
 })
 

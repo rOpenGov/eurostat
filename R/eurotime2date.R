@@ -1,4 +1,4 @@
-#' @title Date conversion from Eurostat time format
+#' @title Date Conversion from Eurostat Time Format
 #' @description Date conversion from Eurostat time format. A function to
 #' convert Eurostat time values to objects of class \code{\link{Date}}
 #' representing calendar dates.

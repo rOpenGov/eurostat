@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat.R
 \name{get_eurostat}
 \alias{get_eurostat}
-\title{Generic wrapper to read data from Eurostat}
+\title{Read Eurostat Data}
 \usage{
 get_eurostat(id, time_format = "date", filters = "none", type = "code",
   select_time = NULL, cache = TRUE, update_cache = FALSE,
@@ -71,11 +71,10 @@ a data.frame. One column for each dimension in the data and
         facility do not include items whose all values are missing.
 }
 \description{
-Download dataset from the Eurostat database
-(\url{ec.europa.eu/eurostat}).
+Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
 }
 \details{
-Datasets are downloaded from 
+Data sets are downloaded from 
 \href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
 \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 If only the table \code{id} is given, the whole table is downloaded from the
