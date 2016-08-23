@@ -4,7 +4,8 @@
 \alias{merge_with_geodata}
 \title{Merge preprocessed geospatial data from CISGO with data.frame from Eurostat}
 \usage{
-merge_with_geodata(data, geocolumn = "geo", resolution = 60)
+merge_with_geodata(data, geocolumn = "geo", resolution = "60",
+  output_class = "df")
 }
 \arguments{
 \item{data}{A data.frame including a character vector that
@@ -14,18 +15,21 @@ consists of values following current NUTS classification}
 (\code{geo} in data.frames fetched using \code{get_eurostat})}
 
 \item{resolution}{Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
+
+\item{output_class}{A string. Class of object returned, either \code{df} (\code{data.frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
 }
 \value{
-a data.frame.
+a data.frame or SpatialPolygonDataFrame.
 }
 \description{
 Merges data.frame obtained from Eurostat with \code{get_eurostat} 
-with geospatial data preprocessed using \code{ggplot2::fortify}. Resulting data.frame can be plotted using ggplot2
+with geospatial data preprocessed either using \code{ggplot2::fortify} into a \code{data.frame} or a regular \code{SpatialPolygonDataFrame}. 
+Resulting \code{data.frame} can be plotted using \code{ggplot2} and \code{SpatialPolygonDataFrame} using \code{sp::spplot}
 }
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lpl <- merge_with_geodata(lp, geocolumn="geo", resolution=60)
+   lpl <- merge_with_geodata(lp, geocolumn="geo", resolution=60, output_class="df")
    str(lpl)
  }
  
