@@ -19,7 +19,8 @@ Imports:
     tidyr,
     jsonlite,
     httr,
-    stringi
+    stringi,
+    classInt
 Suggests:
     dplyr,
     ggplot2,
