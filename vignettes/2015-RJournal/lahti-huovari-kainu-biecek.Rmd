@@ -209,6 +209,8 @@ The source code for the detailed map visualization is hidden but [available](htt
 
 ```{r 2015-manu-mapexample, echo=TRUE, message=FALSE}
 library(eurostat)
+library(dplyr)
+library(ggplot2)
 # Downloading and manipulating the tabular data
 get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2005 and NUTS-3 level
@@ -216,7 +218,7 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
-  merge_with_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="df") %>% 
+  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="df") %>% 
   # plot map
   ggplot(data=., aes(long,lat,group=group)) +
   geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
@@ -227,21 +229,8 @@ get_eurostat("tgs00026", time_format = "raw") %>%
 
 ```
 
-```{r 2015-manu-mapexample-spplot, echo=TRUE, message=FALSE}
-library(eurostat)
-library(RColorBrewer)
-# Downloading and manipulating the tabular data
-get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
-  # classifying the values the variable
-  dplyr::mutate(cat = cut_to_classes(values)) %>% 
-  # merge Eurostat data with geodata from Cisco
-  merge_with_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="spdf") %>% 
-  # plot map
-  sp::spplot(obj = ., "cat", main = "Dispostable household income", xlim=c(-22,34), ylim=c(35,70), col.regions = brewer.pal(n = 5, name = "Oranges"), col = "white")
 
-```
+
 
 
 ## Country code tables

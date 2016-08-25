@@ -4,12 +4,25 @@
 \alias{get_eurostat_geospatial}
 \title{Downloads preprocessed geospatial data from CISGO}
 \usage{
-get_eurostat_geospatial(output_class = "spdf", resolution = "60")
+get_eurostat_geospatial(output_class = "spdf", resolution = "60",
+  cache = TRUE, update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
 \item{output_class}{A string. Class of object returned, either \code{df} (\code{data.frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
 
 \item{resolution}{Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
+
+\item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
+only queries from the bulk download facility.}
+
+\item{update_cache}{a locigal whether to update cache. Can be set also with
+options(eurostat_update = TRUE)}
+
+\item{cache_dir}{a path to a cache directory. The directory have to exist.
+The \code{NULL} (default) uses and creates
+'eurostat' directory in the temporary directory from
+\code{\link{tempdir}}. Directory can also be set with
+\code{option} eurostat_cache_dir.}
 }
 \value{
 a data.frame or SpatialPolygonDataFrame.

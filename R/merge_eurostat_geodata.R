@@ -14,52 +14,22 @@
 #' @examples
 #'  \dontrun{
 #'    lp <- get_eurostat("nama_aux_lp")
-#'    lpl <- merge_with_geodata(lp, geocolumn="geo", resolution=60, output_class="df")
+#'    lpl <- merge_eurostat_geodata(lp, geocolumn="geo", resolution=60, output_class="df")
 #'    str(lpl)
 #'  }
 #'  
 
-merge_with_geodata <- function(data,geocolumn="geo",resolution="60",output_class="df"){
+merge_eurostat_geodata <- function(data,geocolumn="geo",resolution="60",output_class="df",
+                                   cache = TRUE, update_cache = FALSE, cache_dir = NULL){
   
-  message("
-      COPYRIGHT NOTICE
+  map.df <- get_eurostat_geospatial(output_class=output_class,resolution=resolution,
+                                    cache = cache, update_cache = update_cache, cache_dir = cache_dir)
 
-      When data downloaded from this page is 
-      used in any printed or electronic publication, 
-      in addition to any other provisions 
-      applicable to the whole Eurostat website, 
-      data source will have to be acknowledged 
-      in the legend of the map and 
-      in the introductory page of the publication 
-      with the following copyright notice:
-
-      - EN: © EuroGeographics for the administrative boundaries
-      - FR: © EuroGeographics pour les limites administratives
-      - DE: © EuroGeographics bezüglich der Verwaltungsgrenzen
-
-      For publications in languages other than 
-      English, French or German, 
-      the translation of the copyright notice 
-      in the language of the publication shall be used.
-
-      If you intend to use the data commercially, 
-      please contact EuroGeographics for 
-      information regarding their licence agreements.
-      ")
-  Sys.sleep(2)
   if (output_class == "df"){
-    load(url(paste0("http://data.okf.fi/ropengov/avoindata/eurostat_geodata/rdata/NUTS_2013_",
-                    resolution,
-                    "M_SH_DF.RData")))
-    map.df <- get(paste0("NUTS_2013_",resolution,"M_SH_DF"))
     d <- merge(data,map.df,by.x=geocolumn,by.y="NUTS_ID",all.x=TRUE)
     d <- d[order(d$order),] 
   }
   if (output_class == "spdf"){
-    load(url(paste0("http://data.okf.fi/ropengov/avoindata/eurostat_geodata/rdata/NUTS_2013_",
-                    resolution,
-                    "M_SH_SPDF.RData")))
-    map.df <- get(paste0("NUTS_2013_",resolution,"M_SH_SPDF"))
     if (any(duplicated(data[[geocolumn]]))) stop("Duplicated countries/regions in attribute data. Please remove!")
     d <- sp::merge(map.df,data,by.x="NUTS_ID",by.y=geocolumn,all.x=TRUE, duplicateGeoms= TRUE)
     d <- d[!is.na(d[[ncol(data)]]),] # remove polygons with no attribute data
