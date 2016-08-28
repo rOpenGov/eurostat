@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_geospatial.R
 \name{get_eurostat_geospatial}
 \alias{get_eurostat_geospatial}
-\title{Downloads preprocessed geospatial data from CISGO}
+\title{Downloads Preprocessed Geospatial Data from CISGO}
 \usage{
 get_eurostat_geospatial(output_class = "spdf", resolution = "60",
   cache = TRUE, update_cache = FALSE, cache_dir = NULL)

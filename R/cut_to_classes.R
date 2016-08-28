@@ -1,11 +1,11 @@
-#' @title Cuts the values column into classes and polishes the labels
-#' @description Categorises a numeric vector into automatic or manually defined categories 
+#' @title Cuts the Values Column into Classes and Polishes the Labels
+#' @description Categorises a numeric vector into automatic or manually defined categories.
 #' and polishes the labels ready for used in mapping with \code{merge_with_geodata} function and ggplot2.
 #' @param x A numeric vector, eg. \code{values} variable in data returned by  \code{get_eurostat}
 #' @param n A numeric. number of classes/categories
 #' @param style Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", or "jenks"
 #' @param manual Logical. If manual breaks are being used
-#' @param manual_breaks. Numeric vector with manual threshold values
+#' @param manual_breaks Numeric vector with manual threshold values
 #' @param decimals Number of decimals to include with labels
 #' @param nodata_label String. Text label for NA category.
 #' @export
@@ -18,8 +18,6 @@
 #'  }
 cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NULL,decimals=0,nodata_label="No data") {
   
-  library(stringr)
-  library(classInt)
   if (manual) {
     levs <- as.data.frame(levels(cut(x, 
                                      breaks=manual_breaks,
@@ -55,12 +53,12 @@ cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NUL
              dig.lab=5, labels = labs)
     rm(manual_breaks)
   } else {
-    y <- cut(x, breaks = data.frame(classInt::classIntervals(x,n=n,method=method)[2])[,1],
+    y <- cut(x, breaks = data.frame(classIntervals(x,n=n, method=method)[2])[,1],
              include.lowest=T,
              dig.lab=5, labels = labs)
   }
   y <- as.character(y)
-  #if (is.na(y)) {
+
   y[is.na(y)] <- nodata_label
   y <- factor(y, levels=c(nodata_label,labs[1:n]))
   y

@@ -1,4 +1,4 @@
-#' @title Downloads preprocessed geospatial data from CISGO
+#' @title Downloads Preprocessed Geospatial Data from CISGO
 #' @description Downloads either a SpatialPolygonDataFrame or a data.frame preprocessed using \code{ggplot2::fortify}.
 #' @param output_class A string. Class of object returned, either \code{df} (\code{data.frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})
 #' @param resolution Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
@@ -41,9 +41,9 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
       in the introductory page of the publication 
       with the following copyright notice:
 
-      - EN: © EuroGeographics for the administrative boundaries
-      - FR: © EuroGeographics pour les limites administratives
-      - DE: © EuroGeographics bezüglich der Verwaltungsgrenzen
+      - EN: (C) EuroGeographics for the administrative boundaries
+      - FR: (C) EuroGeographics pour les limites administratives
+      - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
 
       For publications in languages other than 
       English, French or German, 

@@ -310,6 +310,7 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 
 ```{r maps4, fig.width=8, fig.height=8}
 library(eurostat)
+library(RColorBrewer)
 # Downloading and manipulating the tabular data
 get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2005 and NUTS-3 level
@@ -321,7 +322,7 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   # plot map
   ggplot(data=., aes(long,lat,group=group)) + 
     geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
-    scale_fill_manual(values=c("dim grey",RColorBrewer::brewer.pal(n = 5, name = "Oranges"))) +
+    scale_fill_manual(values=c("dim grey",brewer.pal(n = 5, name = "Oranges"))) +
     coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) +
     labs(title = paste0("Disposable household incomes in 2005")) +
     theme(legend.position = c(0.03,0.40), 
@@ -370,7 +371,7 @@ cnames <- merge(cnames,df2,by="labgeo")
 # plot map
 p <- ggplot(data=plot_map, aes(long,lat,group=group))
 p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
-p <- p + scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges"))
+p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
 p <- p + geom_label(data=cnames, aes(long, lat, label = paste(labgeo,"\n",values,"€"), group=labgeo,fill=cat), 
                     size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
 p <- p + coord_map(project="orthographic")

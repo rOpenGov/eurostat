@@ -2,7 +2,7 @@
 % Please edit documentation in R/cut_to_classes.R
 \name{cut_to_classes}
 \alias{cut_to_classes}
-\title{Cuts the values column into classes and polishes the labels}
+\title{Cuts the Values Column into Classes and Polishes the Labels}
 \usage{
 cut_to_classes(x, n = 5, style = "jenks", manual = FALSE,
   manual_breaks = NULL, decimals = 0, nodata_label = "No data")
@@ -16,17 +16,17 @@ cut_to_classes(x, n = 5, style = "jenks", manual = FALSE,
 
 \item{manual}{Logical. If manual breaks are being used}
 
+\item{manual_breaks}{Numeric vector with manual threshold values}
+
 \item{decimals}{Number of decimals to include with labels}
 
 \item{nodata_label}{String. Text label for NA category.}
-
-\item{manual_breaks.}{Numeric vector with manual threshold values}
 }
 \value{
 a factor.
 }
 \description{
-Categorises a numeric vector into automatic or manually defined categories 
+Categorises a numeric vector into automatic or manually defined categories.
 and polishes the labels ready for used in mapping with \code{merge_with_geodata} function and ggplot2.
 }
 \examples{
