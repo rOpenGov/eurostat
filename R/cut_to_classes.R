@@ -53,7 +53,7 @@ cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NUL
              dig.lab=5, labels = labs)
     rm(manual_breaks)
   } else {
-    y <- cut(x, breaks = data.frame(classIntervals(x,n=n, method=method)[2])[,1],
+    y <- cut(x, breaks = data.frame(classIntervals(x,n = n, style = style)[2])[,1],
              include.lowest=T,
              dig.lab=5, labels = labs)
   }
