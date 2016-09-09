@@ -28,7 +28,7 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
                            lang = "en"){
   if (is.data.frame(x)){
     y <- x
-    for (i in names(y)[!(names(y) %in% c("time", "values"))]){
+    for (i in names(y)[!(names(y) %in% c("time", "values","flags"))]){
       y[[i]] <- label_eurostat(y[[i]], i, eu_order = eu_order, lang = lang)
     }
     
