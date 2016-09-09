@@ -65,7 +65,7 @@ can be removed. Default is \code{FALSE}.}
 \item{...}{further argument for \code{\link{get_eurostat_json}}.}
 }
 \value{
-a data.frame. One column for each dimension in the data and
+a tibble. One column for each dimension in the data and
         the values column for numerical values.
         The time column for a time dimension. Data from bulk download 
         facility do not include items whose all values are missing.
