@@ -9,7 +9,6 @@
 #' @importFrom stringr str_replace_all
 #' @importFrom tidyr separate
 #' @importFrom tidyr gather_
-#' @importFrom tidyr extract_numeric
 #' @importFrom utils download.file
 #' @importFrom utils read.table
 .EurostatEnv <- new.env()

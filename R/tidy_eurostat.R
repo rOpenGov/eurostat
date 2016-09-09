@@ -54,8 +54,8 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     
     # clean time and values
     dat2$time <- gsub("X", "", dat2$time)
-    dat2$values <- tidyr::extract_numeric(dat2$values)
-    
+    dat2$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat2$values)))
+      
     # variable columns
     var_cols <- names(dat2)[!(names(dat2) %in% c("time", "values"))]
     
