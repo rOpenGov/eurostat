@@ -1,7 +1,7 @@
 # eurostat 1.2.27
 
 * calls to extract_numeric are replaced by as.numeric (#60)
-* the column 'flags' is not being labeled even if lables=TRUE (#61)
+* the column 'flags' is not being labelled even if type = "label" (#61)
 
 # eurostat 1.2.22
 
@@ -14,7 +14,7 @@
 
 * The `get_eurostat()` can now get data also from the Eurostat JSON API via
   `get_eurostat_json()`. It also have a new argument `type` to select labels
-  for vaiable values instead of codes.
+  for variable values instead of codes.
 * Fix an error after update to `tidyr 0.4.0` (#47).
 
 
@@ -29,7 +29,7 @@
   of the cache file. Also cache filenames includes now all relevant arguments. (#28)
 * For `search_eurostat()` a new type option `type = "all"` to search all types.
 * For `label_eurostat()` new arguments. A `code` to retain also codes 
-  for spesified colums. A `eu_order` to order facor levels in Eurostat order, 
+  for spesified colums. A `eu_order` to order factor levels in Eurostat order, 
   which uses the new function `dic_order()`. 
 * Now `label_eurostat_vars(x)` gives labels for names, if x is other than
   a character or a factor and `label_eurostat_tables(x)` does not accept other
@@ -51,3 +51,4 @@
 # eurostat 0.9.1 (2014-04-24)
 
 * Package collected from statfi and smarterpoland
+
