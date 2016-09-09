@@ -1,7 +1,12 @@
+# eurostat 2.0
+
+* The `get_eurostat()` returns tibbles (#52)
+* Now `read_tsv()` is used instead of `read.csv()` (#29)
+
 # eurostat 1.2.27
 
-* calls to extract_numeric are replaced by as.numeric (#60)
-* the column 'flags' is not being labelled even if type = "label" (#61)
+* Calls to extract_numeric are replaced by as.numeric (#60)
+* The column 'flags' is not being labelled even if type = "label" (#61)
 
 # eurostat 1.2.22
 
