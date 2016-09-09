@@ -7,7 +7,7 @@
 get_eurostat_toc()
 }
 \value{
-A data.frame with eight columns
+A tibble with eight columns
    \itemize{
      \item{title}{The name of dataset of theme}
      \item{code}{The codename of dataset of theme, will be used by the eurostat and get_eurostat_raw functions.}

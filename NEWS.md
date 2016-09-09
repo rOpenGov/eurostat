@@ -1,6 +1,7 @@
 # eurostat 2.0
 
 * The `get_eurostat()` returns tibbles (#52)
+* The `get_eurostat_dic()` and `get_eurostat_toc()` return tibbles
 * Now `read_tsv()` is used instead of `read.csv()` (#29)
 
 # eurostat 1.2.27
