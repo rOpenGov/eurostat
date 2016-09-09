@@ -32,6 +32,7 @@ Suggests:
     mapproj,
     plotrix,
     rvest,
+    rmarkdown,
     testthat
 LazyData: true
 URL: https://github.com/ropengov/eurostat
