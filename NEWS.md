@@ -1,6 +1,7 @@
 # eurostat 1.2.27
 
 * calls to extract_numeric are replaced by as.numeric (#60)
+* the column 'flags' is not being labeled even if lables=TRUE (#61)
 
 # eurostat 1.2.22
 
