@@ -1,3 +1,7 @@
+# eurostat 1.2.27
+
+* calls to extract_numeric are replaced by as.numeric (#60)
+
 # eurostat 1.2.22
 
 * The European Commission and the Eurostat generally uses ISO 3166-1 alpha-2 codes with two exceptions: EL (not GR) is used to represent Greece, and UK (not GB) is used to represent the United Kingdom. This now  can be handled with `harmonize_country_code()` which converts the raw data values from EL to GR and from UK to GB.
