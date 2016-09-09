@@ -31,7 +31,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     time <- NULL
 
     # Separate codes to columns
-    cnames <- strsplit(colnames(dat)[1], split = "\\.")[[1]]
+    cnames <- strsplit(colnames(dat)[1], split = "[\\,]")[[1]]
     cnames1 <- cnames[-length(cnames)]  # for columns
     cnames2 <- cnames[length(cnames)]   # for colnames
     
@@ -70,7 +70,6 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     }
 
     # For multiple time frequency
-
     freqs <- available_freq(dat2$time)
     
     if (!is.null(select_time)){
