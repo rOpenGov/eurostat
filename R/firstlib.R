@@ -10,7 +10,6 @@
 #' @importFrom tidyr separate
 #' @importFrom tidyr gather_
 #' @importFrom utils download.file
-#' @importFrom utils read.table
 #' @importFrom readr read_tsv
 #' @importFrom readr col_character
 .EurostatEnv <- new.env()

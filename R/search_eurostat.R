@@ -9,7 +9,7 @@
 #'  	  the description will be returned (depending on the 'type' argument)
 #' @param type Grep the Eurostat table of contents either for 
 #'  	  'dataset' (default), 'folder', 'table' or "all" (for all types) .
-#' @return A data.frame with eight columns
+#' @return A tibble with eight columns
 #'    \itemize{
 #'  	\item{title}{The name of dataset of theme}
 #'	\item{code}{The codename of dataset of theme, will be used by the get_eurostat and get_eurostat_raw functions.}
@@ -25,8 +25,8 @@
 search_eurostat <- function(pattern, type = "dataset") {
   set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-  if (type != "all") tmp <- tmp[ tmp[, "type"] %in% type, ]
-  tmp[ grep(as.character(tmp[, "title"]), pattern = pattern), ]
+  if (type != "all") tmp <- tmp[ tmp$type %in% type, ]
+  tmp[ grep(tmp$title, pattern = pattern), ]
 }
 
 

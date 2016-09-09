@@ -17,7 +17,7 @@ the description will be returned (depending on the 'type' argument)}
 'dataset' (default), 'folder', 'table' or "all" (for all types) .}
 }
 \value{
-A data.frame with eight columns
+A tibble with eight columns
    \itemize{
  	\item{title}{The name of dataset of theme}
 \item{code}{The codename of dataset of theme, will be used by the get_eurostat and get_eurostat_raw functions.}
