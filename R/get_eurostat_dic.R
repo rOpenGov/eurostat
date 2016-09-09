@@ -18,11 +18,17 @@
 #'	     }
 #' @keywords utilities database
 get_eurostat_dic <- function(dictname, lang = "en") {
-  url <- eurostat_url()		   
-  tname <- paste0(url, 
-                  "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
-                  dictname, ".dic")
-  readr::read_tsv(tname, col_names = c("code_name", "full_name"),
-                  col_types = readr::cols(.default = readr::col_character()))
+  dictlang <- paste0(dictname, "_", lang)
+  if (!exists(dictlang, envir = .EurostatEnv)) {
+    url <- eurostat_url()		   
+    tname <- paste0(url, 
+                    "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
+                    dictname, ".dic")
+    dict <- readr::read_tsv(tname, col_names = c("code_name", "full_name"),
+                    col_types = readr::cols(.default = readr::col_character()))
+
+    assign(dictlang, dict, envir = .EurostatEnv)
+  }
+  get(dictlang, envir = .EurostatEnv)
 }
 
