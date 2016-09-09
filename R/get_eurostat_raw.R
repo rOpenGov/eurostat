@@ -31,16 +31,9 @@ get_eurostat_raw <- function(id) {
   # download and read file
   utils::download.file(url, tfile)
   
-#  n <- ncol(utils::read.table(gzfile(tfile), sep = "\t", na.strings = ": ", 
-#                      header = TRUE, nrows = 1, colClasses = "character"))
-#  n <- ncol(readr::read_tsv(gzfile(tfile), n_max = 1))
-  dat <- readr::read_tsv(gzfile(tfile), na = ":")
-#  ,  col_types = c(list(readr::col_character()),
-#                                        rep(list(readr::col_number()), 
-#                                            times = n-1)))
-#
-#  dat <- utils::read.table(gzfile(tfile), sep = "\t", na.strings = ": ", 
-#                    header = TRUE, stringsAsFactors = FALSE)
+  dat <- readr::read_tsv(gzfile(tfile), na = ":",  
+                         col_types = readr::cols(.default = readr::col_character()))
+  
   # check validity
   if (ncol(dat) < 2 | nrow(dat) < 1) {
     if (grepl("does not exist or is not readable", dat[1])) {

@@ -23,7 +23,8 @@ Imports:
     RColorBrewer,
     stringi,
     stringr,    
-    tidyr
+    tidyr,    
+    readr
 Suggests:
     dplyr,
     ggplot2,
