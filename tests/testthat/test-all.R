@@ -97,6 +97,12 @@ test_that("get_eurostat includes flags",{
                     names(get_eurostat("namq_aux_lp", keepFlags = TRUE))))
 })
 
+test_that("keepFlags + label as in #61",{
+  skip_on_cran()
+  expect_true(all(c("flags") %in%
+                    names(get_eurostat("tsdtr210", type = "label", keepFlags=T))))
+})
+
 test_that("flags contain some confidential flagged fields",{
   skip_on_cran()
   expect_true(c("c") %in%
