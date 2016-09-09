@@ -18,7 +18,7 @@
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'     "provisional") should be kept in a separate column or if they
 #'     can be removed. Default is \code{FALSE}
-#' @return data.frame in the molten format with the last column 'values'.
+#' @return tibble in the molten format with the last column 'values'.
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat").
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}

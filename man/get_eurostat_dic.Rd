@@ -12,7 +12,7 @@ get_eurostat_dic(dictname, lang = "en")
 \item{lang}{A character, language code. Options: "en" (default) / "fr" / "de".}
 }
 \value{
-data.frame with two columns: code names and full names.
+tibble with two columns: code names and full names.
 }
 \description{
 Download a Eurostat dictionary.

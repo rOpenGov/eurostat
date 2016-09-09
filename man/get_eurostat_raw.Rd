@@ -11,7 +11,7 @@ get_eurostat_raw(id)
 contents of eurostat datasets for more details.}
 }
 \value{
-A dataset in data.frame format. First column contains comma 
+A dataset in tibble format. First column contains comma 
 	  separated codes of cases. Other columns usually corresponds to 
   years and column names are years with preceding X. Data is in 
   character format as it contains values together with eurostat 

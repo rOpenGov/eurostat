@@ -2,7 +2,7 @@
 #' @description Download data from the eurostat database.
 #' @param id A code name for the dataset of interested. See the table of
 #'  contents of eurostat datasets for more details.
-#' @return A dataset in data.frame format. First column contains comma 
+#' @return A dataset in tibble format. First column contains comma 
 #' 	  separated codes of cases. Other columns usually corresponds to 
 #'	  years and column names are years with preceding X. Data is in 
 #'	  character format as it contains values together with eurostat 
