@@ -31,3 +31,6 @@ Contributions are very welcome, you can for instance
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by the eurostat.
+
+[![Throughput Graph](https://graphs.waffle.io/rOpenGov/eurostat/throughput.svg)](https://waffle.io/rOpenGov/eurostat/metrics/throughput)
+
