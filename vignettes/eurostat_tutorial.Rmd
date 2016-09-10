@@ -401,65 +401,13 @@ p
 ```
 
 
-**Finland with labels**
-
-```{r mapsfi, fig.width=8, fig.height=8}
-library(eurostat)
-# Downloading and manipulating the tabular data
-df <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("FI",geo))
-
-df_lab <- label_eurostat(df)
-names(df_lab) <- paste0("lab",names(df_lab))
-
-df2 <- cbind(df,df_lab)
-
-# categorise
-df2$cat <- cut_to_classes(df2$values)
-
-# merge with geodata
-plot_map <- merge_eurostat_geodata(data=df2,geocolumn="geo",resolution = "60")
-
-cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
-cnames <- merge(cnames,df2,by="labgeo")
-
-# plot map
-p <- ggplot(data=plot_map, aes(long,lat,group=group))
-p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
-p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
-p <- p + geom_label(data=cnames, aes(long, lat, label = paste(labgeo,"\n",values,"€"), group=labgeo,fill=cat), 
-                    size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
-p <- p + coord_map(project="orthographic")
-p <- p + labs(title = paste0("Disposable household incomes in 2005"))
-p <- p +  theme(legend.position = c(0.1,0.03), 
-                legend.justification=c(0,0),
-                legend.key.size=unit(6,'mm'),
-                legend.direction = "vertical",
-                legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
-                legend.text=element_text(size=12), 
-                legend.title=element_text(size=12), 
-                title=element_text(size=16), 
-                panel.background = element_blank(), 
-                plot.background = element_blank(),
-                panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
-                panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
-                axis.text = element_blank(), 
-                axis.title = element_blank(), 
-                axis.ticks = element_blank(), 
-                plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
-p <- p + guides(fill = guide_legend(title = "EUR per Year",
-                                    title.position = "top", 
-                                    title.hjust=0))
-p
-```
 
 
 # Further examples
 
 For further examples, see:
 
-  * [Blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+  * [Blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
   * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
 
 
@@ -484,8 +432,7 @@ citation("eurostat")
 
 ### Acknowledgements
 
-For acknowledgements and contact information, see the
-[README](../README.md).
+For main developers and contributors, see the [README](../README.md).
 
 This [rOpenGov](http://ropengov.github.io) R package is based on the
 earlier CRAN packages
@@ -502,6 +449,11 @@ may provide access to some versions of eurostat data but these
 packages are more generic and hence, in contrast to the eurostat R
 package, lack tools that are specifically customized to facilitate
 eurostat analysis.
+
+
+### Contact
+
+For contact information, see the [README](../README.md).
 
 
 # Session info

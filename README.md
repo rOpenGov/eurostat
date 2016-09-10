@@ -4,9 +4,9 @@ eurostat R package
 <!--[![Build Status](https://api.travis-ci.org/rOpenGov/eurostat.png)](https://travis-ci.org/rOpenGov/eurostat)-->
 
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
-[![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)
+<!--[![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
 [![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eurostat)](http://cran.r-project.org/package=eurostat)
-[![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
+<!--[![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)-->
 [![Cranlogs Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/package=eurostat)
 
 
