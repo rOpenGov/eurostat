@@ -10,10 +10,14 @@ eurostat R package
 [![Cranlogs Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/package=eurostat)
 
 
-R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Tools for data search, download, manipulation and visualization. For detailed examples, see:
+R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Tools for data search, download, manipulation and visualization.
 
- * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) Installation and standard use.
- * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) Reproducible examples for the manuscript (in preparation).
+### Installation and use
+
+For detailed examples, see:
+
+ * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
+ * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) for reproducible examples for the manuscript (in preparation)
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
 
@@ -21,13 +25,13 @@ Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://
 
 ### Contribute
 
-Contributions are very welcome. You can, for instance:
+Many thanks to [all
+contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)!
+Further contributions are very welcome. You can, for instance:
 
   * Provide feedback, suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or by e-mail.
   * Fork and [send pull requests](https://github.com/ropengov/eurostat/) to the functions, vignettes, documentation, tests, or use cases. 
   * Star us on the project page 
-
-Many thanks to [all contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)!
 
 The project activity chart:
 
