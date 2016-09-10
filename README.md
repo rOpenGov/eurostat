@@ -21,7 +21,9 @@ For detailed examples, see:
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
 
-Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski). Part of [rOpenGov](http://ropengov.github.io). 
+### Citing the package
+
+Kindly cite the package as: eurostat R package (2016). [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski). Part of [rOpenGov](http://ropengov.github.io). URL: https://github.com/rOpenGov/eurostat/
 
 ### Contribute
 
