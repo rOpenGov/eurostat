@@ -4,13 +4,13 @@
 #' 
 #' @param x a variable (code or labelled) to get order for.
 #' @param dic a name of the dictionary. Correspond a variable name in the 
-#'    data.frame from \code{\link{get_eurostat}}. Can be also data.frame from
+#'    data_frame from \code{\link{get_eurostat}}. Can be also data_frame from
 #'    \code{\link{get_eurostat_dic}}.
 #' @param type a type of the x. Could be \code{code} or \code{label}.
 #' @export
 #' @return A numeric vector of orders.
 dic_order <- function(x, dic, type) {
-  if (!is.data.frame(dic)) dic <- get_eurostat_dic(dic)
+  if (!is_tibble(dic)) dic <- get_eurostat_dic(dic)
   
   # code or label
   n_type <- match(type, c("code", "label"))

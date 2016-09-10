@@ -14,13 +14,13 @@ label_eurostat_vars(x, lang = "en")
 label_eurostat_tables(x, lang = "en")
 }
 \arguments{
-\item{x}{A character or a factor vector or a data.frame.}
+\item{x}{A character or a factor vector or a data_frame.}
 
 \item{dic}{A string (vector) naming eurostat dictionary or dictionaries.
 If \code{NULL} (default) dictionry names taken from column names of 
-the data.frame.}
+the data_frame.}
 
-\item{code}{For data.frames names of the column for which also code columns
+\item{code}{For data_frames names of the column for which also code columns
 should be retained. The suffix "_code" is added to code column names.}
 
 \item{eu_order}{Logical. Should Eurostat ordering used for label levels. 
@@ -30,13 +30,13 @@ Affects only factors.}
 "fr" and "de".}
 }
 \value{
-a vector or a data.frame.
+a vector or a data_frame.
 }
 \description{
 Get definitions for Eurostat codes from Eurostat dictionaries.
 }
 \details{
-A character or a factor vector of codes returns a corresponding vector of definitions. \code{label_eurostat} labels also data.frames from \code{\link{get_eurostat}}. For vectors a dictionary name have to be supplied. For data.frames dictonary names are taken from column names. "time" and "values" columns are returned as they were, so you can supply data.frame from \code{\link{get_eurostat}} and get data.frame with definitions instead of codes.
+A character or a factor vector of codes returns a corresponding vector of definitions. \code{label_eurostat} labels also data_frames from \code{\link{get_eurostat}}. For vectors a dictionary name have to be supplied. For data_frames dictonary names are taken from column names. "time" and "values" columns are returned as they were, so you can supply data_frame from \code{\link{get_eurostat}} and get data_frame with definitions instead of codes.
 }
 \section{Functions}{
 \itemize{

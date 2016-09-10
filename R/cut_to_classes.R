@@ -24,11 +24,17 @@ cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NUL
                                      include.lowest=T,
                                      dig.lab=5)))
   } else {
-    levs <- as.data.frame(levels(cut(x, 
-                                     breaks=data.frame(classInt::classIntervals(x,n=n,style=style)[2])[,1],
-                                     include.lowest=T,
-                                     dig.lab=5)))
-  } 
+
+    brs <- data.frame(classInt::classIntervals(x,n=n,style=style)[2])[,1]
+
+    cutting <- cut(x, breaks=brs, include.lowest=T, dig.lab=5)
+
+    levs <- levels(cutting)
+
+    levs <- as.data.frame(levs)
+
+  }
+
   names(levs) <- "orig"
   levs$mod <- str_replace_all(levs$orig, "\\[", "")
   levs$mod <- str_replace_all(levs$mod, "\\]", "")
@@ -45,8 +51,9 @@ cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NUL
   levs$upper <- prettyNum(levs$upper, big.mark=" ")
   
   levs$labs <- paste(levs$lower,levs$upper, sep=" ~< ")
-  
+
   labs <- as.character(c(levs$labs))
+
   if (manual) {
     y <- cut(x, breaks = manual_breaks,
              include.lowest=T,
@@ -58,8 +65,10 @@ cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NUL
              dig.lab=5, labels = labs)
   }
   y <- as.character(y)
-
+  
   y[is.na(y)] <- nodata_label
+  
   y <- factor(y, levels=c(nodata_label,labs[1:n]))
+  
   y
 }

@@ -22,7 +22,7 @@
 #'        frequency. For datasets with multiple time
 #'        frequencies, select the desired time format with:
 #'    	  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
-#'        For all frequencies in same data.frame \code{time_format = "raw"}
+#'        For all frequencies in same data frame \code{time_format = "raw"}
 #'        should be used.
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.

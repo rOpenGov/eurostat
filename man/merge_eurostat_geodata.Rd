@@ -2,22 +2,22 @@
 % Please edit documentation in R/merge_eurostat_geodata.R
 \name{merge_eurostat_geodata}
 \alias{merge_eurostat_geodata}
-\title{Merge Preprocessed Geospatial Data from CISGO with data.frame from Eurostat}
+\title{Merge Preprocessed Geospatial Data from CISGO with data_frame from Eurostat}
 \usage{
 merge_eurostat_geodata(data, geocolumn = "geo", resolution = "60",
   output_class = "df", cache = TRUE, update_cache = FALSE,
   cache_dir = NULL)
 }
 \arguments{
-\item{data}{A data.frame including a character vector that
+\item{data}{A data_frame including a character vector that
 consists of values following current NUTS classification}
 
 \item{geocolumn}{A string. Name of the column with NUTS information 
-(\code{geo} in data.frames fetched using \code{get_eurostat})}
+(\code{geo} in data_frames fetched using \code{get_eurostat})}
 
 \item{resolution}{Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
 
-\item{output_class}{A string. Class of object returned, either \code{df} (\code{data.frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
+\item{output_class}{A string. Class of object returned, either \code{df} (\code{data_frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
 
 \item{cache}{cache. Logical.}
 
@@ -26,10 +26,10 @@ consists of values following current NUTS classification}
 \item{cache_dir}{Cache directory.}
 }
 \value{
-a data.frame or SpatialPolygonDataFrame.
+a data_frame or SpatialPolygonDataFrame.
 }
 \description{
-Merges data.frame obtained from Eurostat with \code{get_eurostat} with geospatial data preprocessed either using \code{ggplot2::fortify} into a \code{data.frame} or a regular \code{SpatialPolygonDataFrame}. The resulting \code{data.frame} can be plotted using \code{ggplot2} and \code{SpatialPolygonDataFrame} using \code{sp::spplot}.
+Merges data_frame obtained from Eurostat with \code{get_eurostat} with geospatial data preprocessed either using \code{ggplot2::fortify} into a \code{data_frame} or a regular \code{SpatialPolygonDataFrame}. The resulting \code{data_frame} can be plotted using \code{ggplot2} and \code{SpatialPolygonDataFrame} using \code{sp::spplot}.
 }
 \examples{
  \dontrun{

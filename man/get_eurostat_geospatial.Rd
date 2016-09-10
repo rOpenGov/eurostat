@@ -8,7 +8,7 @@ get_eurostat_geospatial(output_class = "spdf", resolution = "60",
   cache = TRUE, update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
-\item{output_class}{A string. Class of object returned, either \code{df} (\code{data.frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
+\item{output_class}{A string. Class of object returned, either \code{df} (\code{data_frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
 
 \item{resolution}{Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
 
@@ -25,10 +25,10 @@ The \code{NULL} (default) uses and creates
 \code{option} eurostat_cache_dir.}
 }
 \value{
-a data.frame or SpatialPolygonDataFrame.
+a data_frame or SpatialPolygonDataFrame.
 }
 \description{
-Downloads either a SpatialPolygonDataFrame or a data.frame preprocessed using \code{ggplot2::fortify}.
+Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using \code{ggplot2::fortify}.
 }
 \examples{
  \dontrun{

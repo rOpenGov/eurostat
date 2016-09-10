@@ -1,6 +1,6 @@
 #' @title Downloads Preprocessed Geospatial Data from CISGO
-#' @description Downloads either a SpatialPolygonDataFrame or a data.frame preprocessed using \code{ggplot2::fortify}.
-#' @param output_class A string. Class of object returned, either \code{df} (\code{data.frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})
+#' @description Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using \code{ggplot2::fortify}.
+#' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})
 #' @param resolution Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
@@ -13,7 +13,7 @@
 #'        \code{option} eurostat_cache_dir.
 #' @export
 #' @author Markus Kainu <markuskainu@@gmail.com>
-#' @return a data.frame or SpatialPolygonDataFrame.
+#' @return a data_frame or SpatialPolygonDataFrame.
 #' @examples
 #'  \dontrun{
 #'    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60")
@@ -105,14 +105,14 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
     message(paste("Reading cache file", cf))
     # y <- readRDS(cache_file)
     load(file = cache_file)
-    if (output_class == "df") message(paste("data.frame at resolution 1:", resolution, " read from cache file: ", cf))
+    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " read from cache file: ", cf))
     if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " read from cache file: ", cf))
   }
     
   # if update or new: save
   if (cache && (update_cache || !file.exists(cache_file))){
     save(shape, file = cache_file)
-    if (output_class == "df") message(paste("data.frame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
+    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
     if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
   }
   

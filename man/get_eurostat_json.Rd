@@ -18,7 +18,7 @@ dataset is returned. See details for more on filters and
 limitations per query.}
 
 \item{type}{A type of variables, "code" (default), "label" or "both". The 
-"both" will return a data.frame with named vectors, labels as values 
+"both" will return a data_frame with named vectors, labels as values 
 and codes as names.}
 
 \item{lang}{A language used for metadata (en/fr/de).}
@@ -28,7 +28,7 @@ converted to factors in original Eurostat order. If \code{FALSE}
 they are returned as a character.}
 }
 \value{
-A dataset as a data.frame.
+A dataset as a data_frame.
 }
 \description{
 Retrieve data from Eurostat API in JSON format.

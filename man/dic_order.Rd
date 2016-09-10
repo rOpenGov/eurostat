@@ -10,7 +10,7 @@ dic_order(x, dic, type)
 \item{x}{a variable (code or labelled) to get order for.}
 
 \item{dic}{a name of the dictionary. Correspond a variable name in the 
-data.frame from \code{\link{get_eurostat}}. Can be also data.frame from
+data_frame from \code{\link{get_eurostat}}. Can be also data_frame from
 \code{\link{get_eurostat_dic}}.}
 
 \item{type}{a type of the x. Could be \code{code} or \code{label}.}

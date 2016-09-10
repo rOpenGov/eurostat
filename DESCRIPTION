@@ -22,7 +22,8 @@ Imports:
     sp,
     RColorBrewer,
     stringi,
-    stringr,    
+    stringr,  
+    tibble,    
     tidyr,    
     readr
 Suggests:

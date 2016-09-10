@@ -36,7 +36,7 @@ which is used by default as most datasets have just one time
 frequency. For datasets with multiple time
 frequencies, select the desired time format with:
   Y = annual, S = semi-annual, Q = quarterly, M = monthly.
-For all frequencies in same data.frame \code{time_format = "raw"}
+For all frequencies in same data frame \code{time_format = "raw"}
 should be used.}
 
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 

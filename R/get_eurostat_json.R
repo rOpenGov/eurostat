@@ -15,13 +15,13 @@
 #'        limitations per query.
 #' @param lang A language used for metadata (en/fr/de).
 #' @param type A type of variables, "code" (default), "label" or "both". The 
-#'        "both" will return a data.frame with named vectors, labels as values 
+#'        "both" will return a data_frame with named vectors, labels as values 
 #'        and codes as names.
 #' @param stringsAsFactors if \code{TRUE} (the default) variables are
 #'         converted to factors in original Eurostat order. If \code{FALSE}
 #'         they are returned as a character.
 #'
-#' @return A dataset as a data.frame.
+#' @return A dataset as a data_frame.
 #' @export
 #' @examples
 #'  \dontrun{
@@ -75,7 +75,9 @@ get_eurostat_json <- function(id, filters = NULL,
                            stringsAsFactors = stringsAsFactors)
   
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
-  dat
+  
+  as_data_frame(dat)
+  
 }
 
 

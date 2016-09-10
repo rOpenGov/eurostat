@@ -4,7 +4,6 @@
 #'    represent Greece, and UK (not GB) is used to represent the
 #'    United Kingdom. This function turns country codes into to ISO
 #'    3166-1 alpha-2.
-
 #' @param x A character or a factor vector of eurostat countycodes. 
 #' @export
 #' @author Janne Huovari \email{janne.huovari@@ptt.fi}
