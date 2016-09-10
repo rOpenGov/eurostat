@@ -23,14 +23,16 @@ Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://
 
 Contributions are very welcome, you can for instance
 
-  * Test the tools and provide feedback, submit suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or directly by e-mail.
+  * Provide feedback, suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or by e-mail.
   * Fork and [send pull requests](https://github.com/ropengov/eurostat/) to the functions, vignettes, documentation, tests, or use cases. 
-  * Star us on the project page if you deem it appropriate 
+  * Star us on the project page 
+
+The project activity chart:
+
+[![Throughput Graph](https://graphs.waffle.io/rOpenGov/eurostat/throughput.svg)](https://waffle.io/rOpenGov/eurostat/metrics/throughput)
 
 
 ### Disclaimer
 
-This package is in no way officially related to or endorsed by the eurostat.
-
-[![Throughput Graph](https://graphs.waffle.io/rOpenGov/eurostat/throughput.svg)](https://waffle.io/rOpenGov/eurostat/metrics/throughput)
+This package is in no way officially related to or endorsed by the eurosta.t
 
