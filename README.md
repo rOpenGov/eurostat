@@ -38,7 +38,8 @@ The project activity chart:
 ### Citation and acknowledgements
 
 Kindly cite this work. See the [package
-vignette](vignette/eurostat_tutorial.md) for citation instructions.
+vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md)
+for citation instructions.
 
 Main developers: [Leo Lahti](https://github.com/antagomir),
 [Przemyslaw Biecek](https://github.com/pbiecek), [Janne
@@ -52,5 +53,5 @@ and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
 ### Disclaimer
 
-This package is in no way officially related to or endorsed by the eurostat
+This package is in no way officially related to or endorsed by Eurostat.
 
