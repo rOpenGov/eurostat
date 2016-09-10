@@ -923,9 +923,7 @@ Maps
       ggplot(data=., aes(x=long,y=lat,group=group)) +
       geom_polygon(aes(fill=values),color="white")
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
-
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
+    ## Table tsdtr420 cached at /tmp/RtmpXBd6HL/eurostat/tsdtr420_num_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -954,9 +952,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
-
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  cached at:  /tmp/RtmpXBd6HL/eurostat/df60.RData
 
 ![](fig/maps7-1.png)
 
@@ -972,9 +968,7 @@ Maps
       ggplot(data=., aes(x=long,y=lat,group=group)) +
       geom_polygon(aes(fill=values),color="white")
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1003,9 +997,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df01.RData
-
-    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmphRqiDL/eurostat/df01.RData
+    ## data.frame at resolution 1: 01  cached at:  /tmp/RtmpXBd6HL/eurostat/df01.RData
 
 ![](fig/maps8-1.png)
 
@@ -1024,9 +1016,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white") +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/tsdtr420_num_code_TF.rds
 
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
+    ## Table  tsdtr420  read from cache file:  /tmp/RtmpXBd6HL/eurostat/tsdtr420_num_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1055,9 +1047,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpXBd6HL/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -1075,9 +1067,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white") +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1106,9 +1098,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/df01.RData
 
-    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmphRqiDL/eurostat/df01.RData
+    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmpXBd6HL/eurostat/df01.RData
 
 ![](fig/maps2-1.png)
 
@@ -1148,9 +1140,9 @@ Maps
                     plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm")) +
         guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1179,9 +1171,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpXBd6HL/eurostat/df60.RData
 
     ## Warning in grid.Call.graphics(L_polygon, x$x, x$y, index): semi-
     ## transparency is not supported on this device: reported only once per page
@@ -1196,9 +1188,9 @@ Maps
       # subsetting to year 2005 and NUTS-3 level
       dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
     df_lab <- label_eurostat(df)
     names(df_lab) <- paste0("lab",names(df_lab))
@@ -1238,9 +1230,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpXBd6HL/eurostat/df60.RData
 
     cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
     cnames <- merge(cnames,df2,by="labgeo")
@@ -1288,9 +1280,9 @@ Maps
       # subsetting to year 2005 and NUTS-3 level
       dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("FI",geo))
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpXBd6HL/eurostat/tgs00026_raw_code_TF.rds
 
     df_lab <- label_eurostat(df)
     names(df_lab) <- paste0("lab",names(df_lab))
@@ -1337,9 +1329,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpXBd6HL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpXBd6HL/eurostat/df60.RData
 
     cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
     cnames <- merge(cnames,df2,by="labgeo")
@@ -1392,8 +1384,39 @@ For further examples, see:
 Citation, acknowledgements and related work
 ===========================================
 
-For package authors, contributors, citation instructions, and contact
-information, see the [README](../README.md)
+### Citing the data sources
+
+Eurostat data: cite [Eurostat](http://ec.europa.eu/eurostat/).
+
+Administrative boundaries: cite EuroGeographics
+
+### Citing the eurostat R package
+
+This work can be freely used, modified and distributed under the
+BSD-2-clause (modified FreeBSD) license:
+
+    citation("eurostat")
+
+    ## 
+    ## Kindly cite the eurostat R package as follows:
+    ## 
+    ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
+    ##   2014-2016. eurostat R package URL:
+    ##   https://github.com/rOpenGov/eurostat
+    ## 
+    ## A BibTeX entry for LaTeX users is
+    ## 
+    ##   @Misc{,
+    ##     title = {eurostat R package},
+    ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
+    ##     year = {2014-2016},
+    ##     url = {https://github.com/rOpenGov/eurostat},
+    ##   }
+
+### Acknowledgements
+
+For acknowledgements and contact information, see the
+[README](../README.md).
 
 This [rOpenGov](http://ropengov.github.io) R package is based on the
 earlier CRAN packages
@@ -1435,7 +1458,7 @@ This tutorial was created with
     ## other attached packages:
     ## [1] RColorBrewer_1.1-2 plotrix_3.6-2      ggplot2_2.1.0     
     ## [4] tidyr_0.5.1        rvest_0.3.2        xml2_1.0.0        
-    ## [7] eurostat_2.0.1     rmarkdown_0.9.6.14 knitr_1.13        
+    ## [7] rmarkdown_0.9.6.14 knitr_1.13         eurostat_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.7      formatR_1.4      highr_0.6        plyr_1.8.4      

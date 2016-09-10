@@ -466,8 +466,26 @@ For further examples, see:
 
 # Citation, acknowledgements and related work
 
-For package authors, contributors, citation instructions, and contact
-information, see the [README](../README.md)
+### Citing the data sources
+
+Eurostat data: cite [Eurostat](http://ec.europa.eu/eurostat/).
+
+Administrative boundaries: cite EuroGeographics
+
+
+### Citing the eurostat R package
+
+This work can be freely used, modified and distributed under the
+BSD-2-clause (modified FreeBSD) license:
+
+```{r citation, message=FALSE, eval=TRUE, echo=TRUE}
+citation("eurostat")
+```
+
+### Acknowledgements
+
+For acknowledgements and contact information, see the
+[README](../README.md).
 
 This [rOpenGov](http://ropengov.github.io) R package is based on the
 earlier CRAN packages
