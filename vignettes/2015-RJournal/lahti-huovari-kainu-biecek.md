@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-08-28"
+date: "2016-09-10"
 bibliography: 
 - references.bib
 output: 
@@ -107,7 +107,7 @@ query$title[[1]]
 ```
 
 ```
-## [1] "            People killed in road accidents"
+## [1] "People killed in road accidents"
 ```
 
 
@@ -128,14 +128,14 @@ kable(head(dat))
 
 
 
-|   |unit |sex |geo | time| values|
-|:--|:----|:---|:---|----:|------:|
-|1  |NR   |T   |AT  | 1999|   1079|
-|2  |NR   |T   |BE  | 1999|   1397|
-|6  |NR   |T   |CZ  | 1999|   1455|
-|7  |NR   |T   |DE  | 1999|   7772|
-|8  |NR   |T   |DK  | 1999|    514|
-|10 |NR   |T   |EL  | 1999|   2116|
+|unit |sex |geo | time| values|
+|:----|:---|:---|----:|------:|
+|NR   |T   |AT  | 1999|   1079|
+|NR   |T   |BE  | 1999|   1397|
+|NR   |T   |CZ  | 1999|   1455|
+|NR   |T   |DE  | 1999|   7772|
+|NR   |T   |DK  | 1999|    514|
+|NR   |T   |EL  | 1999|   2116|
 
 
 Same with human-readable labels:
@@ -152,14 +152,14 @@ kable(head(datl))
 
 
 
-|   |unit   |sex   |geo                                              | time| values|
-|:--|:------|:-----|:------------------------------------------------|----:|------:|
-|1  |Number |Total |Austria                                          | 1999|   1079|
-|2  |Number |Total |Belgium                                          | 1999|   1397|
-|6  |Number |Total |Czech Republic                                   | 1999|   1455|
-|7  |Number |Total |Germany (until 1990 former territory of the FRG) | 1999|   7772|
-|8  |Number |Total |Denmark                                          | 1999|    514|
-|10 |Number |Total |Greece                                           | 1999|   2116|
+|unit   |sex   |geo                                              | time| values|
+|:------|:-----|:------------------------------------------------|----:|------:|
+|Number |Total |Austria                                          | 1999|   1079|
+|Number |Total |Belgium                                          | 1999|   1397|
+|Number |Total |Czech Republic                                   | 1999|   1455|
+|Number |Total |Germany (until 1990 former territory of the FRG) | 1999|   7772|
+|Number |Total |Denmark                                          | 1999|    514|
+|Number |Total |Greece                                           | 1999|   2116|
 
 
 ## Road accidents visualization

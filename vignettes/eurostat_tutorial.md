@@ -69,10 +69,10 @@ selected dataset.
 <th align="left">title</th>
 <th align="left">code</th>
 <th align="left">type</th>
-<th align="left">last.update.of.data</th>
-<th align="left">last.table.structure.change</th>
-<th align="left">data.start</th>
-<th align="left">data.end</th>
+<th align="left">last update of data</th>
+<th align="left">last table structure change</th>
+<th align="left">data start</th>
+<th align="left">data end</th>
 <th align="left">values</th>
 </tr>
 </thead>
@@ -131,10 +131,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">28.07.2016</td>
-<td align="left">28.07.2016</td>
+<td align="left">30.08.2016</td>
+<td align="left">30.08.2016</td>
 <td align="left">1985M01</td>
-<td align="left">2016M07</td>
+<td align="left">2016M08</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -152,20 +152,18 @@ instance datasets or tables.
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="left">title</th>
 <th align="left">code</th>
 <th align="left">type</th>
-<th align="left">last.update.of.data</th>
-<th align="left">last.table.structure.change</th>
-<th align="left">data.start</th>
-<th align="left">data.end</th>
+<th align="left">last update of data</th>
+<th align="left">last table structure change</th>
+<th align="left">data start</th>
+<th align="left">data end</th>
 <th align="left">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">5688</td>
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
@@ -176,7 +174,6 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5689</td>
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
@@ -187,40 +184,36 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5742</td>
 <td align="left">Railway transport - Total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">25.08.2016</td>
+<td align="left">06.09.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2004</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">5746</td>
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">25.08.2016</td>
+<td align="left">06.09.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">5747</td>
 <td align="left">International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)</td>
 <td align="left">rail_pa_intcmng</td>
 <td align="left">dataset</td>
-<td align="left">25.08.2016</td>
+<td align="left">06.09.2016</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">6097</td>
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
@@ -280,7 +273,7 @@ Investigate the structure of the downloaded data set:
 
     str(dat)
 
-    ## 'data.frame':    2326 obs. of  5 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    2326 obs. of  5 variables:
     ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ geo    : Factor w/ 35 levels "AT","BE","CH",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -292,7 +285,6 @@ Investigate the structure of the downloaded data set:
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="left">unit</th>
 <th align="left">vehicle</th>
 <th align="left">geo</th>
@@ -302,7 +294,6 @@ Investigate the structure of the downloaded data set:
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">AT</td>
@@ -310,7 +301,6 @@ Investigate the structure of the downloaded data set:
 <td align="right">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">BE</td>
@@ -318,7 +308,6 @@ Investigate the structure of the downloaded data set:
 <td align="right">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">4</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">CH</td>
@@ -326,7 +315,6 @@ Investigate the structure of the downloaded data set:
 <td align="right">3.7</td>
 </tr>
 <tr class="even">
-<td align="left">7</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">DE</td>
@@ -334,7 +322,6 @@ Investigate the structure of the downloaded data set:
 <td align="right">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">8</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">DK</td>
@@ -342,7 +329,6 @@ Investigate the structure of the downloaded data set:
 <td align="right">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">10</td>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">EL</td>
@@ -494,7 +480,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <table>
 <thead>
 <tr class="header">
-<th align="left"></th>
 <th align="left">unit</th>
 <th align="left">vehicle</th>
 <th align="left">geo</th>
@@ -504,7 +489,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">1</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Austria</td>
@@ -512,7 +496,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">2</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Belgium</td>
@@ -520,7 +503,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">4</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Switzerland</td>
@@ -528,7 +510,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">3.7</td>
 </tr>
 <tr class="even">
-<td align="left">7</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Germany (until 1990 former territory of the FRG)</td>
@@ -536,7 +517,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">8</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Denmark</td>
@@ -544,7 +524,6 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 <td align="right">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">10</td>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Greece</td>
@@ -939,9 +918,9 @@ Maps
       ggplot(data=., aes(x=long,y=lat,group=group)) +
       geom_polygon(aes(fill=values),color="white")
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/tsdtr420_num_code_TF.rds
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
 
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmppVXKgb/eurostat/tsdtr420_num_code_TF.rds
+    ## Table  tsdtr420  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -970,9 +949,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
 
 ![](fig/maps7-1.png)
 
@@ -988,9 +967,9 @@ Maps
       ggplot(data=., aes(x=long,y=lat,group=group)) +
       geom_polygon(aes(fill=values),color="white")
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1019,9 +998,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df01.RData
 
-    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmppVXKgb/eurostat/df01.RData
+    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df01.RData
 
 ![](fig/maps8-1.png)
 
@@ -1040,9 +1019,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white") +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/tsdtr420_num_code_TF.rds
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
 
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmppVXKgb/eurostat/tsdtr420_num_code_TF.rds
+    ## Table  tsdtr420  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1071,9 +1050,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -1091,9 +1070,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white") +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1122,9 +1101,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df01.RData
 
-    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmppVXKgb/eurostat/df01.RData
+    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df01.RData
 
 ![](fig/maps2-1.png)
 
@@ -1164,9 +1143,9 @@ Maps
                     plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm")) +
         guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1195,9 +1174,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
 
     ## Warning in grid.Call.graphics(L_polygon, x$x, x$y, index): semi-
     ## transparency is not supported on this device: reported only once per page
@@ -1212,9 +1191,9 @@ Maps
       # subsetting to year 2005 and NUTS-3 level
       dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmppVXKgb/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
 
     df_lab <- label_eurostat(df)
     names(df_lab) <- paste0("lab",names(df_lab))
@@ -1254,9 +1233,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmppVXKgb/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
 
     cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
     cnames <- merge(cnames,df2,by="labgeo")
@@ -1367,15 +1346,15 @@ This tutorial was created with
     ## other attached packages:
     ## [1] RColorBrewer_1.1-2 plotrix_3.6-2      ggplot2_2.1.0     
     ## [4] tidyr_0.5.1        rvest_0.3.2        xml2_1.0.0        
-    ## [7] eurostat_1.2.27    rmarkdown_0.9.6.14 knitr_1.13        
+    ## [7] eurostat_2.0.1     rmarkdown_0.9.6.14 knitr_1.13        
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.5      formatR_1.4      highr_0.6        plyr_1.8.4      
+    ##  [1] Rcpp_0.12.7      formatR_1.4      highr_0.6        plyr_1.8.4      
     ##  [5] class_7.3-14     tools_3.3.1      digest_0.6.9     jsonlite_1.0    
     ##  [9] evaluate_0.9     tibble_1.1       gtable_0.2.0     lattice_0.20-33 
     ## [13] DBI_0.4-1        mapproj_1.2-4    curl_0.9.7       yaml_2.1.13     
     ## [17] e1071_1.6-7      httr_1.2.1       stringr_1.0.0    dplyr_0.5.0     
     ## [21] maps_3.1.0       classInt_0.1-23  grid_3.3.1       R6_2.1.2        
-    ## [25] sp_1.2-3         magrittr_1.5     scales_0.4.0     htmltools_0.3.5 
-    ## [29] assertthat_0.1   colorspace_1.2-6 labeling_0.3     stringi_1.1.1   
-    ## [33] lazyeval_0.2.0   munsell_0.4.3
+    ## [25] sp_1.2-3         readr_0.2.2      magrittr_1.5     scales_0.4.0    
+    ## [29] htmltools_0.3.5  assertthat_0.1   colorspace_1.2-6 labeling_0.3    
+    ## [33] stringi_1.1.1    lazyeval_0.2.0   munsell_0.4.3
