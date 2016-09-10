@@ -1,4 +1,4 @@
-eurostat
+eurostat R package
 ======
 
 <!--[![Build Status](https://api.travis-ci.org/rOpenGov/eurostat.png)](https://travis-ci.org/rOpenGov/eurostat)-->
@@ -10,10 +10,10 @@ eurostat
 [![Cranlogs Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/package=eurostat)
 
 
-R tools to access data from [Eurostat](http://ec.europa.eu/eurostat). The package offers tool to search, download and manipulate data from the Eurostat database. Usage examples can be found in the following sources:
+R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Tools for data search, download, manipulation and visualization. For detailed examples, see:
 
- * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md). Installation and standard use.
- * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md). Reproducible examples of our recent manuscript (in preparation).
+ * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) Installation and standard use.
+ * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) Reproducible examples for the manuscript (in preparation).
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
 
@@ -21,11 +21,13 @@ Authors: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://
 
 ### Contribute
 
-Contributions are very welcome, you can for instance
+Contributions are very welcome. You can, for instance:
 
   * Provide feedback, suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or by e-mail.
   * Fork and [send pull requests](https://github.com/ropengov/eurostat/) to the functions, vignettes, documentation, tests, or use cases. 
   * Star us on the project page 
+
+Many thanks to [all contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)!
 
 The project activity chart:
 
@@ -34,5 +36,5 @@ The project activity chart:
 
 ### Disclaimer
 
-This package is in no way officially related to or endorsed by the eurosta.t
+This package is in no way officially related to or endorsed by the eurostat
 
