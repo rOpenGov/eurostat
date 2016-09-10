@@ -9,7 +9,7 @@
 #' @export
 #' @seealso \code{\link{label_eurostat}}, \code{\link{get_eurostat}}, 
 #'          \code{\link{search_eurostat}}.
-#' @references see citation("eurostat"). 
+#' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{leo.lahti@@iki.fi}. Thanks to Wietse Dol for contributions. 
 #' @examples \dontrun{
 #' 	       tmp <- get_eurostat_dic("crop_pro")

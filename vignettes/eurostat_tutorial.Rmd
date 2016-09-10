@@ -10,12 +10,12 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
+# R Tools for Eurostat Open Data
 
-This R package provides tools to access 
-[Eurostat database](http://ec.europa.eu/eurostat/) 
-as part of the [rOpenGov](http://ropengov.github.io) project.
-
-For contact information and source code, see the [github page](https://github.com/rOpenGov/eurostat)
+This [rOpenGov](http://ropengov.github.io) R package provides tools to
+access [Eurostat database](http://ec.europa.eu/eurostat/). For contact
+information and source code, see
+[README](https://github.com/rOpenGov/eurostat).
 
 ```{r setup, include=FALSE}
 # Global options
@@ -25,13 +25,13 @@ opts_chunk$set(fig.path="fig/")
 
 # Installation
 
-Release version:
+Release version [(CRAN)](https://cran.r-project.org/web/packages/eurostat/index.html):
 
 ```{r install, eval=FALSE}
 install.packages("eurostat")
 ```
 
-Development version:
+Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 ```{r install2, eval=FALSE}
 library(devtools)
@@ -142,17 +142,17 @@ datl2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"),
 kable(head(datl2))
 ```
 
-Eurostat codes can be replaced also after downloadind with human-readable labels
-using a function `label_eurostat()`. It replaces the eurostat codes based on
-definitions from Eurostat dictionaries. 
+Eurostat codes in the downloaded data set can be replaced with
+human-readable labels from the Eurostat dictionaries with the
+`label_eurostat()` function.
 
 ```{r labels, warning=FALSE, message=FALSE, results='asis'}
 datl <- label_eurostat(dat)
 kable(head(datl))
 ```
 
-The `label_eurostat()` allows also 
-conversion of individual variable vectors or variable names. 
+The `label_eurostat()` allows conversion of individual variable
+vectors or variable names as well.
 
 ```{r name_labels, eval = FALSE}
 label_eurostat_vars(names(datl))
@@ -171,7 +171,7 @@ levels(datl$vehicle)
 
 ## EFTA, Eurozone, EU and EU candidate countries
 
-To facilititate fast plotting of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). This helps to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the [countrycode](...) R package. To retrieve the country code list for EFTA, for instance, use:
+To facilitate smooth visualization of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (candidate\_countries). These can be used to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the [countrycode](...) R package. To retrieve the country code list for EFTA, for instance, use:
 
 ```{r, echo=TRUE, eval=TRUE}
 data(efta_countries)
@@ -222,16 +222,18 @@ print(p)
 
 <a name="triangle"></a>**Triangle plot**
 
-Triangle plot on passenger transport distributions with 2012 data for all countries with data.
+Triangle plot is handy for visualizing data sets with three variables. For instance, the passenger transport distributions across three vehicle types in 2012 for all countries where data is available:
 
-```{r plotGallery, warning=FALSE, message=FALSE, , fig.width=6, fig.height=6}
+```{r plotGallery, warning=FALSE, message=FALSE, fig.width=6, fig.height=6}
 library(tidyr)
 
+# Download and modify the transport data
 transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
 
+# Remove countries with missing data
 transports <- na.omit(transports)
 
-# triangle plot
+# Use triangle plot to visualize vehicle distributions:
 library(plotrix)
 triax.plot(transports[, -1], show.grid = TRUE, 
            label.points = TRUE, point.labels = transports$geo, 
@@ -242,7 +244,7 @@ triax.plot(transports[, -1], show.grid = TRUE,
 
 ## Maps 
 
-**Quick demo1 - whole Europe at country level reso 1:60mln**
+**Quick demo1 - whole Europe at country level resolution 1:60mln**
 
 ```{r maps7, eval=TRUE, fig.width=8, fig.height=8}
 # Data from Eurostat
@@ -306,7 +308,7 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   scale_fill_brewer(palette ="Oranges")
 ```
 
-**Reproducing the map in the paper**
+**Reproducing the map in the journal manuscript**
 
 ```{r maps4, fig.width=8, fig.height=8}
 library(eurostat)
@@ -399,19 +401,82 @@ p
 ```
 
 
-For further examples, see also the [blog post on the eurostat R package](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+**Finland with labels**
+
+```{r maps6, fig.width=8, fig.height=8}
+library(eurostat)
+# Downloading and manipulating the tabular data
+df <- get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2005 and NUTS-3 level
+  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("FI",geo))
+
+df_lab <- label_eurostat(df)
+names(df_lab) <- paste0("lab",names(df_lab))
+
+df2 <- cbind(df,df_lab)
+
+# categorise
+df2$cat <- cut_to_classes(df2$values)
+
+# merge with geodata
+plot_map <- merge_eurostat_geodata(data=df2,geocolumn="geo",resolution = "60")
+
+cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
+cnames <- merge(cnames,df2,by="labgeo")
+
+# plot map
+p <- ggplot(data=plot_map, aes(long,lat,group=group))
+p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
+p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
+p <- p + geom_label(data=cnames, aes(long, lat, label = paste(labgeo,"\n",values,"€"), group=labgeo,fill=cat), 
+                    size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
+p <- p + coord_map(project="orthographic")
+p <- p + labs(title = paste0("Disposable household incomes in 2005"))
+p <- p +  theme(legend.position = c(0.1,0.03), 
+                legend.justification=c(0,0),
+                legend.key.size=unit(6,'mm'),
+                legend.direction = "vertical",
+                legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
+                legend.text=element_text(size=12), 
+                legend.title=element_text(size=12), 
+                title=element_text(size=16), 
+                panel.background = element_blank(), 
+                plot.background = element_blank(),
+                panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                axis.text = element_blank(), 
+                axis.title = element_blank(), 
+                axis.ticks = element_blank(), 
+                plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
+p <- p + guides(fill = guide_legend(title = "EUR per Year",
+                                    title.position = "top", 
+                                    title.hjust=0))
+p
+```
 
 
-# Citing the package
+# Further examples
 
-**Citing the Data** Kindly cite [Eurostat](http://ec.europa.eu/eurostat/). 
+For further examples, see:
 
-**Citing the R tools** This work can be freely used, modified and
+  * [Blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+  * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
+
+
+# Citation and acknowledgements
+
+**Citing Eurostat data** For eurostat data, kindly cite [Eurostat](http://ec.europa.eu/eurostat/).
+
+**Citing geographic data** For administrative boundaries, cite EuroGeographics.
+
+**Citing the eurostat R package** This work can be freely used, modified and
 distributed under the BSD-2-clause (modified FreeBSD) license:
 
 ```{r citation, message=FALSE, eval=TRUE}
 citation("eurostat")
 ```
+
+
 
 # Acknowledgements
 

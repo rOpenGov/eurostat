@@ -23,7 +23,7 @@ For detailed examples, see:
 
 ### Citing the package
 
-Kindly cite the package as: eurostat R package (2016). [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski). Part of [rOpenGov](http://ropengov.github.io). URL: https://github.com/rOpenGov/eurostat/
+Kindly cite the package as: eurostat R package (2016). [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski). URL: https://github.com/rOpenGov/eurostat/
 
 ### Contribute
 
@@ -31,7 +31,7 @@ Many thanks to [all
 contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)!
 Further contributions are very welcome. You can, for instance:
 
-  * Provide feedback, suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or by e-mail.
+  * Provide feedback, suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or by direct e-mail to the package authors
   * Fork and [send pull requests](https://github.com/ropengov/eurostat/) to the functions, vignettes, documentation, tests, or use cases. 
   * Star us on the project page 
 
