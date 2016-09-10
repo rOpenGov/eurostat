@@ -33,7 +33,7 @@ For given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
 Przemyslaw Biecek and Leo Lahti \email{leo.lahti@iki.fi}. Thanks to Wietse Dol for contributions.
 }
 \references{
-see citation("eurostat").
+See citation("eurostat").
 }
 \seealso{
 \code{\link{label_eurostat}}, \code{\link{get_eurostat}}, 

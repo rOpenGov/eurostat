@@ -1,18 +1,20 @@
-This R package provides tools to access [Eurostat
-database](http://ec.europa.eu/eurostat/) as part of the
-[rOpenGov](http://ropengov.github.io) project.
+R Tools for Eurostat Open Data
+==============================
 
-For contact information and source code, see the [github
-page](https://github.com/rOpenGov/eurostat)
+This [rOpenGov](http://ropengov.github.io) R package provides tools to
+access [Eurostat database](http://ec.europa.eu/eurostat/). For contact
+information and source code, see
+[README](https://github.com/rOpenGov/eurostat).
 
 Installation
 ============
 
-Release version:
+Release version
+[(CRAN)](https://cran.r-project.org/web/packages/eurostat/index.html):
 
     install.packages("eurostat")
 
-Development version:
+Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
     library(devtools)
     install_github("ropengov/eurostat")
@@ -470,9 +472,9 @@ human-readable labels instead, use a `type = "label"` argument.
 </tbody>
 </table>
 
-Eurostat codes can be replaced also after downloadind with
-human-readable labels using a function `label_eurostat()`. It replaces
-the eurostat codes based on definitions from Eurostat dictionaries.
+Eurostat codes in the downloaded data set can be replaced with
+human-readable labels from the Eurostat dictionaries with the
+`label_eurostat()` function.
 
     datl <- label_eurostat(dat)
     kable(head(datl))
@@ -533,8 +535,8 @@ the eurostat codes based on definitions from Eurostat dictionaries.
 </tbody>
 </table>
 
-The `label_eurostat()` allows also conversion of individual variable
-vectors or variable names.
+The `label_eurostat()` allows conversion of individual variable vectors
+or variable names as well.
 
     label_eurostat_vars(names(datl))
 
@@ -548,14 +550,14 @@ Selecting and modifying data
 EFTA, Eurozone, EU and EU candidate countries
 ---------------------------------------------
 
-To facilititate fast plotting of standard European geographic areas, the
-package provides ready-made lists of the country codes used in the
-eurostat database for EFTA (efta\_countries), Euro area (ea\_countries),
-EU (eu\_countries) and EU candidate countries (candidate\_countries).
-This helps to select specific groups of countries for closer
-investigation. For conversions with other standard country coding
-systems, see the [countrycode](...) R package. To retrieve the country
-code list for EFTA, for instance, use:
+To facilitate smooth visualization of standard European geographic
+areas, the package provides ready-made lists of the country codes used
+in the eurostat database for EFTA (efta\_countries), Euro area
+(ea\_countries), EU (eu\_countries) and EU candidate countries
+(candidate\_countries). These can be used to select specific groups of
+countries for closer investigation. For conversions with other standard
+country coding systems, see the [countrycode](...) R package. To
+retrieve the country code list for EFTA, for instance, use:
 
     data(efta_countries)
     kable(efta_countries)
@@ -886,16 +888,19 @@ Visualizing train passenger data with `ggplot2`:
 
 <a name="triangle"></a>**Triangle plot**
 
-Triangle plot on passenger transport distributions with 2012 data for
-all countries with data.
+Triangle plot is handy for visualizing data sets with three variables.
+For instance, the passenger transport distributions across three vehicle
+types in 2012 for all countries where data is available:
 
     library(tidyr)
 
+    # Download and modify the transport data
     transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
 
+    # Remove countries with missing data
     transports <- na.omit(transports)
 
-    # triangle plot
+    # Use triangle plot to visualize vehicle distributions:
     library(plotrix)
     triax.plot(transports[, -1], show.grid = TRUE, 
                label.points = TRUE, point.labels = transports$geo, 
@@ -906,7 +911,7 @@ all countries with data.
 Maps
 ----
 
-**Quick demo1 - whole Europe at country level reso 1:60mln**
+**Quick demo1 - whole Europe at country level resolution 1:60mln**
 
     # Data from Eurostat
     eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
@@ -918,9 +923,9 @@ Maps
       ggplot(data=., aes(x=long,y=lat,group=group)) +
       geom_polygon(aes(fill=values),color="white")
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
 
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
+    ## Table  tsdtr420  read from cache file:  /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -949,9 +954,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
 
 ![](fig/maps7-1.png)
 
@@ -967,9 +972,9 @@ Maps
       ggplot(data=., aes(x=long,y=lat,group=group)) +
       geom_polygon(aes(fill=values),color="white")
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -998,9 +1003,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df01.RData
 
-    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df01.RData
+    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmphRqiDL/eurostat/df01.RData
 
 ![](fig/maps8-1.png)
 
@@ -1019,9 +1024,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white") +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
 
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tsdtr420_num_code_TF.rds
+    ## Table  tsdtr420  read from cache file:  /tmp/RtmphRqiDL/eurostat/tsdtr420_num_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1050,9 +1055,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -1070,9 +1075,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white") +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1101,13 +1106,13 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df01.RData
 
-    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df01.RData
+    ## data.frame at resolution 1: 01  read from cache file:  /tmp/RtmphRqiDL/eurostat/df01.RData
 
 ![](fig/maps2-1.png)
 
-**Reproducing the map in the paper**
+**Reproducing the map in the journal manuscript**
 
     library(eurostat)
     library(RColorBrewer)
@@ -1143,9 +1148,9 @@ Maps
                     plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm")) +
         guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1174,9 +1179,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
 
     ## Warning in grid.Call.graphics(L_polygon, x$x, x$y, index): semi-
     ## transparency is not supported on this device: reported only once per page
@@ -1191,9 +1196,9 @@ Maps
       # subsetting to year 2005 and NUTS-3 level
       dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpDE5fAm/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
     df_lab <- label_eurostat(df)
     names(df_lab) <- paste0("lab",names(df_lab))
@@ -1233,9 +1238,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
 
-    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmpDE5fAm/eurostat/df60.RData
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
 
     cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
     cnames <- merge(cnames,df2,by="labgeo")
@@ -1275,51 +1280,135 @@ Maps
 
 ![](fig/maps6-1.png)
 
-For further examples, see also the [blog post on the eurostat R
-package](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+**Finland with labels**
 
-Citing the package
-==================
+    library(eurostat)
+    # Downloading and manipulating the tabular data
+    df <- get_eurostat("tgs00026", time_format = "raw") %>% 
+      # subsetting to year 2005 and NUTS-3 level
+      dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("FI",geo))
 
-**Citing the Data** Kindly cite
-[Eurostat](http://ec.europa.eu/eurostat/).
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
-**Citing the R tools** This work can be freely used, modified and
-distributed under the BSD-2-clause (modified FreeBSD) license:
+    ## Table  tgs00026  read from cache file:  /tmp/RtmphRqiDL/eurostat/tgs00026_raw_code_TF.rds
 
-    citation("eurostat")
+    df_lab <- label_eurostat(df)
+    names(df_lab) <- paste0("lab",names(df_lab))
+
+    df2 <- cbind(df,df_lab)
+
+    # categorise
+    df2$cat <- cut_to_classes(df2$values)
+
+    ## Warning in classInt::classIntervals(x, n = n, style = style): n same
+    ## as number of different finite values\neach different finite value is a
+    ## separate class
+
+    ## Warning in classIntervals(x, n = n, style = style): n same as number of
+    ## different finite values\neach different finite value is a separate class
+
+    # merge with geodata
+    plot_map <- merge_eurostat_geodata(data=df2,geocolumn="geo",resolution = "60")
 
     ## 
-    ## Kindly cite the eurostat R package as follows:
+    ##       COPYRIGHT NOTICE
     ## 
-    ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2016. eurostat R package URL:
-    ##   https://github.com/rOpenGov/eurostat
+    ##       When data downloaded from this page 
+    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+    ##       is used in any printed or electronic publication, 
+    ##       in addition to any other provisions 
+    ##       applicable to the whole Eurostat website, 
+    ##       data source will have to be acknowledged 
+    ##       in the legend of the map and 
+    ##       in the introductory page of the publication 
+    ##       with the following copyright notice:
     ## 
-    ## A BibTeX entry for LaTeX users is
+    ##       - EN: (C) EuroGeographics for the administrative boundaries
+    ##       - FR: (C) EuroGeographics pour les limites administratives
+    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
     ## 
-    ##   @Misc{,
-    ##     title = {eurostat R package},
-    ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-    ##     year = {2014-2016},
-    ##     url = {https://github.com/rOpenGov/eurostat},
-    ##   }
+    ##       For publications in languages other than 
+    ##       English, French or German, 
+    ##       the translation of the copyright notice 
+    ##       in the language of the publication shall be used.
+    ## 
+    ##       If you intend to use the data commercially, 
+    ##       please contact EuroGeographics for 
+    ##       information regarding their licence agreements.
+    ## 
 
-Acknowledgements
+    ## Reading cache file /tmp/RtmphRqiDL/eurostat/df60.RData
+
+    ## data.frame at resolution 1: 60  read from cache file:  /tmp/RtmphRqiDL/eurostat/df60.RData
+
+    cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
+    cnames <- merge(cnames,df2,by="labgeo")
+
+    # plot map
+    p <- ggplot(data=plot_map, aes(long,lat,group=group))
+    p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
+    p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
+    p <- p + geom_label(data=cnames, aes(long, lat, label = paste(labgeo,"\n",values,"€"), group=labgeo,fill=cat), 
+                        size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
+    p <- p + coord_map(project="orthographic")
+    p <- p + labs(title = paste0("Disposable household incomes in 2005"))
+    p <- p +  theme(legend.position = c(0.1,0.03), 
+                    legend.justification=c(0,0),
+                    legend.key.size=unit(6,'mm'),
+                    legend.direction = "vertical",
+                    legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
+                    legend.text=element_text(size=12), 
+                    legend.title=element_text(size=12), 
+                    title=element_text(size=16), 
+                    panel.background = element_blank(), 
+                    plot.background = element_blank(),
+                    panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                    panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
+                    axis.text = element_blank(), 
+                    axis.title = element_blank(), 
+                    axis.ticks = element_blank(), 
+                    plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
+    p <- p + guides(fill = guide_legend(title = "EUR per Year",
+                                        title.position = "top", 
+                                        title.hjust=0))
+    p
+
+    ## Warning in grid.Call.graphics(L_rect, x$x, x$y, x$width, x$height,
+    ## resolveHJust(x$just, : semi-transparency is not supported on this device:
+    ## reported only once per page
+
+![](fig/mapsfi-1.png)
+
+Further examples
 ================
 
-We are grateful to all
-[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
-and [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This
-[rOpenGov](http://ropengov.github.io) R package is based on earlier CRAN
-packages [statfi](https://cran.r-project.org/package=statfi) and
-[smarterpoland](https://cran.r-project.org/package=SmarterPoland). The
-[datamart](https://cran.r-project.org/package=datamart) and
-[reurostat](https://github.com/Tungurahua/reurostat) packages seem to
-develop related Eurostat tools but at the time of writing this tutorial
-this package seems to be in an experimental stage. The
-[quandl](https://cran.r-project.org/package=quandl) package may also
-provides access to some versions of eurostat data sets.
+For further examples, see:
+
+-   [Blog
+    post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+-   [Journal
+    manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
+
+Citation, acknowledgements and related work
+===========================================
+
+For package authors, contributors, citation instructions, and contact
+information, see the [README](../README.md)
+
+This [rOpenGov](http://ropengov.github.io) R package is based on the
+earlier CRAN packages
+[statfi](https://cran.r-project.org/package=statfi) and
+[smarterpoland](https://cran.r-project.org/package=SmarterPoland).
+
+The independent [reurostat](https://github.com/Tungurahua/reurostat)
+package develops related Eurostat tools but seems to be in an
+experimental stage at the time of writing this tutorial.
+
+The more generic [quandl](https://cran.r-project.org/package=quandl) and
+[datamart](https://cran.r-project.org/package=datamart) packages may
+provide access to some versions of eurostat data but these packages are
+more generic and hence, in contrast to the eurostat R package, lack
+tools that are specifically customized to facilitate eurostat analysis.
 
 Session info
 ============

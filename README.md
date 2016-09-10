@@ -21,15 +21,9 @@ For detailed examples, see:
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
 
-### Citing the package
-
-Kindly cite the package as: eurostat R package (2016). [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski). URL: https://github.com/rOpenGov/eurostat/
-
 ### Contribute
 
-Many thanks to [all
-contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)!
-Further contributions are very welcome. You can, for instance:
+Contributions are very welcome. You can, for instance:
 
   * Provide feedback, suggestions and bug reports, preferably via [issue tracker](https://github.com/ropengov/eurostat/issues) or by direct e-mail to the package authors
   * Fork and [send pull requests](https://github.com/ropengov/eurostat/) to the functions, vignettes, documentation, tests, or use cases. 
@@ -38,6 +32,34 @@ Further contributions are very welcome. You can, for instance:
 The project activity chart:
 
 [![Throughput Graph](https://graphs.waffle.io/rOpenGov/eurostat/throughput.svg)](https://waffle.io/rOpenGov/eurostat/metrics/throughput)
+
+
+
+# Citation and acknowledgements
+
+
+### Acknowledgements
+
+Main developers include: [Leo Lahti](https://github.com/antagomir), [Przemyslaw Biecek](https://github.com/pbiecek), [Janne Huovari](https://github.com/jhuovari), [Markus Kainu](https://github.com/muuankarski).
+
+We are grateful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors) and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
+
+
+### Citing the data sources
+
+**Citing Eurostat data** For eurostat data, kindly cite [Eurostat](http://ec.europa.eu/eurostat/).
+
+**Citing geographic data** For administrative boundaries, cite EuroGeographics.
+
+
+### Citing the R package
+
+**Citing the eurostat R package** This work can be freely used, modified and
+distributed under the BSD-2-clause (modified FreeBSD) license:
+
+```{r citation, message=FALSE, eval=TRUE}
+citation("eurostat")
+```
 
 
 ### Disclaimer
