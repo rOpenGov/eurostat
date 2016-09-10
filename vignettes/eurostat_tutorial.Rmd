@@ -15,7 +15,7 @@ vignette: >
 This [rOpenGov](http://ropengov.github.io) R package provides tools to
 access [Eurostat database](http://ec.europa.eu/eurostat/). For contact
 information and source code, see
-[README](https://github.com/rOpenGov/eurostat).
+the [README](https://github.com/rOpenGov/eurostat).
 
 ```{r setup, include=FALSE}
 # Global options
@@ -412,7 +412,7 @@ For further examples, see:
 
 
 
-# Citation, acknowledgements and related work
+# Citations and related work
 
 ### Citing the data sources
 
@@ -423,6 +423,8 @@ Administrative boundaries: cite EuroGeographics
 
 ### Citing the eurostat R package
 
+For main developers and contributors, see the [README](../README.md).
+
 This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
 
@@ -430,9 +432,7 @@ BSD-2-clause (modified FreeBSD) license:
 citation("eurostat")
 ```
 
-### Acknowledgements
-
-For main developers and contributors, see the [README](../README.md).
+### Related work
 
 This [rOpenGov](http://ropengov.github.io) R package is based on the
 earlier CRAN packages
@@ -456,7 +456,7 @@ eurostat analysis.
 For contact information, see the [README](../README.md).
 
 
-# Session info
+# Version info
 
 This tutorial was created with
 
