@@ -1,9 +1,9 @@
 #' @title Countries and Country Codes 
 #' @description Countries and country codes in EU,
 #' Euro area, EFTA and EU candidate countries.
-#' @format A data.frame:
+#' @format A data_frame:
 #' \describe{
-#'   \item{code}{Country code in the eurostat database}
+#'   \item{code}{Country code in the Eurostat database}
 #'   \item{name}{Country name in English}
 #' }
 #' @source \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
@@ -17,4 +17,4 @@
 "efta_countries"
 
 #' @rdname eu_countries
-"candidate_countries"
+"eu_candidate_countries"

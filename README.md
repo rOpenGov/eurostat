@@ -16,7 +16,7 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 For detailed examples, see:
 
  * [package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
- * [journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) for reproducible examples for the manuscript (in preparation)
+ * [journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) with reproducible examples
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
 

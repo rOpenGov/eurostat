@@ -2,14 +2,14 @@
 % Please edit documentation in R/data_countries.R
 \docType{data}
 \name{eu_countries}
-\alias{candidate_countries}
 \alias{ea_countries}
 \alias{efta_countries}
+\alias{eu_candidate_countries}
 \alias{eu_countries}
 \title{Countries and Country Codes}
-\format{A data.frame:
+\format{A data_frame:
 \describe{
-  \item{code}{Country code in the eurostat database}
+  \item{code}{Country code in the Eurostat database}
   \item{name}{Country name in English}
 }}
 \source{
@@ -23,7 +23,7 @@ ea_countries
 
 efta_countries
 
-candidate_countries
+eu_candidate_countries
 }
 \description{
 Countries and country codes in EU,

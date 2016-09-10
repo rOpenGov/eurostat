@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-09-10"
+date: "2016-09-11"
 bibliography: 
 - references.bib
 output: 
@@ -14,17 +14,26 @@ output:
 %\usepackage[utf8]{inputenc}
 -->
 
-This document provides reproducible documentation to generate the
-figures and tables for [our manuscript (in
-preparation)](RJwrapper.pdf) introducing the [eurostat R
-package](https://github.com/rOpenGov/eurostat). We assume below that
-the required R extensions have already been installed.
+This document reproduces the figures and tables for [our manuscript
+(in preparation)](RJwrapper.pdf) on the [eurostat R
+package](https://github.com/rOpenGov/eurostat), assuming that the
+required R extensions have been installed.
 
-To reproduce the manuscript figures and tables, clone the [eurostat
-repository](https://github.com/rOpenGov/eurostat), navigate to the
+To reproduce the manuscript, clone the
+[repository](https://github.com/rOpenGov/eurostat), navigate to the
 [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
 subdirectory and convert the [Rmarkdown source
-code](lahti-huovari-kainu-biecek.Rmd) in R with:
+code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the
+[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
+folder, and running in R:
+
+
+```r
+source("main.R")
+```
+
+Alternatively, you can proceed in steps as follows. Generate the
+manuscript figures (PNG) in the working directory:
 
 
 ```r
@@ -32,18 +41,8 @@ library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
-This reproduces the manuscript figures as PNG images in the working
-directory. To reproduce the complete manuscript PDF, navigate in the
-[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
-folder, and run in R:
 
-
-```r
-source("main.R")
-```
-
-
-Let us first load some external R packages
+Load the required R packages.
 
 
 ```r
@@ -187,7 +186,33 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
 
 ![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png)
 
-## Production of renewable energy
+
+
+
+## Body-mass index
+
+
+```r
+library(dplyr)
+tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
+tmp1 %>%
+  dplyr::filter( isced97 == "TOTAL" ,
+          sex != "T",
+          age != "TOTAL", geo == "PL") %>%
+  mutate(BMI = factor(bmi, 
+                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
+                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
+  arrange(BMI) %>%
+  ggplot(aes(y=values, x=age, fill=BMI)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~sex) + coord_flip() +
+  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
+```
+
+![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png)
+
+
+## Renewable energy production
 
 
 ```r
@@ -230,29 +255,6 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
 
 ![plot of chunk 2015-manu-energy](./2015-manu-energy-1.png)
 
-
-
-## Body-mass index
-
-
-```r
-library(dplyr)
-tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
-tmp1 %>%
-  dplyr::filter( isced97 == "TOTAL" ,
-          sex != "T",
-          age != "TOTAL", geo == "PL") %>%
-  mutate(BMI = factor(bmi, 
-                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
-                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
-  arrange(BMI) %>%
-  ggplot(aes(y=values, x=age, fill=BMI)) +
-  geom_bar(stat="identity") +
-  facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
-```
-
-![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png)
 
 
 ## Map visualization

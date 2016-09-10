@@ -1,7 +1,7 @@
 #' @title Transform Data into Row-Column-Value Format
 #' @description Transform raw Eurostat data table into the row-column-value
 #' format (RCV).
-#' @param dat a data.frame from \code{\link{get_eurostat_raw}}.
+#' @param dat a data_frame from \code{\link{get_eurostat_raw}}.
 #' @param time_format a string giving a type of the conversion of the
 #'                    time column from the eurostat format.
 #'                    A "date" (default) convers to a \code{\link{Date}}

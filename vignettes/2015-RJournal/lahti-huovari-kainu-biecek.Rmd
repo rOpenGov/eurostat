@@ -14,34 +14,33 @@ output:
 %\usepackage[utf8]{inputenc}
 -->
 
-This document provides reproducible documentation to generate the
-figures and tables for [our manuscript (in
-preparation)](RJwrapper.pdf) introducing the [eurostat R
-package](https://github.com/rOpenGov/eurostat). We assume below that
-the required R extensions have already been installed.
+This document reproduces the figures and tables for [our manuscript
+(in preparation)](RJwrapper.pdf) on the [eurostat R
+package](https://github.com/rOpenGov/eurostat), assuming that the
+required R extensions have been installed.
 
-To reproduce the manuscript figures and tables, clone the [eurostat
-repository](https://github.com/rOpenGov/eurostat), navigate to the
+To reproduce the manuscript, clone the
+[repository](https://github.com/rOpenGov/eurostat), navigate to the
 [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
 subdirectory and convert the [Rmarkdown source
-code](lahti-huovari-kainu-biecek.Rmd) in R with:
+code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the
+[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
+folder, and running in R:
+
+```{r 2015-manu-manuscript, echo=TRUE, message=FALSE, eval=FALSE}
+source("main.R")
+```
+
+Alternatively, you can proceed in steps as follows. Generate the
+manuscript figures (PNG) in the working directory:
 
 ```{r 2015-manu-generate, echo=TRUE, message=FALSE, eval=FALSE}
 library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
-This reproduces the manuscript figures as PNG images in the working
-directory. To reproduce the complete manuscript PDF, navigate in the
-[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
-folder, and run in R:
 
-```{r 2015-manu-manuscript, echo=TRUE, message=FALSE, eval=FALSE}
-source("main.R")
-```
-
-
-Let us first load some external R packages
+Load the required R packages.
 
 ```{r 2015-manu-init0, echo=TRUE, message=FALSE}
 # Load libraries
@@ -141,7 +140,30 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
                    aes(fill=geo,label=geo),color="white")
 ```
 
-## Production of renewable energy
+
+
+
+## Body-mass index
+
+```{r 2015-manu-bmi, echo=TRUE, message=FALSE}
+library(dplyr)
+tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
+tmp1 %>%
+  dplyr::filter( isced97 == "TOTAL" ,
+          sex != "T",
+          age != "TOTAL", geo == "PL") %>%
+  mutate(BMI = factor(bmi, 
+                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
+                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
+  arrange(BMI) %>%
+  ggplot(aes(y=values, x=age, fill=BMI)) +
+  geom_bar(stat="identity") +
+  facet_wrap(~sex) + coord_flip() +
+  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
+```
+
+
+## Renewable energy production
 
 ```{r 2015-manu-energy, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=8}
 dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
@@ -183,26 +205,6 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
 
 
 
-## Body-mass index
-
-```{r 2015-manu-bmi, echo=TRUE, message=FALSE}
-library(dplyr)
-tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
-tmp1 %>%
-  dplyr::filter( isced97 == "TOTAL" ,
-          sex != "T",
-          age != "TOTAL", geo == "PL") %>%
-  mutate(BMI = factor(bmi, 
-                      levels=c("LT18P5","18P5-25","25-30","GE30"), 
-                      labels=c("<18.5", "18.5-25", "25-30",">30"))) %>%
-  arrange(BMI) %>%
-  ggplot(aes(y=values, x=age, fill=BMI)) +
-  geom_bar(stat="identity") +
-  facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
-```
-
-
 ## Map visualization
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
@@ -226,7 +228,6 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   labs(title="Dispostable household income") +
   coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) + theme_minimal() +
   guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
-
 ```
 
 
