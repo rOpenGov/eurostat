@@ -911,122 +911,27 @@ types in 2012 for all countries where data is available:
 Maps
 ----
 
-**Quick demo1 - whole Europe at country level resolution 1:60mln**
+### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
 
-    # Data from Eurostat
-    eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
-      # subset to have only a single row per geo
-      dplyr::filter(sex == "T", time %in% 2014) %>% 
-      # merge with geodata
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
-      # plot map
-      ggplot(data=., aes(x=long,y=lat,group=group)) +
-      geom_polygon(aes(fill=values),color="white")
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/tsdtr420_num_code_TF.rds
-
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/tsdtr420_num_code_TF.rds
-
-    ## 
-    ##       COPYRIGHT NOTICE
-    ## 
-    ##       When data downloaded from this page 
-    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ##       is used in any printed or electronic publication, 
-    ##       in addition to any other provisions 
-    ##       applicable to the whole Eurostat website, 
-    ##       data source will have to be acknowledged 
-    ##       in the legend of the map and 
-    ##       in the introductory page of the publication 
-    ##       with the following copyright notice:
-    ## 
-    ##       - EN: (C) EuroGeographics for the administrative boundaries
-    ##       - FR: (C) EuroGeographics pour les limites administratives
-    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ##       For publications in languages other than 
-    ##       English, French or German, 
-    ##       the translation of the copyright notice 
-    ##       in the language of the publication shall be used.
-    ## 
-    ##       If you intend to use the data commercially, 
-    ##       please contact EuroGeographics for 
-    ##       information regarding their licence agreements.
-    ## 
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/df60.RData
-
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/df60.RData
-
-![](fig/maps7-1.png)
-
-**Quick demo2 - Poland at NUTS3 level reso 1:1mln**
-
+    library(eurostat)
+    library(dplyr)
+    library(ggplot2)
     # Data from Eurostat
     eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
       # subset to have only a single row per geo
-      dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
-      # merge with geodata
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01") %>% 
-      # plot map
-      ggplot(data=., aes(x=long,y=lat,group=group)) +
-      geom_polygon(aes(fill=values),color="white")
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    ## 
-    ##       COPYRIGHT NOTICE
-    ## 
-    ##       When data downloaded from this page 
-    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ##       is used in any printed or electronic publication, 
-    ##       in addition to any other provisions 
-    ##       applicable to the whole Eurostat website, 
-    ##       data source will have to be acknowledged 
-    ##       in the legend of the map and 
-    ##       in the introductory page of the publication 
-    ##       with the following copyright notice:
-    ## 
-    ##       - EN: (C) EuroGeographics for the administrative boundaries
-    ##       - FR: (C) EuroGeographics pour les limites administratives
-    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ##       For publications in languages other than 
-    ##       English, French or German, 
-    ##       the translation of the copyright notice 
-    ##       in the language of the publication shall be used.
-    ## 
-    ##       If you intend to use the data commercially, 
-    ##       please contact EuroGeographics for 
-    ##       information regarding their licence agreements.
-    ## 
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/df01.RData
-
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/df01.RData
-
-![](fig/maps8-1.png)
-
-**Quick demo3 - whole Europe at country level reso 1:60mln**
-
-    # Data from Eurostat
-    eurostat::get_eurostat(id = "tsdtr420", time_format = "num") %>% 
-      # subset to have only a single row per geo
-      dplyr::filter(sex == "T", time == 2014) %>% 
+      dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
       # categorise
-      dplyr::mutate(cat = cut_to_classes(values)) %>% 
+      dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>% 
       # merge with geodata
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
+      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class = "df", all_regions = TRUE) %>% 
       # plot map
       ggplot(data=., aes(x=long,y=lat,group=group)) +
-      geom_polygon(aes(fill=cat),color="white") +
+      geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/tsdtr420_num_code_TF.rds
+    ## Reading cache file /tmp/RtmpxmwXLV/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tsdtr420  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/tsdtr420_num_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpxmwXLV/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1055,161 +960,31 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpxmwXLV/eurostat/df60.RData
 
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpxmwXLV/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
-**Quick demo4 - Poland at NUTS3 level reso 1:1mln**
-
-    eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
-      # subset to have only a single row per geo
-      dplyr::filter(time == 2010, grepl("PL",geo), nchar(as.character(geo)) == 4) %>% 
-      # categorise
-      dplyr::mutate(cat = cut_to_classes(values, n = 3)) %>% 
-      # merge with geodata
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01") %>% 
-      # plot map
-      ggplot(data=., aes(x=long,y=lat,group=group)) +
-      geom_polygon(aes(fill=cat),color="white") +
-      scale_fill_brewer(palette ="Oranges")
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    ## 
-    ##       COPYRIGHT NOTICE
-    ## 
-    ##       When data downloaded from this page 
-    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ##       is used in any printed or electronic publication, 
-    ##       in addition to any other provisions 
-    ##       applicable to the whole Eurostat website, 
-    ##       data source will have to be acknowledged 
-    ##       in the legend of the map and 
-    ##       in the introductory page of the publication 
-    ##       with the following copyright notice:
-    ## 
-    ##       - EN: (C) EuroGeographics for the administrative boundaries
-    ##       - FR: (C) EuroGeographics pour les limites administratives
-    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ##       For publications in languages other than 
-    ##       English, French or German, 
-    ##       the translation of the copyright notice 
-    ##       in the language of the publication shall be used.
-    ## 
-    ##       If you intend to use the data commercially, 
-    ##       please contact EuroGeographics for 
-    ##       information regarding their licence agreements.
-    ## 
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/df01.RData
-
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/df01.RData
-
-![](fig/maps2-1.png)
-
-**Reproducing the map in the journal manuscript**
+### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using ggplot2
 
     library(eurostat)
+    library(dplyr)
+    library(ggplot2)
     library(RColorBrewer)
-    # Downloading and manipulating the tabular data
-    get_eurostat("tgs00026", time_format = "raw") %>% 
-      # subsetting to year 2005 and NUTS-3 level
-      dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
-      # categorise
-      dplyr::mutate(cat = cut_to_classes(values)) %>% 
-      # merge with geodata
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60") %>% 
-      # plot map
-      ggplot(data=., aes(long,lat,group=group)) + 
-        geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
-        scale_fill_manual(values=c("dim grey",brewer.pal(n = 5, name = "Oranges"))) +
-        coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) +
-        labs(title = paste0("Disposable household incomes in 2005")) +
-        theme(legend.position = c(0.03,0.40), 
-                    legend.justification=c(0,0),
-                    legend.key.size=unit(6,'mm'),
-                    legend.direction = "vertical",
-                    legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
-                    legend.text=element_text(size=12), 
-                    legend.title=element_text(size=12), 
-                    title=element_text(size=16), 
-                    panel.background = element_blank(), 
-                    plot.background = element_blank(),
-                    panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
-                    panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
-                    axis.text = element_blank(), 
-                    axis.title = element_blank(), 
-                    axis.ticks = element_blank(), 
-                    plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm")) +
-        guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    ## 
-    ##       COPYRIGHT NOTICE
-    ## 
-    ##       When data downloaded from this page 
-    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ##       is used in any printed or electronic publication, 
-    ##       in addition to any other provisions 
-    ##       applicable to the whole Eurostat website, 
-    ##       data source will have to be acknowledged 
-    ##       in the legend of the map and 
-    ##       in the introductory page of the publication 
-    ##       with the following copyright notice:
-    ## 
-    ##       - EN: (C) EuroGeographics for the administrative boundaries
-    ##       - FR: (C) EuroGeographics pour les limites administratives
-    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ##       For publications in languages other than 
-    ##       English, French or German, 
-    ##       the translation of the copyright notice 
-    ##       in the language of the publication shall be used.
-    ## 
-    ##       If you intend to use the data commercially, 
-    ##       please contact EuroGeographics for 
-    ##       information regarding their licence agreements.
-    ## 
-
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/df60.RData
-
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/df60.RData
-
-    ## Warning in grid.Call.graphics(L_polygon, x$x, x$y, index): semi-
-    ## transparency is not supported on this device: reported only once per page
-
-![](fig/maps4-1.png)
-
-**Poland with labels**
-
-    library(eurostat)
     # Downloading and manipulating the tabular data
     df <- get_eurostat("tgs00026", time_format = "raw") %>% 
       # subsetting to year 2005 and NUTS-3 level
-      dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo))
+      dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
+      # label the single geo column
+      mutate(label = label_eurostat(.)[["geo"]],
+             cat = cut_to_classes(values)) %>% 
+      # merge with geodata
+      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpxmwXLV/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/tgs00026_raw_code_TF.rds
-
-    df_lab <- label_eurostat(df)
-    names(df_lab) <- paste0("lab",names(df_lab))
-
-    df2 <- cbind(df,df_lab)
-
-    # categorise
-    df2$cat <- cut_to_classes(df2$values)
-
-    # merge with geodata
-    plot_map <- merge_eurostat_geodata(data=df2,geocolumn="geo",resolution = "60")
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpxmwXLV/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1238,47 +1013,794 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpIJ2Sv6/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpxmwXLV/eurostat/df01.RData
 
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpIJ2Sv6/eurostat/df60.RData
-
-    cnames <- stats:::aggregate.formula(cbind(long, lat) ~ labgeo, data=plot_map, mean) # region names
-    cnames <- merge(cnames,df2,by="labgeo")
+    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpxmwXLV/eurostat/df01.RData
 
     # plot map
-    p <- ggplot(data=plot_map, aes(long,lat,group=group))
+    p <- ggplot(data=df, aes(long,lat,group=group))
     p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
     p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
-    p <- p + geom_label(data=cnames, aes(long, lat, label = paste(labgeo,"\n",values,"€"), group=labgeo,fill=cat), 
+
+    p <- p + geom_label(data=df %>% group_by(label,values,cat) %>% summarise(long = mean(long),
+                                                             lat = mean(lat)), 
+                        aes(long, lat, label = paste(label,"\n",values,"€"), group=label,fill=cat), 
                         size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
-    p <- p + coord_map(project="orthographic")
     p <- p + labs(title = paste0("Disposable household incomes in 2005"))
-    p <- p +  theme(legend.position = c(0.1,0.03), 
-                    legend.justification=c(0,0),
-                    legend.key.size=unit(6,'mm'),
-                    legend.direction = "vertical",
-                    legend.background=element_rect(colour=NA, fill=alpha("white", 2/3)),
-                    legend.text=element_text(size=12), 
-                    legend.title=element_text(size=12), 
-                    title=element_text(size=16), 
-                    panel.background = element_blank(), 
-                    plot.background = element_blank(),
-                    panel.grid.minor = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
-                    panel.grid.major = element_line(colour = 'Grey80', size = .5, linetype = 'solid'),
-                    axis.text = element_blank(), 
-                    axis.title = element_blank(), 
-                    axis.ticks = element_blank(), 
-                    plot.margin = unit(c(-3,-1.5, -3, -1.5), "cm"))
-    p <- p + guides(fill = guide_legend(title = "EUR per Year",
-                                        title.position = "top", 
-                                        title.hjust=0))
+    p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
     p
 
-    ## Warning in grid.Call.graphics(L_rect, x$x, x$y, x$width, x$height,
-    ## resolveHJust(x$just, : semi-transparency is not supported on this device:
-    ## reported only once per page
+![](fig/maps2-1.png)
 
-![](fig/maps6-1.png)
+### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
+
+    library(sp)
+    library(eurostat)
+    library(dplyr)
+    get_eurostat("tgs00026", time_format = "raw") %>% 
+      # subsetting to year 2005 and NUTS-3 level
+      dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+      # classifying the values the variable
+      dplyr::mutate(cat = cut_to_classes(values)) %>% 
+      # merge Eurostat data with geodata from Cisco
+      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) %>% 
+      # plot map
+      sp::spplot(obj = ., "cat", main = "Dispostable household income", xlim=c(-22,34), ylim=c(35,70), 
+                 col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")), col = "white")
+
+    ## Reading cache file /tmp/RtmpxmwXLV/eurostat/tgs00026_raw_code_TF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpxmwXLV/eurostat/tgs00026_raw_code_TF.rds
+
+    ## 
+    ##       COPYRIGHT NOTICE
+    ## 
+    ##       When data downloaded from this page 
+    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+    ##       is used in any printed or electronic publication, 
+    ##       in addition to any other provisions 
+    ##       applicable to the whole Eurostat website, 
+    ##       data source will have to be acknowledged 
+    ##       in the legend of the map and 
+    ##       in the introductory page of the publication 
+    ##       with the following copyright notice:
+    ## 
+    ##       - EN: (C) EuroGeographics for the administrative boundaries
+    ##       - FR: (C) EuroGeographics pour les limites administratives
+    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
+    ## 
+    ##       For publications in languages other than 
+    ##       English, French or German, 
+    ##       the translation of the copyright notice 
+    ##       in the language of the publication shall be used.
+    ## 
+    ##       If you intend to use the data commercially, 
+    ##       please contact EuroGeographics for 
+    ##       information regarding their licence agreements.
+    ## 
+
+    ## Reading cache file /tmp/RtmpxmwXLV/eurostat/spdf10.RData
+
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpxmwXLV/eurostat/spdf10.RData
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+![](fig/maps3-1.png)
 
 Further examples
 ================
@@ -1312,7 +1834,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## Kindly cite the eurostat R package as follows:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2016. eurostat R package. R package version 2.0.1 URL:
+    ##   2014-2016. eurostat R package. R package version 2.1.0002 URL:
     ##   https://github.com/rOpenGov/eurostat
     ## 
     ## A BibTeX entry for LaTeX users is
@@ -1322,7 +1844,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
     ##     year = {2014-2016},
     ##     url = {https://github.com/rOpenGov/eurostat},
-    ##     note = {R package version 2.0.1},
+    ##     note = {R package version 2.1.0002},
     ##   }
 
 ### Related work
@@ -1370,17 +1892,17 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] RColorBrewer_1.1-2 plotrix_3.6-2      ggplot2_2.1.0     
-    ## [4] tidyr_0.5.1        rvest_0.3.2        xml2_1.0.0        
-    ## [7] eurostat_2.0.1     rmarkdown_0.9.6.14 knitr_1.13        
+    ##  [1] sp_1.2-3           RColorBrewer_1.1-2 dplyr_0.5.0       
+    ##  [4] plotrix_3.6-2      ggplot2_2.1.0      tidyr_0.5.1       
+    ##  [7] rvest_0.3.2        xml2_1.0.0         eurostat_2.1.0002 
+    ## [10] rmarkdown_0.9.6.14 knitr_1.13        
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.7      formatR_1.4      highr_0.6        plyr_1.8.4      
     ##  [5] class_7.3-14     tools_3.3.1      digest_0.6.9     jsonlite_1.0    
     ##  [9] evaluate_0.9     tibble_1.1       gtable_0.2.0     lattice_0.20-33 
-    ## [13] DBI_0.4-1        mapproj_1.2-4    curl_0.9.7       yaml_2.1.13     
-    ## [17] e1071_1.6-7      httr_1.2.1       stringr_1.0.0    dplyr_0.5.0     
-    ## [21] maps_3.1.0       classInt_0.1-23  grid_3.3.1       R6_2.1.2        
-    ## [25] sp_1.2-3         readr_0.2.2      magrittr_1.5     scales_0.4.0    
-    ## [29] htmltools_0.3.5  assertthat_0.1   colorspace_1.2-6 labeling_0.3    
-    ## [33] stringi_1.1.1    lazyeval_0.2.0   munsell_0.4.3
+    ## [13] DBI_0.4-1        rgdal_1.1-10     curl_0.9.7       yaml_2.1.13     
+    ## [17] e1071_1.6-7      httr_1.2.1       stringr_1.0.0    classInt_0.1-23 
+    ## [21] grid_3.3.1       R6_2.1.2         readr_0.2.2      magrittr_1.5    
+    ## [25] scales_0.4.0     htmltools_0.3.5  assertthat_0.1   colorspace_1.2-6
+    ## [29] labeling_0.3     stringi_1.1.1    lazyeval_0.2.0   munsell_0.4.3
