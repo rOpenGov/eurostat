@@ -26,7 +26,7 @@ get_eurostat_dic <- function(dictname, lang = "en") {
                     dictname, ".dic")
     dict <- readr::read_tsv(tname, col_names = c("code_name", "full_name"),
                     col_types = readr::cols(.default = readr::col_character()))
-    dict <- mutate(dict, full_name = gsub(pattern="\u0092", replacement="'", full_name))
+    dict$full_name <- gsub(pattern="\u0092", replacement="'", dict$full_name)
 
     assign(dictlang, dict, envir = .EurostatEnv)
   }
