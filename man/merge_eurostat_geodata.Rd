@@ -19,13 +19,13 @@ consists of values following current NUTS classification}
 
 \item{output_class}{A string. Class of object returned, either \code{df} (\code{data_frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
 
+\item{all_regions}{Logical. To include all the regions from spatial data or only the ones included in the fetched Eurostat attribute data}
+
 \item{cache}{cache. Logical.}
 
 \item{update_cache}{Update cache. Logical.}
 
 \item{cache_dir}{Cache directory.}
-
-\item{all_regions.}{Logical. To include all the regions from spatial data or only the ones included in the fetched Eurostat attribute data}
 }
 \value{
 a data_frame or SpatialPolygonDataFrame.
@@ -36,7 +36,8 @@ Merges data_frame obtained from Eurostat with \code{get_eurostat} with geospatia
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lpl <- merge_eurostat_geodata(lp, geocolumn="geo", resolution=60, output_class="df", all_regions=FALSE)
+   lpl <- merge_eurostat_geodata(lp, geocolumn="geo", resolution=60,
+     	                    output_class="df", all_regions=FALSE)
    str(lpl)
  }
  
