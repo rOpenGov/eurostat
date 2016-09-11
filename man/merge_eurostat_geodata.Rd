@@ -5,8 +5,8 @@
 \title{Merge Preprocessed Geospatial Data from CISGO with data_frame from Eurostat}
 \usage{
 merge_eurostat_geodata(data, geocolumn = "geo", resolution = "60",
-  output_class = "df", cache = TRUE, update_cache = FALSE,
-  cache_dir = NULL)
+  output_class = "df", all_regions = FALSE, cache = TRUE,
+  update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
 \item{data}{A data_frame including a character vector that
@@ -24,6 +24,8 @@ consists of values following current NUTS classification}
 \item{update_cache}{Update cache. Logical.}
 
 \item{cache_dir}{Cache directory.}
+
+\item{all_regions.}{Logical. To include all the regions from spatial data or only the ones included in the fetched Eurostat attribute data}
 }
 \value{
 a data_frame or SpatialPolygonDataFrame.
@@ -34,7 +36,7 @@ Merges data_frame obtained from Eurostat with \code{get_eurostat} with geospatia
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lpl <- merge_eurostat_geodata(lp, geocolumn="geo", resolution=60, output_class="df")
+   lpl <- merge_eurostat_geodata(lp, geocolumn="geo", resolution=60, output_class="df", all_regions=FALSE)
    str(lpl)
  }
  
