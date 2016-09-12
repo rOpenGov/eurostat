@@ -313,7 +313,7 @@ country\footnote{http://ec.europa.eu/eurostat/web/nuts/overview}
 +   ggplot(data=., aes(long,lat,group=group)) +
 +   geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
 +   scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges")) +
-+   labs(title="Dispostable household income") +
++   labs(title="Disposable household income") +
 +   coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) + theme_minimal() +
 +   guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 \end{example}
@@ -330,7 +330,7 @@ additional visualization tools and other utilities including
 \setkeys{Gin}{width=.8\textwidth}
 \begin{center}
 \includegraphics{2015-manu-mapexample-1}
-\caption{Dispostable income of private households across NUTS2-level national regions in European countries visualized based on geospatial data available from Eurostat.}
+\caption{Disposable income of private households across NUTS2-level national regions in European countries visualized based on geospatial data available from Eurostat.}
 \label{fig:mapexample}
 \end{center}
 \end{figure}

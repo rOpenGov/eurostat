@@ -20,7 +20,7 @@ the [README](https://github.com/rOpenGov/eurostat).
 ```{r setup, include=FALSE}
 # Global options
 library(knitr)
-opts_chunk$set(fig.path="fig/", dev='CairoPNG')
+opts_chunk$set(fig.path="fig/")
 ```
 
 # Installation
@@ -268,7 +268,7 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 
 ### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using ggplot2
 
-```{r maps2, fig.width=8, fig.height=8}
+```{r maps2, fig.width=8, fig.height=8, dev='CairoPNG'}
 library(eurostat)
 library(dplyr)
 library(ggplot2)
@@ -312,7 +312,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw") %>%
   merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
 # plot map
-sp::spplot(obj = dat, "cat", main = "Dispostable household income",
+sp::spplot(obj = dat, "cat", main = "Disposable household income",
 	   xlim=c(-22,34), ylim=c(35,70), 
            col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
 	   col = "white", usePolypath = FALSE)
