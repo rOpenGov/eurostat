@@ -1084,7 +1084,7 @@ Maps
     sp::spplot(obj = dat, "cat", main = "Dispostable household income",
            xlim=c(-22,34), ylim=c(35,70), 
                col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
-           col = "white")
+           col = "white", usePolypath = FALSE)
 
     ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
     ## winding = 1L, : Path drawing not available for this device
