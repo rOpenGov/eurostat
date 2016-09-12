@@ -20,7 +20,7 @@ the [README](https://github.com/rOpenGov/eurostat).
 ```{r setup, include=FALSE}
 # Global options
 library(knitr)
-opts_chunk$set(fig.path="fig/")
+opts_chunk$set(fig.path="fig/", dev='CairoPNG')
 ```
 
 # Installation
