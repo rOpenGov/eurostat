@@ -268,7 +268,7 @@ eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 
 ### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using ggplot2
 
-```{r maps2, fig.width=8, fig.height=8, dev='CairoPNG'}
+```{r maps2, fig.width=8, fig.height=8}
 library(eurostat)
 library(dplyr)
 library(ggplot2)
@@ -299,7 +299,7 @@ p
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
 
-```{r maps3, fig.width=8, fig.height=8}
+```{r maps3, fig.width=8, fig.height=8, dev='CairoPNG'}
 library(sp)
 library(eurostat)
 library(dplyr)
