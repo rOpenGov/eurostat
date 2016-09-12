@@ -1081,21 +1081,13 @@ Maps
     ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/spdf10.RData
 
     # plot map
-    dev.off()
-
-    ## X11cairo 
-    ##        2
-
     p <- sp::spplot(obj = dat, "cat", main = "Dispostable household income",
            xlim=c(-22,34), ylim=c(35,70), 
                col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
            col = "white")
-
-![](fig/maps3-1.png)
-
     print(p)       
 
-![](fig/maps3-2.png)
+![](fig/maps3-1.jpeg)
 
 Further examples
 ================
