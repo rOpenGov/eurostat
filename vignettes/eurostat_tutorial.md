@@ -1083,13 +1083,19 @@ Maps
     # plot map
     dev.off()
 
-    ## null device 
-    ##           1
+    ## X11cairo 
+    ##        2
 
-    sp::spplot(obj = dat, "cat", main = "Dispostable household income",
+    p <- sp::spplot(obj = dat, "cat", main = "Dispostable household income",
            xlim=c(-22,34), ylim=c(35,70), 
                col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
            col = "white")
+
+![](fig/maps3-1.png)
+
+    print(p)       
+
+![](fig/maps3-2.png)
 
 Further examples
 ================
