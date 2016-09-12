@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-09-11"
+date: "2016-09-12"
 bibliography: 
 - references.bib
 output: 
@@ -271,16 +271,14 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   # subsetting to year 2005 and NUTS-3 level
   dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable
-  dplyr::mutate(cat = cut_to_classes(values)) %>% 
+  dplyr::mutate(`disposable hh income` = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="df") %>% 
+  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="df", all_regions=TRUE) %>% 
   # plot map
   ggplot(data=., aes(long,lat,group=group)) +
-  geom_polygon(aes(fill = cat),colour=alpha("white", 1/2),size=.2) +
-  scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges")) +
-  labs(title="Dispostable household income") +
-  coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) + theme_minimal() +
-  guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
+  geom_polygon(aes(fill = `disposable hh income`),colour=alpha("dim grey", 1/2),size=.2) +
+  scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges")) + theme(legend.position=c(0.17,0.65)) +
+  coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
 ```
 
 ```
