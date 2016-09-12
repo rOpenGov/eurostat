@@ -915,6 +915,18 @@ Maps
 
     library(eurostat)
     library(dplyr)
+
+    ## 
+    ## Attaching package: 'dplyr'
+
+    ## The following objects are masked from 'package:stats':
+    ## 
+    ##     filter, lag
+
+    ## The following objects are masked from 'package:base':
+    ## 
+    ##     intersect, setdiff, setequal, union
+
     library(ggplot2)
     # Data from Eurostat
     eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
@@ -929,9 +941,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpdJLfdq/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpdJLfdq/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -960,9 +970,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpdJLfdq/eurostat/df60.RData
-
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpdJLfdq/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/Rtmp5GjQ3P/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -982,9 +990,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpdJLfdq/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpdJLfdq/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1013,9 +1021,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpdJLfdq/eurostat/df01.RData
-
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpdJLfdq/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/Rtmp5GjQ3P/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -1048,9 +1054,9 @@ Maps
       sp::spplot(obj = ., "cat", main = "Dispostable household income", xlim=c(-22,34), ylim=c(35,70), 
                  col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")), col = "white")
 
-    ## Reading cache file /tmp/RtmpdJLfdq/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpdJLfdq/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1079,9 +1085,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpdJLfdq/eurostat/spdf10.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpdJLfdq/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp5GjQ3P/eurostat/spdf10.RData
 
 ![](fig/maps3-1.png)
 
