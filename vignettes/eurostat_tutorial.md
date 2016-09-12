@@ -915,18 +915,6 @@ Maps
 
     library(eurostat)
     library(dplyr)
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
     library(ggplot2)
     # Data from Eurostat
     eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
@@ -941,7 +929,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -970,7 +960,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/Rtmp5GjQ3P/eurostat/df60.RData
+    ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/df60.RData
+
+    ## data_frame at resolution 1: 60  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -1021,7 +1013,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/Rtmp5GjQ3P/eurostat/df01.RData
+    ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/df01.RData
+
+    ## data_frame at resolution 1: 01  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -1043,16 +1037,13 @@ Maps
     library(sp)
     library(eurostat)
     library(dplyr)
-    get_eurostat("tgs00026", time_format = "raw") %>% 
+    dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
       # subsetting to year 2005 and NUTS-3 level
       dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values)) %>% 
       # merge Eurostat data with geodata from Cisco
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) %>% 
-      # plot map
-      sp::spplot(obj = ., "cat", main = "Dispostable household income", xlim=c(-22,34), ylim=c(35,70), 
-                 col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")), col = "white")
+      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
     ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/tgs00026_raw_code_TF.rds
 
@@ -1085,7 +1076,732 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp5GjQ3P/eurostat/spdf10.RData
+    ## Reading cache file /tmp/Rtmp5GjQ3P/eurostat/spdf10.RData
+
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp5GjQ3P/eurostat/spdf10.RData
+
+    # plot map
+    sp::spplot(obj = dat, "cat", main = "Dispostable household income",
+           xlim=c(-22,34), ylim=c(35,70), 
+               col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
+           col = "white")
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
+
+    ## Warning in grid.Call.graphics(L_path, x$x, x$y, index, switch(x$rule,
+    ## winding = 1L, : Path drawing not available for this device
 
 ![](fig/maps3-1.png)
 

@@ -299,20 +299,23 @@ p
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
 
-```{r maps3, fig.width=8, fig.height=8, warning=FALSE}
+```{r maps3, fig.width=8, fig.height=8}
 library(sp)
 library(eurostat)
 library(dplyr)
-get_eurostat("tgs00026", time_format = "raw") %>% 
+dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2005 and NUTS-3 level
   dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) %>% 
-  # plot map
-  sp::spplot(obj = ., "cat", main = "Dispostable household income", xlim=c(-22,34), ylim=c(35,70), 
-             col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")), col = "white")
+  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
+
+# plot map
+sp::spplot(obj = dat, "cat", main = "Dispostable household income",
+	   xlim=c(-22,34), ylim=c(35,70), 
+           col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
+	   col = "white")
 ```
 
 
