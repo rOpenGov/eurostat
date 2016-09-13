@@ -145,7 +145,7 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
 
 ## Body-mass index
 
-```{r 2015-manu-bmi, echo=TRUE, message=FALSE}
+```{r 2015-manu-bmi, echo=TRUE, message=FALSE, fig.width=8, fig.height=7}
 library(dplyr)
 tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
 tmp1 %>%
@@ -159,7 +159,10 @@ tmp1 %>%
   ggplot(aes(y=values, x=age, fill=BMI)) +
   geom_bar(stat="identity") +
   facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
+  theme(legend.position="top") +
+  ggtitle("Body mass index (BMI) by sex and age") +
+  xlab("% of population") +
+  scale_fill_brewer(type = "div")
 ```
 
 

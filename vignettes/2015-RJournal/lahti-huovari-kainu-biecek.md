@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-09-12"
+date: "2016-09-13"
 bibliography: 
 - references.bib
 output: 
@@ -206,7 +206,10 @@ tmp1 %>%
   ggplot(aes(y=values, x=age, fill=BMI)) +
   geom_bar(stat="identity") +
   facet_wrap(~sex) + coord_flip() +
-  theme(legend.position="top") + ggtitle("Body mass index (BMI) by sex and age")+xlab("% of population")+scale_fill_brewer(type = "div")
+  theme(legend.position="top") +
+  ggtitle("Body mass index (BMI) by sex and age") +
+  xlab("% of population") +
+  scale_fill_brewer(type = "div")
 ```
 
 ![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png)
