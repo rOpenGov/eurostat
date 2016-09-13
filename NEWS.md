@@ -1,3 +1,9 @@
+# eurostat 2.1.1
+
+* The complete package now using tibbles
+* Rare encoding issues circumvented (#55)
+* Improved functionality within firewall-protected systems (#63)
+
 # eurostat 2.0
 
 * The `get_eurostat()` returns tibbles (#52)
