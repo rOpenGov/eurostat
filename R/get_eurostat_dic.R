@@ -24,7 +24,7 @@ get_eurostat_dic <- function(dictname, lang = "en") {
     tname <- paste0(url, 
                     "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
                     dictname, ".dic")
-    dict <- readr::read_tsv(tname, col_names = c("code_name", "full_name"),
+    dict <- readr::read_tsv(url(tname), col_names = c("code_name", "full_name"),
                     col_types = readr::cols(.default = readr::col_character()))
     dict$full_name <- gsub(pattern="\u0092", replacement="'", dict$full_name)
 
