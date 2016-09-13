@@ -9,26 +9,26 @@ providing novel opportunities for research and citizen
 science. Efficient algorithmic tools are needed to realize the full
 potential of the new information resources. We introduce
 the \CRANpkg{eurostat} R package that provides a collection of custom
-tools for Eurostat open data, including functions to query, download,
-manipulate, and visualize these data sets in a smooth, automated and
-reproducible manner. The online documentation provides detailed
-examples on the retrieval and analysis of these spatio-temporal data
-sets. The \CRANpkg{eurostat} R package provides remarkable
-improvements over the previously available tools, and has been
-extensively tested by an active user community. This contributes to
-the growing ecosystem of R packages dedicated to reproducible research
+tools for the Eurostat open data service, including functions to
+query, download, manipulate, and visualize these data sets in a
+smooth, automated and reproducible manner. The online documentation
+provides detailed examples on the analysis of these spatio-temporal
+data collections. This work provides remarkable improvements over the
+previously available tools, and has been extensively tested by an
+active user community. The \CRANpkg{eurostat} R package contributes to
+the growing open source ecosystem dedicated to reproducible research
 in computational social science and digital humanities.}
 
 
 \section{Introduction}
 
-Eurostat, the statistical
-office of the European Union, provides a rich collection of data
-through its open data service\footnote{\url{http://ec.europa.eu/eurostat/data/database}}, which includes thousands of data sets
-on European demography, economics, health, infrastructure, traffic and
-other topics. The statistics are often available with great
-geographical resolution and include time series spanning over several
-years or decades.
+Eurostat, the statistical office of the European Union, provides a
+rich collection of data through its open data
+service\footnote{\url{http://ec.europa.eu/eurostat/data/database}},
+including thousands of data sets on European demography, economics,
+health, infrastructure, traffic and other topics. The statistics are
+often available with great geographical resolution and include time
+series spanning over several years or decades.
 
 Availability of algorithmic tools to access and analyse open data
 collections can greatly benefit reproducible
@@ -320,11 +320,11 @@ country\footnote{http://ec.europa.eu/eurostat/web/nuts/overview}
 
 
 This demonstrates how the Eurostat statistics and geospatial data,
-retrieved with the eurostat package, can be combined with other R
-utilities including
+retrieved with the eurostat package, can be combined with other
+utilities, in this case the
 \CRANpkg{grid} \citep{grid}, \CRANpkg{maptools} \citep{maptools}, \CRANpkg{rgdal} \citep{rgdal},
 \CRANpkg{rgeos} \citep{rgeos}, \CRANpkg{scales} \citep{scales}, and
-\CRANpkg{stringr} \citep{stringr}.
+\CRANpkg{stringr} \citep{stringr} R packages.
 
 \begin{figure}
 \setkeys{Gin}{width=.8\textwidth}
@@ -339,9 +339,9 @@ utilities including
 \subsection{Default country groupings}
 
 To facilitate the analysis and visualization of standard European
-country groups, we have included ready-made country code lists. The
-list of EFTA countries (Table~\ref{tab:efta}), for instance, is
-retrieved with:
+country groups, the \CRANpkg{eurostat} package includes ready-made
+country code lists. The list of EFTA countries (Table~\ref{tab:efta}),
+for instance, is retrieved with:
 
 \begin{example}
 > data(efta_countries)
@@ -411,11 +411,12 @@ bug reports, pull requests, and other feedback are welcome.
 
 \section*{Acknowledgements}
 
-We are grateful to Eurostat for maintaining the open data service and
-the rOpenGov\footnote{https://github.ropengov.io} for supporting R
-package development. This work has been partially funded by Academy of
-Finland (decision 293316). We also wish to thank all package
-contributors.
+We are grateful to all package contributors and to Eurostat for
+maintaining the open data service. This work is in no way officially
+related to or endorsed by Eurostat. The work has been partially funded
+by Academy of Finland (decisions 293316, 295741, 307127), and
+supported by the rOpenGov\footnote{https://github.ropengov.io}
+project.
 
 
 \bibliography{lahti-huovari-kainu-biecek}
