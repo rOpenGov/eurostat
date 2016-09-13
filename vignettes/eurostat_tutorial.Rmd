@@ -362,7 +362,7 @@ experimental stage at the time of writing this tutorial.
 
 The more generic [quandl](https://cran.r-project.org/package=quandl),
 [datamart](https://cran.r-project.org/package=datamart), and
-[datamart](https://cran.r-project.org/package=pdfetch) packages may
+[pdfetch](https://cran.r-project.org/package=pdfetch) packages may
 provide access to some versions of eurostat data but these packages
 are more generic and hence, in contrast to the eurostat R package,
 lack tools that are specifically customized to facilitate eurostat

@@ -315,12 +315,12 @@ kable(efta_countries)
 |CH   |Switzerland   |
 
 
-### Contact
+## Contact
 
 For contact information, see the [README](../README.md).
 
 
-# Version info
+## Version info
 
 This tutorial was created with
 
