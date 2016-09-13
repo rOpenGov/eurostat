@@ -14,12 +14,14 @@ output:
 %\usepackage[utf8]{inputenc}
 -->
 
-This document reproduces the figures and tables for [our manuscript
-(in preparation)](RJwrapper.pdf) on the [eurostat R
-package](https://github.com/rOpenGov/eurostat), assuming that the
-required R extensions have been installed.
 
-To reproduce the manuscript, clone the
+This document reproduces the figures and tables in [our manuscript (in
+preparation)](RJwrapper.pdf) on the [eurostat R
+package](https://github.com/rOpenGov/eurostat), assuming that the
+required R extensions have been installed. For detailed explanation of
+the examples, see the manuscript text.
+
+To reproduce the complete manuscript PDF, clone this
 [repository](https://github.com/rOpenGov/eurostat), navigate to the
 [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
 subdirectory and convert the [Rmarkdown source
@@ -32,8 +34,8 @@ folder, and running in R:
 source("main.R")
 ```
 
-Alternatively, you can proceed in steps as follows. Generate the
-manuscript figures (PNG) in the working directory:
+Alternatively, you can proceed in steps as follows. Generate this
+markdown page with manuscript figures (PNG) with:
 
 
 ```r
@@ -41,12 +43,12 @@ library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
+This will run the following workflow.
 
-Load the required R packages.
 
 
 ```r
-# Load libraries
+# Load the required R packages
 library(eurostat)
 library(knitr)
 library(xtable)
@@ -137,7 +139,7 @@ kable(head(dat))
 |NR   |T   |EL  | 1999|   2116|
 
 
-Same with human-readable labels:
+Convert to human-readable labels:
 
 
 ```r
@@ -161,9 +163,9 @@ kable(head(datl))
 |Number |Total |Greece                                           | 1999|   2116|
 
 
-## Road accidents visualization
+## Road accidents 
 
-The original detailed treatment of this example is provided in the related
+The original and more detailed treatment of this example is provided in a
 [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
 
@@ -208,7 +210,8 @@ tmp1 %>%
   facet_wrap(~sex) + coord_flip() +
   theme(legend.position="top") +
   ggtitle("Body mass index (BMI) by sex and age") +
-  xlab("% of population") +
+  xlab("Age group") +
+  ylab("Fraction of population (%)") +  
   scale_fill_brewer(type = "div")
 ```
 
@@ -284,11 +287,6 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
 ```
 
-```
-## Warning in grid.Call.graphics(L_polygon, x$x, x$y, index): semi-
-## transparency is not supported on this device: reported only once per page
-```
-
 ![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png)
 
 
@@ -316,3 +314,52 @@ kable(efta_countries)
 |NO   |Norway        |
 |CH   |Switzerland   |
 
+
+### Contact
+
+For contact information, see the [README](../README.md).
+
+
+# Version info
+
+This tutorial was created with
+
+
+```r
+sessionInfo()
+```
+
+```
+## R version 3.3.1 (2016-06-21)
+## Platform: x86_64-pc-linux-gnu (64-bit)
+## Running under: Ubuntu 16.04 LTS
+## 
+## locale:
+##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## 
+## attached base packages:
+## [1] stats     graphics  grDevices utils     datasets  methods   base     
+## 
+## other attached packages:
+## [1] ggplot2_2.1.0  plotrix_3.6-2  dplyr_0.5.0    tidyr_0.5.1   
+## [5] xtable_1.8-2   eurostat_2.1.1 knitr_1.13    
+## 
+## loaded via a namespace (and not attached):
+##  [1] Rcpp_0.12.7        formatR_1.4        RColorBrewer_1.1-2
+##  [4] plyr_1.8.4         highr_0.6          class_7.3-14      
+##  [7] tools_3.3.1        digest_0.6.9       jsonlite_1.0      
+## [10] evaluate_0.9       tibble_1.1         gtable_0.2.0      
+## [13] lattice_0.20-33    DBI_0.4-1          mapproj_1.2-4     
+## [16] curl_0.9.7         ggrepel_0.5        e1071_1.6-7       
+## [19] httr_1.2.1         stringr_1.0.0      maps_3.1.0        
+## [22] classInt_0.1-23    grid_3.3.1         R6_2.1.2          
+## [25] sp_1.2-3           readr_0.2.2        magrittr_1.5      
+## [28] scales_0.4.0       assertthat_0.1     colorspace_1.2-6  
+## [31] labeling_0.3       stringi_1.1.1      lazyeval_0.2.0    
+## [34] munsell_0.4.3
+```

@@ -14,12 +14,14 @@ output:
 %\usepackage[utf8]{inputenc}
 -->
 
-This document reproduces the figures and tables for [our manuscript
-(in preparation)](RJwrapper.pdf) on the [eurostat R
-package](https://github.com/rOpenGov/eurostat), assuming that the
-required R extensions have been installed.
 
-To reproduce the manuscript, clone the
+This document reproduces the figures and tables in [our manuscript (in
+preparation)](RJwrapper.pdf) on the [eurostat R
+package](https://github.com/rOpenGov/eurostat), assuming that the
+required R extensions have been installed. For detailed explanation of
+the examples, see the manuscript text.
+
+To reproduce the complete manuscript PDF, clone this
 [repository](https://github.com/rOpenGov/eurostat), navigate to the
 [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
 subdirectory and convert the [Rmarkdown source
@@ -31,19 +33,19 @@ folder, and running in R:
 source("main.R")
 ```
 
-Alternatively, you can proceed in steps as follows. Generate the
-manuscript figures (PNG) in the working directory:
+Alternatively, you can proceed in steps as follows. Generate this
+markdown page with manuscript figures (PNG) with:
 
 ```{r 2015-manu-generate, echo=TRUE, message=FALSE, eval=FALSE}
 library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
+This will run the following workflow.
 
-Load the required R packages.
 
 ```{r 2015-manu-init0, echo=TRUE, message=FALSE}
-# Load libraries
+# Load the required R packages
 library(eurostat)
 library(knitr)
 library(xtable)
@@ -106,7 +108,7 @@ kable(head(dat))
 ```
 
 
-Same with human-readable labels:
+Convert to human-readable labels:
 
 ```{r 2015-manu-getdata-labeled, echo=TRUE, message=FALSE}
 # Convert into human readable labels
@@ -118,9 +120,9 @@ kable(head(datl))
 ```
 
 
-## Road accidents visualization
+## Road accidents 
 
-The original detailed treatment of this example is provided in the related
+The original and more detailed treatment of this example is provided in a
 [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
 ```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE, fig.width=4, fig.height=4}
@@ -161,7 +163,8 @@ tmp1 %>%
   facet_wrap(~sex) + coord_flip() +
   theme(legend.position="top") +
   ggtitle("Body mass index (BMI) by sex and age") +
-  xlab("% of population") +
+  xlab("Age group") +
+  ylab("Fraction of population (%)") +  
   scale_fill_brewer(type = "div")
 ```
 
@@ -212,7 +215,7 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
-```{r 2015-manu-mapexample, echo=TRUE, message=FALSE, fig.width=10, fig.height=8}
+```{r 2015-manu-mapexample, echo=TRUE, message=FALSE, fig.width=10, fig.height=8, warning=FALSE}
 library(eurostat)
 library(dplyr)
 library(ggplot2)
@@ -246,3 +249,16 @@ data(efta_countries)
 kable(efta_countries)
 ```
 
+
+### Contact
+
+For contact information, see the [README](../README.md).
+
+
+# Version info
+
+This tutorial was created with
+
+```{r sessioninfo, message=FALSE, warning=FALSE}
+sessionInfo()
+```
