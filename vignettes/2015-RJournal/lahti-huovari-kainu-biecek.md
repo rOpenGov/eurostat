@@ -1,7 +1,7 @@
 ---
 title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-09-13"
+date: "2016-09-14"
 bibliography: 
 - references.bib
 output: 
@@ -282,9 +282,14 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="df", all_regions=TRUE) %>% 
   # plot map
   ggplot(data=., aes(long,lat,group=group)) +
-  geom_polygon(aes(fill = `disposable hh income`),colour=alpha("dim grey", 1/2),size=.2) +
+  geom_polygon(aes(fill = `Disposable income`),colour=alpha("dim grey", 1/2),size=.2) +
   scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges")) + theme(legend.position=c(0.17,0.65)) +
-  coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
+  coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) +
+  xlab("Longitude") + ylab("Latitude")
+```
+
+```
+## Error in eval(expr, envir, enclos): object 'Disposable income' not found
 ```
 
 ![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png)
@@ -347,7 +352,7 @@ sessionInfo()
 ## 
 ## other attached packages:
 ## [1] ggplot2_2.1.0  plotrix_3.6-2  dplyr_0.5.0    tidyr_0.5.1   
-## [5] xtable_1.8-2   eurostat_2.1.1 knitr_1.13    
+## [5] xtable_1.8-2   eurostat_2.2.1 knitr_1.13    
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_0.12.7        formatR_1.4        RColorBrewer_1.1-2

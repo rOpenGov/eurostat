@@ -229,9 +229,10 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class ="df", all_regions=TRUE) %>% 
   # plot map
   ggplot(data=., aes(long,lat,group=group)) +
-  geom_polygon(aes(fill = `disposable hh income`),colour=alpha("dim grey", 1/2),size=.2) +
+  geom_polygon(aes(fill = `Disposable income`),colour=alpha("dim grey", 1/2),size=.2) +
   scale_fill_manual(values=RColorBrewer::brewer.pal(n = 5, name = "Oranges")) + theme(legend.position=c(0.17,0.65)) +
-  coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70))
+  coord_map(project="orthographic", xlim=c(-22,34), ylim=c(35,70)) +
+  xlab("Longitude") + ylab("Latitude")
 ```
 
 

@@ -49,24 +49,24 @@ United Nations (\CRANpkg{FAOSTAT}; \cite{FAOSTAT}), World Bank
 (\CRANpkg{osmar}; \cite{osmar}) and many other sources.
 
 A dedicated R package for the Eurostat open data has been
-missing. The \CRANpkg{eurostat} R package fills this gap. It combines the relevant parts from our earlier \CRANpkg{statfi} \citep{statfi}
-and \CRANpkg{smarterpoland} 
-\citep{smarterpoland} packages and implements an expanded set of custom tools.
-Since its first CRAN release in 2014, the \CRANpkg{eurostat} package
-has been actively developed by several contributors via Github based
-on frequent feedback from the user community. We are now reporting the
+missing. The \CRANpkg{eurostat} R package fills this gap. It combines
+and expands the capabilities of our
+earlier \CRANpkg{statfi} \citep{statfi}
+and \CRANpkg{smarterpoland} \citep{smarterpoland} packages. Since its
+first CRAN release in 2014, the \CRANpkg{eurostat} package has been
+actively developed by several contributors via Github based on
+frequent feedback from the user community. We are now reporting the
 first mature version that has been improved and tested by multiple
 users, and applied in several case studies by us and
 others\footnote{See
-e.g. http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}. The
-Eurostat has three services for programmatic data access: a bulk
-download, json/unicode, and SDMX web service; we provide methods for
-the first two. The bulk download provides single files, which is
-convenient and fast when major parts of data need to be
-retrieved. More light-weight json methods that allow data subsetting
-before the download may be preferred in more specific retrieval tasks;
-a disadvantage of this alternative json method is that the query size
-is limited to 50 categories.
+e.g. http://blog.revolutionanalytics.com/2015/04/financial-times-tracks-unemployment-with-r.html}. Eurostat
+has three services for programmatic data access: a bulk download,
+json/unicode, and SDMX web service; we provide methods for the first
+two. The bulk download provides single files, which is convenient and
+fast for retrieving major parts of data. More light-weight json
+methods allow data subsetting before download and may be preferred in
+more specific retrieval tasks but the query size is limited to 50
+categories.
 
 The \CRANpkg{datamart} \citep{datamart}, \CRANpkg{quandl} \citep{quandl} and
 \CRANpkg{pdfetch} \citep{pdfetch} 
@@ -89,14 +89,15 @@ depends on further R packages including
 \citep{Lahti13icml} that provides reproducible research tools for
 computational social science and digital humanities.
 
-In summary, \CRANpkg{eurostat} package provides custom algorithms for
-Eurostat open data. It supports key features such as cache, date
-formatting, and tidy data \citep{wickham2014}. The data sets are
-provided as \CRANpkg{tibble} data frames \citep{tibble} to support
-standard tools for data subsetting and reshaping.  Here, we provide an
-overview of the core functionality in the current CRAN release version
-(2.1.1). Further documentation and reproducible source code of this
-article are available via
+In summary, the \CRANpkg{eurostat} package provides custom algorithms
+for Eurostat open data. Key features such as cache, date formatting,
+tidy data principles \citep{wickham2014},
+and \CRANpkg{tibble} \citep{tibble} data format supports seamless
+integration with other standard tools for data manipulation and
+analysis. This article provides an overview of the core functionality
+in the current CRAN release version (2.2.1). A comprehensive
+documentation of the package functionality as well as the source code
+for this article are available via
 Github\footnote{https://github.com/rOpenGov/eurostat}.
 
 
@@ -143,17 +144,17 @@ Let us next retrieve the data set with this identifier:
 > dat <- get_eurostat(id = "tsdtr420", time_format = "num")
 \end{example}
 
-We have here used a numeric time format, which is more convient for
-annual time series than the default date format. The above function
-call returns a table of transport statistics
-(Table~\ref{tab:getdatatable}). This can be filtered before the
-download with the \code{filters} argument, where the list names and
-values are Eurostat variable and observation codes, respectively. To
-retrieve filtered transport statistics for specific countries, use:
+Here we used the numeric time format as it is more convient for annual
+time series than the default date format. The transport statistics
+returned by this function call (Table~\ref{tab:getdatatable}) could be
+filtered before download with the \code{filters} argument, where the
+list names and values refer to Eurostat variable and observation
+codes, respectively. To retrieve transport statistics for specific
+countries, for instance, use:
 
 \begin{example}
-> t1 <- get_eurostat("tsdtr420", 
-+   filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
+> countries <- c("UK", "SK", "FR", "PL", "ES", "PT")
+> t1 <- get_eurostat("tsdtr420", filters = list(geo = countries)) 
 \end{example}
 
 
@@ -173,7 +174,7 @@ retrieve filtered transport statistics for specific countries, use:
    \hline
 \bottomrule      
 \end{tabular}
-\caption{First lines of output from the \code{get\_eurostat()} function with the road accident data set identifier 'tsdtr420'.}
+\caption{First entries of the road accident data set retrieved with \code{get\_eurostat()}.}
 \label{tab:getdatatable}
 \end{table}
 
@@ -195,7 +196,7 @@ retrieve filtered transport statistics for specific countries, use:
    \hline
 \bottomrule   
 \end{tabular}
-\caption{The output from \code{get\_eurostat()} (Table~\ref{tab:getdatatable}), now converted into human-readable labels with \code{label\_eurostat(dat)}.}
+\caption{The \code{get\_eurostat()} output (Table~\ref{tab:getdatatable}) converted into human-readable labels with \code{label\_eurostat()}.}
 \label{tab:getdatatable2}
 \end{table}
 
@@ -382,7 +383,6 @@ standards with the \CRANpkg{countrycode} package \citep{countrycode}.
 
 \section{Summary}
 
-
 By combining programmatic access to data with custom analysis and
 visualization tools it is possible to facilitate a seamless automation
 of the complete data analytical workflow from raw data to statistical
@@ -401,12 +401,9 @@ structures that are available in R, such as those provided by
 the \CRANpkg{spacetime} package \citep{spacetime}, and construct
 wrapper functions to speed up routine operations such as the
 visualization of the temporal and geospatial data sets. The source
-code and installation instructions for the latest development version
-of the eurostat package and this
-manuscript\footnote{https://github.com/rOpenGov/eurostat} are
-available via Github. The source code can be freely used, modified and
-distributed under the BSD-2-clause (modified FreeBSD) license. Issues,
-bug reports, pull requests, and other feedback are welcome.
+code can be freely used, modified and distributed under the
+BSD-2-clause (modified FreeBSD) license. Issues, bug reports, pull
+requests, and other feedback are welcome.
 
 
 \section*{Acknowledgements}

@@ -1,3 +1,7 @@
+# eurostat 2.2.20001
+
+* Development version opened
+
 # eurostat 2.2.1
 
 * Fixed canonical cran url in README
