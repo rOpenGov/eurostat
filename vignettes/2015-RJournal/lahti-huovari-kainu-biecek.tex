@@ -1,5 +1,5 @@
 \title{Retrieval and analysis of Eurostat open data with the \pkg{eurostat} package}
-\author{Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek}
+\author{Leo Lahti, Janne Huovari, Markus Kainu, Przemys{\l}aw Biecek}
 
 \maketitle
 
@@ -66,7 +66,9 @@ two. The bulk download provides single files, which is convenient and
 fast for retrieving major parts of data. More light-weight json
 methods allow data subsetting before download and may be preferred in
 more specific retrieval tasks but the query size is limited to 50
-categories.
+categories. Finally, the package can be used to download custom
+administrative boundaries by EuroGeographics\copyright \ that allow
+seamless visualization on the Eurostat statistics on the European map.
 
 The \CRANpkg{datamart} \citep{datamart}, \CRANpkg{quandl} \citep{quandl} and
 \CRANpkg{pdfetch} \citep{pdfetch} 
@@ -200,8 +202,6 @@ countries, for instance, use:
 \label{tab:getdatatable2}
 \end{table}
 
-\newpage
-
 A subsequent visualization reveals a decreasing trend of road
 accidents over time (Figure~\ref{fig:transport}):
 
@@ -331,7 +331,7 @@ utilities, in this case the
 \setkeys{Gin}{width=.8\textwidth}
 \begin{center}
 \includegraphics{2015-manu-mapexample-1}
-\caption{Disposable income of private households across NUTS2-level national regions in European countries visualized based on geospatial data available from Eurostat.}
+\caption{Disposable income of private households across NUTS2-level national regions in European countries. The household income statistics provided by Eurostat and the administrative boundaries by EuroGeographics\copyright \  were obtained via the Eurostat open data service with the \CRANpkg{eurostat} R package.}
 \label{fig:mapexample}
 \end{center}
 \end{figure}
@@ -381,29 +381,30 @@ standards with the \CRANpkg{countrycode} package \citep{countrycode}.
 
 
 
-\section{Summary}
+\section{Discussion}
 
 By combining programmatic access to data with custom analysis and
 visualization tools it is possible to facilitate a seamless automation
-of the complete data analytical workflow from raw data to statistical
+of the complete analytical workflow from raw data to statistical
 summaries and final publication. The \CRANpkg{eurostat} R package
-provides convenient tools to access open data from Eurostat. It
-exemplifies automated and transparent data retrieval from
-institutional data repositories, featuring options such as search,
-subsetting and cache. Moreover, it provides several functions to
-facilitate the analysis and visualization of the Eurostat
-data. Possible future extensions and improvements include
-implementation of specific data representation formats that could be
-used to harmonize the data representation with other related data
-sources and to facilitate subsequent tool development. In particular,
-we should take further advantage of the existing spatiotemporal data
-structures that are available in R, such as those provided by
+provides a convenient set of tools to access open data from Eurostat,
+together with a comprehensive
+documentation\footnote{https://github.com/rOpenGov/eurostat}. The package
+supports automated and transparent data retrieval from institutional
+data repositories, featuring options such as search, subsetting and
+cache. Moreover, it provides several functions to facilitate the
+Eurostat data analysis and visualization. Future extensions and
+improvements could include further harmonization of the data
+representation formats with related data sources and tools to
+facilitate subsequent methods development. In particular, we should
+take further advantage of the existing spatiotemporal data structures
+that are available in R, such as those provided by
 the \CRANpkg{spacetime} package \citep{spacetime}, and construct
 wrapper functions to speed up routine operations such as the
-visualization of the temporal and geospatial data sets. The source
-code can be freely used, modified and distributed under the
-BSD-2-clause (modified FreeBSD) license. Issues, bug reports, pull
-requests, and other feedback are welcome.
+visualization of the temporal and geospatial data sets. The package
+source code can be freely used, modified and distributed under the
+BSD-2-clause license; issues, bug reports, pull requests, and other
+feedback are welcome.
 
 
 \section*{Acknowledgements}
@@ -436,7 +437,7 @@ project.
   Finland\\}
 \email{markus.kainu@kela.fi}
 
-\address{Przemyslaw Biecek\\
+\address{Przemys{\l}aw Biecek\\
   Faculty of Mathematics, Informatics, and Mechanics\\
   University of Warsaw\\
   Banacha 2, 02-097 Warsaw\\
@@ -447,7 +448,7 @@ project.
 
 \section{Appendix}
 
-Source code for the obesity example (Figure~\ref{fig:bmi}A):
+The full reproducible source code for the examples from this manuscript is also provided via Github\footnote{https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md}. Source code for the obesity example (Figure~\ref{fig:bmi}A):
 
 \begin{example}
 > library(dplyr)
@@ -509,5 +510,7 @@ Source code for the renewable energy example (Figure~\ref{fig:bmi}B):
 +                      label.points = TRUE, point.labels = energy3$geo,
 +                      pch = 19)
 \end{example}
+
+
 
 
