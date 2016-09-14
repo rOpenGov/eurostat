@@ -1,7 +1,7 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Version: 2.1.1
+Version: 2.2.1
 Date: 2016-09-13
 Authors@R: c(
     person("Lahti", "Leo", email = "louhos@googlegroups.com", role = c("aut", "cre")),

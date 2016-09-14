@@ -1,3 +1,7 @@
+# eurostat 2.2.1
+
+* Fixed canonical cran url in README
+
 # eurostat 2.1.1
 
 * The complete package now using tibbles
