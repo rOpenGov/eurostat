@@ -32,7 +32,8 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
 
   # Check resolution is of correct format
   resolution <- as.character(resolution)
-  if (as.numeric(gsub("^0+", "", resolution)) %in% c(1, 10, 20, 60)) {
+  resolution <- gsub("^0+", "", resolution)
+  if (!as.numeric(resolution) %in% c(1, 10, 20, 60)) {
     stop("Resolution should be one of 01, 1, 10, 20, 60")
   }
   resolution <- gsub("^1$", "01", resolution)
