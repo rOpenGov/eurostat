@@ -5,16 +5,19 @@
 \alias{search_eurostat}
 \title{Grep Datasets Titles from Eurostat}
 \usage{
-search_eurostat(pattern, type = "dataset")
+search_eurostat(pattern, type = "dataset", fixed = TRUE)
 
 grepEurostatTOC(pattern, type = "dataset")
 }
 \arguments{
-\item{pattern}{Character, datasets, folder or tables with this pattern in 
+\item{pattern}{Character, datasets, folder or tables with this pattern in
 the description will be returned (depending on the 'type' argument)}
 
-\item{type}{Grep the Eurostat table of contents either for 
-'dataset' (default), 'folder', 'table' or "all" (for all types) .}
+\item{type}{Grep the Eurostat table of contents either for
+'dataset' (default), 'folder', 'table' or "all" (for all types).}
+
+\item{fixed}{logical. If TRUE, pattern is a string to be matched as is.
+Change to FALSE if more complex regex matching is needed.}
 }
 \value{
 A tibble with eight columns
@@ -31,7 +34,7 @@ pattern in the description.
 }
 \details{
 Downloads list of all datasets available on
-eurostat and return list of names of datasets that contains particular 
+eurostat and return list of names of datasets that contains particular
 pattern in the dataset description. E.g. all datasets related to
 education of teaching.
 }
@@ -40,7 +43,13 @@ education of teaching.
 \item \code{grepEurostatTOC}: Old deprecated version
 }}
 \examples{
-\dontrun{tmp <- search_eurostat("education"); head(tmp)}
+\dontrun{
+  tmp <- search_eurostat("education")
+  head(tmp)
+  # Use "fixed = TRUE" when pattern has characters that would need escaping.
+  # Here, parentheses would normally need to be escaped in regex
+  tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
+}
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
