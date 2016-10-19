@@ -13,6 +13,12 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 
 ### Installation and use
 
+
+
+```r
+install.packages("eurostat")
+```
+
 For detailed examples, see:
 
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
@@ -35,29 +41,37 @@ Kindly cite this work as follows:
 citation('eurostat')
 ```
 
-Main developers: [Leo Lahti](https://github.com/antagomir),
+```
+## 
+## Kindly cite the eurostat R package as follows:
+## 
+##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
+##   2014-2016. eurostat R package. R package version 2.2.20002 URL:
+##   https://github.com/rOpenGov/eurostat
+## 
+## A BibTeX entry for LaTeX users is
+## 
+##   @Misc{,
+##     title = {eurostat R package},
+##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
+##     year = {2014-2016},
+##     url = {https://github.com/rOpenGov/eurostat},
+##     note = {R package version 2.2.20002},
+##   }
+```
+
+The main developers include [Leo Lahti](https://github.com/antagomir),
 [Przemyslaw Biecek](https://github.com/pbiecek), [Janne
-Huovari](https://github.com/jhuovari), [Markus
-Kainu](https://github.com/muuankarski). We are grateful to all
+Huovari](https://github.com/jhuovari), and [Markus
+Kainu](https://github.com/muuankarski). We are part of rOpenGov and
+grateful to all
 [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
 and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
-
-### Meta
-
-The package authors are listed in the [DESCRIPTION file](DESCRIPTION). Part of [rOpenGov](http://ropengov.github.io/).
-
-* Please [report any issues or bugs](https://github.com/ropengov/eurostat/issues).
-* License: BSD-2-clause
-* [Contact](http://ropengov.github.io/contribute/)
-* [Pull requests](https://github.com/ropengov/eurostat/)
 
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
 
 
-### Project activity:
-
-[![Throughput Graph](https://graphs.waffle.io/rOpenGov/eurostat/throughput.svg)](https://waffle.io/rOpenGov/eurostat/metrics/throughput)
 

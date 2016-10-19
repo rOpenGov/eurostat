@@ -13,6 +13,11 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 
 ### Installation and use
 
+
+```{r install, eval=FALSE}
+install.packages("eurostat")
+```
+
 For detailed examples, see:
 
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
@@ -30,33 +35,22 @@ Contributions are very welcome. You can, for instance:
 
 Kindly cite this work as follows:
 
-```{r sotkanetIndicators, warning=FALSE, message=FALSE, eval=FALSE}
+```{r sotkanetIndicators, warning=FALSE, message=FALSE, eval=TRUE}
 citation('eurostat')
 ```
 
-Main developers: [Leo Lahti](https://github.com/antagomir),
+The main developers include [Leo Lahti](https://github.com/antagomir),
 [Przemyslaw Biecek](https://github.com/pbiecek), [Janne
-Huovari](https://github.com/jhuovari), [Markus
-Kainu](https://github.com/muuankarski). We are grateful to all
+Huovari](https://github.com/jhuovari), and [Markus
+Kainu](https://github.com/muuankarski). We are part of rOpenGov and
+grateful to all
 [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
 and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
-
-### Meta
-
-The package authors are listed in the [DESCRIPTION file](DESCRIPTION). Part of [rOpenGov](http://ropengov.github.io/).
-
-* Please [report any issues or bugs](https://github.com/ropengov/eurostat/issues).
-* License: BSD-2-clause
-* [Contact](http://ropengov.github.io/contribute/)
-* [Pull requests](https://github.com/ropengov/eurostat/)
 
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
 
 
-### Project activity:
-
-[![Throughput Graph](https://graphs.waffle.io/rOpenGov/eurostat/throughput.svg)](https://waffle.io/rOpenGov/eurostat/metrics/throughput)
 
