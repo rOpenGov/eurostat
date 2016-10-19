@@ -7,7 +7,11 @@ Authors@R: c(
     person("Lahti", "Leo", email = "louhos@googlegroups.com", role = c("aut", "cre")),
     person("Biecek", "Przemyslaw" , role = "aut"),
     person("Kainu", "Markus", role = "aut"),
-    person("Huovari", "Janne", role = "aut"))
+    person("Huovari", "Janne", role = "aut"),
+    person("Lehtomaki", "Joona", role = "ctb"),
+    person("Briatte", "Francois", role = "ctb"),
+    person("Reiter", "Oliver", role = "ctb")
+    )
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database
     <http://ec.europa.eu/eurostat> together with search and manipulation
@@ -32,8 +36,9 @@ Suggests:
     knitr,
     mapproj,
     plotrix,
-    rvest,
     rmarkdown,
+    roxygen2,
+    rvest,    
     testthat
 LazyData: true
 URL: https://github.com/ropengov/eurostat
