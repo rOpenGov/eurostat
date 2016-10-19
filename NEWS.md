@@ -1,5 +1,11 @@
 # eurostat 2.2.20001
 
+* `search_eurostat()` accepts new argument `fixed`: if `TRUE` 
+(default), `pattern` provided will used as is; if `FALSE`, 
+`pattern` will be interpreted as a true regex pattern.
+
+# eurostat 2.2.20001
+
 * Development version opened
 
 # eurostat 2.2.1
