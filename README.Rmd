@@ -39,11 +39,7 @@ Kindly cite this work as follows:
 citation('eurostat')
 ```
 
-The main developers include [Leo Lahti](https://github.com/antagomir),
-[Przemyslaw Biecek](https://github.com/pbiecek), [Janne
-Huovari](https://github.com/jhuovari), and [Markus
-Kainu](https://github.com/muuankarski). We are part of rOpenGov and
-grateful to all
+We are part of rOpenGov and grateful to all
 [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
 and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
