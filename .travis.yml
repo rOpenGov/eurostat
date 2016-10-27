@@ -4,11 +4,16 @@ cache: packages
 
 warnings_are_errors: false
 
-before_install:
-  - pip install --user codecov
+notifications:
+  email:
+    - leo.lahti@iki.fi
 
 r_packages:
   - Cairo
   
+r_github_packages:
+  - jimhester/covr
+  
 after_success:
-  - bash <(curl -s https://codecov.io/bash)
+  - Rscript -e 'covr::codecov()'
+

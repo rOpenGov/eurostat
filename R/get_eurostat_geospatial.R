@@ -1,7 +1,10 @@
-#' @title Downloads Preprocessed Geospatial Data from CISGO
-#' @description Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using \code{ggplot2::fortify}.
-#' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})
-#' @param resolution Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
+#' @title Download Geospatial Data from CISGO
+#' @description Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
+#'    \code{ggplot2::fortify}.
+#' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}) or
+#'    \code{spdf} (\code{SpatialPolygonDataFrame})
+#' @param resolution Resolution of the geospatial data. One of
+#'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
 #' @param update_cache a locigal whether to update cache. Can be set also with
@@ -12,6 +15,7 @@
 #'        \code{\link{tempdir}}. Directory can also be set with
 #'        \code{option} eurostat_cache_dir.
 #' @export
+#' @details The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 #' @author Markus Kainu <markuskainu@@gmail.com>
 #' @return a data_frame or SpatialPolygonDataFrame.
 #' @examples
@@ -23,11 +27,18 @@
 #'    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
 #'  }
 #'  
-
-
 get_eurostat_geospatial <- function(output_class="spdf",resolution="60", 
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
-  
+
+  # Check resolution is of correct format
+  resolution <- as.character(resolution)
+  resolution <- gsub("^0+", "", resolution)
+  if (!as.numeric(resolution) %in% c(1, 10, 20, 60)) {
+    stop("Resolution should be one of 01, 1, 10, 20, 60")
+  }
+  resolution <- gsub("^1$", "01", resolution)
+
+
   message("
       COPYRIGHT NOTICE
 
