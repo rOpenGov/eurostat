@@ -1,13 +1,15 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Version: 2.2.20008
-Authors@R: c( person("Leo", "Lahti", email = "leo.lahti@iki.fi",
-        role = c("aut", "cre")), person("Przemyslaw" , "Biecek", role =
-        "aut"), person("Markus", "Kainu", role = "aut"),
-        person("Janne", "Huovari", role = "aut"), person("Joona", "Lehtomaki",
-        role = "ctb"), person("Francois", "Briatte", role =
-        "ctb"), person("Oliver", "Reiter", role = "ctb") )
+Version: 2.2.20009
+Authors@R: c(
+  	person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
+	person("Przemyslaw" , "Biecek", role = "aut"),
+	person("Markus", "Kainu", role = "aut"),
+ 	person("Janne", "Huovari", role = "aut"),
+	person("Joona", "Lehtomaki", role = "ctb"),
+	person("Francois", "Briatte", role = "ctb"),
+	person("Oliver", "Reiter", role = "ctb"))
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database
         <http://ec.europa.eu/eurostat> together with search and
