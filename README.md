@@ -46,7 +46,7 @@ citation('eurostat')
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-##   2014-2016. eurostat R package. R package version 2.2.20002 URL:
+##   2014-2016. eurostat R package. R package version 2.2.20011 URL:
 ##   https://github.com/rOpenGov/eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -56,7 +56,7 @@ citation('eurostat')
 ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
 ##     year = {2014-2016},
 ##     url = {https://github.com/rOpenGov/eurostat},
-##     note = {R package version 2.2.20002},
+##     note = {R package version 2.2.20011},
 ##   }
 ```
 
