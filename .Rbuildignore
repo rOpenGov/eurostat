@@ -9,6 +9,8 @@ inst/extras
 ./vignettes/zipfile
 ./vignettes/figure
 ./vignettes/fig
+./figure$
+./cache$
 # Git related
 ./.git*
 # Travis scripts
