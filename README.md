@@ -47,20 +47,20 @@ citation('eurostat')
 
 ```
 ## 
-## Kindly cite the eurostat R package as follows:
+## To cite package 'eurostat' in publications use:
 ## 
-##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-##   2014-2016. eurostat R package. R package version 2.2.20011 URL:
-##   https://github.com/rOpenGov/eurostat
+##   Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
+##   (2017). eurostat: Tools for Eurostat Open Data. R package
+##   version 2.2.20015. https://CRAN.R-project.org/package=eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
-##   @Misc{,
-##     title = {eurostat R package},
-##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-##     year = {2014-2016},
-##     url = {https://github.com/rOpenGov/eurostat},
-##     note = {R package version 2.2.20011},
+##   @Manual{,
+##     title = {eurostat: Tools for Eurostat Open Data},
+##     author = {Leo Lahti and Przemyslaw Biecek and Markus Kainu and Janne Huovari},
+##     year = {2017},
+##     note = {R package version 2.2.20015},
+##     url = {https://CRAN.R-project.org/package=eurostat},
 ##   }
 ```
 
