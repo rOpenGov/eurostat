@@ -96,14 +96,14 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
     
 
       if (output_class == "df"){
-        load(url(paste0("http://data.okf.fi/ropengov/avoindata/eurostat_geodata/rdata/NUTS_2013_",
+        load(url(paste0("http://data.markuskainu.fi/r_packages/eurostat_geodata/rdata/NUTS_2013_",
                         resolution,
                         "M_SH_DF.RData")))
         shape <- get(paste0("NUTS_2013_",resolution,"M_SH_DF"))
         shape <- shape[order(shape$order),] 
       }
       if (output_class == "spdf"){
-        load(url(paste0("http://data.okf.fi/ropengov/avoindata/eurostat_geodata/rdata/NUTS_2013_",
+        load(url(paste0("http://data.markuskainu.fi/r_packages/eurostat_geodata/rdata/NUTS_2013_",
                         resolution,
                         "M_SH_SPDF.RData")))
         shape <- get(paste0("NUTS_2013_",resolution,"M_SH_SPDF"))
