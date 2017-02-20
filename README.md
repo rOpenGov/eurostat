@@ -64,16 +64,18 @@ citation('eurostat')
 ##   }
 ```
 
-We are part of rOpenGov and grateful to all
-[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
-and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
-
 
 ### Authors
 
 [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus
 Kainu, Janne Huovari, with contributions from Joona Lehtomäki,
 Francois Briatte, and Oliver Reiter.
+
+This project is part of rOpenGov; we are grateful to all
+[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
+and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
+
+
 
 ### Disclaimer
 
