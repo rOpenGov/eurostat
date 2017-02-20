@@ -1,5 +1,6 @@
 # Extra material related but not to be included in the package
 inst/extras
+README.Rmd
 
 # Vignette
 ./vignettes/2015-RJournal

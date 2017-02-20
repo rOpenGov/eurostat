@@ -34,9 +34,14 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
     
     # Codes added if asked
     if (!is.null(code)){
+      # Fix the first two variables
+      nams <- names(y)
+      y <- cbind(as.vector(unlist(y[[1]])), as.vector(unlist(y[[2]])), y[, 3:ncol(y)])
+      colnames(y) <- nams
+
       code_in <- code %in% names(y)
       if (!all(code_in)) stop("code column name(s) ", shQuote(code[!code_in])," not found on x")
-      y_code <- x[, code, drop = FALSE]
+      y_code <- x[, code, drop = FALSE]            
       names(y_code) <- paste0(names(y_code), "_code")
       y <- cbind(y_code, y)
     }
@@ -45,7 +50,6 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
     if (is.null(dic)) stop("Dictionary information is missing")
 
     dic_df <- get_eurostat_dic(dic, lang = lang)
-
 
     if (is.factor(x)){
       if (eu_order) {
@@ -56,6 +60,7 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
       
       y <- factor(x, levels(x)[ord], 
                   labels = dic_df[[2]][match(levels(x), dic_df[[1]])][ord])
+      
     } else {
       # dics are in upper case, change if x is not
       test_n <- min(length(x), 5)
@@ -65,8 +70,14 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
     }
 
     if (any(is.na(y))) warning("All labels for ", dic, " were not found.")
+    
   }
+
+  # Ensure the output is tbl_df
+  y <- as_data_frame(y)
+
   y
+
 }
   
 #' @describeIn label_eurostat Get definitions for variable (column) names. For

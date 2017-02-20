@@ -94,10 +94,12 @@ function `get_eurostat()`. If only the table id is given, the whole table is
 downloaded from the bulk download facility. If also filters are defined 
 the JSON API is used.
 
-Here an example of indicator [Modal split of passenger transport](http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210). This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
+Here an example of indicator 'Modal split of passenger transport'. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
 Pick and print the id of the data set to download: 
 ```{r get_id, warning=FALSE, message=FALSE, results='asis'}
+# For the original data, see
+# http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210
 id <- search_eurostat("Modal split of passenger transport", 
         	             type = "table")$code[1]
 print(id)
