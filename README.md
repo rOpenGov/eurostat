@@ -32,9 +32,9 @@ For detailed examples, see:
 
 ### Contribute
 
-Contributions are very welcome. You can, for instance:
+Contributions are very welcome:
 
-  * [Use issue tracker](https://github.com/ropengov/eurostat/issues) or the [mailing list](https://github.com/rOpenGov/eurostat/blob/master/DESCRIPTION) to provide feedback and bug reports.
+  * [Use issue tracker](https://github.com/ropengov/eurostat/issues) for feedback and bug reports.
   * [Send pull requests](https://github.com/ropengov/eurostat/)
   * [Star us on the Github page](https://github.com/ropengov/eurostat)
 
@@ -47,20 +47,20 @@ citation('eurostat')
 
 ```
 ## 
-## To cite package 'eurostat' in publications use:
+## Kindly cite the eurostat R package as follows:
 ## 
-##   Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari
-##   (2017). eurostat: Tools for Eurostat Open Data. R package
-##   version 2.2.20015. https://CRAN.R-project.org/package=eurostat
+##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
+##   2014-2017. eurostat R package. R package version 2.2.21 URL:
+##   https://github.com/rOpenGov/eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
 ## 
-##   @Manual{,
-##     title = {eurostat: Tools for Eurostat Open Data},
-##     author = {Leo Lahti and Przemyslaw Biecek and Markus Kainu and Janne Huovari},
-##     year = {2017},
-##     note = {R package version 2.2.20015},
-##     url = {https://CRAN.R-project.org/package=eurostat},
+##   @Misc{,
+##     title = {eurostat R package},
+##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
+##     year = {2014-2017},
+##     url = {https://github.com/rOpenGov/eurostat},
+##     note = {R package version 2.2.21},
 ##   }
 ```
 
@@ -68,6 +68,12 @@ We are part of rOpenGov and grateful to all
 [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
 and [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
+
+### Authors
+
+[Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus
+Kainu, Janne Huovari, with contributions from Joona Lehtomäki,
+Francois Briatte, and Oliver Reiter.
 
 ### Disclaimer
 

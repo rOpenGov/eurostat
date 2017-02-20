@@ -26,19 +26,25 @@
 #'  }
 label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE, 
                            lang = "en"){
+
   if (is_tibble(x)){
     y <- x
-    for (i in names(y)[!(names(y) %in% c("time", "values","flags"))]){
-      y[[i]] <- label_eurostat(y[[i]], i, eu_order = eu_order, lang = lang)
+
+    mynams <- names(y)[!(names(y) %in% c("time", "values","flags"))]
+    for (i in mynams){
+      l <- label_eurostat(y[[i]], i, eu_order = eu_order, lang = lang)
+      y[[i]] <- as.vector(unlist(l)) 
     }
-    
+
+    # Fix the first two variables
+    #nams <- names(y)
+    #y <- cbind(as.vector(unlist(x[[1]])),
+    #           as.vector(unlist(x[[2]])),
+    #	       x[, 3:ncol(x)])
+    #colnames(y) <- nams
+
     # Codes added if asked
     if (!is.null(code)){
-      # Fix the first two variables
-      nams <- names(y)
-      y <- cbind(as.vector(unlist(y[[1]])), as.vector(unlist(y[[2]])), y[, 3:ncol(y)])
-      colnames(y) <- nams
-
       code_in <- code %in% names(y)
       if (!all(code_in)) stop("code column name(s) ", shQuote(code[!code_in])," not found on x")
       y_code <- x[, code, drop = FALSE]            
