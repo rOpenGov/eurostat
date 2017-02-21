@@ -416,62 +416,6 @@ human-readable labels instead, use a `type = "label"` argument.
                           type = "label", time_format = "num")
     kable(head(datl2))
 
-<table>
-<thead>
-<tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">European Union (28 countries)</td>
-<td align="right">2014</td>
-<td align="right">9.1</td>
-</tr>
-<tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Finland</td>
-<td align="right">2014</td>
-<td align="right">9.8</td>
-</tr>
-<tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Passenger cars</td>
-<td align="left">European Union (28 countries)</td>
-<td align="right">2014</td>
-<td align="right">83.4</td>
-</tr>
-<tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Passenger cars</td>
-<td align="left">Finland</td>
-<td align="right">2014</td>
-<td align="right">85.2</td>
-</tr>
-<tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Trains</td>
-<td align="left">European Union (28 countries)</td>
-<td align="right">2014</td>
-<td align="right">7.6</td>
-</tr>
-<tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Trains</td>
-<td align="left">Finland</td>
-<td align="right">2014</td>
-<td align="right">5.0</td>
-</tr>
-</tbody>
-</table>
-
 Eurostat codes in the downloaded data set can be replaced with
 human-readable labels from the Eurostat dictionaries with the
 `label_eurostat()` function.
@@ -941,7 +885,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/RtmpwMitF4/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -970,7 +914,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpwMitF4/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpfQnMZS/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -990,9 +934,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpwMitF4/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwMitF4/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1021,7 +965,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpwMitF4/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpfQnMZS/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -1051,9 +995,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmpwMitF4/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwMitF4/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1082,7 +1026,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpwMitF4/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpfQnMZS/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
