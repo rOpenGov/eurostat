@@ -885,7 +885,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -914,7 +914,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpfQnMZS/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpOPGVga/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -934,9 +934,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -965,7 +965,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpfQnMZS/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpOPGVga/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -995,9 +995,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpfQnMZS/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1026,7 +1026,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpfQnMZS/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpOPGVga/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1068,7 +1068,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## Kindly cite the eurostat R package as follows:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2017. eurostat R package. R package version 2.2.21 URL:
+    ##   2014-2017. eurostat R package. R package version 2.2.22 URL:
     ##   https://github.com/rOpenGov/eurostat
     ## 
     ## A BibTeX entry for LaTeX users is
@@ -1078,7 +1078,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
     ##     year = {2014-2017},
     ##     url = {https://github.com/rOpenGov/eurostat},
-    ##     note = {R package version 2.2.21},
+    ##     note = {R package version 2.2.22},
     ##   }
 
 ### Related work
@@ -1128,7 +1128,7 @@ This tutorial was created with
     ## other attached packages:
     ##  [1] sp_1.2-3           RColorBrewer_1.1-2 dplyr_0.5.0       
     ##  [4] plotrix_3.6-3      ggplot2_2.2.1      tidyr_0.6.0       
-    ##  [7] rvest_0.3.2        xml2_1.0.0         eurostat_2.2.21   
+    ##  [7] rvest_0.3.2        xml2_1.0.0         eurostat_2.2.22   
     ## [10] rmarkdown_1.2.9000 knitr_1.15.1      
     ## 
     ## loaded via a namespace (and not attached):
