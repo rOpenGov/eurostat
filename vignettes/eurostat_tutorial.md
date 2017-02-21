@@ -349,62 +349,6 @@ desidered series (upper case). For time variable, in addition to a
     dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1), time_format = "num")
     kable(dat2)
 
-<table>
-<thead>
-<tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">EU28</td>
-<td align="right">2014</td>
-<td align="right">9.1</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">FI</td>
-<td align="right">2014</td>
-<td align="right">9.8</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="left">CAR</td>
-<td align="left">EU28</td>
-<td align="right">2014</td>
-<td align="right">83.4</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="left">CAR</td>
-<td align="left">FI</td>
-<td align="right">2014</td>
-<td align="right">85.2</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="left">TRN</td>
-<td align="left">EU28</td>
-<td align="right">2014</td>
-<td align="right">7.6</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="left">TRN</td>
-<td align="left">FI</td>
-<td align="right">2014</td>
-<td align="right">5.0</td>
-</tr>
-</tbody>
-</table>
-
 Replacing codes with labels
 ---------------------------
 
@@ -873,9 +817,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpeLt1EP/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpeLt1EP/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -904,9 +848,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpOPGVga/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpeLt1EP/eurostat/df60.RData
 
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpOPGVga/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpeLt1EP/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -926,9 +870,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpeLt1EP/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpeLt1EP/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -957,9 +901,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpOPGVga/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmpeLt1EP/eurostat/df01.RData
 
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpOPGVga/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpeLt1EP/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -989,9 +933,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpeLt1EP/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpeLt1EP/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -1020,9 +964,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpOPGVga/eurostat/spdf10.RData
+    ## Reading cache file /tmp/RtmpeLt1EP/eurostat/spdf10.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpOPGVga/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpeLt1EP/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1064,7 +1008,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## Kindly cite the eurostat R package as follows:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2017. eurostat R package. R package version 2.2.22 URL:
+    ##   2014-2017. eurostat R package. R package version 2.2.41 URL:
     ##   https://github.com/rOpenGov/eurostat
     ## 
     ## A BibTeX entry for LaTeX users is
@@ -1074,7 +1018,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
     ##     year = {2014-2017},
     ##     url = {https://github.com/rOpenGov/eurostat},
-    ##     note = {R package version 2.2.22},
+    ##     note = {R package version 2.2.41},
     ##   }
 
 ### Related work
@@ -1106,34 +1050,33 @@ This tutorial was created with
 
     sessionInfo()
 
-    ## R version 3.3.1 (2016-06-21)
+    ## R version 3.3.2 (2016-10-31)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 16.10
+    ## Running under: Ubuntu 16.04.2 LTS
     ## 
     ## locale:
     ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-    ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+    ##  [3] LC_TIME=de_BE.UTF-8        LC_COLLATE=en_US.UTF-8    
+    ##  [5] LC_MONETARY=de_BE.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    ##  [7] LC_PAPER=de_BE.UTF-8       LC_NAME=C                 
     ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-    ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ## [11] LC_MEASUREMENT=de_BE.UTF-8 LC_IDENTIFICATION=C       
     ## 
     ## attached base packages:
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
     ##  [1] sp_1.2-3           RColorBrewer_1.1-2 dplyr_0.5.0       
-    ##  [4] plotrix_3.6-3      ggplot2_2.2.1      tidyr_0.6.0       
-    ##  [7] rvest_0.3.2        xml2_1.0.0         eurostat_2.2.22   
-    ## [10] rmarkdown_1.2.9000 knitr_1.15.1      
+    ##  [4] plotrix_3.6-3      ggplot2_2.1.0      tidyr_0.6.0.9000  
+    ##  [7] rvest_0.3.2        xml2_1.1.0         eurostat_2.2.41   
+    ## [10] rmarkdown_1.1      knitr_1.14        
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.9      highr_0.6        plyr_1.8.4       class_7.3-14    
-    ##  [5] tools_3.3.1      digest_0.6.12    jsonlite_1.1     evaluate_0.10   
-    ##  [9] tibble_1.2       gtable_0.2.0     lattice_0.20-34  DBI_0.5-1       
-    ## [13] rgdal_1.2-4      curl_2.2         yaml_2.1.14      e1071_1.6-7     
-    ## [17] httr_1.2.1       stringr_1.1.0    classInt_0.1-23  rprojroot_1.1   
-    ## [21] grid_3.3.1       R6_2.2.0         readr_1.0.0      magrittr_1.5    
-    ## [25] backports_1.0.4  scales_0.4.1     htmltools_0.3.5  assertthat_0.1  
-    ## [29] colorspace_1.3-0 labeling_0.3     stringi_1.1.3    lazyeval_0.2.0  
-    ## [33] munsell_0.4.3    Cairo_1.5-9
+    ##  [1] Rcpp_0.12.9      formatR_1.4      highr_0.6        plyr_1.8.4      
+    ##  [5] class_7.3-14     tools_3.3.2      digest_0.6.10    jsonlite_1.2    
+    ##  [9] evaluate_0.10    tibble_1.2       gtable_0.2.0     lattice_0.20-34 
+    ## [13] DBI_0.5-1        yaml_2.1.13      rgdal_1.1-10     e1071_1.6-7     
+    ## [17] httr_1.2.1       stringr_1.1.0    classInt_0.1-23  grid_3.3.2      
+    ## [21] R6_2.2.0         readr_1.0.0      magrittr_1.5     scales_0.4.0    
+    ## [25] htmltools_0.3.5  assertthat_0.1   colorspace_1.2-7 labeling_0.3    
+    ## [29] stringi_1.1.2    lazyeval_0.2.0   munsell_0.4.3    Cairo_1.5-9
