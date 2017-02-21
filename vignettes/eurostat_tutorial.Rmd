@@ -137,7 +137,7 @@ kable(dat2)
 By default variables are returned as Eurostat codes, but to get human-readable 
 labels instead, use a `type = "label"` argument.  
 
-```{r json_labels, warning=FALSE, message=FALSE, results='asis'}
+```{r json_labels, warning=FALSE, message=FALSE, results='asis', eval=FALSE}
 datl2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), 
                                          lastTimePeriod = 1), 
                       type = "label", time_format = "num")
