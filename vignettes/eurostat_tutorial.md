@@ -859,18 +859,6 @@ Maps
 
     library(eurostat)
     library(dplyr)
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
     library(ggplot2)
     # Data from Eurostat
     eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
@@ -885,7 +873,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpOPGVga/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -914,7 +904,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpOPGVga/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpOPGVga/eurostat/df60.RData
+
+    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpOPGVga/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -965,7 +957,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpOPGVga/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmpOPGVga/eurostat/df01.RData
+
+    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpOPGVga/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -1026,7 +1020,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpOPGVga/eurostat/spdf10.RData
+    ## Reading cache file /tmp/RtmpOPGVga/eurostat/spdf10.RData
+
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpOPGVga/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
