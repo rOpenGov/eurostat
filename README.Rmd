@@ -3,7 +3,7 @@ eurostat R package
 
 <!--[![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)
+[![CRAN_Status_Badge](https://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](http://cran.r-project.org/package=eurostat)
