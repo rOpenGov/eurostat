@@ -1,12 +1,12 @@
 eurostat R package
 ======
 
-<!--[![Stories in Ready](https://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
+<!--[![Stories in Ready](http://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
+<!--[![CRAN version](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)-->
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
-[![CRAN_Status_Badge](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
-[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](http://cran.r-project.org/package=eurostat)
-[![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](http://cran.r-project.org/package=eurostat)
+[![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
+[![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 <!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
 
@@ -50,7 +50,7 @@ citation('eurostat')
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-##   2014-2017. eurostat R package. R package version 2.2.22 URL:
+##   2014-2017. eurostat R package. R package version 2.2.43 URL:
 ##   https://github.com/rOpenGov/eurostat
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -60,7 +60,7 @@ citation('eurostat')
 ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
 ##     year = {2014-2017},
 ##     url = {https://github.com/rOpenGov/eurostat},
-##     note = {R package version 2.2.22},
+##     note = {R package version 2.2.43},
 ##   }
 ```
 

@@ -1,4 +1,3 @@
-
 context("Get")
 
 test_that("get_eurostat includes time and value",{
@@ -69,8 +68,7 @@ context("Label")
 test_that("Variable names are labeled",{
   skip_on_cran()
   expect_equal(label_eurostat_vars("geo"), "Geopolitical entity (reporting)")
-  expect_equal(label_eurostat_vars("indic_na", lang = "fr"), 
-               "Indicateur des comptes nationaux")
+  expect_equal(label_eurostat_vars("indic_na", lang = "fr"), "Indicateur des comptes nationaux")
   expect_true(any(grepl("_code",
                         names(label_eurostat(
                           get_eurostat("namq_aux_lp"), code = "geo")))))

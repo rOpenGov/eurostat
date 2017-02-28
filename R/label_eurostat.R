@@ -80,8 +80,14 @@ label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE,
   }
 
   # Ensure the output is tbl_df
-  y <- as_data_frame(y)
-
+  #if (length(y) > 1) {
+  #  y <- as_data_frame(y)
+  #}
+  if (is.data.frame(y) && length(y) > 1) {
+    y <- as_data_frame(y)
+  }  
+  
+  
   y
 
 }
