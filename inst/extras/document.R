@@ -7,6 +7,7 @@ document("../../")
 #build(vignettes = FALSE)
 #check("../../", vignettes = FALSE)
 
+# build the ../../docs directory as a pkg website
 library(pkgdown)
 setwd("../../")
 build_site()
