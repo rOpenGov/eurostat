@@ -82,31 +82,31 @@
     </div>
 
     <div class="contents">
-    <div id="eurostat-2-2-20001" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-2-20001" class="anchor"> </a>eurostat 2.2.20001</h1>
+    <div id="eurostat-2-2-20001" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-2-2-20001" class="anchor"> </a>eurostat 2.2.20001</h2>
 <ul>
 <li>
 <code><a href="../reference/search_eurostat.html">search_eurostat()</a></code> accepts new argument <code>fixed</code>: if <code>TRUE</code> (default), <code>pattern</code> provided will used as is; if <code>FALSE</code>, <code>pattern</code> will be interpreted as a true regex pattern.</li>
 </ul>
 </div>
-    <div id="eurostat-2-2-20001-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-2-20001-1" class="anchor"> </a>eurostat 2.2.20001</h1>
+    <div id="eurostat-2-2-20001-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-2-2-20001-1" class="anchor"> </a>eurostat 2.2.20001</h2>
 <ul>
 <li>Development version opened</li>
 </ul>
 </div>
-    <div id="eurostat-2-2-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-2-1" class="anchor"> </a>eurostat 2.2.1</h1>
+    <div id="eurostat-2-2-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-2-2-1" class="anchor"> </a>eurostat 2.2.1</h2>
 <ul>
 <li>Fixed canonical cran url in README</li>
 </ul>
 </div>
-    <div id="eurostat-2-1-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-1-1" class="anchor"> </a>eurostat 2.1.1</h1>
+    <div id="eurostat-2-1-1" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-2-1-1" class="anchor"> </a>eurostat 2.1.1</h2>
 <ul>
 <li>The complete package now using tibbles</li>
 <li>Rare encoding issues circumvented (#55)</li>
@@ -121,18 +121,17 @@
 <li>The <code><a href="../reference/get_eurostat_dic.html">get_eurostat_dic()</a></code> and <code><a href="../reference/get_eurostat_toc.html">get_eurostat_toc()</a></code> return tibbles</li>
 <li>Now <code>read_tsv()</code> is used instead of <code>read.csv()</code> (#29)</li>
 </ul>
-</div>
-    <div id="eurostat-1-2-27" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-27" class="anchor"> </a>eurostat 1.2.27</h1>
+<div id="eurostat-1-2-27" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-1-2-27" class="anchor"> </a>eurostat 1.2.27</h2>
 <ul>
 <li>Calls to extract_numeric are replaced by as.numeric (#60)</li>
 <li>The column ‘flags’ is not being labelled even if type = “label” (#61)</li>
 </ul>
 </div>
-    <div id="eurostat-1-2-22" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-22" class="anchor"> </a>eurostat 1.2.22</h1>
+<div id="eurostat-1-2-22" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-1-2-22" class="anchor"> </a>eurostat 1.2.22</h2>
 <ul>
 <li>The European Commission and the Eurostat generally uses ISO 3166-1 alpha-2 codes with two exceptions: EL (not GR) is used to represent Greece, and UK (not GB) is used to represent the United Kingdom. This now can be handled with <code><a href="../reference/harmonize_country_code.html">harmonize_country_code()</a></code> which converts the raw data values from EL to GR and from UK to GB.</li>
 <li>Harmonized roxygen documentation to better follow CRAN conventions</li>
@@ -140,17 +139,17 @@
 <li>Improved memory usage</li>
 </ul>
 </div>
-    <div id="eurostat-1-2-21" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-21" class="anchor"> </a>eurostat 1.2.21</h1>
+<div id="eurostat-1-2-21" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-1-2-21" class="anchor"> </a>eurostat 1.2.21</h2>
 <ul>
 <li>The <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> can now get data also from the Eurostat JSON API via <code><a href="../reference/get_eurostat_json.html">get_eurostat_json()</a></code>. It also have a new argument <code>type</code> to select labels for variable values instead of codes.</li>
 <li>Fix an error after update to <code>tidyr 0.4.0</code> (#47).</li>
 </ul>
 </div>
-    <div id="eurostat-1-2-13" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-13" class="anchor"> </a>eurostat 1.2.13</h1>
+<div id="eurostat-1-2-13" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-1-2-13" class="anchor"> </a>eurostat 1.2.13</h2>
 <ul>
 <li>New <code>select_time</code> argument for <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> to select a time frequency in case of multi-frequency datasets. Now the <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> also gives an error if you try to get multi-frequency with other time formats than <code>time_format = "raw"</code>. (#30) <code>time</code> column is also now in ascending order.</li>
 <li>
@@ -163,21 +162,22 @@
 <code>eurotime2date</code> (and <code>get_eurostat</code>) convers now also daily data.</li>
 </ul>
 </div>
-    <div id="eurostat-1-0-16" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-0-16" class="anchor"> </a>eurostat 1.0.16</h1>
+<div id="eurostat-1-0-16" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-1-0-16" class="anchor"> </a>eurostat 1.0.16</h2>
 <ul>
 <li>Fixed vignette error</li>
 </ul>
 </div>
-    <div id="eurostat-1-0-14-2015-03-19" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-0-14-2015-03-19" class="anchor"> </a>eurostat 1.0.14 (2015-03-19)</h1>
+<div id="eurostat-1-0-14-2015-03-19" class="section level2">
+<h2 class="hasAnchor">
+<a href="#eurostat-1-0-14-2015-03-19" class="anchor"> </a>eurostat 1.0.14 (2015-03-19)</h2>
 <ul>
 <li>Package largely rewritten</li>
 <li>Vignette added</li>
 <li>Changed the value column to values in the get_eurostat output</li>
 </ul>
+</div>
 </div>
     <div id="eurostat-0-9-1-2014-04-24" class="section level1">
 <h1 class="hasAnchor">
@@ -198,12 +198,6 @@
         <li><a href="#eurostat-2-2-1">2.2.1</a></li>
         <li><a href="#eurostat-2-1-1">2.1.1</a></li>
         <li><a href="#eurostat-2-0">2.0</a></li>
-        <li><a href="#eurostat-1-2-27">1.2.27</a></li>
-        <li><a href="#eurostat-1-2-22">1.2.22</a></li>
-        <li><a href="#eurostat-1-2-21">1.2.21</a></li>
-        <li><a href="#eurostat-1-2-13">1.2.13</a></li>
-        <li><a href="#eurostat-1-0-16">1.0.16</a></li>
-        <li><a href="#eurostat-1-0-14-2015-03-19">1.0.14</a></li>
         <li><a href="#eurostat-0-9-1-2014-04-24">0.9.1</a></li>
       </ul>
     </div>

@@ -17,14 +17,23 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 
 ### Installation and use
 
+To install the CRAN release version, use:
 
 ```{r install, eval=FALSE}
 install.packages("eurostat")
 ```
 
+
+For the latest github development version, use:
+
+```{r installdev, eval=FALSE}
+install_github("ropengov/eurostat")
+```
+
 For detailed examples, see:
 
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
+ * [Package homepage](http://ropengov.github.io/eurostat/) with links to function documentation and other material
  * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) with reproducible examples
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
@@ -37,22 +46,18 @@ Contributions are very welcome:
   * [Send pull requests](https://github.com/ropengov/eurostat/)
   * [Star us on the Github page](https://github.com/ropengov/eurostat)
 
-Kindly cite this work as follows:
-
-```{r cite, warning=FALSE, message=FALSE, eval=TRUE}
-citation('eurostat')
+```{r lib, include=FALSE, echo=FALSE, warning=FALSE, message=FALSE}
+library(eurostat)
 ```
+
+**Kindly cite this work** as follows: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari (2017). eurostat: Tools for Eurostat Open Data. R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 
 ### Authors
 
 [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus
 Kainu, Janne Huovari, with contributions from Joona Lehtomäki,
-Francois Briatte, and Oliver Reiter.
-
-This project is part of rOpenGov; we are grateful to all
-[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
-and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
+Francois Briatte, and Oliver Reiter. This project is part of [rOpenGov](http://ropengov.github.io); we are grateful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors) and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
 
 

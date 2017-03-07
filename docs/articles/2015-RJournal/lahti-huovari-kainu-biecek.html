@@ -107,6 +107,15 @@ knitr::opts_chunk$<span class="kw">set</span>(<span class="dt">fig.path =</span>
 <p>To retrieve data for ‘road accidents’, for instance, use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(eurostat)
 query &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"road accidents"</span>, <span class="dt">type =</span> <span class="st">"table"</span>)</code></pre></div>
+<pre><code>## 
+|==========                                                                     |  12%           
+|=====================                                                          |  26%           
+|==================================                                             |  42%           
+|=============================================                                  |  56%           
+|========================================================                       |  71%           
+|==================================================================             |  83%    1 MB
+|===========================================================================    |  94%    1 MB
+|================================================================================| 100%    1 MB</code></pre>
 <p>Investigate the first entry of our query:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">query$code[[<span class="dv">1</span>]]</code></pre></div>
 <pre><code>## [1] "tsdtr420"</code></pre>
@@ -398,8 +407,8 @@ plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(en
 ## 
 ## other attached packages:
 ## [1] ggplot2_2.2.1        plotrix_3.6-3        dplyr_0.5.0         
-## [4] tidyr_0.6.1          xtable_1.8-2         knitr_1.15.1        
-## [7] eurostat_2.3.11      pkgdown_0.1.0.9000   devtools_1.12.0.9000
+## [4] tidyr_0.6.1          xtable_1.8-2         eurostat_2.3.11     
+## [7] pkgdown_0.1.0.9000   knitr_1.15.1         devtools_1.12.0.9000
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] purrr_0.2.2         lattice_0.20-34     tcltk_3.3.1        

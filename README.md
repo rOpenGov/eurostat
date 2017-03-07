@@ -17,15 +17,25 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 
 ### Installation and use
 
+To install the CRAN release version, use:
 
 
 ```r
 install.packages("eurostat")
 ```
 
+
+For the latest github development version, use:
+
+
+```r
+install_github("ropengov/eurostat")
+```
+
 For detailed examples, see:
 
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
+ * [Package homepage](http://ropengov.github.io/eurostat/) with links to function documentation and other material
  * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) with reproducible examples
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
@@ -38,42 +48,16 @@ Contributions are very welcome:
   * [Send pull requests](https://github.com/ropengov/eurostat/)
   * [Star us on the Github page](https://github.com/ropengov/eurostat)
 
-Kindly cite this work as follows:
 
 
-```r
-citation('eurostat')
-```
-
-```
-## 
-## Kindly cite the eurostat R package as follows:
-## 
-##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-##   2014-2017. eurostat R package. R package version 2.2.43 URL:
-##   https://github.com/rOpenGov/eurostat
-## 
-## A BibTeX entry for LaTeX users is
-## 
-##   @Misc{,
-##     title = {eurostat R package},
-##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-##     year = {2014-2017},
-##     url = {https://github.com/rOpenGov/eurostat},
-##     note = {R package version 2.2.43},
-##   }
-```
+**Kindly cite this work** as follows: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari (2017). eurostat: Tools for Eurostat Open Data. R package version 2.3.11. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 
 ### Authors
 
 [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus
 Kainu, Janne Huovari, with contributions from Joona Lehtomäki,
-Francois Briatte, and Oliver Reiter.
-
-This project is part of rOpenGov; we are grateful to all
-[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors)
-and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
+Francois Briatte, and Oliver Reiter. This project is part of [rOpenGov](http://ropengov.github.io); we are grateful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors) and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal!
 
 
 
