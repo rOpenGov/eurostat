@@ -2,10 +2,10 @@
 % Please edit documentation in R/data_countries.R
 \docType{data}
 \name{eu_countries}
+\alias{eu_countries}
 \alias{ea_countries}
 \alias{efta_countries}
 \alias{eu_candidate_countries}
-\alias{eu_countries}
 \title{Countries and Country Codes}
 \format{A data_frame:
 \describe{
@@ -30,4 +30,3 @@ Countries and country codes in EU,
 Euro area, EFTA and EU candidate countries.
 }
 \keyword{datasets}
-

@@ -3,7 +3,7 @@ title: "Examples on eurostat R package"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
 date: "`r Sys.Date()`"
 bibliography: 
-- references.bib
+- lahti-huovari-kainu-biecek.bib
 output: 
   md_document:
     variant: markdown_github

@@ -39,4 +39,3 @@ representing calendar dates.
 \author{
 Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 }
-

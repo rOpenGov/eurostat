@@ -24,15 +24,14 @@ The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portl
 \examples{
 \dontrun{tmp <- get_eurostat_toc(); head(tmp)}
 }
-\author{
-Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
-}
 \references{
 See citation("eurostat").
 }
 \seealso{
 \code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
 }
+\author{
+Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
+}
 \keyword{database}
 \keyword{utilities}
-

@@ -2,8 +2,8 @@
 % Please edit documentation in R/eurostat-package.R
 \docType{package}
 \name{eurostat-package}
-\alias{eurostat}
 \alias{eurostat-package}
+\alias{eurostat}
 \title{R Tools for Eurostat open data}
 \description{
 Brief summary of the eurostat package
@@ -23,12 +23,11 @@ R Tools for Eurostat Open Data
 \examples{
 library(eurostat)
 }
-\author{
-Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
-}
 \references{
 See citation("eurostat")
 \url{http://github.com/ropengov/eurostat}
 }
+\author{
+Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+}
 \keyword{package}
-

@@ -7,6 +7,10 @@ document("../../")
 #build(vignettes = FALSE)
 #check("../../", vignettes = FALSE)
 
+library(pkgdown)
+setwd("../../")
+build_site()
+
 # Submissions:
 #
 # release() # Submit to CRAN

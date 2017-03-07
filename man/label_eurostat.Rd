@@ -2,8 +2,8 @@
 % Please edit documentation in R/label_eurostat.R
 \name{label_eurostat}
 \alias{label_eurostat}
-\alias{label_eurostat_tables}
 \alias{label_eurostat_vars}
+\alias{label_eurostat_tables}
 \title{Get Eurostat Codes}
 \usage{
 label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE,
@@ -45,6 +45,7 @@ objects other than characters or factors definitions are get for names.
 
 \item \code{label_eurostat_tables}: Get definitions for table names
 }}
+
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
@@ -59,4 +60,3 @@ objects other than characters or factors definitions are get for names.
 \author{
 Janne Huovari \email{janne.huovari@ptt.fi}
 }
-
