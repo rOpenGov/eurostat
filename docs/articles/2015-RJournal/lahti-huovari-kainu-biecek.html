@@ -107,15 +107,6 @@ knitr::opts_chunk$<span class="kw">set</span>(<span class="dt">fig.path =</span>
 <p>To retrieve data for ‘road accidents’, for instance, use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(eurostat)
 query &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"road accidents"</span>, <span class="dt">type =</span> <span class="st">"table"</span>)</code></pre></div>
-<pre><code>## 
-|==========                                                                     |  12%           
-|=====================                                                          |  26%           
-|==================================                                             |  42%           
-|=============================================                                  |  56%           
-|========================================================                       |  71%           
-|==================================================================             |  83%    1 MB
-|===========================================================================    |  94%    1 MB
-|================================================================================| 100%    1 MB</code></pre>
 <p>Investigate the first entry of our query:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">query$code[[<span class="dv">1</span>]]</code></pre></div>
 <pre><code>## [1] "tsdtr420"</code></pre>
