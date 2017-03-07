@@ -1,0 +1,13 @@
+library(knitr)
+library(rmarkdown)
+render("eurostat_tutorial.Rmd", output_format = "md_document")
+render("eurostat_tutorial.Rmd", output_format = "pdf_document")
+render("eurostat_tutorial.Rmd", output_format = "html_document")
+
+#knit("eurostat_tutorial.Rmd")
+#knit("manuscript.Rmd")
+#render("manuscript.Rmd", output_format = "html_document")
+#render("manuscript.Rmd", output_format = "pdf_document")
+#knit2pdf("eurostat.Rnw")
+#library(rmarkdown)
+#render("eurostat_tutorial.Rmd", output_format = "pdf_document")
