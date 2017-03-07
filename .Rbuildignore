@@ -13,6 +13,7 @@ docs
 ./vignettes/zipfile
 ./vignettes/figure
 ./vignettes/fig
+./vignettes/cheatsheet
 ./figure$
 ./cache$
 # Git related
