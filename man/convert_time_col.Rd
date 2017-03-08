@@ -15,4 +15,3 @@ convert_time_col(x, time_format)
 Internal function to convert time column.
 }
 \keyword{internal}
-

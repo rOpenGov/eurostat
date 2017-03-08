@@ -38,4 +38,3 @@ and polishes the labels ready for used in mapping with \code{merge_with_geodata}
 \author{
 Markus Kainu <markuskainu@gmail.com>
 }
-

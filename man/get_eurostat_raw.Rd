@@ -30,15 +30,14 @@ Data is downloaded from
 	       head(tmp)
      }
 }
-\author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com}
-}
 \references{
 see citation("eurostat")
 }
 \seealso{
 \code{\link{get_eurostat}}.
 }
+\author{
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com}
+}
 \keyword{database}
 \keyword{utilities}
-

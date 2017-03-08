@@ -37,16 +37,15 @@ tibble in the molten format with the last column 'values'.
 Transform raw Eurostat data table into the row-column-value
 format (RCV).
 }
-\author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
-}
 \references{
 See citation("eurostat").
 }
 \seealso{
 \code{\link{get_eurostat}}
 }
+\author{
+Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+}
 \keyword{database}
 \keyword{internal}
 \keyword{utilities}
-
