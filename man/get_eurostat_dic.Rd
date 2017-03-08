@@ -29,6 +29,9 @@ For given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
 	       tmp <- get_eurostat_dic("crop_pro", lang = "fr")
      }
 }
+\author{
+Przemyslaw Biecek and Leo Lahti \email{leo.lahti@iki.fi}. Thanks to Wietse Dol for contributions.
+}
 \references{
 See citation("eurostat").
 }
@@ -36,8 +39,6 @@ See citation("eurostat").
 \code{\link{label_eurostat}}, \code{\link{get_eurostat}}, 
          \code{\link{search_eurostat}}.
 }
-\author{
-Przemyslaw Biecek and Leo Lahti \email{leo.lahti@iki.fi}. Thanks to Wietse Dol for contributions.
-}
 \keyword{database}
 \keyword{utilities}
+

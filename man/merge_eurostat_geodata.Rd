@@ -45,3 +45,4 @@ Merges data_frame obtained from Eurostat with \code{get_eurostat} with geospatia
 \author{
 Markus Kainu <markuskainu@gmail.com>
 }
+

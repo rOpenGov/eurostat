@@ -15,34 +15,37 @@ Authors@R: c(
 Maintainer: Leo Lahti <louhos@googlegroups.com>
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database
-        <http://ec.europa.eu/eurostat> together with search and
-        manipulation utilities.
+    <http://ec.europa.eu/eurostat> together with search and
+    manipulation utilities.
 License: BSD_2_clause + file LICENSE
-Depends: R (>= 3.0.2)
-Imports: classInt, 
-         jsonlite, 
-	 httr, 
-	 sp, 
-	 RColorBrewer, 
-	 stringi, 
-	 stringr,
-         tibble, 
-	 tidyr, 
-	 readr
-Suggests: dplyr, 
-          Cairo, 
-	  ggplot2, 
-	  knitr, 
-	  mapproj, 
-	  plotrix, 
-	  rmarkdown, 
-	  roxygen2,
-          rvest, 
-	  testthat
+Depends:
+    R (>= 3.0.2)
+Imports:
+    classInt,
+    jsonlite,
+    httr,
+    sp,
+    RColorBrewer,
+    stringi,
+    stringr,
+    tibble,
+    tidyr,
+    readr
+Suggests:
+    dplyr,
+    Cairo,
+    ggplot2,
+    knitr,
+    mapproj,
+    plotrix,
+    rmarkdown,
+    roxygen2,
+    rvest,
+    testthat
 LazyData: true
 URL: https://github.com/ropengov/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.0.1
+RoxygenNote: 5.0.1

@@ -15,10 +15,11 @@ url
 \description{
 Base URL
 }
-\references{
-see citation("eurostat").
-}
 \author{
 Leo Lahti \email{ropengov-forum@googlegroups.com}
 }
+\references{
+see citation("eurostat").
+}
 \keyword{internal}
+
