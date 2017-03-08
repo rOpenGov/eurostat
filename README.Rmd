@@ -32,9 +32,10 @@ install_github("ropengov/eurostat")
 
 For detailed examples, see:
 
+ * [Eurostat R Cheat Sheet](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
  * [Package homepage](http://ropengov.github.io/eurostat/) with links to function documentation and other material
- * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) with reproducible examples
+ * Journal manuscript [markdown](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)|[pdf](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/RJwrapper.pdf) with reproducible examples
  * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
 
 
