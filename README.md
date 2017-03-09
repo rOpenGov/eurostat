@@ -12,7 +12,7 @@ eurostat R package
 
 
 
-R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization.
+R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
 
 
 ### Installation and use
@@ -32,13 +32,12 @@ For the latest github development version, use:
 install_github("ropengov/eurostat")
 ```
 
-For detailed examples, see:
+See the [package homepage](http://ropengov.github.io/eurostat/) with links to function documentation and other details. For further examples, see:
 
  * [Eurostat R Cheat Sheet](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
- * [Package homepage](http://ropengov.github.io/eurostat/) with links to function documentation and other material
- * Journal manuscript [markdown](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)|[pdf](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/RJwrapper.pdf) with reproducible examples
- * [rOpenGov blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/) by Markus Kainu
+ * Blog posts ([package release](https://rpubs.com/muuankarski/27120) / [case studies](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/))  
+ * Journal manuscript ([markdown](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) / [pdf](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/RJwrapper.pdf)) with reproducible examples
 
 
 ### Contribute
