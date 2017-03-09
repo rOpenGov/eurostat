@@ -1,5 +1,5 @@
 ---
-title: "Examples on eurostat R package"
+title: "Retrieval and analysis of Eurostat open data with the eurostat package (journal manuscript)"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
 date: "`r Sys.Date()`"
 bibliography: 
