@@ -21,12 +21,15 @@ test_that("get_eurostat return right classes",{
                            class)))
 })
 
-#test_that("get_eurostat handles daily data", {
-#  skip_on_cran()
-#  dat <- get_eurostat("ert_bil_eur_d", time_format = "date", cache = FALSE)
-#  dat1 <- subset(dat, currency == "ARS")
-#  expect_equal(abs(as.numeric(difftime(dat1$time[1], dat1$time[2], units = "day#s"))), 1)
-#})
+test_that("get_eurostat handles daily data", {
+  skip_on_cran()
+  dat1 <- get_eurostat("ert_bil_eur_d", 
+                       filters = list(currency = "ARS", statinfo ="AVG",
+                                      time = c("2017M03D09", "2017M03D10")), 
+                       time_format = "date", cache = FALSE)
+  expect_equal(as.numeric(difftime(dat1$time[2], dat1$time[1], units = "days")), 1)
+})
+
 
 test_that("get_eurostat get non-normal variable order",{
   skip_on_cran()
