@@ -56,7 +56,9 @@ Contributions are very welcome:
 
 **Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari (2017). eurostat: Tools for Eurostat Open Data. R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
-We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
+We are greatful to all
+[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors),
+including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 
 
 
