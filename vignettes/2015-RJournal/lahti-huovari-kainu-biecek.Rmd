@@ -202,15 +202,23 @@ energy3 <- get_eurostat("ten00081") %>%
   group_by(geo) %>%
   mutate(tvalue = sum(svalue),
          svalue = svalue/sum(svalue)) %>%
-  filter(tvalue > 1000,
-         !grepl(geo, pattern="^Euro")) %>% # only large countries
-  spread(nproduct, svalue)
+ filter(tvalue > 1000) %>% 
+ spread(nproduct, svalue)
+ 
+# Triangle plot
+ par(cex=0.75, mar=c(0,0,0,0))
+ positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                     show.grid = TRUE,
+                     label.points= FALSE, point.labels = energy3$geo,
+                     col.axis="gray50", col.grid="gray90",
+                     pch = 19, cex.axis=1.1, cex.ticks=0.7, col="grey50")
 
-par(cex=1.5)
-plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
-                      show.grid = TRUE,
-                      label.points = TRUE, point.labels = energy3$geo,cex.ticks=0.75,col.symbols = "red4",
-                      pch = 19)
+ # Larger labels
+ ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
+ df <- data.frame(positions$xypos, geo = energy3$geo)
+ points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
+ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
+ 
 ```
 
 

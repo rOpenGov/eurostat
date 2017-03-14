@@ -201,15 +201,22 @@ energy3 <- get_eurostat("ten00081") %>%
   group_by(geo) %>%
   mutate(tvalue = sum(svalue),
          svalue = svalue/sum(svalue)) %>%
-  filter(tvalue > 1000,
-         !grepl(geo, pattern="^Euro")) %>% # only large countries
-  spread(nproduct, svalue)
+ filter(tvalue > 1000) %>% 
+ spread(nproduct, svalue)
+ 
+# Triangle plot
+ par(cex=0.75, mar=c(0,0,0,0))
+ positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                     show.grid = TRUE,
+                     label.points= FALSE, point.labels = energy3$geo,
+                     col.axis="gray50", col.grid="gray90",
+                     pch = 19, cex.axis=1.1, cex.ticks=0.7, col="grey50")
 
-par(cex=1.5)
-plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
-                      show.grid = TRUE,
-                      label.points = TRUE, point.labels = energy3$geo,cex.ticks=0.75,col.symbols = "red4",
-                      pch = 19)
+ # Larger labels
+ ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
+ df <- data.frame(positions$xypos, geo = energy3$geo)
+ points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
+ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ```
 
 ![](./2015-manu-energy-1.png)
@@ -271,37 +278,31 @@ This tutorial was created with
 sessionInfo()
 ```
 
-    ## R version 3.3.1 (2016-06-21)
-    ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 16.10
+    ## R version 3.3.3 (2017-03-06)
+    ## Platform: x86_64-apple-darwin13.4.0 (64-bit)
+    ## Running under: macOS Sierra 10.12.2
     ## 
     ## locale:
-    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-    ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-    ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
     ## 
     ## attached base packages:
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] ggplot2_2.2.1      plotrix_3.6-3      dplyr_0.5.0       
-    ## [4] tidyr_0.6.1        xtable_1.8-2       knitr_1.15.1      
-    ## [7] eurostat_2.3.20001 rmarkdown_1.3.9004
+    ## [1] plotrix_3.6-3   rmarkdown_1.3   ggplot2_2.2.1   dplyr_0.5.0    
+    ## [5] tidyr_0.6.1     xtable_1.8-2    knitr_1.15.1    eurostat_2.3.11
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.9.4      RColorBrewer_1.1-2 plyr_1.8.4        
-    ##  [4] highr_0.6          class_7.3-14       tools_3.3.1       
+    ##  [1] Rcpp_0.12.9.2      RColorBrewer_1.1-2 plyr_1.8.4        
+    ##  [4] highr_0.6          class_7.3-14       tools_3.3.3       
     ##  [7] digest_0.6.12      jsonlite_1.3       evaluate_0.10     
     ## [10] tibble_1.2         gtable_0.2.0       lattice_0.20-34   
     ## [13] DBI_0.5-1          mapproj_1.2-4      ggrepel_0.6.5     
-    ## [16] curl_2.3           yaml_2.1.14        e1071_1.6-7       
+    ## [16] curl_2.2           yaml_2.1.14        e1071_1.6-7       
     ## [19] httr_1.2.1         stringr_1.2.0      maps_3.1.1        
-    ## [22] classInt_0.1-23    rprojroot_1.2      grid_3.3.1        
-    ## [25] R6_2.2.0           sp_1.2-3           readr_1.0.0       
-    ## [28] magrittr_1.5       backports_1.0.5    scales_0.4.1      
-    ## [31] htmltools_0.3.5    assertthat_0.1     colorspace_1.3-2  
-    ## [34] labeling_0.3       stringi_1.1.3      lazyeval_0.2.0    
+    ## [22] classInt_0.1-23    rprojroot_1.2      grid_3.3.3        
+    ## [25] R6_2.2.0           sp_1.2-4           readr_1.0.0       
+    ## [28] magrittr_1.5       scales_0.4.1       backports_1.0.5   
+    ## [31] htmltools_0.3.5    assertthat_0.1     colorspace_1.3-1  
+    ## [34] labeling_0.3       stringi_1.1.2      lazyeval_0.2.0    
     ## [37] munsell_0.4.3
