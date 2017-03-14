@@ -175,7 +175,7 @@ tmp1 %>%
 
 ## Renewable energy production
 
-```{r 2015-manu-energy, echo=TRUE, message=FALSE, warning=FALSE, fig.width=8, fig.height=8}
+```{r 2015-manu-energy, echo=TRUE, message=FALSE, warning=FALSE, fig.width=7, fig.height=7}
 dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
           "Biogasoline" = "Biofuels",
           "Other liquid biofuels" = "Biofuels",
@@ -211,7 +211,7 @@ energy3 <- get_eurostat("ten00081") %>%
                      show.grid = TRUE,
                      label.points= FALSE, point.labels = energy3$geo,
                      col.axis="gray50", col.grid="gray90",
-                     pch = 19, cex.axis=1.1, cex.ticks=0.7, col="grey50")
+                     pch = 19, cex.axis=1.2, cex.ticks=0.7, col="grey50")
 
  # Larger labels
  ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
