@@ -1,5 +1,5 @@
 ---
-title: "eurostat R package: cheat sheet"
+title: "Cheat sheet: eurostat R package"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
