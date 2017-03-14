@@ -1,7 +1,10 @@
 ## eurostat 2.3.20001
 
 * Added docs/ (automated package website)
-
+* Augmented the list of Suggested packages in the DESCRIPTION file,
+  including the Cairo package
+* Updated the journal manuscript based on reviewer feedback
+* Expanded unit tests
 
 ## eurostat 2.2.20001
 

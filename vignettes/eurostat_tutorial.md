@@ -2,9 +2,10 @@ R Tools for Eurostat Open Data
 ==============================
 
 This [rOpenGov](http://ropengov.github.io) R package provides tools to
-access [Eurostat database](http://ec.europa.eu/eurostat/). For contact
-information and source code, see the
-[README](https://github.com/rOpenGov/eurostat).
+access [Eurostat database](http://ec.europa.eu/eurostat/data/database),
+which you can also browse on-line for the data sets and documentation.
+For contact information and source code, see the [package
+website](http://ropengov.github.io/eurostat/).
 
 Installation
 ============
@@ -132,10 +133,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">02.02.2017</td>
-<td align="left">30.01.2017</td>
+<td align="left">27.02.2017</td>
+<td align="left">27.02.2017</td>
 <td align="left">1980M01</td>
-<td align="left">2017M01</td>
+<td align="left">2017M02</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -188,7 +189,7 @@ instance datasets or tables.
 <td align="left">Railway transport - Total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">09.02.2017</td>
+<td align="left">09.03.2017</td>
 <td align="left">08.11.2016</td>
 <td align="left">2004</td>
 <td align="left">2015</td>
@@ -198,7 +199,7 @@ instance datasets or tables.
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">09.02.2017</td>
+<td align="left">09.03.2017</td>
 <td align="left">21.09.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
@@ -208,7 +209,7 @@ instance datasets or tables.
 <td align="left">International railway passenger transport from the country of embarkation to the reporting country (1 000 passengers)</td>
 <td align="left">rail_pa_intcmng</td>
 <td align="left">dataset</td>
-<td align="left">09.02.2017</td>
+<td align="left">09.03.2017</td>
 <td align="left">26.05.2016</td>
 <td align="left">2002</td>
 <td align="left">2015</td>
@@ -817,9 +818,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/Rtmp7lGa2B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp7lGa2B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -848,9 +849,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp7lGa2B/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/df60.RData
 
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/Rtmp7lGa2B/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpwCTq1B/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -870,9 +871,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/Rtmp7lGa2B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp7lGa2B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -901,9 +902,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp7lGa2B/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/df01.RData
 
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/Rtmp7lGa2B/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpwCTq1B/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -933,9 +934,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/Rtmp7lGa2B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp7lGa2B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -964,9 +965,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp7lGa2B/eurostat/spdf10.RData
+    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/spdf10.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp7lGa2B/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpwCTq1B/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -975,6 +976,83 @@ Maps
            col = "white", usePolypath = FALSE)
 
 ![](fig/maps3-1.png)
+
+SDMX
+----
+
+Eurostat data is available also in the SDMX format. The eurostat R
+package does not provide custom tools for this but the generic rsdmx R
+package can be used to access data in that format when necessary:
+
+    library(rsdmx)
+
+    # Data set URL
+    url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011 "
+
+    # Read the data from eurostat
+    d <- readSDMX(url)
+
+    # Convert to data frame and show the first entries
+    df <- as.data.frame(d)
+
+    kable(head(df))
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">UNIT</th>
+<th align="left">Y_GRAD</th>
+<th align="left">FOS07</th>
+<th align="left">GEO</th>
+<th align="left">FREQ</th>
+<th align="left">obsTime</th>
+<th align="right">obsValue</th>
+<th align="left">OBS_STATUS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">43.75</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+</tbody>
+</table>
 
 Further examples
 ================
@@ -1008,7 +1086,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## Kindly cite the eurostat R package as follows:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2017. eurostat R package. R package version 2.2.43 URL:
+    ##   2014-2017. eurostat R package. R package version 2.3.20001 URL:
     ##   https://github.com/rOpenGov/eurostat
     ## 
     ## A BibTeX entry for LaTeX users is
@@ -1018,7 +1096,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
     ##     year = {2014-2017},
     ##     url = {https://github.com/rOpenGov/eurostat},
-    ##     note = {R package version 2.2.43},
+    ##     note = {R package version 2.3.20001},
     ##   }
 
 ### Related work
@@ -1050,33 +1128,34 @@ This tutorial was created with
 
     sessionInfo()
 
-    ## R version 3.3.2 (2016-10-31)
+    ## R version 3.3.1 (2016-06-21)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 16.04.2 LTS
+    ## Running under: Ubuntu 16.10
     ## 
     ## locale:
     ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-    ##  [3] LC_TIME=de_BE.UTF-8        LC_COLLATE=en_US.UTF-8    
-    ##  [5] LC_MONETARY=de_BE.UTF-8    LC_MESSAGES=en_US.UTF-8   
-    ##  [7] LC_PAPER=de_BE.UTF-8       LC_NAME=C                 
+    ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
     ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-    ## [11] LC_MEASUREMENT=de_BE.UTF-8 LC_IDENTIFICATION=C       
+    ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
     ## 
     ## attached base packages:
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] sp_1.2-3           RColorBrewer_1.1-2 dplyr_0.5.0       
-    ##  [4] plotrix_3.6-3      ggplot2_2.1.0      tidyr_0.6.0.9000  
-    ##  [7] rvest_0.3.2        xml2_1.1.0         eurostat_2.2.43   
-    ## [10] rmarkdown_1.1      knitr_1.14        
+    ##  [1] rsdmx_0.5-8        sp_1.2-3           RColorBrewer_1.1-2
+    ##  [4] dplyr_0.5.0        plotrix_3.6-3      ggplot2_2.2.1     
+    ##  [7] tidyr_0.6.1        rvest_0.3.2        xml2_1.1.1        
+    ## [10] eurostat_2.3.20001 rmarkdown_1.3.9004 knitr_1.15.1      
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.9      formatR_1.4      highr_0.6        plyr_1.8.4      
-    ##  [5] class_7.3-14     tools_3.3.2      digest_0.6.10    jsonlite_1.2    
+    ##  [1] Rcpp_0.12.9.4    highr_0.6        plyr_1.8.4       bitops_1.0-6    
+    ##  [5] class_7.3-14     tools_3.3.1      digest_0.6.12    jsonlite_1.3    
     ##  [9] evaluate_0.10    tibble_1.2       gtable_0.2.0     lattice_0.20-34 
-    ## [13] DBI_0.5-1        yaml_2.1.13      rgdal_1.1-10     e1071_1.6-7     
-    ## [17] httr_1.2.1       stringr_1.1.0    classInt_0.1-23  grid_3.3.2      
-    ## [21] R6_2.2.0         readr_1.0.0      magrittr_1.5     scales_0.4.0    
-    ## [25] htmltools_0.3.5  assertthat_0.1   colorspace_1.2-7 labeling_0.3    
-    ## [29] stringi_1.1.2    lazyeval_0.2.0   munsell_0.4.3    Cairo_1.5-9
+    ## [13] DBI_0.5-1        rgdal_1.2-4      yaml_2.1.14      e1071_1.6-7     
+    ## [17] httr_1.2.1       stringr_1.2.0    classInt_0.1-23  rprojroot_1.2   
+    ## [21] grid_3.3.1       R6_2.2.0         XML_3.98-1.5     readr_1.0.0     
+    ## [25] magrittr_1.5     backports_1.0.5  scales_0.4.1     htmltools_0.3.5 
+    ## [29] assertthat_0.1   colorspace_1.3-2 labeling_0.3     stringi_1.1.3   
+    ## [33] RCurl_1.95-4.8   lazyeval_0.2.0   munsell_0.4.3    Cairo_1.5-9

@@ -22,15 +22,15 @@ Depends:
     R (>= 3.0.2)
 Imports:
     classInt,
+    httr,    
     jsonlite,
-    httr,
-    sp,
     RColorBrewer,
+    readr,
+    sp,
     stringi,
     stringr,
     tibble,
-    tidyr,
-    readr
+    tidyr
 Suggests:
     dplyr,
     Cairo,
@@ -40,6 +40,7 @@ Suggests:
     plotrix,
     rmarkdown,
     roxygen2,
+    rsdmx,
     rvest,
     testthat
 LazyData: true

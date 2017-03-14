@@ -68,7 +68,7 @@
 <div id="r-tools-for-eurostat-open-data" class="section level1">
 <h1 class="hasAnchor">
 <html><body><a href="#r-tools-for-eurostat-open-data" class="anchor"> </a></body></html>R Tools for Eurostat Open Data</h1>
-<p>This <a href="http://ropengov.github.io">rOpenGov</a> R package provides tools to access <a href="http://ec.europa.eu/eurostat/">Eurostat database</a>. For contact information and source code, see the <a href="https://github.com/rOpenGov/eurostat">README</a>.</p>
+<p>This <a href="http://ropengov.github.io">rOpenGov</a> R package provides tools to access <a href="http://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for the data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
@@ -753,8 +753,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>., <span class="kw">aes</span>(<span class="dt">x=</span>long,<span class="dt">y=</span>lat,<span class="dt">group=</span>group)) +
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"white"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) +
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span><span class="st">"Oranges"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpebWpX5/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpebWpX5/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpJtIERB/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpJtIERB/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -781,8 +781,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## Reading cache file /tmp/RtmpebWpX5/eurostat/df60.RData</code></pre>
-<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpebWpX5/eurostat/df60.RData</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpJtIERB/eurostat/df60.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpJtIERB/eurostat/df60.RData</code></pre>
 <p><img src="fig/maps1-1.png" width="768"></p>
 </div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-in-poland-with-labels-at-11mln-resolution-using-ggplot2" class="section level3">
@@ -801,8 +801,8 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
          <span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge with geodata</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"01"</span>, <span class="dt">all_regions =</span> <span class="ot">FALSE</span>, <span class="dt">output_class=</span><span class="st">"df"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpebWpX5/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpebWpX5/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpJtIERB/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpJtIERB/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -829,7 +829,7 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmpebWpX5/eurostat/df01.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmpJtIERB/eurostat/df01.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>df, <span class="kw">aes</span>(long,lat,<span class="dt">group=</span>group))
 p &lt;-<span class="st"> </span>p +<span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> cat),<span class="dt">colour=</span><span class="st">"white"</span>,<span class="dt">size=</span>.<span class="dv">8</span>)
@@ -857,8 +857,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge Eurostat data with geodata from Cisco</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">output_class =</span><span class="st">"spdf"</span>, <span class="dt">all_regions=</span><span class="ot">FALSE</span>) </code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpebWpX5/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpebWpX5/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpJtIERB/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpJtIERB/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -885,7 +885,7 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpebWpX5/eurostat/spdf10.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpJtIERB/eurostat/spdf10.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,
        <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), 
@@ -893,6 +893,77 @@ sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span clas
        <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">usePolypath =</span> <span class="ot">FALSE</span>)</code></pre></div>
 <p><img src="fig/maps3-1.png" width="768"></p>
 </div>
+</div>
+<div id="sdmx" class="section level2">
+<h2 class="hasAnchor">
+<html><body><a href="#sdmx" class="anchor"> </a></body></html>SDMX</h2>
+<p>Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic rsdmx R package can be used to access data in that format when necessary:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(rsdmx)
+
+<span class="co"># Data set URL</span>
+url &lt;-<span class="st"> "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&amp;endPeriod=2011 "</span>
+
+<span class="co"># Read the data from eurostat</span>
+d &lt;-<span class="st"> </span><span class="kw">readSDMX</span>(url)
+
+<span class="co"># Convert to data frame and show the first entries</span>
+df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
+
+<span class="kw">kable</span>(<span class="kw">head</span>(df))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">UNIT</th>
+<th align="left">Y_GRAD</th>
+<th align="left">FOS07</th>
+<th align="left">GEO</th>
+<th align="left">FREQ</th>
+<th align="left">obsTime</th>
+<th align="right">obsValue</th>
+<th align="left">OBS_STATUS</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">43.75</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="further-examples" class="section level1">
@@ -970,30 +1041,31 @@ sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span clas
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] sp_1.2-3             RColorBrewer_1.1-2   rvest_0.3.2         
-##  [4] xml2_1.1.1           ggplot2_2.2.1        plotrix_3.6-3       
-##  [7] dplyr_0.5.0          tidyr_0.6.1          xtable_1.8-2        
-## [10] eurostat_2.3.20001   pkgdown_0.1.0.9000   knitr_1.15.1        
-## [13] devtools_1.12.0.9000
+##  [1] rsdmx_0.5-8          sp_1.2-3             RColorBrewer_1.1-2  
+##  [4] rvest_0.3.2          xml2_1.1.1           ggplot2_2.2.1       
+##  [7] plotrix_3.6-3        dplyr_0.5.0          tidyr_0.6.1         
+## [10] xtable_1.8-2         eurostat_2.3.20001   pkgdown_0.1.0.9000  
+## [13] knitr_1.15.1         devtools_1.12.0.9000
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] purrr_0.2.2         lattice_0.20-34     tcltk_3.3.1        
 ##  [4] colorspace_1.3-2    testthat_1.0.2      htmltools_0.3.5    
-##  [7] yaml_2.1.14         pkgbuild_0.0.0.9000 e1071_1.6-7        
-## [10] withr_1.0.2         DBI_0.5-1           plyr_1.8.4         
-## [13] stringr_1.2.0       munsell_0.4.3       commonmark_1.2     
-## [16] gtable_0.2.0        mapproj_1.2-4       evaluate_0.10      
-## [19] memoise_1.0.0       labeling_0.3        highlight_0.4.7    
-## [22] Cairo_1.5-9         curl_2.3            class_7.3-14       
-## [25] highr_0.6           Rcpp_0.12.9.4       readr_1.0.0        
-## [28] backports_1.0.5     scales_0.4.1        classInt_0.1-23    
-## [31] desc_1.1.0          pkgload_0.0.0.9000  jsonlite_1.3       
-## [34] digest_0.6.12       stringi_1.1.3       ggrepel_0.6.5      
-## [37] grid_3.3.1          rprojroot_1.2       rgdal_1.2-4        
-## [40] tools_3.3.1         maps_3.1.1          magrittr_1.5       
-## [43] lazyeval_0.2.0      tibble_1.2          crayon_1.3.2       
-## [46] whisker_0.4         assertthat_0.1      rmarkdown_1.3.9004 
-## [49] roxygen2_6.0.1      httr_1.2.1          R6_2.2.0</code></pre>
+##  [7] yaml_2.1.14         XML_3.98-1.5        pkgbuild_0.0.0.9000
+## [10] e1071_1.6-7         withr_1.0.2         DBI_0.5-1          
+## [13] plyr_1.8.4          stringr_1.2.0       munsell_0.4.3      
+## [16] commonmark_1.2      gtable_0.2.0        mapproj_1.2-4      
+## [19] evaluate_0.10       memoise_1.0.0       labeling_0.3       
+## [22] highlight_0.4.7     Cairo_1.5-9         curl_2.3           
+## [25] class_7.3-14        highr_0.6           Rcpp_0.12.9.4      
+## [28] readr_1.0.0         backports_1.0.5     scales_0.4.1       
+## [31] classInt_0.1-23     desc_1.1.0          pkgload_0.0.0.9000 
+## [34] jsonlite_1.3        digest_0.6.12       stringi_1.1.3      
+## [37] ggrepel_0.6.5       grid_3.3.1          rprojroot_1.2      
+## [40] bitops_1.0-6        rgdal_1.2-4         tools_3.3.1        
+## [43] maps_3.1.1          magrittr_1.5        RCurl_1.95-4.8     
+## [46] lazyeval_0.2.0      tibble_1.2          crayon_1.3.2       
+## [49] whisker_0.4         assertthat_0.1      rmarkdown_1.3.9004 
+## [52] roxygen2_6.0.1      httr_1.2.1          R6_2.2.0</code></pre>
 </div>
 </div>
   </div>
@@ -1022,6 +1094,7 @@ sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span clas
       <li>
 <a href="#visualization">Visualization</a><ul class="nav nav-pills nav-stacked">
 <li><a href="#maps">Maps</a></li>
+      <li><a href="#sdmx">SDMX</a></li>
       </ul>
 </li>
       <li><a href="#further-examples">Further examples</a></li>

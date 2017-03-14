@@ -14,10 +14,8 @@ vignette: >
 
 # R Tools for Eurostat Open Data
 
-This [rOpenGov](http://ropengov.github.io) R package provides tools to
-access [Eurostat database](http://ec.europa.eu/eurostat/). For contact
-information and source code, see
-the [README](https://github.com/rOpenGov/eurostat).
+This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
+
 
 ```{r setup, include=FALSE}
 # Global options
@@ -321,6 +319,28 @@ sp::spplot(obj = dat, "cat", main = "Disposable household income",
            col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
 	   col = "white", usePolypath = FALSE)
 ```
+
+
+
+## SDMX
+
+Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic rsdmx R package can be used to access data in that format when necessary:
+
+```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG'}
+library(rsdmx)
+
+# Data set URL
+url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011 "
+
+# Read the data from eurostat
+d <- readSDMX(url)
+
+# Convert to data frame and show the first entries
+df <- as.data.frame(d)
+
+kable(head(df))
+```
+
 
 
 

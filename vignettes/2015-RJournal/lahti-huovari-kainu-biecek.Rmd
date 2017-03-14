@@ -1,5 +1,5 @@
 ---
-title: "Retrieval and analysis of Eurostat open data with the eurostat package (journal manuscript)"
+title: "Retrieval and analysis of Eurostat open data with the eurostat package (R Journal manuscript)"
 author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
 date: "`r Sys.Date()`"
 bibliography: 
@@ -15,19 +15,11 @@ output:
 -->
 
 
-This document reproduces the figures and tables in [our manuscript (in
-preparation)](RJwrapper.pdf) on the [eurostat R
-package](https://github.com/rOpenGov/eurostat), assuming that the
-required R extensions have been installed. For detailed explanation of
-the examples, see the manuscript text.
+This document reproduces the figures and tables in [our manuscript (in preparation)](RJwrapper.pdf) on the [eurostat R package](https://github.com/rOpenGov/eurostat), assuming that the required R extensions have been installed. The Eurostat data is accessed via the [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
 
-To reproduce the complete manuscript PDF, clone this
-[repository](https://github.com/rOpenGov/eurostat), navigate to the
-[./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
-subdirectory and convert the [Rmarkdown source
-code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the
-[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
-folder, and running in R:
+For detailed explanation of the examples, see the manuscript text.
+
+To reproduce the complete manuscript PDF, clone this [repository](https://github.com/rOpenGov/eurostat), navigate to the [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal) subdirectory and convert the [Rmarkdown source code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/) folder, and running in R:
 
 ```{r 2015-manu-manuscript, echo=TRUE, message=FALSE, eval=FALSE}
 source("main.R")
@@ -76,6 +68,7 @@ library(devtools)
 install_github("ropengov/eurostat")
 ```
 
+
 ## Search and download
 
 To retrieve data for 'road accidents', for
@@ -103,7 +96,6 @@ dat <- get_eurostat(id = "tsdtr420", time_format = "num")
 This produces a table:
 
 ```{r 2015-manu-getdata, echo=TRUE, message=FALSE}
-#print(xtable(head(dat), label = "tab:getdatatable"))
 kable(head(dat))
 ```
 
@@ -113,10 +105,17 @@ Convert to human-readable labels:
 ```{r 2015-manu-getdata-labeled, echo=TRUE, message=FALSE}
 # Convert into human readable labels
 datl <- label_eurostat(dat)
-
-# Print the table
-#print(xtable(head(datl), label = "tab:getdatatable2"))
 kable(head(datl))
+```
+
+
+```{r 2015-manu-getdata0, echo=FALSE, message=FALSE}
+## For the manuscript
+#print(xtable(head(dat), label = "tab:getdatatable"))
+#print(xtable(head(datl), label = "tab:getdatatable2"))
+# Print the table
+# data(efta_countries)
+#print(xtable(efta_countries))
 ```
 
 
@@ -125,7 +124,8 @@ kable(head(datl))
 The original and more detailed treatment of this example is provided in a
 [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
-```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE, fig.width=4, fig.height=4}
+```{r 2015-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE}
+
 t1 <- get_eurostat("tsdtr420", 
   filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
 
@@ -134,7 +134,11 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
   geom_line() + theme_bw() + ggtitle("Road accidents")+
   xlab("Year") + ylab("Victims (n)") +
   # labels
-  theme(legend.position="none") +
+  theme(legend.position="none",
+        title = element_text(size = 18),
+        axis.text.x = element_text(size = 18),
+        axis.text.y = element_text(size = 18)
+	) +
   ggrepel::geom_label_repel(data=t1 %>%  
                      group_by(geo) %>% 
                      na.omit() %>% 
@@ -199,7 +203,7 @@ energy3 <- get_eurostat("ten00081") %>%
   mutate(tvalue = sum(svalue),
          svalue = svalue/sum(svalue)) %>%
   filter(tvalue > 1000,
-         !grepl(geo, pattern="^Euro")) %>% # only large countrie
+         !grepl(geo, pattern="^Euro")) %>% # only large countries
   spread(nproduct, svalue)
 
 par(cex=1.5)
@@ -215,7 +219,7 @@ plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
-```{r 2015-manu-mapexample, echo=TRUE, message=FALSE, fig.width=10, fig.height=8, warning=FALSE}
+```{r 2015-manu-mapexample, echo=TRUE, message=FALSE, fig.width=9, fig.height=8, warning=FALSE}
 library(eurostat)
 library(dplyr)
 library(ggplot2)
@@ -244,9 +248,6 @@ get_eurostat("tgs00026", time_format = "raw") %>%
 ```{r 2015-manu-searchb, echo=TRUE, message=FALSE}
 # Load EFTA country listing
 data(efta_countries)
-
-# Print the table
-#print(xtable(efta_countries))
 kable(efta_countries)
 ```
 

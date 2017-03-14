@@ -12,7 +12,13 @@ vignette: >
   \usepackage[utf8]{inputenc}
 ---
 
-You cand send us a note via the [issue tracker](https://github.com/rOpenGov/eurostat/issues) if you like to add a publication using the eurostat R package on this list:
+
+You can send us a note via the [issue tracker](https://github.com/rOpenGov/eurostat/issues) if you like to add a publication using the eurostat R package on this list:
 
  * Journal manuscript ([markdown](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md) / [pdf](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/RJwrapper.pdf)) with reproducible examples. In review.
- 
+
+
+External publications using the eurostat package:
+
+ * Kenett RDS, Shmueli G. Information Quality: The Potential of Data and Analytics to Generate Knowledge. John Wiley & Sons, 2016.
+

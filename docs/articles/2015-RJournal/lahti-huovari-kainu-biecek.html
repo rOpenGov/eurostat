@@ -71,7 +71,8 @@
 %\VignetteIndexEntry{eurostat Markdown Vignette}
 %\usepackage[utf8]{inputenc}
 -->
-<p>This document reproduces the figures and tables in <a href="RJwrapper.pdf">our manuscript (in preparation)</a> on the <a href="https://github.com/rOpenGov/eurostat">eurostat R package</a>, assuming that the required R extensions have been installed. For detailed explanation of the examples, see the manuscript text.</p>
+<p>This document reproduces the figures and tables in <a href="RJwrapper.pdf">our manuscript (in preparation)</a> on the <a href="https://github.com/rOpenGov/eurostat">eurostat R package</a>, assuming that the required R extensions have been installed. The Eurostat data is accessed via the <a href="http://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
+<p>For detailed explanation of the examples, see the manuscript text.</p>
 <p>To reproduce the complete manuscript PDF, clone this <a href="https://github.com/rOpenGov/eurostat">repository</a>, navigate to the <a href="https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal">./vignettes/2015-RJournal</a> subdirectory and convert the <a href="lahti-huovari-kainu-biecek.Rmd">Rmarkdown source code</a> in R by navigating to the <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/">vignettes/2015-RJournal</a> folder, and running in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">"main.R"</span>)</code></pre></div>
 <p>Alternatively, you can proceed in steps as follows. Generate this markdown page with manuscript figures (PNG) with:</p>
@@ -115,8 +116,7 @@ query &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/se
 <p>To retrieve the data set with this identifier, use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(<span class="dt">id =</span> <span class="st">"tsdtr420"</span>, <span class="dt">time_format =</span> <span class="st">"num"</span>)</code></pre></div>
 <p>This produces a table:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#print(xtable(head(dat), label = "tab:getdatatable"))</span>
-<span class="kw">kable</span>(<span class="kw">head</span>(dat))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(dat))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -173,9 +173,6 @@ query &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/se
 <p>Convert to human-readable labels:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Convert into human readable labels</span>
 datl &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/label_eurostat.html">label_eurostat</a></span>(dat)
-
-<span class="co"># Print the table</span>
-<span class="co">#print(xtable(head(datl), label = "tab:getdatatable2"))</span>
 <span class="kw">kable</span>(<span class="kw">head</span>(datl))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -249,7 +246,7 @@ datl &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/lab
 <span class="st">                     </span><span class="kw">na.omit</span>() %&gt;%<span class="st"> </span>
 <span class="st">                     </span><span class="kw">filter</span>(time %in%<span class="st"> </span><span class="kw">c</span>(<span class="kw">min</span>(time),<span class="kw">max</span>(time))),
                    <span class="kw">aes</span>(<span class="dt">fill=</span>geo,<span class="dt">label=</span>geo),<span class="dt">color=</span><span class="st">"white"</span>)</code></pre></div>
-<p><img src="2015-manu-roadacc-1.png" width="384"></p>
+<p><img src="2015-manu-roadacc-1.png" width="480"></p>
 </div>
 <div id="body-mass-index" class="section level2">
 <h2 class="hasAnchor">
@@ -342,9 +339,6 @@ plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(en
 <html><body><a href="#country-code-tables" class="anchor"> </a></body></html>Country code tables</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load EFTA country listing</span>
 <span class="kw">data</span>(efta_countries)
-
-<span class="co"># Print the table</span>
-<span class="co">#print(xtable(efta_countries))</span>
 <span class="kw">kable</span>(efta_countries)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
