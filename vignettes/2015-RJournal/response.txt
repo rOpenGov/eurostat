@@ -1,7 +1,7 @@
 Dear Michael Lawrence,
 
 
-We would like to thank the reviewer, David Winter, for his insightful and helpful comments. We have now accommodated the proposed changes and updated the package in CRAN, and hope that it could be accepted for publication in R Journal.
+We would like to thank the reviewer for his insightful and helpful comments. We have now accommodated the proposed changes and updated the package in CRAN, and hope that it could be accepted for publication in R Journal.
 
 Our comments regarding the suggested changes and how we have taken them into account:
 
