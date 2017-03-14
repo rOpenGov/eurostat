@@ -1,3 +1,8 @@
+## eurostat 2.3.20001
+
+* Added docs/ (automated package website)
+
+
 ## eurostat 2.2.20001
 
 * `search_eurostat()` accepts new argument `fixed`: if `TRUE` 

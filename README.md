@@ -50,7 +50,7 @@ Contributions are very welcome:
 
 
 
-**Kindly cite this work** as follows: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari (2017). eurostat: Tools for Eurostat Open Data. R package version 2.3.11. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
+**Kindly cite this work** as follows: Leo Lahti, Przemyslaw Biecek, Markus Kainu and Janne Huovari (2017). eurostat: Tools for Eurostat Open Data. R package version 2.3.20001. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 
 ### Authors
