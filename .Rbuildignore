@@ -4,7 +4,6 @@ README.Rmd
 
 # pkgdown
 docs
-
 # Vignette
 ./vignettes/2015-RJournal
 ./vignettes/NUTS_2010_60M_SH/*
@@ -30,3 +29,6 @@ docs
 ^NEWS.md$
 ^cran-comments\.md$
 ^data-raw$
+^revdep$
+^README\.Rmd$
+^README-.*\.png$

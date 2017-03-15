@@ -1,0 +1,78 @@
+Dear Michael Lawrence,
+
+
+We would like to thank the reviewer for his insightful and helpful comments. We have now accommodated the proposed changes and updated the package in CRAN, and hope that it could be accepted for publication in R Journal.
+
+Our comments regarding the suggested changes and how we have taken them into account:
+
+
+"In the current CRAN release the disposable income example in the vignette produces ~10 pages of warnings from grid. These seem to arise from unicode characters. I do not know if it is possible to avoid these warnings. If not, it seems this code chunk should have warning set to FALSE."
+
+I could not reproduce this issue on my systems, so it may have been fixed with updated R versions or may depend on the local settings. To avoid these warnings, we have now set the code chunk warning set to FALSE as suggested. 
+
+
+"I think it would be useful to link to the eurodata (i.e. the EU database) docu-
+mentation in the intro of the vignette. Although it is possible to get a feel for the database within an R session, it is often easier or more helpful to read the databases own documentation before diving in with R."
+
+Thanks for the suggestion. We have now added a link to the public Eurostat database site (http://ec.europa.eu/eurostat/data/database) in the vignette (https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.Rmd) as well as the manuscript figure file (https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.Rmd)
+
+
+"The sentences immediately prior each code chunk end with colons (rather than full stops). I do not know if the R Journal has a style guideline on writing around these chunks, but I think is generally better to write in full sentences (treating them like “display mode” equations). In some cases this might simply mean replacing colons with full stops, in others a small amount of extra text might be required."
+
+Ok. We have now made this change throughout the manuscript.
+
+
+Abstract: "In the second to last sentence: I tend to think “remarkable” should be saved for empirical results of outstanding interest. Consider changing this to “considerable”, “substantial” or similar."
+
+Ok, changed to "substantial" now.
+
+
+"Introduction 2nd sentence: Consider replacing “great” resolution with “fine” or similar."
+
+Done.
+
+"Intro 2nd para., 3rd sentence: Instead of “The algorithms..” perhaps say “Code for data retrieval...” (i.e. make the subject of the sentence explicit)."
+
+Done.
+
+"Intro 2nd para., final sentence: Depending on R Journal style, remove the nested parentheses in these citations (maybe using \citealt?)"
+
+Done.
+
+
+"Geospatial info: In the version of the manuscript I received the labels on the “triangle plot” are very cluttered. It is almost impossible to pick out country labels in the cluster of countries that use little hydro power and a lot of biofuel. I am not familiar with the package that produced this plot, but if it is possible to only label some countries or otherwise produce a less cluttered plot I think that would be helpful."
+
+Thanks. The plotrix is an external package just used to demonstrate some ways to visualize eurostat data. The output depends on the particular application, and it is out of scope for the eurostat package to develop solutions for external visualization tools.
+
+
+"Discussion: Are there citable examples of eurostat being used “in the wild”? If so, you could include these in the first paragraph. I think this would help to re-inforce the points already made here (i.e. that programmatic aces to such a rich source of data can facilitate research in many fields)."
+
+Thanks for the suggestion. We have now added links to recent, independent blog posts and a published book (Kenett and Shmueli 2016). 
+
+
+"Discussion: The “future directions” are, in contrast with the rest of the manuscript, a little “wishy washy”. If you have concrete plans for further development (specific formats, data structures or tools) describe those. Otherwise consider removing this section."
+
+Thanks for the feedback. We have now improved the text regarding this.
+
+
+"I think you should give some more space to describing the documentation, issue tracking and source repository in more detail. In particular, letting users know that bugs and feature requests can be filed at the repo’s issue tracker will help demonstrate that you are committed to further development of the project."
+
+
+
+
+Other updates:
+
+- We have included a reference to the rsdmx package which provides tools to access SDMX data. Eurostat data is available also in this format, which is not covered by our package. Note that the rsdmx package is generic and unlike our work, it does not focus on eurostat.
+
+- We have created a package website at http://ropengov.github.io/eurostat/ and this is now linked from the manuscript.
+
+- An example of processing SDMX data from Eurostat with external tools (rsdmx R package) has been added in the vignette.
+
+- A number of smaller improvements and extensions have been done since the initial manuscript submission; a full list is detailed via the github issue tracker and pull request history.
+
+- The updated version 2.4.1 associated with this manuscript has been submitted to CRAN and released with DOI in Github/Zenodo.
+
+- I updated the list of package dependencies in the manuscript 
+
+best regards
+Leo Lahti <leo.lahti@iki.fi>

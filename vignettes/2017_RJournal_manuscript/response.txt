@@ -14,15 +14,10 @@ I could not reproduce this issue on my systems, so it may have been fixed with u
 "I think it would be useful to link to the eurodata (i.e. the EU database) docu-
 mentation in the intro of the vignette. Although it is possible to get a feel for the database within an R session, it is often easier or more helpful to read the databases own documentation before diving in with R."
 
-Thanks for the suggestion. We have now added a link to the public Eurostat database site (http://ec.europa.eu/eurostat/data/database) in the vignette (https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.Rmd) as well as the manuscript figure file (https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd)
+Thanks for the suggestion. We have now added a link to the public Eurostat database site (http://ec.europa.eu/eurostat/data/database) in the vignette (https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.Rmd) as well as the manuscript figure file (https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.Rmd)
 
 
-"The sentences immediately prior each code chunk end with colons (rather than
-full stops). I do not know if the R Journal has a style guideline on writing
-around these chunks, but I think is generally better to write in full sentences
-(treating them like “display mode” equations). In some cases this might simply
-mean replacing colons with full stops, in others a small amount of extra text
-might be required."
+"The sentences immediately prior each code chunk end with colons (rather than full stops). I do not know if the R Journal has a style guideline on writing around these chunks, but I think is generally better to write in full sentences (treating them like “display mode” equations). In some cases this might simply mean replacing colons with full stops, in others a small amount of extra text might be required."
 
 Ok. We have now made this change throughout the manuscript.
 
@@ -75,8 +70,9 @@ Other updates:
 
 - A number of smaller improvements and extensions have been done since the initial manuscript submission; a full list is detailed via the github issue tracker and pull request history.
 
-- The updated version 2.4.1 has been submitted to CRAN
+- The updated version 2.4.1 associated with this manuscript has been submitted to CRAN and released with DOI in Github/Zenodo.
 
+- I updated the list of package dependencies in the manuscript 
 
 best regards
 Leo Lahti <leo.lahti@iki.fi>

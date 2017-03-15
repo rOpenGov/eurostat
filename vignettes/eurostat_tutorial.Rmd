@@ -382,11 +382,7 @@ kable(head(df))
 
 # Further examples
 
-For further examples, see:
-
-  * [Blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
-  * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
-
+For further examples, see the [package homepage](http://ropengov.github.io/eurostat/articles/index.html).
 
 
 # Citations and related work
@@ -400,7 +396,7 @@ Administrative boundaries: cite EuroGeographics
 
 ### Citing the eurostat R package
 
-For main developers and contributors, see the [README](../README.md).
+For main developers and contributors, see the [package homepage](http://ropengov.github.io/eurostat).
 
 This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
@@ -421,7 +417,8 @@ package develops related Eurostat tools but seems to be in an
 experimental stage at the time of writing this tutorial.
 
 The more generic [quandl](https://cran.r-project.org/package=quandl),
-[datamart](https://cran.r-project.org/package=datamart), and
+[datamart](https://cran.r-project.org/package=datamart),
+[rsdmx](https://cran.r-project.org/package=rsdmx), and
 [pdfetch](https://cran.r-project.org/package=pdfetch) packages may
 provide access to some versions of eurostat data but these packages
 are more generic and hence, in contrast to the eurostat R package,
@@ -431,7 +428,7 @@ analysis.
 
 ### Contact
 
-For contact information, see the [README](../README.md).
+For contact information, see the [package homepage](http://ropengov.github.io/eurostat).
 
 
 # Version info

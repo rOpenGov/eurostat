@@ -769,6 +769,10 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
+
+    ## Stackoverflow is a great place to get help:
+    ## http://stackoverflow.com/tags/ggplot2.
+
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -778,22 +782,56 @@ Visualizing train passenger data with `ggplot2`:
 <a name="triangle"></a>**Triangle plot**
 
 Triangle plot is handy for visualizing data sets with three variables.
-For instance, the passenger transport distributions across three vehicle
-types in 2012 for all countries where data is available:
 
     library(tidyr)
-
-    # Download and modify the transport data
-    transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
-
-    # Remove countries with missing data
-    transports <- na.omit(transports)
-
-    # Use triangle plot to visualize vehicle distributions:
     library(plotrix)
-    triax.plot(transports[, -1], show.grid = TRUE, 
-               label.points = TRUE, point.labels = transports$geo, 
-               pch = 19)
+    library(eurostat)
+    library(dplyr)
+    library(tidyr)
+
+    # All sources of renewable energy are to be grouped into three sets
+     dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
+     "Biogasoline" = "Biofuels",
+     "Other liquid biofuels" = "Biofuels",
+     "Biodiesels" = "Biofuels",
+     "Biogas" = "Biofuels",
+     "Hydro power" = "Hydro power",
+     "Tide, Wave and Ocean" = "Hydro power",
+     "Solar thermal" = "Wind, solar, waste and Other",
+     "Geothermal Energy" = "Wind, solar, waste and Other",
+     "Solar photovoltaic" = "Wind, solar, waste and Other",
+     "Municipal waste (renewable)" = "Wind, solar, waste and Other",
+     "Wind power" = "Wind, solar, waste and Other",
+     "Bio jet kerosene" = "Wind, solar, waste and Other")
+    # Some cleaning of the data is required
+     energy3 <- get_eurostat("ten00081") %>%
+     label_eurostat(dat) %>%
+     filter(time == "2013-01-01",
+     product != "Renewable energies") %>%
+     mutate(nproduct = dict[as.character(product)], # just three categories
+     geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+     select(nproduct, geo, values) %>%
+     group_by(nproduct, geo) %>%
+     summarise(svalue = sum(values)) %>%
+     group_by(geo) %>%
+     mutate(tvalue = sum(svalue),
+     svalue = svalue/sum(svalue)) %>%
+     filter(tvalue > 1000) %>% # only large countries
+     spread(nproduct, svalue)
+     
+    # Triangle plot
+     par(cex=0.75, mar=c(0,0,0,0))
+     positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                         show.grid = TRUE,
+                         label.points= FALSE, point.labels = energy3$geo,
+                         col.axis="gray50", col.grid="gray90",
+                         pch = 19, cex.axis=0.8, cex.ticks=0.7, col="grey50")
+
+     # Larger labels
+     ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
+     df <- data.frame(positions$xypos, geo = energy3$geo)
+     points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
+     text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 
 ![](fig/plotGallery-1.png)
 
@@ -818,9 +856,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -849,9 +885,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/df60.RData
-
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpwCTq1B/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmplrsBGJ/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -871,9 +905,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -902,9 +936,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/df01.RData
-
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpwCTq1B/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmplrsBGJ/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -934,9 +966,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -965,9 +997,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/spdf10.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpwCTq1B/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmplrsBGJ/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1062,7 +1092,7 @@ For further examples, see:
 -   [Blog
     post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
 -   [Journal
-    manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
+    manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.md)
 
 Citations and related work
 ==========================
@@ -1085,18 +1115,20 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ## Kindly cite the eurostat R package as follows:
     ## 
-    ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2017. eurostat R package. R package version 2.3.20001 URL:
-    ##   https://github.com/rOpenGov/eurostat
+    ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. R
+    ##   Journal 2017. Accepted for publication. Retrieval and analysis
+    ##   of Eurostat open data with the eurostat package R package
+    ##   version 3.1.1 URL: http://ropengov.github.io/eurostat
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Misc{,
     ##     title = {eurostat R package},
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-    ##     year = {2014-2017},
-    ##     url = {https://github.com/rOpenGov/eurostat},
-    ##     note = {R package version 2.3.20001},
+    ##     journal = {R Journal. Accepted for publication.},
+    ##     year = {2017},
+    ##     url = {http://ropengov.github.io/eurostat},
+    ##     note = {R package version 3.1.1},
     ##   }
 
 ### Related work
@@ -1147,13 +1179,13 @@ This tutorial was created with
     ##  [1] rsdmx_0.5-8        sp_1.2-3           RColorBrewer_1.1-2
     ##  [4] dplyr_0.5.0        plotrix_3.6-3      ggplot2_2.2.1     
     ##  [7] tidyr_0.6.1        rvest_0.3.2        xml2_1.1.1        
-    ## [10] eurostat_2.3.20001 rmarkdown_1.3.9004 knitr_1.15.1      
+    ## [10] eurostat_3.1.1     rmarkdown_1.3.9004 knitr_1.15.1      
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.9.4    highr_0.6        plyr_1.8.4       bitops_1.0-6    
     ##  [5] class_7.3-14     tools_3.3.1      digest_0.6.12    jsonlite_1.3    
     ##  [9] evaluate_0.10    tibble_1.2       gtable_0.2.0     lattice_0.20-34 
-    ## [13] DBI_0.5-1        rgdal_1.2-4      yaml_2.1.14      e1071_1.6-7     
+    ## [13] DBI_0.6          rgdal_1.2-4      yaml_2.1.14      e1071_1.6-7     
     ## [17] httr_1.2.1       stringr_1.2.0    classInt_0.1-23  rprojroot_1.2   
     ## [21] grid_3.3.1       R6_2.2.0         XML_3.98-1.5     readr_1.0.0     
     ## [25] magrittr_1.5     backports_1.0.5  scales_0.4.1     htmltools_0.3.5 

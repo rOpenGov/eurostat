@@ -11,15 +11,16 @@ citEntry(entry="misc",
 	   person(given = "Markus", family="Kainu"),
 	   person(given = "Przemyslaw", family="Biecek")	   
          ),
-	 journal = "",
-	 year = "2014-2017",
-	 url = "https://github.com/rOpenGov/eurostat",
+	 journal = "R Journal. Accepted for publication.",
+	 year = "2017",
+	 url = "http://ropengov.github.io/eurostat",
 	 note = note, 
          textVersion =
-         paste("(C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek 2014-2017.",
-               "eurostat R package.",
+         paste("(C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.",
+	       "R Journal 2017. Accepted for publication.",
+               "Retrieval and analysis of Eurostat open data with the eurostat package",
 	       note,
-	       "URL: https://github.com/rOpenGov/eurostat",
+	       "URL: http://ropengov.github.io/eurostat",
                sep=" ")
          )
 

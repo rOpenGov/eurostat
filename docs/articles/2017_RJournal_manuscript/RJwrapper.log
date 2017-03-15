@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.11.22)  15 MAR 2017 10:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.11.22)  15 MAR 2017 16:37
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -342,7 +342,7 @@ Package: fontenc 2016/06/19 v1.99m Standard LaTeX package
 File: t1enc.def 2016/06/19 v1.99m Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 ))
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJournal.sty
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJournal.sty
 Package: RJournal 2013/08/27 v0.13 RJournal package
 
 (/usr/share/texlive/texmf-dist/tex/latex/pgf/frontendlayer/tikz.sty
@@ -1173,7 +1173,7 @@ Package: booktabs 2016/04/27 v1.618033 publication quality tables
 \@lastruleclass=\count144
 \@thisrulewidth=\dimen256
 )
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJwrapper.aux)
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJwrapper.aux)
 \openout1 = `RJwrapper.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 10.
@@ -1190,7 +1190,6 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 10.
 LaTeX Font Info:    ... okay on input line 10.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 10.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 10.
-
 (/usr/share/texlive/texmf-dist/tex/latex/base/ts1cmr.fd
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
@@ -1302,16 +1301,16 @@ LaTeX Info: Redefining \ref on input line 10.
 LaTeX Info: Redefining \pageref on input line 10.
 LaTeX Info: Redefining \nameref on input line 10.
 
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJwrapper.out)
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJwrapper.out)
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJwrapper.out)
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJwrapper.out)
 \@outlinefile=\write5
 \openout5 = `RJwrapper.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
 
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/lahti-huovari-kainu-biece
-k.tex
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/lahti-huovari-
+kainu-biecek.tex
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <20.74> not available
 (Font)              Font shape `T1/ppl/b/n' tried instead on input line 4.
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <9> not available
@@ -1395,7 +1394,7 @@ Package microtype Info: Character `textendash ' is missing
 Package microtype Info: Character `textemdash ' is missing
 (microtype)             in font `T1/zi4/m/n/8'.
 (microtype)             Ignoring protrusion settings for this character.
-LaTeX Font Info:    Try loading font information for TS1+ppl on input line 61.
+LaTeX Font Info:    Try loading font information for TS1+ppl on input line 51.
 
 (/usr/share/texlive/texmf-dist/tex/latex/psnfss/ts1ppl.fd
 File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
@@ -1403,7 +1402,7 @@ File: ts1ppl.fd 2001/06/04 font definitions for TS1/ppl.
 
 ]
 LaTeX Font Info:    Font shape `T1/zi4/m/n' will be
-(Font)              scaled to size 9.18004pt on input line 99.
+(Font)              scaled to size 9.18004pt on input line 69.
 Package microtype Info: Character `textendash ' is missing
 (microtype)             in font `T1/zi4/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
@@ -1411,105 +1410,103 @@ Package microtype Info: Character `textemdash ' is missing
 (microtype)             in font `T1/zi4/m/n/9'.
 (microtype)             Ignoring protrusion settings for this character.
 
-Overfull \hbox (20.9638pt too wide) in paragraph at lines 105--109
+Overfull \hbox (20.9638pt too wide) in paragraph at lines 75--79
 []\T1/ppl/m/n/9 (-20) The database ta-ble of con-tents is avail-able on-line[][
 ][][][], or can be down-loaded in R with \T1/zi4/m/n/9 get_eurostat_toc()\T1/pp
 l/m/n/9 (-20) .
  []
 
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 149.
+(Font)              scaled to size 10.42007pt on input line 119.
 LaTeX Font Info:    Font shape `U/msa/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 149.
+(Font)              scaled to size 7.91925pt on input line 119.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 10.42007pt on input line 149.
+(Font)              scaled to size 10.42007pt on input line 119.
 LaTeX Font Info:    Font shape `U/msb/m/n' will be
-(Font)              scaled to size 7.91925pt on input line 149.
+(Font)              scaled to size 7.91925pt on input line 119.
 
-Overfull \hbox (19.53801pt too wide) in paragraph at lines 170--184
+Overfull \hbox (19.53801pt too wide) in paragraph at lines 140--154
  [][] 
  []
 
 
-Underfull \hbox (badness 1418) in paragraph at lines 184--184
+Underfull \hbox (badness 1418) in paragraph at lines 154--154
 []\T1/ppl/b/n/9 Table 2: |\T1/ppl/m/n/9 (+20) The \T1/zi4/m/n/9 get_eurostat() 
 \T1/ppl/m/n/9 (+20) out-put (Ta-ble [][]1[][]) con-verted into human-readable l
 a-bels with
  []
 
-<2015-manu-roadacc-1.png, id=190, 505.89pt x 361.35pt>
-File: 2015-manu-roadacc-1.png Graphic file (type png)
+[2] <2017-manu-roadacc-1.pdf, id=177, 461.725pt x 315.1775pt>
+File: 2017-manu-roadacc-1.pdf Graphic file (type pdf)
 
-<use 2015-manu-roadacc-1.png>
-Package pdftex.def Info: 2015-manu-roadacc-1.png used on input line 204.
-(pdftex.def)             Requested size: 199.17207pt x 159.33083pt.
+<use 2017-manu-roadacc-1.pdf>
+Package pdftex.def Info: 2017-manu-roadacc-1.pdf used on input line 174.
+(pdftex.def)             Requested size: 199.16492pt x 159.3341pt.
 
+<2017-manu-bmi-1.pdf, id=187, 562.1pt x 488.82625pt>
+File: 2017-manu-bmi-1.pdf Graphic file (type pdf)
+ <use 2017-manu-bmi-1.pdf>
+Package pdftex.def Info: 2017-manu-bmi-1.pdf used on input line 215.
+(pdftex.def)             Requested size: 199.16928pt x 173.2026pt.
 
-LaTeX Warning: `h' float specifier changed to `ht'.
+<2017-manu-energy-1.pdf, id=188, 385.44pt x 385.44pt>
+File: 2017-manu-energy-1.pdf Graphic file (type pdf)
 
-[2] <2015-manu-bmi-1.png, id=209, 578.16pt x 505.89pt>
-File: 2015-manu-bmi-1.png Graphic file (type png)
+<use 2017-manu-energy-1.pdf>
+Package pdftex.def Info: 2017-manu-energy-1.pdf used on input line 216.
+(pdftex.def)             Requested size: 199.16928pt x 199.16547pt.
 
-<use 2015-manu-bmi-1.png>
-Package pdftex.def Info: 2015-manu-bmi-1.png used on input line 245.
-(pdftex.def)             Requested size: 199.16928pt x 174.26978pt.
-
-<2015-manu-energy-2.pdf, id=210, 322.04817pt x 316.16017pt>
-File: 2015-manu-energy-2.pdf Graphic file (type pdf)
-
-<use 2015-manu-energy-2.pdf>
-Package pdftex.def Info: 2015-manu-energy-2.pdf used on input line 246.
-(pdftex.def)             Requested size: 199.16928pt x 195.5252pt.
-
-Overfull \hbox (14.49998pt too wide) in paragraph at lines 244--248
+Overfull \hbox (14.49998pt too wide) in paragraph at lines 214--218
  [] 
  []
 
 LaTeX Font Info:    Font shape `T1/ppl/bx/n' in size <10> not available
-(Font)              Font shape `T1/ppl/b/n' tried instead on input line 257.
-[3 </home/lei/Rpackages/eurostat/vignettes/2015-RJournal/2015-manu-roadacc-1.pn
-g (PNG copy)>] <2015-manu-mapexample-1.png, id=241, 650.43pt x 578.16pt>
-File: 2015-manu-mapexample-1.png Graphic file (type png)
+(Font)              Font shape `T1/ppl/b/n' tried instead on input line 227.
 
-<use 2015-manu-mapexample-1.png>
-Package pdftex.def Info: 2015-manu-mapexample-1.png used on input line 312.
-(pdftex.def)             Requested size: 318.67207pt x 283.26558pt.
- [4 </home/lei/Rpackages/eurostat/vignettes/2015-RJournal/2015-manu-bmi-1.png (
-PNG copy)> </home/lei/Rpackages/eurostat/vignettes/2015-RJournal/2015-manu-ener
-gy-2.pdf>] [5 </home/lei/Rpackages/eurostat/vignettes/2015-RJournal/2015-manu-m
-apexample-1.png (PNG copy)>]
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJwrapper.bbl
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJwrapper.brf)
+Underfull \hbox (badness 10000) in paragraph at lines 236--236
+[][][][]$\T1/zi4/m/n/8 http : / / ec . europa . eu / eurostat / web / gisco / g
+eodata / reference -[] data / administrative -[] units -[]
+ []
+
+[3 </home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/2017-manu-r
+oadacc-1.pdf>] <2017-manu-mapexample-1.pdf, id=230, 632.3625pt x 445.665pt>
+File: 2017-manu-mapexample-1.pdf Graphic file (type pdf)
+
+<use 2017-manu-mapexample-1.pdf>
+Package pdftex.def Info: 2017-manu-mapexample-1.pdf used on input line 282.
+(pdftex.def)             Requested size: 318.67207pt x 224.59322pt.
+ [4 </home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/2017-manu-
+bmi-1.pdf> </home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/201
+7-manu-energy-1.pdf>] [5 </home/lei/Rpackages/eurostat/vignettes/2017_RJournal_
+manuscript/2017-manu-mapexample-1.pdf>]
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJwrapper.bbl
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJwrapper.brf)
 \tf@brf=\write6
 \openout6 = `RJwrapper.brf'.
 
- [6]
-[7]) [8]) [9]
+[6]) [7] [8]) [9]
 Package atveryend Info: Empty hook `BeforeClearDocument' on input line 24.
 Package atveryend Info: Empty hook `AfterLastShipout' on input line 24.
 
-(/home/lei/Rpackages/eurostat/vignettes/2015-RJournal/RJwrapper.aux)
+(/home/lei/Rpackages/eurostat/vignettes/2017_RJournal_manuscript/RJwrapper.aux)
 Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 24.
 Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 24.
 Package rerunfilecheck Info: File `RJwrapper.out' has not changed.
 (rerunfilecheck)             Checksum: ABE252C0E5443EA650F2843CD6BB7DB9;626.
 Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
-(rerunfilecheck)             Checksum: C220A9D89A76B57279F4A455B78CA843;1779.
+(rerunfilecheck)             Checksum: C5FE5F976F78A867C1FEEBC5772DF8BD;1522.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22160 strings out of 494358
- 394433 string characters out of 6164526
- 495649 words of memory out of 5000000
+ 22162 strings out of 494358
+ 394635 string characters out of 6164526
+ 494649 words of memory out of 5000000
  24792 multiletter control sequences out of 15000+600000
- 52770 words of font info for 208 fonts, out of 8000000 for 9000
+ 52933 words of font info for 210 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
- 62i,12n,56p,910b,660s stack positions out of 5000i,500n,10000p,200000b,80000s
-pdfTeX warning (dest): name{Hfootnote.11} has been referenced but does not ex
+ 62i,12n,56p,1484b,620s stack positions out of 5000i,500n,10000p,200000b,80000s
+pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not ex
 ist, replaced by a fixed one
-
-pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not exis
-t, replaced by a fixed one
 
 pdfTeX warning (dest): name{Hfootnote.9} has been referenced but does not exist
 , replaced by a fixed one
@@ -1545,10 +1542,10 @@ f-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
 alatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr
 i8a.pfb>
-Output written on RJwrapper.pdf (9 pages, 566913 bytes).
+Output written on RJwrapper.pdf (9 pages, 252667 bytes).
 PDF statistics:
- 455 PDF objects out of 1000 (max. 8388607)
- 418 compressed objects within 5 object streams
- 76 named destinations out of 1000 (max. 500000)
+ 448 PDF objects out of 1000 (max. 8388607)
+ 412 compressed objects within 5 object streams
+ 75 named destinations out of 1000 (max. 500000)
  45673 words of extra memory for PDF output out of 51595 (max. 10000000)
 

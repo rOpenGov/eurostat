@@ -769,10 +769,6 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
-
-    ## Use suppressPackageStartupMessages() to eliminate package startup
-    ## messages.
-
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -856,7 +852,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -885,7 +881,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/Rtmpw78eB8/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpzeTk53/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -905,9 +901,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -936,7 +932,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/Rtmpw78eB8/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpzeTk53/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -966,9 +962,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -997,7 +993,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpw78eB8/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpzeTk53/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1087,12 +1083,8 @@ package can be used to access data in that format when necessary:
 Further examples
 ================
 
-For further examples, see:
-
--   [Blog
-    post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
--   [Journal
-    manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
+For further examples, see the [package
+homepage](http://ropengov.github.io/eurostat/articles/index.html).
 
 Citations and related work
 ==========================
@@ -1105,7 +1097,8 @@ Administrative boundaries: cite EuroGeographics
 
 ### Citing the eurostat R package
 
-For main developers and contributors, see the [README](../README.md).
+For main developers and contributors, see the [package
+homepage](http://ropengov.github.io/eurostat).
 
 This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
@@ -1115,18 +1108,20 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ## Kindly cite the eurostat R package as follows:
     ## 
-    ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-    ##   2014-2017. eurostat R package. R package version 2.3.20001 URL:
-    ##   https://github.com/rOpenGov/eurostat
+    ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. R
+    ##   Journal 2017. Accepted for publication. Retrieval and analysis
+    ##   of Eurostat open data with the eurostat package R package
+    ##   version 3.1.1 URL: http://ropengov.github.io/eurostat
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
     ##   @Misc{,
     ##     title = {eurostat R package},
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-    ##     year = {2014-2017},
-    ##     url = {https://github.com/rOpenGov/eurostat},
-    ##     note = {R package version 2.3.20001},
+    ##     journal = {R Journal. Accepted for publication.},
+    ##     year = {2017},
+    ##     url = {http://ropengov.github.io/eurostat},
+    ##     note = {R package version 3.1.1},
     ##   }
 
 ### Related work
@@ -1141,7 +1136,8 @@ package develops related Eurostat tools but seems to be in an
 experimental stage at the time of writing this tutorial.
 
 The more generic [quandl](https://cran.r-project.org/package=quandl),
-[datamart](https://cran.r-project.org/package=datamart), and
+[datamart](https://cran.r-project.org/package=datamart),
+[rsdmx](https://cran.r-project.org/package=rsdmx), and
 [pdfetch](https://cran.r-project.org/package=pdfetch) packages may
 provide access to some versions of eurostat data but these packages are
 more generic and hence, in contrast to the eurostat R package, lack
@@ -1149,7 +1145,8 @@ tools that are specifically customized to facilitate eurostat analysis.
 
 ### Contact
 
-For contact information, see the [README](../README.md).
+For contact information, see the [package
+homepage](http://ropengov.github.io/eurostat).
 
 Version info
 ============
@@ -1177,13 +1174,13 @@ This tutorial was created with
     ##  [1] rsdmx_0.5-8        sp_1.2-3           RColorBrewer_1.1-2
     ##  [4] dplyr_0.5.0        plotrix_3.6-3      ggplot2_2.2.1     
     ##  [7] tidyr_0.6.1        rvest_0.3.2        xml2_1.1.1        
-    ## [10] eurostat_2.3.20001 rmarkdown_1.3.9004 knitr_1.15.1      
+    ## [10] eurostat_3.1.1     rmarkdown_1.3.9004 knitr_1.15.1      
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.9.4    highr_0.6        plyr_1.8.4       bitops_1.0-6    
     ##  [5] class_7.3-14     tools_3.3.1      digest_0.6.12    jsonlite_1.3    
     ##  [9] evaluate_0.10    tibble_1.2       gtable_0.2.0     lattice_0.20-34 
-    ## [13] DBI_0.5-1        rgdal_1.2-4      yaml_2.1.14      e1071_1.6-7     
+    ## [13] DBI_0.6          rgdal_1.2-4      yaml_2.1.14      e1071_1.6-7     
     ## [17] httr_1.2.1       stringr_1.2.0    classInt_0.1-23  rprojroot_1.2   
     ## [21] grid_3.3.1       R6_2.2.0         XML_3.98-1.5     readr_1.0.0     
     ## [25] magrittr_1.5     backports_1.0.5  scales_0.4.1     htmltools_0.3.5 

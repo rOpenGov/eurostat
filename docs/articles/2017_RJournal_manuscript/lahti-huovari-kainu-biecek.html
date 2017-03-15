@@ -73,7 +73,7 @@
 -->
 <p>This document reproduces the figures and tables in <a href="RJwrapper.pdf">our manuscript (in preparation)</a> on the <a href="https://github.com/rOpenGov/eurostat">eurostat R package</a>, assuming that the required R extensions have been installed. The Eurostat data is accessed via the <a href="http://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
 <p>For detailed explanation of the examples, see the manuscript text.</p>
-<p>To reproduce the complete manuscript PDF, clone this <a href="https://github.com/rOpenGov/eurostat">repository</a>, navigate to the <a href="https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal">./vignettes/2015-RJournal</a> subdirectory and convert the <a href="lahti-huovari-kainu-biecek.Rmd">Rmarkdown source code</a> in R by navigating to the <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/">vignettes/2015-RJournal</a> folder, and running in R:</p>
+<p>To reproduce the complete manuscript PDF, clone this <a href="https://github.com/rOpenGov/eurostat">repository</a>, navigate to the <a href="https://github.com/rOpenGov/eurostat/tree/master/vignettes/2017_RJournal_manuscript">./vignettes/2017_RJournal_manuscript</a> subdirectory and convert the <a href="lahti-huovari-kainu-biecek.Rmd">Rmarkdown source code</a> in R by navigating to the <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/">vignettes/2017_RJournal_manuscript</a> folder, and running in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">"main.R"</span>)</code></pre></div>
 <p>Alternatively, you can proceed in steps as follows. Generate this markdown page with manuscript figures (PNG) with:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(knitr)
@@ -250,7 +250,7 @@ datl &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/lab
 <span class="st">                     </span><span class="kw">na.omit</span>() %&gt;%<span class="st"> </span>
 <span class="st">                     </span><span class="kw">filter</span>(time %in%<span class="st"> </span><span class="kw">c</span>(<span class="kw">min</span>(time),<span class="kw">max</span>(time))),
                    <span class="kw">aes</span>(<span class="dt">fill=</span>geo,<span class="dt">label=</span>geo),<span class="dt">color=</span><span class="st">"white"</span>)</code></pre></div>
-<p><img src="2015-manu-roadacc-1.png" width="672"></p>
+<p><img src="2017-manu-roadacc-1.png" width="672"></p>
 </div>
 <div id="body-mass-index" class="section level2">
 <h2 class="hasAnchor">
@@ -273,7 +273,7 @@ tmp1 %&gt;%
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Age group"</span>) +
 <span class="st">  </span><span class="kw">ylab</span>(<span class="st">"Fraction of population (%)"</span>) +<span class="st">  </span>
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">type =</span> <span class="st">"div"</span>)</code></pre></div>
-<p><img src="2015-manu-bmi-1.png" width="768"></p>
+<p><img src="2017-manu-bmi-1.png" width="768"></p>
 </div>
 <div id="renewable-energy-production" class="section level2">
 <h2 class="hasAnchor">
@@ -320,12 +320,12 @@ energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/
  df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(positions$xypos, <span class="dt">geo =</span> energy3$geo)
  <span class="kw">points</span>(df$x[ind], df$y[ind], <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">"red"</span>, <span class="dt">pch=</span><span class="dv">19</span>)
  <span class="kw">text</span>(df$x[ind], df$y[ind], df$geo[ind], <span class="dt">adj =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,-<span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.5</span>)</code></pre></div>
-<p><img src="2015-manu-energy-1.png" width="672"></p>
+<p><img src="2017-manu-energy-1.png" width="672"></p>
 </div>
 <div id="map-visualization" class="section level2">
 <h2 class="hasAnchor">
 <html><body><a href="#map-visualization" class="anchor"> </a></body></html>Map visualization</h2>
-<p>The source code for the detailed map visualization is hidden but <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd">available</a>. For a detailed treatment of this example, see our <a href="http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/">related blog post</a>.</p>
+<p>The source code for the detailed map visualization is hidden but <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.Rmd">available</a>. For a detailed treatment of this example, see our <a href="http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/">related blog post</a>.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(eurostat)
 <span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(ggplot2)
@@ -343,7 +343,7 @@ energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>RColorBrewer::<span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">name =</span> <span class="st">"Oranges"</span>)) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.65</span>)) +
 <span class="st">  </span><span class="kw">coord_map</span>(<span class="dt">project=</span><span class="st">"orthographic"</span>, <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>)) +
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Longitude"</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">"Latitude"</span>)</code></pre></div>
-<p><img src="2015-manu-mapexample-1.png" width="864"></p>
+<p><img src="2017-manu-mapexample-1.png" width="864"></p>
 </div>
 <div id="country-code-tables" class="section level2">
 <h2 class="hasAnchor">
@@ -403,7 +403,7 @@ energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/
 ## 
 ## other attached packages:
 ## [1] ggplot2_2.2.1        plotrix_3.6-3        dplyr_0.5.0         
-## [4] tidyr_0.6.1          xtable_1.8-2         eurostat_2.4.1      
+## [4] tidyr_0.6.1          xtable_1.8-2         eurostat_3.1.1      
 ## [7] pkgdown_0.1.0.9000   knitr_1.15.1         devtools_1.12.0.9000
 ## 
 ## loaded via a namespace (and not attached):

@@ -1,6 +1,6 @@
 # To reproduce the manuscript PDF do the following:
 
-#if (Sys.info()[["user"]]) setwd("~/btsync/mk/workspace/ropengov/eurostat/vignettes/2015-RJournal")
+#if (Sys.info()[["user"]]) setwd("~/btsync/mk/workspace/ropengov/eurostat/vignettes/2017_RJournal_manuscript")
 
 # Generate the examples, figures and tables
 #library(knitr)

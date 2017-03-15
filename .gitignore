@@ -20,3 +20,4 @@ zipfile
 packrat/lib*/
 .Rhistory
 
+/revdep/.cache.rds

@@ -7,7 +7,7 @@ This document reproduces the figures and tables in [our manuscript (in preparati
 
 For detailed explanation of the examples, see the manuscript text.
 
-To reproduce the complete manuscript PDF, clone this [repository](https://github.com/rOpenGov/eurostat), navigate to the [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal) subdirectory and convert the [Rmarkdown source code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/) folder, and running in R:
+To reproduce the complete manuscript PDF, clone this [repository](https://github.com/rOpenGov/eurostat), navigate to the [./vignettes/2017\_RJournal\_manuscript](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2017_RJournal_manuscript) subdirectory and convert the [Rmarkdown source code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the [vignettes/2017\_RJournal\_manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/) folder, and running in R:
 
 ``` r
 source("main.R")
@@ -143,7 +143,7 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
                    aes(fill=geo,label=geo),color="white")
 ```
 
-![](./2015-manu-roadacc-1.png)
+![](./2017-manu-roadacc-1.png)
 
 Body-mass index
 ---------------
@@ -169,7 +169,7 @@ tmp1 %>%
   scale_fill_brewer(type = "div")
 ```
 
-![](./2015-manu-bmi-1.png)
+![](./2017-manu-bmi-1.png)
 
 Renewable energy production
 ---------------------------
@@ -219,12 +219,12 @@ energy3 <- get_eurostat("ten00081") %>%
  text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ```
 
-![](./2015-manu-energy-1.png)
+![](./2017-manu-energy-1.png)
 
 Map visualization
 -----------------
 
-The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
+The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
 ``` r
 library(eurostat)
@@ -246,7 +246,7 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   xlab("Longitude") + ylab("Latitude")
 ```
 
-![](./2015-manu-mapexample-1.png)
+![](./2017-manu-mapexample-1.png)
 
 Country code tables
 -------------------
@@ -296,14 +296,14 @@ sessionInfo()
     ## other attached packages:
     ## [1] ggplot2_2.2.1      plotrix_3.6-3      dplyr_0.5.0       
     ## [4] tidyr_0.6.1        xtable_1.8-2       knitr_1.15.1      
-    ## [7] eurostat_2.3.20001 rmarkdown_1.3.9004
+    ## [7] eurostat_3.1.1     rmarkdown_1.3.9004
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] Rcpp_0.12.9.4      RColorBrewer_1.1-2 plyr_1.8.4        
     ##  [4] highr_0.6          class_7.3-14       tools_3.3.1       
     ##  [7] digest_0.6.12      jsonlite_1.3       evaluate_0.10     
     ## [10] tibble_1.2         gtable_0.2.0       lattice_0.20-34   
-    ## [13] DBI_0.5-1          mapproj_1.2-4      ggrepel_0.6.5     
+    ## [13] DBI_0.6            mapproj_1.2-4      ggrepel_0.6.5     
     ## [16] curl_2.3           yaml_2.1.14        e1071_1.6-7       
     ## [19] httr_1.2.1         stringr_1.2.0      maps_3.1.1        
     ## [22] classInt_0.1-23    rprojroot_1.2      grid_3.3.1        
