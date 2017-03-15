@@ -126,7 +126,6 @@ The original and more detailed treatment of this example is provided in a
 [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
 ```{r 2017-manu-roadacc, echo=TRUE, message=FALSE, warning=FALSE}
-
 t1 <- get_eurostat("tsdtr420", 
   filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
 
@@ -136,9 +135,9 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
   xlab("Year") + ylab("Victims (n)") +
   # labels
   theme(legend.position="none",
-        title = element_text(size = 18),
-        axis.text.x = element_text(size = 18),
-        axis.text.y = element_text(size = 18)
+        title = element_text(size = 16),
+        axis.text.x = element_text(size = 16),
+        axis.text.y = element_text(size = 16)
 	) +
   ggrepel::geom_label_repel(data=t1 %>%  
                      group_by(geo) %>% 

@@ -769,6 +769,10 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
+
+    ## Need help getting started? Try the cookbook for R:
+    ## http://www.cookbook-r.com/Graphs/
+
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -852,9 +856,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmpBNKWHx/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -883,9 +885,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmprL7c2r/eurostat/df60.RData
-
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmprL7c2r/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpBNKWHx/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -905,9 +905,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpBNKWHx/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpBNKWHx/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -936,9 +936,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmprL7c2r/eurostat/df01.RData
-
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmprL7c2r/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpBNKWHx/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -968,9 +966,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpBNKWHx/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpBNKWHx/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -999,9 +997,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmprL7c2r/eurostat/spdf10.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmprL7c2r/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpBNKWHx/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1179,18 +1175,18 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] rsdmx_0.5-8        sp_1.2-3           RColorBrewer_1.1-2
-    ##  [4] dplyr_0.5.0        plotrix_3.6-3      ggplot2_2.2.1     
+    ##  [1] rsdmx_0.5-8        sp_1.2-4           RColorBrewer_1.1-2
+    ##  [4] dplyr_0.5.0        plotrix_3.6-4      ggplot2_2.2.1     
     ##  [7] tidyr_0.6.1        rvest_0.3.2        xml2_1.1.1        
     ## [10] eurostat_3.1.1     rmarkdown_1.3.9004 knitr_1.15.1      
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] Rcpp_0.12.9.4    highr_0.6        plyr_1.8.4       bitops_1.0-6    
+    ##  [1] Rcpp_0.12.9      highr_0.6        plyr_1.8.4       bitops_1.0-6    
     ##  [5] class_7.3-14     tools_3.3.1      digest_0.6.12    jsonlite_1.3    
     ##  [9] evaluate_0.10    tibble_1.2       gtable_0.2.0     lattice_0.20-34 
-    ## [13] DBI_0.6          rgdal_1.2-4      yaml_2.1.14      e1071_1.6-7     
+    ## [13] DBI_0.6          rgdal_1.2-5      yaml_2.1.14      e1071_1.6-8     
     ## [17] httr_1.2.1       stringr_1.2.0    classInt_0.1-23  rprojroot_1.2   
     ## [21] grid_3.3.1       R6_2.2.0         XML_3.98-1.5     readr_1.0.0     
     ## [25] magrittr_1.5     backports_1.0.5  scales_0.4.1     htmltools_0.3.5 
-    ## [29] assertthat_0.1   colorspace_1.3-2 labeling_0.3     stringi_1.1.3   
+    ## [29] assertthat_0.1   colorspace_1.3-2 labeling_0.3     stringi_1.1.2   
     ## [33] RCurl_1.95-4.8   lazyeval_0.2.0   munsell_0.4.3    Cairo_1.5-9
