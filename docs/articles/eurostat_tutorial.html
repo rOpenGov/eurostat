@@ -782,8 +782,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>., <span class="kw">aes</span>(<span class="dt">x=</span>long,<span class="dt">y=</span>lat,<span class="dt">group=</span>group)) +
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"white"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) +
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span><span class="st">"Oranges"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpVCIGbx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpVCIGbx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -810,8 +810,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/df60.RData</code></pre>
-<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmptNwNfL/eurostat/df60.RData</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpVCIGbx/eurostat/df60.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpVCIGbx/eurostat/df60.RData</code></pre>
 <p><img src="fig/maps1-1.png" width="768"></p>
 </div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-in-poland-with-labels-at-11mln-resolution-using-ggplot2" class="section level3">
@@ -830,8 +830,8 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
          <span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge with geodata</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"01"</span>, <span class="dt">all_regions =</span> <span class="ot">FALSE</span>, <span class="dt">output_class=</span><span class="st">"df"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpVCIGbx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpVCIGbx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -858,7 +858,7 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmptNwNfL/eurostat/df01.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmpVCIGbx/eurostat/df01.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>df, <span class="kw">aes</span>(long,lat,<span class="dt">group=</span>group))
 p &lt;-<span class="st"> </span>p +<span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> cat),<span class="dt">colour=</span><span class="st">"white"</span>,<span class="dt">size=</span>.<span class="dv">8</span>)
@@ -886,8 +886,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge Eurostat data with geodata from Cisco</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">output_class =</span><span class="st">"spdf"</span>, <span class="dt">all_regions=</span><span class="ot">FALSE</span>) </code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpVCIGbx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpVCIGbx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -914,7 +914,7 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmptNwNfL/eurostat/spdf10.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpVCIGbx/eurostat/spdf10.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,
        <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), 
@@ -1066,31 +1066,31 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] rsdmx_0.5-8          sp_1.2-3             RColorBrewer_1.1-2  
-##  [4] rvest_0.3.2          xml2_1.1.1           ggplot2_2.2.1       
-##  [7] plotrix_3.6-3        dplyr_0.5.0          tidyr_0.6.1         
-## [10] xtable_1.8-2         eurostat_3.1.1       pkgdown_0.1.0.9000  
-## [13] knitr_1.15.1         devtools_1.12.0.9000
+##  [1] rsdmx_0.5-8        sp_1.2-4           RColorBrewer_1.1-2
+##  [4] rvest_0.3.2        xml2_1.1.1         ggplot2_2.2.1     
+##  [7] plotrix_3.6-4      dplyr_0.5.0        tidyr_0.6.1       
+## [10] xtable_1.8-2       eurostat_3.1.1     pkgdown_0.1.0.9000
+## [13] knitr_1.15.1       devtools_1.12.0   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] purrr_0.2.2         lattice_0.20-34     tcltk_3.3.1        
-##  [4] colorspace_1.3-2    testthat_1.0.2      htmltools_0.3.5    
-##  [7] yaml_2.1.14         XML_3.98-1.5        pkgbuild_0.0.0.9000
-## [10] e1071_1.6-7         withr_1.0.2         DBI_0.6            
-## [13] plyr_1.8.4          stringr_1.2.0       munsell_0.4.3      
-## [16] commonmark_1.2      gtable_0.2.0        mapproj_1.2-4      
-## [19] evaluate_0.10       memoise_1.0.0       labeling_0.3       
-## [22] highlight_0.4.7     Cairo_1.5-9         curl_2.3           
-## [25] class_7.3-14        highr_0.6           Rcpp_0.12.9.4      
-## [28] readr_1.0.0         backports_1.0.5     scales_0.4.1       
-## [31] classInt_0.1-23     desc_1.1.0          pkgload_0.0.0.9000 
-## [34] jsonlite_1.3        digest_0.6.12       stringi_1.1.3      
-## [37] ggrepel_0.6.5       grid_3.3.1          rprojroot_1.2      
-## [40] bitops_1.0-6        rgdal_1.2-4         tools_3.3.1        
-## [43] maps_3.1.1          magrittr_1.5        RCurl_1.95-4.8     
-## [46] lazyeval_0.2.0      tibble_1.2          crayon_1.3.2       
-## [49] whisker_0.4         assertthat_0.1      rmarkdown_1.3.9004 
-## [52] roxygen2_6.0.1      httr_1.2.1          R6_2.2.0</code></pre>
+##  [1] purrr_0.2.2        lattice_0.20-34    tcltk_3.3.1       
+##  [4] colorspace_1.3-2   testthat_1.0.2     htmltools_0.3.5   
+##  [7] yaml_2.1.14        XML_3.98-1.5       e1071_1.6-8       
+## [10] withr_1.0.2        DBI_0.6            plyr_1.8.4        
+## [13] stringr_1.2.0      munsell_0.4.3      commonmark_1.2    
+## [16] gtable_0.2.0       mapproj_1.2-4      evaluate_0.10     
+## [19] memoise_1.0.0      labeling_0.3       highlight_0.4.7   
+## [22] Cairo_1.5-9        curl_2.3           class_7.3-14      
+## [25] highr_0.6          Rcpp_0.12.9        readr_1.0.0       
+## [28] backports_1.0.5    scales_0.4.1       classInt_0.1-23   
+## [31] desc_1.1.0         pkgload_0.0.0.9000 jsonlite_1.3      
+## [34] digest_0.6.12      stringi_1.1.2      ggrepel_0.6.5     
+## [37] grid_3.3.1         rprojroot_1.2      bitops_1.0-6      
+## [40] rgdal_1.2-5        tools_3.3.1        maps_3.1.1        
+## [43] magrittr_1.5       RCurl_1.95-4.8     lazyeval_0.2.0    
+## [46] tibble_1.2         crayon_1.3.2       whisker_0.4       
+## [49] assertthat_0.1     rmarkdown_1.3.9004 roxygen2_6.0.1    
+## [52] httr_1.2.1         R6_2.2.0</code></pre>
 </div>
 </div>
   </div>
