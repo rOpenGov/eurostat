@@ -42,7 +42,7 @@ Done.
 
 "Geospatial info: In the version of the manuscript I received the labels on the “triangle plot” are very cluttered. It is almost impossible to pick out country labels in the cluster of countries that use little hydro power and a lot of biofuel. I am not familiar with the package that produced this plot, but if it is possible to only label some countries or otherwise produce a less cluttered plot I think that would be helpful."
 
-Thanks. The plotrix is an external package just used to demonstrate some ways to visualize eurostat data. The output depends on the particular application, and it is out of scope for the eurostat package to develop solutions for external visualization tools.
+Thanks. The plotrix is an external package just used to demonstrate some ways to visualize eurostat data. The output depends on the particular application, and it is out of scope for the eurostat package to develop solutions for external visualization tools. We have, however, modified the example such that only some cities of interest are highlighted in the visualization. This solves the issue raised by the reviewer.
 
 
 "Discussion: Are there citable examples of eurostat being used “in the wild”? If so, you could include these in the first paragraph. I think this would help to re-inforce the points already made here (i.e. that programmatic aces to such a rich source of data can facilitate research in many fields)."
