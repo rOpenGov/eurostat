@@ -769,6 +769,10 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
+
+    ## Use suppressPackageStartupMessages() to eliminate package startup
+    ## messages.
+
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -778,22 +782,56 @@ Visualizing train passenger data with `ggplot2`:
 <a name="triangle"></a>**Triangle plot**
 
 Triangle plot is handy for visualizing data sets with three variables.
-For instance, the passenger transport distributions across three vehicle
-types in 2012 for all countries where data is available:
 
     library(tidyr)
-
-    # Download and modify the transport data
-    transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
-
-    # Remove countries with missing data
-    transports <- na.omit(transports)
-
-    # Use triangle plot to visualize vehicle distributions:
     library(plotrix)
-    triax.plot(transports[, -1], show.grid = TRUE, 
-               label.points = TRUE, point.labels = transports$geo, 
-               pch = 19)
+    library(eurostat)
+    library(dplyr)
+    library(tidyr)
+
+    # All sources of renewable energy are to be grouped into three sets
+     dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
+     "Biogasoline" = "Biofuels",
+     "Other liquid biofuels" = "Biofuels",
+     "Biodiesels" = "Biofuels",
+     "Biogas" = "Biofuels",
+     "Hydro power" = "Hydro power",
+     "Tide, Wave and Ocean" = "Hydro power",
+     "Solar thermal" = "Wind, solar, waste and Other",
+     "Geothermal Energy" = "Wind, solar, waste and Other",
+     "Solar photovoltaic" = "Wind, solar, waste and Other",
+     "Municipal waste (renewable)" = "Wind, solar, waste and Other",
+     "Wind power" = "Wind, solar, waste and Other",
+     "Bio jet kerosene" = "Wind, solar, waste and Other")
+    # Some cleaning of the data is required
+     energy3 <- get_eurostat("ten00081") %>%
+     label_eurostat(dat) %>%
+     filter(time == "2013-01-01",
+     product != "Renewable energies") %>%
+     mutate(nproduct = dict[as.character(product)], # just three categories
+     geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+     select(nproduct, geo, values) %>%
+     group_by(nproduct, geo) %>%
+     summarise(svalue = sum(values)) %>%
+     group_by(geo) %>%
+     mutate(tvalue = sum(svalue),
+     svalue = svalue/sum(svalue)) %>%
+     filter(tvalue > 1000) %>% # only large countries
+     spread(nproduct, svalue)
+     
+    # Triangle plot
+     par(cex=0.75, mar=c(0,0,0,0))
+     positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                         show.grid = TRUE,
+                         label.points= FALSE, point.labels = energy3$geo,
+                         col.axis="gray50", col.grid="gray90",
+                         pch = 19, cex.axis=0.8, cex.ticks=0.7, col="grey50")
+
+     # Larger labels
+     ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
+     df <- data.frame(positions$xypos, geo = energy3$geo)
+     points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
+     text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 
 ![](fig/plotGallery-1.png)
 
@@ -818,9 +856,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -849,9 +885,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/df60.RData
-
-    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpwCTq1B/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/Rtmpw78eB8/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -871,9 +905,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -902,9 +936,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/df01.RData
-
-    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmpwCTq1B/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/Rtmpw78eB8/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -934,9 +966,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpwCTq1B/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmpw78eB8/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -965,9 +997,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpwCTq1B/eurostat/spdf10.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpwCTq1B/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpw78eB8/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",

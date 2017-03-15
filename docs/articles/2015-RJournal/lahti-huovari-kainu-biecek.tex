@@ -243,7 +243,7 @@ updated.
 \begin{center}
 \begin{tabular}{cc}
 \includegraphics{2015-manu-bmi-1}
-\includegraphics{2015-manu-energy-1}
+\includegraphics{2015-manu-energy-2}
 \end{tabular}
 \end{center}
 \caption{{\bf A} The body-mass index (BMI) in different age groups in Poland (Eurostat table \texttt{hlth\_ehis\_de1}). {\bf B} Production of renewable energy in various countries in 2013 (Eurostat table \texttt{ten00081}). See the Appendix for the source code.}
@@ -400,9 +400,9 @@ part of the rOpenGov\footnote{https://github.ropengov.io} project.
 \email{markus.kainu@kela.fi}
 
 \address{Przemys{\l}aw Biecek\\
-  Faculty of Mathematics, Informatics, and Mechanics\\
-  University of Warsaw\\
-  Banacha 2, 02-097 Warsaw\\
+  Faculty of Mathematics and Information Science\\
+  Warsaw University of Technology\\
+  Koszykowa 75, 00-662 Warsaw\\
   Poland\\}
 \email{P.Biecek@mimuw.edu.pl}
 
@@ -461,16 +461,18 @@ Source code for the renewable energy example (Figure~\ref{fig:bmi}B).
 +  group_by(geo) %>%
 +  mutate(tvalue = sum(svalue),
 +         svalue = svalue/sum(svalue)) %>%
-+  filter(tvalue > 1000,
-+         !grepl(geo, pattern="^Euro")) %>% # only large countries
-+  spread(nproduct, svalue)
-# Triangle plot
-> library(plotrix)
-> par(cex=0.75)
-> plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
-+                      show.grid = TRUE,
-+                      label.points = TRUE, point.labels = energy3$geo,
-+                      pch = 19)
++ filter(tvalue > 1000) %>% 
++ spread(nproduct, svalue)
++ # Triangle plot
++ positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
++           show.grid = TRUE, label.points= FALSE, point.labels = energy3$geo,
++          col.axis="gray50", col.grid="gray90",
++          pch = 19, cex.axis=1.1, cex.ticks=0.7, col="grey50")
++ ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", 
++          "Italy", "Finland"))
++ df <- data.frame(positions$xypos, geo = energy3$geo)
++ points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
++ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 \end{example}
 
 

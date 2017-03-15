@@ -59,7 +59,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2017-03-14</h4>
+            <h4 class="date">2017-03-15</h4>
           </div>
 
     
@@ -717,20 +717,56 @@ p &lt;-<span class="st"> </span>p +<span class="st"> </span><span class="kw">geo
 <span class="kw">print</span>(p)</code></pre></div>
 <p><img src="fig/trains_plot-1.png" width="576"></p>
 <p><a name="triangle"></a><strong>Triangle plot</strong></p>
-<p>Triangle plot is handy for visualizing data sets with three variables. For instance, the passenger transport distributions across three vehicle types in 2012 for all countries where data is available:</p>
+<p>Triangle plot is handy for visualizing data sets with three variables.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyr)
-
-<span class="co"># Download and modify the transport data</span>
-transports &lt;-<span class="st"> </span><span class="kw">spread</span>(<span class="kw">subset</span>(dat, time ==<span class="st"> </span><span class="dv">2012</span>, <span class="dt">select =</span> <span class="kw">c</span>(geo, vehicle, values)), vehicle, values)
-
-<span class="co"># Remove countries with missing data</span>
-transports &lt;-<span class="st"> </span><span class="kw">na.omit</span>(transports)
-
-<span class="co"># Use triangle plot to visualize vehicle distributions:</span>
 <span class="kw">library</span>(plotrix)
-<span class="kw">triax.plot</span>(transports[, -<span class="dv">1</span>], <span class="dt">show.grid =</span> <span class="ot">TRUE</span>, 
-           <span class="dt">label.points =</span> <span class="ot">TRUE</span>, <span class="dt">point.labels =</span> transports$geo, 
-           <span class="dt">pch =</span> <span class="dv">19</span>)</code></pre></div>
+<span class="kw">library</span>(eurostat)
+<span class="kw">library</span>(dplyr)
+<span class="kw">library</span>(tidyr)
+
+<span class="co"># All sources of renewable energy are to be grouped into three sets</span>
+ dict &lt;-<span class="st"> </span><span class="kw">c</span>(<span class="st">"Solid biofuels (excluding charcoal)"</span> =<span class="st"> "Biofuels"</span>,
+ <span class="st">"Biogasoline"</span> =<span class="st"> "Biofuels"</span>,
+ <span class="st">"Other liquid biofuels"</span> =<span class="st"> "Biofuels"</span>,
+ <span class="st">"Biodiesels"</span> =<span class="st"> "Biofuels"</span>,
+ <span class="st">"Biogas"</span> =<span class="st"> "Biofuels"</span>,
+ <span class="st">"Hydro power"</span> =<span class="st"> "Hydro power"</span>,
+ <span class="st">"Tide, Wave and Ocean"</span> =<span class="st"> "Hydro power"</span>,
+ <span class="st">"Solar thermal"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
+ <span class="st">"Geothermal Energy"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
+ <span class="st">"Solar photovoltaic"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
+ <span class="st">"Municipal waste (renewable)"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
+ <span class="st">"Wind power"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
+ <span class="st">"Bio jet kerosene"</span> =<span class="st"> "Wind, solar, waste and Other"</span>)
+<span class="co"># Some cleaning of the data is required</span>
+ energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"ten00081"</span>) %&gt;%
+<span class="st"> </span><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(dat) %&gt;%
+<span class="st"> </span><span class="kw">filter</span>(time ==<span class="st"> "2013-01-01"</span>,
+ product !=<span class="st"> "Renewable energies"</span>) %&gt;%
+<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">nproduct =</span> dict[<span class="kw">as.character</span>(product)], <span class="co"># just three categories</span>
+ <span class="dt">geo =</span> <span class="kw">gsub</span>(geo, <span class="dt">pattern=</span><span class="st">" </span><span class="ch">\\</span><span class="st">(.*"</span>, <span class="dt">replacement=</span><span class="st">""</span>)) %&gt;%
+<span class="st"> </span><span class="kw">select</span>(nproduct, geo, values) %&gt;%
+<span class="st"> </span><span class="kw">group_by</span>(nproduct, geo) %&gt;%
+<span class="st"> </span><span class="kw">summarise</span>(<span class="dt">svalue =</span> <span class="kw">sum</span>(values)) %&gt;%
+<span class="st"> </span><span class="kw">group_by</span>(geo) %&gt;%
+<span class="st"> </span><span class="kw">mutate</span>(<span class="dt">tvalue =</span> <span class="kw">sum</span>(svalue),
+ <span class="dt">svalue =</span> svalue/<span class="kw">sum</span>(svalue)) %&gt;%
+<span class="st"> </span><span class="kw">filter</span>(tvalue &gt;<span class="st"> </span><span class="dv">1000</span>) %&gt;%<span class="st"> </span><span class="co"># only large countries</span>
+<span class="st"> </span><span class="kw">spread</span>(nproduct, svalue)
+ 
+<span class="co"># Triangle plot</span>
+ <span class="kw">par</span>(<span class="dt">cex=</span><span class="fl">0.75</span>, <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+ positions &lt;-<span class="st"> </span>plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(energy3[, <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>)]),
+                     <span class="dt">show.grid =</span> <span class="ot">TRUE</span>,
+                     <span class="dt">label.points=</span> <span class="ot">FALSE</span>, <span class="dt">point.labels =</span> energy3$geo,
+                     <span class="dt">col.axis=</span><span class="st">"gray50"</span>, <span class="dt">col.grid=</span><span class="st">"gray90"</span>,
+                     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex.axis=</span><span class="fl">0.8</span>, <span class="dt">cex.ticks=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">"grey50"</span>)
+
+ <span class="co"># Larger labels</span>
+ ind &lt;-<span class="st"> </span><span class="kw">which</span>(energy3$geo %in%<span class="st">  </span><span class="kw">c</span>(<span class="st">"Norway"</span>, <span class="st">"Iceland"</span>,<span class="st">"Denmark"</span>,<span class="st">"Estonia"</span>, <span class="st">"Turkey"</span>, <span class="st">"Italy"</span>, <span class="st">"Finland"</span>))
+ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(positions$xypos, <span class="dt">geo =</span> energy3$geo)
+ <span class="kw">points</span>(df$x[ind], df$y[ind], <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">"red"</span>, <span class="dt">pch=</span><span class="dv">19</span>)
+ <span class="kw">text</span>(df$x[ind], df$y[ind], df$geo[ind], <span class="dt">adj =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,-<span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.5</span>)</code></pre></div>
 <p><img src="fig/plotGallery-1.png" width="576"></p>
 <div id="maps" class="section level2">
 <h2 class="hasAnchor">
@@ -753,8 +789,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>., <span class="kw">aes</span>(<span class="dt">x=</span>long,<span class="dt">y=</span>lat,<span class="dt">group=</span>group)) +
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"white"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) +
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span><span class="st">"Oranges"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp98DEGa/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp98DEGa/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpGmrozj/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpGmrozj/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -781,8 +817,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## Reading cache file /tmp/Rtmp98DEGa/eurostat/df60.RData</code></pre>
-<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/Rtmp98DEGa/eurostat/df60.RData</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpGmrozj/eurostat/df60.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpGmrozj/eurostat/df60.RData</code></pre>
 <p><img src="fig/maps1-1.png" width="768"></p>
 </div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-in-poland-with-labels-at-11mln-resolution-using-ggplot2" class="section level3">
@@ -801,8 +837,8 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
          <span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge with geodata</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"01"</span>, <span class="dt">all_regions =</span> <span class="ot">FALSE</span>, <span class="dt">output_class=</span><span class="st">"df"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp98DEGa/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp98DEGa/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpGmrozj/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpGmrozj/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -829,7 +865,7 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/Rtmp98DEGa/eurostat/df01.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmpGmrozj/eurostat/df01.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>df, <span class="kw">aes</span>(long,lat,<span class="dt">group=</span>group))
 p &lt;-<span class="st"> </span>p +<span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> cat),<span class="dt">colour=</span><span class="st">"white"</span>,<span class="dt">size=</span>.<span class="dv">8</span>)
@@ -857,8 +893,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge Eurostat data with geodata from Cisco</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">output_class =</span><span class="st">"spdf"</span>, <span class="dt">all_regions=</span><span class="ot">FALSE</span>) </code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp98DEGa/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp98DEGa/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpGmrozj/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpGmrozj/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -885,7 +921,7 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp98DEGa/eurostat/spdf10.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpGmrozj/eurostat/spdf10.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,
        <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), 

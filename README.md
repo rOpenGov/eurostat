@@ -9,7 +9,7 @@ eurostat R package
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 <!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
-
+[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 
 
 R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
@@ -50,13 +50,15 @@ Contributions are very welcome:
   * [Use issue tracker](https://github.com/ropengov/eurostat/issues) for feedback and bug reports.
   * [Send pull requests](https://github.com/ropengov/eurostat/)
   * [Star us on the Github page](https://github.com/ropengov/eurostat)
-
+  * [Join the discussion in Gitter](https://gitter.im/rOpenGov/eurostat)
 
 ### Acknowledgements
 
 **Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari (2017). eurostat: Tools for Eurostat Open Data. R package version 2.3.20001. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
-We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
+We are greatful to all
+[contributors](https://github.com/rOpenGov/eurostat/graphs/contributors),
+including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 
 
 
