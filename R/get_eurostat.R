@@ -43,6 +43,7 @@
 #'        can be removed. Default is \code{FALSE}.
 #' @param ... further argument for \code{\link{get_eurostat_json}}.
 #' @export
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @details Data sets are downloaded from 
 #' \href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
 #' \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.

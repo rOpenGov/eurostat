@@ -23,6 +23,7 @@
 #'
 #' @return A dataset as a data_frame.
 #' @export
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples
 #'  \dontrun{
 #'    tmp <- get_eurostat_json("cdh_e_fos")

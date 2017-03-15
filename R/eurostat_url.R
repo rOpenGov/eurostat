@@ -3,7 +3,7 @@
 #' @param ... Arguments to be passed
 #' @return url
 #' @references see citation("eurostat"). 
-#' @author Leo Lahti \email{ropengov-forum@@googlegroups.com}
+#' @author Leo Lahti \email{leo.lahti@iki.fi}
 #' @keywords internal
 eurostat_url <- function(...) {
   "http://ec.europa.eu/eurostat/"

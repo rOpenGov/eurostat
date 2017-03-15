@@ -127,3 +127,6 @@ dd <- get_eurostat("namq_aux_lp",
 \seealso{
 \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 }
+\author{
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+}

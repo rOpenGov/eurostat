@@ -852,7 +852,9 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -881,7 +883,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpzeTk53/eurostat/df60.RData
+    ## Reading cache file /tmp/RtmprL7c2r/eurostat/df60.RData
+
+    ## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmprL7c2r/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -901,9 +905,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -932,7 +936,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpzeTk53/eurostat/df01.RData
+    ## Reading cache file /tmp/RtmprL7c2r/eurostat/df01.RData
+
+    ## data_frame at resolution 1: 01  read from cache file:  /tmp/RtmprL7c2r/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -962,9 +968,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmprL7c2r/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -993,7 +999,9 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpzeTk53/eurostat/spdf10.RData
+    ## Reading cache file /tmp/RtmprL7c2r/eurostat/spdf10.RData
+
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmprL7c2r/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",

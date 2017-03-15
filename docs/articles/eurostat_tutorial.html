@@ -38,14 +38,7 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right">
-<li>
-  <a href="https://github.com/ropengov/eurostat">
-    <span class="fa fa-github fa-lg"></span>
-     
-  </a>
-</li>
-      </ul>
+<ul class="nav navbar-nav navbar-right"></ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -789,8 +782,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 <span class="st">  </span><span class="kw">ggplot</span>(<span class="dt">data=</span>., <span class="kw">aes</span>(<span class="dt">x=</span>long,<span class="dt">y=</span>lat,<span class="dt">group=</span>group)) +
 <span class="st">  </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"white"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) +
 <span class="st">  </span><span class="kw">scale_fill_brewer</span>(<span class="dt">palette =</span><span class="st">"Oranges"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpYzkCcx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpYzkCcx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -817,8 +810,8 @@ eurostat::<span class="kw"><a href="../reference/get_eurostat.html">get_eurostat
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## Reading cache file /tmp/RtmpYzkCcx/eurostat/df60.RData</code></pre>
-<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmpYzkCcx/eurostat/df60.RData</code></pre>
+<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/df60.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 60  read from cache file:  /tmp/RtmptNwNfL/eurostat/df60.RData</code></pre>
 <p><img src="fig/maps1-1.png" width="768"></p>
 </div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-in-poland-with-labels-at-11mln-resolution-using-ggplot2" class="section level3">
@@ -837,8 +830,8 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
          <span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge with geodata</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"01"</span>, <span class="dt">all_regions =</span> <span class="ot">FALSE</span>, <span class="dt">output_class=</span><span class="st">"df"</span>)</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpYzkCcx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpYzkCcx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -865,7 +858,7 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_euro
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmpYzkCcx/eurostat/df01.RData</code></pre>
+<pre><code>## data_frame at resolution 1: 01  cached at:  /tmp/RtmptNwNfL/eurostat/df01.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 p &lt;-<span class="st"> </span><span class="kw">ggplot</span>(<span class="dt">data=</span>df, <span class="kw">aes</span>(long,lat,<span class="dt">group=</span>group))
 p &lt;-<span class="st"> </span>p +<span class="st"> </span><span class="kw">geom_polygon</span>(<span class="kw">aes</span>(<span class="dt">fill =</span> cat),<span class="dt">colour=</span><span class="st">"white"</span>,<span class="dt">size=</span>.<span class="dv">8</span>)
@@ -893,8 +886,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr::<span class="kw">mutate</span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) %&gt;%<span class="st"> </span>
 <span class="st">  </span><span class="co"># merge Eurostat data with geodata from Cisco</span>
 <span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">output_class =</span><span class="st">"spdf"</span>, <span class="dt">all_regions=</span><span class="ot">FALSE</span>) </code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpYzkCcx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpYzkCcx/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptNwNfL/eurostat/tgs00026_raw_code_TF.rds</code></pre>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -921,7 +914,7 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpYzkCcx/eurostat/spdf10.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmptNwNfL/eurostat/spdf10.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 sp::<span class="kw">spplot</span>(<span class="dt">obj =</span> dat, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,
        <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), 
@@ -1005,11 +998,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 <div id="further-examples" class="section level1">
 <h1 class="hasAnchor">
 <html><body><a href="#further-examples" class="anchor"> </a></body></html>Further examples</h1>
-<p>For further examples, see:</p>
-<ul>
-<li><a href="http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/">Blog post</a></li>
-<li><a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.md">Journal manuscript</a></li>
-</ul>
+<p>For further examples, see the <a href="http://ropengov.github.io/eurostat/articles/index.html">package homepage</a>.</p>
 </div>
 <div id="citations-and-related-work" class="section level1">
 <h1 class="hasAnchor">
@@ -1023,7 +1012,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 <div id="citing-the-eurostat-r-package" class="section level3">
 <h3 class="hasAnchor">
 <html><body><a href="#citing-the-eurostat-r-package" class="anchor"> </a></body></html>Citing the eurostat R package</h3>
-<p>For main developers and contributors, see the <a href="../README.md">README</a>.</p>
+<p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">citation</span>(<span class="st">"eurostat"</span>)</code></pre></div>
 <pre><code>## 
@@ -1048,12 +1037,12 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 <html><body><a href="#related-work" class="anchor"> </a></body></html>Related work</h3>
 <p>This <a href="http://ropengov.github.io">rOpenGov</a> R package is based on the earlier CRAN packages <a href="https://cran.r-project.org/package=statfi">statfi</a> and <a href="https://cran.r-project.org/package=SmarterPoland">smarterpoland</a>.</p>
 <p>The independent <a href="https://github.com/Tungurahua/reurostat">reurostat</a> package develops related Eurostat tools but seems to be in an experimental stage at the time of writing this tutorial.</p>
-<p>The more generic <a href="https://cran.r-project.org/package=quandl">quandl</a>, <a href="https://cran.r-project.org/package=datamart">datamart</a>, and <a href="https://cran.r-project.org/package=pdfetch">pdfetch</a> packages may provide access to some versions of eurostat data but these packages are more generic and hence, in contrast to the eurostat R package, lack tools that are specifically customized to facilitate eurostat analysis.</p>
+<p>The more generic <a href="https://cran.r-project.org/package=quandl">quandl</a>, <a href="https://cran.r-project.org/package=datamart">datamart</a>, <a href="https://cran.r-project.org/package=rsdmx">rsdmx</a>, and <a href="https://cran.r-project.org/package=pdfetch">pdfetch</a> packages may provide access to some versions of eurostat data but these packages are more generic and hence, in contrast to the eurostat R package, lack tools that are specifically customized to facilitate eurostat analysis.</p>
 </div>
 <div id="contact" class="section level3">
 <h3 class="hasAnchor">
 <html><body><a href="#contact" class="anchor"> </a></body></html>Contact</h3>
-<p>For contact information, see the <a href="../README.md">README</a>.</p>
+<p>For contact information, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
 </div>
 </div>
 <div id="version-info" class="section level1">

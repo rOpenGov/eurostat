@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.11.22)  15 MAR 2017 16:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.17 (TeX Live 2016/Debian) (preloaded format=pdflatex 2016.11.22)  15 MAR 2017 16:46
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1498,11 +1498,11 @@ Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22162 strings out of 494358
- 394635 string characters out of 6164526
+ 22159 strings out of 494358
+ 394608 string characters out of 6164526
  494649 words of memory out of 5000000
  24792 multiletter control sequences out of 15000+600000
- 52933 words of font info for 210 fonts, out of 8000000 for 9000
+ 52774 words of font info for 208 fonts, out of 8000000 for 9000
  350 hyphenation exceptions out of 8191
  62i,12n,56p,1484b,620s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not ex
@@ -1542,7 +1542,7 @@ f-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
 alatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr
 i8a.pfb>
-Output written on RJwrapper.pdf (9 pages, 252667 bytes).
+Output written on RJwrapper.pdf (9 pages, 252631 bytes).
 PDF statistics:
  448 PDF objects out of 1000 (max. 8388607)
  412 compressed objects within 5 object streams

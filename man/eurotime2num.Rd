@@ -34,6 +34,5 @@ Bi-annual, quarterly and monthly data is presented as fraction of the year in be
    }
 }
 \author{
-Janne Huovari \email{ropengov-forum@googlegroups.com} 
-	                 \url{http://github.com/ropengov/eurostat}
+Janne Huovari \email{janne.huovari@ptt.fi}
 }

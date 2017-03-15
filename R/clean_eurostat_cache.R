@@ -4,6 +4,7 @@
 #' @param cache_dir A path to cache directory. If \code{NULL} (default)
 #'        tries to clean default temporary cache directory.
 #' @export
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @examples clean_eurostat_cache() 
 clean_eurostat_cache <- function(cache_dir = NULL){
   if (is.null(cache_dir)){

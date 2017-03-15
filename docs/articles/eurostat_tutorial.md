@@ -769,10 +769,6 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
-
-    ## Stackoverflow is a great place to get help:
-    ## http://stackoverflow.com/tags/ggplot2.
-
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -856,7 +852,7 @@ Maps
       geom_polygon(aes(fill=cat),color="white", size=.1) +
       scale_fill_brewer(palette ="Oranges")
 
-    ## Table tgs00026 cached at /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
+    ## Table tgs00026 cached at /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -885,7 +881,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmplrsBGJ/eurostat/df60.RData
+    ## data_frame at resolution 1: 60  cached at:  /tmp/RtmpzeTk53/eurostat/df60.RData
 
 ![](fig/maps1-1.png)
 
@@ -905,9 +901,9 @@ Maps
       # merge with geodata
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
 
-    ## Reading cache file /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -936,7 +932,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmplrsBGJ/eurostat/df01.RData
+    ## data_frame at resolution 1: 01  cached at:  /tmp/RtmpzeTk53/eurostat/df01.RData
 
     # plot map
     p <- ggplot(data=df, aes(long,lat,group=group))
@@ -966,9 +962,9 @@ Maps
       # merge Eurostat data with geodata from Cisco
       merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
 
-    ## Reading cache file /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
+    ## Reading cache file /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmplrsBGJ/eurostat/tgs00026_raw_code_TF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpzeTk53/eurostat/tgs00026_raw_code_TF.rds
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -997,7 +993,7 @@ Maps
     ##       information regarding their licence agreements.
     ## 
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmplrsBGJ/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpzeTk53/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1087,12 +1083,8 @@ package can be used to access data in that format when necessary:
 Further examples
 ================
 
-For further examples, see:
-
--   [Blog
-    post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
--   [Journal
-    manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.md)
+For further examples, see the [package
+homepage](http://ropengov.github.io/eurostat/articles/index.html).
 
 Citations and related work
 ==========================
@@ -1105,7 +1097,8 @@ Administrative boundaries: cite EuroGeographics
 
 ### Citing the eurostat R package
 
-For main developers and contributors, see the [README](../README.md).
+For main developers and contributors, see the [package
+homepage](http://ropengov.github.io/eurostat).
 
 This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
@@ -1143,7 +1136,8 @@ package develops related Eurostat tools but seems to be in an
 experimental stage at the time of writing this tutorial.
 
 The more generic [quandl](https://cran.r-project.org/package=quandl),
-[datamart](https://cran.r-project.org/package=datamart), and
+[datamart](https://cran.r-project.org/package=datamart),
+[rsdmx](https://cran.r-project.org/package=rsdmx), and
 [pdfetch](https://cran.r-project.org/package=pdfetch) packages may
 provide access to some versions of eurostat data but these packages are
 more generic and hence, in contrast to the eurostat R package, lack
@@ -1151,7 +1145,8 @@ tools that are specifically customized to facilitate eurostat analysis.
 
 ### Contact
 
-For contact information, see the [README](../README.md).
+For contact information, see the [package
+homepage](http://ropengov.github.io/eurostat).
 
 Version info
 ============

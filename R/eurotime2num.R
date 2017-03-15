@@ -4,8 +4,7 @@
 #' @param x a charter string with time information in Eurostat time format.
 #' @export
 #' @return see \code{\link{as.numeric}}.
-#' @author Janne Huovari \email{ropengov-forum@@googlegroups.com} 
-#' 	                 \url{http://github.com/ropengov/eurostat}
+#' @author Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @examples \dontrun{
 #'    lp <- get_eurostat("namq_aux_lp", time_format = "raw")
 #'    lp$time <- eurotime2num(x = lp$time)

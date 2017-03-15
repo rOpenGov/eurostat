@@ -13,7 +13,7 @@ Brief summary of the eurostat package
 Package: \tab eurostat\cr
 Type: \tab Package\cr
 Version: \tab See sessionInfo() or DESCRIPTION file\cr
-Date: \tab 2014-2016\cr
+Date: \tab 2014-2017\cr
 License: \tab BSD_2_clause + LICENSE\cr
 LazyLoad: \tab yes\cr
 }
@@ -25,9 +25,9 @@ library(eurostat)
 }
 \references{
 See citation("eurostat")
-\url{http://github.com/ropengov/eurostat}
+\url{https://ropengov.github.io/eurostat}
 }
 \author{
-Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek \email{ropengov-forum@googlegroups.com} \url{https://ropengov.github.io/eurostat}
 }
 \keyword{package}

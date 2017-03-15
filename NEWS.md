@@ -7,6 +7,7 @@
 
 ## Minor features
 
+* Changed maintainer email address from louhos to leo
 * Added ./docs/ (automated package website generated with pkgdown)
 * Expanded unit tests
 * Gitter badge added to README

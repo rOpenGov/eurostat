@@ -5,14 +5,14 @@ Date: 2017-03-15
 Version: 3.1.1
 Encoding: UTF-8
 Authors@R: c(
-  person("Leo", "Lahti", email = "louhos@googlegroups.com", role = c("aut", "cre")),
+  person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
   person("Przemyslaw" , "Biecek", role = "aut"),
   person("Markus", "Kainu", role = "aut"),
   person("Janne", "Huovari", role = "aut"),
   person("Joona", "Lehtomaki", role = "ctb"), 
   person("Francois", "Briatte", role = "ctb"), 
   person("Oliver", "Reiter", role = "ctb"))
-Maintainer: Leo Lahti <louhos@googlegroups.com>
+Maintainer: Leo Lahti <leo.lahti@iki.fi>
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database
     <http://ec.europa.eu/eurostat> together with search and
@@ -44,7 +44,7 @@ Suggests:
     rvest,
     testthat
 LazyData: true
-URL: https://github.com/ropengov/eurostat
+URL: https://ropengov.github.io/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
