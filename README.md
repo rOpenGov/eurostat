@@ -24,10 +24,10 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
+R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. See the [package homepage](http://ropengov.github.io/eurostat) for further info.
 
 
-### Installation and use
+### Installation
 
 To install the CRAN release version, use:
 
@@ -45,8 +45,19 @@ install_github("ropengov/eurostat")
 ```
 
 
+### Using the package
 
-See the the [package homepage](http://ropengov.github.io/eurostat) with links to [function documentation](http://ropengov.github.io/eurostat/reference/index.html) and [tutorials](http://ropengov.github.io/eurostat/articles/index.html) as well as contact details. The [R Journal manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html) provides a generic overview of the package functionality.
+The [R Journal
+manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)
+provides a generic overview of the package functionality. Various
+tutorials [are available](http://ropengov.github.io/eurostat/articles/index.html) and provide more detailed demonstrations of package functionality. In
+particular, you can check the following online resources:
+ 
+  * [Cheat sheet: eurostat R package](http://ropengov.github.io/eurostat/articles/cheatsheet.html)
+  * [Tutorial (vignette) for the eurostat R package](http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html)
+  * [Blog posts](http://ropengov.github.io/eurostat/articles/blogposts.html)
+  * [Detailed function documentation](http://ropengov.github.io/eurostat/reference/index.html)
+  <!--* [Publications using the eurostat R package](http://ropengov.github.io/eurostat/articles/publications.html)-->
 
 <!--
  * [Eurostat R Cheat Sheet](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)

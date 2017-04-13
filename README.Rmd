@@ -60,10 +60,9 @@ library(eurostat)
 
 The [R Journal
 manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)
-provides a generic overview of the package functionality. Variou
-tutorials [are
-available](http://ropengov.github.io/eurostat/articles/index.html). In
-particular, you can check the following online resources:
+provides a generic overview of the package functionality. Various
+tutorials [are available](http://ropengov.github.io/eurostat/articles/index.html) and provide more detailed demonstrations of package functionality. In
+particular, check the following online resources:
  
   * [Cheat sheet: eurostat R package](http://ropengov.github.io/eurostat/articles/cheatsheet.html)
   * [Tutorial (vignette) for the eurostat R package](http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html)
