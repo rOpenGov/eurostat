@@ -11,6 +11,8 @@ output:
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
 [![DOI](https://zenodo.org/badge/18989920.svg)](https://zenodo.org/badge/latestdoi/18989920)
+[![PRs Welcome][prs-badge]][prs]
+[![Code of Conduct][coc-badge]][coc]
 
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
 [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)
@@ -19,8 +21,6 @@ output:
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![PRs Welcome][prs-badge]][prs]
-[![Code of Conduct][coc-badge]][coc]
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)  
