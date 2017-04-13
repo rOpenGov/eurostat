@@ -1,3 +1,8 @@
+---
+output: 
+  html_document: 
+    keep_md: yes
+---
 
 
 
@@ -13,6 +18,8 @@
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
+[![BSD License][license-badge]][LICENSE]
+
 <!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
 
 <!--[![Stories in Ready](http://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
@@ -51,7 +58,7 @@ The [R Journal
 manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)
 provides a generic overview of the package functionality. Various
 tutorials [are available](http://ropengov.github.io/eurostat/articles/index.html) and provide more detailed demonstrations of package functionality. In
-particular, you can check the following online resources:
+particular, check the following online resources:
  
   * [Cheat sheet: eurostat R package](http://ropengov.github.io/eurostat/articles/cheatsheet.html)
   * [Tutorial (vignette) for the eurostat R package](http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html)
@@ -77,7 +84,7 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017 (in press; [preprint](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)). R package version 3.1.100091. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
+**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017 (in press; [preprint](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)). R package version 3.1.1. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 
