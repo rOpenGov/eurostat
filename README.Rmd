@@ -57,13 +57,13 @@ library(eurostat)
 ```
 
 
-See the the [package homepage](http://ropengov.github.io/eurostat) with links to [function documentation](http://ropengov.github.io/eurostat/reference/index.html) and [tutorials](http://ropengov.github.io/eurostat/articles/index.html) as well as contact details. The [manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/RJwrapper.pdf) submitted to R Journal provides a generic overview of the package functionality.
+See the the [package homepage](http://ropengov.github.io/eurostat) with links to [function documentation](http://ropengov.github.io/eurostat/reference/index.html) and [tutorials](http://ropengov.github.io/eurostat/articles/index.html) as well as contact details. The [R Journal manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html) provides a generic overview of the package functionality.
 
 <!--
  * [Eurostat R Cheat Sheet](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
  * Blog posts ([package release](https://rpubs.com/muuankarski/27120) / [case studies](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/))  
- * Journal manuscript ([markdown](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.md) / [pdf](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/RJwrapper.pdf)) with reproducible examples
+ * Journal manuscript ([preprint](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html) / [markdown](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/lahti-huovari-kainu-biecek.md)) with reproducible examples
 -->
 
 ### Contribute
@@ -77,7 +77,7 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. Accepted for publication in R Journal 2017. R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
+**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017 (in press; [preprint](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 
