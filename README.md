@@ -18,7 +18,16 @@ output:
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
+
+[![All Contributors](https://img.shields.io/badge/all_contributors-orange.svg?style=flat-square)](#contributors)
 [![BSD License][license-badge]][LICENSE]
+[![PRs Welcome][prs-badge]][prs]
+[![Code of Conduct][coc-badge]][coc]
+
+[![Watch on GitHub][github-watch-badge]][github-watch]
+[![Star on GitHub][github-star-badge]][github-star]
+[![Tweet][twitter-badge]][twitter]
+
 
 <!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
 
@@ -96,5 +105,30 @@ We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graph
 
 This package is in no way officially related to or endorsed by Eurostat.
 
+
+[chat-badge]: https://img.shields.io/badge/chat-on%20gitter-46BC99.svg?style=flat-square
+[chat]: https://gitter.im/kentcdodds/all-contributors?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[build-badge]: https://img.shields.io/travis/kentcdodds/all-contributors.svg?style=flat-square
+[build]: https://travis-ci.org/kentcdodds/all-contributors
+[version-badge]: https://img.shields.io/npm/v/all-contributors.svg?style=flat-square
+[package]: https://www.npmjs.com/package/all-contributors
+[license-badge]: https://img.shields.io/npm/l/all-contributors.svg?style=flat-square
+[license]: https://github.com/kentcdodds/all-contributors/blob/master/LICENSE
+[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
+[prs]: http://makeapullrequest.com
+[donate-badge]: https://img.shields.io/badge/$-support-green.svg?style=flat-square
+[donate]: http://kcd.im/donate
+[coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
+[coc]: https://github.com/kentcdodds/all-contributors/blob/master/other/CODE_OF_CONDUCT.md
+[implementations-badge]: https://img.shields.io/badge/%F0%9F%92%A1-implementations-8C8E93.svg?style=flat-square
+[implementations]: https://github.com/kentcdodds/all-contributors/blob/master/other/IMPLEMENTATIONS.md
+[github-watch-badge]: https://img.shields.io/github/watchers/kentcdodds/all-contributors.svg?style=social
+[github-watch]: https://github.com/kentcdodds/all-contributors/watchers
+[github-star-badge]: https://img.shields.io/github/stars/kentcdodds/all-contributors.svg?style=social
+[github-star]: https://github.com/kentcdodds/all-contributors/stargazers
+[twitter]: https://twitter.com/intent/tweet?text=Check%20out%20all-contributors!%20%E2%9C%A8%20Recognize%20all%20contributors,%20not%20just%20the%20ones%20who%20commit%20code%20%E2%9C%A8%20https://github.com/kentcdodds/all-contributors%20%F0%9F%A4%97
+[twitter-badge]: https://img.shields.io/twitter/url/https/github.com/kentcdodds/all-contributors.svg?style=social
+[emojis]: https://github.com/kentcdodds/all-contributors#emoji-key
+[all-contributors]: https://github.com/kentcdodds/all-contributors
 
 
