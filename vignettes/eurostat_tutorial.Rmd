@@ -282,27 +282,44 @@ library(tidyr)
 
 ## Maps 
 
-###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
+###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap
 
-```{r maps1, eval=TRUE, fig.width=8, fig.height=8}
-library(eurostat)
+The mapping examples below use [`tmap`](https://github.com/mtennekes/tmap) package.
+
+```{r maps1-1, eval=TRUE, fig.width=8, fig.height=8}
 library(dplyr)
-library(ggplot2)
+library(eurostat)
+library(tmap)
+
 # Data from Eurostat
-eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
   # categorise
-  dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>% 
+  dplyr::mutate(income = cut_to_classes(values, n = 5)) %>% 
   # merge with geodata
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class = "df", all_regions = TRUE) %>% 
-  # plot map
-  ggplot(data=., aes(x=long,y=lat,group=group)) +
-  geom_polygon(aes(fill=cat),color="white", size=.1) +
-  scale_fill_brewer(palette ="Oranges")
-
+  merge_eurostat_geodata(data = ., geocolumn = "geo",resolution = "60", 
+                         output_class = "spdf", all_regions = TRUE) 
+  
+# plot map using tmap
+data(Europe)
+map1 <- tmap::tm_shape(Europe) +
+  tmap::tm_fill("lightgrey") +
+  tmap::tm_shape(sp_data) +
+  tmap::tm_grid() +
+  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2005",  
+                    palette = "Oranges") +
+  tmap::tm_format_Europe()  
+map1
 ```
 
+Using `tmap::tmap_mode('view')`, it is also easy to produce interactive maps. The zoom is not ideal
+in this example, but you scroll and zoom around using your mouse.
+
+```{r maps1-2, eval=TRUE, fig.width=8, fig.height=8}
+tmap_mode("view")
+map1
+```
 
 ### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using ggplot2
 
