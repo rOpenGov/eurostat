@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.21)  19 MAY 2017 14:20
+This is pdfTeX, Version 3.14159265-2.6-1.40.16 (TeX Live 2015/Debian) (preloaded format=pdflatex 2016.4.21)  22 MAY 2017 17:32
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1492,11 +1492,11 @@ Package rerunfilecheck Info: File `RJwrapper.brf' has not changed.
 Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 24.
  ) 
 Here is how much of TeX's memory you used:
- 22030 strings out of 494953
- 392002 string characters out of 6180977
- 488311 words of memory out of 5000000
- 24631 multiletter control sequences out of 15000+600000
- 52464 words of font info for 204 fonts, out of 8000000 for 9000
+ 22029 strings out of 494953
+ 391984 string characters out of 6180977
+ 489311 words of memory out of 5000000
+ 24625 multiletter control sequences out of 15000+600000
+ 52778 words of font info for 208 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  62i,12n,56p,1472b,622s stack positions out of 5000i,500n,10000p,200000b,80000s
 pdfTeX warning (dest): name{Hfootnote.10} has been referenced but does not ex
@@ -1536,10 +1536,10 @@ f-dist/fonts/type1/urw/palatino/uplb8a.pfb></usr/share/texlive/texmf-dist/fonts
 /type1/urw/palatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/p
 alatino/uplr8a.pfb></usr/share/texlive/texmf-dist/fonts/type1/urw/palatino/uplr
 i8a.pfb>
-Output written on RJwrapper.pdf (8 pages, 250451 bytes).
+Output written on RJwrapper.pdf (8 pages, 250476 bytes).
 PDF statistics:
- 406 PDF objects out of 1000 (max. 8388607)
- 374 compressed objects within 4 object streams
- 67 named destinations out of 1000 (max. 500000)
+ 408 PDF objects out of 1000 (max. 8388607)
+ 376 compressed objects within 4 object streams
+ 66 named destinations out of 1000 (max. 500000)
  45673 words of extra memory for PDF output out of 51595 (max. 10000000)
 
