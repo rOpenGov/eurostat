@@ -4,13 +4,10 @@
 \alias{get_eurostat_geospatial}
 \title{Download Geospatial Data from CISGO}
 \usage{
-get_eurostat_geospatial(output_class = "spdf", resolution = "60",
-  cache = TRUE, update_cache = FALSE, cache_dir = NULL)
+get_eurostat_geospatial(resolution = "60", cache = TRUE,
+  update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
-\item{output_class}{A string. Class of object returned, either \code{df} (\code{data_frame}) or
-\code{spdf} (\code{SpatialPolygonDataFrame})}
-
 \item{resolution}{Resolution of the geospatial data. One of
 "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
 
@@ -30,19 +27,21 @@ The \code{NULL} (default) uses and creates
 a data_frame or SpatialPolygonDataFrame.
 }
 \description{
-Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
-   \code{ggplot2::fortify}.
+Downloads a shapedile in as simple feature object.
 }
 \details{
 The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 }
 \examples{
  \dontrun{
-   lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60")
-   spplot(lp, "STAT_LEVL_")
+   library(sf)
+   lp <- get_eurostat_geospatial(resolution = "60")
+   plot(lp, "STAT_LEVL_")
    # or
-   lp <- get_eurostat_geospatial(output_class = "df", resolution = "60")
-   ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
+   lp <- get_eurostat_geospatial(resolution = "60")
+   library(ggplot2)
+   lp <- fortify(as(lp, "Spatial"), region = "NUTS_ID")
+   ggplot(lp, aes(x=long,y=lat,group=group,fill=order),color="white") + geom_polygon()
  }
  
 }

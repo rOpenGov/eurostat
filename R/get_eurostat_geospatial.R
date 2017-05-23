@@ -1,8 +1,5 @@
 #' @title Download Geospatial Data from CISGO
-#' @description Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
-#'    \code{ggplot2::fortify}.
-#' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}) or
-#'    \code{spdf} (\code{SpatialPolygonDataFrame})
+#' @description Downloads a shapedile in as simple feature object.
 #' @param resolution Resolution of the geospatial data. One of
 #'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
@@ -20,14 +17,17 @@
 #' @return a data_frame or SpatialPolygonDataFrame.
 #' @examples
 #'  \dontrun{
-#'    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60")
-#'    spplot(lp, "STAT_LEVL_")
+#'    library(sf)
+#'    lp <- get_eurostat_geospatial(resolution = "60")
+#'    plot(lp, "STAT_LEVL_")
 #'    # or
-#'    lp <- get_eurostat_geospatial(output_class = "df", resolution = "60")
-#'    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
+#'    lp <- get_eurostat_geospatial(resolution = "60")
+#'    library(ggplot2)
+#'    lp <- fortify(as(lp, "Spatial"), region = "NUTS_ID")
+#'    ggplot(lp, aes(x=long,y=lat,group=group,fill=order),color="white") + geom_polygon()
 #'  }
 #'  
-get_eurostat_geospatial <- function(output_class="spdf",resolution="60", 
+get_eurostat_geospatial <- function(resolution="60", 
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
 
   # Check resolution is of correct format
@@ -87,28 +87,17 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
     # cache filename
     cache_file <- file.path(cache_dir,
                             paste0(
-                              output_class, resolution, ".RData")
+                              resolution, ".RData")
                             )
   }
   
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
     
-
-      if (output_class == "df"){
-        load(url(paste0("http://data.markuskainu.fi/r_packages/eurostat_geodata/rdata/NUTS_2013_",
+        load(url(paste0("https://github.com/rOpenGov/eurostat_geodata/raw/master/rdata/NUTS_RG_",
                         resolution,
-                        "M_SH_DF.RData")))
-        shape <- get(paste0("NUTS_2013_",resolution,"M_SH_DF"))
-        shape <- shape[order(shape$order),] 
-      }
-      if (output_class == "spdf"){
-        load(url(paste0("http://data.markuskainu.fi/r_packages/eurostat_geodata/rdata/NUTS_2013_",
-                        resolution,
-                        "M_SH_SPDF.RData")))
-        shape <- get(paste0("NUTS_2013_",resolution,"M_SH_SPDF"))
-      }
-    
+                        "M_2013_sf.RData")))
+        shape <- shp
   }
   
   if (cache & file.exists(cache_file)) {
@@ -116,15 +105,14 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
     message(paste("Reading cache file", cf))
     # y <- readRDS(cache_file)
     load(file = cache_file)
-    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " read from cache file: ", cf))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " read from cache file: ", cf))
+    message(paste("sf at resolution 1:", resolution, " read from cache file: ", cf))
+
   }
     
   # if update or new: save
   if (cache && (update_cache || !file.exists(cache_file))){
     save(shape, file = cache_file)
-    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
+    message(paste("sf at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
   }
   
   return(shape)
