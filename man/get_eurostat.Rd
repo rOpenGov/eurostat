@@ -60,7 +60,9 @@ they are returned as a character.}
 
 \item{keepFlags}{a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
-can be removed. Default is \code{FALSE}.}
+can be removed. Default is \code{FALSE}. For flag values see: 
+\url{http://ec.europa.eu/eurostat/data/database/information}.
+Also possible non-real zero "0n" is indicated in flags column.}
 
 \item{...}{further argument for \code{\link{get_eurostat_json}}.}
 }

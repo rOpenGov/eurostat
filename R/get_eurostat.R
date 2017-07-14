@@ -40,7 +40,9 @@
 #'        they are returned as a character.
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'        "provisional") should be kept in a separate column or if they
-#'        can be removed. Default is \code{FALSE}.
+#'        can be removed. Default is \code{FALSE}. For flag values see: 
+#'        \url{http://ec.europa.eu/eurostat/data/database/information}.
+#'        Also possible non-real zero "0n" is indicated in flags column.
 #' @param ... further argument for \code{\link{get_eurostat_json}}.
 #' @export
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}

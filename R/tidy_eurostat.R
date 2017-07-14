@@ -49,7 +49,8 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     ## separate flags into separate column
     if(keepFlags == TRUE) {
       dat2$flags <- as.vector(
-        stringi::stri_match_first_regex(dat2$values, pattern = "[A-Za-z]"))
+        stringi::stri_extract_first_regex(dat2$values, 
+                                        c("(^0n( [A-Za-z]+)*)|[A-Za-z]+")))
     }
     
     # clean time and values
