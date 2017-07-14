@@ -16,7 +16,9 @@ see \code{\link{as.numeric}}.
 A conversion of a Eurostat time format to numeric.
 }
 \details{
-Bi-annual, quarterly and monthly data is presented as fraction of the year in beginning of the period.
+Bi-annual, quarterly and monthly data is presented as fraction of 
+         the year in beginning of the period. Conversion of daily data is not 
+         supported.
 }
 \examples{
 \dontrun{
@@ -28,9 +30,6 @@ Bi-annual, quarterly and monthly data is presented as fraction of the year in be
    
    lpa <- get_eurostat("nama_aux_lp", time_format = "raw")
    lpa$time <- eurotime2num(x = lpa$time)
-   
-   eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
-   eur_d$time <- eurotime2num(x = eur_d$time)
    }
 }
 \author{
