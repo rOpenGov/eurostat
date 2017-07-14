@@ -10,6 +10,7 @@ notifications:
 
 r_packages:
   - Cairo
+  - tmap  
   
 r_github_packages:
   - jimhester/covr
@@ -24,6 +25,8 @@ env:
 
 before_install:
 - pip install --user codecov
+- sudo apt-get -qq update
+- sudo apt-get install -y libxml2-dev
 
 after_success:
   - Rscript -e 'covr::codecov()'
