@@ -50,5 +50,8 @@ Queries are limited to 50 sub-indicators at a time.
                                                         indic_na="B1GM")) 
 }
 }
+\author{
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+}
 \keyword{database}
 \keyword{utilities}

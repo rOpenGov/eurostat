@@ -8,7 +8,7 @@
 #'        the date is the last date of the period.
 #' @export
 #' @return an object of class \code{\link{Date}}.
-#' @author Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @examples \dontrun{
 #'    lp <- get_eurostat("namq_aux_lp", time_format = "raw")
 #'    lp$time <- eurotime2date(x = lp$time)
@@ -23,6 +23,7 @@
 #'    eur_d$time <- eurotime2date(x = eur_d$time)
 #'    }
 eurotime2date <- function(x, last = FALSE){
+  if (!is.factor(x)) x <- factor(x)
   times <- levels(x)
   year <- substr(times, 1, 4)
   subyear <- substr(times, 5, 7)

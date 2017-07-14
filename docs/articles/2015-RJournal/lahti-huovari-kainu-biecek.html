@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Examples on eurostat R package • eurostat</title>
+<title>Retrieval and analysis of Eurostat open data with the eurostat package (R Journal manuscript) • eurostat</title>
 <!-- jquery --><script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script><!-- Bootstrap --><link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script><!-- Font Awesome icons --><link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 <!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
@@ -57,10 +57,10 @@
       </header><div class="row">
   <div class="col-md-9">
     <div class="page-header toc-ignore">
-      <h1>Examples on eurostat R package</h1>
+      <h1>Retrieval and analysis of Eurostat open data with the eurostat package (R Journal manuscript)</h1>
                         <h4 class="author">Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek</h4>
             
-            <h4 class="date">2017-03-08</h4>
+            <h4 class="date">2017-03-15</h4>
           </div>
 
     
@@ -71,7 +71,8 @@
 %\VignetteIndexEntry{eurostat Markdown Vignette}
 %\usepackage[utf8]{inputenc}
 -->
-<p>This document reproduces the figures and tables in <a href="RJwrapper.pdf">our manuscript (in preparation)</a> on the <a href="https://github.com/rOpenGov/eurostat">eurostat R package</a>, assuming that the required R extensions have been installed. For detailed explanation of the examples, see the manuscript text.</p>
+<p>This document reproduces the figures and tables in <a href="RJwrapper.pdf">our manuscript (in preparation)</a> on the <a href="https://github.com/rOpenGov/eurostat">eurostat R package</a>, assuming that the required R extensions have been installed. The Eurostat data is accessed via the <a href="http://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
+<p>For detailed explanation of the examples, see the manuscript text.</p>
 <p>To reproduce the complete manuscript PDF, clone this <a href="https://github.com/rOpenGov/eurostat">repository</a>, navigate to the <a href="https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal">./vignettes/2015-RJournal</a> subdirectory and convert the <a href="lahti-huovari-kainu-biecek.Rmd">Rmarkdown source code</a> in R by navigating to the <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/">vignettes/2015-RJournal</a> folder, and running in R:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">"main.R"</span>)</code></pre></div>
 <p>Alternatively, you can proceed in steps as follows. Generate this markdown page with manuscript figures (PNG) with:</p>
@@ -115,8 +116,7 @@ query &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/se
 <p>To retrieve the data set with this identifier, use:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(<span class="dt">id =</span> <span class="st">"tsdtr420"</span>, <span class="dt">time_format =</span> <span class="st">"num"</span>)</code></pre></div>
 <p>This produces a table:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co">#print(xtable(head(dat), label = "tab:getdatatable"))</span>
-<span class="kw">kable</span>(<span class="kw">head</span>(dat))</code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">kable</span>(<span class="kw">head</span>(dat))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -173,9 +173,6 @@ query &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/se
 <p>Convert to human-readable labels:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Convert into human readable labels</span>
 datl &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/label_eurostat.html">label_eurostat</a></span>(dat)
-
-<span class="co"># Print the table</span>
-<span class="co">#print(xtable(head(datl), label = "tab:getdatatable2"))</span>
 <span class="kw">kable</span>(<span class="kw">head</span>(datl))</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -243,13 +240,17 @@ datl &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/lab
 <span class="st">  </span><span class="kw">geom_line</span>() +<span class="st"> </span><span class="kw">theme_bw</span>() +<span class="st"> </span><span class="kw">ggtitle</span>(<span class="st">"Road accidents"</span>)+
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Year"</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">"Victims (n)"</span>) +
 <span class="st">  </span><span class="co"># labels</span>
-<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"none"</span>) +
+<span class="st">  </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="st">"none"</span>,
+        <span class="dt">title =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">18</span>),
+        <span class="dt">axis.text.x =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">18</span>),
+        <span class="dt">axis.text.y =</span> <span class="kw">element_text</span>(<span class="dt">size =</span> <span class="dv">18</span>)
+    ) +
 <span class="st">  </span>ggrepel::<span class="kw">geom_label_repel</span>(<span class="dt">data=</span>t1 %&gt;%<span class="st">  </span>
 <span class="st">                     </span><span class="kw">group_by</span>(geo) %&gt;%<span class="st"> </span>
 <span class="st">                     </span><span class="kw">na.omit</span>() %&gt;%<span class="st"> </span>
 <span class="st">                     </span><span class="kw">filter</span>(time %in%<span class="st"> </span><span class="kw">c</span>(<span class="kw">min</span>(time),<span class="kw">max</span>(time))),
                    <span class="kw">aes</span>(<span class="dt">fill=</span>geo,<span class="dt">label=</span>geo),<span class="dt">color=</span><span class="st">"white"</span>)</code></pre></div>
-<p><img src="2015-manu-roadacc-1.png" width="384"></p>
+<p><img src="2015-manu-roadacc-1.png" width="672"></p>
 </div>
 <div id="body-mass-index" class="section level2">
 <h2 class="hasAnchor">
@@ -303,16 +304,23 @@ energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/
 <span class="st">  </span><span class="kw">group_by</span>(geo) %&gt;%
 <span class="st">  </span><span class="kw">mutate</span>(<span class="dt">tvalue =</span> <span class="kw">sum</span>(svalue),
          <span class="dt">svalue =</span> svalue/<span class="kw">sum</span>(svalue)) %&gt;%
-<span class="st">  </span><span class="kw">filter</span>(tvalue &gt;<span class="st"> </span><span class="dv">1000</span>,
-         !<span class="kw">grepl</span>(geo, <span class="dt">pattern=</span><span class="st">"^Euro"</span>)) %&gt;%<span class="st"> </span><span class="co"># only large countrie</span>
-<span class="st">  </span><span class="kw">spread</span>(nproduct, svalue)
+<span class="st"> </span><span class="kw">filter</span>(tvalue &gt;<span class="st"> </span><span class="dv">1000</span>) %&gt;%<span class="st"> </span>
+<span class="st"> </span><span class="kw">spread</span>(nproduct, svalue)
+ 
+<span class="co"># Triangle plot</span>
+ <span class="kw">par</span>(<span class="dt">cex=</span><span class="fl">0.75</span>, <span class="dt">mar=</span><span class="kw">c</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
+ positions &lt;-<span class="st"> </span>plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(energy3[, <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>)]),
+                     <span class="dt">show.grid =</span> <span class="ot">TRUE</span>,
+                     <span class="dt">label.points=</span> <span class="ot">FALSE</span>, <span class="dt">point.labels =</span> energy3$geo,
+                     <span class="dt">col.axis=</span><span class="st">"gray50"</span>, <span class="dt">col.grid=</span><span class="st">"gray90"</span>,
+                     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex.axis=</span><span class="fl">1.2</span>, <span class="dt">cex.ticks=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">"grey50"</span>)
 
-<span class="kw">par</span>(<span class="dt">cex=</span><span class="fl">1.5</span>)
-plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(energy3[, <span class="kw">c</span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>)]),
-                      <span class="dt">show.grid =</span> <span class="ot">TRUE</span>,
-                      <span class="dt">label.points =</span> <span class="ot">TRUE</span>, <span class="dt">point.labels =</span> energy3$geo,<span class="dt">cex.ticks=</span><span class="fl">0.75</span>,<span class="dt">col.symbols =</span> <span class="st">"red4"</span>,
-                      <span class="dt">pch =</span> <span class="dv">19</span>)</code></pre></div>
-<p><img src="2015-manu-energy-1.png" width="768"></p>
+ <span class="co"># Larger labels</span>
+ ind &lt;-<span class="st"> </span><span class="kw">which</span>(energy3$geo %in%<span class="st">  </span><span class="kw">c</span>(<span class="st">"Norway"</span>, <span class="st">"Iceland"</span>,<span class="st">"Denmark"</span>,<span class="st">"Estonia"</span>, <span class="st">"Turkey"</span>, <span class="st">"Italy"</span>, <span class="st">"Finland"</span>))
+ df &lt;-<span class="st"> </span><span class="kw">data.frame</span>(positions$xypos, <span class="dt">geo =</span> energy3$geo)
+ <span class="kw">points</span>(df$x[ind], df$y[ind], <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">"red"</span>, <span class="dt">pch=</span><span class="dv">19</span>)
+ <span class="kw">text</span>(df$x[ind], df$y[ind], df$geo[ind], <span class="dt">adj =</span> <span class="kw">c</span>(<span class="fl">0.5</span>,-<span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.5</span>)</code></pre></div>
+<p><img src="2015-manu-energy-1.png" width="672"></p>
 </div>
 <div id="map-visualization" class="section level2">
 <h2 class="hasAnchor">
@@ -335,16 +343,13 @@ plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(en
 <span class="st">  </span><span class="kw">scale_fill_manual</span>(<span class="dt">values=</span>RColorBrewer::<span class="kw">brewer.pal</span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">name =</span> <span class="st">"Oranges"</span>)) +<span class="st"> </span><span class="kw">theme</span>(<span class="dt">legend.position=</span><span class="kw">c</span>(<span class="fl">0.17</span>,<span class="fl">0.65</span>)) +
 <span class="st">  </span><span class="kw">coord_map</span>(<span class="dt">project=</span><span class="st">"orthographic"</span>, <span class="dt">xlim=</span><span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>)) +
 <span class="st">  </span><span class="kw">xlab</span>(<span class="st">"Longitude"</span>) +<span class="st"> </span><span class="kw">ylab</span>(<span class="st">"Latitude"</span>)</code></pre></div>
-<p><img src="2015-manu-mapexample-1.png" width="960"></p>
+<p><img src="2015-manu-mapexample-1.png" width="864"></p>
 </div>
 <div id="country-code-tables" class="section level2">
 <h2 class="hasAnchor">
 <html><body><a href="#country-code-tables" class="anchor"> </a></body></html>Country code tables</h2>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Load EFTA country listing</span>
 <span class="kw">data</span>(efta_countries)
-
-<span class="co"># Print the table</span>
-<span class="co">#print(xtable(efta_countries))</span>
 <span class="kw">kable</span>(efta_countries)</code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -398,14 +403,14 @@ plotrix::<span class="kw">triax.plot</span>(<span class="kw">as.matrix</span>(en
 ## 
 ## other attached packages:
 ## [1] ggplot2_2.2.1        plotrix_3.6-3        dplyr_0.5.0         
-## [4] tidyr_0.6.1          xtable_1.8-2         eurostat_2.3.11     
+## [4] tidyr_0.6.1          xtable_1.8-2         eurostat_2.4.1      
 ## [7] pkgdown_0.1.0.9000   knitr_1.15.1         devtools_1.12.0.9000
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] purrr_0.2.2         lattice_0.20-34     tcltk_3.3.1        
 ##  [4] colorspace_1.3-2    testthat_1.0.2      htmltools_0.3.5    
 ##  [7] yaml_2.1.14         pkgbuild_0.0.0.9000 e1071_1.6-7        
-## [10] withr_1.0.2         DBI_0.5-1           sp_1.2-3           
+## [10] withr_1.0.2         DBI_0.6             sp_1.2-3           
 ## [13] RColorBrewer_1.1-2  plyr_1.8.4          stringr_1.2.0      
 ## [16] munsell_0.4.3       commonmark_1.2      gtable_0.2.0       
 ## [19] mapproj_1.2-4       evaluate_0.10       memoise_1.0.0      

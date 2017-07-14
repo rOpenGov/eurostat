@@ -1,5 +1,5 @@
 ---
-title: "Eurostat package tutorial (vignette)"
+title: "Tutorial (vignette) for the eurostat R package"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
@@ -14,10 +14,8 @@ vignette: >
 
 # R Tools for Eurostat Open Data
 
-This [rOpenGov](http://ropengov.github.io) R package provides tools to
-access [Eurostat database](http://ec.europa.eu/eurostat/). For contact
-information and source code, see
-the [README](https://github.com/rOpenGov/eurostat).
+This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
+
 
 ```{r setup, include=FALSE}
 # Global options
@@ -226,79 +224,134 @@ print(p)
 
 <a name="triangle"></a>**Triangle plot**
 
-Triangle plot is handy for visualizing data sets with three variables. For instance, the passenger transport distributions across three vehicle types in 2012 for all countries where data is available:
+Triangle plot is handy for visualizing data sets with three variables. 
 
 ```{r plotGallery, warning=FALSE, message=FALSE, fig.width=6, fig.height=6}
 library(tidyr)
-
-# Download and modify the transport data
-transports <- spread(subset(dat, time == 2012, select = c(geo, vehicle, values)), vehicle, values)
-
-# Remove countries with missing data
-transports <- na.omit(transports)
-
-# Use triangle plot to visualize vehicle distributions:
 library(plotrix)
-triax.plot(transports[, -1], show.grid = TRUE, 
-           label.points = TRUE, point.labels = transports$geo, 
-           pch = 19)
+library(eurostat)
+library(dplyr)
+library(tidyr)
+
+# All sources of renewable energy are to be grouped into three sets
+ dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
+ "Biogasoline" = "Biofuels",
+ "Other liquid biofuels" = "Biofuels",
+ "Biodiesels" = "Biofuels",
+ "Biogas" = "Biofuels",
+ "Hydro power" = "Hydro power",
+ "Tide, Wave and Ocean" = "Hydro power",
+ "Solar thermal" = "Wind, solar, waste and Other",
+ "Geothermal Energy" = "Wind, solar, waste and Other",
+ "Solar photovoltaic" = "Wind, solar, waste and Other",
+ "Municipal waste (renewable)" = "Wind, solar, waste and Other",
+ "Wind power" = "Wind, solar, waste and Other",
+ "Bio jet kerosene" = "Wind, solar, waste and Other")
+# Some cleaning of the data is required
+ energy3 <- get_eurostat("ten00081") %>%
+ label_eurostat(dat) %>%
+ filter(time == "2013-01-01",
+ product != "Renewable energies") %>%
+ mutate(nproduct = dict[as.character(product)], # just three categories
+ geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+ select(nproduct, geo, values) %>%
+ group_by(nproduct, geo) %>%
+ summarise(svalue = sum(values)) %>%
+ group_by(geo) %>%
+ mutate(tvalue = sum(svalue),
+ svalue = svalue/sum(svalue)) %>%
+ filter(tvalue > 1000) %>% # only large countries
+ spread(nproduct, svalue)
+ 
+# Triangle plot
+ par(cex=0.75, mar=c(0,0,0,0))
+ positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                     show.grid = TRUE,
+                     label.points= FALSE, point.labels = energy3$geo,
+                     col.axis="gray50", col.grid="gray90",
+                     pch = 19, cex.axis=0.8, cex.ticks=0.7, col="grey50")
+
+ # Larger labels
+ ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
+ df <- data.frame(positions$xypos, geo = energy3$geo)
+ points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
+ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ```
 
 
 
 ## Maps 
 
-###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
+###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap
 
-```{r maps1, eval=TRUE, fig.width=8, fig.height=8}
-library(eurostat)
+The mapping examples below use [`tmap`](https://github.com/mtennekes/tmap) package.
+
+```{r maps1-1, eval=TRUE, fig.width=8, fig.height=8}
 library(dplyr)
-library(ggplot2)
+library(eurostat)
+library(sf)
+library(tmap)
+
 # Data from Eurostat
-eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
   # categorise
-  dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>% 
-  # merge with geodata
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class = "df", all_regions = TRUE) %>% 
-  # plot map
-  ggplot(data=., aes(x=long,y=lat,group=group)) +
-  geom_polygon(aes(fill=cat),color="white", size=.1) +
-  scale_fill_brewer(palette ="Oranges")
+  dplyr::mutate(income = cut_to_classes(values, n = 5)) %>% 
+  # join with spatial sf-object
+  inner_join(get_eurostat_geospatial(resolution = "60"), 
+             .)
 
+# plot map using tmap
+data(Europe)
+map1 <- tmap::tm_shape(Europe) +
+  tmap::tm_fill("lightgrey") +
+  tmap::tm_shape(sp_data) +
+  tmap::tm_grid() +
+  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
+                    palette = "Oranges") +
+  tmap::tm_format_Europe()  
+map1
 ```
 
+Using `tmap::tmap_mode('view')`, it is also easy to produce interactive maps. The zoom is not ideal
+in this example, but you scroll and zoom around using your mouse.
 
-### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using ggplot2
+```{r maps1-2, eval=TRUE, fig.width=8, fig.height=8}
+tmap_mode("view")
+map1
+# Set the mode back to normal plotting
+tmap_mode("plot")
+```
+
+### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using tmap
 
 ```{r maps2, fig.width=8, fig.height=8}
 library(eurostat)
 library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
+
 # Downloading and manipulating the tabular data
-df <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
+sp_data <- get_eurostat("tgs00026", time_format = "raw") %>% 
+  # subsetting to year 2014 and NUTS-3 level
+  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
   # label the single geo column
-  mutate(label = label_eurostat(.)[["geo"]],
-         cat = cut_to_classes(values)) %>% 
-  # merge with geodata
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
-
+  mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
+         income = cut_to_classes(values)) %>% 
+  # join with spatial sf-object
+  inner_join(get_eurostat_geospatial(resolution = "60"), 
+             .)
 # plot map
-p <- ggplot(data=df, aes(long,lat,group=group))
-p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
-p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
-
-p <- p + geom_label(data=df %>% group_by(label,values,cat) %>% summarise(long = mean(long),
-                                                         lat = mean(lat)), 
-                    aes(long, lat, label = paste(label,"\n",values,"€"), group=label,fill=cat), 
-                    size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
-p <- p + labs(title = paste0("Disposable household incomes in 2005"))
-p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
-p
+map2 <- tm_shape(Europe) +
+  tm_fill("lightgrey") +
+  tm_shape(sp_data, is.master = TRUE) +
+  tm_polygons("income", title = "Disposable household incomes in 2014",
+              palette = "Oranges", border.col = "white") + 
+  tm_text("label", just = "center") + 
+  tm_scale_bar() +
+  tm_format_Europe(legend.outside = TRUE, attr.outside = TRUE)
+map2
 ```
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
@@ -308,29 +361,49 @@ library(sp)
 library(eurostat)
 library(dplyr)
 dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+  # subsetting to year 2014 and NUTS-3 level
+  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable
-  dplyr::mutate(cat = cut_to_classes(values)) %>% 
-  # merge Eurostat data with geodata from Cisco
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
+  dplyr::mutate(cat = cut_to_classes(values))  %>%  
+  # join with spatial sf-object
+  inner_join(get_eurostat_geospatial(resolution = "60"), 
+             .) %>% 
+  as(., "Spatial")
 
 # plot map
 sp::spplot(obj = dat, "cat", main = "Disposable household income",
-	   xlim=c(-22,34), ylim=c(35,70), 
+	   xlim = c(-22,34), ylim = c(35,70), 
            col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
 	   col = "white", usePolypath = FALSE)
 ```
 
 
 
+## SDMX
+
+Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic rsdmx R package can be used to access data in that format when necessary:
+
+```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG', eval=FALSE}
+library(rsdmx)
+
+# Data set URL
+url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011"
+
+# Read the data from eurostat
+d <- readSDMX(url)
+
+# Convert to data frame and show the first entries
+df <- as.data.frame(d)
+
+kable(head(df))
+```
+
+
+
+
 # Further examples
 
-For further examples, see:
-
-  * [Blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
-  * [Journal manuscript](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.md)
-
+For further examples, see the [package homepage](http://ropengov.github.io/eurostat/articles/index.html).
 
 
 # Citations and related work
@@ -344,7 +417,7 @@ Administrative boundaries: cite EuroGeographics
 
 ### Citing the eurostat R package
 
-For main developers and contributors, see the [README](../README.md).
+For main developers and contributors, see the [package homepage](http://ropengov.github.io/eurostat).
 
 This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
@@ -365,7 +438,8 @@ package develops related Eurostat tools but seems to be in an
 experimental stage at the time of writing this tutorial.
 
 The more generic [quandl](https://cran.r-project.org/package=quandl),
-[datamart](https://cran.r-project.org/package=datamart), and
+[datamart](https://cran.r-project.org/package=datamart),
+[rsdmx](https://cran.r-project.org/package=rsdmx), and
 [pdfetch](https://cran.r-project.org/package=pdfetch) packages may
 provide access to some versions of eurostat data but these packages
 are more generic and hence, in contrast to the eurostat R package,
@@ -375,7 +449,7 @@ analysis.
 
 ### Contact
 
-For contact information, see the [README](../README.md).
+For contact information, see the [package homepage](http://ropengov.github.io/eurostat).
 
 
 # Version info

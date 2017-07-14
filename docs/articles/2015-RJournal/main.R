@@ -3,8 +3,11 @@
 #if (Sys.info()[["user"]]) setwd("~/btsync/mk/workspace/ropengov/eurostat/vignettes/2015-RJournal")
 
 # Generate the examples, figures and tables
-library(knitr)
-knit("lahti-huovari-kainu-biecek.Rmd")
+#library(knitr)
+#knit("lahti-huovari-kainu-biecek.Rmd")
+
+library(rmarkdown)
+render("lahti-huovari-kainu-biecek.Rmd")
 
 # Convert tex to PDF
 tools::texi2pdf("RJwrapper.tex")

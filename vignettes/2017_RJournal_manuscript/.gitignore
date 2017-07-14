@@ -1,0 +1,11 @@
+*.pdf
+*.zip
+*.out
+*.aux
+*.bbl
+*.blg
+*~
+*.brg
+*.brf
+NUTS_2010_60M_SH/
+*.log

@@ -1,0 +1,18 @@
+---
+title: "Blog posts"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{eurostat blog posts}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{Cairo}
+  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
+---
+
+
+ * [Package release](https://rpubs.com/muuankarski/27120)
+ * [Case studies](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
+ 

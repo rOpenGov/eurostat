@@ -1,53 +1,28 @@
----
-title: "Examples on eurostat R package"
-author: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-date: "2016-09-14"
-bibliography: 
-- references.bib
-output: 
-  md_document:
-    variant: markdown_github
----
 <!--
 %\VignetteEngine{knitr::rmarkdown}
 %\VignetteIndexEntry{eurostat Markdown Vignette}
 %\usepackage[utf8]{inputenc}
 -->
+This document reproduces the figures and tables in [our manuscript (in preparation)](RJwrapper.pdf) on the [eurostat R package](https://github.com/rOpenGov/eurostat), assuming that the required R extensions have been installed. The Eurostat data is accessed via the [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
 
+For detailed explanation of the examples, see the manuscript text.
 
-This document reproduces the figures and tables in [our manuscript (in
-preparation)](RJwrapper.pdf) on the [eurostat R
-package](https://github.com/rOpenGov/eurostat), assuming that the
-required R extensions have been installed. For detailed explanation of
-the examples, see the manuscript text.
+To reproduce the complete manuscript PDF, clone this [repository](https://github.com/rOpenGov/eurostat), navigate to the [./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal) subdirectory and convert the [Rmarkdown source code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the [vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/) folder, and running in R:
 
-To reproduce the complete manuscript PDF, clone this
-[repository](https://github.com/rOpenGov/eurostat), navigate to the
-[./vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2015-RJournal)
-subdirectory and convert the [Rmarkdown source
-code](lahti-huovari-kainu-biecek.Rmd) in R by navigating to the
-[vignettes/2015-RJournal](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/)
-folder, and running in R:
-
-
-```r
+``` r
 source("main.R")
 ```
 
-Alternatively, you can proceed in steps as follows. Generate this
-markdown page with manuscript figures (PNG) with:
+Alternatively, you can proceed in steps as follows. Generate this markdown page with manuscript figures (PNG) with:
 
-
-```r
+``` r
 library(knitr)
 knit("lahti-huovari-kainu-biecek.Rmd")
 ```
 
 This will run the following workflow.
 
-
-
-```r
+``` r
 # Load the required R packages
 library(eurostat)
 library(knitr)
@@ -64,112 +39,90 @@ theme_set(theme_bw(20))
 knitr::opts_chunk$set(fig.path = "./")
 ```
 
-## Installation
+Installation
+------------
 
 Installing the CRAN release version:
 
-
-```r
+``` r
 install.packages("eurostat")
 ```
 
 Installing the Github development version:
 
-
-```r
+``` r
 library(devtools)
 install_github("ropengov/eurostat")
 ```
 
-## Search and download
+Search and download
+-------------------
 
-To retrieve data for 'road accidents', for
-instance, use:
+To retrieve data for 'road accidents', for instance, use:
 
-
-```r
+``` r
 library(eurostat)
 query <- search_eurostat("road accidents", type = "table")
 ```
 
 Investigate the first entry of our query:
 
-
-```r
+``` r
 query$code[[1]]
 ```
 
-```
-## [1] "tsdtr420"
-```
+    ## [1] "tsdtr420"
 
-```r
+``` r
 query$title[[1]]
 ```
 
-```
-## [1] "People killed in road accidents"
-```
-
+    ## [1] "People killed in road accidents"
 
 To retrieve the data set with this identifier, use:
 
-
-```r
+``` r
 dat <- get_eurostat(id = "tsdtr420", time_format = "num")
 ```
 
 This produces a table:
 
-
-```r
-#print(xtable(head(dat), label = "tab:getdatatable"))
+``` r
 kable(head(dat))
 ```
 
-
-
-|unit |sex |geo | time| values|
-|:----|:---|:---|----:|------:|
-|NR   |T   |AT  | 1999|   1079|
-|NR   |T   |BE  | 1999|   1397|
-|NR   |T   |CZ  | 1999|   1455|
-|NR   |T   |DE  | 1999|   7772|
-|NR   |T   |DK  | 1999|    514|
-|NR   |T   |EL  | 1999|   2116|
-
+| unit | sex | geo |  time|  values|
+|:-----|:----|:----|-----:|-------:|
+| NR   | T   | AT  |  1999|    1079|
+| NR   | T   | BE  |  1999|    1397|
+| NR   | T   | CZ  |  1999|    1455|
+| NR   | T   | DE  |  1999|    7772|
+| NR   | T   | DK  |  1999|     514|
+| NR   | T   | EL  |  1999|    2116|
 
 Convert to human-readable labels:
 
-
-```r
+``` r
 # Convert into human readable labels
 datl <- label_eurostat(dat)
-
-# Print the table
-#print(xtable(head(datl), label = "tab:getdatatable2"))
 kable(head(datl))
 ```
 
+| unit   | sex   | geo                                              |  time|  values|
+|:-------|:------|:-------------------------------------------------|-----:|-------:|
+| Number | Total | Austria                                          |  1999|    1079|
+| Number | Total | Belgium                                          |  1999|    1397|
+| Number | Total | Czech Republic                                   |  1999|    1455|
+| Number | Total | Germany (until 1990 former territory of the FRG) |  1999|    7772|
+| Number | Total | Denmark                                          |  1999|     514|
+| Number | Total | Greece                                           |  1999|    2116|
 
+Road accidents
+--------------
 
-|unit   |sex   |geo                                              | time| values|
-|:------|:-----|:------------------------------------------------|----:|------:|
-|Number |Total |Austria                                          | 1999|   1079|
-|Number |Total |Belgium                                          | 1999|   1397|
-|Number |Total |Czech Republic                                   | 1999|   1455|
-|Number |Total |Germany (until 1990 former territory of the FRG) | 1999|   7772|
-|Number |Total |Denmark                                          | 1999|    514|
-|Number |Total |Greece                                           | 1999|   2116|
+The original and more detailed treatment of this example is provided in a [blog post](http://pbiecek.github.io/archivist/justGetIT.html).
 
-
-## Road accidents 
-
-The original and more detailed treatment of this example is provided in a
-[blog post](http://pbiecek.github.io/archivist/justGetIT.html).
-
-
-```r
+``` r
 t1 <- get_eurostat("tsdtr420", 
   filters = list(geo = c("UK", "SK", "FR", "PL", "ES", "PT"))) 
 
@@ -178,7 +131,11 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
   geom_line() + theme_bw() + ggtitle("Road accidents")+
   xlab("Year") + ylab("Victims (n)") +
   # labels
-  theme(legend.position="none") +
+  theme(legend.position="none",
+        title = element_text(size = 18),
+        axis.text.x = element_text(size = 18),
+        axis.text.y = element_text(size = 18)
+    ) +
   ggrepel::geom_label_repel(data=t1 %>%  
                      group_by(geo) %>% 
                      na.omit() %>% 
@@ -186,15 +143,12 @@ ggplot(t1, aes(x = time, y = values, color=geo, group=geo, shape=geo)) +
                    aes(fill=geo,label=geo),color="white")
 ```
 
-![plot of chunk 2015-manu-roadacc](./2015-manu-roadacc-1.png)
+![](./2015-manu-roadacc-1.png)
 
+Body-mass index
+---------------
 
-
-
-## Body-mass index
-
-
-```r
+``` r
 library(dplyr)
 tmp1 <- get_eurostat("hlth_ehis_de1", time_format = "raw")
 tmp1 %>%
@@ -215,13 +169,12 @@ tmp1 %>%
   scale_fill_brewer(type = "div")
 ```
 
-![plot of chunk 2015-manu-bmi](./2015-manu-bmi-1.png)
+![](./2015-manu-bmi-1.png)
 
+Renewable energy production
+---------------------------
 
-## Renewable energy production
-
-
-```r
+``` r
 dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
           "Biogasoline" = "Biofuels",
           "Other liquid biofuels" = "Biofuels",
@@ -248,27 +201,32 @@ energy3 <- get_eurostat("ten00081") %>%
   group_by(geo) %>%
   mutate(tvalue = sum(svalue),
          svalue = svalue/sum(svalue)) %>%
-  filter(tvalue > 1000,
-         !grepl(geo, pattern="^Euro")) %>% # only large countrie
-  spread(nproduct, svalue)
+ filter(tvalue > 1000) %>% 
+ spread(nproduct, svalue)
+ 
+# Triangle plot
+ par(cex=0.75, mar=c(0,0,0,0))
+ positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
+                     show.grid = TRUE,
+                     label.points= FALSE, point.labels = energy3$geo,
+                     col.axis="gray50", col.grid="gray90",
+                     pch = 19, cex.axis=1.2, cex.ticks=0.7, col="grey50")
 
-par(cex=1.5)
-plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
-                      show.grid = TRUE,
-                      label.points = TRUE, point.labels = energy3$geo,cex.ticks=0.75,col.symbols = "red4",
-                      pch = 19)
+ # Larger labels
+ ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
+ df <- data.frame(positions$xypos, geo = energy3$geo)
+ points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
+ text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 ```
 
-![plot of chunk 2015-manu-energy](./2015-manu-energy-1.png)
+![](./2015-manu-energy-1.png)
 
-
-
-## Map visualization
+Map visualization
+-----------------
 
 The source code for the detailed map visualization is hidden but [available](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2015-RJournal/lahti-huovari-kainu-biecek.Rmd). For a detailed treatment of this example, see our [related blog post](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/).
 
-
-```r
+``` r
 library(eurostat)
 library(dplyr)
 library(ggplot2)
@@ -288,79 +246,69 @@ get_eurostat("tgs00026", time_format = "raw") %>%
   xlab("Longitude") + ylab("Latitude")
 ```
 
-![plot of chunk 2015-manu-mapexample](./2015-manu-mapexample-1.png)
+![](./2015-manu-mapexample-1.png)
 
+Country code tables
+-------------------
 
-
-
-
-## Country code tables
-
-
-```r
+``` r
 # Load EFTA country listing
 data(efta_countries)
-
-# Print the table
-#print(xtable(efta_countries))
 kable(efta_countries)
 ```
 
+| code | name          |
+|:-----|:--------------|
+| IS   | Iceland       |
+| LI   | Liechtenstein |
+| NO   | Norway        |
+| CH   | Switzerland   |
 
-
-|code |name          |
-|:----|:-------------|
-|IS   |Iceland       |
-|LI   |Liechtenstein |
-|NO   |Norway        |
-|CH   |Switzerland   |
-
-
-## Contact
+Contact
+-------
 
 For contact information, see the [README](../README.md).
 
-
-## Version info
+Version info
+------------
 
 This tutorial was created with
 
-
-```r
+``` r
 sessionInfo()
 ```
 
-```
-## R version 3.3.1 (2016-06-21)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 16.04 LTS
-## 
-## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
-## 
-## attached base packages:
-## [1] stats     graphics  grDevices utils     datasets  methods   base     
-## 
-## other attached packages:
-## [1] ggplot2_2.1.0  plotrix_3.6-2  dplyr_0.5.0    tidyr_0.5.1   
-## [5] xtable_1.8-2   eurostat_2.2.1 knitr_1.13    
-## 
-## loaded via a namespace (and not attached):
-##  [1] Rcpp_0.12.7        formatR_1.4        RColorBrewer_1.1-2
-##  [4] plyr_1.8.4         highr_0.6          class_7.3-14      
-##  [7] tools_3.3.1        digest_0.6.9       jsonlite_1.0      
-## [10] evaluate_0.9       tibble_1.1         gtable_0.2.0      
-## [13] lattice_0.20-33    DBI_0.4-1          mapproj_1.2-4     
-## [16] curl_0.9.7         ggrepel_0.5        e1071_1.6-7       
-## [19] httr_1.2.1         stringr_1.0.0      maps_3.1.0        
-## [22] classInt_0.1-23    grid_3.3.1         R6_2.1.2          
-## [25] sp_1.2-3           readr_0.2.2        magrittr_1.5      
-## [28] scales_0.4.0       assertthat_0.1     colorspace_1.2-6  
-## [31] labeling_0.3       stringi_1.1.1      lazyeval_0.2.0    
-## [34] munsell_0.4.3
-```
+    ## R version 3.3.1 (2016-06-21)
+    ## Platform: x86_64-pc-linux-gnu (64-bit)
+    ## Running under: Ubuntu 16.10
+    ## 
+    ## locale:
+    ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
+    ##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
+    ##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
+    ##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+    ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
+    ## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+    ## 
+    ## attached base packages:
+    ## [1] stats     graphics  grDevices utils     datasets  methods   base     
+    ## 
+    ## other attached packages:
+    ## [1] ggplot2_2.2.1      plotrix_3.6-3      dplyr_0.5.0       
+    ## [4] tidyr_0.6.1        xtable_1.8-2       knitr_1.15.1      
+    ## [7] eurostat_2.3.20001 rmarkdown_1.3.9004
+    ## 
+    ## loaded via a namespace (and not attached):
+    ##  [1] Rcpp_0.12.9.4      RColorBrewer_1.1-2 plyr_1.8.4        
+    ##  [4] highr_0.6          class_7.3-14       tools_3.3.1       
+    ##  [7] digest_0.6.12      jsonlite_1.3       evaluate_0.10     
+    ## [10] tibble_1.2         gtable_0.2.0       lattice_0.20-34   
+    ## [13] DBI_0.5-1          mapproj_1.2-4      ggrepel_0.6.5     
+    ## [16] curl_2.3           yaml_2.1.14        e1071_1.6-7       
+    ## [19] httr_1.2.1         stringr_1.2.0      maps_3.1.1        
+    ## [22] classInt_0.1-23    rprojroot_1.2      grid_3.3.1        
+    ## [25] R6_2.2.0           sp_1.2-3           readr_1.0.0       
+    ## [28] magrittr_1.5       backports_1.0.5    scales_0.4.1      
+    ## [31] htmltools_0.3.5    assertthat_0.1     colorspace_1.3-2  
+    ## [34] labeling_0.3       stringi_1.1.3      lazyeval_0.2.0    
+    ## [37] munsell_0.4.3

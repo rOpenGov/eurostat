@@ -21,12 +21,15 @@ test_that("get_eurostat return right classes",{
                            class)))
 })
 
-#test_that("get_eurostat handles daily data", {
-#  skip_on_cran()
-#  dat <- get_eurostat("ert_bil_eur_d", time_format = "date", cache = FALSE)
-#  dat1 <- subset(dat, currency == "ARS")
-#  expect_equal(abs(as.numeric(difftime(dat1$time[1], dat1$time[2], units = "day#s"))), 1)
-#})
+test_that("get_eurostat handles daily data", {
+  skip_on_cran()
+  dat1 <- get_eurostat("ert_bil_eur_d", 
+                       filters = list(currency = "ARS", statinfo ="AVG",
+                                      time = c("2017M03D09", "2017M03D10")), 
+                       time_format = "date", cache = FALSE)
+  expect_equal(as.numeric(difftime(dat1$time[2], dat1$time[1], units = "days")), 1)
+})
+
 
 test_that("get_eurostat get non-normal variable order",{
   skip_on_cran()
@@ -86,8 +89,17 @@ test_that("Dic downloading works", {
   expect_warning(get_eurostat_dic("na_item"), NA)
 })
 
+test_that("Factors are retained in data.frame", {
+  skip_on_cran()
+  y <- label_eurostat(data.frame(unit = factor("EUR")))
+  expect_is(y$unit, "factor")
+})
+
+
 
 context("Flags")
+
+flag_dat <- get_eurostat("tsdtr210", type = "label", keepFlags=T, cache = FALSE)
 
 test_that("get_eurostat includes flags",{
   skip_on_cran()
@@ -98,13 +110,13 @@ test_that("get_eurostat includes flags",{
 test_that("keepFlags + label as in #61",{
   skip_on_cran()
   expect_true(all(c("flags") %in%
-                    names(get_eurostat("tsdtr210", type = "label", keepFlags=T))))
+                    names(flag_dat)))
 })
 
-test_that("flags contain some confidential flagged fields",{
+test_that("flag content",{
   skip_on_cran()
-  expect_true(c("c") %in%
-              unique(get_eurostat("naio_10_cp1620", keepFlags = TRUE)$flags))
+  expect_true(all(c("b", "be") %in%
+              unique(flag_dat$flags)))
 })
 
 context("json")

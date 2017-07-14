@@ -14,9 +14,11 @@
 #' @examples
 #'  \dontrun{
 #'    lp <- get_eurostat("nama_aux_lp")
-#'    lp$class <- cut_to_classes(lp$values, n=5, style="jenks",decimals=1)
+#'    lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
 #'  }
-cut_to_classes <- function(x, n=5,style="jenks",manual=FALSE,manual_breaks = NULL,decimals=0,nodata_label="No data") {
+cut_to_classes <- function(x, n=5, style="equal", manual=FALSE, 
+                           manual_breaks = NULL, decimals=0, 
+                           nodata_label="No data") {
   
   if (manual) {
     levs <- as.data.frame(levels(cut(x, 
