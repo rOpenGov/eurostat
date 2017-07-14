@@ -282,57 +282,75 @@ library(tidyr)
 
 ## Maps 
 
-###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
+###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap
 
-```{r maps1, eval=TRUE, fig.width=8, fig.height=8}
-library(eurostat)
+The mapping examples below use [`tmap`](https://github.com/mtennekes/tmap) package.
+
+```{r maps1-1, eval=TRUE, fig.width=8, fig.height=8}
 library(dplyr)
-library(ggplot2)
+library(eurostat)
+library(tmap)
+
 # Data from Eurostat
-eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
   # categorise
-  dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>% 
+  dplyr::mutate(income = cut_to_classes(values, n = 5)) %>% 
   # merge with geodata
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "60", output_class = "df", all_regions = TRUE) %>% 
-  # plot map
-  ggplot(data=., aes(x=long,y=lat,group=group)) +
-  geom_polygon(aes(fill=cat),color="white", size=.1) +
-  scale_fill_brewer(palette ="Oranges")
-
+  merge_eurostat_geodata(data = ., geocolumn = "geo",resolution = "60", 
+                         output_class = "spdf", all_regions = TRUE) 
+  
+# plot map using tmap
+data(Europe)
+map1 <- tmap::tm_shape(Europe) +
+  tmap::tm_fill("lightgrey") +
+  tmap::tm_shape(sp_data) +
+  tmap::tm_grid() +
+  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2005",  
+                    palette = "Oranges") +
+  tmap::tm_format_Europe()  
+map1
 ```
 
+Using `tmap::tmap_mode('view')`, it is also easy to produce interactive maps. The zoom is not ideal
+in this example, but you scroll and zoom around using your mouse.
 
-### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using ggplot2
+```{r maps1-2, eval=TRUE, fig.width=8, fig.height=8}
+tmap_mode("view")
+map1
+# Set the mode back to normal plotting
+tmap_mode("plot")
+```
+
+### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using tmap
 
 ```{r maps2, fig.width=8, fig.height=8}
 library(eurostat)
 library(dplyr)
 library(ggplot2)
 library(RColorBrewer)
+
 # Downloading and manipulating the tabular data
-df <- get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2014 and NUTS-3 level
   dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
   # label the single geo column
-  mutate(label = label_eurostat(.)[["geo"]],
-         cat = cut_to_classes(values)) %>% 
+  mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
+         income = cut_to_classes(values)) %>% 
   # merge with geodata
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="df")
+  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf")
 
 # plot map
-p <- ggplot(data=df, aes(long,lat,group=group))
-p <- p + geom_polygon(aes(fill = cat),colour="white",size=.8)
-p <- p + scale_fill_manual(values=brewer.pal(n = 5, name = "Oranges"))
-
-p <- p + geom_label(data=df %>% group_by(label,values,cat) %>% summarise(long = mean(long),
-                                                         lat = mean(lat)), 
-                    aes(long, lat, label = paste(label,"\n",values,"€"), group=label,fill=cat), 
-                    size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
-p <- p + labs(title = paste0("Disposable household incomes in 2014"))
-p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
-p
+map2 <- tm_shape(Europe) +
+  tm_fill("lightgrey") +
+  tm_shape(sp_data, is.master = TRUE) +
+  tm_polygons("income", title = "Disposable household incomes in 2014",
+              palette = "Oranges", border.col = "white") + 
+  tm_text("label", just = "center") + 
+  tm_scale_bar() +
+  tm_format_Europe(legend.outside = TRUE, attr.outside = TRUE)
+map2
 ```
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
@@ -347,11 +365,12 @@ dat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
+  merge_eurostat_geodata(data = .,geocolumn = "geo",resolution = "10", 
+                         output_class = "spdf", all_regions = FALSE) 
 
 # plot map
 sp::spplot(obj = dat, "cat", main = "Disposable household income",
-	   xlim=c(-22,34), ylim=c(35,70), 
+	   xlim = c(-22,34), ylim = c(35,70), 
            col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
 	   col = "white", usePolypath = FALSE)
 ```

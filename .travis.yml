@@ -1,6 +1,7 @@
 language: r
 sudo: required
 cache: packages
+dist: trusty
 
 warnings_are_errors: false
 
@@ -8,8 +9,18 @@ notifications:
   email:
     - leo.lahti@iki.fi
 
+
+
 r_packages:
   - Cairo
+  - rgdal
+  - gdalUtils
+  - sf
+  - V8
+  - geojsonio
+  - geojsonlint
+  - mapview
+  - rmapshaper
   - tmap  
   
 r_github_packages:
@@ -24,9 +35,12 @@ env:
   - GITHUB_REPO: ropengov/eurostat
 
 before_install:
-- pip install --user codecov
-- sudo apt-get -qq update
-- sudo apt-get install -y libxml2-dev
+  - pip install --user codecov
+  - sudo apt-get -qq update
+  - sudo apt-get install -y libxml2-dev libv8-dev
+  - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
+  - sudo apt-get --yes --force-yes update -qq
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
 
 after_success:
   - Rscript -e 'covr::codecov()'
