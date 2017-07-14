@@ -86,7 +86,7 @@
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' options(eurostat_update = FALSE)
-#' options(eurostat_cache_dir = "r_cache")
+#' options(eurostat_cache_dir = file.path(tempdir(), "r_cache"))
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
