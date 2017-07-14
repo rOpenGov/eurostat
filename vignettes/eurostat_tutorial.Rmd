@@ -307,7 +307,7 @@ map1 <- tmap::tm_shape(Europe) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(sp_data) +
   tmap::tm_grid() +
-  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2005",  
+  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
                     palette = "Oranges") +
   tmap::tm_format_Europe()  
 map1
