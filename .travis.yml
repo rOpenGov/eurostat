@@ -10,11 +10,14 @@ notifications:
 
 r_packages:
   - Cairo
-  - gdalUtils
-  - mapview
   - rgdal
-  - rmapshaper
+  - gdalUtils
   - sf
+  - V8
+  - geojsonio
+  - geojsonlint
+  - mapview
+  - rmapshaper
   - tmap  
   
 r_github_packages:
