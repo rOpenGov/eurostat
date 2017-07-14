@@ -23,6 +23,7 @@
 #'    eur_d$time <- eurotime2date(x = eur_d$time)
 #'    }
 eurotime2date <- function(x, last = FALSE){
+  if (!is.factor(x)) x <- factor(x)
   times <- levels(x)
   year <- substr(times, 1, 4)
   subyear <- substr(times, 5, 7)
