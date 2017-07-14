@@ -313,8 +313,8 @@ library(ggplot2)
 library(RColorBrewer)
 # Downloading and manipulating the tabular data
 df <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
+  # subsetting to year 2014 and NUTS-3 level
+  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
   # label the single geo column
   mutate(label = label_eurostat(.)[["geo"]],
          cat = cut_to_classes(values)) %>% 
@@ -330,7 +330,7 @@ p <- p + geom_label(data=df %>% group_by(label,values,cat) %>% summarise(long = 
                                                          lat = mean(lat)), 
                     aes(long, lat, label = paste(label,"\n",values,"€"), group=label,fill=cat), 
                     size=3.5, color="white", fontface="bold", lineheight=.8, show.legend=FALSE)
-p <- p + labs(title = paste0("Disposable household incomes in 2005"))
+p <- p + labs(title = paste0("Disposable household incomes in 2014"))
 p <- p + guides(fill = guide_legend(title = "EUR per Year",title.position = "top", title.hjust=0))
 p
 ```
@@ -342,8 +342,8 @@ library(sp)
 library(eurostat)
 library(dplyr)
 dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+  # subsetting to year 2014 and NUTS-3 level
+  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
@@ -362,11 +362,11 @@ sp::spplot(obj = dat, "cat", main = "Disposable household income",
 
 Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic rsdmx R package can be used to access data in that format when necessary:
 
-```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG'}
+```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG', eval=FALSE}
 library(rsdmx)
 
 # Data set URL
-url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011 "
+url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011"
 
 # Read the data from eurostat
 d <- readSDMX(url)
