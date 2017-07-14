@@ -13,7 +13,6 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -26,7 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -87,6 +85,7 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -103,12 +102,14 @@
     <h1>Transform Data into Row-Column-Value Format</h1>
     </div>
 
+    
     <p>Transform raw Eurostat data table into the row-column-value
 format (RCV).</p>
+    
 
     <pre class="usage"><span class='fu'>tidy_eurostat</span>(<span class='no'>dat</span>, <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='st'>"date"</span>, <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
   <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fu'>default.stringsAsFactors</span>(), <span class='kw'>keepFlags</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -145,26 +146,32 @@ they are returned as strings.</p></td>
 can be removed. Default is <code>FALSE</code></p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>tibble in the molten format with the last column 'values'.</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>See citation("eurostat").</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='get_eurostat.html'>get_eurostat</a></code></p>
+    
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#value">Value</a></li>
+
       <li><a href="#references">References</a></li>
+
       <li><a href="#see-also">See also</a></li>
-    </ul>
+          </ul>
 
     <h2>Author</h2>
     

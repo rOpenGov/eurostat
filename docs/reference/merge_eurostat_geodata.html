@@ -13,7 +13,6 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -26,7 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -87,6 +85,7 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -103,12 +102,14 @@
     <h1>Merge Preprocessed Geospatial Data from CISGO with data_frame from Eurostat</h1>
     </div>
 
+    
     <p>Merges data_frame obtained from Eurostat with <code>get_eurostat</code> with geospatial data preprocessed either using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/fortify'>ggplot2::fortify</a></code> into a <code>data_frame</code> or a regular <code>SpatialPolygonDataFrame</code>. The resulting <code>data_frame</code> can be plotted using <code>ggplot2</code> and <code>SpatialPolygonDataFrame</code> using <code><a href='http://www.rdocumentation.org/packages/sp/topics/spplot'>sp::spplot</a></code>.</p>
+    
 
     <pre class="usage"><span class='fu'>merge_eurostat_geodata</span>(<span class='no'>data</span>, <span class='kw'>geocolumn</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>,
   <span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"df"</span>, <span class='kw'>all_regions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -147,10 +148,11 @@ consists of values following current NUTS classification</p></td>
       <td><p>Cache directory.</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a data_frame or SpatialPolygonDataFrame.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
@@ -166,7 +168,9 @@ consists of values following current NUTS classification</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

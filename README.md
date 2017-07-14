@@ -38,7 +38,7 @@ output:
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. See the [package homepage](http://ropengov.github.io/eurostat) for further info.
+R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. See the [package homepage](http://ropengov.github.io/eurostat) for more.
 
 
 ### Installation
