@@ -76,7 +76,7 @@ particular, check the following online resources:
  * [Eurostat R Cheat Sheet](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)
  * [Package vignette](https://github.com/rOpenGov/eurostat/blob/master/vignettes/eurostat_tutorial.md) for installation and standard use
  * Blog posts ([package release](https://rpubs.com/muuankarski/27120) / [case studies](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/))  
- * [R Journal manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html) / [source code](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/README))
+ * [R Journal manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html) / [source code](https://github.com/rOpenGov/eurostat/blob/master/vignettes/2017_RJournal_manuscript/README.Rmd))
 -->
 
 ### Contribute

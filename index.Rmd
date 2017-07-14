@@ -12,7 +12,7 @@ output:
 <br>
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
-[![DOI](https://zenodo.org/badge/18989920.svg)](https://zenodo.org/badge/latestdoi/18989920)
+<!--[![DOI](https://zenodo.org/badge/18989920.svg)](https://zenodo.org/badge/latestdoi/18989920)-->
 [![PRs Welcome][prs-badge]][prs]
 [![Code of Conduct][coc-badge]][coc]
 
