@@ -89,6 +89,13 @@ test_that("Dic downloading works", {
   expect_warning(get_eurostat_dic("na_item"), NA)
 })
 
+test_that("Factors are retained in data.frame", {
+  skip_on_cran()
+  y <- label_eurostat(data.frame(unit = factor("EUR")))
+  expect_is(y$unit, "factor")
+})
+
+
 
 context("Flags")
 
