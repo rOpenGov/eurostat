@@ -4,7 +4,7 @@
 \alias{cut_to_classes}
 \title{Cuts the Values Column into Classes and Polishes the Labels}
 \usage{
-cut_to_classes(x, n = 5, style = "jenks", manual = FALSE,
+cut_to_classes(x, n = 5, style = "equal", manual = FALSE,
   manual_breaks = NULL, decimals = 0, nodata_label = "No data")
 }
 \arguments{
@@ -32,7 +32,7 @@ and polishes the labels ready for used in mapping with \code{merge_with_geodata}
 \examples{
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
-   lp$class <- cut_to_classes(lp$values, n=5, style="jenks",decimals=1)
+   lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
  }
 }
 \author{

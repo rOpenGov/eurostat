@@ -1,7 +1,7 @@
 citHeader("Kindly cite the eurostat R package as follows:")
 
 
-note <- sprintf("R package version %s", meta$Version)
+note <- sprintf("Version %s", meta$Version)
 
 citEntry(entry="misc",
          title = "eurostat R package",
@@ -17,11 +17,10 @@ citEntry(entry="misc",
 	 note = note, 
          textVersion =
          paste("(C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.",
-	       "R Journal 2017. Accepted for publication.",
-               "Retrieval and analysis of Eurostat open data with the eurostat package",
+               "Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017. Accepted for publication.",
 	       note,
-	       "Package URL: http://ropengov.github.io/eurostat",
-	       "Manuscript preprint URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html",	       
+	       "URL: http://ropengov.github.io/eurostat",
+	       "Manuscript preprint: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html",	       
 	       
                sep=" ")
          )

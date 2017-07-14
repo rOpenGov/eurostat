@@ -27,15 +27,15 @@
 label_eurostat <- function(x, dic = NULL, code = NULL, eu_order = FALSE, 
                            lang = "en"){
 
-  if (is_tibble(x)){
+  if (is.data.frame(x)){
     y <- x
 
     mynams <- names(y)[!(names(y) %in% c("time", "values","flags"))]
-    for (i in mynams){
-      l <- label_eurostat(y[[i]], i, eu_order = eu_order, lang = lang)
-      y[[i]] <- as.vector(unlist(l)) 
-    }
 
+    for (i in names(y)[!(names(y) %in% c("time", "values","flags"))]){
+      y[[i]] <- label_eurostat(y[[i]], i, eu_order = eu_order, lang = lang)
+    }
+    
     # Fix the first two variables
     #nams <- names(y)
     #y <- cbind(as.vector(unlist(x[[1]])),

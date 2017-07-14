@@ -333,8 +333,8 @@ library(RColorBrewer)
 
 # Downloading and manipulating the tabular data
 sp_data <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
+  # subsetting to year 2014 and NUTS-3 level
+  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
   # label the single geo column
   mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
          income = cut_to_classes(values)) %>% 
@@ -345,7 +345,7 @@ sp_data <- get_eurostat("tgs00026", time_format = "raw") %>%
 map2 <- tm_shape(Europe) +
   tm_fill("lightgrey") +
   tm_shape(sp_data, is.master = TRUE) +
-  tm_polygons("income", title = "Disposable household incomes in 2005",
+  tm_polygons("income", title = "Disposable household incomes in 2014",
               palette = "Oranges", border.col = "white") + 
   tm_text("label", just = "center") + 
   tm_scale_bar() +
@@ -360,16 +360,17 @@ library(sp)
 library(eurostat)
 library(dplyr)
 dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2005 and NUTS-3 level
-  dplyr::filter(time == 2005, nchar(as.character(geo)) == 4) %>% 
+  # subsetting to year 2014 and NUTS-3 level
+  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values)) %>% 
   # merge Eurostat data with geodata from Cisco
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "10", output_class ="spdf", all_regions=FALSE) 
+  merge_eurostat_geodata(data = .,geocolumn = "geo",resolution = "10", 
+                         output_class = "spdf", all_regions = FALSE) 
 
 # plot map
 sp::spplot(obj = dat, "cat", main = "Disposable household income",
-	   xlim=c(-22,34), ylim=c(35,70), 
+	   xlim = c(-22,34), ylim = c(35,70), 
            col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
 	   col = "white", usePolypath = FALSE)
 ```
@@ -380,11 +381,11 @@ sp::spplot(obj = dat, "cat", main = "Disposable household income",
 
 Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic rsdmx R package can be used to access data in that format when necessary:
 
-```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG'}
+```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG', eval=FALSE}
 library(rsdmx)
 
 # Data set URL
-url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011 "
+url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011"
 
 # Read the data from eurostat
 d <- readSDMX(url)

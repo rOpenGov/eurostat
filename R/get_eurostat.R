@@ -40,7 +40,9 @@
 #'        they are returned as a character.
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'        "provisional") should be kept in a separate column or if they
-#'        can be removed. Default is \code{FALSE}.
+#'        can be removed. Default is \code{FALSE}. For flag values see: 
+#'        \url{http://ec.europa.eu/eurostat/data/database/information}.
+#'        Also possible non-real zero "0n" is indicated in flags column.
 #' @param ... further argument for \code{\link{get_eurostat_json}}.
 #' @export
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
@@ -86,7 +88,7 @@
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' options(eurostat_update = FALSE)
-#' options(eurostat_cache_dir = "r_cache")
+#' options(eurostat_cache_dir = file.path(tempdir(), "r_cache"))
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
