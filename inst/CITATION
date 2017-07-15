@@ -11,16 +11,19 @@ citEntry(entry="misc",
 	   person(given = "Markus", family="Kainu"),
 	   person(given = "Przemyslaw", family="Biecek")	   
          ),
-	 journal = "R Journal. Accepted for publication. Preprint available on-line.",
+	 journal = "R Journal",
+	 volume = "9",
+	 number = "1",
+	 pages = "385-392",
 	 year = "2017",
 	 url = "https://journal.r-project.org/archive/2017/RJ-2017-019/index.html",
 	 note = note, 
          textVersion =
          paste("(C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.",
-               "Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017. Accepted for publication.",
+               "Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017.",
 	       note,
-	       "URL: http://ropengov.github.io/eurostat",
-	       "Manuscript preprint: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html",	       
+	       "Package URL: http://ropengov.github.io/eurostat",
+	       "Manuscript URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html",	       
 	       
                sep=" ")
          )
