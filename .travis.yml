@@ -9,8 +9,6 @@ notifications:
   email:
     - leo.lahti@iki.fi
 
-
-
 r_packages:
   - Cairo
   - rgdal
@@ -25,7 +23,6 @@ r_packages:
   
 r_github_packages:
   - jimhester/covr
-
 
 env:
   global:

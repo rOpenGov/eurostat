@@ -31,7 +31,7 @@ output:
 
 # eurostat R package
 
-R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. See the [package homepage](http://ropengov.github.io/eurostat) for details.
+R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
 
 
 ### Installation
@@ -68,6 +68,8 @@ particular, check the following online resources:
 
 
 ### Contribute
+
+Check the Github page for [source code](https://github.com/rOpenGov/eurostat/).
 
 Contributions are very welcome:
 
