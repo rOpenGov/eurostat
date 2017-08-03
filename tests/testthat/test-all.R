@@ -95,7 +95,17 @@ test_that("Factors are retained in data.frame", {
   expect_is(y$unit, "factor")
 })
 
+test_that("Duplicated gives an error", {
+  skip_on_cran()
+  expect_error(label_eurostat(x = factor(c("P5G", "P5")), dic = "na_item"))
+})
 
+test_that("Duplicated with fix_duplicated does not give an error", {
+  skip_on_cran()
+  expect_match(as.character(
+    label_eurostat(x = factor(c("P5G", "P5")), dic = "na_item", 
+                              fix_duplicated = TRUE)), "P5", all = TRUE)
+})
 
 context("Flags")
 

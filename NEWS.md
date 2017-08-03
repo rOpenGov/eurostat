@@ -1,3 +1,9 @@
+# eurostat 3.1.2
+
+* Now `label_eurostat()` gives always an error by default, if labelling 
+  introduces duplicated labels. A new `fix_duplicated` argument is add to fix 
+  duplicated labels automatically. (#79, #90)
+
 # eurostat 3.1.1
 
 ## R Journal submission

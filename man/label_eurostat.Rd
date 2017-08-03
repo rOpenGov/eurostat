@@ -7,7 +7,7 @@
 \title{Get Eurostat Codes}
 \usage{
 label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE,
-  lang = "en")
+  lang = "en", fix_duplicated = FALSE)
 
 label_eurostat_vars(x, lang = "en")
 
@@ -17,17 +17,21 @@ label_eurostat_tables(x, lang = "en")
 \item{x}{A character or a factor vector or a data_frame.}
 
 \item{dic}{A string (vector) naming eurostat dictionary or dictionaries.
-If \code{NULL} (default) dictionry names taken from column names of 
+If \code{NULL} (default) dictionry names taken from column names of
 the data_frame.}
 
 \item{code}{For data_frames names of the column for which also code columns
 should be retained. The suffix "_code" is added to code column names.}
 
-\item{eu_order}{Logical. Should Eurostat ordering used for label levels. 
+\item{eu_order}{Logical. Should Eurostat ordering used for label levels.
 Affects only factors.}
 
-\item{lang}{A character, code for language. Available are "en" (default), 
+\item{lang}{A character, code for language. Available are "en" (default),
 "fr" and "de".}
+
+\item{fix_duplicated}{A logical. If TRUE, the code is added to the
+duplicated label values. If FALSE (default) error is given if 
+labelling produce duplicates.}
 }
 \value{
 a vector or a data_frame.
@@ -36,7 +40,17 @@ a vector or a data_frame.
 Get definitions for Eurostat codes from Eurostat dictionaries.
 }
 \details{
-A character or a factor vector of codes returns a corresponding vector of definitions. \code{label_eurostat} labels also data_frames from \code{\link{get_eurostat}}. For vectors a dictionary name have to be supplied. For data_frames dictonary names are taken from column names. "time" and "values" columns are returned as they were, so you can supply data_frame from \code{\link{get_eurostat}} and get data_frame with definitions instead of codes.
+A character or a factor vector of codes returns a corresponding 
+   vector of definitions. \code{label_eurostat} labels also data_frames from 
+   \code{\link{get_eurostat}}. For vectors a dictionary name have to be 
+   supplied. For data_frames dictonary names are taken from column names. 
+   "time" and "values" columns are returned as they were, so you can supply 
+   data_frame from \code{\link{get_eurostat}} and get data_frame with 
+   definitions instead of codes.
+   
+   Some Eurostat dictionaries includes dublicated labels. By default 
+   dublicated labels cause an error, but they can be fixed automatically 
+   with \code{fix_duplicated = TRUE}.
 }
 \section{Functions}{
 \itemize{
