@@ -15,10 +15,10 @@ knitr::opts_chunk$set(
 
 <br>
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+<!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
 <!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
-[![PRs Welcome][prs-badge]][prs]
-[![Code of Conduct][coc-badge]][coc]
+<!--[![PRs Welcome][prs-badge]][prs]-->
+<!--[![Code of Conduct][coc-badge]][coc]-->
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
 [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)

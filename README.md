@@ -9,10 +9,10 @@ output:
 
 <br>
 
-[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
+<!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
 <!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
-[![PRs Welcome][prs-badge]][prs]
-[![Code of Conduct][coc-badge]][coc]
+<!--[![PRs Welcome][prs-badge]][prs]-->
+<!--[![Code of Conduct][coc-badge]][coc]-->
 [![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
 [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
@@ -20,7 +20,7 @@ output:
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
-[![Watch on GitHub][github-watch-badge]][github-watch]
+<!--[![Watch on GitHub][github-watch-badge]][github-watch]-->
 [![Star on GitHub][github-star-badge]][github-star]
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)  
 
@@ -56,7 +56,7 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)). R package version . URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
+**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)). R package version 3.1.100096. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 

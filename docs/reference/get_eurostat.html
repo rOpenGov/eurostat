@@ -13,6 +13,7 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -25,6 +26,7 @@
 <script src="../pkgdown.js"></script>
   
   
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -88,7 +90,6 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -105,15 +106,13 @@
     <h1>Read Eurostat Data</h1>
     </div>
 
-    
     <p>Download data sets from Eurostat <a href='ec.europa.eu/eurostat'>ec.europa.eu/eurostat</a>.</p>
-    
 
     <pre class="usage"><span class='fu'>get_eurostat</span>(<span class='no'>id</span>, <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='st'>"date"</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"code"</span>,
   <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>compress_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
   <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fu'>default.stringsAsFactors</span>(), <span class='kw'>keepFlags</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -198,14 +197,13 @@ Also possible non-real zero "0n" is indicated in flags column.</p></td>
       <td><p>further argument for <code><a href='get_eurostat_json.html'>get_eurostat_json</a></code>.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a tibble. One column for each dimension in the data and
         the values column for numerical values.
         The time column for a time dimension. Data from bulk download 
         facility do not include items whose all values are missing.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Data sets are downloaded from 
@@ -231,11 +229,9 @@ the <code><a href='search_eurostat.html'>search_eurostat</a></code> or from the 
 <a href='http://ec.europa.eu/eurostat/data/database'>http://ec.europa.eu/eurostat/data/database</a>. The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.</p>
-    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='search_eurostat.html'>search_eurostat</a></code>, <code><a href='label_eurostat.html'>label_eurostat</a></code></p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -264,13 +260,9 @@ in parenthesis.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#see-also">See also</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 

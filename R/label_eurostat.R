@@ -14,17 +14,17 @@
 #'    
 #' @param x A character or a factor vector or a data_frame.
 #' @param dic A string (vector) naming eurostat dictionary or dictionaries.
-#'  If \code{NULL} (default) dictionry names taken from column names of
-#'  the data_frame.
+#'    If \code{NULL} (default) dictionry names taken from column names of
+#'    the data_frame.
 #' @param code For data_frames names of the column for which also code columns
-#'   should be retained. The suffix "_code" is added to code column names.
+#'     should be retained. The suffix "_code" is added to code column names.
 #' @param eu_order Logical. Should Eurostat ordering used for label levels.
-#'   Affects only factors.
+#'     Affects only factors.
 #' @param lang A character, code for language. Available are "en" (default),
-#'        "fr" and "de".
+#'     "fr" and "de".
 #' @param fix_duplicated A logical. If TRUE, the code is added to the
-#'        duplicated label values. If FALSE (default) error is given if 
-#'        labelling produce duplicates.
+#'     duplicated label values. If FALSE (default) error is given if 
+#'     labelling produce duplicates.
 #' @export
 #' @author Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @return a vector or a data_frame.
@@ -45,6 +45,9 @@ label_eurostat <-
            eu_order = FALSE,
            lang = "en",
            fix_duplicated = FALSE) {
+
+    # Avoid warnings
+    code_name <- NULL
     
     if (is.data.frame(x)) {
       y <- x
@@ -63,7 +66,7 @@ label_eurostat <-
       #nams <- names(y)
       #y <- cbind(as.vector(unlist(x[[1]])),
       #           as.vector(unlist(x[[2]])),
-      #	       x[, 3:ncol(x)])
+      #           x[, 3:ncol(x)])
       #colnames(y) <- nams
       
       # Codes added if asked
