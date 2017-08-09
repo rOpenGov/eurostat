@@ -1,4 +1,6 @@
-# eurostat 3.1.2
+# eurostat 3.1.3
+
+* Added new example data set to reduce repeated downloads from eurostat service
 
 * Modified tutorial to accommodate the CRAN error
 

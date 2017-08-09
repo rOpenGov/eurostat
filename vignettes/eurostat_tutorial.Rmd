@@ -292,8 +292,13 @@ library(dplyr)
 library(eurostat)
 library(tmap)
 
+# Load example data set
+data("tgs00026")
+# Can be retrieved from the eurostat service with:
+# tgs00026 <- get_eurostat("tgs00026", time_format = "raw")
+
 # Data from Eurostat
-sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- tgs00026 %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
   # categorise
@@ -303,9 +308,16 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
                          output_class = "spdf", all_regions = TRUE) 
 ```
 
-```{r maps1-1b, eval=TRUE, fig.width=8, fig.height=8}
-# Construct the map
+Load example data (map)
+
+```{r maps1-1b, eval=TRUE}
 data(Europe)
+```
+
+
+Construct the map
+
+```{r maps1-1c, eval=TRUE}
 map1 <- tmap::tm_shape(Europe) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(sp_data) +
@@ -336,7 +348,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 # Downloading and manipulating the tabular data
-sp_data <- get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- tgs00026 %>% 
   # subsetting to year 2014 and NUTS-3 level
   dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
   # label the single geo column
@@ -363,7 +375,7 @@ map2
 library(sp)
 library(eurostat)
 library(dplyr)
-dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
+dat <- tgs00026 %>% 
   # subsetting to year 2014 and NUTS-3 level
   dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable

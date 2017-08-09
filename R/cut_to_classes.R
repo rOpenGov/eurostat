@@ -19,7 +19,15 @@
 cut_to_classes <- function(x, n=5, style="equal", manual=FALSE, 
                            manual_breaks = NULL, decimals=0, 
                            nodata_label="No data") {
-  
+
+
+  manual_breaks_orig <- manual_breaks
+  if (length(unique(manual_breaks)) == length(manual_breaks)) {
+    warning("manual_breaks in cut_to_classes are not unique. Using unique breaks only.")
+    manual_breaks <- unique(manual_breaks)
+    
+  }
+
   if (manual) {
     levs <- as.data.frame(levels(cut(x, 
                                      breaks=manual_breaks,
@@ -28,6 +36,9 @@ cut_to_classes <- function(x, n=5, style="equal", manual=FALSE,
   } else {
 
     brs <- data.frame(classInt::classIntervals(x,n=n,style=style)[2])[,1]
+
+    # Ensure that the breaks are unique
+    brs <- unique(brs)
 
     cutting <- cut(x, breaks=brs, include.lowest=T, dig.lab=5)
 
@@ -62,7 +73,12 @@ cut_to_classes <- function(x, n=5, style="equal", manual=FALSE,
              dig.lab=5, labels = labs)
     rm(manual_breaks)
   } else {
-    y <- cut(x, breaks = data.frame(classIntervals(x,n = n, style = style)[2])[,1],
+    brs2 <- data.frame(classIntervals(x,n = n, style = style)[2])[,1]
+
+    # Ensure the breaks are unique
+    brs2 <- unique(brs2)
+
+    y <- cut(x, breaks = brs2,
              include.lowest=T,
              dig.lab=5, labels = labs)
   }
