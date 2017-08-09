@@ -67,6 +67,7 @@ merge_eurostat_geodata
                         Merge Preprocessed Geospatial Data from CISGO
                         with data_frame from Eurostat
 search_eurostat         Grep Datasets Titles from Eurostat
+tgs00026                Auxiliary Data
 ```
 
 
@@ -442,8 +443,13 @@ library(dplyr)
 library(eurostat)
 library(tmap)
 
+# Load example data set
+data("tgs00026")
+# Can be retrieved from the eurostat service with:
+# tgs00026 <- get_eurostat("tgs00026", time_format = "raw")
+
 # Data from Eurostat
-sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- tgs00026 %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
   # categorise
@@ -454,7 +460,8 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 ```
 
 ```
-## Table tgs00026 cached at /tmp/RtmpBVtKVN/eurostat/tgs00026_raw_code_TF.rds
+## Warning in cut_to_classes(values, n = 5): manual_breaks in cut_to_classes
+## are not unique. Using unique breaks only.
 ```
 
 ```
@@ -487,13 +494,21 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
 ```
 
 ```
-## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/RtmpBVtKVN/eurostat/spdf60.RData
+## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/RtmpwoMlit/eurostat/spdf60.RData
 ```
+
+Load example data (map)
 
 
 ```r
-# Construct the map
 data(Europe)
+```
+
+
+Construct the map
+
+
+```r
 map1 <- tmap::tm_shape(Europe) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(sp_data) +
@@ -526,7 +541,7 @@ library(ggplot2)
 library(RColorBrewer)
 
 # Downloading and manipulating the tabular data
-sp_data <- get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- tgs00026 %>% 
   # subsetting to year 2014 and NUTS-3 level
   dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
   # label the single geo column
@@ -537,11 +552,8 @@ sp_data <- get_eurostat("tgs00026", time_format = "raw") %>%
 ```
 
 ```
-## Reading cache file /tmp/RtmpBVtKVN/eurostat/tgs00026_raw_code_TF.rds
-```
-
-```
-## Table  tgs00026  read from cache file:  /tmp/RtmpBVtKVN/eurostat/tgs00026_raw_code_TF.rds
+## Warning in cut_to_classes(values): manual_breaks in cut_to_classes are not
+## unique. Using unique breaks only.
 ```
 
 ```
@@ -574,7 +586,7 @@ sp_data <- get_eurostat("tgs00026", time_format = "raw") %>%
 ```
 
 ```
-## SpatialPolygonDataFrame at resolution 1: 01  cached at:  /tmp/RtmpBVtKVN/eurostat/spdf01.RData
+## SpatialPolygonDataFrame at resolution 1: 01  cached at:  /tmp/RtmpwoMlit/eurostat/spdf01.RData
 ```
 
 ```r
@@ -599,7 +611,7 @@ map2
 library(sp)
 library(eurostat)
 library(dplyr)
-dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
+dat <- tgs00026 %>% 
   # subsetting to year 2014 and NUTS-3 level
   dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
   # classifying the values the variable
@@ -610,11 +622,8 @@ dat <- get_eurostat("tgs00026", time_format = "raw") %>%
 ```
 
 ```
-## Reading cache file /tmp/RtmpBVtKVN/eurostat/tgs00026_raw_code_TF.rds
-```
-
-```
-## Table  tgs00026  read from cache file:  /tmp/RtmpBVtKVN/eurostat/tgs00026_raw_code_TF.rds
+## Warning in cut_to_classes(values): manual_breaks in cut_to_classes are not
+## unique. Using unique breaks only.
 ```
 
 ```
@@ -647,7 +656,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw") %>%
 ```
 
 ```
-## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpBVtKVN/eurostat/spdf10.RData
+## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpwoMlit/eurostat/spdf10.RData
 ```
 
 ```r
@@ -717,7 +726,7 @@ citation("eurostat")
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.1.2 Package
+##   package. R Journal 9(1):385-392, 2017. Version 3.1.3 Package
 ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -732,7 +741,7 @@ citation("eurostat")
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.1.2},
+##     note = {Version 3.1.3},
 ##   }
 ```
 
@@ -795,7 +804,7 @@ sessionInfo()
 ##  [1] sp_1.2-5           RColorBrewer_1.1-2 tmap_1.10         
 ##  [4] dplyr_0.7.2        plotrix_3.6-5      ggplot2_2.2.1     
 ##  [7] tidyr_0.6.3        bindrcpp_0.2       rvest_0.3.2       
-## [10] xml2_1.1.1         eurostat_3.1.2     knitr_1.16        
+## [10] xml2_1.1.1         eurostat_3.1.3     knitr_1.16        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] nlme_3.1-131       bitops_1.0-6       sf_0.5-3          

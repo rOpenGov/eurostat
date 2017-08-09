@@ -1,12 +1,19 @@
-# eurostat 3.1.3
+# eurostat 3.1.4
 
-* Added new example data set to reduce repeated downloads from eurostat service
+## Minor features
 
-* Modified tutorial to accommodate the CRAN error
+* Added new example data set to reduce repeated downloads from
+  eurostat service
 
 * Now `label_eurostat()` gives always an error by default, if labelling 
   introduces duplicated labels. A new `fix_duplicated` argument is add to fix 
   duplicated labels automatically. (#79, #90)
+
+## Bug fixes
+
+* Modified tutorial to accommodate the CRAN error
+
+* Fixed cut_to_classes to generate unique breaks
 
 # eurostat 3.1.1
 

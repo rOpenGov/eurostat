@@ -3,7 +3,8 @@
 #' and polishes the labels ready for used in mapping with \code{merge_with_geodata} function and ggplot2.
 #' @param x A numeric vector, eg. \code{values} variable in data returned by  \code{get_eurostat}
 #' @param n A numeric. number of classes/categories
-#' @param style Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", or "jenks"
+#' @param style Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
+#' "bclust", "fisher", or "jenks"
 #' @param manual Logical. If manual breaks are being used
 #' @param manual_breaks Numeric vector with manual threshold values
 #' @param decimals Number of decimals to include with labels
@@ -20,9 +21,8 @@ cut_to_classes <- function(x, n=5, style="equal", manual=FALSE,
                            manual_breaks = NULL, decimals=0, 
                            nodata_label="No data") {
 
-
   manual_breaks_orig <- manual_breaks
-  if (length(unique(manual_breaks)) == length(manual_breaks)) {
+  if (!is.null(manual_breaks) && (length(unique(manual_breaks)) == length(manual_breaks))) {
     warning("manual_breaks in cut_to_classes are not unique. Using unique breaks only.")
     manual_breaks <- unique(manual_breaks)
     

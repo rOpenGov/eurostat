@@ -12,7 +12,8 @@ cut_to_classes(x, n = 5, style = "equal", manual = FALSE,
 
 \item{n}{A numeric. number of classes/categories}
 
-\item{style}{Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", or "jenks"}
+\item{style}{Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
+"bclust", "fisher", or "jenks"}
 
 \item{manual}{Logical. If manual breaks are being used}
 

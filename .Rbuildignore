@@ -1,6 +1,7 @@
 # Extra material related but not to be included in the package
 inst/extras
 README.Rmd
+index.*
 
 # pkgdown
 docs
