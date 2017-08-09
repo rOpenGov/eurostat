@@ -1,5 +1,7 @@
 # eurostat 3.1.2
 
+* Modified tutorial to accommodate the CRAN error
+
 * Now `label_eurostat()` gives always an error by default, if labelling 
   introduces duplicated labels. A new `fix_duplicated` argument is add to fix 
   duplicated labels automatically. (#79, #90)
