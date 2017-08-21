@@ -30,4 +30,4 @@ ea_countries <- ea_country_html %>%
 
 # save 
 
-devtools::use_data(eu_countries, ea_countries, efta_countries, candidate_countries)
+devtools::use_data(eu_countries, ea_countries, efta_countries, candidate_countries, overwrite = TRUE)
