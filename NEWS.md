@@ -1,3 +1,9 @@
+# eurostat 3.1.6
+
+## Bug fixes
+
+* Typo corrected from Cisco to Gisco
+
 # eurostat 3.1.5
 
 ## Minor features

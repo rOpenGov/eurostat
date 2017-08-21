@@ -79,7 +79,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2017-08-09</h4>
+            <h4 class="date">2017-08-21</h4>
           </div>
 
     
@@ -111,7 +111,7 @@ eurotime2num            Conversion of Eurostat Time Format to Numeric
 get_eurostat            Read Eurostat Data
 get_eurostat_dic        Download Eurostat Dictionary
 get_eurostat_geospatial
-                        Download Geospatial Data from CISGO
+                        Download Geospatial Data from GISCO
 get_eurostat_json       Get Data from Eurostat API in JSON
 get_eurostat_raw        Download Data from Eurostat Database
 get_eurostat_toc        Download Table of Contents of Eurostat Data
@@ -120,7 +120,7 @@ harmonize_country_code
                         Harmonize Country Code
 label_eurostat          Get Eurostat Codes
 merge_eurostat_geodata
-                        Merge Preprocessed Geospatial Data from CISGO
+                        Merge Preprocessed Geospatial Data from GISCO
                         with data_frame from Eurostat
 search_eurostat         Grep Datasets Titles from Eurostat
 tgs00026                Auxiliary Data</code></pre>
@@ -232,20 +232,20 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
-<td align="left">03.08.2016</td>
-<td align="left">03.08.2016</td>
+<td align="left">16.08.2017</td>
+<td align="left">14.08.2017</td>
 <td align="left">2000</td>
-<td align="left">2014</td>
+<td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
-<td align="left">03.08.2016</td>
-<td align="left">02.08.2016</td>
+<td align="left">17.08.2017</td>
+<td align="left">17.08.2017</td>
 <td align="left">1990</td>
-<td align="left">2014</td>
+<td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -309,7 +309,7 @@ id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/search_e
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">time_format =</span> <span class="st">"num"</span>)</code></pre></div>
 <p>Investigate the structure of the downloaded data set:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">str</span>(dat)</code></pre></div>
-<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    2326 obs. of  5 variables:
+<pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    2431 obs. of  5 variables:
 ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ geo    : Factor w/ 35 levels "AT","BE","CH",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -495,14 +495,14 @@ id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/search_e
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">European Union (28 countries)</td>
 <td align="right">2012</td>
-<td align="right">9.3</td>
+<td align="right">9.5</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Passenger cars</td>
 <td align="left">European Union (28 countries)</td>
 <td align="right">2012</td>
-<td align="right">83.0</td>
+<td align="right">82.8</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -569,8 +569,8 @@ dat_eu_0012_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2005</td>
-<td align="right">9.9</td>
-<td align="right">83.2</td>
+<td align="right">9.8</td>
+<td align="right">83.3</td>
 <td align="right">6.9</td>
 </tr>
 <tr class="odd">
@@ -585,41 +585,41 @@ dat_eu_0012_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://
 <td align="right">2007</td>
 <td align="right">9.8</td>
 <td align="right">83.1</td>
-<td align="right">7.2</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2008</td>
-<td align="right">9.7</td>
-<td align="right">83.1</td>
-<td align="right">7.3</td>
+<td align="right">9.9</td>
+<td align="right">82.8</td>
+<td align="right">7.4</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2009</td>
-<td align="right">9.2</td>
-<td align="right">83.7</td>
+<td align="right">9.3</td>
+<td align="right">83.6</td>
 <td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2010</td>
-<td align="right">9.2</td>
-<td align="right">83.6</td>
+<td align="right">9.4</td>
+<td align="right">83.5</td>
 <td align="right">7.2</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2011</td>
-<td align="right">9.2</td>
-<td align="right">83.4</td>
+<td align="right">9.4</td>
+<td align="right">83.2</td>
 <td align="right">7.3</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2012</td>
-<td align="right">9.3</td>
-<td align="right">83.0</td>
+<td align="right">9.5</td>
+<td align="right">82.8</td>
 <td align="right">7.7</td>
 </tr>
 </tbody>
@@ -650,7 +650,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">9.7</td>
 <td align="right">6.3</td>
 <td align="right">5.1</td>
-<td align="right">7.5</td>
+<td align="right">6.8</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -658,7 +658,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">9.7</td>
 <td align="right">6.4</td>
 <td align="right">4.8</td>
-<td align="right">7.9</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -666,7 +666,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">9.7</td>
 <td align="right">6.5</td>
 <td align="right">4.8</td>
-<td align="right">7.8</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -674,7 +674,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">9.5</td>
 <td align="right">6.5</td>
 <td align="right">4.7</td>
-<td align="right">7.7</td>
+<td align="right">7.0</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -682,7 +682,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">9.4</td>
 <td align="right">7.1</td>
 <td align="right">4.7</td>
-<td align="right">7.5</td>
+<td align="right">6.8</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -690,7 +690,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">9.8</td>
 <td align="right">6.6</td>
 <td align="right">4.8</td>
-<td align="right">7.7</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -698,7 +698,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">10.0</td>
 <td align="right">6.9</td>
 <td align="right">4.8</td>
-<td align="right">8.3</td>
+<td align="right">7.6</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -706,7 +706,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">10.0</td>
 <td align="right">7.1</td>
 <td align="right">5.0</td>
-<td align="right">8.7</td>
+<td align="right">7.9</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -714,7 +714,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">11.1</td>
 <td align="right">7.5</td>
 <td align="right">5.4</td>
-<td align="right">9.4</td>
+<td align="right">8.6</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -722,7 +722,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">11.1</td>
 <td align="right">7.5</td>
 <td align="right">5.1</td>
-<td align="right">9.5</td>
+<td align="right">8.7</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -730,7 +730,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">11.0</td>
 <td align="right">7.7</td>
 <td align="right">5.2</td>
-<td align="right">9.4</td>
+<td align="right">8.7</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -738,7 +738,7 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <td align="right">11.3</td>
 <td align="right">7.7</td>
 <td align="right">5.0</td>
-<td align="right">8.8</td>
+<td align="right">8.7</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -864,7 +864,7 @@ sp_data &lt;-<span class="st"> </span>tgs00026 %&gt;%<span class="st"> </span>
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/Rtmp6MboaX/eurostat/spdf60.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/RtmpFvCkJT/eurostat/spdf60.RData</code></pre>
 <p>Load example data (map)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Europe)</code></pre></div>
 <p>Construct the map</p>
@@ -927,7 +927,7 @@ sp_data &lt;-<span class="st"> </span>tgs00026 %&gt;%<span class="st"> </span>
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 01  cached at:  /tmp/Rtmp6MboaX/eurostat/spdf01.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 01  cached at:  /tmp/RtmpFvCkJT/eurostat/spdf01.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 map2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(Europe) +
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_fill</a></span>(<span class="st">"lightgrey"</span>) +
@@ -980,7 +980,7 @@ dat &lt;-<span class="st"> </span>tgs00026 %&gt;%<span class="st"> </span>
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp6MboaX/eurostat/spdf10.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpFvCkJT/eurostat/spdf10.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 sp::<span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/spplot">spplot</a></span>(<span class="dt">obj =</span> dat, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,
        <span class="dt">xlim =</span> <span class="kw">c</span>(-<span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), 
@@ -1032,7 +1032,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.1.5 Package
+##   package. R Journal 9(1):385-392, 2017. Version 3.1.50002 Package
 ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -1047,7 +1047,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.1.5},
+##     note = {Version 3.1.50002},
 ##   }</code></pre>
 </div>
 <div id="related-work" class="section level3">
@@ -1070,19 +1070,19 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">sessionInfo</span>()</code></pre></div>
 <pre><code>## R version 3.4.1 (2017-06-30)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 17.04
+## Running under: Ubuntu 16.04.3 LTS
 ## 
 ## Matrix products: default
-## BLAS: /usr/lib/openblas-base/libblas.so.3
-## LAPACK: /usr/lib/libopenblasp-r0.2.19.so
+## BLAS: /usr/lib/libblas/libblas.so.3.6.0
+## LAPACK: /usr/lib/lapack/liblapack.so.3.6.0
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
+##  [3] LC_TIME=de_BE.UTF-8        LC_COLLATE=en_US.UTF-8    
+##  [5] LC_MONETARY=de_BE.UTF-8    LC_MESSAGES=en_US.UTF-8   
+##  [7] LC_PAPER=de_BE.UTF-8       LC_NAME=C                 
 ##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [11] LC_MEASUREMENT=de_BE.UTF-8 LC_IDENTIFICATION=C       
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
@@ -1091,40 +1091,40 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ##  [1] sp_1.2-5           RColorBrewer_1.1-2 tmap_1.10         
 ##  [4] dplyr_0.7.2        plotrix_3.6-5      ggplot2_2.2.1     
 ##  [7] tidyr_0.6.3        bindrcpp_0.2       rvest_0.3.2       
-## [10] xml2_1.1.1         eurostat_3.1.5     knitr_1.16        
+## [10] xml2_1.1.1         eurostat_3.1.50002 knitr_1.17        
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-131         bitops_1.0-6         sf_0.5-3            
-##  [4] satellite_1.0.0      webshot_0.4.1.9000   gmodels_2.16.2      
-##  [7] httr_1.2.1           rprojroot_1.2        mapview_2.1.4       
-## [10] tools_3.4.1          backports_1.1.0      rgdal_1.2-8         
-## [13] R6_2.2.2             KernSmooth_2.23-15   DBI_0.7             
-## [16] rgeos_0.3-23         lazyeval_0.2.0       colorspace_1.3-2    
-## [19] raster_2.5-8         leaflet_1.1.0        curl_2.8.1          
-## [22] compiler_3.4.1       Cairo_1.5-9          expm_0.999-2        
-## [25] labeling_0.3         scales_0.4.1         rmapshaper_0.2.0    
-## [28] classInt_0.1-24      readr_1.1.1          stringr_1.2.0       
-## [31] digest_0.6.12        rmarkdown_1.6.0.9001 R.utils_2.5.0       
-## [34] base64enc_0.1-3      dichromat_2.0-0      pkgconfig_2.0.1     
-## [37] htmltools_0.3.6      highr_0.6            jsonvalidate_1.0.0  
-## [40] htmlwidgets_0.9      rlang_0.1.1.9000     shiny_1.0.3.9002    
-## [43] bindr_0.1            jsonlite_1.5         crosstalk_1.0.0     
-## [46] gtools_3.5.0         spdep_0.6-13         R.oo_1.21.0         
-## [49] RCurl_1.95-4.8       magrittr_1.5         geosphere_1.5-5     
-## [52] Matrix_1.2-10        Rcpp_0.12.12         munsell_0.4.3       
-## [55] R.methodsS3_1.7.1    stringi_1.1.5        yaml_2.1.14         
-## [58] MASS_7.3-47          tmaptools_1.2-1      plyr_1.8.4          
-## [61] grid_3.4.1           gdata_2.18.0         udunits2_0.13       
-## [64] deldir_0.1-14        lattice_0.20-35      splines_3.4.1       
-## [67] hms_0.3              boot_1.3-20          gdalUtils_2.0.1.7   
-## [70] geojsonlint_0.2.0    stats4_3.4.1         codetools_0.2-15    
-## [73] LearnBayes_2.15      osmar_1.1-7          XML_3.98-1.9        
-## [76] glue_1.1.1           evaluate_0.10.1      V8_1.5              
-## [79] png_0.1-7            httpuv_1.3.5         foreach_1.4.3       
-## [82] gtable_0.2.0         assertthat_0.2.0     mime_0.5            
-## [85] xtable_1.8-2         e1071_1.6-8          coda_0.19-1         
-## [88] viridisLite_0.2.0    class_7.3-14         tibble_1.3.3        
-## [91] iterators_1.0.8      units_0.4-5</code></pre>
+##  [1] nlme_3.1-131       bitops_1.0-6       sf_0.5-3          
+##  [4] satellite_1.0.0    webshot_0.4.1.9000 gmodels_2.16.2    
+##  [7] httr_1.2.1         rprojroot_1.2      mapview_2.1.4     
+## [10] tools_3.4.1        backports_1.1.0    rgdal_1.2-8       
+## [13] R6_2.2.2           KernSmooth_2.23-15 DBI_0.7           
+## [16] rgeos_0.3-23       lazyeval_0.2.0     colorspace_1.3-2  
+## [19] raster_2.5-8       leaflet_1.1.0      curl_2.8.1        
+## [22] compiler_3.4.1     Cairo_1.5-9        expm_0.999-2      
+## [25] labeling_0.3       scales_0.4.1       rmapshaper_0.2.0  
+## [28] classInt_0.1-24    readr_1.1.1        stringr_1.2.0     
+## [31] digest_0.6.12      rmarkdown_1.6      R.utils_2.5.0     
+## [34] base64enc_0.1-3    dichromat_2.0-0    pkgconfig_2.0.1   
+## [37] htmltools_0.3.6    highr_0.6          jsonvalidate_1.0.0
+## [40] htmlwidgets_0.9    rlang_0.1.2.9000   shiny_1.0.3       
+## [43] bindr_0.1          jsonlite_1.5       crosstalk_1.0.0   
+## [46] gtools_3.5.0       spdep_0.6-13       R.oo_1.21.0       
+## [49] RCurl_1.95-4.8     magrittr_1.5       geosphere_1.5-5   
+## [52] Matrix_1.2-10      Rcpp_0.12.12       munsell_0.4.3     
+## [55] R.methodsS3_1.7.1  stringi_1.1.5      yaml_2.1.14       
+## [58] MASS_7.3-47        tmaptools_1.2-1    plyr_1.8.4        
+## [61] grid_3.4.1         gdata_2.18.0       udunits2_0.13     
+## [64] deldir_0.1-14      lattice_0.20-35    splines_3.4.1     
+## [67] hms_0.3            boot_1.3-20        gdalUtils_2.0.1.7 
+## [70] geojsonlint_0.2.0  stats4_3.4.1       codetools_0.2-15  
+## [73] LearnBayes_2.15    osmar_1.1-7        XML_3.98-1.9      
+## [76] glue_1.1.1         evaluate_0.10.1    V8_1.5            
+## [79] png_0.1-7          httpuv_1.3.5       foreach_1.4.3     
+## [82] gtable_0.2.0       assertthat_0.2.0   mime_0.5          
+## [85] xtable_1.8-2       e1071_1.6-8        coda_0.19-1       
+## [88] viridisLite_0.2.0  class_7.3-14       tibble_1.3.3      
+## [91] iterators_1.0.8    units_0.4-5</code></pre>
 </div>
 </div>
   </div>

@@ -2,7 +2,7 @@
 % Please edit documentation in R/merge_eurostat_geodata.R
 \name{merge_eurostat_geodata}
 \alias{merge_eurostat_geodata}
-\title{Merge Preprocessed Geospatial Data from CISGO with data_frame from Eurostat}
+\title{Merge Preprocessed Geospatial Data from GISCO with data_frame from Eurostat}
 \usage{
 merge_eurostat_geodata(data, geocolumn = "geo", resolution = "60",
   output_class = "df", all_regions = FALSE, cache = TRUE,
