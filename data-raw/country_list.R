@@ -3,8 +3,10 @@
 
 library(rvest)
 library(dplyr)
+library(devtools)
+load_all()
 
-country_html <- html("http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order")
+country_html <- read_html("http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order")
 c_tables<- country_html %>%
   html_table()
 
@@ -19,7 +21,7 @@ eu_candidate_countries <- c_tables[[4]] %>%
   select(code = Code, name = English)
 
 # Euro area countries
-ea_country_html <- html("http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area")
+ea_country_html <- read_html("http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area")
 
 ea_countries <- ea_country_html %>%
   html_table(fill = TRUE) %>% 
@@ -31,4 +33,4 @@ ea_countries <- ea_country_html %>%
 tgs00026 <- get_eurostat("tgs00026", time_format = "raw") 
 
 print("save datasets")
-devtools::use_datae(eu_candidate_countries, eu_countries, ea_countries, efta_countries, tgs00026, overwrite = TRUE)
+devtools::use_data(eu_candidate_countries, eu_countries, ea_countries, efta_countries, tgs00026, overwrite = TRUE, internal = FALSE)
