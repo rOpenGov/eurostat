@@ -1,5 +1,9 @@
 # eurostat 3.1.6
 
+## Minor features
+
+* data/ generation script in data-raw/ updated to make all data reproducible
+
 ## Bug fixes
 
 * Typo corrected from Cisco to Gisco

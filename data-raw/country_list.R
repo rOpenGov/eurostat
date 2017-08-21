@@ -15,7 +15,7 @@ eu_countries <- c_tables[[2]] %>%
 efta_countries <- c_tables[[3]] %>% 
   select(code = Code, name = English)
 
-candidate_countries <- c_tables[[4]] %>% 
+eu_candidate_countries <- c_tables[[4]] %>% 
   select(code = Code, name = English)
 
 # Euro area countries
@@ -27,7 +27,8 @@ ea_countries <- ea_country_html %>%
   {data_frame(name = grep("^[[:alpha:]]", ., value = TRUE))} %>% 
   inner_join(eu_countries, .)                    # Get eu order and codes
   
+# Eurostat data set with ID tgs00026
+tgs00026 <- get_eurostat("tgs00026", time_format = "raw") 
 
-# save 
-
-devtools::use_data(eu_countries, ea_countries, efta_countries, candidate_countries, overwrite = TRUE)
+print("save datasets")
+devtools::use_datae(eu_candidate_countries, eu_countries, ea_countries, efta_countries, tgs00026, overwrite = TRUE)
