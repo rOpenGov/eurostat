@@ -37,7 +37,12 @@ before_install:
   - sudo apt-get install -y libxml2-dev libv8-dev
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
   - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev libv8-dev
+
+r:
+- release
+- devel
+- oldrel
 
 after_success:
   - Rscript -e 'covr::codecov()'
