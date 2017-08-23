@@ -1,11 +1,13 @@
-#' @title Download Geospatial Data from CISGO
+#' @title Download Geospatial Data from GISGO
 #' @description Downloads either a simple features (sf), SpatialPolygonDataFrame or a data_frame preprocessed using
 #'    \code{broom::tidy()}.
 #' @param output_class A string. Class of object returned, 
 #' either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
 #'    \code{spdf} (\code{SpatialPolygonDataFrame})
 #' @param resolution Resolution of the geospatial data. One of
-#'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
+#'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million).
+#' @param nuts_level Level of NUTS classification of the geospatial data. One of
+#'    "0", "1", "2", "3" or "all" (mimics the original behaviour)
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
 #' @param update_cache a locigal whether to update cache. Can be set also with
@@ -17,22 +19,22 @@
 #'        \code{option} eurostat_cache_dir.
 #' @export
 #' @details The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
-#' @author Markus Kainu <markuskainu@@gmail.com>
+#' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
 #'  \dontrun{
 #'    library(sf)
 #'    library(dplyr)
-#'    lp <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
+#'    lp <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
 #'    lp %>%  select(NUTS_ID) %>%  plot()
-#'    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60")
+#'    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60", nuts_level = "all")
 #'    spplot(lp, "STAT_LEVL_")
 #'    # or
-#'    lp <- get_eurostat_geospatial(output_class = "df", resolution = "60")
+#'    lp <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "all")
 #'    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
 #'  }
 #'  
-get_eurostat_geospatial <- function(output_class="sf",resolution="60", 
+get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all",
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
   
   # Check resolution is of correct format
@@ -91,30 +93,56 @@ information regarding their licence agreements.
     # cache filename
     cache_file <- file.path(cache_dir,
                             paste0(
-                              output_class, resolution, ".RData")
+                              output_class, resolution, nuts_level, ".RData")
     )
   }
   
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache || update_cache || !file.exists(cache_file)){
     
-    if (output_class == "sf"){
-      load(url(paste0("https://github.com/rOpenGov/eurostat_geodata/raw/master/rdata/NUTS_RG_",
-                      resolution,
-                      "M_2013_sf.RData")))
+    
+    if (nuts_level %in% c("0","all")){
+      jsontemp <- tempfile()
+      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"),
+                    jsontemp)
+      nuts0 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
     }
+    if (nuts_level %in% c("1","all")){
+      jsontemp <- tempfile()
+      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"),
+                    jsontemp)
+      nuts1 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+    }    
+    if (nuts_level %in% c("2","all")){
+      jsontemp <- tempfile()
+      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"),
+                    jsontemp)
+      nuts2 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+    }
+    if (nuts_level %in% c("3","all")){
+      jsontemp <- tempfile()
+      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"),
+                    jsontemp)
+      nuts3 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+    }
+    if (nuts_level %in% c("all")){
+      shp <- rbind(nuts0,nuts1,nuts2,nuts3)
+    }
+    if (nuts_level == "0") shp <- nuts0
+    if (nuts_level == "1") shp <- nuts1
+    if (nuts_level == "2") shp <- nuts2
+    if (nuts_level == "3") shp <- nuts3
+    
+
     if (output_class == "df"){
-      load(url(paste0("https://github.com/rOpenGov/eurostat_geodata/raw/master/rdata/NUTS_RG_",
-                      resolution,
-                      "M_2013_df.RData")))
-      shp <- shp[order(shp$order),] 
+      nuts_sp <- as(shp, "Spatial")
+      nuts_sp$id <- row.names(nuts_sp)
+      nuts_ff <- broom::tidy(nuts_sp)
+      shp <- left_join(nuts_ff,nuts_sp@data)
     }
     if (output_class == "spdf"){
-      load(url(paste0("https://github.com/rOpenGov/eurostat_geodata/raw/master/rdata/NUTS_RG_",
-                      resolution,
-                      "M_2013_spdf.RData")))
+      shp <- as(shp, "Spatial")
     }
-    
   }
   
   if (cache & file.exists(cache_file)) {
