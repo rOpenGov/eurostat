@@ -102,28 +102,20 @@ information regarding their licence agreements.
     
     
     if (nuts_level %in% c("0","all")){
-      jsontemp <- tempfile()
-      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"),
-                    jsontemp)
-      nuts0 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
+      nuts0 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }
     if (nuts_level %in% c("1","all")){
-      jsontemp <- tempfile()
-      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"),
-                    jsontemp)
-      nuts1 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
+      nuts1 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }    
     if (nuts_level %in% c("2","all")){
-      jsontemp <- tempfile()
-      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"),
-                    jsontemp)
-      nuts2 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
+      nuts2 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }
     if (nuts_level %in% c("3","all")){
-      jsontemp <- tempfile()
-      download.file(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"),
-                    jsontemp)
-      nuts3 <- sf::st_read(jsontemp, stringsAsFactors = FALSE)
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
+      nuts3 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }
     if (nuts_level %in% c("all")){
       shp <- rbind(nuts0,nuts1,nuts2,nuts3)
