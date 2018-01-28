@@ -1,7 +1,7 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2018-01-27
+Date: 2018-01-28
 Version: 3.1.5.9000
 Encoding: UTF-8
 Authors@R: c(
