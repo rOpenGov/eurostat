@@ -22,14 +22,14 @@ Bi-annual, quarterly and monthly data is presented as fraction of
 }
 \examples{
 \dontrun{
-   lp <- get_eurostat("namq_aux_lp", time_format = "raw")
-   lp$time <- eurotime2num(x = lp$time)
+   na_q <- get_eurostat("namq_10_pc", time_format = "raw")
+   na_q$time <- eurotime2num(x = na_q$time)
    
    un <- get_eurostat("une_rt_m", time_format = "raw")
    un$time <- eurotime2num(x = un$time)
    
-   lpa <- get_eurostat("nama_aux_lp", time_format = "raw")
-   lpa$time <- eurotime2num(x = lpa$time)
+   na_a <- get_eurostat("nama_10_pc", time_format = "raw")
+   na_a$time <- eurotime2num(x = na_a$time)
    }
 }
 \author{

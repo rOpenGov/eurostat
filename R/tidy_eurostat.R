@@ -28,7 +28,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            keepFlags = FALSE) {
 
     # To avoid warnings
-    time <- NULL
+    time <- values <- NULL
 
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split = "[\\,]")[[1]]
@@ -36,16 +36,18 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     cnames2 <- cnames[length(cnames)]   # for colnames
     
     # Separe variables from first column
-    dat2 <- tidyr::separate_(dat, col = colnames(dat)[1],
+    dat1 <- tidyr::separate_(dat, col = colnames(dat)[1],
                        into = cnames1,
                        sep = ",", convert = FALSE)
     
     # Get variable from column names
     # na.rm TRUE to save memory
-    dat2 <- tidyr::gather_(dat2, cnames2, "values", 
-                           names(dat2)[!(names(dat2) %in% cnames1)],
-                           convert = FALSE, na.rm = TRUE)
 
+    cnames2_quo <- as.name(cnames2)
+    dat2 <- tidyr::gather(dat1, !!cnames2_quo, values, 
+                           -seq_along(cnames1),
+                           convert = FALSE, na.rm = TRUE)    
+    
     ## separate flags into separate column
     if(keepFlags == TRUE) {
       dat2$flags <- as.vector(

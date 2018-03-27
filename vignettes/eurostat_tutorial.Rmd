@@ -341,7 +341,7 @@ print(map1)
 
 ### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using tmap
 
-```{r maps2, fig.width=8, fig.height=8}
+```{r maps2, fig.width=8, fig.height=8, warning=FALSE}
 library(eurostat)
 library(dplyr)
 library(ggplot2)

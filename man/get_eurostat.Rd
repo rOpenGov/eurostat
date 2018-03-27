@@ -62,7 +62,9 @@ they are returned as a character.}
 "provisional") should be kept in a separate column or if they
 can be removed. Default is \code{FALSE}. For flag values see: 
 \url{http://ec.europa.eu/eurostat/data/database/information}.
-Also possible non-real zero "0n" is indicated in flags column.}
+Also possible non-real zero "0n" is indicated in flags column. 
+Flags are not available for eurostat API, so \code{keepFlags}
+can not be used with a \code{filters}.}
 
 \item{...}{further argument for \code{\link{get_eurostat_json}}.}
 }
@@ -119,11 +121,10 @@ k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 
-dd <- get_eurostat("namq_aux_lp", 
+dd <- get_eurostat("nama_10_gdp", 
                      filters = list(geo = "FI", 
-                                    indic_na = "RLPH", 
-                                    unit = "EUR_HRS",
-                                    s_adj = "NSA"))
+                                    na_item = "B1GQ", 
+                                    unit = "CLV_I10"))
 }
 }
 \seealso{

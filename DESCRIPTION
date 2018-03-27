@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2017-21-08
-Version: 3.1.50003
+Date: 2018-03-28
+Version: 3.1.6001
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
