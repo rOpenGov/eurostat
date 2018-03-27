@@ -1,4 +1,4 @@
-#' @title Download Geospatial Data from CISGO
+#' @title Download Geospatial Data from GISCO
 #' @description Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
 #'    \code{ggplot2::fortify}.
 #' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}) or

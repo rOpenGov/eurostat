@@ -34,7 +34,7 @@ Overall, the eurostat package includes the following functions:
     get_eurostat            Read Eurostat Data
     get_eurostat_dic        Download Eurostat Dictionary
     get_eurostat_geospatial
-                            Download Geospatial Data from CISGO
+                            Download Geospatial Data from GISCO
     get_eurostat_json       Get Data from Eurostat API in JSON
     get_eurostat_raw        Download Data from Eurostat Database
     get_eurostat_toc        Download Table of Contents of Eurostat Data
@@ -43,7 +43,7 @@ Overall, the eurostat package includes the following functions:
                             Harmonize Country Code
     label_eurostat          Get Eurostat Codes
     merge_eurostat_geodata
-                            Merge Preprocessed Geospatial Data from CISGO
+                            Merge Preprocessed Geospatial Data from GISCO
                             with data_frame from Eurostat
     search_eurostat         Grep Datasets Titles from Eurostat
     tgs00026                Auxiliary Data
@@ -170,20 +170,20 @@ instance datasets or tables.
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
-<td align="left">03.08.2016</td>
-<td align="left">03.08.2016</td>
+<td align="left">16.08.2017</td>
+<td align="left">14.08.2017</td>
 <td align="left">2000</td>
-<td align="left">2014</td>
+<td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
-<td align="left">03.08.2016</td>
-<td align="left">02.08.2016</td>
+<td align="left">17.08.2017</td>
+<td align="left">17.08.2017</td>
 <td align="left">1990</td>
-<td align="left">2014</td>
+<td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
@@ -277,7 +277,7 @@ Investigate the structure of the downloaded data set:
 
     str(dat)
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    2326 obs. of  5 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    2431 obs. of  5 variables:
     ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ geo    : Factor w/ 35 levels "AT","BE","CH",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -501,14 +501,14 @@ EU data from 2012 in all vehicles:
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">European Union (28 countries)</td>
 <td align="right">2012</td>
-<td align="right">9.3</td>
+<td align="right">9.5</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Passenger cars</td>
 <td align="left">European Union (28 countries)</td>
 <td align="right">2012</td>
-<td align="right">83.0</td>
+<td align="right">82.8</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -579,8 +579,8 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2005</td>
-<td align="right">9.9</td>
-<td align="right">83.2</td>
+<td align="right">9.8</td>
+<td align="right">83.3</td>
 <td align="right">6.9</td>
 </tr>
 <tr class="odd">
@@ -595,41 +595,41 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 <td align="right">2007</td>
 <td align="right">9.8</td>
 <td align="right">83.1</td>
-<td align="right">7.2</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2008</td>
-<td align="right">9.7</td>
-<td align="right">83.1</td>
-<td align="right">7.3</td>
+<td align="right">9.9</td>
+<td align="right">82.8</td>
+<td align="right">7.4</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2009</td>
-<td align="right">9.2</td>
-<td align="right">83.7</td>
+<td align="right">9.3</td>
+<td align="right">83.6</td>
 <td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2010</td>
-<td align="right">9.2</td>
-<td align="right">83.6</td>
+<td align="right">9.4</td>
+<td align="right">83.5</td>
 <td align="right">7.2</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2011</td>
-<td align="right">9.2</td>
-<td align="right">83.4</td>
+<td align="right">9.4</td>
+<td align="right">83.2</td>
 <td align="right">7.3</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2012</td>
-<td align="right">9.3</td>
-<td align="right">83.0</td>
+<td align="right">9.5</td>
+<td align="right">82.8</td>
 <td align="right">7.7</td>
 </tr>
 </tbody>
@@ -663,7 +663,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">9.7</td>
 <td align="right">6.3</td>
 <td align="right">5.1</td>
-<td align="right">7.5</td>
+<td align="right">6.8</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -671,7 +671,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">9.7</td>
 <td align="right">6.4</td>
 <td align="right">4.8</td>
-<td align="right">7.9</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -679,7 +679,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">9.7</td>
 <td align="right">6.5</td>
 <td align="right">4.8</td>
-<td align="right">7.8</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -687,7 +687,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">9.5</td>
 <td align="right">6.5</td>
 <td align="right">4.7</td>
-<td align="right">7.7</td>
+<td align="right">7.0</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -695,7 +695,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">9.4</td>
 <td align="right">7.1</td>
 <td align="right">4.7</td>
-<td align="right">7.5</td>
+<td align="right">6.8</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -703,7 +703,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">9.8</td>
 <td align="right">6.6</td>
 <td align="right">4.8</td>
-<td align="right">7.7</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -711,7 +711,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">10.0</td>
 <td align="right">6.9</td>
 <td align="right">4.8</td>
-<td align="right">8.3</td>
+<td align="right">7.6</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -719,7 +719,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">10.0</td>
 <td align="right">7.1</td>
 <td align="right">5.0</td>
-<td align="right">8.7</td>
+<td align="right">7.9</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -727,7 +727,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">11.1</td>
 <td align="right">7.5</td>
 <td align="right">5.4</td>
-<td align="right">9.4</td>
+<td align="right">8.6</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -735,7 +735,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">11.1</td>
 <td align="right">7.5</td>
 <td align="right">5.1</td>
-<td align="right">9.5</td>
+<td align="right">8.7</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -743,7 +743,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">11.0</td>
 <td align="right">7.7</td>
 <td align="right">5.2</td>
-<td align="right">9.4</td>
+<td align="right">8.7</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -751,7 +751,7 @@ Train passengers for selected EU countries in 2000 - 2012
 <td align="right">11.3</td>
 <td align="right">7.7</td>
 <td align="right">5.0</td>
-<td align="right">8.8</td>
+<td align="right">8.7</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -886,9 +886,7 @@ The mapping examples below use
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpUGFyiv/eurostat/spdf60.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/RtmpUGFyiv/eurostat/spdf60.RData
+    ## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/RtmpdFuyAQ/eurostat/spdf60.RData
 
 Load example data (map)
 
@@ -958,9 +956,7 @@ Interactive maps can be generated as well
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpUGFyiv/eurostat/spdf01.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 01  read from cache file:  /tmp/RtmpUGFyiv/eurostat/spdf01.RData
+    ## SpatialPolygonDataFrame at resolution 1: 01  cached at:  /tmp/RtmpdFuyAQ/eurostat/spdf01.RData
 
     # plot map
     map2 <- tm_shape(Europe) +
@@ -1016,9 +1012,7 @@ Interactive maps can be generated as well
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmpUGFyiv/eurostat/spdf10.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpUGFyiv/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpdFuyAQ/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1078,7 +1072,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.1.5 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.1.50003 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1093,7 +1087,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.1.5},
+    ##     note = {Version 3.1.50003},
     ##   }
 
 ### Related work
@@ -1150,7 +1144,7 @@ This tutorial was created with
     ##  [1] sp_1.2-5             RColorBrewer_1.1-2   tmap_1.10           
     ##  [4] dplyr_0.7.2          plotrix_3.6-5        ggplot2_2.2.1       
     ##  [7] tidyr_0.6.3          bindrcpp_0.2         rvest_0.3.2         
-    ## [10] xml2_1.1.1           eurostat_3.1.5       rmarkdown_1.6.0.9001
+    ## [10] xml2_1.1.1           eurostat_3.1.50003   rmarkdown_1.6.0.9001
     ## [13] knitr_1.16          
     ## 
     ## loaded via a namespace (and not attached):

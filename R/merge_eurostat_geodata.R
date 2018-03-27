@@ -1,4 +1,4 @@
-#' @title Merge Preprocessed Geospatial Data from CISGO with data_frame from Eurostat
+#' @title Merge Preprocessed Geospatial Data from GISCO with data_frame from Eurostat
 #' @description Merges data_frame obtained from Eurostat with \code{get_eurostat} with geospatial data preprocessed either using \code{ggplot2::fortify} into a \code{data_frame} or a regular \code{SpatialPolygonDataFrame}. The resulting \code{data_frame} can be plotted using \code{ggplot2} and \code{SpatialPolygonDataFrame} using \code{sp::spplot}.
 #' @param data A data_frame including a character vector that
 #' consists of values following current NUTS classification

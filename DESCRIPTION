@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2017-08-08
-Version: 3.1.5
+Date: 2017-21-08
+Version: 3.1.50003
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
@@ -19,7 +19,7 @@ Description: Tools to download data from the Eurostat database
     manipulation utilities.
 License: BSD_2_clause + file LICENSE
 Depends:
-    R (>= 3.0.2)
+    R (>= 3.4.1)
 Imports:
     classInt,
     httr,    
