@@ -32,7 +32,14 @@ knitr::opts_chunk$set(
 [![Star on GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/stargazers)
 
 
-[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)  
+[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
+
+[![Follow](https://img.shields.io/badge/Twitter-@rOpenGov-blue.svg?style=flat)](https://twitter.com/intent/follow?screen_name=ropengov)  
+
+   <a href="http://twitter.com/rOpenGov" target="_blank">
+        <img src="https://img.shields.io/badge/Twitter-@rOpenGov-blue.svg?style=flat" alt="rOpenGov Twitter">
+    </a>
+ 
 
 <!--[![Contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg?style=flat-square)](#contributors)-->
 
