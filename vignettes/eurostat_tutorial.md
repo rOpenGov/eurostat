@@ -809,22 +809,12 @@ The mapping examples below use
 
     library(dplyr)
     library(eurostat)
+    library(sf)
     library(tmap)
 
-    # Load example data set
-    data("tgs00026")
-    # Can be retrieved from the eurostat service with:
-    # tgs00026 <- get_eurostat("tgs00026", time_format = "raw")
 
-    # Data from Eurostat
-    sp_data <- tgs00026 %>% 
-      # subset to have only a single row per geo
-      dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
-      # categorise
-      dplyr::mutate(income = cut_to_classes(values, n = 5)) %>% 
-      # merge with geodata
-      merge_eurostat_geodata(data = ., geocolumn = "geo",resolution = "60", 
-                             output_class = "spdf", all_regions = TRUE) 
+    # Coerce to a sf object
+    df60 <- st_as_sf(get_eurostat_geospatial(output_class = "spdf", resolution = 60))
 
     ## 
     ##       COPYRIGHT NOTICE
@@ -853,9 +843,31 @@ The mapping examples below use
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp8n8Kru/eurostat/spdf60.RData
+    ## Reading cache file /tmp/Rtmp9gPQET/eurostat/spdf60.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/Rtmp8n8Kru/eurostat/spdf60.RData
+    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/Rtmp9gPQET/eurostat/spdf60.RData
+
+    # Map example 1
+    # Load example data set
+    data("tgs00026")
+    # Can be retrieved from the eurostat service with:
+    # tgs00026 <- get_eurostat("tgs00026", time_format = "raw")
+
+    # Convert
+    euro_sf <- tgs00026 %>% 
+      # subset to have only a single row per geo
+      dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
+      # categorise
+      dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>%
+      # merge with the spatial data
+      # NOTE! geo becomes character
+      dplyr::inner_join(df60, ., by = c("NUTS_ID" = "geo")) %>% 
+      # use a proper coordinate reference syste (CRS):
+      # epsg projection 3035 - etrs89 / etrs-laea
+      sf::st_transform("+init=epsg:3035") 
+
+    ## Warning: Column `NUTS_ID`/`geo` joining factors with different levels,
+    ## coercing to character vector
 
 Load example data (map)
 
@@ -865,8 +877,8 @@ Construct the map
 
     map1 <- tmap::tm_shape(Europe) +
       tmap::tm_fill("lightgrey") +
-      tmap::tm_shape(sp_data) +
-      tmap::tm_grid() +
+      tmap::tm_shape(euro_sf) +
+      tmap::tm_grid(labels.inside.frame = FALSE) +
       tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
                         palette = "Oranges") +
       tmap::tm_format_Europe()  
@@ -896,38 +908,12 @@ Interactive maps can be generated as well
       mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
              income = cut_to_classes(values)) %>% 
       # merge with geodata
-      merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf")
+      # OR merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf") %>%
+      dplyr::inner_join(df60, ., by = c("NUTS_ID" = "geo")) %>% 
+      # use a proper coordinate reference syste (CRS):
+      # epsg projection 3035 - etrs89 / etrs-laea
+      sf::st_transform("+init=epsg:3035") 
 
-    ## 
-    ##       COPYRIGHT NOTICE
-    ## 
-    ##       When data downloaded from this page 
-    ##       <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ##       is used in any printed or electronic publication, 
-    ##       in addition to any other provisions 
-    ##       applicable to the whole Eurostat website, 
-    ##       data source will have to be acknowledged 
-    ##       in the legend of the map and 
-    ##       in the introductory page of the publication 
-    ##       with the following copyright notice:
-    ## 
-    ##       - EN: (C) EuroGeographics for the administrative boundaries
-    ##       - FR: (C) EuroGeographics pour les limites administratives
-    ##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ##       For publications in languages other than 
-    ##       English, French or German, 
-    ##       the translation of the copyright notice 
-    ##       in the language of the publication shall be used.
-    ## 
-    ##       If you intend to use the data commercially, 
-    ##       please contact EuroGeographics for 
-    ##       information regarding their licence agreements.
-    ## 
-
-    ## Reading cache file /tmp/Rtmp8n8Kru/eurostat/spdf01.RData
-
-    ## SpatialPolygonDataFrame at resolution 1: 01  read from cache file:  /tmp/Rtmp8n8Kru/eurostat/spdf01.RData
 
     # plot map
     map2 <- tm_shape(Europe) +
@@ -984,9 +970,9 @@ Interactive maps can be generated as well
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp8n8Kru/eurostat/spdf10.RData
+    ## Reading cache file /tmp/Rtmp9gPQET/eurostat/spdf10.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp8n8Kru/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp9gPQET/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1116,41 +1102,41 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ##  [1] sp_1.2-7           RColorBrewer_1.1-2 tmap_1.11-1       
-    ##  [4] dplyr_0.7.4        plotrix_3.7        ggplot2_2.2.1.9000
-    ##  [7] tidyr_0.8.0        bindrcpp_0.2       rvest_0.3.2       
-    ## [10] xml2_1.2.0         eurostat_3.1.6001  rmarkdown_1.8     
-    ## [13] knitr_1.19        
+    ##  [4] sf_0.6-0           dplyr_0.7.4        plotrix_3.7       
+    ##  [7] ggplot2_2.2.1.9000 tidyr_0.8.0        bindrcpp_0.2      
+    ## [10] rvest_0.3.2        xml2_1.2.0         eurostat_3.1.6001 
+    ## [13] rmarkdown_1.8      knitr_1.19        
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] nlme_3.1-131       bitops_1.0-6       sf_0.6-0          
-    ##  [4] satellite_1.0.1    webshot_0.5.0.9000 gmodels_2.16.2    
-    ##  [7] httr_1.3.1         rprojroot_1.3-2    mapview_2.3.0     
-    ## [10] tools_3.4.3        backports_1.1.2    rgdal_1.2-16      
-    ## [13] R6_2.2.2           KernSmooth_2.23-15 DBI_0.7           
-    ## [16] spData_0.2.7.0     rgeos_0.3-26       lazyeval_0.2.1    
-    ## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.1.9000  
-    ## [22] tidyselect_0.2.3   leaflet_1.1.0      curl_3.1          
-    ## [25] compiler_3.4.3     expm_0.999-2       labeling_0.3      
-    ## [28] scales_0.5.0.9000  rmapshaper_0.3.0   classInt_0.1-24   
-    ## [31] readr_1.1.1        stringr_1.2.0      digest_0.6.15     
-    ## [34] R.utils_2.6.0      base64enc_0.1-3    dichromat_2.0-0   
-    ## [37] pkgconfig_2.0.1    htmltools_0.3.6    highr_0.6         
-    ## [40] jsonvalidate_1.0.0 htmlwidgets_1.0    rlang_0.1.6.9003  
-    ## [43] shiny_1.0.5        bindr_0.1          jsonlite_1.5      
-    ## [46] crosstalk_1.0.0    gtools_3.5.0       R.oo_1.21.0       
-    ## [49] spdep_0.7-4        RCurl_1.95-4.10    magrittr_1.5      
-    ## [52] geosphere_1.5-7    Matrix_1.2-12      Rcpp_0.12.15      
-    ## [55] munsell_0.4.3      R.methodsS3_1.7.1  stringi_1.1.6     
-    ## [58] yaml_2.1.16        MASS_7.3-48        tmaptools_1.2-3   
-    ## [61] plyr_1.8.4         grid_3.4.3         gdata_2.18.0      
-    ## [64] udunits2_0.13      deldir_0.1-14      lattice_0.20-35   
-    ## [67] splines_3.4.3      hms_0.4.1          pillar_1.1.0      
-    ## [70] boot_1.3-20        gdalUtils_2.0.1.7  geojsonlint_0.2.0 
-    ## [73] stats4_3.4.3       codetools_0.2-15   LearnBayes_2.15   
-    ## [76] osmar_1.1-7        XML_3.98-1.9       glue_1.2.0        
-    ## [79] evaluate_0.10.1    V8_1.5             png_0.1-7         
-    ## [82] httpuv_1.3.5       foreach_1.4.4      gtable_0.2.0      
-    ## [85] purrr_0.2.4        assertthat_0.2.0   mime_0.5          
-    ## [88] xtable_1.8-2       e1071_1.6-8        coda_0.19-1       
-    ## [91] viridisLite_0.3.0  class_7.3-14       tibble_1.4.2      
-    ## [94] iterators_1.0.9    units_0.5-1
+    ##  [1] nlme_3.1-131       bitops_1.0-6       satellite_1.0.1   
+    ##  [4] webshot_0.5.0.9000 gmodels_2.16.2     httr_1.3.1        
+    ##  [7] rprojroot_1.3-2    mapview_2.3.0      tools_3.4.3       
+    ## [10] backports_1.1.2    rgdal_1.2-16       R6_2.2.2          
+    ## [13] KernSmooth_2.23-15 spData_0.2.7.0     rgeos_0.3-26      
+    ## [16] DBI_0.7            lazyeval_0.2.1     colorspace_1.3-2  
+    ## [19] raster_2.6-7       withr_2.1.1.9000   tidyselect_0.2.3  
+    ## [22] leaflet_1.1.0      curl_3.1           compiler_3.4.3    
+    ## [25] expm_0.999-2       labeling_0.3       scales_0.5.0.9000 
+    ## [28] rmapshaper_0.3.0   classInt_0.1-24    readr_1.1.1       
+    ## [31] stringr_1.2.0      digest_0.6.15      R.utils_2.6.0     
+    ## [34] base64enc_0.1-3    dichromat_2.0-0    pkgconfig_2.0.1   
+    ## [37] htmltools_0.3.6    highr_0.6          jsonvalidate_1.0.0
+    ## [40] htmlwidgets_1.0    rlang_0.1.6.9003   shiny_1.0.5       
+    ## [43] bindr_0.1          jsonlite_1.5       crosstalk_1.0.0   
+    ## [46] gtools_3.5.0       R.oo_1.21.0        spdep_0.7-4       
+    ## [49] RCurl_1.95-4.10    magrittr_1.5       geosphere_1.5-7   
+    ## [52] Matrix_1.2-12      Rcpp_0.12.15       munsell_0.4.3     
+    ## [55] R.methodsS3_1.7.1  stringi_1.1.6      yaml_2.1.16       
+    ## [58] MASS_7.3-48        tmaptools_1.2-3    plyr_1.8.4        
+    ## [61] grid_3.4.3         gdata_2.18.0       udunits2_0.13     
+    ## [64] deldir_0.1-14      lattice_0.20-35    splines_3.4.3     
+    ## [67] hms_0.4.1          pillar_1.1.0       boot_1.3-20       
+    ## [70] gdalUtils_2.0.1.7  geojsonlint_0.2.0  stats4_3.4.3      
+    ## [73] codetools_0.2-15   LearnBayes_2.15    osmar_1.1-7       
+    ## [76] XML_3.98-1.9       glue_1.2.0         evaluate_0.10.1   
+    ## [79] V8_1.5             png_0.1-7          foreach_1.4.4     
+    ## [82] httpuv_1.3.5       gtable_0.2.0       purrr_0.2.4       
+    ## [85] assertthat_0.2.0   mime_0.5           xtable_1.8-2      
+    ## [88] e1071_1.6-8        coda_0.19-1        viridisLite_0.3.0 
+    ## [91] class_7.3-14       tibble_1.4.2       iterators_1.0.9   
+    ## [94] units_0.5-1

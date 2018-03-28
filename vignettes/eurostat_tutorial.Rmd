@@ -290,22 +290,31 @@ The mapping examples below use [`tmap`](https://github.com/mtennekes/tmap) packa
 ```{r maps1-1, eval=TRUE, fig.width=8, fig.height=8}
 library(dplyr)
 library(eurostat)
+library(sf)
 library(tmap)
 
+
+# Coerce to a sf object
+df60 <- st_as_sf(get_eurostat_geospatial(output_class = "spdf", resolution = 60))
+
+# Map example 1
 # Load example data set
 data("tgs00026")
 # Can be retrieved from the eurostat service with:
 # tgs00026 <- get_eurostat("tgs00026", time_format = "raw")
 
-# Data from Eurostat
-sp_data <- tgs00026 %>% 
+# Convert
+euro_sf <- tgs00026 %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
   # categorise
-  dplyr::mutate(income = cut_to_classes(values, n = 5)) %>% 
-  # merge with geodata
-  merge_eurostat_geodata(data = ., geocolumn = "geo",resolution = "60", 
-                         output_class = "spdf", all_regions = TRUE) 
+  dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>%
+  # merge with the spatial data
+  # NOTE! geo becomes character
+  dplyr::inner_join(df60, ., by = c("NUTS_ID" = "geo")) %>% 
+  # use a proper coordinate reference syste (CRS):
+  # epsg projection 3035 - etrs89 / etrs-laea
+  sf::st_transform("+init=epsg:3035") 
 ```
 
 Load example data (map)
@@ -320,8 +329,8 @@ Construct the map
 ```{r maps1-1c, eval=TRUE}
 map1 <- tmap::tm_shape(Europe) +
   tmap::tm_fill("lightgrey") +
-  tmap::tm_shape(sp_data) +
-  tmap::tm_grid() +
+  tmap::tm_shape(euro_sf) +
+  tmap::tm_grid(labels.inside.frame = FALSE) +
   tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
                     palette = "Oranges") +
   tmap::tm_format_Europe()  
@@ -355,7 +364,12 @@ sp_data <- tgs00026 %>%
   mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
          income = cut_to_classes(values)) %>% 
   # merge with geodata
-  merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf")
+  # OR merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf") %>%
+  dplyr::inner_join(df60, ., by = c("NUTS_ID" = "geo")) %>% 
+  # use a proper coordinate reference syste (CRS):
+  # epsg projection 3035 - etrs89 / etrs-laea
+  sf::st_transform("+init=epsg:3035") 
+
 
 # plot map
 map2 <- tm_shape(Europe) +
