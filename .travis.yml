@@ -41,15 +41,24 @@ before_install:
   - sudo apt-get -qq update
   - sudo apt-get install -y libxml2-dev libv8-dev
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
+  - sudo add-apt-repository -y ppa:opencpu/jq  
   - sudo apt-get --yes --force-yes update -qq
   
   - sudo apt-get install --yes libgdal20 libspatialite-dev 
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev
   - sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1v5 libproj-dev
+  - sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev libjq-dev
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev  
   - sudo apt-get install --yes libv8-dev    
   - sudo apt-get install --yes npm
   - sudo npm install -g mapshaper
   - sudo npm install -g geojson  
+
+  - . $HOME/.nvm/nvm.sh
+  - nvm install stable
+  - nvm use stable
+- npm install -g mapshaper
+
 
 r:
 - release
