@@ -13,6 +13,7 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -25,6 +26,7 @@
 <script src="../pkgdown.js"></script>
   
   
+
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -85,7 +87,6 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
-      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -102,9 +103,7 @@
     <h1>Get Eurostat Codes</h1>
     </div>
 
-    
     <p>Get definitions for Eurostat codes from Eurostat dictionaries.</p>
-    
 
     <pre class="usage"><span class='fu'>label_eurostat</span>(<span class='no'>x</span>, <span class='kw'>dic</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>code</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>eu_order</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
   <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en"</span>, <span class='kw'>fix_duplicated</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
@@ -112,7 +111,7 @@
 <span class='fu'>label_eurostat_vars</span>(<span class='no'>x</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en"</span>)
 
 <span class='fu'>label_eurostat_tables</span>(<span class='no'>x</span>, <span class='kw'>lang</span> <span class='kw'>=</span> <span class='st'>"en"</span>)</pre>
-    
+
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -148,11 +147,10 @@ duplicated label values. If FALSE (default) error is given if
 labelling produce duplicates.</p></td>
     </tr>
     </table>
-    
+
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a vector or a data_frame.</p>
-    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>A character or a factor vector of codes returns a corresponding 
@@ -165,7 +163,6 @@ labelling produce duplicates.</p></td>
 <p>Some Eurostat dictionaries includes dublicated labels. By default 
    dublicated labels cause an error, but they can be fixed automatically 
    with <code>fix_duplicated = TRUE</code>.</p>
-    
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     <ul>
@@ -173,7 +170,6 @@ labelling produce duplicates.</p></td>
 objects other than characters or factors definitions are get for names.</p></li>
 <li><p><code>label_eurostat_tables</code>: Get definitions for table names</p></li>
 </ul>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
@@ -191,13 +187,9 @@ objects other than characters or factors definitions are get for names.</p></li>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
       <li><a href="#value">Value</a></li>
-
       <li><a href="#details">Details</a></li>
-
       <li><a href="#functions">Functions</a></li>
-      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -214,7 +206,7 @@ Janne Huovari <a href='mailto:janne.huovari@ptt.fi'>janne.huovari@ptt.fi</a>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

@@ -853,9 +853,9 @@ The mapping examples below use
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppHZSYC/eurostat/spdf60.RData
+    ## Reading cache file /tmp/Rtmp8n8Kru/eurostat/spdf60.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/RtmppHZSYC/eurostat/spdf60.RData
+    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/Rtmp8n8Kru/eurostat/spdf60.RData
 
 Load example data (map)
 
@@ -925,9 +925,9 @@ Interactive maps can be generated as well
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppHZSYC/eurostat/spdf01.RData
+    ## Reading cache file /tmp/Rtmp8n8Kru/eurostat/spdf01.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 01  read from cache file:  /tmp/RtmppHZSYC/eurostat/spdf01.RData
+    ## SpatialPolygonDataFrame at resolution 1: 01  read from cache file:  /tmp/Rtmp8n8Kru/eurostat/spdf01.RData
 
     # plot map
     map2 <- tm_shape(Europe) +
@@ -944,6 +944,7 @@ Interactive maps can be generated as well
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
 
+    # , dev='CairoPNG'
     library(sp)
     library(eurostat)
     library(dplyr)
@@ -983,9 +984,9 @@ Interactive maps can be generated as well
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/RtmppHZSYC/eurostat/spdf10.RData
+    ## Reading cache file /tmp/Rtmp8n8Kru/eurostat/spdf10.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmppHZSYC/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp8n8Kru/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1129,27 +1130,27 @@ This tutorial was created with
     ## [16] spData_0.2.7.0     rgeos_0.3-26       lazyeval_0.2.1    
     ## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.1.9000  
     ## [22] tidyselect_0.2.3   leaflet_1.1.0      curl_3.1          
-    ## [25] compiler_3.4.3     Cairo_1.5-9        expm_0.999-2      
-    ## [28] labeling_0.3       scales_0.5.0.9000  rmapshaper_0.3.0  
-    ## [31] classInt_0.1-24    readr_1.1.1        stringr_1.2.0     
-    ## [34] digest_0.6.15      R.utils_2.6.0      base64enc_0.1-3   
-    ## [37] dichromat_2.0-0    pkgconfig_2.0.1    htmltools_0.3.6   
-    ## [40] highr_0.6          jsonvalidate_1.0.0 htmlwidgets_1.0   
-    ## [43] rlang_0.1.6.9003   shiny_1.0.5        bindr_0.1         
-    ## [46] jsonlite_1.5       crosstalk_1.0.0    gtools_3.5.0      
-    ## [49] R.oo_1.21.0        spdep_0.7-4        RCurl_1.95-4.10   
-    ## [52] magrittr_1.5       geosphere_1.5-7    Matrix_1.2-12     
-    ## [55] Rcpp_0.12.15       munsell_0.4.3      R.methodsS3_1.7.1 
-    ## [58] stringi_1.1.6      yaml_2.1.16        MASS_7.3-48       
-    ## [61] tmaptools_1.2-3    plyr_1.8.4         grid_3.4.3        
-    ## [64] gdata_2.18.0       udunits2_0.13      deldir_0.1-14     
-    ## [67] lattice_0.20-35    splines_3.4.3      hms_0.4.1         
-    ## [70] pillar_1.1.0       boot_1.3-20        gdalUtils_2.0.1.7 
-    ## [73] geojsonlint_0.2.0  stats4_3.4.3       codetools_0.2-15  
-    ## [76] LearnBayes_2.15    osmar_1.1-7        XML_3.98-1.9      
-    ## [79] glue_1.2.0         evaluate_0.10.1    V8_1.5            
-    ## [82] png_0.1-7          httpuv_1.3.5       foreach_1.4.4     
-    ## [85] gtable_0.2.0       purrr_0.2.4        assertthat_0.2.0  
-    ## [88] mime_0.5           xtable_1.8-2       e1071_1.6-8       
-    ## [91] coda_0.19-1        viridisLite_0.3.0  class_7.3-14      
-    ## [94] tibble_1.4.2       iterators_1.0.9    units_0.5-1
+    ## [25] compiler_3.4.3     expm_0.999-2       labeling_0.3      
+    ## [28] scales_0.5.0.9000  rmapshaper_0.3.0   classInt_0.1-24   
+    ## [31] readr_1.1.1        stringr_1.2.0      digest_0.6.15     
+    ## [34] R.utils_2.6.0      base64enc_0.1-3    dichromat_2.0-0   
+    ## [37] pkgconfig_2.0.1    htmltools_0.3.6    highr_0.6         
+    ## [40] jsonvalidate_1.0.0 htmlwidgets_1.0    rlang_0.1.6.9003  
+    ## [43] shiny_1.0.5        bindr_0.1          jsonlite_1.5      
+    ## [46] crosstalk_1.0.0    gtools_3.5.0       R.oo_1.21.0       
+    ## [49] spdep_0.7-4        RCurl_1.95-4.10    magrittr_1.5      
+    ## [52] geosphere_1.5-7    Matrix_1.2-12      Rcpp_0.12.15      
+    ## [55] munsell_0.4.3      R.methodsS3_1.7.1  stringi_1.1.6     
+    ## [58] yaml_2.1.16        MASS_7.3-48        tmaptools_1.2-3   
+    ## [61] plyr_1.8.4         grid_3.4.3         gdata_2.18.0      
+    ## [64] udunits2_0.13      deldir_0.1-14      lattice_0.20-35   
+    ## [67] splines_3.4.3      hms_0.4.1          pillar_1.1.0      
+    ## [70] boot_1.3-20        gdalUtils_2.0.1.7  geojsonlint_0.2.0 
+    ## [73] stats4_3.4.3       codetools_0.2-15   LearnBayes_2.15   
+    ## [76] osmar_1.1-7        XML_3.98-1.9       glue_1.2.0        
+    ## [79] evaluate_0.10.1    V8_1.5             png_0.1-7         
+    ## [82] httpuv_1.3.5       foreach_1.4.4      gtable_0.2.0      
+    ## [85] purrr_0.2.4        assertthat_0.2.0   mime_0.5          
+    ## [88] xtable_1.8-2       e1071_1.6-8        coda_0.19-1       
+    ## [91] viridisLite_0.3.0  class_7.3-14       tibble_1.4.2      
+    ## [94] iterators_1.0.9    units_0.5-1
