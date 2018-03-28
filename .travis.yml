@@ -36,6 +36,16 @@ env:
   - r_check_args: "--as-cran"    
   - GITHUB_REPO: ropengov/eurostat
 
+
+apt_packages:
+  - libudunits2-dev
+  - libv8-dev
+  - libprotobuf-dev
+  - libprotoc-dev
+  - protobuf-compiler
+  - valgrind
+
+
 before_install:
   - pip install --user codecov
   - sudo apt-get -qq update
@@ -46,9 +56,10 @@ before_install:
   
   - sudo apt-get install --yes libgdal20 libspatialite-dev 
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev
-  - sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1v5 libproj-dev
+  - sudo apt-get install --yes libgdal1-dev libgdal-dev libgeos-c1v5 libproj-dev
   - sudo apt-get install --yes libprotobuf-dev protobuf-compiler libv8-3.14-dev libjq-dev
-  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev  
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev
+  - sudo apt-get install --yes netcdf-bin libjq-dev  
   - sudo apt-get install --yes libv8-dev    
   - sudo apt-get install --yes npm
   - sudo npm install -g mapshaper
@@ -57,7 +68,9 @@ before_install:
   - . $HOME/.nvm/nvm.sh
   - nvm install stable
   - nvm use stable
-- npm install -g mapshaper
+  - npm install -g mapshaper
+
+
 
 
 r:
