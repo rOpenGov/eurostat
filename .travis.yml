@@ -19,6 +19,7 @@ r_packages:
   - geojson  
   - geojsonio
   - geojsonlint
+  - jsonlite
   - mapview
   - rmapshaper
   - tmap
