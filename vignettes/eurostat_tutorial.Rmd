@@ -412,7 +412,7 @@ sp::spplot(obj = dat, "cat", main = "Disposable household income",
 
 Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic rsdmx R package can be used to access data in that format when necessary:
 
-```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG', eval=FALSE}
+```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG'}
 library(rsdmx)
 
 # Data set URL
