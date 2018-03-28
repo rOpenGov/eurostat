@@ -901,8 +901,8 @@ Interactive maps can be generated as well
     library(ggplot2)
     library(RColorBrewer)
 
-    # Downloading and manipulating the tabular data
-    sp_data <- tgs00026 %>% 
+    # Downloading and manipulating the tabular data 
+    euro_sf2 <- tgs00026 %>% 
       # subsetting to year 2014 and NUTS-3 level
       dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
       # label the single geo column
@@ -919,7 +919,7 @@ Interactive maps can be generated as well
     # plot map
     map2 <- tm_shape(Europe) +
       tm_fill("lightgrey") +
-      tm_shape(sp_data, is.master = TRUE) +
+      tm_shape(euro_sf2, is.master = TRUE) +
       tm_polygons("income", title = "Disposable household incomes in 2014",
                   palette = "Oranges", border.col = "white") + 
       tm_text("label", just = "center") + 
