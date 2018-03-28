@@ -28,10 +28,10 @@ output:
 
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
 
-[![Follow](https://img.shields.io/badge/Twitter-@rOpenGov-blue.svg?style=flat)](https://twitter.com/intent/follow?screen_name=ropengov)  
+[![Follow](https://img.shields.io/badge/Twitter-@rOpenGov.svg?style=flat)](https://twitter.com/intent/follow?screen_name=ropengov)  
 
    <a href="http://twitter.com/rOpenGov" target="_blank">
-        <img src="https://img.shields.io/badge/Twitter-@rOpenGov-blue.svg?style=flat" alt="rOpenGov Twitter">
+        <img src="https://img.shields.io/badge/Twitter-@rOpenGov.svg?style=flat" alt="rOpenGov Twitter">
     </a>
  
 
