@@ -10,6 +10,7 @@ notifications:
     - leo.lahti@iki.fi
 
 r_packages:
+  - devtools
   - Cairo
   - jqr
   - rgdal
