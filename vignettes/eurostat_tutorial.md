@@ -843,9 +843,9 @@ The mapping examples below use
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp9gPQET/eurostat/spdf60.RData
+    ## Reading cache file /tmp/RtmpvtxFRg/eurostat/spdf60.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/Rtmp9gPQET/eurostat/spdf60.RData
+    ## SpatialPolygonDataFrame at resolution 1: 60  read from cache file:  /tmp/RtmpvtxFRg/eurostat/spdf60.RData
 
     # Map example 1
     # Load example data set
@@ -876,12 +876,13 @@ Load example data (map)
 Construct the map
 
     map1 <- tmap::tm_shape(Europe) +
-      tmap::tm_fill("lightgrey") +
+      tmap::tm_fill(col = "lightgrey") +
       tmap::tm_shape(euro_sf) +
       tmap::tm_grid(labels.inside.frame = FALSE) +
-      tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
+      tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",
                         palette = "Oranges") +
-      tmap::tm_format_Europe()  
+      tmap::tm_format_Europe()
+    print(map1)  
 
 Interactive maps can be generated as well
 
@@ -930,7 +931,6 @@ Interactive maps can be generated as well
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
 
-    # , dev='CairoPNG'
     library(sp)
     library(eurostat)
     library(dplyr)
@@ -970,9 +970,9 @@ Interactive maps can be generated as well
     ##       information regarding their licence agreements.
     ## 
 
-    ## Reading cache file /tmp/Rtmp9gPQET/eurostat/spdf10.RData
+    ## Reading cache file /tmp/RtmpvtxFRg/eurostat/spdf10.RData
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/Rtmp9gPQET/eurostat/spdf10.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  read from cache file:  /tmp/RtmpvtxFRg/eurostat/spdf10.RData
 
     # plot map
     sp::spplot(obj = dat, "cat", main = "Disposable household income",
@@ -1001,6 +1001,63 @@ package can be used to access data in that format when necessary:
     df <- as.data.frame(d)
 
     kable(head(df))
+
+<table>
+<thead>
+<tr class="header">
+<th align="left">UNIT</th>
+<th align="left">Y_GRAD</th>
+<th align="left">FOS07</th>
+<th align="left">GEO</th>
+<th align="left">FREQ</th>
+<th align="left">obsTime</th>
+<th align="right">obsValue</th>
+<th align="left">OBS_STATUS</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">43.75</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+</tbody>
+</table>
 
 Further examples
 ================
@@ -1101,11 +1158,11 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] sp_1.2-7           RColorBrewer_1.1-2 tmap_1.11-1       
-    ##  [4] sf_0.6-0           dplyr_0.7.4        plotrix_3.7       
-    ##  [7] ggplot2_2.2.1.9000 tidyr_0.8.0        bindrcpp_0.2      
-    ## [10] rvest_0.3.2        xml2_1.2.0         eurostat_3.1.6001 
-    ## [13] rmarkdown_1.8      knitr_1.19        
+    ##  [1] rsdmx_0.5-10       sp_1.2-7           RColorBrewer_1.1-2
+    ##  [4] tmap_1.11-1        sf_0.6-0           dplyr_0.7.4       
+    ##  [7] plotrix_3.7        ggplot2_2.2.1.9000 tidyr_0.8.0       
+    ## [10] bindrcpp_0.2       rvest_0.3.2        xml2_1.2.0        
+    ## [13] eurostat_3.1.6001  rmarkdown_1.8      knitr_1.19        
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] nlme_3.1-131       bitops_1.0-6       satellite_1.0.1   

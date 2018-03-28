@@ -326,14 +326,16 @@ data(Europe)
 
 Construct the map
 
-```{r maps1-1c, eval=TRUE}
+```{r maps1-1c, eval=FALSE}
 map1 <- tmap::tm_shape(Europe) +
-  tmap::tm_fill("lightgrey") +
+  tmap::tm_fill(col = "lightgrey") +
   tmap::tm_shape(euro_sf) +
   tmap::tm_grid(labels.inside.frame = FALSE) +
-  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
+  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",
                     palette = "Oranges") +
-  tmap::tm_format_Europe()  
+  tmap::tm_format_Europe()
+print(map1)  
+
 ```
 
 Interactive maps can be generated as well
@@ -386,7 +388,6 @@ map2
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
 
 ```{r maps3, fig.width=8, fig.height=8}
-# , dev='CairoPNG'
 library(sp)
 library(eurostat)
 library(dplyr)
