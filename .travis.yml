@@ -42,7 +42,9 @@ before_install:
   - sudo apt-get install -y libxml2-dev libv8-dev
   - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable --yes
   - sudo apt-get --yes --force-yes update -qq
-  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev libv8-dev
+  - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev
+  - sudo apt-get install libgdal1-dev libgdal-dev libgeos-c1 libproj-dev
+  - sudo apt-get install --yes libv8-dev    
   - sudo apt-get install --yes npm
   - sudo npm install -g mapshaper
   - sudo npm install -g geojson  
