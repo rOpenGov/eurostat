@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Merge Preprocessed Geospatial Data from GISCO with data_frame from Eurostat — merge_eurostat_geodata • eurostat</title>
+<title>Merge Geospatial GISCO Data with Eurostat data_frame — merge_eurostat_geodata • eurostat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -100,14 +100,14 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Merge Preprocessed Geospatial Data from GISCO with data_frame from Eurostat</h1>
+    <h1>Merge Geospatial GISCO Data with Eurostat data_frame</h1>
     </div>
 
     <p>Merges data_frame obtained from Eurostat with <code>get_eurostat</code> with geospatial data preprocessed either using <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/fortify'>ggplot2::fortify</a></code> into a <code>data_frame</code> or a regular <code>SpatialPolygonDataFrame</code>. The resulting <code>data_frame</code> can be plotted using <code>ggplot2</code> and <code>SpatialPolygonDataFrame</code> using <code><a href='http://www.rdocumentation.org/packages/sp/topics/spplot'>sp::spplot</a></code>.</p>
 
     <pre class="usage"><span class='fu'>merge_eurostat_geodata</span>(<span class='no'>data</span>, <span class='kw'>geocolumn</span> <span class='kw'>=</span> <span class='st'>"geo"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>,
-  <span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"df"</span>, <span class='kw'>all_regions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+  <span class='kw'>all_regions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
@@ -125,10 +125,6 @@ consists of values following current NUTS classification</p></td>
     <tr>
       <th>resolution</th>
       <td><p>Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),</p></td>
-    </tr>
-    <tr>
-      <th>output_class</th>
-      <td><p>A string. Class of object returned, either <code>df</code> (<code>data_frame</code>) or <code>spdf</code> (<code>SpatialPolygonDataFrame</code>)</p></td>
     </tr>
     <tr>
       <th>all_regions</th>
@@ -156,7 +152,7 @@ consists of values following current NUTS classification</p></td>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
    <span class='no'>lp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_eurostat.html'>get_eurostat</a></span>(<span class='st'>"nama_aux_lp"</span>)
    <span class='no'>lpl</span> <span class='kw'>&lt;-</span> <span class='fu'>merge_eurostat_geodata</span>(<span class='no'>lp</span>, <span class='kw'>geocolumn</span><span class='kw'>=</span><span class='st'>"geo"</span>, <span class='kw'>resolution</span><span class='kw'>=</span><span class='fl'>60</span>,
-                            <span class='kw'>output_class</span><span class='kw'>=</span><span class='st'>"df"</span>, <span class='kw'>all_regions</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
+                            <span class='kw'>all_regions</span><span class='kw'>=</span><span class='fl'>FALSE</span>)
    <span class='fu'>str</span>(<span class='no'>lpl</span>)
 
 <span class='co'># }</span><div class='input'> 

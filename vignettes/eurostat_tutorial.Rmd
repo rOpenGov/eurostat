@@ -294,7 +294,7 @@ library(sf)
 library(tmap)
 
 # Use sf object downloaded from GISCO
-gisco <- get_eurostat_geospatial(output_class = "spdf", resolution = 60)
+gisco <- get_eurostat_geospatial(resolution = 60)
 
 # Since sf objects inherit directly from data.frame and sf has implemented
 # the necessary dplyr verbs, this (plotting NUTS2-level units) just works
@@ -376,7 +376,6 @@ euro_sf2 <- tgs00026 %>%
   mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
          income = cut_to_classes(values)) %>% 
   # merge with geodata
-  # OR merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf") %>%
   dplyr::inner_join(gisco, ., by = c("NUTS_ID" = "geo")) %>% 
   # use a proper coordinate reference syste (CRS):
   # epsg projection 3035 - etrs89 / etrs-laea

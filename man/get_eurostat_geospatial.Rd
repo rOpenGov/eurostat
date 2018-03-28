@@ -4,12 +4,10 @@
 \alias{get_eurostat_geospatial}
 \title{Download Geospatial Data from GISCO}
 \usage{
-get_eurostat_geospatial(output_class = "spdf", resolution = "60",
-  cache = TRUE, update_cache = FALSE, cache_dir = NULL)
+get_eurostat_geospatial(resolution = "60", cache = TRUE,
+  update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
-\item{output_class}{A string. Class of object returned, either \code{df} (\code{data_frame}), or \code{spdf} (\code{SpatialPolygonDataFrame})}
-
 \item{resolution}{Resolution of the geospatial data. One of
 "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
 
@@ -37,10 +35,9 @@ The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/refer
 }
 \examples{
  \dontrun{
-   lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60")
+   lp <- get_eurostat_geospatial(resolution = "60")
    spplot(lp, "STAT_LEVL_")
    # or
-   lp <- get_eurostat_geospatial(output_class = "df", resolution = "60")
    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
  }
  
