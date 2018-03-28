@@ -13,7 +13,6 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -26,7 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -70,9 +68,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/2017_RJournal_manuscript/README.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
       <a href="../articles/blogposts.html">Blog posts</a>
     </li>
     <li>
@@ -90,6 +85,7 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -106,12 +102,14 @@
     <h1>Download Geospatial Data from GISCO</h1>
     </div>
 
+    
     <p>Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
    <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/fortify'>ggplot2::fortify</a></code>.</p>
+    
 
     <pre class="usage"><span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"spdf"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>,
   <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -144,13 +142,15 @@ The <code>NULL</code> (default) uses and creates
 <code>option</code> eurostat_cache_dir.</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a data_frame or SpatialPolygonDataFrame.</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The data source URL is <a href='http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units'>http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units</a>.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
@@ -167,8 +167,11 @@ The <code>NULL</code> (default) uses and creates
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -185,7 +188,7 @@ Markus Kainu &lt;markuskainu@gmail.com&gt;
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

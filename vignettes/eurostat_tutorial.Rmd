@@ -371,7 +371,8 @@ map2
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
 
-```{r maps3, fig.width=8, fig.height=8, dev='CairoPNG'}
+```{r maps3, fig.width=8, fig.height=8}
+# , dev='CairoPNG'
 library(sp)
 library(eurostat)
 library(dplyr)

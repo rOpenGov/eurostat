@@ -13,7 +13,6 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -26,7 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -70,9 +68,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/2017_RJournal_manuscript/README.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
       <a href="../articles/blogposts.html">Blog posts</a>
     </li>
     <li>
@@ -90,6 +85,7 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -106,10 +102,12 @@
     <h1>Download Data from Eurostat Database</h1>
     </div>
 
+    
     <p>Download data from the eurostat database.</p>
+    
 
     <pre class="usage"><span class='fu'>get_eurostat_raw</span>(<span class='no'>id</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -119,7 +117,7 @@
 contents of eurostat datasets for more details.</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A dataset in tibble format. First column contains comma 
@@ -127,16 +125,20 @@ contents of eurostat datasets for more details.</p></td>
   years and column names are years with preceding X. Data is in 
   character format as it contains values together with eurostat 
   flags for data.</p>
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Data is downloaded from
  <a href='http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing'>http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing</a> and transformed into tabular format.</p>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>see citation("eurostat")</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='get_eurostat.html'>get_eurostat</a></code>.</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -149,10 +151,15 @@ contents of eurostat datasets for more details.</p></td>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
+
       <li><a href="#references">References</a></li>
+
       <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -169,7 +176,7 @@ Przemyslaw Biecek, Leo Lahti and Janne Huovari <a href='mailto:ropengov-forum@go
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>

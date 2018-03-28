@@ -13,7 +13,6 @@
 <!-- Bootstrap -->
 
 <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
 <!-- Font Awesome icons -->
@@ -26,7 +25,6 @@
 <script src="../pkgdown.js"></script>
   
   
-
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
 
@@ -70,9 +68,6 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="../articles/2017_RJournal_manuscript/README.html">UNKNOWN TITLE</a>
-    </li>
-    <li>
       <a href="../articles/blogposts.html">Blog posts</a>
     </li>
     <li>
@@ -90,6 +85,7 @@
   <a href="../news/index.html">News</a>
 </li>
       </ul>
+      
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
@@ -106,13 +102,15 @@
     <h1>Grep Datasets Titles from Eurostat</h1>
     </div>
 
+    
     <p>Lists names of dataset from eurostat with the particular
 pattern in the description.</p>
+    
 
     <pre class="usage"><span class='fu'>search_eurostat</span>(<span class='no'>pattern</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dataset"</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>grepEurostatTOC</span>(<span class='no'>pattern</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dataset"</span>)</pre>
-
+    
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
@@ -132,7 +130,7 @@ the description will be returned (depending on the 'type' argument)</p></td>
 Change to FALSE if more complex regex matching is needed.</p></td>
     </tr>
     </table>
-
+    
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>A tibble with eight columns</p><ul>
@@ -142,23 +140,28 @@ Change to FALSE if more complex regex matching is needed.</p></td>
 <li><p>last.update.of.data, last.table.structure.change, data.start, data.endDates.</p></li>
 </ul>
 
+    
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Downloads list of all datasets available on
 eurostat and return list of names of datasets that contains particular
 pattern in the dataset description. E.g. all datasets related to
 education of teaching.</p>
+    
     <h2 class="hasAnchor" id="functions"><a class="anchor" href="#functions"></a>Functions</h2>
 
     <ul>
 <li><p><code>grepEurostatTOC</code>: Old deprecated version</p></li>
 </ul>
+    
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
 
     <p>See citation("eurostat")</p>
+    
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <p><code><a href='get_eurostat.html'>get_eurostat</a></code>, <code><a href='get_eurostat_toc.html'>get_eurostat_toc</a></code></p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -173,11 +176,17 @@ education of teaching.</p>
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
+      
       <li><a href="#value">Value</a></li>
+
       <li><a href="#details">Details</a></li>
+
       <li><a href="#functions">Functions</a></li>
+
       <li><a href="#references">References</a></li>
+
       <li><a href="#see-also">See also</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
@@ -194,7 +203,7 @@ Przemyslaw Biecek and Leo Lahti <a href='mailto:ropengov-forum@googlegroups.com'
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
 </div>
 
       </footer>
