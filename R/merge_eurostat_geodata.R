@@ -10,7 +10,6 @@
 #' @param cache cache. Logical.
 #' @param update_cache Update cache. Logical.
 #' @param cache_dir Cache directory.
-#' @export
 #' @author Markus Kainu <markuskainu@@gmail.com>
 #' @return a data_frame or SpatialPolygonDataFrame.
 #' @examples
@@ -26,7 +25,12 @@ merge_eurostat_geodata <- function(data,geocolumn="geo",resolution="60",
                                    all_regions=FALSE,
                                    cache = TRUE,
 				   update_cache = FALSE, cache_dir = NULL){
-  
+
+  # Not sure if this function is needed any more
+  # after we have implemented simple features for
+  # get_eurostat_geospatial (see issue #82)
+  # therefore not exporting this function for now..
+
   map.df <- get_eurostat_geospatial(output_class=output_class,
 				    resolution=resolution,
 				    cache = cache,

@@ -22,32 +22,6 @@ Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 Overall, the eurostat package includes the following functions:
 
-    clean_eurostat_cache    Clean Eurostat Cache
-    cut_to_classes          Cuts the Values Column into Classes and
-                            Polishes the Labels
-    dic_order               Order of Variable Levels from Eurostat
-                            Dictionary.
-    eu_countries            Countries and Country Codes
-    eurostat-package        R Tools for Eurostat open data
-    eurotime2date           Date Conversion from Eurostat Time Format
-    eurotime2num            Conversion of Eurostat Time Format to Numeric
-    get_eurostat            Read Eurostat Data
-    get_eurostat_dic        Download Eurostat Dictionary
-    get_eurostat_geospatial
-                            Download Geospatial Data from GISCO
-    get_eurostat_json       Get Data from Eurostat API in JSON
-    get_eurostat_raw        Download Data from Eurostat Database
-    get_eurostat_toc        Download Table of Contents of Eurostat Data
-                            Sets
-    harmonize_country_code
-                            Harmonize Country Code
-    label_eurostat          Get Eurostat Codes
-    merge_eurostat_geodata
-                            Merge Preprocessed Geospatial Data from GISCO
-                            with data_frame from Eurostat
-    search_eurostat         Grep Datasets Titles from Eurostat
-    tgs00026                Auxiliary Data
-
 Finding data
 ============
 
@@ -1158,42 +1132,44 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] rsdmx_0.5-10       sp_1.2-7           RColorBrewer_1.1-2
-    ##  [4] tmap_1.11-1        sf_0.6-0           dplyr_0.7.4       
-    ##  [7] plotrix_3.7        ggplot2_2.2.1.9000 tidyr_0.8.0       
-    ## [10] bindrcpp_0.2       rvest_0.3.2        xml2_1.2.0        
-    ## [13] eurostat_3.1.6001  rmarkdown_1.8      knitr_1.19        
+    ##  [1] eurostat_3.1.6001  devtools_1.13.4    rsdmx_0.5-10      
+    ##  [4] sp_1.2-7           RColorBrewer_1.1-2 tmap_1.11-1       
+    ##  [7] sf_0.6-0           dplyr_0.7.4        plotrix_3.7       
+    ## [10] ggplot2_2.2.1.9000 tidyr_0.8.0        bindrcpp_0.2      
+    ## [13] rvest_0.3.2        xml2_1.2.0         rmarkdown_1.8     
+    ## [16] knitr_1.19        
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] nlme_3.1-131       bitops_1.0-6       satellite_1.0.1   
-    ##  [4] webshot_0.5.0.9000 gmodels_2.16.2     httr_1.3.1        
-    ##  [7] rprojroot_1.3-2    mapview_2.3.0      tools_3.4.3       
-    ## [10] backports_1.1.2    rgdal_1.2-16       R6_2.2.2          
-    ## [13] KernSmooth_2.23-15 spData_0.2.7.0     rgeos_0.3-26      
-    ## [16] DBI_0.7            lazyeval_0.2.1     colorspace_1.3-2  
-    ## [19] raster_2.6-7       withr_2.1.1.9000   tidyselect_0.2.3  
-    ## [22] leaflet_1.1.0      curl_3.1           compiler_3.4.3    
-    ## [25] expm_0.999-2       labeling_0.3       scales_0.5.0.9000 
-    ## [28] rmapshaper_0.3.0   classInt_0.1-24    readr_1.1.1       
-    ## [31] stringr_1.2.0      digest_0.6.15      R.utils_2.6.0     
-    ## [34] base64enc_0.1-3    dichromat_2.0-0    pkgconfig_2.0.1   
-    ## [37] htmltools_0.3.6    highr_0.6          jsonvalidate_1.0.0
-    ## [40] htmlwidgets_1.0    rlang_0.1.6.9003   shiny_1.0.5       
-    ## [43] bindr_0.1          jsonlite_1.5       crosstalk_1.0.0   
-    ## [46] gtools_3.5.0       R.oo_1.21.0        spdep_0.7-4       
-    ## [49] RCurl_1.95-4.10    magrittr_1.5       geosphere_1.5-7   
-    ## [52] Matrix_1.2-12      Rcpp_0.12.15       munsell_0.4.3     
-    ## [55] R.methodsS3_1.7.1  stringi_1.1.6      yaml_2.1.16       
-    ## [58] MASS_7.3-48        tmaptools_1.2-3    plyr_1.8.4        
-    ## [61] grid_3.4.3         gdata_2.18.0       udunits2_0.13     
-    ## [64] deldir_0.1-14      lattice_0.20-35    splines_3.4.3     
-    ## [67] hms_0.4.1          pillar_1.1.0       boot_1.3-20       
-    ## [70] gdalUtils_2.0.1.7  geojsonlint_0.2.0  stats4_3.4.3      
-    ## [73] codetools_0.2-15   LearnBayes_2.15    osmar_1.1-7       
-    ## [76] XML_3.98-1.9       glue_1.2.0         evaluate_0.10.1   
-    ## [79] V8_1.5             png_0.1-7          foreach_1.4.4     
-    ## [82] httpuv_1.3.5       gtable_0.2.0       purrr_0.2.4       
-    ## [85] assertthat_0.2.0   mime_0.5           xtable_1.8-2      
-    ## [88] e1071_1.6-8        coda_0.19-1        viridisLite_0.3.0 
-    ## [91] class_7.3-14       tibble_1.4.2       iterators_1.0.9   
-    ## [94] units_0.5-1
+    ##  [1] colorspace_1.3-2   deldir_0.1-14      class_7.3-14      
+    ##  [4] gdalUtils_2.0.1.7  leaflet_1.1.0      rgdal_1.2-16      
+    ##  [7] rprojroot_1.3-2    satellite_1.0.1    base64enc_0.1-3   
+    ## [10] dichromat_2.0-0    roxygen2_6.0.1     codetools_0.2-15  
+    ## [13] splines_3.4.3      R.methodsS3_1.7.1  geojsonlint_0.2.0 
+    ## [16] jsonlite_1.5       tmaptools_1.2-3    png_0.1-7         
+    ## [19] R.oo_1.21.0        rgeos_0.3-26       shiny_1.0.5       
+    ## [22] readr_1.1.1        compiler_3.4.3     httr_1.3.1        
+    ## [25] backports_1.1.2    mapview_2.3.0      assertthat_0.2.0  
+    ## [28] Matrix_1.2-12      lazyeval_0.2.1     htmltools_0.3.6   
+    ## [31] tools_3.4.3        coda_0.19-1        gtable_0.2.0      
+    ## [34] glue_1.2.0         gmodels_2.16.2     V8_1.5            
+    ## [37] Rcpp_0.12.15       raster_2.6-7       spdep_0.7-4       
+    ## [40] gdata_2.18.0       nlme_3.1-131       udunits2_0.13     
+    ## [43] iterators_1.0.9    crosstalk_1.0.0    stringr_1.2.0     
+    ## [46] testthat_2.0.0     mime_0.5           gtools_3.5.0      
+    ## [49] XML_3.98-1.9       LearnBayes_2.15    MASS_7.3-48       
+    ## [52] scales_0.5.0.9000  hms_0.4.1          expm_0.999-2      
+    ## [55] yaml_2.1.16        curl_3.1           memoise_1.1.0     
+    ## [58] geosphere_1.5-7    stringi_1.1.6      jsonvalidate_1.0.0
+    ## [61] highr_0.6          foreach_1.4.4      e1071_1.6-8       
+    ## [64] boot_1.3-20        spData_0.2.7.0     rlang_0.1.6.9003  
+    ## [67] pkgconfig_2.0.1    commonmark_1.4     bitops_1.0-6      
+    ## [70] evaluate_0.10.1    lattice_0.20-35    purrr_0.2.4       
+    ## [73] bindr_0.1          htmlwidgets_1.0    labeling_0.3      
+    ## [76] tidyselect_0.2.3   osmar_1.1-7        plyr_1.8.4        
+    ## [79] magrittr_1.5       R6_2.2.2           DBI_0.7           
+    ## [82] pillar_1.1.0       withr_2.1.1.9000   units_0.5-1       
+    ## [85] RCurl_1.95-4.10    tibble_1.4.2       rmapshaper_0.3.0  
+    ## [88] KernSmooth_2.23-15 grid_3.4.3         digest_0.6.15     
+    ## [91] classInt_0.1-24    webshot_0.5.0.9000 xtable_1.8-2      
+    ## [94] httpuv_1.3.5       R.utils_2.6.0      stats4_3.4.3      
+    ## [97] munsell_0.4.3      viridisLite_0.3.0

@@ -788,22 +788,13 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 <p>The mapping examples below use <a href="https://github.com/mtennekes/tmap"><code>tmap</code></a> package.</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(dplyr)
 <span class="kw">library</span>(eurostat)
-<span class="kw">library</span>(tmap)
+<span class="kw">library</span>(sf)</code></pre></div>
+<pre><code>## Linking to GEOS 3.5.1, GDAL 2.2.1, proj.4 4.9.3</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tmap)
 
-<span class="co"># Load example data set</span>
-<span class="kw">data</span>(<span class="st">"tgs00026"</span>)
-<span class="co"># Can be retrieved from the eurostat service with:</span>
-<span class="co"># tgs00026 &lt;- get_eurostat("tgs00026", time_format = "raw")</span>
 
-<span class="co"># Data from Eurostat</span>
-sp_data &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># subset to have only a single row per geo</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw">nchar</span>(<span class="kw">as.character</span>(geo)) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># categorise</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># merge with geodata</span>
-<span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data =</span> ., <span class="dt">geocolumn =</span> <span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"60"</span>, 
-                         <span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">all_regions =</span> <span class="ot">TRUE</span>) </code></pre></div>
+<span class="co"># Coerce to a sf object</span>
+df60 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_as_sf">st_as_sf</a></span>(<span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="dv">60</span>))</code></pre></div>
 <pre><code>## 
 ##       COPYRIGHT NOTICE
 ## 
@@ -830,17 +821,38 @@ sp_data &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><sp
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/Rtmp97L7W9/eurostat/spdf60.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 60  cached at:  /tmp/RtmpUOFIdQ/eurostat/spdf60.RData</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Map example 1</span>
+<span class="co"># Load example data set</span>
+<span class="kw">data</span>(<span class="st">"tgs00026"</span>)
+<span class="co"># Can be retrieved from the eurostat service with:</span>
+<span class="co"># tgs00026 &lt;- get_eurostat("tgs00026", time_format = "raw")</span>
+
+<span class="co"># Convert</span>
+euro_sf &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># subset to have only a single row per geo</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw">nchar</span>(<span class="kw">as.character</span>(geo)) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># categorise</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="co"># merge with the spatial data</span>
+<span class="st">  </span><span class="co"># </span><span class="al">NOTE</span><span class="co">! geo becomes character</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(df60, ., <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"NUTS_ID"</span> =<span class="st"> "geo"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># use a proper coordinate reference syste (CRS):</span>
+<span class="st">  </span><span class="co"># epsg projection 3035 - etrs89 / etrs-laea</span>
+<span class="st">  </span>sf<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_transform">st_transform</a></span>(<span class="st">"+init=epsg:3035"</span>) </code></pre></div>
+<pre><code>## Warning: Column `NUTS_ID`/`geo` joining factors with different levels,
+## coercing to character vector</code></pre>
 <p>Load example data (map)</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">data</span>(Europe)</code></pre></div>
 <p>Construct the map</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">map1 &lt;-<span class="st"> </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(Europe) <span class="op">+</span>
-<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_fill</a></span>(<span class="st">"lightgrey"</span>) <span class="op">+</span>
-<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(sp_data) <span class="op">+</span>
-<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_grid">tm_grid</a></span>() <span class="op">+</span>
-<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_polygons</a></span>(<span class="st">"income"</span>, <span class="dt">title =</span> <span class="st">"Disposable household</span><span class="ch">\n</span><span class="st">incomes in 2010"</span>,  
+<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_fill</a></span>(<span class="dt">col =</span> <span class="st">"lightgrey"</span>) <span class="op">+</span>
+<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(euro_sf) <span class="op">+</span>
+<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_grid">tm_grid</a></span>(<span class="dt">labels.inside.frame =</span> <span class="ot">FALSE</span>) <span class="op">+</span>
+<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_polygons</a></span>(<span class="st">"income"</span>, <span class="dt">title =</span> <span class="st">"Disposable household</span><span class="ch">\n</span><span class="st">incomes in 2010"</span>,
                     <span class="dt">palette =</span> <span class="st">"Oranges"</span>) <span class="op">+</span>
-<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_layout">tm_format_Europe</a></span>()  </code></pre></div>
+<span class="st">  </span>tmap<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_layout">tm_format_Europe</a></span>()
+<span class="kw">print</span>(map1)  </code></pre></div>
 <p>Interactive maps can be generated as well</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Interactive</span>
 <span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tmap_mode">tmap_mode</a></span>(<span class="st">"view"</span>)
@@ -858,46 +870,25 @@ map1
 <span class="kw">library</span>(ggplot2)
 <span class="kw">library</span>(RColorBrewer)
 
-<span class="co"># Downloading and manipulating the tabular data</span>
-sp_data &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="co"># Downloading and manipulating the tabular data </span>
+euro_sf2 &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># subsetting to year 2014 and NUTS-3 level</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(<span class="kw">as.character</span>(geo)) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>, <span class="kw">grepl</span>(<span class="st">"PL"</span>,geo)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># label the single geo column</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(.)[[<span class="st">"geo"</span>]], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, values, <span class="st">"€"</span>),
          <span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># merge with geodata</span>
-<span class="st">  </span><span class="kw"><a href="../reference/merge_eurostat_geodata.html">merge_eurostat_geodata</a></span>(<span class="dt">data=</span>.,<span class="dt">geocolumn=</span><span class="st">"geo"</span>,<span class="dt">resolution =</span> <span class="st">"01"</span>, <span class="dt">all_regions =</span> <span class="ot">FALSE</span>, <span class="dt">output_class=</span><span class="st">"spdf"</span>)</code></pre></div>
-<pre><code>## 
-##       COPYRIGHT NOTICE
-## 
-##       When data downloaded from this page 
-##       &lt;http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units&gt;
-##       is used in any printed or electronic publication, 
-##       in addition to any other provisions 
-##       applicable to the whole Eurostat website, 
-##       data source will have to be acknowledged 
-##       in the legend of the map and 
-##       in the introductory page of the publication 
-##       with the following copyright notice:
-## 
-##       - EN: (C) EuroGeographics for the administrative boundaries
-##       - FR: (C) EuroGeographics pour les limites administratives
-##       - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-## 
-##       For publications in languages other than 
-##       English, French or German, 
-##       the translation of the copyright notice 
-##       in the language of the publication shall be used.
-## 
-##       If you intend to use the data commercially, 
-##       please contact EuroGeographics for 
-##       information regarding their licence agreements.
-## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 01  cached at:  /tmp/Rtmp97L7W9/eurostat/spdf01.RData</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
+<span class="st">  </span><span class="co"># OR merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf") %&gt;%</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(df60, ., <span class="dt">by =</span> <span class="kw">c</span>(<span class="st">"NUTS_ID"</span> =<span class="st"> "geo"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st">  </span><span class="co"># use a proper coordinate reference syste (CRS):</span>
+<span class="st">  </span><span class="co"># epsg projection 3035 - etrs89 / etrs-laea</span>
+<span class="st">  </span>sf<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sf/topics/st_transform">st_transform</a></span>(<span class="st">"+init=epsg:3035"</span>) 
+
+
+<span class="co"># plot map</span>
 map2 &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(Europe) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_fill</a></span>(<span class="st">"lightgrey"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(sp_data, <span class="dt">is.master =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_shape">tm_shape</a></span>(euro_sf2, <span class="dt">is.master =</span> <span class="ot">TRUE</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_polygons">tm_polygons</a></span>(<span class="st">"income"</span>, <span class="dt">title =</span> <span class="st">"Disposable household incomes in 2014"</span>,
               <span class="dt">palette =</span> <span class="st">"Oranges"</span>, <span class="dt">border.col =</span> <span class="st">"white"</span>) <span class="op">+</span><span class="st"> </span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/tmap/topics/tm_text">tm_text</a></span>(<span class="st">"label"</span>, <span class="dt">just =</span> <span class="st">"center"</span>) <span class="op">+</span><span class="st"> </span>
@@ -909,8 +900,7 @@ map2</code></pre></div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-at-160mln-resolution-using-spplot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-at-160mln-resolution-using-spplot" class="anchor"></a>Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot</h3>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># , dev='CairoPNG'</span>
-<span class="kw">library</span>(sp)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(sp)
 <span class="kw">library</span>(eurostat)
 <span class="kw">library</span>(dplyr)
 dat &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><span class="st"> </span>
@@ -947,7 +937,7 @@ dat &lt;-<span class="st"> </span>tgs00026 <span class="op">%&gt;%</span><span c
 ##       please contact EuroGeographics for 
 ##       information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp97L7W9/eurostat/spdf10.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpUOFIdQ/eurostat/spdf10.RData</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
 sp<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/sp/topics/spplot">spplot</a></span>(<span class="dt">obj =</span> dat, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,
        <span class="dt">xlim =</span> <span class="kw">c</span>(<span class="op">-</span><span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim =</span> <span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>), 
@@ -972,6 +962,60 @@ d &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentat
 df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 
 <span class="kw"><a href="http://www.rdocumentation.org/packages/knitr/topics/kable">kable</a></span>(<span class="kw">head</span>(df))</code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">UNIT</th>
+<th align="left">Y_GRAD</th>
+<th align="left">FOS07</th>
+<th align="left">GEO</th>
+<th align="left">FREQ</th>
+<th align="left">obsTime</th>
+<th align="right">obsValue</th>
+<th align="left">OBS_STATUS</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">TOTAL</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2009</td>
+<td align="right">43.75</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">Y_GE1990</td>
+<td align="left">FOS1</td>
+<td align="left">BE</td>
+<td align="left">A</td>
+<td align="left">2006</td>
+<td align="right">NA</td>
+<td align="left">na</td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div id="further-examples" class="section level1">
@@ -1055,44 +1099,45 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-##  [1] sp_1.2-7           RColorBrewer_1.1-2 tmap_1.11-1       
-##  [4] dplyr_0.7.4        plotrix_3.7        ggplot2_2.2.1.9000
-##  [7] tidyr_0.8.0        bindrcpp_0.2       rvest_0.3.2       
-## [10] xml2_1.2.0         eurostat_3.1.6001  knitr_1.19        
+##  [1] rsdmx_0.5-10       sp_1.2-7           RColorBrewer_1.1-2
+##  [4] tmap_1.11-1        sf_0.6-0           dplyr_0.7.4       
+##  [7] plotrix_3.7        ggplot2_2.2.1.9000 tidyr_0.8.0       
+## [10] bindrcpp_0.2       rvest_0.3.2        xml2_1.2.0        
+## [13] eurostat_3.1.6001  knitr_1.19        
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] nlme_3.1-131       bitops_1.0-6       sf_0.6-0          
-##  [4] satellite_1.0.1    webshot_0.5.0.9000 gmodels_2.16.2    
-##  [7] httr_1.3.1         rprojroot_1.3-2    mapview_2.3.0     
-## [10] tools_3.4.3        backports_1.1.2    rgdal_1.2-16      
-## [13] R6_2.2.2           KernSmooth_2.23-15 DBI_0.7           
-## [16] spData_0.2.7.0     rgeos_0.3-26       lazyeval_0.2.1    
-## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.1.9000  
-## [22] tidyselect_0.2.3   leaflet_1.1.0      curl_3.1          
-## [25] compiler_3.4.3     expm_0.999-2       labeling_0.3      
-## [28] scales_0.5.0.9000  rmapshaper_0.3.0   classInt_0.1-24   
-## [31] readr_1.1.1        stringr_1.2.0      digest_0.6.15     
-## [34] R.utils_2.6.0      rmarkdown_1.8      base64enc_0.1-3   
-## [37] dichromat_2.0-0    pkgconfig_2.0.1    htmltools_0.3.6   
-## [40] highr_0.6          jsonvalidate_1.0.0 htmlwidgets_1.0   
-## [43] rlang_0.1.6.9003   shiny_1.0.5        bindr_0.1         
-## [46] jsonlite_1.5       crosstalk_1.0.0    gtools_3.5.0      
-## [49] R.oo_1.21.0        spdep_0.7-4        RCurl_1.95-4.10   
-## [52] magrittr_1.5       geosphere_1.5-7    Matrix_1.2-12     
-## [55] Rcpp_0.12.15       munsell_0.4.3      R.methodsS3_1.7.1 
-## [58] stringi_1.1.6      yaml_2.1.16        MASS_7.3-48       
-## [61] tmaptools_1.2-3    plyr_1.8.4         grid_3.4.3        
-## [64] gdata_2.18.0       udunits2_0.13      deldir_0.1-14     
-## [67] lattice_0.20-35    splines_3.4.3      hms_0.4.1         
-## [70] pillar_1.1.0       boot_1.3-20        gdalUtils_2.0.1.7 
-## [73] geojsonlint_0.2.0  stats4_3.4.3       codetools_0.2-15  
-## [76] LearnBayes_2.15    osmar_1.1-7        XML_3.98-1.9      
-## [79] glue_1.2.0         evaluate_0.10.1    V8_1.5            
-## [82] png_0.1-7          httpuv_1.3.5       foreach_1.4.4     
-## [85] gtable_0.2.0       purrr_0.2.4        assertthat_0.2.0  
-## [88] mime_0.5           xtable_1.8-2       e1071_1.6-8       
-## [91] coda_0.19-1        viridisLite_0.3.0  class_7.3-14      
-## [94] tibble_1.4.2       iterators_1.0.9    units_0.5-1</code></pre>
+##  [1] nlme_3.1-131       bitops_1.0-6       satellite_1.0.1   
+##  [4] webshot_0.5.0.9000 gmodels_2.16.2     httr_1.3.1        
+##  [7] rprojroot_1.3-2    mapview_2.3.0      tools_3.4.3       
+## [10] backports_1.1.2    rgdal_1.2-16       R6_2.2.2          
+## [13] KernSmooth_2.23-15 spData_0.2.7.0     rgeos_0.3-26      
+## [16] DBI_0.7            lazyeval_0.2.1     colorspace_1.3-2  
+## [19] raster_2.6-7       withr_2.1.1.9000   tidyselect_0.2.3  
+## [22] leaflet_1.1.0      curl_3.1           compiler_3.4.3    
+## [25] expm_0.999-2       labeling_0.3       scales_0.5.0.9000 
+## [28] rmapshaper_0.3.0   classInt_0.1-24    readr_1.1.1       
+## [31] stringr_1.2.0      digest_0.6.15      R.utils_2.6.0     
+## [34] rmarkdown_1.8      base64enc_0.1-3    dichromat_2.0-0   
+## [37] pkgconfig_2.0.1    htmltools_0.3.6    highr_0.6         
+## [40] jsonvalidate_1.0.0 htmlwidgets_1.0    rlang_0.1.6.9003  
+## [43] shiny_1.0.5        bindr_0.1          jsonlite_1.5      
+## [46] crosstalk_1.0.0    gtools_3.5.0       R.oo_1.21.0       
+## [49] spdep_0.7-4        RCurl_1.95-4.10    magrittr_1.5      
+## [52] geosphere_1.5-7    Matrix_1.2-12      Rcpp_0.12.15      
+## [55] munsell_0.4.3      R.methodsS3_1.7.1  stringi_1.1.6     
+## [58] yaml_2.1.16        MASS_7.3-48        tmaptools_1.2-3   
+## [61] plyr_1.8.4         grid_3.4.3         gdata_2.18.0      
+## [64] udunits2_0.13      deldir_0.1-14      lattice_0.20-35   
+## [67] splines_3.4.3      hms_0.4.1          pillar_1.1.0      
+## [70] boot_1.3-20        gdalUtils_2.0.1.7  geojsonlint_0.2.0 
+## [73] stats4_3.4.3       codetools_0.2-15   LearnBayes_2.15   
+## [76] osmar_1.1-7        XML_3.98-1.9       glue_1.2.0        
+## [79] evaluate_0.10.1    V8_1.5             png_0.1-7         
+## [82] foreach_1.4.4      httpuv_1.3.5       gtable_0.2.0      
+## [85] purrr_0.2.4        assertthat_0.2.0   mime_0.5          
+## [88] xtable_1.8-2       e1071_1.6-8        coda_0.19-1       
+## [91] viridisLite_0.3.0  class_7.3-14       tibble_1.4.2      
+## [94] iterators_1.0.9    units_0.5-1</code></pre>
 </div>
 </div>
   </div>

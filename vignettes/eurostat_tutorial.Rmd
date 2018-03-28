@@ -293,10 +293,21 @@ library(eurostat)
 library(sf)
 library(tmap)
 
+# Use sf object downloaded from GISCO
+gisco <- get_eurostat_geospatial(output_class = "spdf", resolution = 60)
 
-# Coerce to a sf object
-df60 <- st_as_sf(get_eurostat_geospatial(output_class = "spdf", resolution = 60))
+# Since sf objects inherit directly from data.frame and sf has implemented
+# the necessary dplyr verbs, this (plotting NUTS2-level units) just works
+map0 <- gisco %>%   
+  dplyr::filter(STAT_LEVL_ == 2 & grepl("DE", NUTS_ID)) %>%
+  dplyr::select(NUTS_ID) %>% 
+  plot()
+```
 
+
+Another example on map data manipulation
+
+```{r maps1ex2, eval=TRUE, fig.width=8, fig.height=8}
 # Map example 1
 # Load example data set
 data("tgs00026")
@@ -311,7 +322,7 @@ euro_sf <- tgs00026 %>%
   dplyr::mutate(cat = cut_to_classes(values, n = 5)) %>%
   # merge with the spatial data
   # NOTE! geo becomes character
-  dplyr::inner_join(df60, ., by = c("NUTS_ID" = "geo")) %>% 
+  dplyr::inner_join(gisco, ., by = c("NUTS_ID" = "geo")) %>% 
   # use a proper coordinate reference syste (CRS):
   # epsg projection 3035 - etrs89 / etrs-laea
   sf::st_transform("+init=epsg:3035") 
@@ -366,7 +377,7 @@ euro_sf2 <- tgs00026 %>%
          income = cut_to_classes(values)) %>% 
   # merge with geodata
   # OR merge_eurostat_geodata(data=.,geocolumn="geo",resolution = "01", all_regions = FALSE, output_class="spdf") %>%
-  dplyr::inner_join(df60, ., by = c("NUTS_ID" = "geo")) %>% 
+  dplyr::inner_join(gisco, ., by = c("NUTS_ID" = "geo")) %>% 
   # use a proper coordinate reference syste (CRS):
   # epsg projection 3035 - etrs89 / etrs-laea
   sf::st_transform("+init=epsg:3035") 
@@ -382,28 +393,6 @@ map2 <- tm_shape(Europe) +
   tm_scale_bar() +
   tm_format_Europe(legend.outside = TRUE, attr.outside = TRUE)
 map2
-```
-
-### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using spplot
-
-```{r maps3, fig.width=8, fig.height=8}
-library(sp)
-library(eurostat)
-library(dplyr)
-dat <- tgs00026 %>% 
-  # subsetting to year 2014 and NUTS-3 level
-  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
-  # classifying the values the variable
-  dplyr::mutate(cat = cut_to_classes(values)) %>% 
-  # merge Eurostat data with geodata from Cisco
-  merge_eurostat_geodata(data = .,geocolumn = "geo",resolution = "10", 
-                         output_class = "spdf", all_regions = FALSE) 
-
-# plot map
-sp::spplot(obj = dat, "cat", main = "Disposable household income",
-	   xlim = c(-22,34), ylim = c(35,70), 
-           col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
-	   col = "white", usePolypath = FALSE)
 ```
 
 

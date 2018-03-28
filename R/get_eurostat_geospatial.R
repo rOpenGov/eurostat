@@ -1,8 +1,7 @@
 #' @title Download Geospatial Data from GISCO
 #' @description Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
 #'    \code{ggplot2::fortify}.
-#' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}) or
-#'    \code{spdf} (\code{SpatialPolygonDataFrame})
+#' @param output_class A string. Class of object returned, either \code{df} (\code{data_frame}), or \code{spdf} (\code{SpatialPolygonDataFrame})
 #' @param resolution Resolution of the geospatial data. One of
 #'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
@@ -108,7 +107,16 @@ get_eurostat_geospatial <- function(output_class="spdf",resolution="60",
                         "M_SH_SPDF.RData")))
         shape <- get(paste0("NUTS_2013_",resolution,"M_SH_SPDF"))
       }
-    
+
+      if (output_class == "spdf"){
+        load(url(paste0("https://github.com/rOpenGov/eurostat_geodata/raw/master/rdata/NUTS_2013_",
+                        resolution,
+                        "M_SH_SPDF.RData")))
+        shape <- get(paste0("NUTS_2013_",resolution,"M_SH_SPDF"))
+        # Coerce to a sf object
+        shape <- st_as_sf(shape)
+      }
+
   }
   
   if (cache & file.exists(cache_file)) {
