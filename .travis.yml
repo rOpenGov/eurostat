@@ -45,6 +45,7 @@ before_install:
   - sudo apt-get install --yes libudunits2-dev libproj-dev libgeos-dev libgdal-dev libv8-dev
   - sudo apt-get install --yes npm
   - sudo npm install -g mapshaper
+  - sudo npm install -g geojson  
 
 r:
 - release
