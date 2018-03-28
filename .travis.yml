@@ -52,13 +52,8 @@ apt_packages:
   - libgdal1-dev
   - libgdal-dev
   - libgeos-c1v5
-#  - libv8-3.14-dev
   - libjq-dev
-#  - libproj-dev
-#  - libgeos-dev
-#  - libgdal-dev
   - netcdf-bin
-#  - libjq-dev  
 
 before_install:
   - pip install --user codecov
