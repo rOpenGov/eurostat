@@ -69,10 +69,16 @@ can not be used with a \code{filters}.}
 \item{...}{further argument for \code{\link{get_eurostat_json}}.}
 }
 \value{
-a tibble. One column for each dimension in the data and
+a tibble. One column for each dimension in the data,
+        the time column for a time dimension and
         the values column for numerical values.
-        The time column for a time dimension. Data from bulk download 
-        facility do not include items whose all values are missing.
+        Eurostat data does not include all missing values and a treatment of
+        missing values depend on source. In bulk download 
+        facility missing values are dropped if all dimensions are missing
+        on particular time. In JSON API missing values are dropped
+        only if all dimensions are missing on all times. The data from
+        bulk download facility can be completed for example with 
+        \code{\link[tidyr]{complete}}.
 }
 \description{
 Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
