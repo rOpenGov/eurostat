@@ -184,7 +184,7 @@ kable(efta_countries)
 ## EU data from 2012 in all vehicles:
 
 ```{r eu_12}
-dat_eu12 <- subset(datl, geo == "European Union (28 countries)" & time == 2012)
+dat_eu12 <- subset(datl, geo == "European Union (current composition)" & time == 2012)
 kable(dat_eu12, row.names = FALSE)
 ```
 
@@ -292,12 +292,11 @@ library(dplyr)
 library(eurostat)
 library(sf)
 library(tmap)
-library(sf)
 
 # Download attribute data from Eurostat
-sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>% 
+sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
   # subset to have only a single row per geo
-  dplyr::filter(time == 2010, nchar(as.character(geo)) == 4) %>% 
+  dplyr::filter(time == 2010, nchar(geo) == 4) %>% 
   # categorise
   dplyr::mutate(income = cut_to_classes(values, n = 5))
 
@@ -346,9 +345,9 @@ library(sf)
 library(RColorBrewer)
 
 # Downloading and manipulating the tabular data 
-euro_sf2 <- tgs00026 %>% 
+euro_sf2 <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
   # subsetting to year 2014 and NUTS-3 level
-  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4, grepl("PL",geo)) %>% 
+  dplyr::filter(time == 2014, grepl("PL",geo)) %>% 
   # label the single geo column
   mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
          income = cut_to_classes(values))
@@ -357,7 +356,7 @@ euro_sf2 <- tgs00026 %>%
 geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
 
 # merge with attribute data with geodata
-map_data <- inner_join(geodata, sp_data)
+map_data <- inner_join(geodata, euro_sf2)
 
 # plot map
 map2 <- tm_shape(Europe) +
@@ -365,7 +364,7 @@ map2 <- tm_shape(Europe) +
   tm_shape(map_data, is.master = TRUE) +
   tm_polygons("income", title = "Disposable household incomes in 2014",
               palette = "Oranges", border.col = "white") + 
-  tm_text("label", just = "center") + 
+  tm_text("NUTS_NAME", just = "center") + 
   tm_scale_bar() +
   tm_format_Europe(legend.outside = TRUE, attr.outside = TRUE)
 map2
@@ -377,9 +376,9 @@ map2
 library(sp)
 library(eurostat)
 library(dplyr)
-dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
+dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
   # subsetting to year 2014 and NUTS-3 level
-  dplyr::filter(time == 2014, nchar(as.character(geo)) == 4) %>% 
+  dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 
@@ -387,7 +386,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw") %>%
 geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "10")
 
 # merge with attribute data with geodata
-map_data <- inner_join(geodata, dat)
+map_data <- inner_join(geodata, dat, by = c("id" = "geo"))
 
 # Convert into a SpatialPolygonDataFrame
 dat <- as(map_data, "Spatial")

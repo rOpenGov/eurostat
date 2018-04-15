@@ -102,19 +102,19 @@ information regarding their licence agreements.
 
     
     if (nuts_level %in% c("0","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
       nuts0 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }
     if (nuts_level %in% c("1","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
       nuts1 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }    
     if (nuts_level %in% c("2","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
       nuts2 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }
     if (nuts_level %in% c("3","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/nuts-2013/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
+      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
       nuts3 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
     }
     if (nuts_level %in% c("all")){
@@ -161,15 +161,17 @@ HEADS UP!!
 
 Function now returns the data in 'sf'-class (simple features) 
 by default which is different 
-from original behaviour that returned 'SpatialPolygonDataFrame'. 
+from previous behaviour's 'SpatialPolygonDataFrame'. 
 
 If you prefer either 'SpatialPolygonDataFrame' or 
-fortified 'data_frame' for ggplot2::geom_polygon, 
-please be specify it explicitly for 'output_class'-attribute!
+fortified 'data_frame' (for ggplot2::geom_polygon), 
+please specify it explicitly to 'output_class'-argument!
 
 # --------------------------          
           ")
   
+  # Adding a `geo` column for easier joins with dplyr 
+  shp$geo <- shp$NUTS_ID
   return(shp)
 
 }
