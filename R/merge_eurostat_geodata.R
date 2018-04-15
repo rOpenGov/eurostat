@@ -22,25 +22,42 @@
 merge_eurostat_geodata <- function(data,geocolumn="geo",resolution="60",
                                    all_regions=FALSE,
                                    cache = TRUE,
-				   update_cache = FALSE, cache_dir = NULL){
-
-  # Not sure if this function is needed any more
-  # after we have implemented simple features for
-  # get_eurostat_geospatial (see issue #82)
-  # therefore not exporting this function for now..
-
-  map.df <- get_eurostat_geospatial(
-				    resolution=resolution,
-				    cache = cache,
-				    update_cache = update_cache,
-				    cache_dir = cache_dir)
+                                   update_cache = FALSE, cache_dir = NULL){
+  
+  map.df <- get_eurostat_geospatial(output_class=output_class,
+                                    resolution=resolution,
+                                    cache = cache,
+                                    update_cache = update_cache,
+                                    cache_dir = cache_dir)
   
   data[[geocolumn]] <- as.character(data[[geocolumn]])
-
-  if (any(duplicated(data[[geocolumn]]))) stop("Duplicated countries/regions in attribute data. Please remove!")
-  if (all_regions)  d <- merge(map.df,data,by.x="NUTS_ID",by.y=geocolumn,duplicateGeoms= TRUE, all.y=TRUE)
-  if (!all_regions) d <- merge(map.df,data,by.x="NUTS_ID",by.y=geocolumn,duplicateGeoms= TRUE, all.x=TRUE)
-  d <- d[!is.na(d[[ncol(data)]]),] # remove polygons with no attribute data
-
+  
+  if (output_class == "df"){
+    if (all_regions)  d <- merge(data,map.df,by.x=geocolumn,by.y="NUTS_ID",all.y=TRUE)
+    if (!all_regions) d <- merge(data,map.df,by.x=geocolumn,by.y="NUTS_ID",all.x=TRUE)
+    d <- d[order(d$order),] 
+  }
+  if (output_class == "spdf"){
+    if (any(duplicated(data[[geocolumn]]))) stop("Duplicated countries/regions in attribute data. Please remove!")
+    if (all_regions)  d <- merge(map.df,data,by.x="NUTS_ID",by.y=geocolumn,duplicateGeoms= TRUE, all.y=TRUE)
+    if (!all_regions) d <- merge(map.df,data,by.x="NUTS_ID",by.y=geocolumn,duplicateGeoms= TRUE, all.x=TRUE)
+    d <- d[!is.na(d[[ncol(data)]]),] # remove polygons with no attribute data
+  }
   return(d)
+  
+  message("
+          # --------------------------
+          HEADS UP!!
+          
+          eurostat-package now support sf (simple features) by default 
+          regarding the geospatial data.
+          
+          Rather than using this functions, please consider migrating into
+          simple features and using dplyr join-verbs for joining 
+          attribute data with geospatial data!
+          
+          This function will be deprecated in future versions!
+          # --------------------------          
+          ")  
+  
 }

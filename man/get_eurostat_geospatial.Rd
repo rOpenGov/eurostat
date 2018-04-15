@@ -2,14 +2,31 @@
 % Please edit documentation in R/get_eurostat_geospatial.R
 \name{get_eurostat_geospatial}
 \alias{get_eurostat_geospatial}
+<<<<<<< HEAD
 \title{Download Geospatial Data from GISCO}
 \usage{
 get_eurostat_geospatial(resolution = "60", cache = TRUE,
   update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
+=======
+\title{Download Geospatial Data from GISGO}
+\usage{
+get_eurostat_geospatial(output_class = "sf", resolution = "60",
+  nuts_level = "all", cache = TRUE, update_cache = FALSE,
+  cache_dir = NULL)
+}
+\arguments{
+\item{output_class}{A string. Class of object returned, 
+either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
+   \code{spdf} (\code{SpatialPolygonDataFrame})}
+
+>>>>>>> simplefeatures
 \item{resolution}{Resolution of the geospatial data. One of
-"60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
+"60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million).}
+
+\item{nuts_level}{Level of NUTS classification of the geospatial data. One of
+"0", "1", "2", "3" or "all" (mimics the original behaviour)}
 
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
 only queries from the bulk download facility.}
@@ -24,20 +41,31 @@ The \code{NULL} (default) uses and creates
 \code{option} eurostat_cache_dir.}
 }
 \value{
-a data_frame or SpatialPolygonDataFrame.
+a sf, data_frame or SpatialPolygonDataFrame.
 }
 \description{
-Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
-   \code{ggplot2::fortify}.
+Downloads either a simple features (sf), SpatialPolygonDataFrame or a data_frame preprocessed using
+   \code{broom::tidy()}.
 }
 \details{
 The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 }
 \examples{
  \dontrun{
+<<<<<<< HEAD
    lp <- get_eurostat_geospatial(resolution = "60")
    spplot(lp, "STAT_LEVL_")
    # or
+=======
+   library(sf)
+   library(dplyr)
+   lp <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
+   lp \%>\%  select(NUTS_ID) \%>\%  plot()
+   lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60", nuts_level = "all")
+   spplot(lp, "STAT_LEVL_")
+   # or
+   lp <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "all")
+>>>>>>> simplefeatures
    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
  }
  

@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2018-04-07
-Version: 3.1.6002
+Date: 2018-04-15
+Version: 3.1.6003
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
@@ -31,7 +31,9 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    readr,
+    sf
 Suggests:
     dplyr,
     Cairo,
