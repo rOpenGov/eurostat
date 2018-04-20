@@ -73,6 +73,8 @@ please contact EuroGeographics for
 information regarding their licence agreements.
           ")
   
+  if (resolution != "60"){
+  
   if (cache){
     # check option for update
     update_cache <- update_cache | getOption("eurostat_update", FALSE)
@@ -124,19 +126,36 @@ information regarding their licence agreements.
     if (nuts_level == "1") shp <- nuts1
     if (nuts_level == "2") shp <- nuts2
     if (nuts_level == "3") shp <- nuts3
-    
+  }
+  }
+  
+    if (resolution == "60"){
+      
+      data("eurostat_geodata_60", envir=environment())
+      
+      if (nuts_level %in% c("all")){
+        shp <- eurostat_geodata_60 #data("eurostat_geodata_60")
+      }
+      if (nuts_level == "0") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 0)
+      if (nuts_level == "1") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 1)
+      if (nuts_level == "2") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 2)
+      if (nuts_level == "3") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 3)
 
+    }
+    
     if (output_class == "df"){
+      # library(sf)
       nuts_sp <- as(shp, "Spatial")
       nuts_sp$id <- row.names(nuts_sp)
       nuts_ff <- broom::tidy(nuts_sp)
-      shp <- left_join(nuts_ff,nuts_sp@data)
+      shp <- dplyr::left_join(nuts_ff,nuts_sp@data)
     }
     if (output_class == "spdf"){
+      # library(sf)
       shp <- as(shp, "Spatial")
     }
-  }
-  
+
+  if (resolution != "60"){
   if (cache & file.exists(cache_file)) {
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))
@@ -153,6 +172,13 @@ information regarding their licence agreements.
     if (output_class == "sf") message(paste("sf at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
     if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
     if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
+  }
+  }
+  if (resolution == "60"){
+    if (output_class == "sf") message(paste("sf at resolution 1:60 read from local file"))
+    if (output_class == "df") message(paste("data_frame at resolution 1:60 read from local file"))
+    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:60 read from local file"))
+    
   }
   
   message("
@@ -176,3 +202,4 @@ please specify it explicitly to 'output_class'-argument!
 
 }
 
+get_eurostat_geospatial()
