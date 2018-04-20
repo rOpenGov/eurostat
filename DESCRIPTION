@@ -29,6 +29,7 @@ Imports:
     stringi,
     stringr,
     tibble,
+    broom,
     tidyr,
     readr,
     sf
