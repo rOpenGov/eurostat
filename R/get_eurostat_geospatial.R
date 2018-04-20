@@ -108,19 +108,19 @@ information regarding their licence agreements.
     
     if (nuts_level %in% c("0","all")){
       resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
-      nuts0 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
+      nuts0 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("1","all")){
       resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
-      nuts1 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
+      nuts1 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }    
     if (nuts_level %in% c("2","all")){
       resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
-      nuts2 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
+      nuts2 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("3","all")){
       resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
-      nuts3 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE)
+      nuts3 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("all")){
       shp <- rbind(nuts0,nuts1,nuts2,nuts3)

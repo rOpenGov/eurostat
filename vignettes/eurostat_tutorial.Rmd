@@ -313,7 +313,7 @@ data(Europe)
 
 Construct the map
 
-```{r map1ex, eval=FALSE}
+```{r map1ex, eval=TRUE}
 map1 <- tmap::tm_shape(Europe) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(map_data) +
