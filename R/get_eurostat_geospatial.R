@@ -39,7 +39,7 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_leve
   
   # 
   library(sf)
-  data("eurostat_geodata_60", envir = environment())
+  data("eurostat_geodata_60", envir = environment(), package = "eurostat")
   
   # Check resolution is of correct format
   resolution <- as.character(resolution)
