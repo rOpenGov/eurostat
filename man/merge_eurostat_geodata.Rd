@@ -2,11 +2,11 @@
 % Please edit documentation in R/merge_eurostat_geodata.R
 \name{merge_eurostat_geodata}
 \alias{merge_eurostat_geodata}
-\title{Merge Preprocessed Geospatial Data from GISCO with data_frame from Eurostat}
+\title{Merge Geospatial GISCO Data with Eurostat data_frame}
 \usage{
 merge_eurostat_geodata(data, geocolumn = "geo", resolution = "60",
-  output_class = "df", all_regions = FALSE, cache = TRUE,
-  update_cache = FALSE, cache_dir = NULL)
+  all_regions = FALSE, cache = TRUE, update_cache = FALSE,
+  cache_dir = NULL)
 }
 \arguments{
 \item{data}{A data_frame including a character vector that
@@ -16,8 +16,6 @@ consists of values following current NUTS classification}
 (\code{geo} in data_frames fetched using \code{get_eurostat})}
 
 \item{resolution}{Resolution of the geospatial data. One of "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),}
-
-\item{output_class}{A string. Class of object returned, either \code{df} (\code{data_frame}) or \code{spdf} (\code{SpatialPolygonDataFrame})}
 
 \item{all_regions}{Logical. To include all the regions from spatial data or only the ones included in the fetched Eurostat attribute data}
 
@@ -37,7 +35,7 @@ Merges data_frame obtained from Eurostat with \code{get_eurostat} with geospatia
  \dontrun{
    lp <- get_eurostat("nama_aux_lp")
    lpl <- merge_eurostat_geodata(lp, geocolumn="geo", resolution=60,
-     	                    output_class="df", all_regions=FALSE)
+     	                    all_regions=FALSE)
    str(lpl)
  }
  

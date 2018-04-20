@@ -62,15 +62,23 @@ they are returned as a character.}
 "provisional") should be kept in a separate column or if they
 can be removed. Default is \code{FALSE}. For flag values see: 
 \url{http://ec.europa.eu/eurostat/data/database/information}.
-Also possible non-real zero "0n" is indicated in flags column.}
+Also possible non-real zero "0n" is indicated in flags column. 
+Flags are not available for eurostat API, so \code{keepFlags}
+can not be used with a \code{filters}.}
 
 \item{...}{further argument for \code{\link{get_eurostat_json}}.}
 }
 \value{
-a tibble. One column for each dimension in the data and
+a tibble. One column for each dimension in the data,
+        the time column for a time dimension and
         the values column for numerical values.
-        The time column for a time dimension. Data from bulk download 
-        facility do not include items whose all values are missing.
+        Eurostat data does not include all missing values and a treatment of
+        missing values depend on source. In bulk download 
+        facility missing values are dropped if all dimensions are missing
+        on particular time. In JSON API missing values are dropped
+        only if all dimensions are missing on all times. The data from
+        bulk download facility can be completed for example with 
+        \code{\link[tidyr]{complete}}.
 }
 \description{
 Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
@@ -119,11 +127,10 @@ k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 
-dd <- get_eurostat("namq_aux_lp", 
+dd <- get_eurostat("nama_10_gdp", 
                      filters = list(geo = "FI", 
-                                    indic_na = "RLPH", 
-                                    unit = "EUR_HRS",
-                                    s_adj = "NSA"))
+                                    na_item = "B1GQ", 
+                                    unit = "CLV_I10"))
 }
 }
 \seealso{

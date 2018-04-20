@@ -54,7 +54,7 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="..//index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
@@ -69,9 +69,6 @@
     <span class="caret"></span>
   </a>
   <ul class="dropdown-menu" role="menu">
-    <li>
-      <a href="../articles/2017_RJournal_manuscript/README.html">UNKNOWN TITLE</a>
-    </li>
     <li>
       <a href="../articles/blogposts.html">Blog posts</a>
     </li>
@@ -190,7 +187,9 @@ they are returned as a character.</p></td>
 "provisional") should be kept in a separate column or if they
 can be removed. Default is <code>FALSE</code>. For flag values see: 
 <a href='http://ec.europa.eu/eurostat/data/database/information'>http://ec.europa.eu/eurostat/data/database/information</a>.
-Also possible non-real zero "0n" is indicated in flags column.</p></td>
+Also possible non-real zero "0n" is indicated in flags column. 
+Flags are not available for eurostat API, so <code>keepFlags</code>
+can not be used with a <code>filters</code>.</p></td>
     </tr>
     <tr>
       <th>...</th>
@@ -249,11 +248,10 @@ in parenthesis.</p>
 <span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 <span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"avia_gonc"</span>, <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='st'>"Y"</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
 
-<span class='no'>dd</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"namq_aux_lp"</span>,
+<span class='no'>dd</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_gdp"</span>,
                      <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>geo</span> <span class='kw'>=</span> <span class='st'>"FI"</span>,
-                                    <span class='kw'>indic_na</span> <span class='kw'>=</span> <span class='st'>"RLPH"</span>,
-                                    <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"EUR_HRS"</span>,
-                                    <span class='kw'>s_adj</span> <span class='kw'>=</span> <span class='st'>"NSA"</span>))
+                                    <span class='kw'>na_item</span> <span class='kw'>=</span> <span class='st'>"B1GQ"</span>,
+                                    <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"CLV_I10"</span>))
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -279,7 +277,7 @@ Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu <a href='mailto:rop
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="http://hadley.github.io/pkgdown/">pkgdown</a>.</p>
+  <p>Site built with <a href="http://pkgdown.r-lib.org/">pkgdown</a>.</p>
 </div>
 
       </footer>

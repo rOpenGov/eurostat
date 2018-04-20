@@ -18,11 +18,11 @@ output:
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
-
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
-[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)  
+[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
+
 
 <!--[![Contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg?style=flat-square)](#contributors)-->
 
@@ -56,7 +56,7 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html)). R package version 3.1.50003. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
+**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version 3.1.6001. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
 
 We are greatful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](http://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 

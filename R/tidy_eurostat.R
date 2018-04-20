@@ -28,7 +28,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            keepFlags = FALSE) {
 
     # To avoid warnings
-    time <- NULL
+    time <- values <- NULL
 
     # Separate codes to columns
     cnames <- strsplit(colnames(dat)[1], split = "[\\,]")[[1]]

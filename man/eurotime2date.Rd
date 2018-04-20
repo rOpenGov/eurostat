@@ -23,14 +23,14 @@ representing calendar dates.
 }
 \examples{
 \dontrun{
-   lp <- get_eurostat("namq_aux_lp", time_format = "raw")
-   lp$time <- eurotime2date(x = lp$time)
+   na_q <- get_eurostat("namq_10_pc", time_format = "raw")
+   na_q$time <- eurotime2date(x = na_q$time)
    
    un <- get_eurostat("une_rt_m", time_format = "raw")
    un$time <- eurotime2date(x = un$time)
    
-   lpa <- get_eurostat("nama_aux_lp", time_format = "raw")
-   lpa$time <- eurotime2date(x = lpa$time)
+   na_a <- get_eurostat("nama_10_pc", time_format = "raw")
+   na_a$time <- eurotime2date(x = na_a$time)
    
    eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
    eur_d$time <- eurotime2date(x = eur_d$time)
