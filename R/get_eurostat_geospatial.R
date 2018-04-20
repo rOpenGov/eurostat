@@ -37,6 +37,10 @@
 get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all",
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
   
+  # 
+  library(sf)
+  data("eurostat_geodata_60", envir = environment())
+  
   # Check resolution is of correct format
   resolution <- as.character(resolution)
   resolution <- gsub("^0+", "", resolution)
@@ -44,8 +48,7 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_leve
     stop("Resolution should be one of 01, 1, 10, 20, 60")
   }
   resolution <- gsub("^1$", "01", resolution)
-  
-  
+
   message("
 COPYRIGHT NOTICE
 
@@ -130,9 +133,7 @@ information regarding their licence agreements.
   }
   
     if (resolution == "60"){
-      
-      data("eurostat_geodata_60", envir=environment())
-      
+
       if (nuts_level %in% c("all")){
         shp <- eurostat_geodata_60 #data("eurostat_geodata_60")
       }
@@ -144,14 +145,12 @@ information regarding their licence agreements.
     }
     
     if (output_class == "df"){
-      # library(sf)
       nuts_sp <- as(shp, "Spatial")
       nuts_sp$id <- row.names(nuts_sp)
       nuts_ff <- broom::tidy(nuts_sp)
       shp <- dplyr::left_join(nuts_ff,nuts_sp@data)
     }
     if (output_class == "spdf"){
-      # library(sf)
       shp <- as(shp, "Spatial")
     }
 
@@ -201,5 +200,3 @@ please specify it explicitly to 'output_class'-argument!
   return(shp)
 
 }
-
-get_eurostat_geospatial()
