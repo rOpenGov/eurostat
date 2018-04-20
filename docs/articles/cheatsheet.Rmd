@@ -1,0 +1,22 @@
+---
+title: "Cheat sheet: eurostat R package"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+  %\VignetteIndexEntry{eurostat R package: cheat sheet}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteDepends{Cairo}
+  %\VignetteEncoding{UTF-8}
+  \usepackage[utf8]{inputenc}
+---
+
+ * [eurostat R package: cheat sheet (RStudio release version)](https://github.com/rstudio/cheatsheets/raw/master/source/pdfs/eurostat_cheatsheet.pdf)
+
+ * [eurostat R package: cheat sheet (rOpenGov development version)](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)
+
+
+
+
+
