@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Download Geospatial Data from GISCO — get_eurostat_geospatial • eurostat</title>
+<title>Download Geospatial Data from GISGO — get_eurostat_geospatial • eurostat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -100,22 +100,34 @@
       <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Download Geospatial Data from GISCO</h1>
+    <h1>Download Geospatial Data from GISGO</h1>
     </div>
 
-    <p>Downloads either a SpatialPolygonDataFrame or a data_frame preprocessed using
-   <code><a href='http://www.rdocumentation.org/packages/ggplot2/topics/fortify'>ggplot2::fortify</a></code>.</p>
+    <p>Downloads either a simple features (sf), SpatialPolygonDataFrame or a data_frame preprocessed using
+   <code><a href='http://www.rdocumentation.org/packages/broom/topics/tidy'>broom::tidy()</a></code>.</p>
 
-    <pre class="usage"><span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
+    <pre class="usage"><span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"sf"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>,
+  <span class='kw'>nuts_level</span> <span class='kw'>=</span> <span class='st'>"all"</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
+      <th>output_class</th>
+      <td><p>A string. Class of object returned, 
+either <code>sf</code> <code>simple features</code>, <code>df</code> (<code>data_frame</code>) or
+   <code>spdf</code> (<code>SpatialPolygonDataFrame</code>)</p></td>
+    </tr>
+    <tr>
       <th>resolution</th>
       <td><p>Resolution of the geospatial data. One of
-"60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million),</p></td>
+"60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million).</p></td>
+    </tr>
+    <tr>
+      <th>nuts_level</th>
+      <td><p>Level of NUTS classification of the geospatial data. One of
+"0", "1", "2", "3" or "all" (mimics the original behaviour)</p></td>
     </tr>
     <tr>
       <th>cache</th>
@@ -139,16 +151,21 @@ The <code>NULL</code> (default) uses and creates
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>a data_frame or SpatialPolygonDataFrame.</p>
+    <p>a sf, data_frame or SpatialPolygonDataFrame.</p>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>The data source URL is <a href='http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units'>http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units</a>.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
-   <span class='no'>lp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>)
+   <span class='fu'>library</span>(<span class='no'>sf</span>)
+   <span class='fu'>library</span>(<span class='no'>dplyr</span>)
+   <span class='no'>lp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"sf"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>, <span class='kw'>nuts_level</span> <span class='kw'>=</span> <span class='st'>"all"</span>)
+   <span class='no'>lp</span> <span class='kw'>%&gt;%</span>  <span class='fu'><a href='http://dplyr.tidyverse.org/reference/select.html'>select</a></span>(<span class='no'>NUTS_ID</span>) <span class='kw'>%&gt;%</span>  <span class='fu'><a href='http://www.rdocumentation.org/packages/sf/topics/plot'>plot</a></span>()
+   <span class='no'>lp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"spdf"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>, <span class='kw'>nuts_level</span> <span class='kw'>=</span> <span class='st'>"all"</span>)
    <span class='fu'>spplot</span>(<span class='no'>lp</span>, <span class='st'>"STAT_LEVL_"</span>)
    <span class='co'># or</span>
+   <span class='no'>lp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span>(<span class='kw'>output_class</span> <span class='kw'>=</span> <span class='st'>"df"</span>, <span class='kw'>resolution</span> <span class='kw'>=</span> <span class='st'>"60"</span>, <span class='kw'>nuts_level</span> <span class='kw'>=</span> <span class='st'>"all"</span>)
    <span class='fu'>ggplot</span>(<span class='no'>lp</span>, <span class='fu'>aes</span>(<span class='kw'>x</span><span class='kw'>=</span><span class='no'>long</span>,<span class='kw'>y</span><span class='kw'>=</span><span class='no'>lat</span>,<span class='kw'>group</span><span class='kw'>=</span><span class='no'>group</span>,<span class='kw'>fill</span><span class='kw'>=</span><span class='no'>STAT_LEVL_</span>),<span class='kw'>color</span><span class='kw'>=</span><span class='st'>"white"</span>) + <span class='fu'>geom_polygon</span>()
 
 <span class='co'># }</span><div class='input'> 
