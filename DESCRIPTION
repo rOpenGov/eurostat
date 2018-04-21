@@ -33,9 +33,10 @@ Imports:
     broom,
     tidyr,
     readr,
-    sf
-Suggests:
+    sf,
     dplyr,
+    methods
+Suggests:
     Cairo,
     ggplot2,
     knitr,

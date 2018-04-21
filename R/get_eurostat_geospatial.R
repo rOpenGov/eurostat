@@ -23,8 +23,6 @@
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
 #'  \dontrun{
-#'    library(sf)
-#'    library(dplyr)
 #'    lp <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
 #'    lp %>%  select(NUTS_ID) %>%  plot()
 #'    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60", nuts_level = "all")
@@ -37,8 +35,10 @@
 get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all",
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
   
-  # 
-  library(sf)
+  eurostat_geodata_60 <- NULL 
+  LEVL_CODE <- NULL
+  # output_class <- NULL
+  
   data("eurostat_geodata_60", envir = environment(), package = "eurostat")
   
   # Check resolution is of correct format
@@ -107,20 +107,20 @@ information regarding their licence agreements.
 
     
     if (nuts_level %in% c("0","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
-      nuts0 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
+      nuts0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("1","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
-      nuts1 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
+      nuts1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }    
     if (nuts_level %in% c("2","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
-      nuts2 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
+      nuts2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("3","all")){
-      resp <- httr::GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
-      nuts3 <- sf::st_read(httr::content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
+      nuts3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("all")){
       shp <- rbind(nuts0,nuts1,nuts2,nuts3)
@@ -129,29 +129,41 @@ information regarding their licence agreements.
     if (nuts_level == "1") shp <- nuts1
     if (nuts_level == "2") shp <- nuts2
     if (nuts_level == "3") shp <- nuts3
+    
+    
+    if (output_class == "df"){
+      nuts_sp <- as(shp, "Spatial")
+      nuts_sp$id <- row.names(nuts_sp)
+      nuts_ff <- broom::tidy(nuts_sp)
+      shp <- left_join(nuts_ff,nuts_sp@data)
+    }
+    if (output_class == "spdf"){
+      shp <- as(shp, "Spatial")
+    }
+    
   }
   }
   
     if (resolution == "60"){
 
       if (nuts_level %in% c("all")){
-        shp <- eurostat_geodata_60 #data("eurostat_geodata_60")
+        shp <- eurostat_geodata_60 
       }
-      if (nuts_level == "0") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 0)
-      if (nuts_level == "1") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 1)
-      if (nuts_level == "2") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 2)
-      if (nuts_level == "3") shp <- dplyr::filter(eurostat_geodata_60, LEVL_CODE == 3)
+      if (nuts_level == "0") shp <- filter(eurostat_geodata_60, LEVL_CODE == 0)
+      if (nuts_level == "1") shp <- filter(eurostat_geodata_60, LEVL_CODE == 1)
+      if (nuts_level == "2") shp <- filter(eurostat_geodata_60, LEVL_CODE == 2)
+      if (nuts_level == "3") shp <- filter(eurostat_geodata_60, LEVL_CODE == 3)
+      
+      if (output_class == "df"){
+        nuts_sp <- as(shp, "Spatial")
+        nuts_sp$id <- row.names(nuts_sp)
+        nuts_ff <- broom::tidy(nuts_sp)
+        shp <- left_join(nuts_ff,nuts_sp@data)
+      }
+      if (output_class == "spdf"){
+        shp <- as(shp, "Spatial")
+      }
 
-    }
-    
-    if (output_class == "df"){
-      nuts_sp <- as(shp, "Spatial")
-      nuts_sp$id <- row.names(nuts_sp)
-      nuts_ff <- broom::tidy(nuts_sp)
-      shp <- dplyr::left_join(nuts_ff,nuts_sp@data)
-    }
-    if (output_class == "spdf"){
-      shp <- as(shp, "Spatial")
     }
 
   if (resolution != "60"){
@@ -173,6 +185,7 @@ information regarding their licence agreements.
     if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
   }
   }
+  
   if (resolution == "60"){
     if (output_class == "sf") message(paste("sf at resolution 1:60 read from local file"))
     if (output_class == "df") message(paste("data_frame at resolution 1:60 read from local file"))

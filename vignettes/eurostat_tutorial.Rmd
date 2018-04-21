@@ -376,6 +376,7 @@ map2
 library(sp)
 library(eurostat)
 library(dplyr)
+library(RColorBrewer)
 dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
   # subsetting to year 2014 and NUTS-3 level
   dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
@@ -383,21 +384,50 @@ dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %
   dplyr::mutate(cat = cut_to_classes(values))
 
 # Download geospatial data from CISGO
-geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "10")
+geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2)
 
 # merge with attribute data with geodata
-map_data <- inner_join(geodata, dat, by = c("id" = "geo"))
-
-# Convert into a SpatialPolygonDataFrame
-dat <- as(map_data, "Spatial")
+geodata@data <- left_join(geodata@data, dat)
 
 # plot map
-sp::spplot(obj = dat, "cat", main = "Disposable household income",
+sp::spplot(obj = geodata, "cat", main = "Disposable household income",
 	   xlim = c(-22,34), ylim = c(35,70), 
            col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
 	   col = "white", usePolypath = FALSE)
 ```
 
+### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
+
+Meanwhile the CRAN version of `ggplot2` is lacking support for simple features, you can plot maps with `ggplot2` by downloading geospatial data as `data.frame` with `output_class` argument set as `df`.
+
+```{r maps4, fig.width=8, fig.height=8, dev='CairoPNG'}
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+  # subsetting to year 2014 and NUTS-2 level
+  dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
+  # classifying the values the variable
+  dplyr::mutate(cat = cut_to_classes(values))
+
+# Download geospatial data from CISGO
+geodata <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "2")
+
+# merge with attribute data with geodata
+map_data <- inner_join(geodata, dat)
+
+# plot map
+ggplot(data=map_data, aes(x=long,y=lat,group=group)) +
+  geom_polygon(aes(fill=cat),color="dim grey", size=.1) +
+  scale_fill_brewer(palette = "Oranges") +
+  # scale_fill_continuous(trans = 'reverse', ) +
+  guides(fill = guide_legend(reverse=T, title = "€")) +
+  labs(title="Disposable household income in 2014",
+       caption="(C) EuroGeographics for the administrative boundaries 
+                Map produced in R with a help from Eurostat-package <github.com/ropengov/eurostat/>") +
+  theme_light() + theme(legend.position=c(.8,.8)) +
+  coord_map(project="orthographic", xlim=c(-12,44), ylim=c(35,70))
+```
 
 
 ## SDMX
