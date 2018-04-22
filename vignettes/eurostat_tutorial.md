@@ -833,7 +833,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpozFwrO/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from CISGO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
@@ -928,9 +928,9 @@ Interactive maps can be generated as well
       mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
              income = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpozFwrO/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpozFwrO/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from CISGO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
@@ -1002,18 +1002,19 @@ Interactive maps can be generated as well
     library(sp)
     library(eurostat)
     library(dplyr)
+    library(RColorBrewer)
     dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
       # subsetting to year 2014 and NUTS-3 level
       dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpozFwrO/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpozFwrO/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from CISGO
-    geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "10")
+    geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2)
 
     ## 
     ## COPYRIGHT NOTICE
@@ -1043,11 +1044,8 @@ Interactive maps can be generated as well
     ## 
 
     ## No encoding supplied: defaulting to UTF-8.
-    ## No encoding supplied: defaulting to UTF-8.
-    ## No encoding supplied: defaulting to UTF-8.
-    ## No encoding supplied: defaulting to UTF-8.
 
-    ## sf at resolution 1: 10  cached at:  /tmp/RtmpozFwrO/eurostat/sf10all.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpCypIG8/eurostat/spdf102.RData
 
     ## 
     ## # --------------------------
@@ -1065,18 +1063,166 @@ Interactive maps can be generated as well
     ## 
 
     # merge with attribute data with geodata
-    map_data <- inner_join(geodata, dat, by = c("id" = "geo"))
+    geodata@data <- left_join(geodata@data, dat)
 
-    # Convert into a SpatialPolygonDataFrame
-    dat <- as(map_data, "Spatial")
+    ## Joining, by = "geo"
 
     # plot map
-    sp::spplot(obj = dat, "cat", main = "Disposable household income",
+    sp::spplot(obj = geodata, "cat", main = "Disposable household income",
            xlim = c(-22,34), ylim = c(35,70), 
                col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
            col = "white", usePolypath = FALSE)
 
 ![](fig/maps3-1.png)
+
+### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
+
+Meanwhile the CRAN version of `ggplot2` is lacking support for simple
+features, you can plot maps with `ggplot2` by downloading geospatial
+data as `data.frame` with `output_class` argument set as `df`.
+
+    library(eurostat)
+    library(dplyr)
+    library(ggplot2)
+    dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+      # subsetting to year 2014 and NUTS-2 level
+      dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
+      # classifying the values the variable
+      dplyr::mutate(cat = cut_to_classes(values))
+
+    ## Reading cache file /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpCypIG8/eurostat/tgs00026_raw_code_FF.rds
+
+    # Download geospatial data from CISGO
+    geodata <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "2")
+
+    ## 
+    ## COPYRIGHT NOTICE
+    ## 
+    ## When data downloaded from this page 
+    ## <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+    ## is used in any printed or electronic publication, 
+    ## in addition to any other provisions 
+    ## applicable to the whole Eurostat website, 
+    ## data source will have to be acknowledged 
+    ## in the legend of the map and 
+    ## in the introductory page of the publication 
+    ## with the following copyright notice:
+    ## 
+    ## - EN: (C) EuroGeographics for the administrative boundaries
+    ## - FR: (C) EuroGeographics pour les limites administratives
+    ## - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
+    ## 
+    ## For publications in languages other than 
+    ## English, French or German, 
+    ## the translation of the copyright notice 
+    ## in the language of the publication shall be used.
+    ## 
+    ## If you intend to use the data commercially, 
+    ## please contact EuroGeographics for 
+    ## information regarding their licence agreements.
+    ## 
+
+    ## Regions defined for each Polygons
+
+    ## Joining, by = "id"
+
+    ## data_frame at resolution 1:60 read from local file
+
+    ## 
+    ## # --------------------------
+    ## HEADS UP!!
+    ## 
+    ## Function now returns the data in 'sf'-class (simple features) 
+    ## by default which is different 
+    ## from previous behaviour's 'SpatialPolygonDataFrame'. 
+    ## 
+    ## If you prefer either 'SpatialPolygonDataFrame' or 
+    ## fortified 'data_frame' (for ggplot2::geom_polygon), 
+    ## please specify it explicitly to 'output_class'-argument!
+    ## 
+    ## # --------------------------          
+    ## 
+
+    # merge with attribute data with geodata
+    map_data <- inner_join(geodata, dat)
+
+    ## Joining, by = "geo"
+
+    # plot map
+    ggplot(data=map_data, aes(x=long,y=lat,group=group)) +
+      geom_polygon(aes(fill=cat),color="dim grey", size=.1) +
+      scale_fill_brewer(palette = "Oranges") +
+      # scale_fill_continuous(trans = 'reverse', ) +
+      guides(fill = guide_legend(reverse=T, title = "€")) +
+      labs(title="Disposable household income in 2014",
+           caption="(C) EuroGeographics for the administrative boundaries 
+                    Map produced in R with a help from Eurostat-package <github.com/ropengov/eurostat/>") +
+      theme_light() + theme(legend.position=c(.8,.8)) +
+      coord_map(project="orthographic", xlim=c(-12,44), ylim=c(35,70))
+
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font
+    ## metrics unknown for Unicode character U+20ac
+
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): font
+    ## metrics unknown for Unicode character U+20ac
+
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): conversion
+    ## failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): conversion
+    ## failure on '€' in 'mbcsToSbcs': dot substituted for <82>
+
+    ## Warning in grid.Call(C_stringMetric, as.graphicsAnnot(x$label)): conversion
+    ## failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82>
+
+    ## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
+    ## conversion failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
+
+    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x
+    ## $y, : conversion failure on '€' in 'mbcsToSbcs': dot substituted for <e2>
+
+    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x
+    ## $y, : conversion failure on '€' in 'mbcsToSbcs': dot substituted for <82>
+
+    ## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x, x
+    ## $y, : conversion failure on '€' in 'mbcsToSbcs': dot substituted for <ac>
+
+![](fig/maps4-1.png)
 
 SDMX
 ----
@@ -1270,33 +1416,34 @@ This tutorial was created with
     ##  [16] pkgload_0.0.0.9000   geojsonlint_0.2.0    jsonlite_1.5        
     ##  [19] Cairo_1.5-9          tmaptools_1.2-3      rematch_1.0.1       
     ##  [22] broom_0.4.4          png_0.1-7            R.oo_1.21.0         
-    ##  [25] rgeos_0.3-26         shiny_1.0.5          readr_1.1.1         
-    ##  [28] compiler_3.4.3       httr_1.3.1           mapview_2.3.0       
-    ##  [31] backports_1.1.2      assertthat_0.2.0     Matrix_1.2-12       
-    ##  [34] lazyeval_0.2.1       htmltools_0.3.6      tools_3.4.3         
-    ##  [37] coda_0.19-1          gtable_0.2.0         glue_1.2.0          
-    ##  [40] reshape2_1.4.3       gmodels_2.16.2       V8_1.5              
-    ##  [43] Rcpp_0.12.16         highlight_0.4.7.2    raster_2.6-7        
-    ##  [46] spdep_0.7-4          gdata_2.18.0         debugme_1.1.0       
-    ##  [49] nlme_3.1-131         udunits2_0.13        iterators_1.0.9     
-    ##  [52] crosstalk_1.0.0      psych_1.8.3.3        stringr_1.3.0       
-    ##  [55] mime_0.5             gtools_3.5.0         XML_3.98-1.9        
-    ##  [58] LearnBayes_2.15      MASS_7.3-48          scales_0.5.0.9000   
-    ##  [61] BiocInstaller_1.28.0 hms_0.4.1            parallel_3.4.3      
-    ##  [64] expm_0.999-2         yaml_2.1.16          curl_3.2            
-    ##  [67] memoise_1.1.0        geosphere_1.5-7      stringi_1.1.7       
-    ##  [70] jsonvalidate_1.0.0   highr_0.6            desc_1.1.1          
-    ##  [73] foreach_1.4.4        e1071_1.6-8          boot_1.3-20         
-    ##  [76] pkgbuild_0.0.0.9000  spData_0.2.8.3       rlang_0.1.6.9003    
-    ##  [79] pkgconfig_2.0.1      commonmark_1.4       bitops_1.0-6        
-    ##  [82] evaluate_0.10.1      lattice_0.20-35      purrr_0.2.4         
-    ##  [85] bindr_0.1            htmlwidgets_1.0      labeling_0.3        
-    ##  [88] tidyselect_0.2.3     osmar_1.1-7          plyr_1.8.4          
-    ##  [91] magrittr_1.5         R6_2.2.2             DBI_0.8             
-    ##  [94] pillar_1.1.0         whisker_0.4          foreign_0.8-69      
-    ##  [97] withr_2.1.1.9000     units_0.5-1          RCurl_1.95-4.10     
-    ## [100] tibble_1.4.2         crayon_1.3.4         rmapshaper_0.3.0    
-    ## [103] KernSmooth_2.23-15   grid_3.4.3           callr_2.0.1         
-    ## [106] webshot_0.5.0.9000   digest_0.6.15        classInt_0.2-3      
-    ## [109] xtable_1.8-2         httpuv_1.3.5         R.utils_2.6.0       
-    ## [112] stats4_3.4.3         munsell_0.4.3        viridisLite_0.3.0
+    ##  [25] rgeos_0.3-26         shiny_1.0.5          mapproj_1.2-5       
+    ##  [28] readr_1.1.1          compiler_3.4.3       httr_1.3.1          
+    ##  [31] mapview_2.3.0        backports_1.1.2      assertthat_0.2.0    
+    ##  [34] Matrix_1.2-12        lazyeval_0.2.1       htmltools_0.3.6     
+    ##  [37] tools_3.4.3          coda_0.19-1          gtable_0.2.0        
+    ##  [40] glue_1.2.0           reshape2_1.4.3       maps_3.2.0          
+    ##  [43] gmodels_2.16.2       V8_1.5               Rcpp_0.12.16        
+    ##  [46] highlight_0.4.7.2    raster_2.6-7         spdep_0.7-4         
+    ##  [49] gdata_2.18.0         debugme_1.1.0        nlme_3.1-131        
+    ##  [52] udunits2_0.13        iterators_1.0.9      crosstalk_1.0.0     
+    ##  [55] psych_1.8.3.3        stringr_1.3.0        mime_0.5            
+    ##  [58] gtools_3.5.0         XML_3.98-1.9         LearnBayes_2.15     
+    ##  [61] MASS_7.3-48          scales_0.5.0.9000    BiocInstaller_1.28.0
+    ##  [64] hms_0.4.1            parallel_3.4.3       expm_0.999-2        
+    ##  [67] yaml_2.1.16          curl_3.2             memoise_1.1.0       
+    ##  [70] geosphere_1.5-7      stringi_1.1.7        jsonvalidate_1.0.0  
+    ##  [73] highr_0.6            desc_1.1.1           foreach_1.4.4       
+    ##  [76] e1071_1.6-8          boot_1.3-20          pkgbuild_0.0.0.9000 
+    ##  [79] spData_0.2.8.3       rlang_0.1.6.9003     pkgconfig_2.0.1     
+    ##  [82] commonmark_1.4       bitops_1.0-6         evaluate_0.10.1     
+    ##  [85] lattice_0.20-35      purrr_0.2.4          bindr_0.1           
+    ##  [88] htmlwidgets_1.0      labeling_0.3         tidyselect_0.2.3    
+    ##  [91] osmar_1.1-7          plyr_1.8.4           magrittr_1.5        
+    ##  [94] R6_2.2.2             DBI_0.8              pillar_1.1.0        
+    ##  [97] whisker_0.4          foreign_0.8-69       withr_2.1.1.9000    
+    ## [100] units_0.5-1          RCurl_1.95-4.10      tibble_1.4.2        
+    ## [103] crayon_1.3.4         rmapshaper_0.3.0     KernSmooth_2.23-15  
+    ## [106] grid_3.4.3           callr_2.0.1          webshot_0.5.0.9000  
+    ## [109] digest_0.6.15        classInt_0.2-3       xtable_1.8-2        
+    ## [112] httpuv_1.3.5         R.utils_2.6.0        stats4_3.4.3        
+    ## [115] munsell_0.4.3        viridisLite_0.3.0
