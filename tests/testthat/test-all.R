@@ -111,7 +111,7 @@ test_that("Duplicated with fix_duplicated does not give an error", {
 
 context("Flags")
 
-flag_dat <- get_eurostat("tsdtr210", type = "label", keepFlags=T, cache = FALSE)
+flag_dat <- get_eurostat("t2020_rk310", type = "label", keepFlags=T, cache = FALSE)
 
 test_that("get_eurostat includes flags",{
   skip_on_cran()
