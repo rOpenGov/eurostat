@@ -78,4 +78,5 @@ r:
 
 after_success:
   - Rscript -e 'covr::codecov()'
+  - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'  
 
