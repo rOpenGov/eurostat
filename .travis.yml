@@ -10,22 +10,23 @@ notifications:
     - leo.lahti@iki.fi
 
 r_packages:
-  - devtools
+  - broom
   - Cairo
-  - jqr
-  - rgdal
+  - devtools  
   - gdalUtils
-  - sf
-  - V8
   - geojson  
   - geojsonio
   - geojsonlint
   - jsonlite
+  - jqr    
+  - mapview  
   - protolite
-  - mapview
+  - rgdal    
   - rmapshaper
+  - sf  
   - tmap
   - tmaptools  
+  - V8
   
 r_github_packages:
   - jimhester/covr
