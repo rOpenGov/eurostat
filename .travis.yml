@@ -38,9 +38,9 @@ env:
   - r_check_args: "--as-cran"    
   - GITHUB_REPO: ropengov/eurostat
 
-
 apt_packages:
   - libudunits2-dev
+  - udunits2
   - libv8-dev
   - libprotobuf-dev
   - libprotoc-dev
