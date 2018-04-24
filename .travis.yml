@@ -43,6 +43,7 @@ apt_packages:
   - libv8-dev
   - libprotobuf-dev
   - libprotoc-dev
+  - libcairo2-dev
   - protobuf-compiler
   - valgrind
   - libgdal20
