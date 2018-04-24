@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>License • eurostat</title>
+<title>Geospatial data of Europe from Gisco in 1:60 million scale — eurostat_geodata_60 • eurostat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -21,9 +21,9 @@
 
 
 <!-- pkgdown -->
-<link href="pkgdown.css" rel="stylesheet">
-<script src="jquery.sticky-kit.min.js"></script>
-<script src="pkgdown.js"></script>
+<link href="../pkgdown.css" rel="stylesheet">
+<script src="../jquery.sticky-kit.min.js"></script>
+<script src="../pkgdown.js"></script>
   
   
 
@@ -39,7 +39,7 @@
   </head>
 
   <body>
-    <div class="container template-license">
+    <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -49,18 +49,18 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="index.html">eurostat</a>
+      <a class="navbar-brand" href="../index.html">eurostat</a>
     </div>
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="index.html">
+  <a href="../index.html">
     <span class="fa fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="reference/index.html">Reference</a>
+  <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -70,21 +70,21 @@
   </a>
   <ul class="dropdown-menu" role="menu">
     <li>
-      <a href="articles/blogposts.html">Blog posts</a>
+      <a href="../articles/blogposts.html">Blog posts</a>
     </li>
     <li>
-      <a href="articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+      <a href="../articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
     </li>
     <li>
-      <a href="articles/eurostat_tutorial.html">Tutorial (vignette) for the eurostat R package</a>
+      <a href="../articles/eurostat_tutorial.html">Tutorial (vignette) for the eurostat R package</a>
     </li>
     <li>
-      <a href="articles/publications.html">Publications using the eurostat R package</a>
+      <a href="../articles/publications.html">Publications using the eurostat R package</a>
     </li>
   </ul>
 </li>
 <li>
-  <a href="news/index.html">News</a>
+  <a href="../news/index.html">News</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
@@ -98,19 +98,42 @@
       </header>
 
       <div class="row">
-  <div class="contents col-md-12">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>License</h1>
+    <h1>Geospatial data of Europe from Gisco in 1:60 million scale</h1>
     </div>
 
-<pre>YEAR: 2014-2018
-COPYRIGHT HOLDER: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
-</pre>
+    <p>Geospatial data of Europe from Gisco in 1:60 million scale</p>
+
+    <pre class="usage"><span class='no'>eurostat_geodata_60</span></pre>
+
+
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
+
+    <p>sf</p><dl class='dl-horizontal'>
+  <dt>id</dt><dd><p>Country code in the Eurostat database</p></dd>
+  <dt>CNTRY_CODE</dt><dd><p>Country code</p></dd>
+  <dt>NUTS_NAME</dt><dd><p>NUTS name in local language</p></dd>
+  <dt>LEVL_CODE</dt><dd><p>NUTS code</p></dd>
+  <dt>FID</dt><dd><p>Country code</p></dd>
+  <dt>NUTS_ID</dt><dd><p>NUTS code</p></dd>
+  <dt>geo</dt><dd><p>NUTS code</p></dd>
+  <dt>geometry</dt><dd><p>geospatial information</p></dd>
+</dl>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units'>http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units</a></p>
 
   </div>
+  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+    <h2>Contents</h2>
+    <ul class="nav nav-pills nav-stacked">
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
+    </ul>
 
+  </div>
 </div>
-
 
       <footer>
       <div class="copyright">

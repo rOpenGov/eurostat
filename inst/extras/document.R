@@ -6,6 +6,7 @@ document("../../")
 #build("../../")
 #build(vignettes = FALSE)
 #check("../../", vignettes = FALSE)
+#install()
 
 library(knitr)
 knit(input = "../../README.Rmd", output = "../../README.md")

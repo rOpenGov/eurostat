@@ -43,8 +43,6 @@ The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/refer
 }
 \examples{
  \dontrun{
-   library(sf)
-   library(dplyr)
    lp <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
    lp \%>\%  select(NUTS_ID) \%>\%  plot()
    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60", nuts_level = "all")
