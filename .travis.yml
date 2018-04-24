@@ -12,7 +12,8 @@ notifications:
 r_packages:
   - broom
   - Cairo
-  - devtools  
+  - devtools
+  - libcairo2-dev
   - gdalUtils
   - geojson  
   - geojsonio
