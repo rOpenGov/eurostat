@@ -71,8 +71,8 @@ eurotime2date <- function(x, last = FALSE){
   # The date as the last date of the period
   if (last == TRUE) {
     shift <- c("Y" = 367, "S" = 186, "Q" = 96, "M" = 32, "D" = 0)[tcode]  
-    levels(x) <- as.Date(cut(as.Date(levels(x)) + shift, "month")) - 1
+    levels(x) <- lubridate::ymd(cut(lubridate::ymd(levels(x)) + shift, "month")) - 1
   }
-  y <- as.Date(x)
+  y <- lubridate::ymd(x)
   y
 }

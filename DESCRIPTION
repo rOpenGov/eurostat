@@ -33,7 +33,8 @@ Imports:
     broom,
     tidyr,
     readr,
-    sf
+    sf,
+    lubridate
 Suggests:
     dplyr,
     Cairo,

@@ -36,44 +36,46 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     cnames2 <- cnames[length(cnames)]   # for colnames
     
     # Separe variables from first column
-    dat1 <- tidyr::separate_(dat, col = colnames(dat)[1],
+    dat <- tidyr::separate_(dat, col = colnames(dat)[1],
                        into = cnames1,
                        sep = ",", convert = FALSE)
     
     # Get variable from column names
-    # na.rm TRUE to save memory
 
     cnames2_quo <- as.name(cnames2)
-    dat2 <- tidyr::gather(dat1, !!cnames2_quo, values, 
+    dat <- tidyr::gather(dat, !!cnames2_quo, values, 
                            -seq_along(cnames1),
-                           convert = FALSE, na.rm = TRUE)    
+                           convert = FALSE)    
+    
+    # to save memory (and backward compatibility)
+    dat <- dplyr::filter(dat, !is.na(values))
     
     ## separate flags into separate column
     if(keepFlags == TRUE) {
-      dat2$flags <- as.vector(
-        stringi::stri_extract_first_regex(dat2$values, 
+      dat$flags <- as.vector(
+        stringi::stri_extract_first_regex(dat$values, 
                                         c("(^0n( [A-Za-z]+)*)|[A-Za-z]+")))
     }
     
     # clean time and values
-    dat2$time <- gsub("X", "", dat2$time)
-    dat2$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat2$values)))
+    dat$time <- gsub("X", "", dat$time)
+    dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
       
     # variable columns
-    var_cols <- names(dat2)[!(names(dat2) %in% c("time", "values"))]
+    var_cols <- names(dat)[!(names(dat) %in% c("time", "values"))]
     
     # reorder to standard order
-    dat2 <- dat2[c(var_cols, "time", "values")]
+    dat <- dat[c(var_cols, "time", "values")]
     
     # columns from var_cols are converted into factors
     # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
     if (stringsAsFactors){
-      dat2[,var_cols] <- lapply(dat2[, var_cols, drop = FALSE],
+      dat[,var_cols] <- lapply(dat[, var_cols, drop = FALSE],
                               function(x) factor(x, levels = unique(x)))
     }
 
     # For multiple time frequency
-    freqs <- available_freq(dat2$time)
+    freqs <- available_freq(dat$time)
     
     if (!is.null(select_time)){
       if (length(select_time) > 1) stop(
@@ -82,13 +84,13 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
  
       # Annual
       if (select_time == "Y"){
-        dat2 <- subset(dat2, nchar(time) == 4)
+        dat <- subset(dat, nchar(time) == 4)
       # Others
       } else {
-        dat2 <- subset(dat2, grepl(select_time, time))
+        dat <- subset(dat, grepl(select_time, time))
       }
       # Test if data
-      if (nrow(dat2) == 0) stop(
+      if (nrow(dat) == 0) stop(
         "No data selected with select_time:", dQuote(select_time), "\n",
         "Available frequencies: ", shQuote(freqs))
     } else {
@@ -100,12 +102,12 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     }
 
     # convert time column
-    dat2$time <- convert_time_col(dat2$time,
+    dat$time <- convert_time_col(dat$time,
     	   	                       time_format = time_format)
 
 
 
-    dat2
+    dat
 
 }
 
