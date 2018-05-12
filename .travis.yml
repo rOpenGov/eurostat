@@ -11,6 +11,7 @@ notifications:
 
 r_packages:
   - broom
+  - knitr
   - Cairo
   - devtools
   - libcairo2-dev
@@ -28,7 +29,6 @@ r_packages:
   - tmap
   - tmaptools  
   - V8
-  - knitr
   
 r_github_packages:
   - jimhester/covr
@@ -68,7 +68,7 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get --yes install npm
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
-
+  - Rscript -e 'install.packages("knitr",repos="http://cran.us.r-project.org")'
 
 install:
   - . $HOME/.nvm/nvm.sh  
