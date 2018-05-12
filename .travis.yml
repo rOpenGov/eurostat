@@ -10,8 +10,6 @@ notifications:
     - leo.lahti@iki.fi
 
 r_packages:
-  - broom
-  - knitr
   - Cairo
   - devtools
   - libcairo2-dev
