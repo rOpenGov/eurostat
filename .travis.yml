@@ -1,6 +1,6 @@
 language: r
 sudo: required
-cache: packages
+cache: false
 dist: trusty
 
 warnings_are_errors: false
