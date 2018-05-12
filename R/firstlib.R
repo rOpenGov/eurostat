@@ -8,7 +8,6 @@
 #' @importFrom readr read_tsv
 #' @importFrom readr col_character
 #' @importFrom sf st_as_sf
-#' @importFrom sf filter.sf
 #' @importFrom sp merge
 #' @importFrom stringi stri_match_first_regex
 #' @importFrom stringr str_replace_all
