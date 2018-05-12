@@ -27,6 +27,8 @@ r_packages:
   - tmap
   - tmaptools  
   - V8
+  - broom
+  - knitr
   
 r_github_packages:
   - jimhester/covr
