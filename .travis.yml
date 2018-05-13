@@ -36,7 +36,7 @@ r_github_packages:
 env:
   global:
   - WARNINGS_ARE_ERRORS=1
-  - r_build_args: "--no-resave-data"
+  - r_build_args: "--no-resave-data --no-build-vignettes"
   - r_check_args: "--as-cran"    
   - GITHUB_REPO: ropengov/eurostat
 
