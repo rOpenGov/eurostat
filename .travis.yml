@@ -1,6 +1,6 @@
 language: r
 sudo: required
-cache: false
+cache: packages
 dist: trusty
 
 warnings_are_errors: false
@@ -10,6 +10,7 @@ notifications:
     - leo.lahti@iki.fi
 
 r_packages:
+  - broom
   - Cairo
   - devtools
   - libcairo2-dev
@@ -27,7 +28,6 @@ r_packages:
   - tmap
   - tmaptools  
   - V8
-  - broom
   - knitr
   
 r_github_packages:
@@ -68,7 +68,7 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get --yes install npm
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
-  - Rscript -e 'install.packages("knitr",repos="http://cran.us.r-project.org")'
+#  - Rscript -e 'install.packages("knitr",repos="http://cran.us.r-project.org")'
 
 install:
   - . $HOME/.nvm/nvm.sh  
