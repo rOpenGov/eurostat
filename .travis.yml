@@ -84,9 +84,9 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get --yes install npm
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
-  #- Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
+  - Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
   #- Rscript -e 'install.packages("classInt", lib="/home/travis/R-bin/lib/R/library/")'  
-  - Rscript -e 'install.packages("classInt")'
+  #- Rscript -e 'install.packages("classInt")'
   #- Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org")'
 
 
