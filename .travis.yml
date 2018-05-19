@@ -89,7 +89,6 @@ before_install:
   - Rscript -e 'install.packages("curl")'
   - Rscript -e 'install.packages("httr")'      
   - Rscript -e 'install.packages("RColorBrewer")'     
-  - Rscript -e 'install.packages("sf")'     
   - Rscript -e 'install.packages("sp")'     
   - Rscript -e 'install.packages("readr")'     
   - Rscript -e 'install.packages("Cairo")'     
@@ -102,8 +101,9 @@ before_install:
   - Rscript -e 'install.packages("rsdmx")'     
   - Rscript -e 'install.packages("rvest")'     
   - Rscript -e 'install.packages("testthat")'     
-  - Rscript -e 'install.packages("tmap")'                           
-  - Rscript -e 'install.packages("knitr")'   
+  - Rscript -e 'install.packages("knitr")'
+  - Rscript -e 'install.packages("tmap", repos="http://cran.us.r-project.org")'                             
+  - Rscript -e 'install.packages("sf", repos="http://cran.us.r-project.org")'     
 
 
 install:
