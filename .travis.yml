@@ -10,7 +10,6 @@ notifications:
     - leo.lahti@iki.fi
 
 
-
 r_packages:
   - broom
   - Cairo
@@ -88,6 +87,10 @@ before_install:
   - sudo apt-get --yes install npm
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
+  - Rscript -e 'install.packages("classInt", lib="/home/travis/R-bin/lib/R/library/")'  
+  - Rscript -e 'install.packages("classInt")'
+  - Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org")'
+
   - Rscript -e 'install.packages("curl", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
   - Rscript -e 'install.packages("httr", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
   - Rscript -e 'install.packages("jsonlite", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
