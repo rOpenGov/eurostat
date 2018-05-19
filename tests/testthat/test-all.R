@@ -72,7 +72,7 @@ context("Label")
 test_that("Variable names are labeled",{
   skip_on_cran()
   expect_equal(label_eurostat_vars("geo"), "Geopolitical entity (reporting)")
-  expect_equal(label_eurostat_vars("indic_na", lang = "fr"), "Indicateur des comptes nationaux")
+  expect_equal(label_eurostat_vars("na_item", lang = "fr"), "Indicateur des comptes nationaux (SEC 2010)")
   expect_true(any(grepl("_code",
                         names(label_eurostat(
                           get_eurostat("road_eqr_trams"), code = "geo")))))
@@ -111,7 +111,10 @@ test_that("Duplicated with fix_duplicated does not give an error", {
 
 context("Flags")
 
-flag_dat <- get_eurostat("t2020_rk310", type = "label", keepFlags=T, cache = FALSE)
+#flag_dat <- get_eurostat("t2020_rk310", type = "label", keepFlags=T, cache = FALSE)
+#flag_dat <- get_eurostat("tsdtr210", type = "label", keepFlags=T, cache = FALSE)
+flag_dat <- get_eurostat("road_pa_buscoa", type = "label", keepFlags=T, cache = FALSE)
+
 
 test_that("get_eurostat includes flags",{
   skip_on_cran()
@@ -127,7 +130,7 @@ test_that("keepFlags + label as in #61",{
 
 test_that("flag content",{
   skip_on_cran()
-  expect_true(all(c("b", "be") %in%
+  expect_true(all(c("b", "e") %in%
               unique(flag_dat$flags)))
 })
 

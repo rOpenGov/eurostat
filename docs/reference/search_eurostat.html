@@ -19,13 +19,23 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+
+<meta property="og:title" content="Grep Datasets Titles from Eurostat — search_eurostat" />
+<meta property="og:description" content="Lists names of dataset from eurostat with the particular
+pattern in the description." />
+<meta name="twitter:card" content="summary" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -49,8 +59,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eurostat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eurostat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -84,12 +98,13 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -97,20 +112,24 @@
       
       </header>
 
-      <div class="row">
+<div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
     <h1>Grep Datasets Titles from Eurostat</h1>
+    
+    <div class="hidden name"><code>search_eurostat.Rd</code></div>
     </div>
 
+    <div class="ref-description">
     <p>Lists names of dataset from eurostat with the particular
 pattern in the description.</p>
+    </div>
 
     <pre class="usage"><span class='fu'>search_eurostat</span>(<span class='no'>pattern</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dataset"</span>, <span class='kw'>fixed</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
 
 <span class='fu'>grepEurostatTOC</span>(<span class='no'>pattern</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"dataset"</span>)</pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a> Arguments</h2>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
@@ -155,7 +174,7 @@ education of teaching.</p>
     <p>See citation("eurostat")</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
-    <p><code><a href='get_eurostat.html'>get_eurostat</a></code>, <code><a href='get_eurostat_toc.html'>get_eurostat_toc</a></code></p>
+    <div class='dont-index'><p><code><a href='get_eurostat.html'>get_eurostat</a></code>, <code><a href='get_eurostat_toc.html'>get_eurostat_toc</a></code></p></div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><span class='co'># NOT RUN {</span>
@@ -197,5 +216,8 @@ Przemyslaw Biecek and Leo Lahti <a href='mailto:ropengov-forum@googlegroups.com'
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+

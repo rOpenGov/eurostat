@@ -1,4 +1,8 @@
-# eurostat 3.1.6
+# eurostat 3.2.1
+
+## Major updates
+
+* Improved support for sf in map visualization
 
 ## Minor features
 

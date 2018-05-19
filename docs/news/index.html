@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>All news • eurostat</title>
+<title>Changelog • eurostat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -19,13 +19,20 @@
 <!-- Font Awesome icons -->
 <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-T8Gy5hrqNKT+hzMclPo118YTQO6cYprQmhrYwIiQ/3axmI1hQomh7Ud2hPOy8SP1" crossorigin="anonymous">
 
+<!-- clipboard.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/1.7.1/clipboard.min.js" integrity="sha384-cV+rhyOuRHc9Ub/91rihWcGmMmCXDeksTtCihMupQHSsi8GIIRDG0ThDc3HGQFJ3" crossorigin="anonymous"></script>
 
 <!-- pkgdown -->
 <link href="../pkgdown.css" rel="stylesheet">
 <script src="../jquery.sticky-kit.min.js"></script>
 <script src="../pkgdown.js"></script>
-  
-  
+
+
+
+
+<meta property="og:title" content="Changelog" />
+
+
 
 <!-- mathjax -->
 <script src='https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML'></script>
@@ -49,8 +56,12 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="../index.html">eurostat</a>
+      <span class="navbar-brand">
+        <a class="navbar-link" href="../index.html">eurostat</a>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.1</span>
+      </span>
     </div>
+
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
@@ -84,12 +95,13 @@
   </ul>
 </li>
 <li>
-  <a href="../news/index.html">News</a>
+  <a href="../news/index.html">Changelog</a>
 </li>
       </ul>
       <ul class="nav navbar-nav navbar-right">
         
       </ul>
+      
     </div><!--/.nav-collapse -->
   </div><!--/.container -->
 </div><!--/.navbar -->
@@ -97,17 +109,24 @@
       
       </header>
 
-      <div class="row">
-
-  <div class="col-md-9">
+<div class="row">
+  <div class="col-md-9 contents">
     <div class="page-header">
-      <h1>Change log <small>All releases</small></h1>
+      <h1>Changelog <small></small></h1>
+      
     </div>
 
-    <div class="contents">
-    <div id="eurostat-3-1-6" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-3-1-6" class="anchor"></a>eurostat 3.1.6</h1>
+    <div id="eurostat-3-2-1" class="section level1">
+<h1 class="page-header">
+<a href="#eurostat-3-2-1" class="anchor"></a>eurostat 3.2.1<small> Unreleased </small>
+</h1>
+<div id="major-updates" class="section level2">
+<h2 class="hasAnchor">
+<a href="#major-updates" class="anchor"></a>Major updates</h2>
+<ul>
+<li>Improved support for sf in map visualization</li>
+</ul>
+</div>
 <div id="minor-features" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-features" class="anchor"></a>Minor features</h2>
@@ -124,8 +143,9 @@
 </div>
 </div>
     <div id="eurostat-3-1-5" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-3-1-5" class="anchor"></a>eurostat 3.1.5</h1>
+<h1 class="page-header">
+<a href="#eurostat-3-1-5" class="anchor"></a>eurostat 3.1.5<small> 2017-08-09 </small>
+</h1>
 <div id="minor-features-1" class="section level2">
 <h2 class="hasAnchor">
 <a href="#minor-features-1" class="anchor"></a>Minor features</h2>
@@ -145,8 +165,9 @@
 </div>
 </div>
     <div id="eurostat-3-1-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-3-1-1" class="anchor"></a>eurostat 3.1.1</h1>
+<h1 class="page-header">
+<a href="#eurostat-3-1-1" class="anchor"></a>eurostat 3.1.1<small> 2017-03-16 </small>
+</h1>
 <div id="r-journal-submission" class="section level2">
 <h2 class="hasAnchor">
 <a href="#r-journal-submission" class="anchor"></a>R Journal submission</h2>
@@ -179,22 +200,25 @@
 </div>
 </div>
     <div id="eurostat-2-2-20001" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-2-20001" class="anchor"></a>eurostat 2.2.20001</h1>
+<h1 class="page-header">
+<a href="#eurostat-2-2-20001" class="anchor"></a>eurostat 2.2.20001<small> Unreleased </small>
+</h1>
 <ul>
 <li>Development version opened</li>
 </ul>
 </div>
     <div id="eurostat-2-2-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-2-1" class="anchor"></a>eurostat 2.2.1</h1>
+<h1 class="page-header">
+<a href="#eurostat-2-2-1" class="anchor"></a>eurostat 2.2.1<small> 2016-09-14 </small>
+</h1>
 <ul>
 <li>Fixed canonical cran url in README</li>
 </ul>
 </div>
     <div id="eurostat-2-1-1" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-1-1" class="anchor"></a>eurostat 2.1.1</h1>
+<h1 class="page-header">
+<a href="#eurostat-2-1-1" class="anchor"></a>eurostat 2.1.1<small> Unreleased </small>
+</h1>
 <ul>
 <li>The complete package now using tibbles</li>
 <li>Rare encoding issues circumvented (#55)</li>
@@ -202,8 +226,9 @@
 </ul>
 </div>
     <div id="eurostat-2-0" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-2-0" class="anchor"></a>eurostat 2.0</h1>
+<h1 class="page-header">
+<a href="#eurostat-2-0" class="anchor"></a>eurostat 2.0<small> Unreleased </small>
+</h1>
 <ul>
 <li>The <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> returns tibbles (#52)</li>
 <li>The <code><a href="../reference/get_eurostat_dic.html">get_eurostat_dic()</a></code> and <code><a href="../reference/get_eurostat_toc.html">get_eurostat_toc()</a></code> return tibbles</li>
@@ -211,16 +236,18 @@
 </ul>
 </div>
     <div id="eurostat-1-2-27" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-27" class="anchor"></a>eurostat 1.2.27</h1>
+<h1 class="page-header">
+<a href="#eurostat-1-2-27" class="anchor"></a>eurostat 1.2.27<small> Unreleased </small>
+</h1>
 <ul>
 <li>Calls to extract_numeric are replaced by as.numeric (#60)</li>
 <li>The column ‘flags’ is not being labelled even if type = “label” (#61)</li>
 </ul>
 </div>
     <div id="eurostat-1-2-22" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-22" class="anchor"></a>eurostat 1.2.22</h1>
+<h1 class="page-header">
+<a href="#eurostat-1-2-22" class="anchor"></a>eurostat 1.2.22<small> Unreleased </small>
+</h1>
 <ul>
 <li>The European Commission and the Eurostat generally uses ISO 3166-1 alpha-2 codes with two exceptions: EL (not GR) is used to represent Greece, and UK (not GB) is used to represent the United Kingdom. This now can be handled with <code><a href="../reference/harmonize_country_code.html">harmonize_country_code()</a></code> which converts the raw data values from EL to GR and from UK to GB.</li>
 <li>Harmonized roxygen documentation to better follow CRAN conventions</li>
@@ -229,16 +256,18 @@
 </ul>
 </div>
     <div id="eurostat-1-2-21" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-21" class="anchor"></a>eurostat 1.2.21</h1>
+<h1 class="page-header">
+<a href="#eurostat-1-2-21" class="anchor"></a>eurostat 1.2.21<small> 2016-03-11 </small>
+</h1>
 <ul>
 <li>The <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> can now get data also from the Eurostat JSON API via <code><a href="../reference/get_eurostat_json.html">get_eurostat_json()</a></code>. It also have a new argument <code>type</code> to select labels for variable values instead of codes.</li>
 <li>Fix an error after update to <code>tidyr 0.4.0</code> (#47).</li>
 </ul>
 </div>
     <div id="eurostat-1-2-13" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-2-13" class="anchor"></a>eurostat 1.2.13</h1>
+<h1 class="page-header">
+<a href="#eurostat-1-2-13" class="anchor"></a>eurostat 1.2.13<small> 2016-01-19 </small>
+</h1>
 <ul>
 <li>New <code>select_time</code> argument for <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> to select a time frequency in case of multi-frequency datasets. Now the <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> also gives an error if you try to get multi-frequency with other time formats than <code>time_format = "raw"</code>. (#30) <code>time</code> column is also now in ascending order.</li>
 <li>
@@ -252,15 +281,17 @@
 </ul>
 </div>
     <div id="eurostat-1-0-16" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-0-16" class="anchor"></a>eurostat 1.0.16</h1>
+<h1 class="page-header">
+<a href="#eurostat-1-0-16" class="anchor"></a>eurostat 1.0.16<small> 2015-03-27 </small>
+</h1>
 <ul>
 <li>Fixed vignette error</li>
 </ul>
 </div>
     <div id="eurostat-1-0-14-2015-03-19" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-1-0-14-2015-03-19" class="anchor"></a>eurostat 1.0.14 (2015-03-19)</h1>
+<h1 class="page-header">
+<a href="#eurostat-1-0-14-2015-03-19" class="anchor"></a>eurostat 1.0.14 (2015-03-19)<small> Unreleased </small>
+</h1>
 <ul>
 <li>Package largely rewritten</li>
 <li>Vignette added</li>
@@ -268,20 +299,20 @@
 </ul>
 </div>
     <div id="eurostat-0-9-1-2014-04-24" class="section level1">
-<h1 class="hasAnchor">
-<a href="#eurostat-0-9-1-2014-04-24" class="anchor"></a>eurostat 0.9.1 (2014-04-24)</h1>
+<h1 class="page-header">
+<a href="#eurostat-0-9-1-2014-04-24" class="anchor"></a>eurostat 0.9.1 (2014-04-24)<small> Unreleased </small>
+</h1>
 <ul>
 <li>Package collected from statfi and smarterpoland</li>
 </ul>
 </div>
-    </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <div id="tocnav">
       <h2>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
-        <li><a href="#eurostat-3-1-6">3.1.6</a></li>
+        <li><a href="#eurostat-3-2-1">3.2.1</a></li>
         <li><a href="#eurostat-3-1-5">3.1.5</a></li>
         <li><a href="#eurostat-3-1-1">3.1.1</a></li>
         <li><a href="#eurostat-2-2-20001">2.2.20001</a></li>
@@ -313,5 +344,8 @@
       </footer>
    </div>
 
+  
+
   </body>
 </html>
+
