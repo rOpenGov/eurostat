@@ -88,26 +88,6 @@ before_install:
   - Rscript -e 'install.packages("classInt", lib="/home/travis/R-bin/lib/R/library/")'  
   - Rscript -e 'install.packages("classInt")'
   - Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org")'
-
-  - Rscript -e 'install.packages("curl", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
-  - Rscript -e 'install.packages("httr", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
-  - Rscript -e 'install.packages("jsonlite", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
-  - Rscript -e 'install.packages("RColorBrewer", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
-  - Rscript -e 'install.packages("sf", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("sp", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("readr", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("Cairo", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("ggplot2", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("lubridate", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("mapproj", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("plotrix", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("rmarkdown", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("roxygen2", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("rsdmx", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("rvest", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("testthat", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
- - Rscript -e 'install.packages("tmap", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'                      
-  - Rscript -e 'install.packages("knitr", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'  
  
 install:
   - . $HOME/.nvm/nvm.sh  
