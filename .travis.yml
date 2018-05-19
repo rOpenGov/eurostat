@@ -85,13 +85,26 @@ before_install:
   - sudo apt-get --yes install npm
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("classInt")'
-  - Rscript -e 'install.packages("curl")
+  # - Rscript -e 'install.packages("curl")
   - Rscript -e 'install.packages("httr")
   - Rscript -e 'install.packages("jsonlite")
   - Rscript -e 'install.packages("RColorBrewer")
   - Rscript -e 'install.packages("sf")
   - Rscript -e 'install.packages("sp")
   - Rscript -e 'install.packages("readr")
+  - Rscript -e 'install.packages("Cairo")
+  - Rscript -e 'install.packages("ggplot2")
+  - Rscript -e 'install.packages("lubridate")
+  - Rscript -e 'install.packages("mapproj")
+  - Rscript -e 'install.packages("plotrix")
+  - Rscript -e 'install.packages("rmarkdown")
+  - Rscript -e 'install.packages("roxygen2")
+  - Rscript -e 'install.packages("rsdmx")
+  - Rscript -e 'install.packages("rvest")
+  - Rscript -e 'install.packages("testthat")
+  - Rscript -e 'install.packages("tmap")                      
+  - Rscript -e 'install.packages("knitr")  
+
 
   #- Rscript -e 'install.packages("classInt", lib="/home/travis/R-bin/lib/R/library/")'  
   #- Rscript -e 'install.packages("classInt", repos="http://cran.us.r-project.org")'
