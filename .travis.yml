@@ -12,7 +12,8 @@ notifications:
 r_packages:
   - broom
   - Cairo
-  - devtools  
+  - devtools
+  - libcairo2-dev
   - gdalUtils
   - geojson  
   - geojsonio
@@ -27,6 +28,7 @@ r_packages:
   - tmap
   - tmaptools  
   - V8
+  - knitr
   
 r_github_packages:
   - jimhester/covr
@@ -34,9 +36,10 @@ r_github_packages:
 env:
   global:
   - WARNINGS_ARE_ERRORS=1
-  - r_build_args: "--no-resave-data"
-  - r_check_args: "--as-cran"    
   - GITHUB_REPO: ropengov/eurostat
+
+r_build_args: "--no-resave-data --no-build-vignettes"
+r_check_args: "--as-cran --no-build-vignettes"    
 
 apt_packages:
   - libudunits2-dev
@@ -44,6 +47,7 @@ apt_packages:
   - libv8-dev
   - libprotobuf-dev
   - libprotoc-dev
+  - libcairo2-dev
   - protobuf-compiler
   - valgrind
   - libgdal20
@@ -65,7 +69,7 @@ before_install:
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get --yes install npm
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
-
+#  - Rscript -e 'install.packages("knitr",repos="http://cran.us.r-project.org")'
 
 install:
   - . $HOME/.nvm/nvm.sh  
