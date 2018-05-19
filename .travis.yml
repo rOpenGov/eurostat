@@ -12,23 +12,37 @@ notifications:
 r_packages:
   - broom
   - Cairo
+  - classInt
+  - curl  
   - devtools
-  - libcairo2-dev
+  - ggplot2
+  - httr
+  - jsonlite
+  - knitr  
+  - lubridate  
   - gdalUtils
   - geojson  
   - geojsonio
   - geojsonlint
-  - jsonlite
   - jqr    
-  - mapview  
+  - mapview
+  - mapproj
+  - plotrix
   - protolite
-  - rgdal    
-  - rmapshaper
-  - sf  
+  - rgdal
+  - RColorBrewer
+  - readr
+  - rmarkdown
+  - rmapshaper  
+  - roxygen2
+  - rsdmx
+  - rvest  
+  - sf
+  - sp  
   - tmap
   - tmaptools  
+  - testthat
   - V8
-  - knitr
   
 r_github_packages:
   - jimhester/covr
