@@ -107,7 +107,7 @@ before_install:
  - Rscript -e 'install.packages("testthat", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'
  - Rscript -e 'install.packages("tmap", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'                      
   - Rscript -e 'install.packages("knitr", repos="http://cran.us.r-project.org", lib="/home/travis/R-bin/lib/R/library/")'  
-
+ 
 install:
   - . $HOME/.nvm/nvm.sh  
   - nvm install stable
