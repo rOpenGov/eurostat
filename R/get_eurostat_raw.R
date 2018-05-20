@@ -35,11 +35,14 @@ get_eurostat_raw <- function(id) {
                          col_types = readr::cols(.default = readr::col_character()))
   
   # check validity
+  
   if (ncol(dat) < 2 | nrow(dat) < 1) {
+    msg <- ". Some datasets are not accessible via the eurostat interface. You can try to search the data manually from the comext database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk download facility at http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing or annual Excel files http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"  
     if (grepl("does not exist or is not readable", dat[1])) {
-      stop(id, " does not exist or is not readable")
+    
+      stop(id, " does not exist or is not readable", msg)
     } else { 
-      stop(paste("Could not download ", id))
+      stop(paste("Could not download ", id, msg))
     }
   }
     

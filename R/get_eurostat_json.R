@@ -60,16 +60,17 @@ get_eurostat_json <- function(id, filters = NULL,
   status <- httr::status_code(resp)
   
   # check status and get json
+  msg <- ". Some datasets are not accessible via the eurostat interface. You can try to search the data manually from the comext database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk download facility at http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing or annual Excel files http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
   if (status == 200){
     jdat <- jsonlite::fromJSON(url)
   } else if (status == 400){
     stop("Failure to get data. Probably invalid dataset id. Status code: ", 
-         status)
+         status, msg)
   } else if (status == 500){
     stop("Failure to get data. Probably filters did not return any data 
-         or data exceeded query size limitation. Status code: ", status)
+         or data exceeded query size limitation. Status code: ", status, msg)
   } else {
-    stop("Failure to get data. Status code: ", status)
+    stop("Failure to get data. Status code: ", status, msg)
   }
   
   # get json data

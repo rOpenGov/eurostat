@@ -840,9 +840,9 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/Rtmpav96gu/eurostat/tgs00026_raw_code_FF.rds
 
-    # Download geospatial data from CISGO
+    # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
 
     ## 
@@ -927,19 +927,25 @@ Interactive maps can be generated as well
     library(sf)
     library(RColorBrewer)
 
-    # Downloading and manipulating the tabular data 
-    euro_sf2 <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
-      # subsetting to year 2014 and NUTS-3 level
-      dplyr::filter(time == 2014, grepl("PL",geo)) %>% 
+    # Downloading and manipulating the tabular data
+    print("Let us focus on year 2014 and NUTS-3 level")
+
+    ## [1] "Let us focus on year 2014 and NUTS-3 level"
+
+    euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
+                             stringsAsFactors = FALSE,
+                 filter = list(time = "2014")) %>% 
+     
+      # Subset to NUTS-3 level
+      dplyr::filter(grepl("PL",geo)) %>% 
       # label the single geo column
       mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
              income = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    print("Download geospatial data from GISCO")
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    ## [1] "Download geospatial data from GISCO"
 
-    # Download geospatial data from CISGO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
 
     ## 
@@ -986,7 +992,7 @@ Interactive maps can be generated as well
     ## # --------------------------          
     ## 
 
-    # merge with attribute data with geodata
+    # Merge with attribute data with geodata
     map_data <- inner_join(geodata, euro_sf2)
 
     ## Joining, by = "geo"
@@ -1016,11 +1022,11 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmpav96gu/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmpav96gu/eurostat/tgs00026_raw_code_FF.rds
 
-    # Download geospatial data from CISGO
+    # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2)
 
     ## 
@@ -1052,7 +1058,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpn75WwS/eurostat/spdf102.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpav96gu/eurostat/spdf102.RData
 
     ## 
     ## # --------------------------
@@ -1097,11 +1103,11 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmpav96gu/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpn75WwS/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmpav96gu/eurostat/tgs00026_raw_code_FF.rds
 
-    # Download geospatial data from CISGO
+    # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "2")
 
     ## 

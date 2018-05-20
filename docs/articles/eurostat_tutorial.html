@@ -83,7 +83,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2018-05-19</h4>
+            <h4 class="date">2018-05-20</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -852,8 +852,8 @@ sp_data &lt;-<span class="st"> </span>eurostat<span class="op">::</span><span cl
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># categorise</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>))</code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from CISGO</span>
+<pre><code>## Table tgs00026 cached at /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>)</code></pre></div>
 <pre><code>## 
 ## COPYRIGHT NOTICE
@@ -928,17 +928,22 @@ map1
 <span class="kw">library</span>(sf)
 <span class="kw">library</span>(RColorBrewer)
 
-<span class="co"># Downloading and manipulating the tabular data </span>
-euro_sf2 &lt;-<span class="st"> </span>eurostat<span class="op">::</span><span class="kw"><a href="http://www.rdocumentation.org/packages/eurostat/topics/get_eurostat">get_eurostat</a></span>(<span class="st">"tgs00026"</span>, <span class="dt">time_format =</span> <span class="st">"raw"</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span>
-<span class="st">  </span><span class="co"># subsetting to year 2014 and NUTS-3 level</span>
-<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">grepl</span>(<span class="st">"PL"</span>,geo)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="co"># Downloading and manipulating the tabular data</span>
+<span class="kw">print</span>(<span class="st">"Let us focus on year 2014 and NUTS-3 level"</span>)</code></pre></div>
+<pre><code>## [1] "Let us focus on year 2014 and NUTS-3 level"</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">euro_sf2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"tgs00026"</span>, <span class="dt">time_format =</span> <span class="st">"raw"</span>,
+                         <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>,
+             <span class="dt">filter =</span> <span class="kw">list</span>(<span class="dt">time =</span> <span class="st">"2014"</span>)) <span class="op">%&gt;%</span><span class="st"> </span>
+<span class="st"> </span>
+<span class="st">  </span><span class="co"># Subset to NUTS-3 level</span>
+<span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw">grepl</span>(<span class="st">"PL"</span>,geo)) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># label the single geo column</span>
 <span class="st">  </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">label =</span> <span class="kw">paste0</span>(<span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(.)[[<span class="st">"geo"</span>]], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, values, <span class="st">"€"</span>),
-         <span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from CISGO</span>
-geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>)</code></pre></div>
+         <span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))
+
+<span class="kw">print</span>(<span class="st">"Download geospatial data from GISCO"</span>)</code></pre></div>
+<pre><code>## [1] "Download geospatial data from GISCO"</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>)</code></pre></div>
 <pre><code>## 
 ## COPYRIGHT NOTICE
 ## 
@@ -980,7 +985,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## 
 ## # --------------------------          
 ## </code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># merge with attribute data with geodata</span>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Merge with attribute data with geodata</span>
 map_data &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(geodata, euro_sf2)</code></pre></div>
 <pre><code>## Joining, by = "geo"</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># plot map</span>
@@ -1007,9 +1012,9 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from CISGO</span>
+<pre><code>## Reading cache file /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## 
 ## COPYRIGHT NOTICE
@@ -1038,7 +1043,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## information regarding their licence agreements.
 ## </code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpFlVxl1/eurostat/spdf102.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpabr3HV/eurostat/spdf102.RData</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -1075,9 +1080,9 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpFlVxl1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from CISGO</span>
+<pre><code>## Reading cache file /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"df"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>)</code></pre></div>
 <pre><code>## 
 ## COPYRIGHT NOTICE

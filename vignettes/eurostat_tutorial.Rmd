@@ -300,7 +300,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFact
   # categorise
   dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-# Download geospatial data from CISGO
+# Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
 
 # merge with attribute data with geodata
@@ -344,18 +344,22 @@ library(dplyr)
 library(sf)
 library(RColorBrewer)
 
-# Downloading and manipulating the tabular data 
-euro_sf2 <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
-  # subsetting to year 2014 and NUTS-3 level
-  dplyr::filter(time == 2014, grepl("PL",geo)) %>% 
+# Downloading and manipulating the tabular data
+print("Let us focus on year 2014 and NUTS-3 level")
+euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
+                         stringsAsFactors = FALSE,
+			 filter = list(time = "2014")) %>% 
+ 
+  # Subset to NUTS-3 level
+  dplyr::filter(grepl("PL",geo)) %>% 
   # label the single geo column
   mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
          income = cut_to_classes(values))
 
-# Download geospatial data from CISGO
+print("Download geospatial data from GISCO")
 geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
 
-# merge with attribute data with geodata
+# Merge with attribute data with geodata
 map_data <- inner_join(geodata, euro_sf2)
 
 # plot map
@@ -383,7 +387,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 
-# Download geospatial data from CISGO
+# Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2)
 
 # merge with attribute data with geodata
@@ -410,7 +414,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 
-# Download geospatial data from CISGO
+# Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "2")
 
 # merge with attribute data with geodata
