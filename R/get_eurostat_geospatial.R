@@ -5,7 +5,7 @@
 #' either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
 #'    \code{spdf} (\code{SpatialPolygonDataFrame})
 #' @param resolution Resolution of the geospatial data. One of
-#'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "01" (1:1million).
+#'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "03" (1:3million) or "01" (1:1million).
 #' @param nuts_level Level of NUTS classification of the geospatial data. One of
 #'    "0", "1", "2", "3" or "all" (mimics the original behaviour)
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
@@ -44,10 +44,11 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_leve
   # Check resolution is of correct format
   resolution <- as.character(resolution)
   resolution <- gsub("^0+", "", resolution)
-  if (!as.numeric(resolution) %in% c(1, 10, 20, 60)) {
-    stop("Resolution should be one of 01, 1, 10, 20, 60")
+  if (!as.numeric(resolution) %in% c(1, 3, 10, 20, 60)) {
+    stop("Resolution should be one of 01, 1, 03, 3, 10, 20, 60")
   }
   resolution <- gsub("^1$", "01", resolution)
+  resolution <- gsub("^3$", "03", resolution)
 
   message("
 COPYRIGHT NOTICE
