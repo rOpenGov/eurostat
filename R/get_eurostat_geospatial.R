@@ -8,6 +8,8 @@
 #'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "03" (1:3million) or "01" (1:1million).
 #' @param nuts_level Level of NUTS classification of the geospatial data. One of
 #'    "0", "1", "2", "3" or "all" (mimics the original behaviour)
+#' @param year NUTS release year. One of
+#'    "2003", "2006", "2010", "2013"
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
 #' @param update_cache a locigal whether to update cache. Can be set also with
@@ -32,15 +34,15 @@
 #'    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
 #'  }
 #'  
-get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all",
+get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all", year = "2013",
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
   
-  eurostat_geodata_60 <- NULL 
+  eurostat_geodata_60_2013 <- NULL
   LEVL_CODE <- NULL
   # output_class <- NULL
   
-  data("eurostat_geodata_60", envir = environment(), package = "eurostat")
-  
+  data("eurostat_geodata_60_2013", envir = environment(), package = "eurostat")
+
   # Check resolution is of correct format
   resolution <- as.character(resolution)
   resolution <- gsub("^0+", "", resolution)
@@ -49,6 +51,16 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_leve
   }
   resolution <- gsub("^1$", "01", resolution)
   resolution <- gsub("^3$", "03", resolution)
+  
+  # Check year is of correct format
+  year <- as.character(year)
+  if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013)) {
+    stop("Year should be one of 2003, 2006, 2010, 2013")
+  }
+  
+  if (as.numeric(year) == 2003 & as.numeric(resolution) == 60) {
+    stop("NUTS 2003 is not provided at 1:60 million resolution. Try 1:1 million, 1:3 million, 1:10 million or 1:20 million")
+  }
 
   message("
 COPYRIGHT NOTICE
@@ -77,7 +89,30 @@ please contact EuroGeographics for
 information regarding their licence agreements.
           ")
   
-  if (resolution != "60"){
+  if (resolution == "60" & year == 2013){
+    
+    if (nuts_level %in% c("all")){
+      shp <- eurostat_geodata_60_2013 
+    }
+    if (nuts_level == "0") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 0)
+    if (nuts_level == "1") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 1)
+    if (nuts_level == "2") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 2)
+    if (nuts_level == "3") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 3)
+    
+    if (output_class == "df"){
+      nuts_sp <- as(shp, "Spatial")
+      nuts_sp$id <- row.names(nuts_sp)
+      nuts_ff <- broom::tidy(nuts_sp)
+      shp <- left_join(nuts_ff,nuts_sp@data)
+    }
+    if (output_class == "spdf"){
+      shp <- as(shp, "Spatial")
+    }
+    
+  } else {
+
+  # if (resolution != "60"){
+  # if (resolution != "60" & year != 2013){
   
   if (cache){
     # check option for update
@@ -99,7 +134,7 @@ information regarding their licence agreements.
     # cache filename
     cache_file <- file.path(cache_dir,
                             paste0(
-                              output_class, resolution, nuts_level, ".RData")
+                              output_class, resolution, nuts_level, year, ".RData")
     )
   }
   
@@ -108,19 +143,19 @@ information regarding their licence agreements.
 
     
     if (nuts_level %in% c("0","all")){
-      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_0.geojson"))
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_",year,"_4258_LEVL_0.geojson"))
       nuts0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("1","all")){
-      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_1.geojson"))
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_",year,"_4258_LEVL_1.geojson"))
       nuts1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }    
     if (nuts_level %in% c("2","all")){
-      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_2.geojson"))
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_",year,"_4258_LEVL_2.geojson"))
       nuts2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("3","all")){
-      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_2013_4258_LEVL_3.geojson"))
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v1/geojson/NUTS_RG_",resolution,"M_",year,"_4258_LEVL_3.geojson"))
       nuts3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
     }
     if (nuts_level %in% c("all")){
@@ -144,38 +179,16 @@ information regarding their licence agreements.
     
   }
   }
-  
-    if (resolution == "60"){
 
-      if (nuts_level %in% c("all")){
-        shp <- eurostat_geodata_60 
-      }
-      if (nuts_level == "0") shp <- filter(eurostat_geodata_60, LEVL_CODE == 0)
-      if (nuts_level == "1") shp <- filter(eurostat_geodata_60, LEVL_CODE == 1)
-      if (nuts_level == "2") shp <- filter(eurostat_geodata_60, LEVL_CODE == 2)
-      if (nuts_level == "3") shp <- filter(eurostat_geodata_60, LEVL_CODE == 3)
-      
-      if (output_class == "df"){
-        nuts_sp <- as(shp, "Spatial")
-        nuts_sp$id <- row.names(nuts_sp)
-        nuts_ff <- broom::tidy(nuts_sp)
-        shp <- left_join(nuts_ff,nuts_sp@data)
-      }
-      if (output_class == "spdf"){
-        shp <- as(shp, "Spatial")
-      }
-
-    }
-
-  if (resolution != "60"){
+  if (resolution != "60" & year != 2013){
   if (cache & file.exists(cache_file)) {
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))
     # y <- readRDS(cache_file)
     load(file = cache_file)
-    if (output_class == "sf") message(paste("sf at resolution 1:", resolution, " read from cache file: ", cf))
-    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " read from cache file: ", cf))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " read from cache file: ", cf))
+    if (output_class == "sf") message(paste("sf at resolution 1:", resolution, " from year ",year," read from cache file: ", cf))
+    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " from year ",year," read from cache file: ", cf))
+    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " from year ",year," read from cache file: ", cf))
   }
   
   # if update or new: save
@@ -187,7 +200,7 @@ information regarding their licence agreements.
   }
   }
   
-  if (resolution == "60"){
+  if (resolution == "60" & year == 2013){
     if (output_class == "sf") message(paste("sf at resolution 1:60 read from local file"))
     if (output_class == "df") message(paste("data_frame at resolution 1:60 read from local file"))
     if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:60 read from local file"))
