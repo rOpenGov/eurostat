@@ -1,3 +1,11 @@
+# eurostat 3.2.2
+
+
+## Minor features
+
+* dplyr moved from Dependencies to Imports
+
+
 # eurostat 3.2.1
 
 ## Major updates
@@ -7,6 +15,7 @@
 ## Minor features
 
 * data/ generation script in data-raw/ updated to make all data reproducible
+
 
 ## Bug fixes
 

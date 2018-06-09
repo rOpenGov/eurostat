@@ -1,6 +1,9 @@
-#' @import dplyr
 #' @import methods
 #' @importFrom classInt classIntervals
+#' @importFrom dplyr %>%
+#' @importFrom dplyr filter
+#' @importFrom dplyr mutate
+#' @importFrom dplyr select
 #' @importFrom httr GET
 #' @importFrom httr status_code
 #' @importFrom httr build_url

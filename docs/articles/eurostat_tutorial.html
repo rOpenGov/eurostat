@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.1</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.10002</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2018-05-20</h4>
+            <h4 class="date">2018-06-09</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -105,15 +105,6 @@
 <p>Development version <a href="https://github.com/rOpenGov/eurostat">(Github)</a>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(devtools)
 <span class="kw"><a href="http://www.rdocumentation.org/packages/devtools/topics/install_github">install_github</a></span>(<span class="st">"ropengov/eurostat"</span>)</code></pre></div>
-<pre><code>## Loading required package: dplyr</code></pre>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
 <p>Overall, the eurostat package includes the following functions:</p>
 <pre><code>clean_eurostat_cache    Clean Eurostat Cache
 cut_to_classes          Cuts the Values Column into Classes and
@@ -122,8 +113,9 @@ dic_order               Order of Variable Levels from Eurostat
                         Dictionary.
 eu_countries            Countries and Country Codes
 eurostat-package        R Tools for Eurostat open data
-eurostat_geodata_60     Geospatial data of Europe from Gisco in 1:60
-                        million scale
+eurostat_geodata_60_2013
+                        Geospatial data of Europe from Gisco in 1:60
+                        million scale from year 2013
 eurotime2date           Date Conversion from Eurostat Time Format
 eurotime2num            Conversion of Eurostat Time Format to Numeric
 get_eurostat            Read Eurostat Data
@@ -220,10 +212,10 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">27.04.2018</td>
-<td align="left">27.04.2018</td>
+<td align="left">01.06.2018</td>
+<td align="left">30.05.2018</td>
 <td align="left">1980M01</td>
-<td align="left">2018M04</td>
+<td align="left">2018M05</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -771,13 +763,8 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="http://w
 <h1 class="hasAnchor">
 <a href="#visualization" class="anchor"></a>Visualization</h1>
 <p>Visualizing train passenger data with <code>ggplot2</code>:</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)</code></pre></div>
-<pre><code>## 
-## Attaching package: 'ggplot2'</code></pre>
-<pre><code>## The following object is masked from 'package:dplyr':
-## 
-##     vars</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">p &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dat_trains, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> time, <span class="dt">y =</span> values, <span class="dt">colour =</span> geo)) 
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
+p &lt;-<span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggplot">ggplot</a></span>(dat_trains, <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">x =</span> time, <span class="dt">y =</span> values, <span class="dt">colour =</span> geo)) 
 p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_path">geom_line</a></span>()
 <span class="kw">print</span>(p)</code></pre></div>
 <p><img src="fig/trains_plot-1.png" width="576"></p>
@@ -852,7 +839,7 @@ sp_data &lt;-<span class="st"> </span>eurostat<span class="op">::</span><span cl
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># categorise</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>))</code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/RtmpttdgLs/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>)</code></pre></div>
 <pre><code>## 
@@ -1012,8 +999,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpttdgLs/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpttdgLs/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>)</code></pre></div>
 <pre><code>## 
@@ -1043,7 +1030,6 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## information regarding their licence agreements.
 ## </code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpabr3HV/eurostat/spdf102.RData</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -1080,8 +1066,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpabr3HV/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpttdgLs/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpttdgLs/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"df"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>)</code></pre></div>
 <pre><code>## 
@@ -1135,162 +1121,12 @@ map_data &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.ti
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/geom_polygon">geom_polygon</a></span>(<span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/aes">aes</a></span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"dim grey"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/scale_brewer">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Oranges"</span>) <span class="op">+</span>
 <span class="st">  </span><span class="co"># scale_fill_continuous(trans = 'reverse', ) +</span>
-<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/guides">guides</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/guide_legend">guide_legend</a></span>(<span class="dt">reverse=</span>T, <span class="dt">title =</span> <span class="st">"€"</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/guides">guides</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/guide_legend">guide_legend</a></span>(<span class="dt">reverse=</span>T, <span class="dt">title =</span> <span class="st">"euro"</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/labs">labs</a></span>(<span class="dt">title=</span><span class="st">"Disposable household income in 2014"</span>,
        <span class="dt">caption=</span><span class="st">"(C) EuroGeographics for the administrative boundaries </span>
 <span class="st">                Map produced in R with a help from Eurostat-package &lt;github.com/ropengov/eurostat/&gt;"</span>) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/ggtheme">theme_light</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/theme">theme</a></span>(<span class="dt">legend.position=</span><span class="kw">c</span>(.<span class="dv">8</span>,.<span class="dv">8</span>)) <span class="op">+</span>
 <span class="st">  </span><span class="kw"><a href="http://www.rdocumentation.org/packages/ggplot2/topics/coord_map">coord_map</a></span>(<span class="dt">project=</span><span class="st">"orthographic"</span>, <span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">44</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>))</code></pre></div>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call(C_textBounds, as.graphicsAnnot(x$label), x$x, x$y, :
-## conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
-<pre><code>## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;e2&gt;</code></pre>
-<pre><code>## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;82&gt;</code></pre>
-<pre><code>## Warning in grid.Call.graphics(C_text, as.graphicsAnnot(x$label), x$x,
-## x$y, : conversion failure on '€' in 'mbcsToSbcs': dot substituted for &lt;ac&gt;</code></pre>
 <p><img src="fig/maps4-1.png" width="768"></p>
 </div>
 </div>
@@ -1391,7 +1227,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.2.1 Package
+##   package. R Journal 9(1):385-392, 2017. Version 3.2.10002 Package
 ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -1406,7 +1242,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.2.1},
+##     note = {Version 3.2.10002},
 ##   }</code></pre>
 </div>
 <div id="related-work" class="section level3">
@@ -1448,10 +1284,10 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## 
 ## other attached packages:
 ##  [1] rsdmx_0.5-11       sp_1.2-7           RColorBrewer_1.1-2
-##  [4] tmap_1.11-2        sf_0.6-2           plotrix_3.7       
-##  [7] ggplot2_2.2.1.9000 tidyr_0.8.0        bindrcpp_0.2.2    
-## [10] rvest_0.3.2        xml2_1.2.0         eurostat_3.2.1    
-## [13] dplyr_0.7.4        knitr_1.20        
+##  [4] tmap_1.11-2        sf_0.6-2           dplyr_0.7.5       
+##  [7] plotrix_3.7        ggplot2_2.2.1.9000 tidyr_0.8.1       
+## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
+## [13] eurostat_3.2.10002 knitr_1.20        
 ## 
 ## loaded via a namespace (and not attached):
 ##   [1] colorspace_1.3-2   deldir_0.1-15      class_7.3-14      
@@ -1469,23 +1305,23 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ##  [37] later_0.7.2        htmltools_0.3.6    tools_3.5.0       
 ##  [40] coda_0.19-1        gtable_0.2.0       glue_1.2.0        
 ##  [43] reshape2_1.4.3     maps_3.3.0         gmodels_2.16.2    
-##  [46] V8_1.5             Rcpp_0.12.16       pkgdown_1.0.0.9000
+##  [46] V8_1.5             Rcpp_0.12.17       pkgdown_1.0.0.9000
 ##  [49] raster_2.6-7       spdep_0.7-7        gdata_2.18.0      
 ##  [52] nlme_3.1-137       udunits2_0.13      iterators_1.0.9   
 ##  [55] crosstalk_1.0.0    psych_1.8.4        stringr_1.3.1     
 ##  [58] mime_0.5           gtools_3.5.0       XML_3.98-1.11     
-##  [61] LearnBayes_2.15.1  MASS_7.3-50        scales_0.5.0.9000 
+##  [61] LearnBayes_2.15.1  MASS_7.3-50        scales_0.5.0      
 ##  [64] hms_0.4.2          promises_1.0.1     parallel_3.5.0    
 ##  [67] expm_0.999-2       yaml_2.1.19        curl_3.2          
 ##  [70] memoise_1.1.0      geosphere_1.5-7    stringi_1.2.2     
 ##  [73] jsonvalidate_1.0.0 highr_0.6          desc_1.2.0        
 ##  [76] foreach_1.4.4      e1071_1.6-8        boot_1.3-20       
-##  [79] spData_0.2.8.3     rlang_0.2.0.9001   pkgconfig_2.0.1   
+##  [79] spData_0.2.8.3     rlang_0.2.1        pkgconfig_2.0.1   
 ##  [82] commonmark_1.5     bitops_1.0-6       evaluate_0.10.1   
 ##  [85] lattice_0.20-35    purrr_0.2.4        bindr_0.1.1       
 ##  [88] htmlwidgets_1.2    labeling_0.3       tidyselect_0.2.4  
 ##  [91] osmar_1.1-7        plyr_1.8.4         magrittr_1.5      
-##  [94] R6_2.2.2           DBI_1.0.0          pillar_1.2.2      
+##  [94] R6_2.2.2           DBI_1.0.0          pillar_1.2.3      
 ##  [97] foreign_0.8-70     withr_2.1.2        units_0.5-1       
 ## [100] RCurl_1.95-4.10    tibble_1.4.2       crayon_1.3.4      
 ## [103] rmapshaper_0.4.0   KernSmooth_2.23-15 rmarkdown_1.9     
