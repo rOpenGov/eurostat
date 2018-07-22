@@ -1,16 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-<<<<<<< HEAD
 Date: 2018-07-21
-Version: 3.2.10003
-||||||| merged common ancestors
-Date: 2018-06-06
-Version: 3.2.10002
-=======
-Date: 2018-06-06
-Version: 3.2.10003
->>>>>>> master
+Version: 3.2.10004
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
