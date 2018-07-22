@@ -2,7 +2,7 @@ Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
 Date: 2018-07-21
-Version: 3.2.10004
+Version: 3.2.2
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre")),
@@ -24,7 +24,6 @@ Depends:
 Imports:
     broom,
     classInt,
-    curl,
     dplyr,    
     httr,    
     jsonlite,

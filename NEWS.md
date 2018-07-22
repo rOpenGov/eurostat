@@ -1,10 +1,10 @@
 # eurostat 3.2.2
 
-
 ## Minor features
 
 * dplyr moved from Dependencies to Imports
-
+* curl removed from Imports
+* solved geospatial map issues
 
 # eurostat 3.2.1
 

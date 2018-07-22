@@ -829,7 +829,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/Rtmp8GFR7G/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2)
@@ -2795,9 +2795,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmp8GFR7G/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp8GFR7G/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2)
@@ -2874,9 +2874,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmp8GFR7G/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp8GFR7G/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2")
@@ -3048,7 +3048,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.2.10004 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.2.2 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -3063,7 +3063,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.2.10004},
+    ##     note = {Version 3.2.2},
     ##   }
 
 ### Related work
@@ -3122,39 +3122,39 @@ This tutorial was created with
     ##  [7] plotrix_3.7-2      ggplot2_3.0.0      tidyr_0.8.1       
     ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
     ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
-    ## [16] eurostat_3.2.10004 devtools_1.13.6   
+    ## [16] eurostat_3.2.2     devtools_1.13.6   
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] nlme_3.1-137       bitops_1.0-6       fs_1.2.3          
-    ##  [4] satellite_1.0.1    lubridate_1.7.4    webshot_0.5.0.9000
-    ##  [7] httr_1.3.1         rprojroot_1.3-2    mapview_2.4.0     
-    ## [10] tools_3.5.1        backports_1.1.2    rgdal_1.3-3       
-    ## [13] R6_2.2.2           KernSmooth_2.23-15 spData_0.2.9.0    
-    ## [16] rgeos_0.3-28       DBI_1.0.0          lazyeval_0.2.1    
-    ## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.2       
-    ## [22] tidyselect_0.2.4   mnormt_1.5-5       processx_3.1.0    
-    ## [25] leaflet_2.0.1      curl_3.2           compiler_3.5.1    
-    ## [28] cli_1.0.0          Cairo_1.5-9        desc_1.2.0        
-    ## [31] labeling_0.3       scales_0.5.0       classInt_0.2-3    
-    ## [34] psych_1.8.4        readr_1.1.1        callr_2.0.4       
-    ## [37] commonmark_1.5     stringr_1.3.1      digest_0.6.15     
-    ## [40] foreign_0.8-70     R.utils_2.6.0      base64enc_0.1-3   
-    ## [43] dichromat_2.0-0    pkgconfig_2.0.1    htmltools_0.3.6   
-    ## [46] highr_0.7          htmlwidgets_1.2    rlang_0.2.1       
-    ## [49] shiny_1.1.0        bindr_0.1.1        jsonlite_1.5      
-    ## [52] crosstalk_1.0.0    R.oo_1.22.0        RCurl_1.95-4.10   
-    ## [55] magrittr_1.5       Rcpp_0.12.17       munsell_0.5.0     
-    ## [58] R.methodsS3_1.7.1  stringi_1.2.3      yaml_2.1.19       
-    ## [61] MASS_7.3-50        tmaptools_2.0      plyr_1.8.4        
-    ## [64] grid_3.5.1         parallel_3.5.1     promises_1.0.1    
-    ## [67] crayon_1.3.4       lattice_0.20-35    hms_0.4.2         
-    ## [70] pillar_1.2.3       gdalUtils_2.0.1.14 stats4_3.5.1      
-    ## [73] codetools_0.2-15   reshape2_1.4.3     XML_3.98-1.11     
-    ## [76] glue_1.2.0         evaluate_0.10.1    png_0.1-7         
-    ## [79] foreach_1.4.4      httpuv_1.4.4.9001  testthat_2.0.0    
-    ## [82] gtable_0.2.0       purrr_0.2.5        assertthat_0.2.0  
-    ## [85] mime_0.5           lwgeom_0.1-4       xtable_1.8-2      
-    ## [88] broom_0.4.5        e1071_1.6-8        roxygen2_6.0.1    
-    ## [91] later_0.7.3        class_7.3-14       viridisLite_0.3.0 
-    ## [94] tibble_1.4.2       iterators_1.0.9    memoise_1.1.0     
-    ## [97] units_0.6-0
+    ##  [1] colorspace_1.3-2   class_7.3-14       gdalUtils_2.0.1.14
+    ##  [4] leaflet_2.0.1      rgdal_1.3-3        rprojroot_1.3-2   
+    ##  [7] satellite_1.0.1    base64enc_0.1-3    fs_1.2.3          
+    ## [10] dichromat_2.0-0    roxygen2_6.0.1     lubridate_1.7.4   
+    ## [13] codetools_0.2-15   R.methodsS3_1.7.1  mnormt_1.5-5      
+    ## [16] jsonlite_1.5       tmaptools_2.0      Cairo_1.5-9       
+    ## [19] broom_0.4.5        png_0.1-7          R.oo_1.22.0       
+    ## [22] rgeos_0.3-28       shiny_1.1.0        readr_1.1.1       
+    ## [25] compiler_3.5.1     httr_1.3.1         backports_1.1.2   
+    ## [28] mapview_2.4.0      assertthat_0.2.0   lazyeval_0.2.1    
+    ## [31] cli_1.0.0          later_0.7.3        htmltools_0.3.6   
+    ## [34] tools_3.5.1        gtable_0.2.0       glue_1.2.0        
+    ## [37] reshape2_1.4.3     Rcpp_0.12.17       raster_2.6-7      
+    ## [40] nlme_3.1-137       iterators_1.0.9    crosstalk_1.0.0   
+    ## [43] psych_1.8.4        lwgeom_0.1-4       stringr_1.3.1     
+    ## [46] testthat_2.0.0     mime_0.5           XML_3.98-1.11     
+    ## [49] MASS_7.3-50        scales_0.5.0       hms_0.4.2         
+    ## [52] promises_1.0.1     parallel_3.5.1     yaml_2.1.19       
+    ## [55] curl_3.2           memoise_1.1.0      stringi_1.2.3     
+    ## [58] highr_0.7          desc_1.2.0         foreach_1.4.4     
+    ## [61] e1071_1.6-8        spData_0.2.9.0     rlang_0.2.1       
+    ## [64] pkgconfig_2.0.1    commonmark_1.5     bitops_1.0-6      
+    ## [67] evaluate_0.10.1    lattice_0.20-35    purrr_0.2.5       
+    ## [70] bindr_0.1.1        htmlwidgets_1.2    labeling_0.3      
+    ## [73] processx_3.1.0     tidyselect_0.2.4   plyr_1.8.4        
+    ## [76] magrittr_1.5       R6_2.2.2           DBI_1.0.0         
+    ## [79] pillar_1.2.3       foreign_0.8-70     withr_2.1.2       
+    ## [82] units_0.6-0        RCurl_1.95-4.10    tibble_1.4.2      
+    ## [85] crayon_1.3.4       KernSmooth_2.23-15 grid_3.5.1        
+    ## [88] callr_2.0.4        digest_0.6.15      classInt_0.2-3    
+    ## [91] webshot_0.5.0.9000 xtable_1.8-2       httpuv_1.4.4.9001 
+    ## [94] R.utils_2.6.0      stats4_3.5.1       munsell_0.5.0     
+    ## [97] viridisLite_0.3.0
