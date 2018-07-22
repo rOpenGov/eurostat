@@ -829,7 +829,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpTCqdr2/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2)
@@ -2795,9 +2795,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpTCqdr2/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpTCqdr2/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2)
@@ -2874,9 +2874,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpTCqdr2/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpU2rGf9/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpTCqdr2/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2")
