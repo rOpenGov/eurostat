@@ -301,26 +301,23 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFact
   dplyr::mutate(income = cut_to_classes(values, n = 5))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
+geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2)
 
 # merge with attribute data with geodata
 map_data <- inner_join(geodata, sp_data)
-
-# plot map using tmap
-data(Europe)
 ```
 
 
 Construct the map
 
 ```{r map1ex, eval=TRUE}
-map1 <- tmap::tm_shape(Europe) +
+map1 <- tmap::tm_shape(geodata) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(map_data) +
   tmap::tm_grid() +
   tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
                     palette = "Oranges") +
-  tmap::tm_format_Europe()
+  tmap::tm_format_Europe(legend.outside = TRUE, attr.outside = TRUE)
 print(map1)  
 ```
 
@@ -357,13 +354,13 @@ euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
          income = cut_to_classes(values))
 
 print("Download geospatial data from GISCO")
-geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60")
+geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2)
 
 # Merge with attribute data with geodata
 map_data <- inner_join(geodata, euro_sf2)
 
 # plot map
-map2 <- tm_shape(Europe) +
+map2 <- tm_shape(geodata) +
   tm_fill("lightgrey") +
   tm_shape(map_data, is.master = TRUE) +
   tm_polygons("income", title = "Disposable household incomes in 2014",
@@ -382,7 +379,7 @@ library(eurostat)
 library(dplyr)
 library(RColorBrewer)
 dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
-  # subsetting to year 2014 and NUTS-3 level
+  # subsetting to year 2014 and NUTS-2 level
   dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
@@ -415,22 +412,22 @@ dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %
   dplyr::mutate(cat = cut_to_classes(values))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(output_class = "df", resolution = "60", nuts_level = "2")
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2")
 
 # merge with attribute data with geodata
 map_data <- inner_join(geodata, dat)
 
-# plot map
-ggplot(data=map_data, aes(x=long,y=lat,group=group)) +
-  geom_polygon(aes(fill=cat),color="dim grey", size=.1) +
-  scale_fill_brewer(palette = "Oranges") +
-  # scale_fill_continuous(trans = 'reverse', ) +
+ggplot(data=map_data) + geom_sf(aes(fill=cat),color="dim grey", size=.1) + 
+    scale_fill_brewer(palette = "Oranges") +
   guides(fill = guide_legend(reverse=T, title = "euro")) +
   labs(title="Disposable household income in 2014",
        caption="(C) EuroGeographics for the administrative boundaries 
                 Map produced in R with a help from Eurostat-package <github.com/ropengov/eurostat/>") +
   theme_light() + theme(legend.position=c(.8,.8)) +
-  coord_map(project="orthographic", xlim=c(-12,44), ylim=c(35,70))
+  coord_sf(xlim=c(-12,44), ylim=c(35,70))
+
+
+
 ```
 
 
