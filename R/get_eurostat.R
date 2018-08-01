@@ -62,6 +62,9 @@
 #' bulk download facility and the \code{select_time} is not available for 
 #' JSON API method.
 #' 
+#' If your connection is thru a proxy, you probably have to set proxy parameters
+#' to use JSON API, see \code{\link{get_eurostat_json}}.
+#' 
 #' By default datasets from the bulk download facility are cached as they are
 #' often rather large. Caching is not (currently) possible for datasets from 
 #' JSON API.
