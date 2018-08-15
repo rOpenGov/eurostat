@@ -1,5 +1,5 @@
-#' @title Geospatial data of Europe from Gisco in 1:60 million scale from year 2013
-#' @description Geospatial data of Europe from Gisco in 1:60 million scale from year 2013 
+#' @title Geospatial data of Europe from Gisco in 1:60 million scale from year 2016
+#' @description Geospatial data of Europe from Gisco in 1:60 million scale from year 2016 
 #' @format sf
 #' \describe{
 #'   \item{id}{Country code in the Eurostat database}
@@ -8,11 +8,28 @@
 #'   \item{LEVL_CODE}{NUTS code}
 #'   \item{FID}{Country code}
 #'   \item{NUTS_ID}{NUTS code}
-#'   \item{geo}{NUTS code}
 #'   \item{geometry}{geospatial information}
+#'   \item{geo}{NUTS code}
 #' }
 #' @source \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
-"eurostat_geodata_60_2013" 
+"eurostat_geodata_60_2016" 
+
+
+## -- 2016
+# library(sf)
+# library(httr)
+#              
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_0.geojson")
+# n0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_1.geojson")
+# n1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_2.geojson")
+# n2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_3.geojson")
+# n3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
+# eurostat_geodata_60_2016 <- rbind(n0,n1,n2,n3)
+# eurostat_geodata_60_2016$geo <- eurostat_geodata_60_2016$NUTS_ID
+# save(eurostat_geodata_60_2016, file = "./data/eurostat_geodata_60_2016.rda")
 
 
 ## -- 2013

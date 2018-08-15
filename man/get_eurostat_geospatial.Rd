@@ -5,8 +5,8 @@
 \title{Download Geospatial Data from GISGO}
 \usage{
 get_eurostat_geospatial(output_class = "sf", resolution = "60",
-  nuts_level = "all", year = "2013", cache = TRUE, update_cache = FALSE,
-  cache_dir = NULL)
+  nuts_level = "all", year = "2016", cache = TRUE,
+  update_cache = FALSE, cache_dir = NULL)
 }
 \arguments{
 \item{output_class}{A string. Class of object returned, 
@@ -20,7 +20,7 @@ either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
 "0", "1", "2", "3" or "all" (mimics the original behaviour)}
 
 \item{year}{NUTS release year. One of
-"2003", "2006", "2010", "2013"}
+"2003", "2006", "2010", "2013" or "2016"}
 
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
 only queries from the bulk download facility.}

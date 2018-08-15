@@ -9,7 +9,7 @@
 #' @param nuts_level Level of NUTS classification of the geospatial data. One of
 #'    "0", "1", "2", "3" or "all" (mimics the original behaviour)
 #' @param year NUTS release year. One of
-#'    "2003", "2006", "2010", "2013"
+#'    "2003", "2006", "2010", "2013" or "2016"
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
 #' @param update_cache a locigal whether to update cache. Can be set also with
@@ -34,14 +34,14 @@
 #'    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
 #'  }
 #'  
-get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all", year = "2013",
+get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE, cache_dir = NULL){
   
-  eurostat_geodata_60_2013 <- NULL
+  eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
   # output_class <- NULL
   
-  data("eurostat_geodata_60_2013", envir = environment(), package = "eurostat")
+  data("eurostat_geodata_60_2016", envir = environment(), package = "eurostat")
 
   # Check resolution is of correct format
   resolution <- as.character(resolution)
@@ -54,8 +54,8 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_leve
   
   # Check year is of correct format
   year <- as.character(year)
-  if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013)) {
-    stop("Year should be one of 2003, 2006, 2010, 2013")
+  if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013, 2016)) {
+    stop("Year should be one of 2003, 2006, 2010, 2013 or 2016")
   }
   
   if (as.numeric(year) == 2003 & as.numeric(resolution) == 60) {
@@ -89,15 +89,15 @@ please contact EuroGeographics for
 information regarding their licence agreements.
           ")
   
-  if (resolution == "60" & year == 2013){
+  if (resolution == "60" & year == 2016){
     
     if (nuts_level %in% c("all")){
-      shp <- eurostat_geodata_60_2013 
+      shp <- eurostat_geodata_60_2016 
     }
-    if (nuts_level == "0") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 0)
-    if (nuts_level == "1") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 1)
-    if (nuts_level == "2") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 2)
-    if (nuts_level == "3") shp <- filter(eurostat_geodata_60_2013, LEVL_CODE == 3)
+    if (nuts_level == "0") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 0)
+    if (nuts_level == "1") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 1)
+    if (nuts_level == "2") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 2)
+    if (nuts_level == "3") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 3)
     
     if (output_class == "df"){
       nuts_sp <- as(shp, "Spatial")
@@ -180,7 +180,7 @@ information regarding their licence agreements.
   }
   }
 
-  if (resolution != "60" & year != 2013){
+  if (resolution != "60" & year != 2016){
   if (cache & file.exists(cache_file)) {
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))
@@ -200,7 +200,7 @@ information regarding their licence agreements.
   }
   }
   
-  if (resolution == "60" & year == 2013){
+  if (resolution == "60" & year == 2016){
     if (output_class == "sf") message(paste("sf at resolution 1:60 read from local file"))
     if (output_class == "df") message(paste("data_frame at resolution 1:60 read from local file"))
     if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:60 read from local file"))

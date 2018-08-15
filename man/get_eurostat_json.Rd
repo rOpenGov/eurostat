@@ -4,9 +4,9 @@
 \alias{get_eurostat_json}
 \title{Get Data from Eurostat API in JSON}
 \usage{
-get_eurostat_json(id, filters = NULL, type = c("code", "label", "both"),
-  lang = c("en", "fr", "de"), stringsAsFactors = default.stringsAsFactors(),
-  ...)
+get_eurostat_json(id, filters = NULL, type = c("code", "label",
+  "both"), lang = c("en", "fr", "de"),
+  stringsAsFactors = default.stringsAsFactors(), ...)
 }
 \arguments{
 \item{id}{A code name for the dataset of interested. See the table of
