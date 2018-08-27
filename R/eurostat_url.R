@@ -6,5 +6,5 @@
 #' @author Leo Lahti \email{leo.lahti@iki.fi}
 #' @keywords internal
 eurostat_url <- function(...) {
-  "http://ec.europa.eu/eurostat/"
+  "https://ec.europa.eu/eurostat/"
 }
