@@ -7,7 +7,7 @@
 #' @keywords internal
 set_eurostat_toc <- function(...) {
    if (!exists(".eurostatTOC", envir = .EurostatEnv)) {
-   base <- eurostat_url()
+   base <- getOption("eurostat_url")
    url <- paste(base, "estat-navtree-portlet-prod/", 
        	 "BulkDownloadListing?sort=1&downfile=table_of_contents_en.txt", 
 	 sep = "")
