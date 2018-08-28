@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Order of Variable Levels from Eurostat Dictionary. — dic_order • eurostat</title>
+<title>Geospatial data of Europe from Gisco in 1:60 million scale from year 2016 — eurostat_geodata_60_2016 • eurostat</title>
 
 <!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha384-nrOSfDHtoPMzJHjVTdCopGqIqeYETSXhZDFyniQ8ZHcVy08QesyHcnOUpMpqnmWq" crossorigin="anonymous"></script>
@@ -32,8 +32,8 @@
 
 
 
-<meta property="og:title" content="Order of Variable Levels from Eurostat Dictionary. — dic_order" />
-<meta property="og:description" content="Orders the factor levels." />
+<meta property="og:title" content="Geospatial data of Europe from Gisco in 1:60 million scale from year 2016 — eurostat_geodata_60_2016" />
+<meta property="og:description" content="Geospatial data of Europe from Gisco in 1:60 million scale from year 2016" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -117,55 +117,41 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Order of Variable Levels from Eurostat Dictionary.</h1>
+    <h1>Geospatial data of Europe from Gisco in 1:60 million scale from year 2016</h1>
     
-    <div class="hidden name"><code>dic_order.Rd</code></div>
+    <div class="hidden name"><code>eurostat_geodata_60_2016.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Orders the factor levels.</p>
+    <p>Geospatial data of Europe from Gisco in 1:60 million scale from year 2016</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dic_order</span>(<span class='no'>x</span>, <span class='no'>dic</span>, <span class='no'>type</span>)</pre>
+    <pre class="usage"><span class='no'>eurostat_geodata_60_2016</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a variable (code or labelled) to get order for.</p></td>
-    </tr>
-    <tr>
-      <th>dic</th>
-      <td><p>a name of the dictionary. Correspond a variable name in the 
-data_frame from <code><a href='get_eurostat.html'>get_eurostat</a></code>. Can be also data_frame from
-<code><a href='get_eurostat_dic.html'>get_eurostat_dic</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>a type of the x. Could be <code>code</code> or <code>label</code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A numeric vector of orders.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>sf</p><dl class='dl-horizontal'>
+  <dt>id</dt><dd><p>Country code in the Eurostat database</p></dd>
+  <dt>CNTRY_CODE</dt><dd><p>Country code</p></dd>
+  <dt>NUTS_NAME</dt><dd><p>NUTS name in local language</p></dd>
+  <dt>LEVL_CODE</dt><dd><p>NUTS code</p></dd>
+  <dt>FID</dt><dd><p>Country code</p></dd>
+  <dt>NUTS_ID</dt><dd><p>NUTS code</p></dd>
+  <dt>geometry</dt><dd><p>geospatial information</p></dd>
+  <dt>geo</dt><dd><p>NUTS code</p></dd>
+</dl>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
 
-    <p>Some variables, like classifications, have logical or conventional ordering. Eurostat data tables are nor neccessary ordered in this order. The function <code>dic_order</code> get the ordering from Eurostat classifications dictionaries. The function <code><a href='label_eurostat.html'>label_eurostat</a></code> can also order factor levels of labels with argument <code>eu_order = TRUE</code>.</p>
+    <p><a href='http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units'>http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
     </ul>
-
-    <h2>Author</h2>
-    
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu <a href='mailto:ropengov-forum@googlegroups.com'>ropengov-forum@googlegroups.com</a> <a href='http://github.com/ropengov/eurostat'>http://github.com/ropengov/eurostat</a>
 
   </div>
 </div>

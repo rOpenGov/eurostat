@@ -301,7 +301,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFact
   dplyr::mutate(income = cut_to_classes(values, n = 5))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2016)
+geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
 
 # merge with attribute data with geodata
 map_data <- inner_join(geodata, sp_data)
@@ -353,7 +353,7 @@ euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
          income = cut_to_classes(values))
 
 print("Download geospatial data from GISCO")
-geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2016)
+geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
 
 # Merge with attribute data with geodata
 map_data <- inner_join(geodata, euro_sf2)
@@ -383,7 +383,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %
   dplyr::mutate(cat = cut_to_classes(values))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2016)
+geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
 
 # merge with attribute data with geodata
 geodata@data <- left_join(geodata@data, dat)
@@ -410,7 +410,7 @@ dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %
   dplyr::mutate(cat = cut_to_classes(values))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2016)
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
 
 # merge with attribute data with geodata
 map_data <- inner_join(geodata, dat)

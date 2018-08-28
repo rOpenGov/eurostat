@@ -63,7 +63,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.2</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.30002</span>
       </span>
     </div>
 
@@ -126,10 +126,11 @@
     <p>Download data sets from Eurostat <a href='ec.europa.eu/eurostat'>ec.europa.eu/eurostat</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_eurostat</span>(<span class='no'>id</span>, <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='st'>"date"</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='st'>"none"</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"code"</span>,
-  <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>compress_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fu'>default.stringsAsFactors</span>(), <span class='kw'>keepFlags</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_eurostat</span>(<span class='no'>id</span>, <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='st'>"date"</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
+  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"code"</span>, <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>, <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>compress_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
+  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fu'>default.stringsAsFactors</span>(), <span class='kw'>keepFlags</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='no'>...</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -244,6 +245,8 @@ It is also often the only way as the JSON API has limitation of maximum
 it seems that multi frequency datasets can only be retrived via 
 bulk download facility and the <code>select_time</code> is not available for 
 JSON API method.</p>
+<p>If your connection is thru a proxy, you probably have to set proxy parameters
+to use JSON API, see <code><a href='get_eurostat_json.html'>get_eurostat_json</a></code>.</p>
 <p>By default datasets from the bulk download facility are cached as they are
 often rather large. Caching is not (currently) possible for datasets from 
 JSON API.
