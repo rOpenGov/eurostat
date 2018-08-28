@@ -19,7 +19,7 @@
 #' @keywords utilities database
 get_eurostat_raw <- function(id) {
 
-  base <- eurostat_url()		   
+  base <- getOption("eurostat_url")
 
   url <- paste0(base, 
     "estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",

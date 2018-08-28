@@ -20,7 +20,7 @@
 get_eurostat_dic <- function(dictname, lang = "en") {
   dictlang <- paste0(dictname, "_", lang)
   if (!exists(dictlang, envir = .EurostatEnv)) {
-    url <- eurostat_url()		   
+    url <- getOption("eurostat_url")
     tname <- paste0(url, 
                     "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
                     dictname, ".dic")
