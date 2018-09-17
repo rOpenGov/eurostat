@@ -83,7 +83,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2018-08-28</h4>
+            <h4 class="date">2018-09-17</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -113,9 +113,9 @@ dic_order               Order of Variable Levels from Eurostat
                         Dictionary.
 eu_countries            Countries and Country Codes
 eurostat-package        R Tools for Eurostat open data
-eurostat_geodata_60_2013
+eurostat_geodata_60_2016
                         Geospatial data of Europe from Gisco in 1:60
-                        million scale from year 2013
+                        million scale from year 2016
 eurotime2date           Date Conversion from Eurostat Time Format
 eurotime2num            Conversion of Eurostat Time Format to Numeric
 get_eurostat            Read Eurostat Data
@@ -212,10 +212,10 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">30.07.2018</td>
-<td align="left">30.07.2018</td>
+<td align="left">30.08.2018</td>
+<td align="left">30.08.2018</td>
 <td align="left">1980M01</td>
-<td align="left">2018M07</td>
+<td align="left">2018M08</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -259,8 +259,8 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Railway transport - total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">07.08.2018</td>
-<td align="left">24.07.2018</td>
+<td align="left">07.09.2018</td>
+<td align="left">07.09.2018</td>
 <td align="left">2004</td>
 <td align="left">2016</td>
 <td align="left">NA</td>
@@ -269,7 +269,7 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Railway transport - passenger transport by type of transport (detailed reporting only) (1 000 pass.)</td>
 <td align="left">rail_pa_typepas</td>
 <td align="left">dataset</td>
-<td align="left">17.07.2018</td>
+<td align="left">07.09.2018</td>
 <td align="left">31.08.2017</td>
 <td align="left">2004</td>
 <td align="left">2016</td>
@@ -279,7 +279,7 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Railway transport - passenger transport by type of transport (detailed reporting only) (million pkm)</td>
 <td align="left">rail_pa_typepkm</td>
 <td align="left">dataset</td>
-<td align="left">17.07.2018</td>
+<td align="left">07.09.2018</td>
 <td align="left">31.08.2017</td>
 <td align="left">2004</td>
 <td align="left">2016</td>
@@ -289,7 +289,7 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">16.08.2018</td>
+<td align="left">07.09.2018</td>
 <td align="left">17.07.2018</td>
 <td align="left">2004</td>
 <td align="left">2017</td>
@@ -839,7 +839,7 @@ sp_data &lt;-<span class="st"> </span>eurostat<span class="op">::</span><span cl
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># categorise</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>))</code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/RtmptMCpR1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/RtmpMAJRTe/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -868,7 +868,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## please contact EuroGeographics for 
 ## information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## sf at resolution 1:60 read from local file</code></pre>
+<pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -2735,7 +2735,7 @@ map1
 ## please contact EuroGeographics for 
 ## information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## sf at resolution 1:60 read from local file</code></pre>
+<pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -2776,8 +2776,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmptMCpR1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptMCpR1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpMAJRTe/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpMAJRTe/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -2807,6 +2807,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## information regarding their licence agreements.
 ## </code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpMAJRTe/eurostat/spdf1022013.RData</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -2843,8 +2844,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmptMCpR1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmptMCpR1/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpMAJRTe/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpMAJRTe/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -2873,7 +2874,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## please contact EuroGeographics for 
 ## information regarding their licence agreements.
 ## </code></pre>
-<pre><code>## sf at resolution 1:60 read from local file</code></pre>
+<pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -2999,7 +3000,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.2.2 Package
+##   package. R Journal 9(1):385-392, 2017. Version 3.2.30002 Package
 ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -3014,7 +3015,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.2.2},
+##     note = {Version 3.2.30002},
 ##   }</code></pre>
 </div>
 <div id="related-work" class="section level3">
@@ -3059,7 +3060,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ##  [4] tmap_2.0           sf_0.6-3           dplyr_0.7.6       
 ##  [7] plotrix_3.7-2      ggplot2_3.0.0      tidyr_0.8.1       
 ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
-## [13] eurostat_3.2.2     knitr_1.20        
+## [13] eurostat_3.2.30002 knitr_1.20        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] nlme_3.1-137       bitops_1.0-6       fs_1.2.5          
@@ -3071,7 +3072,7 @@ df &lt;-<span class="st"> </span><span class="kw">as.data.frame</span>(d)
 ## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.2       
 ## [22] tidyselect_0.2.4   leaflet_2.0.1      curl_3.2          
 ## [25] compiler_3.5.1     Cairo_1.5-9        desc_1.2.0        
-## [28] labeling_0.3       scales_0.5.0       classInt_0.2-3    
+## [28] labeling_0.3       scales_1.0.0       classInt_0.2-3    
 ## [31] readr_1.1.1        pkgdown_1.1.0.9000 commonmark_1.5    
 ## [34] stringr_1.3.1      digest_0.6.15      rmarkdown_1.10    
 ## [37] R.utils_2.6.0      base64enc_0.1-3    dichromat_2.0-0   

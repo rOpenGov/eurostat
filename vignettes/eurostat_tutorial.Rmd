@@ -424,8 +424,6 @@ ggplot(data=map_data) + geom_sf(aes(fill=cat),color="dim grey", size=.1) +
   theme_light() + theme(legend.position=c(.8,.8)) +
   coord_sf(xlim=c(-12,44), ylim=c(35,70))
 
-
-
 ```
 
 
