@@ -310,7 +310,7 @@ map_data <- inner_join(geodata, sp_data)
 
 Construct the map
 
-```{r map1ex, eval=TRUE}
+```{r map1ex, eval=TRUE, warning=FALSE}
 map1 <- tmap::tm_shape(geodata) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(map_data) +
