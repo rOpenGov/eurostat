@@ -7,7 +7,7 @@ index.*
 docs
 # Vignette
 ./vignettes/2015-RJournal
-./vignettes/2017_RJournal_manuscript
+./vignettes/2017_RJournal_manuscript/*
 ./vignettes/cheatsheet/
 ./vignettes/cheatsheet.Rmd
 ./vignettes/blogposts.Rmd

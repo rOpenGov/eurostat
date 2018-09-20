@@ -14,7 +14,7 @@ vignette: >
 
  * [eurostat R package: cheat sheet (RStudio release version)](https://github.com/rstudio/cheatsheets/raw/master/eurostat.pdf)
 
- * [eurostat R package: cheat sheet (rOpenGov development version)](https://github.com/rOpenGov/eurostat/blob/master/vignettes/cheatsheet/eurostat_cheatsheet.pdf)
+ * [eurostat R package: cheat sheet (rOpenGov development version)](https://github.com/rOpenGov/eurostat/blob/master/inst/extras/cheatsheet/eurostat_cheatsheet.pdf)
 
 
 
