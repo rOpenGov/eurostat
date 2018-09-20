@@ -15,7 +15,10 @@ vignette: >
 
 You can send us a note via the [issue tracker](https://github.com/rOpenGov/eurostat/issues) if you like to add a publication using the eurostat R package on this list:
 
- * Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017. ([manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html); [source code](https://github.com/rOpenGov/eurostat/tree/master/vignettes/2017_RJournal_manuscript)). 
+ * Retrieval and analysis of Eurostat open data with the eurostat
+package. R Journal 2017.
+([manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html);
+[source code](https://github.com/rOpenGov/eurostat/tree/master/inst/extras/2017_RJournal_manuscript)). 
 
 
 External publications using the eurostat package:
