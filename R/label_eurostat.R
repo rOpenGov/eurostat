@@ -44,6 +44,7 @@ label_eurostat <-
            code = NULL,
            eu_order = FALSE,
            lang = "en",
+           countrycode = NULL,
            fix_duplicated = FALSE) {
 
     # Avoid warnings
@@ -78,7 +79,7 @@ label_eurostat <-
         names(y_code) <- paste0(names(y_code), "_code")
         y <- cbind(y_code, y)
       }
-    } else {
+    } else { 
       if (is.null(dic))
         stop("Dictionary information is missing")
       
@@ -95,9 +96,12 @@ label_eurostat <-
                     labels = label_eurostat(levels(x), dic = dic,
                                             eu_order = eu_order,
                                             lang = lang,
-                                            fix_duplicated = fix_duplicated)[ord]
+                                            fix_duplicated = fix_duplicated,
+                                            countrycode = countrycode)[ord]
         )
         
+      } else if (dic == "geo" & !is.null(countrycode)){
+        y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NULL)
       } else {
         # dics are in upper case, change if x is not
         test_n <- min(length(x), 5)

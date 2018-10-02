@@ -34,7 +34,8 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    countrycode
 Suggests:
     Cairo,
     ggplot2,

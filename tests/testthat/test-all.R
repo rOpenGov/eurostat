@@ -87,6 +87,15 @@ test_that("Label ordering is ordered", {
                               dic = "geo", eu_order = TRUE)))
 })
 
+
+test_that("Countrycodes are labelled", {
+  expect_equal(levels(label_eurostat(factor(c("FI", "DE", "EU28"), c("FI", "DE", "EU28")), dic = "geo",
+                                     countrycode = "country.name")),
+               c("Finland", "Germany", "EU28"))
+})
+
+context("Misc")
+
 test_that("Dic downloading works", {
   skip_on_cran()
   expect_warning(get_eurostat_dic("na_item"), NA)
