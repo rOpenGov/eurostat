@@ -7,7 +7,8 @@
 \title{Get Eurostat Codes}
 \usage{
 label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE,
-  lang = "en", fix_duplicated = FALSE)
+  lang = "en", countrycode = NULL, countrycode_nomatch = NULL,
+  custom_dic = NULL, fix_duplicated = FALSE)
 
 label_eurostat_vars(x, lang = "en")
 
@@ -28,6 +29,22 @@ Affects only factors.}
 
 \item{lang}{A character, code for language. Available are "en" (default),
 "fr" and "de".}
+
+\item{countrycode}{A \code{NULL} or a name of the coding scheme for 
+the \code{\link[countrycode]{countrycode}} 
+to label "geo" variable with countrycode-package. It can be used to
+convert to short and long country names in many different languages.
+If \code{NULL} (default) eurostat dictionary is used instead.}
+
+\item{countrycode_nomatch}{What to do when using the countrycode to label a "geo" and
+countrycode fails to find a match, for example other than country codes like EU28.
+the original code is used with 
+a \code{NULL} (default), eurostat dictionary label is used with "eurostat",
+and \code{NA} is used with NA.}
+
+\item{custom_dic}{a named vector or named list of named vectors to give an own dictionary
+for (part of) codes. Names of the vector should be codes and values labels. List
+can be used to spesify dictonaries and then list names should be dictionary codes.}
 
 \item{fix_duplicated}{A logical. If TRUE, the code is added to the
 duplicated label values. If FALSE (default) error is given if 
@@ -62,13 +79,20 @@ objects other than characters or factors definitions are get for names.
 
 \examples{
  \dontrun{
-   lp <- get_eurostat("nama_aux_lp")
+   lp <- get_eurostat("nama_10_lp_ulc")
    lpl <- label_eurostat(lp)
    str(lpl)
    lpl_order <- label_eurostat(lp, eu_order = TRUE)
    lpl_code <- label_eurostat(lp, code = "unit")
    label_eurostat_vars(names(lp))
-   label_eurostat_tables("nama_aux_lp")
+   label_eurostat_tables("nama_10_lp_ulc")
+   label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
+   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
+   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name",
+                  custom_dic = c(EU28 = "EU"))
+   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
+   # In Finnish
+   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
  }
 }
 \author{

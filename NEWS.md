@@ -1,3 +1,9 @@
+# eurostat next
+
+* The `label_eurostat()` has new countrycode and countrycode_nomatch arguments to 
+  label with countrycode package and custom_dic argument to add custom dictionary.
+
+
 # eurostat 3.2.3
 
 ## Minor features
