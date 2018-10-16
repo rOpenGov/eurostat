@@ -744,10 +744,6 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
-
-    ## Want to understand how all the pieces fit together? See the R for
-    ## Data Science book: http://r4ds.had.co.nz/
-
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -833,7 +829,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/Rtmpo4fy9Q/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/Rtmp4PAyLJ/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
@@ -1010,9 +1006,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmpo4fy9Q/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmp4PAyLJ/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpo4fy9Q/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp4PAyLJ/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1046,7 +1042,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpo4fy9Q/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp4PAyLJ/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1091,9 +1087,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmpo4fy9Q/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmp4PAyLJ/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmpo4fy9Q/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp4PAyLJ/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
