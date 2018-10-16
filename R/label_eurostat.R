@@ -22,6 +22,19 @@
 #'     Affects only factors.
 #' @param lang A character, code for language. Available are "en" (default),
 #'     "fr" and "de".
+#' @param countrycode A \code{NULL} or a name of the coding scheme for 
+#'     the \code{\link[countrycode]{countrycode}} 
+#'     to label "geo" variable with countrycode-package. It can be used to
+#'     convert to short and long country names in many different languages.
+#'     If \code{NULL} (default) eurostat dictionary is used instead.
+#' @param countrycode_nomatch What to do when using the countrycode to label a "geo" and
+#'     countrycode fails to find a match, for example other than country codes like EU28.
+#'     the original code is used with 
+#'     a \code{NULL} (default), eurostat dictionary label is used with "eurostat",
+#'     and \code{NA} is used with NA. 
+#' @param custom_dic a named vector or named list of named vectors to give an own dictionary
+#'     for (part of) codes. Names of the vector should be codes and values labels. List
+#'     can be used to spesify dictonaries and then list names should be dictionary codes.
 #' @param fix_duplicated A logical. If TRUE, the code is added to the
 #'     duplicated label values. If FALSE (default) error is given if 
 #'     labelling produce duplicates.
@@ -30,13 +43,20 @@
 #' @return a vector or a data_frame.
 #' @examples
 #'  \dontrun{
-#'    lp <- get_eurostat("nama_aux_lp")
+#'    lp <- get_eurostat("nama_10_lp_ulc")
 #'    lpl <- label_eurostat(lp)
 #'    str(lpl)
 #'    lpl_order <- label_eurostat(lp, eu_order = TRUE)
 #'    lpl_code <- label_eurostat(lp, code = "unit")
 #'    label_eurostat_vars(names(lp))
-#'    label_eurostat_tables("nama_aux_lp")
+#'    label_eurostat_tables("nama_10_lp_ulc")
+#'    label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
+#'    label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
+#'    label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name",
+#'                   custom_dic = c(EU28 = "EU"))
+#'    label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
+#'    # In Finnish
+#'    label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
 #'  }
 label_eurostat <-
   function(x,
@@ -45,6 +65,8 @@ label_eurostat <-
            eu_order = FALSE,
            lang = "en",
            countrycode = NULL,
+           countrycode_nomatch = NULL,
+           custom_dic = NULL,
            fix_duplicated = FALSE) {
 
     # Avoid warnings
@@ -59,6 +81,9 @@ label_eurostat <-
         y[[i]] <- label_eurostat(y[[i]], i,
             eu_order = eu_order,
             lang = lang,
+            countrycode = countrycode,
+            countrycode_nomatch = countrycode_nomatch,
+            custom_dic = custom_dic,
             fix_duplicated = fix_duplicated
           )
       }
@@ -79,6 +104,9 @@ label_eurostat <-
         names(y_code) <- paste0(names(y_code), "_code")
         y <- cbind(y_code, y)
       }
+      #return data.frame
+      return(as_data_frame(y))
+      
     } else { 
       if (is.null(dic))
         stop("Dictionary information is missing")
@@ -96,12 +124,26 @@ label_eurostat <-
                     labels = label_eurostat(levels(x), dic = dic,
                                             eu_order = eu_order,
                                             lang = lang,
-                                            fix_duplicated = fix_duplicated,
-                                            countrycode = countrycode)[ord]
+                                            countrycode = countrycode,
+                                            countrycode_nomatch = countrycode_nomatch,
+                                            custom_dic = custom_dic,
+                                            fix_duplicated = fix_duplicated)[ord]
         )
         
+        #return factor
+        return(y)
+        
       } else if (dic == "geo" & !is.null(countrycode)){
-        y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NULL)
+        if (is.null(countrycode_nomatch)){
+          y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NULL)
+        } else if (is.na(countrycode_nomatch)) {
+          y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NA)
+        } else if (countrycode_nomatch == "eurostat") {
+          y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NA)
+          y[is.na(y)] <- label_eurostat(x[is.na(y)], dic = "geo", lang = lang, fix_duplicated = fix_duplicated)
+        } else {
+          stop("unknown argument ", countrycode_nomatch, " for countrycode_nomatch")
+        }
       } else {
         # dics are in upper case, change if x is not
         test_n <- min(length(x), 5)
@@ -138,6 +180,13 @@ label_eurostat <-
         }
         # mapvalues
         y <- dic_sel[[2]][match(x, dic_sel[[1]])]
+ 
+      }
+      
+      # apply custom_dic
+      if (!is.null(custom_dic)){
+        if (is.list(custom_dic)) custom_dic <- custom_dic[[dic]]
+        y <- dplyr::coalesce(unname(custom_dic[x]), y)
       }
       
       if (any(is.na(y)))
@@ -145,14 +194,7 @@ label_eurostat <-
       
     }
     
-    # Ensure the output is tbl_df
-    #if (length(y) > 1) {
-    #  y <- as_data_frame(y)
-    #}
-    if (is.data.frame(y) && length(y) > 1) {
-      y <- as_data_frame(y)
-    }
-    
+
     
     y
     
