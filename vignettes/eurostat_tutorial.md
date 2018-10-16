@@ -108,10 +108,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">30.08.2018</td>
-<td align="left">30.08.2018</td>
+<td align="left">27.09.2018</td>
+<td align="left">27.09.2018</td>
 <td align="left">1980M01</td>
-<td align="left">2018M08</td>
+<td align="left">2018M09</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -164,7 +164,7 @@ instance datasets or tables.
 <td align="left">Railway transport - total annual passenger transport (1 000 pass., million pkm)</td>
 <td align="left">rail_pa_total</td>
 <td align="left">dataset</td>
-<td align="left">07.09.2018</td>
+<td align="left">20.09.2018</td>
 <td align="left">07.09.2018</td>
 <td align="left">2004</td>
 <td align="left">2016</td>
@@ -174,7 +174,7 @@ instance datasets or tables.
 <td align="left">Railway transport - passenger transport by type of transport (detailed reporting only) (1 000 pass.)</td>
 <td align="left">rail_pa_typepas</td>
 <td align="left">dataset</td>
-<td align="left">07.09.2018</td>
+<td align="left">20.09.2018</td>
 <td align="left">31.08.2017</td>
 <td align="left">2004</td>
 <td align="left">2016</td>
@@ -184,7 +184,7 @@ instance datasets or tables.
 <td align="left">Railway transport - passenger transport by type of transport (detailed reporting only) (million pkm)</td>
 <td align="left">rail_pa_typepkm</td>
 <td align="left">dataset</td>
-<td align="left">07.09.2018</td>
+<td align="left">20.09.2018</td>
 <td align="left">31.08.2017</td>
 <td align="left">2004</td>
 <td align="left">2016</td>
@@ -194,7 +194,7 @@ instance datasets or tables.
 <td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
 <td align="left">rail_pa_intgong</td>
 <td align="left">dataset</td>
-<td align="left">07.09.2018</td>
+<td align="left">20.09.2018</td>
 <td align="left">17.07.2018</td>
 <td align="left">2004</td>
 <td align="left">2017</td>
@@ -829,7 +829,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpCXPiNi/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpIrPln6/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
@@ -1006,9 +1006,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpCXPiNi/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpIrPln6/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpCXPiNi/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpIrPln6/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1042,7 +1042,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpCXPiNi/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpIrPln6/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1087,9 +1087,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpCXPiNi/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpIrPln6/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpCXPiNi/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpIrPln6/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1332,42 +1332,40 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] rsdmx_0.5-12       sp_1.3-1           RColorBrewer_1.1-2
-    ##  [4] tmap_2.0           sf_0.6-3           dplyr_0.7.6       
-    ##  [7] plotrix_3.7-2      ggplot2_3.0.0      tidyr_0.8.1       
+    ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
+    ##  [4] tmap_2.1-1         sf_0.6-3           dplyr_0.7.6       
+    ##  [7] plotrix_3.7-4      ggplot2_3.0.0      tidyr_0.8.1       
     ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
     ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
     ## [16] eurostat_3.2.9     devtools_1.13.6   
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] nlme_3.1-137       bitops_1.0-6       fs_1.2.5          
-    ##  [4] satellite_1.0.1    lubridate_1.7.4    webshot_0.5.0.9000
-    ##  [7] httr_1.3.1         rprojroot_1.3-2    mapview_2.4.0     
-    ## [10] tools_3.5.1        backports_1.1.2    rgdal_1.3-3       
-    ## [13] R6_2.2.2           KernSmooth_2.23-15 spData_0.2.9.0    
+    ##  [1] nlme_3.1-137       bitops_1.0-6       fs_1.2.6          
+    ##  [4] satellite_1.0.1    lubridate_1.7.4    webshot_0.5.1     
+    ##  [7] httr_1.3.1         rprojroot_1.3-2    mapview_2.6.0     
+    ## [10] tools_3.5.1        backports_1.1.2    rgdal_1.3-4       
+    ## [13] R6_2.3.0           KernSmooth_2.23-15 spData_0.2.9.4    
     ## [16] rgeos_0.3-28       DBI_1.0.0          lazyeval_0.2.1    
     ## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.2       
-    ## [22] tidyselect_0.2.4   processx_3.1.0     leaflet_2.0.1     
-    ## [25] curl_3.2           compiler_3.5.1     cli_1.0.0         
+    ## [22] tidyselect_0.2.5   processx_3.2.0     leaflet_2.0.2     
+    ## [25] curl_3.2           compiler_3.5.1     cli_1.0.1         
     ## [28] Cairo_1.5-9        desc_1.2.0         labeling_0.3      
     ## [31] scales_1.0.0       classInt_0.2-3     readr_1.1.1       
-    ## [34] callr_2.0.4        commonmark_1.5     stringr_1.3.1     
-    ## [37] digest_0.6.15      R.utils_2.6.0      base64enc_0.1-3   
-    ## [40] dichromat_2.0-0    pkgconfig_2.0.1    htmltools_0.3.6   
-    ## [43] highr_0.7          htmlwidgets_1.2    rlang_0.2.1       
-    ## [46] shiny_1.1.0        bindr_0.1.1        jsonlite_1.5      
-    ## [49] crosstalk_1.0.0    R.oo_1.22.0        RCurl_1.95-4.11   
-    ## [52] magrittr_1.5       Rcpp_0.12.18       munsell_0.5.0     
-    ## [55] R.methodsS3_1.7.1  stringi_1.2.4      yaml_2.2.0        
-    ## [58] MASS_7.3-50        tmaptools_2.0      plyr_1.8.4        
-    ## [61] grid_3.5.1         promises_1.0.1     crayon_1.3.4      
-    ## [64] lattice_0.20-35    hms_0.4.2          pillar_1.3.0      
-    ## [67] gdalUtils_2.0.1.14 stats4_3.5.1       codetools_0.2-15  
-    ## [70] XML_3.98-1.12      glue_1.3.0         evaluate_0.11     
-    ## [73] png_0.1-7          foreach_1.4.4      httpuv_1.4.5      
-    ## [76] testthat_2.0.0     gtable_0.2.0       purrr_0.2.5       
-    ## [79] assertthat_0.2.0   mime_0.5           lwgeom_0.1-4      
-    ## [82] xtable_1.8-2       broom_0.5.0        e1071_1.7-0       
-    ## [85] roxygen2_6.1.0     later_0.7.3        class_7.3-14      
-    ## [88] viridisLite_0.3.0  tibble_1.4.2       iterators_1.0.10  
-    ## [91] memoise_1.1.0      units_0.6-0
+    ## [34] callr_3.0.0        commonmark_1.6     stringr_1.3.1     
+    ## [37] digest_0.6.18      base64enc_0.1-3    dichromat_2.0-0   
+    ## [40] pkgconfig_2.0.2    htmltools_0.3.6    highr_0.7         
+    ## [43] htmlwidgets_1.3    rlang_0.2.2        shiny_1.1.0       
+    ## [46] bindr_0.1.1        jsonlite_1.5       crosstalk_1.0.0   
+    ## [49] RCurl_1.95-4.11    magrittr_1.5       Rcpp_0.12.19      
+    ## [52] munsell_0.5.0      stringi_1.2.4      yaml_2.2.0        
+    ## [55] MASS_7.3-50        tmaptools_2.0-1    plyr_1.8.4        
+    ## [58] grid_3.5.1         promises_1.0.1     crayon_1.3.4      
+    ## [61] lattice_0.20-35    hms_0.4.2          ps_1.1.0          
+    ## [64] pillar_1.3.0       stats4_3.5.1       XML_3.98-1.16     
+    ## [67] glue_1.3.0         evaluate_0.12      png_0.1-7         
+    ## [70] httpuv_1.4.5       testthat_2.0.1     gtable_0.2.0      
+    ## [73] purrr_0.2.5        assertthat_0.2.0   mime_0.6          
+    ## [76] lwgeom_0.1-4       xtable_1.8-3       broom_0.5.0       
+    ## [79] countrycode_1.00.0 e1071_1.7-0        roxygen2_6.1.0    
+    ## [82] later_0.7.5        class_7.3-14       viridisLite_0.3.0 
+    ## [85] tibble_1.4.2       memoise_1.1.0      units_0.6-1
