@@ -108,10 +108,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">19.10.2018</td>
-<td align="left">27.09.2018</td>
+<td align="left">30.10.2018</td>
+<td align="left">30.10.2018</td>
 <td align="left">1980M01</td>
-<td align="left">2018M09</td>
+<td align="left">2018M10</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -161,43 +161,43 @@ instance datasets or tables.
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Railway transport - total annual passenger transport (1 000 pass., million pkm)</td>
-<td align="left">rail_pa_total</td>
+<td align="left">Air passenger transport by reporting country</td>
+<td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">20.09.2018</td>
-<td align="left">07.09.2018</td>
-<td align="left">2004</td>
-<td align="left">2016</td>
+<td align="left">22.10.2018</td>
+<td align="left">07.11.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Railway transport - passenger transport by type of transport (detailed reporting only) (1 000 pass.)</td>
-<td align="left">rail_pa_typepas</td>
+<td align="left">Air passenger transport by main airports in each reporting country</td>
+<td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">20.09.2018</td>
-<td align="left">31.08.2017</td>
-<td align="left">2004</td>
-<td align="left">2016</td>
+<td align="left">24.10.2018</td>
+<td align="left">03.10.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Railway transport - passenger transport by type of transport (detailed reporting only) (million pkm)</td>
-<td align="left">rail_pa_typepkm</td>
+<td align="left">Air passenger transport between reporting countries</td>
+<td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">20.09.2018</td>
-<td align="left">31.08.2017</td>
-<td align="left">2004</td>
-<td align="left">2016</td>
+<td align="left">22.10.2018</td>
+<td align="left">07.11.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">International railway passenger transport from the reporting country to the country of disembarkation (1 000 passengers)</td>
-<td align="left">rail_pa_intgong</td>
+<td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
+<td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">20.09.2018</td>
-<td align="left">17.07.2018</td>
-<td align="left">2004</td>
-<td align="left">2017</td>
+<td align="left">22.10.2018</td>
+<td align="left">03.10.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -818,21 +818,26 @@ The mapping examples below use
     library(eurostat)
     library(sf)
 
-    ## Linking to GEOS 3.6.2, GDAL 2.2.3, proj.4 4.9.3
+    ## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3
 
     library(tmap)
 
     # Download attribute data from Eurostat
-    sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+    sp_data <- eurostat::get_eurostat("tgs00026",
+                              time_format = "raw",
+                                      stringsAsFactors = FALSE) %>% 
       # subset to have only a single row per geo
       dplyr::filter(time == 2010, nchar(geo) == 4) %>% 
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpT8kTpU/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/Rtmp2FEno1/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
-    geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
+    geodata <- get_eurostat_geospatial(output_class = "sf",
+                                       resolution = "60",
+                       nuts_level = 2,
+                       year = 2013)
 
     ## 
     ## COPYRIGHT NOTICE
@@ -1006,9 +1011,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpT8kTpU/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmp2FEno1/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpT8kTpU/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp2FEno1/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1042,7 +1047,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpT8kTpU/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp2FEno1/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1087,9 +1092,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpT8kTpU/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmp2FEno1/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpT8kTpU/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp2FEno1/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1263,7 +1268,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.2.93 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.2.94 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1278,7 +1283,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.2.93},
+    ##     note = {Version 3.2.94},
     ##   }
 
 ### Related work
@@ -1333,39 +1338,42 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
-    ##  [4] tmap_2.1-1         sf_0.6-3           dplyr_0.7.6       
-    ##  [7] plotrix_3.7-4      ggplot2_3.0.0      tidyr_0.8.1       
+    ##  [4] tmap_2.1-1         sf_0.7-1           dplyr_0.7.8       
+    ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
     ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
     ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
-    ## [16] eurostat_3.2.93    devtools_1.13.6   
+    ## [16] eurostat_3.2.94    testthat_2.0.1     usethis_1.4.0     
+    ## [19] devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] nlme_3.1-137       bitops_1.0-6       fs_1.2.6          
-    ##  [4] satellite_1.0.1    lubridate_1.7.4    webshot_0.5.1     
-    ##  [7] httr_1.3.1         rprojroot_1.3-2    mapview_2.6.0     
-    ## [10] tools_3.5.1        backports_1.1.2    rgdal_1.3-4       
-    ## [13] R6_2.3.0           KernSmooth_2.23-15 spData_0.2.9.4    
-    ## [16] rgeos_0.3-28       DBI_1.0.0          lazyeval_0.2.1    
-    ## [19] colorspace_1.3-2   raster_2.6-7       withr_2.1.2       
-    ## [22] tidyselect_0.2.5   processx_3.2.0     leaflet_2.0.2     
-    ## [25] curl_3.2           compiler_3.5.1     cli_1.0.1         
-    ## [28] Cairo_1.5-9        desc_1.2.0         labeling_0.3      
-    ## [31] scales_1.0.0       classInt_0.2-3     readr_1.1.1       
-    ## [34] callr_3.0.0        commonmark_1.6     stringr_1.3.1     
-    ## [37] digest_0.6.18      base64enc_0.1-3    dichromat_2.0-0   
-    ## [40] pkgconfig_2.0.2    htmltools_0.3.6    highr_0.7         
-    ## [43] htmlwidgets_1.3    rlang_0.2.2        shiny_1.1.0       
-    ## [46] bindr_0.1.1        jsonlite_1.5       crosstalk_1.0.0   
-    ## [49] RCurl_1.95-4.11    magrittr_1.5       Rcpp_0.12.19      
-    ## [52] munsell_0.5.0      stringi_1.2.4      yaml_2.2.0        
-    ## [55] MASS_7.3-50        tmaptools_2.0-1    plyr_1.8.4        
-    ## [58] grid_3.5.1         promises_1.0.1     crayon_1.3.4      
-    ## [61] lattice_0.20-35    hms_0.4.2          ps_1.1.0          
-    ## [64] pillar_1.3.0       stats4_3.5.1       XML_3.98-1.16     
-    ## [67] glue_1.3.0         evaluate_0.12      png_0.1-7         
-    ## [70] httpuv_1.4.5       testthat_2.0.1     gtable_0.2.0      
-    ## [73] purrr_0.2.5        assertthat_0.2.0   mime_0.6          
-    ## [76] lwgeom_0.1-4       xtable_1.8-3       broom_0.5.0       
-    ## [79] countrycode_1.00.0 e1071_1.7-0        roxygen2_6.1.0    
-    ## [82] later_0.7.5        class_7.3-14       viridisLite_0.3.0 
-    ## [85] tibble_1.4.2       memoise_1.1.0      units_0.6-1
+    ##  [1] colorspace_1.3-2   class_7.3-14       leaflet_2.0.2     
+    ##  [4] rgdal_1.3-6        rprojroot_1.3-2    satellite_1.0.1   
+    ##  [7] base64enc_0.1-3    fs_1.2.6           dichromat_2.0-0   
+    ## [10] rstudioapi_0.8     roxygen2_6.1.0     remotes_2.0.2     
+    ## [13] lubridate_1.7.4    codetools_0.2-15   pkgload_1.0.2     
+    ## [16] jsonlite_1.5       tmaptools_2.0-1    Cairo_1.5-9       
+    ## [19] broom_0.5.0        png_0.1-7          rgeos_0.3-28      
+    ## [22] shiny_1.2.0        readr_1.1.1        compiler_3.5.1    
+    ## [25] httr_1.3.1         backports_1.1.2    mapview_2.6.0     
+    ## [28] assertthat_0.2.0   lazyeval_0.2.1     cli_1.0.1         
+    ## [31] later_0.7.5        htmltools_0.3.6    prettyunits_1.0.2 
+    ## [34] tools_3.5.1        gtable_0.2.0       glue_1.3.0        
+    ## [37] Rcpp_1.0.0         raster_2.8-4       countrycode_1.1.0 
+    ## [40] nlme_3.1-137       crosstalk_1.0.0    lwgeom_0.1-4      
+    ## [43] stringr_1.3.1      ps_1.2.0           mime_0.6          
+    ## [46] XML_3.98-1.16      MASS_7.3-51.1      scales_1.0.0      
+    ## [49] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
+    ## [52] curl_3.2           memoise_1.1.0      stringi_1.2.4     
+    ## [55] highr_0.7          desc_1.2.0         e1071_1.7-0       
+    ## [58] pkgbuild_1.0.2     spData_0.2.9.4     bitops_1.0-6      
+    ## [61] rlang_0.3.0.1      pkgconfig_2.0.2    commonmark_1.6    
+    ## [64] evaluate_0.12      lattice_0.20-35    purrr_0.2.5       
+    ## [67] bindr_0.1.1        htmlwidgets_1.3    labeling_0.3      
+    ## [70] processx_3.2.0     tidyselect_0.2.5   plyr_1.8.4        
+    ## [73] magrittr_1.5       R6_2.3.0           DBI_1.0.0         
+    ## [76] pillar_1.3.0       withr_2.1.2        units_0.6-1       
+    ## [79] RCurl_1.95-4.11    tibble_1.4.2       crayon_1.3.4      
+    ## [82] KernSmooth_2.23-15 grid_3.5.1         callr_3.0.0       
+    ## [85] digest_0.6.18      classInt_0.2-3     webshot_0.5.1     
+    ## [88] xtable_1.8-3       httpuv_1.4.5       stats4_3.5.1      
+    ## [91] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.0
