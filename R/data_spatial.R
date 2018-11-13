@@ -18,14 +18,14 @@
 ## -- 2016
 # library(sf)
 # library(httr)
-#              
-# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_0.geojson")
+# 
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4326_LEVL_0.geojson")
 # n0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_1.geojson")
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4326_LEVL_1.geojson")
 # n1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_2.geojson")
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4326_LEVL_2.geojson")
 # n2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4258_LEVL_3.geojson")
+# resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4326_LEVL_3.geojson")
 # n3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
 # eurostat_geodata_60_2016 <- rbind(n0,n1,n2,n3)
 # eurostat_geodata_60_2016$geo <- eurostat_geodata_60_2016$NUTS_ID
