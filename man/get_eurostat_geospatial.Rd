@@ -14,7 +14,11 @@ either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
    \code{spdf} (\code{SpatialPolygonDataFrame})}
 
 \item{resolution}{Resolution of the geospatial data. One of
-"60" (1:60million), "20" (1:20million), "10" (1:10million), "03" (1:3million) or "01" (1:1million).}
+"60" (1:60million),
+"20" (1:20million)
+"10" (1:10million)
+"03" (1:3million) or
+"01" (1:1million).}
 
 \item{nuts_level}{Level of NUTS classification of the geospatial data. One of
 "0", "1", "2", "3" or "all" (mimics the original behaviour)}
@@ -38,7 +42,8 @@ The \code{NULL} (default) uses and creates
 a sf, data_frame or SpatialPolygonDataFrame.
 }
 \description{
-Downloads either a simple features (sf), SpatialPolygonDataFrame or a data_frame preprocessed using
+Downloads either a simple features (sf), SpatialPolygonDataFrame or a
+   data_frame preprocessed using
    \code{broom::tidy()}.
 }
 \details{
