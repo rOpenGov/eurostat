@@ -20,7 +20,7 @@ Description: Tools to download data from the Eurostat database
 License: BSD_2_clause + file LICENSE
 Depends:
     methods,	
-    R (>= 3.4.0)
+    R (>= 3.1.0)
 Imports:
     broom,
     classInt,
