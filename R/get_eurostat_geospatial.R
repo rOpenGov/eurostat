@@ -1,11 +1,16 @@
 #' @title Download Geospatial Data from GISGO
-#' @description Downloads either a simple features (sf), SpatialPolygonDataFrame or a data_frame preprocessed using
+#' @description Downloads either a simple features (sf), SpatialPolygonDataFrame or a
+#'    data_frame preprocessed using
 #'    \code{broom::tidy()}.
 #' @param output_class A string. Class of object returned, 
 #' either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
 #'    \code{spdf} (\code{SpatialPolygonDataFrame})
 #' @param resolution Resolution of the geospatial data. One of
-#'    "60" (1:60million), "20" (1:20million), "10" (1:10million), "03" (1:3million) or "01" (1:1million).
+#'    "60" (1:60million),
+#'    "20" (1:20million)
+#'    "10" (1:10million)
+#'    "03" (1:3million) or
+#'    "01" (1:1million).
 #' @param nuts_level Level of NUTS classification of the geospatial data. One of
 #'    "0", "1", "2", "3" or "all" (mimics the original behaviour)
 #' @param year NUTS release year. One of
@@ -34,8 +39,10 @@
 #'    ggplot(lp, aes(x=long,y=lat,group=group,fill=STAT_LEVL_),color="white") + geom_polygon()
 #'  }
 #'  
-get_eurostat_geospatial <- function(output_class="sf",resolution="60", nuts_level = "all", year = "2016",
-                                    cache = TRUE, update_cache = FALSE, cache_dir = NULL){
+get_eurostat_geospatial <- function(output_class="sf",resolution="60",
+                                    nuts_level = "all", year = "2016",
+                                    cache = TRUE, update_cache = FALSE,
+				    cache_dir = NULL){
   
   eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
@@ -89,7 +96,7 @@ please contact EuroGeographics for
 information regarding their licence agreements.
           ")
   
-  if (resolution == "60" & year == 2016){
+  if (resolution == "60" && year == 2016){
     
     if (nuts_level %in% c("all")){
       shp <- eurostat_geodata_60_2016 
