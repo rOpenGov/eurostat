@@ -29,7 +29,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.2.94</span>
+        <span class="label label-default" data-toggle="tooltip" data-placement="bottom" title="Released package">3.3.1</span>
       </span>
     </div>
 
@@ -83,7 +83,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2018-11-13</h4>
+            <h4 class="date">2018-11-24</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -269,7 +269,7 @@ toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <td align="left">Air passenger transport by main airports in each reporting country</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">24.10.2018</td>
+<td align="left">22.11.2018</td>
 <td align="left">03.10.2018</td>
 <td align="left">1993</td>
 <td align="left">2018Q2</td>
@@ -764,8 +764,8 @@ dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="https://
 <a href="#visualization" class="anchor"></a>Visualization</h1>
 <p>Visualizing train passenger data with <code>ggplot2</code>:</p>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(ggplot2)
-p &lt;-<span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(dat_trains, <span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> time, <span class="dt">y =</span> values, <span class="dt">colour =</span> geo)) 
-p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()
+p &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(dat_trains, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> time, <span class="dt">y =</span> values, <span class="dt">colour =</span> geo)) 
+p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()
 <span class="kw">print</span>(p)</code></pre></div>
 <p><img src="fig/trains_plot-1.png" width="576"></p>
 <p><a name="triangle"></a><strong>Triangle plot</strong></p>
@@ -841,7 +841,7 @@ sp_data &lt;-<span class="st"> </span>eurostat<span class="op">::</span><span cl
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># categorise</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>))</code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/RtmpeOoIEN/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/RtmpALpR9G/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>,
                                    <span class="dt">resolution =</span> <span class="st">"60"</span>,
@@ -1000,8 +1000,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpeOoIEN/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpeOoIEN/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpALpR9G/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpALpR9G/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -1031,7 +1031,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## information regarding their licence agreements.
 ## </code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpeOoIEN/eurostat/spdf1022013.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpALpR9G/eurostat/spdf1022013.RData</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -1068,8 +1068,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw">nchar</span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpeOoIEN/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpeOoIEN/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpALpR9G/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpALpR9G/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -1116,14 +1116,14 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># merge with attribute data with geodata</span>
 map_data &lt;-<span class="st"> </span><span class="kw"><a href="http://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(geodata, dat)</code></pre></div>
 <pre><code>## Joining, by = "geo"</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>map_data) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span>(<span class="kw"><a href="ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"dim grey"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
-<span class="st">    </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Oranges"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span>(<span class="dt">reverse=</span>T, <span class="dt">title =</span> <span class="st">"euro"</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title=</span><span class="st">"Disposable household income in 2014"</span>,
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>map_data) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"dim grey"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span>
+<span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Oranges"</span>) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span>(<span class="dt">reverse=</span>T, <span class="dt">title =</span> <span class="st">"euro"</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title=</span><span class="st">"Disposable household income in 2014"</span>,
        <span class="dt">caption=</span><span class="st">"(C) EuroGeographics for the administrative boundaries </span>
 <span class="st">                Map produced in R with a help from Eurostat-package &lt;github.com/ropengov/eurostat/&gt;"</span>) <span class="op">+</span>
-<span class="st">  </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="kw">c</span>(.<span class="dv">8</span>,.<span class="dv">8</span>)) <span class="op">+</span>
-<span class="st">  </span><span class="kw"><a href="ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">44</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>))</code></pre></div>
+<span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="kw">c</span>(.<span class="dv">8</span>,.<span class="dv">8</span>)) <span class="op">+</span>
+<span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span>(<span class="dt">xlim=</span><span class="kw">c</span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">44</span>), <span class="dt">ylim=</span><span class="kw">c</span>(<span class="dv">35</span>,<span class="dv">70</span>))</code></pre></div>
 <p><img src="fig/maps4-1.png" width="768"></p>
 </div>
 </div>
