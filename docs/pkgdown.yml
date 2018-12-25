@@ -6,4 +6,7 @@ articles:
   cheatsheet: cheatsheet.html
   eurostat_tutorial: eurostat_tutorial.html
   publications: publications.html
+urls:
+  reference: http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html/reference
+  article: http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html/articles
 
