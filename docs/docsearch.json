@@ -2,21 +2,21 @@
   "index_name": "eurostat",
   "start_urls": [
     {
-      "url": "http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html/index.html",
+      "url": "/index.html",
       "selectors_key": "homepage",
       "tags": [
         "homepage"
       ]
     },
     {
-      "url": "http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html/reference",
+      "url": "/reference",
       "selectors_key": "reference",
       "tags": [
         "reference"
       ]
     },
     {
-      "url": "http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html/articles",
+      "url": "/articles",
       "selectors_key": "articles",
       "tags": [
         "articles"
@@ -30,7 +30,7 @@
     "/articles/index.html"
   ],
   "sitemap_urls": [
-    "http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html/sitemap.xml"
+    "/sitemap.xml"
   ],
   "selectors": {
     "homepage": {

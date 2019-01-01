@@ -9,15 +9,6 @@ output:
 ---
 
 
-<script type="text/javascript">
-  docsearch({ 
-    apiKey: '5ceb25e09247c0f91ae97bd3e992a168',
-    indexName: 'eurostat', 
-    inputSelector: '### REPLACE ME ####', 
-    debug: false // Set debug to true if you want to inspect the dropdown 
-});
-
-
 <br>
 
 [![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()
