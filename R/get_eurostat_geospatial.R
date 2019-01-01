@@ -30,6 +30,8 @@
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
 #'  \dontrun{
+#'    library(dplyr)
+#'    library(sp)
 #'    lp <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
 #'    lp %>%  select(NUTS_ID) %>%  plot()
 #'    lp <- get_eurostat_geospatial(output_class = "spdf", resolution = "60", nuts_level = "all")

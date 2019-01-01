@@ -14,7 +14,8 @@
 #' @return a factor.
 #' @examples
 #'  \dontrun{
-#'    lp <- get_eurostat("nama_aux_lp")
+#'    #lp <- get_eurostat("nama_aux_lp")
+#'    lp <- get_eurostat("nama_10_lp_ulc")
 #'    lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
 #'  }
 cut_to_classes <- function(x, n=5, style="equal", manual=FALSE, 

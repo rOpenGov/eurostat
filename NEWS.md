@@ -1,3 +1,6 @@
+# eurostat 3.3.3
+
+* Fixed vignette duplicate entry issue and smaller issues
 
 # eurostat 3.3.1
 

@@ -32,7 +32,8 @@ and polishes the labels ready for used in mapping with \code{merge_with_geodata}
 }
 \examples{
  \dontrun{
-   lp <- get_eurostat("nama_aux_lp")
+   #lp <- get_eurostat("nama_aux_lp")
+   lp <- get_eurostat("nama_10_lp_ulc")
    lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
  }
 }

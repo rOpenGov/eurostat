@@ -21,7 +21,7 @@ The European Commission and the Eurostat generally uses ISO
 }
 \examples{
  \dontrun{
-   lp <- get_eurostat("nama_aux_lp")
+   lp <- get_eurostat("nama_10_lp_ulc")
    lp$geo <- harmonize_country_code(lp$geo)
  }
 }
