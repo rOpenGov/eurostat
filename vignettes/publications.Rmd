@@ -5,7 +5,7 @@ output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{eurostat blog posts}
+  %\VignetteIndexEntry{eurostat publications}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteDepends{Cairo}
   %\VignetteEncoding{UTF-8}

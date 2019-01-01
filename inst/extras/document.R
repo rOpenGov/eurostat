@@ -5,6 +5,7 @@ library(devtools)
 document("../../")
 #build("../../")
 #build(vignettes = FALSE)
+# devtools::install(build_vignettes = TRUE)
 #check("../../", vignettes = FALSE)
 #install()
 
@@ -15,6 +16,8 @@ knit(input = "../../README.Rmd", output = "../../README.md")
 library(pkgdown)
 setwd("../../")
 build_site()
+
+
 
 # Submissions:
 #
