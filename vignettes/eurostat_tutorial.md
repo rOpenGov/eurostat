@@ -164,7 +164,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">06.12.2018</td>
+<td align="left">04.01.2019</td>
 <td align="left">07.11.2018</td>
 <td align="left">1993</td>
 <td align="left">2018Q2</td>
@@ -174,7 +174,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport by main airports in each reporting country</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">06.12.2018</td>
+<td align="left">04.01.2019</td>
 <td align="left">03.10.2018</td>
 <td align="left">1993</td>
 <td align="left">2018Q2</td>
@@ -184,7 +184,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport between reporting countries</td>
 <td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">22.10.2018</td>
+<td align="left">04.01.2019</td>
 <td align="left">07.11.2018</td>
 <td align="left">1993</td>
 <td align="left">2018Q2</td>
@@ -194,7 +194,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">22.10.2018</td>
+<td align="left">04.01.2019</td>
 <td align="left">03.10.2018</td>
 <td align="left">1993</td>
 <td align="left">2018Q2</td>
@@ -831,7 +831,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmptzsQOW/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -1011,9 +1011,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmptzsQOW/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmptzsQOW/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1047,7 +1047,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmptzsQOW/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpBqyCdg/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1092,9 +1092,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmptzsQOW/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmptzsQOW/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)

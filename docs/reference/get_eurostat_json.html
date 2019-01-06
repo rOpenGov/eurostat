@@ -192,9 +192,10 @@ a proxy parameters, see details.
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
    <span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_json</span>(<span class='st'>"cdh_e_fos"</span>)
-   <span class='no'>yy</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_json</span>(<span class='kw'>id</span> <span class='kw'>=</span> <span class='st'>"nama_gdp_c"</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'>list</span>(<span class='kw'>geo</span><span class='kw'>=</span><span class='fu'>c</span>(<span class='st'>"EU28"</span>, <span class='st'>"FI"</span>),
-                                                        <span class='kw'>unit</span><span class='kw'>=</span><span class='st'>"EUR_HAB"</span>,
-                                                        <span class='kw'>indic_na</span><span class='kw'>=</span><span class='st'>"B1GM"</span>))
+   <span class='co'># nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.</span>
+   <span class='co'># yy &lt;- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),</span>
+   <span class='co'>#                                                     unit="EUR_HAB",</span>
+   <span class='co'>#                                                     indic_na="B1GM"))</span>
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
