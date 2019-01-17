@@ -50,7 +50,8 @@ r_github_packages:
   - jimhester/covr
   - r-dbi/DBI
   - r-dbi/RPostgres
-
+  - rOpenSci/RefManageR
+ 
 addons:
   postgresql: "9.6"
   apt:
