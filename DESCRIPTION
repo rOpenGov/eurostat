@@ -24,18 +24,19 @@ Depends:
 Imports:
     broom,
     classInt,
-    dplyr,    
-    httr,    
+    dplyr,
+    httr,
     jsonlite,
     RColorBrewer,
-    readr,    
-    sf,            
-    sp,    
+    readr,
+    sf,
+    sp,
     stringi,
     stringr,
     tibble,
     tidyr,
-    countrycode
+    countrycode,
+    RefManageR
 Suggests:
     Cairo,
     ggplot2,
@@ -56,4 +57,4 @@ BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1
