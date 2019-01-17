@@ -108,10 +108,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">29.11.2018</td>
-<td align="left">29.11.2018</td>
+<td align="left">08.01.2019</td>
+<td align="left">08.01.2019</td>
 <td align="left">1980M01</td>
-<td align="left">2018M11</td>
+<td align="left">2018M12</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -431,23 +431,28 @@ To retrieve the country code list for EFTA, for instance, use:
 <tr class="header">
 <th align="left">code</th>
 <th align="left">name</th>
+<th align="left">label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
 <td align="left">IS</td>
 <td align="left">Iceland</td>
+<td align="left">Iceland</td>
 </tr>
 <tr class="even">
 <td align="left">LI</td>
+<td align="left">Liechtenstein</td>
 <td align="left">Liechtenstein</td>
 </tr>
 <tr class="odd">
 <td align="left">NO</td>
 <td align="left">Norway</td>
+<td align="left">Norway</td>
 </tr>
 <tr class="even">
 <td align="left">CH</td>
+<td align="left">Switzerland</td>
 <td align="left">Switzerland</td>
 </tr>
 </tbody>
@@ -831,7 +836,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpGuYzgX/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -1011,9 +1016,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpGuYzgX/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpGuYzgX/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1047,7 +1052,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpBqyCdg/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpGuYzgX/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1092,9 +1097,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpGuYzgX/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpGuYzgX/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1268,7 +1273,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.32 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.34 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1283,7 +1288,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.32},
+    ##     note = {Version 3.3.34},
     ##   }
 
 ### Related work
@@ -1342,7 +1347,7 @@ This tutorial was created with
     ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
     ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
     ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
-    ## [16] eurostat_3.3.32    testthat_2.0.1     usethis_1.4.0     
+    ## [16] eurostat_3.3.34    testthat_2.0.1     usethis_1.4.0     
     ## [19] devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
@@ -1350,30 +1355,31 @@ This tutorial was created with
     ##  [4] rgdal_1.3-6        rprojroot_1.3-2    satellite_1.0.1   
     ##  [7] base64enc_0.1-3    fs_1.2.6           dichromat_2.0-0   
     ## [10] rstudioapi_0.8     roxygen2_6.1.0     remotes_2.0.2     
-    ## [13] lubridate_1.7.4    codetools_0.2-15   pkgload_1.0.2     
-    ## [16] jsonlite_1.5       tmaptools_2.0-1    Cairo_1.5-9       
-    ## [19] broom_0.5.0        png_0.1-7          rgeos_0.3-28      
-    ## [22] shiny_1.2.0        readr_1.1.1        compiler_3.5.1    
-    ## [25] httr_1.3.1         backports_1.1.2    mapview_2.6.0     
-    ## [28] assertthat_0.2.0   lazyeval_0.2.1     cli_1.0.1         
-    ## [31] later_0.7.5        htmltools_0.3.6    prettyunits_1.0.2 
-    ## [34] tools_3.5.1        gtable_0.2.0       glue_1.3.0        
-    ## [37] Rcpp_1.0.0         raster_2.8-4       countrycode_1.1.0 
-    ## [40] nlme_3.1-137       crosstalk_1.0.0    lwgeom_0.1-4      
-    ## [43] stringr_1.3.1      ps_1.2.0           mime_0.6          
-    ## [46] XML_3.98-1.16      MASS_7.3-51.1      scales_1.0.0      
-    ## [49] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
-    ## [52] curl_3.2           memoise_1.1.0      stringi_1.2.4     
-    ## [55] highr_0.7          desc_1.2.0         e1071_1.7-0       
-    ## [58] pkgbuild_1.0.2     spData_0.2.9.4     bitops_1.0-6      
-    ## [61] rlang_0.3.0.1      pkgconfig_2.0.2    commonmark_1.6    
-    ## [64] evaluate_0.12      lattice_0.20-35    purrr_0.2.5       
-    ## [67] bindr_0.1.1        htmlwidgets_1.3    labeling_0.3      
-    ## [70] processx_3.2.0     tidyselect_0.2.5   plyr_1.8.4        
-    ## [73] magrittr_1.5       R6_2.3.0           DBI_1.0.0         
-    ## [76] pillar_1.3.0       withr_2.1.2        units_0.6-1       
-    ## [79] RCurl_1.95-4.11    tibble_1.4.2       crayon_1.3.4      
-    ## [82] KernSmooth_2.23-15 grid_3.5.1         callr_3.0.0       
-    ## [85] digest_0.6.18      classInt_0.2-3     webshot_0.5.1     
-    ## [88] xtable_1.8-3       httpuv_1.4.5       stats4_3.5.1      
-    ## [91] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.0
+    ## [13] lubridate_1.7.4    RefManageR_1.2.0   codetools_0.2-15  
+    ## [16] pkgload_1.0.2      jsonlite_1.6       tmaptools_2.0-1   
+    ## [19] Cairo_1.5-9        broom_0.5.0        png_0.1-7         
+    ## [22] rgeos_0.3-28       shiny_1.2.0        readr_1.1.1       
+    ## [25] compiler_3.5.1     httr_1.4.0         backports_1.1.3   
+    ## [28] mapview_2.6.0      assertthat_0.2.0   lazyeval_0.2.1    
+    ## [31] cli_1.0.1          later_0.7.5        htmltools_0.3.6   
+    ## [34] prettyunits_1.0.2  tools_3.5.1        gtable_0.2.0      
+    ## [37] glue_1.3.0         Rcpp_1.0.0         raster_2.8-4      
+    ## [40] countrycode_1.1.0  nlme_3.1-137       crosstalk_1.0.0   
+    ## [43] lwgeom_0.1-4       stringr_1.3.1      ps_1.2.0          
+    ## [46] mime_0.6           XML_3.98-1.16      MASS_7.3-51.1     
+    ## [49] scales_1.0.0       hms_0.4.2          promises_1.0.1    
+    ## [52] yaml_2.2.0         curl_3.2           memoise_1.1.0     
+    ## [55] stringi_1.2.4      highr_0.7          desc_1.2.0        
+    ## [58] e1071_1.7-0        pkgbuild_1.0.2     bibtex_0.4.2      
+    ## [61] spData_0.2.9.4     bitops_1.0-6       rlang_0.3.0.1     
+    ## [64] pkgconfig_2.0.2    commonmark_1.6     evaluate_0.12     
+    ## [67] lattice_0.20-35    purrr_0.2.5        bindr_0.1.1       
+    ## [70] htmlwidgets_1.3    labeling_0.3       processx_3.2.0    
+    ## [73] tidyselect_0.2.5   plyr_1.8.4         magrittr_1.5      
+    ## [76] R6_2.3.0           DBI_1.0.0          pillar_1.3.0      
+    ## [79] withr_2.1.2        units_0.6-1        RCurl_1.95-4.11   
+    ## [82] tibble_1.4.2       crayon_1.3.4       KernSmooth_2.23-15
+    ## [85] grid_3.5.1         callr_3.0.0        digest_0.6.18     
+    ## [88] classInt_0.2-3     webshot_0.5.1      xtable_1.8-3      
+    ## [91] httpuv_1.4.5       stats4_3.5.1       munsell_0.5.0     
+    ## [94] viridisLite_0.3.0  sessioninfo_1.1.0
