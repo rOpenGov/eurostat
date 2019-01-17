@@ -183,3 +183,26 @@ test_that("Handle numbers in filter name",{
                ignore.order = TRUE)
 })
 
+
+context("bibliography")
+
+test_that("Bibentry gives correct results",{
+  skip_on_cran()
+  expect_equal(
+    class (get_bibentry ( code = c("sts_inpr_a", "nama_10_gdp"),
+                          keywords = list ( c("production", "industry"),
+                                            c("GDP")
+                          ),
+                          format = "Biblatex")), 
+    "Biblatex"
+  )
+  expect_error(
+    get_bibentry( code = 123456))
+  expect_warning(
+    get_bibentry( code = c("sts_inpr_a", "nama_10_gdp"),
+                  keywords = list ( c("production", "industry"),
+                                    c("GDP")
+                  ),
+                  format = "character"))
+})
+
