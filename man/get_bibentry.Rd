@@ -3,8 +3,6 @@
 \name{get_bibentry}
 \alias{get_bibentry}
 \title{Create A Data Bibliography}
-\format{Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
-or \code{'Bibtex'} (not case sensitive.)}
 \usage{
 get_bibentry(code, keywords = NULL, format = "Biblatex")
 }
@@ -14,6 +12,9 @@ character or factor.}
 
 \item{keywords}{A list of keywords to be added to the entries. Defaults
 to \code{NULL}.}
+
+\item{format}{Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
+or \code{'Bibtex'} (not case sensitive.)}
 }
 \value{
 a bibentry, Bibtex or Biblatex object.
