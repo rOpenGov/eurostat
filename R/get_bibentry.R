@@ -6,7 +6,7 @@
 #' character or factor. 
 #' @param keywords A list of keywords to be added to the entries. Defaults
 #' to \code{NULL}. 
-#' @format Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
+#' @param format Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
 #' or \code{'Bibtex'} (not case sensitive.)
 #' @importFrom RefManageR BibEntry toBiblatex
 #' @importFrom utils toBibtex
