@@ -1,3 +1,7 @@
+# eurostat 3.3.x
+
+* Countries and Country Codes data.frames get label column for country names in the Eurostat database.
+
 # eurostat 3.3.3
 
 * Fixed vignette duplicate entry issue and smaller issues
