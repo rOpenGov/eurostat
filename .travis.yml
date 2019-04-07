@@ -9,7 +9,6 @@ notifications:
   email:
     - leo.lahti@iki.fi
 
-
 r_packages:
   - broom
   - Cairo
@@ -151,6 +150,8 @@ before_install:
   - Rscript -e 'install.packages("mapproj")'     
   - Rscript -e 'install.packages("plotrix")'     
   - Rscript -e 'install.packages("rmarkdown")'     
+  - Rscript -e 'install.packages("RefManageR")'       
+  - Rscript -e 'install.packages("usethis")'
   - Rscript -e 'install.packages("roxygen2")'     
   - Rscript -e 'install.packages("rsdmx")'     
   - Rscript -e 'install.packages("rvest")'     
