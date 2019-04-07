@@ -817,7 +817,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpXCkSZj/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -997,9 +997,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpXCkSZj/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpXCkSZj/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1033,7 +1033,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpXCkSZj/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpP01WbW/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1078,9 +1078,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpXCkSZj/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpXCkSZj/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1338,7 +1338,7 @@ This tutorial was created with
     ## [13] lubridate_1.7.4    RefManageR_1.2.12  codetools_0.2-16  
     ## [16] pkgload_1.0.2      jsonlite_1.6       tmaptools_2.0-1   
     ## [19] Cairo_1.5-9        broom_0.5.1        png_0.1-7         
-    ## [22] rgeos_0.4-2        shiny_1.2.0        readr_1.3.1       
+    ## [22] rgeos_0.4-2        shiny_1.3.0        readr_1.3.1       
     ## [25] compiler_3.5.1     httr_1.4.0         backports_1.1.3   
     ## [28] mapview_2.6.3      assertthat_0.2.0   lazyeval_0.2.1    
     ## [31] cli_1.0.1          later_0.8.0        htmltools_0.3.6   
@@ -1361,5 +1361,5 @@ This tutorial was created with
     ## [82] RCurl_1.95-4.12    tibble_2.0.1       crayon_1.3.4      
     ## [85] KernSmooth_2.23-15 grid_3.5.1         callr_3.1.1       
     ## [88] digest_0.6.18      classInt_0.3-1     webshot_0.5.1     
-    ## [91] xtable_1.8-3       httpuv_1.4.5.1     stats4_3.5.1      
+    ## [91] xtable_1.8-3       httpuv_1.5.1       stats4_3.5.1      
     ## [94] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.1

@@ -41,6 +41,7 @@ r_packages:
   - rsdmx
   - rvest  
   - sf
+  - shiny  
   - sp  
   - tmap
   - tmaptools  
@@ -156,9 +157,11 @@ before_install:
   - Rscript -e 'install.packages("rsdmx")'     
   - Rscript -e 'install.packages("rvest")'     
   - Rscript -e 'install.packages("testthat")'     
+  - Rscript -e 'install.packages("shiny")'       
   - Rscript -e 'install.packages("knitr")'
   - Rscript -e 'install.packages("tmap", repos="http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("sf", repos="http://cran.us.r-project.org")'
+
 
 
 install:
