@@ -465,26 +465,6 @@ BSD-2-clause (modified FreeBSD) license:
 citation("eurostat")
 ```
 
-### Related work
-
-This [rOpenGov](http://ropengov.github.io) R package is based on the
-earlier CRAN packages
-[statfi](https://cran.r-project.org/package=statfi) and
-[smarterpoland](https://cran.r-project.org/package=SmarterPoland).
-
-The independent [reurostat](https://github.com/Tungurahua/reurostat)
-package develops related Eurostat tools but seems to be in an
-experimental stage at the time of writing this tutorial.
-
-The more generic [quandl](https://cran.r-project.org/package=quandl),
-[datamart](https://cran.r-project.org/package=datamart),
-[rsdmx](https://cran.r-project.org/package=rsdmx), and
-[pdfetch](https://cran.r-project.org/package=pdfetch) packages may
-provide access to some versions of eurostat data but these packages
-are more generic and hence, in contrast to the eurostat R package,
-lack tools that are specifically customized to facilitate eurostat
-analysis.
-
 
 ### Contact
 

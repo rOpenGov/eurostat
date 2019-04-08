@@ -30,7 +30,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.5</span>
       </span>
     </div>
 
@@ -81,7 +81,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial (vignette) for the eurostat R package</h1>
             
-            <h4 class="date">2019-04-07</h4>
+            <h4 class="date">2019-04-08</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -749,35 +749,19 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tidyr)
 
-<span class="co"># All sources of renewable energy are to be grouped into three sets</span>
- dict &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"Solid biofuels (excluding charcoal)"</span> =<span class="st"> "Biofuels"</span>,
- <span class="st">"Biogasoline"</span> =<span class="st"> "Biofuels"</span>,
- <span class="st">"Other liquid biofuels"</span> =<span class="st"> "Biofuels"</span>,
- <span class="st">"Biodiesels"</span> =<span class="st"> "Biofuels"</span>,
- <span class="st">"Biogas"</span> =<span class="st"> "Biofuels"</span>,
- <span class="st">"Hydro power"</span> =<span class="st"> "Hydro power"</span>,
- <span class="st">"Tide, Wave and Ocean"</span> =<span class="st"> "Hydro power"</span>,
- <span class="st">"Solar thermal"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
- <span class="st">"Geothermal Energy"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
- <span class="st">"Solar photovoltaic"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
- <span class="st">"Municipal waste (renewable)"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
- <span class="st">"Wind power"</span> =<span class="st"> "Wind, solar, waste and Other"</span>,
- <span class="st">"Bio jet kerosene"</span> =<span class="st"> "Wind, solar, waste and Other"</span>)
 <span class="co"># Some cleaning of the data is required</span>
- energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"ten00081"</span>) <span class="op">%&gt;%</span>
+ energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"nrg_114a"</span>) <span class="op">%&gt;%</span>
 <span class="st"> </span><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(dat) <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> "2013-01-01"</span>,
- product <span class="op">!=</span><span class="st"> "Renewable energies"</span>) <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">nproduct =</span> dict[<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/character">as.character</a></span>(product)], <span class="co"># just three categories</span>
- <span class="dt">geo =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">gsub</a></span>(geo, <span class="dt">pattern=</span><span class="st">" </span><span class="ch">\\</span><span class="st">(.*"</span>, <span class="dt">replacement=</span><span class="st">""</span>)) <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(nproduct, geo, values) <span class="op">%&gt;%</span>
-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(nproduct, geo) <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> "2013-01-01"</span>) <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/grep">gsub</a></span>(geo, <span class="dt">pattern=</span><span class="st">" </span><span class="ch">\\</span><span class="st">(.*"</span>, <span class="dt">replacement=</span><span class="st">""</span>)) <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(product, geo, values) <span class="op">%&gt;%</span>
+<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(product, geo) <span class="op">%&gt;%</span>
 <span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">svalue =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(values)) <span class="op">%&gt;%</span>
 <span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(geo) <span class="op">%&gt;%</span>
 <span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">tvalue =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(svalue),
  <span class="dt">svalue =</span> svalue<span class="op">/</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/sum">sum</a></span>(svalue)) <span class="op">%&gt;%</span>
 <span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(tvalue <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># only large countries</span>
-<span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(nproduct, svalue)
+<span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(product, svalue)
  
 <span class="co"># Triangle plot</span>
  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/par">par</a></span>(<span class="dt">cex=</span><span class="fl">0.75</span>, <span class="dt">mar=</span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))
@@ -792,6 +776,7 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
  df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/data.frame">data.frame</a></span>(positions<span class="op">$</span>xypos, <span class="dt">geo =</span> energy3<span class="op">$</span>geo)
  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/points">points</a></span>(df<span class="op">$</span>x[ind], df<span class="op">$</span>y[ind], <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">"red"</span>, <span class="dt">pch=</span><span class="dv">19</span>)
  <span class="kw"><a href="https://www.rdocumentation.org/packages/graphics/topics/text">text</a></span>(df<span class="op">$</span>x[ind], df<span class="op">$</span>y[ind], df<span class="op">$</span>geo[ind], <span class="dt">adj =</span> <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="fl">0.5</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.5</span>)</code></pre></div>
+<p><img src="fig/plotGallery-1.png" width="576"></p>
 <div id="maps" class="section level2">
 <h2 class="hasAnchor">
 <a href="#maps" class="anchor"></a>Maps</h2>
@@ -799,16 +784,8 @@ p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </s
 <h3 class="hasAnchor">
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-at-160mln-resolution-using-tmap" class="anchor"></a>Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap</h3>
 <p>The mapping examples below use <a href="https://github.com/mtennekes/tmap"><code>tmap</code></a> package.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)</code></pre></div>
-<pre><code>## 
-## Attaching package: 'dplyr'</code></pre>
-<pre><code>## The following objects are masked from 'package:stats':
-## 
-##     filter, lag</code></pre>
-<pre><code>## The following objects are masked from 'package:base':
-## 
-##     intersect, setdiff, setequal, union</code></pre>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(eurostat)
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(dplyr)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(eurostat)
 <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(sf)</code></pre></div>
 <pre><code>## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(tmap)
@@ -821,7 +798,7 @@ sp_data &lt;-<span class="st"> </span>eurostat<span class="op">::</span><span cl
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nchar">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># categorise</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>))</code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/RtmphBU0CQ/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/Rtmpvd8XBv/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>,
                                    <span class="dt">resolution =</span> <span class="st">"60"</span>,
@@ -980,8 +957,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nchar">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmphBU0CQ/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmphBU0CQ/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/Rtmpvd8XBv/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpvd8XBv/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -1011,7 +988,7 @@ geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get
 ## information regarding their licence agreements.
 ## </code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmphBU0CQ/eurostat/spdf1022013.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmpvd8XBv/eurostat/spdf1022013.RData</code></pre>
 <pre><code>## 
 ## # --------------------------
 ## HEADS UP!!
@@ -1048,8 +1025,8 @@ dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eur
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/nchar">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span>
 <span class="st">  </span><span class="co"># classifying the values the variable</span>
 <span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmphBU0CQ/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmphBU0CQ/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/Rtmpvd8XBv/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpvd8XBv/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="co"># Download geospatial data from GISCO</span>
 geodata &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</code></pre></div>
 <pre><code>## 
@@ -1222,13 +1199,6 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocument
 ##     note = {Version 3.3.4},
 ##   }</code></pre>
 </div>
-<div id="related-work" class="section level3">
-<h3 class="hasAnchor">
-<a href="#related-work" class="anchor"></a>Related work</h3>
-<p>This <a href="http://ropengov.github.io">rOpenGov</a> R package is based on the earlier CRAN packages <a href="https://cran.r-project.org/package=statfi">statfi</a> and <a href="https://cran.r-project.org/package=SmarterPoland">smarterpoland</a>.</p>
-<p>The independent <a href="https://github.com/Tungurahua/reurostat">reurostat</a> package develops related Eurostat tools but seems to be in an experimental stage at the time of writing this tutorial.</p>
-<p>The more generic <a href="https://cran.r-project.org/package=quandl">quandl</a>, <a href="https://cran.r-project.org/package=datamart">datamart</a>, <a href="https://cran.r-project.org/package=rsdmx">rsdmx</a>, and <a href="https://cran.r-project.org/package=pdfetch">pdfetch</a> packages may provide access to some versions of eurostat data but these packages are more generic and hence, in contrast to the eurostat R package, lack tools that are specifically customized to facilitate eurostat analysis.</p>
-</div>
 <div id="contact" class="section level3">
 <h3 class="hasAnchor">
 <a href="#contact" class="anchor"></a>Contact</h3>
@@ -1262,8 +1232,9 @@ df &lt;-<span class="st"> </span><span class="kw"><a href="https://www.rdocument
 ## other attached packages:
 ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
 ##  [4] tmap_2.2           sf_0.7-3           dplyr_0.8.0.1     
-##  [7] ggplot2_3.1.0      tidyr_0.8.2        rvest_0.3.2       
-## [10] xml2_1.2.0         eurostat_3.3.4     knitr_1.21        
+##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
+## [10] rvest_0.3.2        xml2_1.2.0         eurostat_3.3.4    
+## [13] knitr_1.21        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] nlme_3.1-137       bitops_1.0-6       fs_1.2.6          

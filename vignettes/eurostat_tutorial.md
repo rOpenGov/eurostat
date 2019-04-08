@@ -732,35 +732,19 @@ Triangle plot is handy for visualizing data sets with three variables.
     library(dplyr)
     library(tidyr)
 
-    # All sources of renewable energy are to be grouped into three sets
-     dict <- c("Solid biofuels (excluding charcoal)" = "Biofuels",
-     "Biogasoline" = "Biofuels",
-     "Other liquid biofuels" = "Biofuels",
-     "Biodiesels" = "Biofuels",
-     "Biogas" = "Biofuels",
-     "Hydro power" = "Hydro power",
-     "Tide, Wave and Ocean" = "Hydro power",
-     "Solar thermal" = "Wind, solar, waste and Other",
-     "Geothermal Energy" = "Wind, solar, waste and Other",
-     "Solar photovoltaic" = "Wind, solar, waste and Other",
-     "Municipal waste (renewable)" = "Wind, solar, waste and Other",
-     "Wind power" = "Wind, solar, waste and Other",
-     "Bio jet kerosene" = "Wind, solar, waste and Other")
     # Some cleaning of the data is required
-     energy3 <- get_eurostat("ten00081") %>%
+     energy3 <- get_eurostat("nrg_114a") %>%
      label_eurostat(dat) %>%
-     filter(time == "2013-01-01",
-     product != "Renewable energies") %>%
-     mutate(nproduct = dict[as.character(product)], # just three categories
-     geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
-     select(nproduct, geo, values) %>%
-     group_by(nproduct, geo) %>%
+     filter(time == "2013-01-01") %>%
+     mutate(geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+     select(product, geo, values) %>%
+     group_by(product, geo) %>%
      summarise(svalue = sum(values)) %>%
      group_by(geo) %>%
      mutate(tvalue = sum(svalue),
      svalue = svalue/sum(svalue)) %>%
      filter(tvalue > 1000) %>% # only large countries
-     spread(nproduct, svalue)
+     spread(product, svalue)
      
     # Triangle plot
      par(cex=0.75, mar=c(0,0,0,0))
@@ -776,6 +760,8 @@ Triangle plot is handy for visualizing data sets with three variables.
      points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
      text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
 
+![](fig/plotGallery-1.png)
+
 Maps
 ----
 
@@ -785,22 +771,6 @@ The mapping examples below use
 [`tmap`](https://github.com/mtennekes/tmap) package.
 
     library(dplyr)
-
-    ## 
-    ## Attaching package: 'dplyr'
-
-    ## The following object is masked from 'package:eurostat':
-    ## 
-    ##     lag
-
-    ## The following objects are masked from 'package:stats':
-    ## 
-    ##     filter, lag
-
-    ## The following objects are masked from 'package:base':
-    ## 
-    ##     intersect, setdiff, setequal, union
-
     library(eurostat)
     library(sf)
 
@@ -817,7 +787,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -997,9 +967,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1033,7 +1003,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpP01WbW/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpWaDfP0/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1078,9 +1048,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1254,7 +1224,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.4 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.5 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1269,27 +1239,8 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.4},
+    ##     note = {Version 3.3.5},
     ##   }
-
-### Related work
-
-This [rOpenGov](http://ropengov.github.io) R package is based on the
-earlier CRAN packages
-[statfi](https://cran.r-project.org/package=statfi) and
-[smarterpoland](https://cran.r-project.org/package=SmarterPoland).
-
-The independent [reurostat](https://github.com/Tungurahua/reurostat)
-package develops related Eurostat tools but seems to be in an
-experimental stage at the time of writing this tutorial.
-
-The more generic [quandl](https://cran.r-project.org/package=quandl),
-[datamart](https://cran.r-project.org/package=datamart),
-[rsdmx](https://cran.r-project.org/package=rsdmx), and
-[pdfetch](https://cran.r-project.org/package=pdfetch) packages may
-provide access to some versions of eurostat data but these packages are
-more generic and hence, in contrast to the eurostat R package, lack
-tools that are specifically customized to facilitate eurostat analysis.
 
 ### Contact
 
@@ -1325,10 +1276,10 @@ This tutorial was created with
     ## other attached packages:
     ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
     ##  [4] tmap_2.2           sf_0.7-3           dplyr_0.8.0.1     
-    ##  [7] ggplot2_3.1.0      tidyr_0.8.2        rvest_0.3.2       
-    ## [10] xml2_1.2.0         rmarkdown_1.11     pkgdown_1.3.0     
-    ## [13] knitr_1.21         eurostat_3.3.4     usethis_1.4.0     
-    ## [16] devtools_2.0.1    
+    ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
+    ## [10] rvest_0.3.2        xml2_1.2.0         rmarkdown_1.11    
+    ## [13] pkgdown_1.3.0      knitr_1.21         eurostat_3.3.5    
+    ## [16] usethis_1.4.0      devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] colorspace_1.4-0   class_7.3-15       leaflet_2.0.2     
