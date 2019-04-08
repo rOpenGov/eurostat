@@ -1,9 +1,0 @@
-pandoc: 2.2.1
-pkgdown: 1.1.0.9000
-pkgdown_sha: 16c6506a153dacf99c185f0ef62488458297d301
-articles:
-  blogposts: blogposts.html
-  cheatsheet: cheatsheet.html
-  eurostat_tutorial: eurostat_tutorial.html
-  publications: publications.html
-

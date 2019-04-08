@@ -1,3 +1,9 @@
+# eurostat 3.3.3
+
+* Countries and Country Codes data.frames get label column for country names in the Eurostat database.
+* Fixed vignette duplicate entry issue and smaller issues
+* Added get_bibentry
+
 # eurostat 3.3.1
 
 * The `label_eurostat()` has new countrycode and countrycode_nomatch arguments to 
