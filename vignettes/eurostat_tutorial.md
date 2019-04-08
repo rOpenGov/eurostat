@@ -26,7 +26,7 @@ Finding data
 ============
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat
-datasets. The values in column 'code' should be used to download a
+datasets. The values in column ‘code’ should be used to download a
 selected dataset.
 
     # Load the package
@@ -43,82 +43,82 @@ selected dataset.
 <table>
 <thead>
 <tr class="header">
-<th align="left">title</th>
-<th align="left">code</th>
-<th align="left">type</th>
-<th align="left">last update of data</th>
-<th align="left">last table structure change</th>
-<th align="left">data start</th>
-<th align="left">data end</th>
-<th align="left">values</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">last update of data</th>
+<th style="text-align: left;">last table structure change</th>
+<th style="text-align: left;">data start</th>
+<th style="text-align: left;">data end</th>
+<th style="text-align: left;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Database by themes</td>
-<td align="left">data</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Database by themes</td>
+<td style="text-align: left;">data</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">General and regional statistics</td>
-<td align="left">general</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">General and regional statistics</td>
+<td style="text-align: left;">general</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">European and national indicators for short-term analysis</td>
-<td align="left">euroind</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">European and national indicators for short-term analysis</td>
+<td style="text-align: left;">euroind</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Business and consumer surveys (source: DG ECFIN)</td>
-<td align="left">ei_bcs</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Business and consumer surveys (source: DG ECFIN)</td>
+<td style="text-align: left;">ei_bcs</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Consumer surveys (source: DG ECFIN)</td>
-<td align="left">ei_bcs_cs</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Consumer surveys (source: DG ECFIN)</td>
+<td style="text-align: left;">ei_bcs_cs</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Consumers - monthly data</td>
-<td align="left">ei_bsco_m</td>
-<td align="left">dataset</td>
-<td align="left">29.11.2018</td>
-<td align="left">29.11.2018</td>
-<td align="left">1980M01</td>
-<td align="left">2018M11</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Consumers - monthly data</td>
+<td style="text-align: left;">ei_bsco_m</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">29.11.2018</td>
+<td style="text-align: left;">29.11.2018</td>
+<td style="text-align: left;">1980M01</td>
+<td style="text-align: left;">2018M11</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
 
 With `search_eurostat()` you can search the table of contents for
-particular patterns, e.g. all datasets related to *passenger transport*.
+particular patterns, e.g. all datasets related to *passenger transport*.
 The kable function to produces nice markdown output. Note that with the
 `type` argument of this function you could restrict the search to for
 instance datasets or tables.
@@ -129,76 +129,76 @@ instance datasets or tables.
 <table>
 <thead>
 <tr class="header">
-<th align="left">title</th>
-<th align="left">code</th>
-<th align="left">type</th>
-<th align="left">last update of data</th>
-<th align="left">last table structure change</th>
-<th align="left">data start</th>
-<th align="left">data end</th>
-<th align="left">values</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">last update of data</th>
+<th style="text-align: left;">last table structure change</th>
+<th style="text-align: left;">data start</th>
+<th style="text-align: left;">data end</th>
+<th style="text-align: left;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Volume of passenger transport relative to GDP</td>
-<td align="left">tran_hv_pstra</td>
-<td align="left">dataset</td>
-<td align="left">30.07.2018</td>
-<td align="left">30.07.2018</td>
-<td align="left">2000</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Volume of passenger transport relative to GDP</td>
+<td style="text-align: left;">tran_hv_pstra</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">30.07.2018</td>
+<td style="text-align: left;">30.07.2018</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Modal split of passenger transport</td>
-<td align="left">tran_hv_psmod</td>
-<td align="left">dataset</td>
-<td align="left">27.08.2018</td>
-<td align="left">27.08.2018</td>
-<td align="left">1990</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Modal split of passenger transport</td>
+<td style="text-align: left;">tran_hv_psmod</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">27.08.2018</td>
+<td style="text-align: left;">27.08.2018</td>
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;">2016</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Air passenger transport by reporting country</td>
-<td align="left">avia_paoc</td>
-<td align="left">dataset</td>
-<td align="left">06.12.2018</td>
-<td align="left">07.11.2018</td>
-<td align="left">1993</td>
-<td align="left">2018Q2</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport by reporting country</td>
+<td style="text-align: left;">avia_paoc</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">06.12.2018</td>
+<td style="text-align: left;">07.11.2018</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport by main airports in each reporting country</td>
-<td align="left">avia_paoa</td>
-<td align="left">dataset</td>
-<td align="left">06.12.2018</td>
-<td align="left">03.10.2018</td>
-<td align="left">1993</td>
-<td align="left">2018Q2</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
+<td style="text-align: left;">avia_paoa</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">06.12.2018</td>
+<td style="text-align: left;">03.10.2018</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Air passenger transport between reporting countries</td>
-<td align="left">avia_paocc</td>
-<td align="left">dataset</td>
-<td align="left">22.10.2018</td>
-<td align="left">07.11.2018</td>
-<td align="left">1993</td>
-<td align="left">2018Q2</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport between reporting countries</td>
+<td style="text-align: left;">avia_paocc</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">22.10.2018</td>
+<td style="text-align: left;">07.11.2018</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
-<td align="left">avia_paoac</td>
-<td align="left">dataset</td>
-<td align="left">22.10.2018</td>
-<td align="left">03.10.2018</td>
-<td align="left">1993</td>
-<td align="left">2018Q2</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
+<td style="text-align: left;">avia_paoac</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">22.10.2018</td>
+<td style="text-align: left;">03.10.2018</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -212,7 +212,7 @@ Downloading data
 ================
 
 The package supports two of the Eurostats download methods: the bulk
-download facility and the Web Services' JSON API. The bulk download
+download facility and the Web Services’ JSON API. The bulk download
 facility is the fastest method to download whole datasets. It is also
 often the only way as the JSON API has limitation of maximum 50
 sub-indicators at a time and whole datasets usually exceeds that. To
@@ -224,7 +224,7 @@ via main function `get_eurostat()`. If only the table id is given, the
 whole table is downloaded from the bulk download facility. If also
 filters are defined the JSON API is used.
 
-Here an example of indicator 'Modal split of passenger transport'. This
+Here an example of indicator ‘Modal split of passenger transport’. This
 is the percentage share of each mode of transport in total inland
 transport, expressed in passenger-kilometres (pkm) based on transport by
 passenger cars, buses and coaches, and trains. All data should be based
@@ -239,7 +239,7 @@ Pick and print the id of the data set to download:
                              type = "table")$code[1]
     print(id)
 
-\[1\] "t2020\_rk310"
+\[1\] “t2020\_rk310”
 
 Get the whole corresponding table. As the table is annual data, it is
 more convient to use a numeric time variable than use the default date
@@ -263,55 +263,55 @@ Investigate the structure of the downloaded data set:
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">AT</td>
-<td align="right">1990</td>
-<td align="right">11.0</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">AT</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">BE</td>
-<td align="right">1990</td>
-<td align="right">10.6</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">BE</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">CH</td>
-<td align="right">1990</td>
-<td align="right">3.7</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">CH</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">3.7</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">DE</td>
-<td align="right">1990</td>
-<td align="right">9.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">DE</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">DK</td>
-<td align="right">1990</td>
-<td align="right">11.3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">DK</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">EL</td>
-<td align="right">1990</td>
-<td align="right">32.4</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">EL</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">32.4</td>
 </tr>
 </tbody>
 </table>
@@ -346,55 +346,55 @@ human-readable labels from the Eurostat dictionaries with the
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Austria</td>
-<td align="right">1990</td>
-<td align="right">11.0</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Austria</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Belgium</td>
-<td align="right">1990</td>
-<td align="right">10.6</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Belgium</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Switzerland</td>
-<td align="right">1990</td>
-<td align="right">3.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Switzerland</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">3.7</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Germany (until 1990 former territory of the FRG)</td>
-<td align="right">1990</td>
-<td align="right">9.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Germany (until 1990 former territory of the FRG)</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Denmark</td>
-<td align="right">1990</td>
-<td align="right">11.3</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Denmark</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Greece</td>
-<td align="right">1990</td>
-<td align="right">32.4</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Greece</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">32.4</td>
 </tr>
 </tbody>
 </table>
@@ -429,26 +429,26 @@ To retrieve the country code list for EFTA, for instance, use:
 <table>
 <thead>
 <tr class="header">
-<th align="left">code</th>
-<th align="left">name</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">name</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">IS</td>
-<td align="left">Iceland</td>
+<td style="text-align: left;">IS</td>
+<td style="text-align: left;">Iceland</td>
 </tr>
 <tr class="even">
-<td align="left">LI</td>
-<td align="left">Liechtenstein</td>
+<td style="text-align: left;">LI</td>
+<td style="text-align: left;">Liechtenstein</td>
 </tr>
 <tr class="odd">
-<td align="left">NO</td>
-<td align="left">Norway</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">Norway</td>
 </tr>
 <tr class="even">
-<td align="left">CH</td>
-<td align="left">Switzerland</td>
+<td style="text-align: left;">CH</td>
+<td style="text-align: left;">Switzerland</td>
 </tr>
 </tbody>
 </table>
@@ -462,34 +462,34 @@ EU data from 2012 in all vehicles:
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">European Union (current composition)</td>
-<td align="right">2012</td>
-<td align="right">9.5</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">European Union (current composition)</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">9.5</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Passenger cars</td>
-<td align="left">European Union (current composition)</td>
-<td align="right">2012</td>
-<td align="right">82.9</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Passenger cars</td>
+<td style="text-align: left;">European Union (current composition)</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">82.9</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Trains</td>
-<td align="left">European Union (current composition)</td>
-<td align="right">2012</td>
-<td align="right">7.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Trains</td>
+<td style="text-align: left;">European Union (current composition)</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">7.7</td>
 </tr>
 </tbody>
 </table>
@@ -507,104 +507,104 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="right">time</th>
-<th align="right">BUS_TOT</th>
-<th align="right">CAR</th>
-<th align="right">TRN</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">BUS_TOT</th>
+<th style="text-align: right;">CAR</th>
+<th style="text-align: right;">TRN</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2000</td>
-<td align="right">10.4</td>
-<td align="right">82.4</td>
-<td align="right">7.2</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">82.4</td>
+<td style="text-align: right;">7.2</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2001</td>
-<td align="right">10.2</td>
-<td align="right">82.7</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">10.2</td>
+<td style="text-align: right;">82.7</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2002</td>
-<td align="right">9.9</td>
-<td align="right">83.3</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">83.3</td>
+<td style="text-align: right;">6.8</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2003</td>
-<td align="right">9.9</td>
-<td align="right">83.5</td>
-<td align="right">6.7</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">83.5</td>
+<td style="text-align: right;">6.7</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2004</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">6.8</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2005</td>
-<td align="right">9.8</td>
-<td align="right">83.3</td>
-<td align="right">6.9</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.3</td>
+<td style="text-align: right;">6.9</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2006</td>
-<td align="right">9.7</td>
-<td align="right">83.2</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">83.2</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2007</td>
-<td align="right">9.8</td>
-<td align="right">83.1</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.1</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2008</td>
-<td align="right">9.9</td>
-<td align="right">82.8</td>
-<td align="right">7.4</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">9.9</td>
+<td style="text-align: right;">82.8</td>
+<td style="text-align: right;">7.4</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2009</td>
-<td align="right">9.3</td>
-<td align="right">83.6</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">9.3</td>
+<td style="text-align: right;">83.6</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2010</td>
-<td align="right">9.4</td>
-<td align="right">83.4</td>
-<td align="right">7.2</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">7.2</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2011</td>
-<td align="right">9.4</td>
-<td align="right">83.2</td>
-<td align="right">7.4</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">83.2</td>
+<td style="text-align: right;">7.4</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2012</td>
-<td align="right">9.5</td>
-<td align="right">82.9</td>
-<td align="right">7.7</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">82.9</td>
+<td style="text-align: right;">7.7</td>
 </tr>
 </tbody>
 </table>
@@ -622,118 +622,118 @@ Train passengers for selected EU countries in 2000 - 2012
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="right">time</th>
-<th align="right">Austria</th>
-<th align="right">Belgium</th>
-<th align="right">Finland</th>
-<th align="right">Sweden</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">Austria</th>
+<th style="text-align: right;">Belgium</th>
+<th style="text-align: right;">Finland</th>
+<th style="text-align: right;">Sweden</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2000</td>
-<td align="right">9.7</td>
-<td align="right">6.3</td>
-<td align="right">5.1</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">6.8</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2001</td>
-<td align="right">9.7</td>
-<td align="right">6.4</td>
-<td align="right">4.8</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2002</td>
-<td align="right">9.7</td>
-<td align="right">6.5</td>
-<td align="right">4.8</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2003</td>
-<td align="right">9.5</td>
-<td align="right">6.5</td>
-<td align="right">4.7</td>
-<td align="right">7.0</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">7.0</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2004</td>
-<td align="right">9.4</td>
-<td align="right">7.1</td>
-<td align="right">4.7</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">6.8</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2005</td>
-<td align="right">9.8</td>
-<td align="right">6.6</td>
-<td align="right">4.8</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2006</td>
-<td align="right">10.0</td>
-<td align="right">6.9</td>
-<td align="right">4.8</td>
-<td align="right">7.6</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.6</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2007</td>
-<td align="right">10.0</td>
-<td align="right">7.1</td>
-<td align="right">5.0</td>
-<td align="right">7.9</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">7.9</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2008</td>
-<td align="right">11.1</td>
-<td align="right">7.5</td>
-<td align="right">5.4</td>
-<td align="right">8.6</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">8.6</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2009</td>
-<td align="right">11.1</td>
-<td align="right">7.5</td>
-<td align="right">5.1</td>
-<td align="right">8.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2010</td>
-<td align="right">11.0</td>
-<td align="right">7.7</td>
-<td align="right">5.2</td>
-<td align="right">8.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">5.2</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2011</td>
-<td align="right">11.3</td>
-<td align="right">7.7</td>
-<td align="right">5.0</td>
-<td align="right">8.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2012</td>
-<td align="right">11.8</td>
-<td align="right">7.8</td>
-<td align="right">5.3</td>
-<td align="right">9.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">5.3</td>
+<td style="text-align: right;">9.1</td>
 </tr>
 </tbody>
 </table>
@@ -744,6 +744,10 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
+
+    ## Want to understand how all the pieces fit together? See the R for
+    ## Data Science book: http://r4ds.had.co.nz/
+
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -818,7 +822,7 @@ The mapping examples below use
     library(eurostat)
     library(sf)
 
-    ## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3
+    ## Linking to GEOS 3.6.2, GDAL 2.3.2, PROJ 5.1.0
 
     library(tmap)
 
@@ -831,7 +835,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpdNLOUc/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -1011,9 +1015,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpdNLOUc/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpdNLOUc/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1047,7 +1051,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpdNLOUc/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpxiQuGR/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1092,9 +1096,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpdNLOUc/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpdNLOUc/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1184,56 +1188,56 @@ to access data in that format when necessary:
 <table>
 <thead>
 <tr class="header">
-<th align="left">UNIT</th>
-<th align="left">Y_GRAD</th>
-<th align="left">FOS07</th>
-<th align="left">GEO</th>
-<th align="left">FREQ</th>
-<th align="left">obsTime</th>
-<th align="right">obsValue</th>
-<th align="left">OBS_STATUS</th>
+<th style="text-align: left;">UNIT</th>
+<th style="text-align: left;">Y_GRAD</th>
+<th style="text-align: left;">FOS07</th>
+<th style="text-align: left;">GEO</th>
+<th style="text-align: left;">FREQ</th>
+<th style="text-align: left;">obsTime</th>
+<th style="text-align: right;">obsValue</th>
+<th style="text-align: left;">OBS_STATUS</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">TOTAL</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2009</td>
-<td align="right">NA</td>
-<td align="left">na</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">TOTAL</td>
+<td style="text-align: left;">FOS1</td>
+<td style="text-align: left;">BE</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">na</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">TOTAL</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2006</td>
-<td align="right">NA</td>
-<td align="left">na</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">TOTAL</td>
+<td style="text-align: left;">FOS1</td>
+<td style="text-align: left;">BE</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">na</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">Y_GE1990</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2009</td>
-<td align="right">43.75</td>
-<td align="left">NA</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">Y_GE1990</td>
+<td style="text-align: left;">FOS1</td>
+<td style="text-align: left;">BE</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">2009</td>
+<td style="text-align: right;">43.75</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">Y_GE1990</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2006</td>
-<td align="right">NA</td>
-<td align="left">na</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">Y_GE1990</td>
+<td style="text-align: left;">FOS1</td>
+<td style="text-align: left;">BE</td>
+<td style="text-align: left;">A</td>
+<td style="text-align: left;">2006</td>
+<td style="text-align: right;">NA</td>
+<td style="text-align: left;">na</td>
 </tr>
 </tbody>
 </table>
@@ -1268,7 +1272,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.3 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.31 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1283,7 +1287,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.3},
+    ##     note = {Version 3.3.31},
     ##   }
 
 ### Related work
@@ -1319,11 +1323,11 @@ This tutorial was created with
 
     ## R version 3.5.1 (2018-07-02)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 18.04.1 LTS
+    ## Running under: Ubuntu 18.10
     ## 
     ## Matrix products: default
-    ## BLAS: /home/lei/bin/R-3.5.1/lib/libRblas.so
-    ## LAPACK: /home/lei/bin/R-3.5.1/lib/libRlapack.so
+    ## BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
+    ## LAPACK: /usr/lib/x86_64-linux-gnu/libopenblasp-r0.3.3.so
     ## 
     ## locale:
     ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1338,11 +1342,11 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
-    ##  [4] tmap_2.1-1         sf_0.7-1           dplyr_0.7.8       
+    ##  [4] tmap_2.1-1         sf_0.7-2           dplyr_0.7.8       
     ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
     ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
     ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
-    ## [16] eurostat_3.3.3     testthat_2.0.1     usethis_1.4.0     
+    ## [16] eurostat_3.3.31    testthat_2.0.1     usethis_1.4.0     
     ## [19] devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
@@ -1351,10 +1355,10 @@ This tutorial was created with
     ##  [7] base64enc_0.1-3    fs_1.2.6           dichromat_2.0-0   
     ## [10] rstudioapi_0.8     roxygen2_6.1.0     remotes_2.0.2     
     ## [13] lubridate_1.7.4    codetools_0.2-15   pkgload_1.0.2     
-    ## [16] jsonlite_1.5       tmaptools_2.0-1    Cairo_1.5-9       
-    ## [19] broom_0.5.0        png_0.1-7          rgeos_0.3-28      
-    ## [22] shiny_1.2.0        readr_1.1.1        compiler_3.5.1    
-    ## [25] httr_1.3.1         backports_1.1.2    mapview_2.6.0     
+    ## [16] jsonlite_1.6       tmaptools_2.0-1    Cairo_1.5-9       
+    ## [19] broom_0.5.1        png_0.1-7          rgeos_0.3-28      
+    ## [22] shiny_1.2.0        readr_1.3.1        compiler_3.5.1    
+    ## [25] httr_1.4.0         backports_1.1.3    mapview_2.6.0     
     ## [28] assertthat_0.2.0   lazyeval_0.2.1     cli_1.0.1         
     ## [31] later_0.7.5        htmltools_0.3.6    prettyunits_1.0.2 
     ## [34] tools_3.5.1        gtable_0.2.0       glue_1.3.0        
@@ -1365,15 +1369,15 @@ This tutorial was created with
     ## [49] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
     ## [52] curl_3.2           memoise_1.1.0      stringi_1.2.4     
     ## [55] highr_0.7          desc_1.2.0         e1071_1.7-0       
-    ## [58] pkgbuild_1.0.2     spData_0.2.9.4     bitops_1.0-6      
-    ## [61] rlang_0.3.0.1      pkgconfig_2.0.2    commonmark_1.6    
-    ## [64] evaluate_0.12      lattice_0.20-35    purrr_0.2.5       
-    ## [67] bindr_0.1.1        htmlwidgets_1.3    labeling_0.3      
-    ## [70] processx_3.2.0     tidyselect_0.2.5   plyr_1.8.4        
-    ## [73] magrittr_1.5       R6_2.3.0           DBI_1.0.0         
-    ## [76] pillar_1.3.0       withr_2.1.2        units_0.6-1       
+    ## [58] pkgbuild_1.0.2     rlang_0.3.0.1      pkgconfig_2.0.2   
+    ## [61] commonmark_1.6     bitops_1.0-6       evaluate_0.12     
+    ## [64] lattice_0.20-35    purrr_0.2.5        bindr_0.1.1       
+    ## [67] htmlwidgets_1.3    labeling_0.3       processx_3.2.0    
+    ## [70] tidyselect_0.2.5   plyr_1.8.4         magrittr_1.5      
+    ## [73] R6_2.3.0           generics_0.0.2     DBI_1.0.0         
+    ## [76] pillar_1.3.1       withr_2.1.2        units_0.6-2       
     ## [79] RCurl_1.95-4.11    tibble_1.4.2       crayon_1.3.4      
     ## [82] KernSmooth_2.23-15 grid_3.5.1         callr_3.0.0       
-    ## [85] digest_0.6.18      classInt_0.2-3     webshot_0.5.1     
+    ## [85] digest_0.6.18      classInt_0.3-1     webshot_0.5.1     
     ## [88] xtable_1.8-3       httpuv_1.4.5       stats4_3.5.1      
     ## [91] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.0
