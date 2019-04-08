@@ -5,6 +5,7 @@
 #' \describe{
 #'   \item{code}{Country code in the Eurostat database}
 #'   \item{name}{Country name in English}
+#'   \item{label}{Country name in the Eurostat database}
 #' }
 #' @source \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
 #'   \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}

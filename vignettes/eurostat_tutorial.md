@@ -161,6 +161,7 @@ instance datasets or tables.
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
+<<<<<<< HEAD
 <td style="text-align: left;">Air passenger transport by reporting country</td>
 <td style="text-align: left;">avia_paoc</td>
 <td style="text-align: left;">dataset</td>
@@ -199,6 +200,46 @@ instance datasets or tables.
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2018Q2</td>
 <td style="text-align: left;">NA</td>
+=======
+<td align="left">Air passenger transport by reporting country</td>
+<td align="left">avia_paoc</td>
+<td align="left">dataset</td>
+<td align="left">04.01.2019</td>
+<td align="left">07.11.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Air passenger transport by main airports in each reporting country</td>
+<td align="left">avia_paoa</td>
+<td align="left">dataset</td>
+<td align="left">04.01.2019</td>
+<td align="left">03.10.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Air passenger transport between reporting countries</td>
+<td align="left">avia_paocc</td>
+<td align="left">dataset</td>
+<td align="left">04.01.2019</td>
+<td align="left">07.11.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
+<td align="left">avia_paoac</td>
+<td align="left">dataset</td>
+<td align="left">04.01.2019</td>
+<td align="left">03.10.2018</td>
+<td align="left">1993</td>
+<td align="left">2018Q2</td>
+<td align="left">NA</td>
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
 </tr>
 </tbody>
 </table>
@@ -835,7 +876,11 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
+<<<<<<< HEAD
     ## Table tgs00026 cached at /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
+=======
+    ## Table tgs00026 cached at /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -1015,9 +1060,15 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
+<<<<<<< HEAD
     ## Reading cache file /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
     ## Table  tgs00026  read from cache file:  /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
+=======
+    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1051,7 +1102,11 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
+<<<<<<< HEAD
     ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpxiQuGR/eurostat/spdf1022013.RData
+=======
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpBqyCdg/eurostat/spdf1022013.RData
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
 
     ## 
     ## # --------------------------
@@ -1096,9 +1151,15 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
+<<<<<<< HEAD
     ## Reading cache file /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
 
     ## Table  tgs00026  read from cache file:  /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
+=======
+    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1272,7 +1333,11 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
+<<<<<<< HEAD
     ##   package. R Journal 9(1):385-392, 2017. Version 3.3.31 Package
+=======
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.32 Package
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1287,7 +1352,11 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
+<<<<<<< HEAD
     ##     note = {Version 3.3.31},
+=======
+    ##     note = {Version 3.3.32},
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
     ##   }
 
 ### Related work
@@ -1346,7 +1415,11 @@ This tutorial was created with
     ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
     ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
     ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
+<<<<<<< HEAD
     ## [16] eurostat_3.3.31    testthat_2.0.1     usethis_1.4.0     
+=======
+    ## [16] eurostat_3.3.32    testthat_2.0.1     usethis_1.4.0     
+>>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
     ## [19] devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
