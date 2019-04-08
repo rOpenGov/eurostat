@@ -228,7 +228,7 @@ print(p)
 
 Triangle plot is handy for visualizing data sets with three variables. 
 
-```{r plotGallery, warning=FALSE, message=FALSE, fig.width=6, fig.height=6, eval=FALSE}
+```{r plotGallery, warning=FALSE, message=FALSE, fig.width=6, fig.height=6}
 library(tidyr)
 library(plotrix)
 library(eurostat)
