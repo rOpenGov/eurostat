@@ -10,6 +10,7 @@ notifications:
     - leo.lahti@iki.fi
 
 r_packages:
+  - backports
   - broom
   - Cairo
   - classInt
@@ -137,7 +138,8 @@ before_install:
 
 
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
-  - Rscript -e 'install.packages("classInt")'
+  - Rscript -e 'install.packages("backports")'
+  - Rscript -e 'install.packages("classInt")'  
   - Rscript -e 'install.packages("jsonlite")'
   - Rscript -e 'install.packages("curl")'
   - Rscript -e 'install.packages("countrycode")'  
