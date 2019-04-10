@@ -164,8 +164,8 @@ instance datasets or tables.
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">27.03.2019</td>
-<td align="left">27.03.2019</td>
+<td align="left">09.04.2019</td>
+<td align="left">09.04.2019</td>
 <td align="left">1993</td>
 <td align="left">2018Q4</td>
 <td align="left">NA</td>
@@ -184,7 +184,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport between reporting countries</td>
 <td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">27.03.2019</td>
+<td align="left">10.04.2019</td>
 <td align="left">27.03.2019</td>
 <td align="left">1993</td>
 <td align="left">2018Q4</td>
@@ -194,7 +194,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">27.03.2019</td>
+<td align="left">09.04.2019</td>
 <td align="left">27.03.2019</td>
 <td align="left">1993</td>
 <td align="left">2018Q4</td>
@@ -787,7 +787,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -967,9 +967,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1003,7 +1003,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpWaDfP0/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp3bE3NR/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1048,9 +1048,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpWaDfP0/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1137,63 +1137,6 @@ to access data in that format when necessary:
 
     kable(head(df))
 
-<table>
-<thead>
-<tr class="header">
-<th align="left">UNIT</th>
-<th align="left">Y_GRAD</th>
-<th align="left">FOS07</th>
-<th align="left">GEO</th>
-<th align="left">FREQ</th>
-<th align="left">obsTime</th>
-<th align="right">obsValue</th>
-<th align="left">OBS_STATUS</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="left">TOTAL</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2009</td>
-<td align="right">NA</td>
-<td align="left">na</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="left">TOTAL</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2006</td>
-<td align="right">NA</td>
-<td align="left">na</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="left">Y_GE1990</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2009</td>
-<td align="right">43.75</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="left">Y_GE1990</td>
-<td align="left">FOS1</td>
-<td align="left">BE</td>
-<td align="left">A</td>
-<td align="left">2006</td>
-<td align="right">NA</td>
-<td align="left">na</td>
-</tr>
-</tbody>
-</table>
-
 Further examples
 ================
 
@@ -1274,12 +1217,12 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
-    ##  [4] tmap_2.2           sf_0.7-3           dplyr_0.8.0.1     
-    ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
-    ## [10] rvest_0.3.2        xml2_1.2.0         rmarkdown_1.11    
-    ## [13] pkgdown_1.3.0      knitr_1.21         eurostat_3.3.5    
-    ## [16] usethis_1.4.0      devtools_2.0.1    
+    ##  [1] sp_1.3-1           RColorBrewer_1.1-2 tmap_2.2          
+    ##  [4] sf_0.7-3           dplyr_0.8.0.1      plotrix_3.7-4     
+    ##  [7] ggplot2_3.1.0      tidyr_0.8.2        rvest_0.3.2       
+    ## [10] xml2_1.2.0         rmarkdown_1.11     pkgdown_1.3.0     
+    ## [13] knitr_1.21         eurostat_3.3.5     usethis_1.4.0     
+    ## [16] devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] colorspace_1.4-0   class_7.3-15       leaflet_2.0.2     
@@ -1302,15 +1245,15 @@ This tutorial was created with
     ## [52] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
     ## [55] curl_3.3           memoise_1.1.0      stringi_1.3.1     
     ## [58] highr_0.7          desc_1.2.0         e1071_1.7-0.1     
-    ## [61] pkgbuild_1.0.2     bibtex_0.4.2       bitops_1.0-6      
-    ## [64] rlang_0.3.1        pkgconfig_2.0.2    commonmark_1.7    
-    ## [67] evaluate_0.13      lattice_0.20-38    purrr_0.3.0       
-    ## [70] htmlwidgets_1.3    labeling_0.3       processx_3.2.1    
-    ## [73] tidyselect_0.2.5   plyr_1.8.4         magrittr_1.5      
-    ## [76] R6_2.4.0           generics_0.0.2     DBI_1.0.0         
-    ## [79] pillar_1.3.1       withr_2.1.2        units_0.6-2       
-    ## [82] RCurl_1.95-4.12    tibble_2.0.1       crayon_1.3.4      
-    ## [85] KernSmooth_2.23-15 grid_3.5.1         callr_3.1.1       
-    ## [88] digest_0.6.18      classInt_0.3-1     webshot_0.5.1     
-    ## [91] xtable_1.8-3       httpuv_1.5.1       stats4_3.5.1      
-    ## [94] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.1
+    ## [61] pkgbuild_1.0.2     bibtex_0.4.2       rlang_0.3.1       
+    ## [64] pkgconfig_2.0.2    commonmark_1.7     evaluate_0.13     
+    ## [67] lattice_0.20-38    purrr_0.3.0        htmlwidgets_1.3   
+    ## [70] labeling_0.3       processx_3.2.1     tidyselect_0.2.5  
+    ## [73] plyr_1.8.4         magrittr_1.5       R6_2.4.0          
+    ## [76] generics_0.0.2     DBI_1.0.0          pillar_1.3.1      
+    ## [79] withr_2.1.2        units_0.6-2        tibble_2.0.1      
+    ## [82] crayon_1.3.4       KernSmooth_2.23-15 grid_3.5.1        
+    ## [85] callr_3.1.1        digest_0.6.18      classInt_0.3-1    
+    ## [88] webshot_0.5.1      xtable_1.8-3       httpuv_1.5.1      
+    ## [91] stats4_3.5.1       munsell_0.5.0      viridisLite_0.3.0 
+    ## [94] sessioninfo_1.1.1
