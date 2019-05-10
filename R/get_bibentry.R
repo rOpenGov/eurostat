@@ -46,10 +46,9 @@ get_bibentry <- function(
     format <- 'biblatex'
   }
 
-  code = c("tran_hv_frtra", "t2020_rk310", "tec00001")
-    toc <- get_eurostat_toc()
-    toc <- toc[toc$code %in% code, ]
-    toc <- toc[! duplicated(toc), ]
+  toc <- get_eurostat_toc()
+  toc <- toc[toc$code %in% code, ]
+  toc <- toc[! duplicated(toc), ]
 
   urldate <- as.character(Sys.Date())
 
