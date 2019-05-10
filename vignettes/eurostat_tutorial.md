@@ -108,10 +108,10 @@ selected dataset.
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">28.03.2019</td>
-<td align="left">28.03.2019</td>
+<td align="left">29.04.2019</td>
+<td align="left">29.04.2019</td>
 <td align="left">1980M01</td>
-<td align="left">2019M03</td>
+<td align="left">2019M04</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -164,7 +164,7 @@ instance datasets or tables.
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">09.04.2019</td>
+<td align="left">26.04.2019</td>
 <td align="left">09.04.2019</td>
 <td align="left">1993</td>
 <td align="left">2018Q4</td>
@@ -787,7 +787,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-    ## Table tgs00026 cached at /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
+    ## Table tgs00026 cached at /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -967,9 +967,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1003,7 +1003,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp3bE3NR/eurostat/spdf1022013.RData
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpTCcZas/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1048,9 +1048,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-    ## Reading cache file /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/Rtmp3bE3NR/eurostat/tgs00026_raw_code_FF.rds
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1167,7 +1167,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.5 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.52 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1182,7 +1182,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.5},
+    ##     note = {Version 3.3.52},
     ##   }
 
 ### Contact
@@ -1221,7 +1221,7 @@ This tutorial was created with
     ##  [4] sf_0.7-3           dplyr_0.8.0.1      plotrix_3.7-4     
     ##  [7] ggplot2_3.1.0      tidyr_0.8.2        rvest_0.3.2       
     ## [10] xml2_1.2.0         rmarkdown_1.11     pkgdown_1.3.0     
-    ## [13] knitr_1.21         eurostat_3.3.5     usethis_1.4.0     
+    ## [13] knitr_1.21         eurostat_3.3.52    usethis_1.4.0     
     ## [16] devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
@@ -1233,7 +1233,7 @@ This tutorial was created with
     ## [16] pkgload_1.0.2      jsonlite_1.6       tmaptools_2.0-1   
     ## [19] Cairo_1.5-9        broom_0.5.1        png_0.1-7         
     ## [22] rgeos_0.4-2        shiny_1.3.0        readr_1.3.1       
-    ## [25] compiler_3.5.1     httr_1.4.0         backports_1.1.3   
+    ## [25] compiler_3.5.1     httr_1.4.0         backports_1.1.4   
     ## [28] mapview_2.6.3      assertthat_0.2.0   lazyeval_0.2.1    
     ## [31] cli_1.0.1          later_0.8.0        htmltools_0.3.6   
     ## [34] prettyunits_1.0.2  tools_3.5.1        gtable_0.2.0      
@@ -1245,13 +1245,13 @@ This tutorial was created with
     ## [52] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
     ## [55] curl_3.3           memoise_1.1.0      stringi_1.3.1     
     ## [58] highr_0.7          desc_1.2.0         e1071_1.7-0.1     
-    ## [61] pkgbuild_1.0.2     bibtex_0.4.2       rlang_0.3.1       
+    ## [61] pkgbuild_1.0.2     bibtex_0.4.2       rlang_0.3.4       
     ## [64] pkgconfig_2.0.2    commonmark_1.7     evaluate_0.13     
     ## [67] lattice_0.20-38    purrr_0.3.0        htmlwidgets_1.3   
     ## [70] labeling_0.3       processx_3.2.1     tidyselect_0.2.5  
     ## [73] plyr_1.8.4         magrittr_1.5       R6_2.4.0          
     ## [76] generics_0.0.2     DBI_1.0.0          pillar_1.3.1      
-    ## [79] withr_2.1.2        units_0.6-2        tibble_2.0.1      
+    ## [79] withr_2.1.2        units_0.6-2        tibble_2.1.1      
     ## [82] crayon_1.3.4       KernSmooth_2.23-15 grid_3.5.1        
     ## [85] callr_3.1.1        digest_0.6.18      classInt_0.3-1    
     ## [88] webshot_0.5.1      xtable_1.8-3       httpuv_1.5.1      
