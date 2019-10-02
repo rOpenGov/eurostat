@@ -1,24 +1,27 @@
 ## Test environments
-* local OS X install, R 3.3.1
-* ubuntu 12.04 (on travis-ci), R 3.3.1
+* local OS X install, R 3.5.1
+* ubuntu 18.04 (on travis-ci), R 3.3.1
 * win-builder (devel and release)
 
 ## R CMD check results
 
-0 errors | 0 warnings | 1 note
+There were two warnings:
 
-* This is a new release.
+* building ‘eurostat_3.3.53.tar.gz’
+Warning: invalid uid value replaced by that for user 'nobody'
+Warning: invalid gid value replaced by that for user 'nobody'
 
-## Reverse dependencies
+* checking data for ASCII and uncompressed saves ... OK
+ WARNING
+‘qpdf’ is needed for checks on size reduction of PDFs
 
-To be checked.
 
----
 
-* I have run R CMD check on the NUMBER downstream dependencies.
-  (Summary at ...). 
-  
-* FAILURE SUMMARY
 
-* All revdep maintainers were notified of the release on RELEASE DATE.
+## Downstream dependencies
+
+I have also run R CMD check on downstream dependencies.
+
+All packages that I could install passed.
+
 
