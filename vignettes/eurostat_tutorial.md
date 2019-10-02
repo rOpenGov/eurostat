@@ -22,11 +22,38 @@ Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 Overall, the eurostat package includes the following functions:
 
+    clean_eurostat_cache    Clean Eurostat Cache
+    cut_to_classes          Cuts the Values Column into Classes and
+                            Polishes the Labels
+    dic_order               Order of Variable Levels from Eurostat
+                            Dictionary.
+    eu_countries            Countries and Country Codes
+    eurostat-package        R Tools for Eurostat open data
+    eurostat_geodata_60_2016
+                            Geospatial data of Europe from Gisco in 1:60
+                            million scale from year 2016
+    eurotime2date           Date Conversion from Eurostat Time Format
+    eurotime2num            Conversion of Eurostat Time Format to Numeric
+    get_bibentry            Create A Data Bibliography
+    get_eurostat            Read Eurostat Data
+    get_eurostat_dic        Download Eurostat Dictionary
+    get_eurostat_geospatial
+                            Download Geospatial Data from GISGO
+    get_eurostat_json       Get Data from Eurostat API in JSON
+    get_eurostat_raw        Download Data from Eurostat Database
+    get_eurostat_toc        Download Table of Contents of Eurostat Data
+                            Sets
+    harmonize_country_code
+                            Harmonize Country Code
+    label_eurostat          Get Eurostat Codes
+    search_eurostat         Grep Datasets Titles from Eurostat
+    tgs00026                Auxiliary Data
+
 Finding data
 ============
 
 Function `get_eurostat_toc()` downloads a table of contents of eurostat
-datasets. The values in column 'code' should be used to download a
+datasets. The values in column ‘code’ should be used to download a
 selected dataset.
 
     # Load the package
@@ -43,82 +70,82 @@ selected dataset.
 <table>
 <thead>
 <tr class="header">
-<th align="left">title</th>
-<th align="left">code</th>
-<th align="left">type</th>
-<th align="left">last update of data</th>
-<th align="left">last table structure change</th>
-<th align="left">data start</th>
-<th align="left">data end</th>
-<th align="left">values</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">last update of data</th>
+<th style="text-align: left;">last table structure change</th>
+<th style="text-align: left;">data start</th>
+<th style="text-align: left;">data end</th>
+<th style="text-align: left;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Database by themes</td>
-<td align="left">data</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Database by themes</td>
+<td style="text-align: left;">data</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">General and regional statistics</td>
-<td align="left">general</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">General and regional statistics</td>
+<td style="text-align: left;">general</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">European and national indicators for short-term analysis</td>
-<td align="left">euroind</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">European and national indicators for short-term analysis</td>
+<td style="text-align: left;">euroind</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Business and consumer surveys (source: DG ECFIN)</td>
-<td align="left">ei_bcs</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Business and consumer surveys (source: DG ECFIN)</td>
+<td style="text-align: left;">ei_bcs</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Consumer surveys (source: DG ECFIN)</td>
-<td align="left">ei_bcs_cs</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Consumer surveys (source: DG ECFIN)</td>
+<td style="text-align: left;">ei_bcs_cs</td>
+<td style="text-align: left;">folder</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Consumers - monthly data</td>
-<td align="left">ei_bsco_m</td>
-<td align="left">dataset</td>
-<td align="left">29.04.2019</td>
-<td align="left">29.04.2019</td>
-<td align="left">1980M01</td>
-<td align="left">2019M04</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Consumers - monthly data</td>
+<td style="text-align: left;">ei_bsco_m</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">27.09.2019</td>
+<td style="text-align: left;">27.09.2019</td>
+<td style="text-align: left;">1980M01</td>
+<td style="text-align: left;">2019M09</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
 
 With `search_eurostat()` you can search the table of contents for
-particular patterns, e.g. all datasets related to *passenger transport*.
+particular patterns, e.g. all datasets related to *passenger transport*.
 The kable function to produces nice markdown output. Note that with the
 `type` argument of this function you could restrict the search to for
 instance datasets or tables.
@@ -129,76 +156,76 @@ instance datasets or tables.
 <table>
 <thead>
 <tr class="header">
-<th align="left">title</th>
-<th align="left">code</th>
-<th align="left">type</th>
-<th align="left">last update of data</th>
-<th align="left">last table structure change</th>
-<th align="left">data start</th>
-<th align="left">data end</th>
-<th align="left">values</th>
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">last update of data</th>
+<th style="text-align: left;">last table structure change</th>
+<th style="text-align: left;">data start</th>
+<th style="text-align: left;">data end</th>
+<th style="text-align: left;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Volume of passenger transport relative to GDP</td>
-<td align="left">tran_hv_pstra</td>
-<td align="left">dataset</td>
-<td align="left">26.03.2019</td>
-<td align="left">26.03.2019</td>
-<td align="left">2000</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Volume of passenger transport relative to GDP</td>
+<td style="text-align: left;">tran_hv_pstra</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">12.09.2019</td>
+<td style="text-align: left;">12.09.2019</td>
+<td style="text-align: left;">2000</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Modal split of passenger transport</td>
-<td align="left">tran_hv_psmod</td>
-<td align="left">dataset</td>
-<td align="left">21.03.2019</td>
-<td align="left">21.03.2019</td>
-<td align="left">1990</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Modal split of passenger transport</td>
+<td style="text-align: left;">tran_hv_psmod</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">09.09.2019</td>
+<td style="text-align: left;">09.09.2019</td>
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;">2017</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Air passenger transport by reporting country</td>
-<td align="left">avia_paoc</td>
-<td align="left">dataset</td>
-<td align="left">26.04.2019</td>
-<td align="left">09.04.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport by reporting country</td>
+<td style="text-align: left;">avia_paoc</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport by main airports in each reporting country</td>
-<td align="left">avia_paoa</td>
-<td align="left">dataset</td>
-<td align="left">05.04.2019</td>
-<td align="left">05.04.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
+<td style="text-align: left;">avia_paoa</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Air passenger transport between reporting countries</td>
-<td align="left">avia_paocc</td>
-<td align="left">dataset</td>
-<td align="left">10.04.2019</td>
-<td align="left">27.03.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport between reporting countries</td>
+<td style="text-align: left;">avia_paocc</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
-<td align="left">avia_paoac</td>
-<td align="left">dataset</td>
-<td align="left">09.04.2019</td>
-<td align="left">27.03.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
+<td style="text-align: left;">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
+<td style="text-align: left;">avia_paoac</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">NA</td>
 </tr>
 </tbody>
 </table>
@@ -212,7 +239,7 @@ Downloading data
 ================
 
 The package supports two of the Eurostats download methods: the bulk
-download facility and the Web Services' JSON API. The bulk download
+download facility and the Web Services’ JSON API. The bulk download
 facility is the fastest method to download whole datasets. It is also
 often the only way as the JSON API has limitation of maximum 50
 sub-indicators at a time and whole datasets usually exceeds that. To
@@ -224,7 +251,7 @@ via main function `get_eurostat()`. If only the table id is given, the
 whole table is downloaded from the bulk download facility. If also
 filters are defined the JSON API is used.
 
-Here an example of indicator 'Modal split of passenger transport'. This
+Here an example of indicator ‘Modal split of passenger transport’. This
 is the percentage share of each mode of transport in total inland
 transport, expressed in passenger-kilometres (pkm) based on transport by
 passenger cars, buses and coaches, and trains. All data should be based
@@ -239,7 +266,7 @@ Pick and print the id of the data set to download:
                              type = "table")$code[1]
     print(id)
 
-\[1\] "t2020\_rk310"
+\[1\] “t2020\_rk310”
 
 Get the whole corresponding table. As the table is annual data, it is
 more convient to use a numeric time variable than use the default date
@@ -251,7 +278,7 @@ Investigate the structure of the downloaded data set:
 
     str(dat)
 
-    ## Classes 'tbl_df', 'tbl' and 'data.frame':    2485 obs. of  5 variables:
+    ## Classes 'tbl_df', 'tbl' and 'data.frame':    2587 obs. of  5 variables:
     ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ geo    : Factor w/ 34 levels "AT","BE","CH",..: 1 2 3 4 5 6 7 8 9 10 ...
@@ -263,55 +290,55 @@ Investigate the structure of the downloaded data set:
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">AT</td>
-<td align="right">1990</td>
-<td align="right">11.0</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">AT</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">BE</td>
-<td align="right">1990</td>
-<td align="right">10.6</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">BE</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">CH</td>
-<td align="right">1990</td>
-<td align="right">3.7</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">CH</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">3.7</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">DE</td>
-<td align="right">1990</td>
-<td align="right">9.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">DE</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">DK</td>
-<td align="right">1990</td>
-<td align="right">11.3</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">DK</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="left">BUS_TOT</td>
-<td align="left">EL</td>
-<td align="right">1990</td>
-<td align="right">32.4</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">EL</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">32.4</td>
 </tr>
 </tbody>
 </table>
@@ -346,55 +373,55 @@ human-readable labels from the Eurostat dictionaries with the
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="left">vehicle</th>
-<th align="left">geo</th>
-<th align="right">time</th>
-<th align="right">values</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Austria</td>
-<td align="right">1990</td>
-<td align="right">11.0</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Austria</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.0</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Belgium</td>
-<td align="right">1990</td>
-<td align="right">10.6</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Belgium</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">10.6</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Switzerland</td>
-<td align="right">1990</td>
-<td align="right">3.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Switzerland</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">3.7</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Germany (until 1990 former territory of the FRG)</td>
-<td align="right">1990</td>
-<td align="right">9.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Germany (until 1990 former territory of the FRG)</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">9.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Denmark</td>
-<td align="right">1990</td>
-<td align="right">11.3</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Denmark</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">11.3</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">Greece</td>
-<td align="right">1990</td>
-<td align="right">32.4</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Greece</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">32.4</td>
 </tr>
 </tbody>
 </table>
@@ -429,31 +456,31 @@ To retrieve the country code list for EFTA, for instance, use:
 <table>
 <thead>
 <tr class="header">
-<th align="left">code</th>
-<th align="left">name</th>
-<th align="left">label</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">name</th>
+<th style="text-align: left;">label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">IS</td>
-<td align="left">Iceland</td>
-<td align="left">Iceland</td>
+<td style="text-align: left;">IS</td>
+<td style="text-align: left;">Iceland</td>
+<td style="text-align: left;">Iceland</td>
 </tr>
 <tr class="even">
-<td align="left">LI</td>
-<td align="left">Liechtenstein</td>
-<td align="left">Liechtenstein</td>
+<td style="text-align: left;">LI</td>
+<td style="text-align: left;">Liechtenstein</td>
+<td style="text-align: left;">Liechtenstein</td>
 </tr>
 <tr class="odd">
-<td align="left">NO</td>
-<td align="left">Norway</td>
-<td align="left">Norway</td>
+<td style="text-align: left;">NO</td>
+<td style="text-align: left;">Norway</td>
+<td style="text-align: left;">Norway</td>
 </tr>
 <tr class="even">
-<td align="left">CH</td>
-<td align="left">Switzerland</td>
-<td align="left">Switzerland</td>
+<td style="text-align: left;">CH</td>
+<td style="text-align: left;">Switzerland</td>
+<td style="text-align: left;">Switzerland</td>
 </tr>
 </tbody>
 </table>
@@ -464,7 +491,19 @@ EU data from 2012 in all vehicles:
     dat_eu12 <- subset(datl, geo == "European Union (current composition)" & time == 2012)
     kable(dat_eu12, row.names = FALSE)
 
-unit vehicle geo time values ----- -------- ---- ----- -------
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
+</tr>
+</thead>
+<tbody>
+</tbody>
+</table>
 
 EU data from 2000 - 2012 with vehicle types as variables:
 ---------------------------------------------------------
@@ -479,104 +518,104 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="right">time</th>
-<th align="right">BUS_TOT</th>
-<th align="right">CAR</th>
-<th align="right">TRN</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">BUS_TOT</th>
+<th style="text-align: right;">CAR</th>
+<th style="text-align: right;">TRN</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2000</td>
-<td align="right">10.4</td>
-<td align="right">82.5</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">10.4</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2001</td>
-<td align="right">10.2</td>
-<td align="right">82.8</td>
-<td align="right">7.0</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">10.2</td>
+<td style="text-align: right;">82.8</td>
+<td style="text-align: right;">7.0</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2002</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">6.8</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2003</td>
-<td align="right">9.8</td>
-<td align="right">83.6</td>
-<td align="right">6.6</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.6</td>
+<td style="text-align: right;">6.6</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2004</td>
-<td align="right">9.7</td>
-<td align="right">83.5</td>
-<td align="right">6.7</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">83.5</td>
+<td style="text-align: right;">6.7</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2005</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.9</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">6.9</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2006</td>
-<td align="right">9.6</td>
-<td align="right">83.4</td>
-<td align="right">7.0</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">9.6</td>
+<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">7.0</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2007</td>
-<td align="right">9.8</td>
-<td align="right">83.1</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.1</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2008</td>
-<td align="right">9.8</td>
-<td align="right">82.9</td>
-<td align="right">7.4</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">82.9</td>
+<td style="text-align: right;">7.4</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2009</td>
-<td align="right">9.2</td>
-<td align="right">83.7</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: right;">83.7</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2010</td>
-<td align="right">9.4</td>
-<td align="right">83.5</td>
-<td align="right">7.2</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">83.5</td>
+<td style="text-align: right;">7.2</td>
 </tr>
 <tr class="even">
-<td align="left">PC</td>
-<td align="right">2011</td>
-<td align="right">9.4</td>
-<td align="right">83.2</td>
-<td align="right">7.4</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">9.4</td>
+<td style="text-align: right;">83.2</td>
+<td style="text-align: right;">7.4</td>
 </tr>
 <tr class="odd">
-<td align="left">PC</td>
-<td align="right">2012</td>
-<td align="right">9.5</td>
-<td align="right">82.9</td>
-<td align="right">7.7</td>
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">82.8</td>
+<td style="text-align: right;">7.7</td>
 </tr>
 </tbody>
 </table>
@@ -594,118 +633,118 @@ Train passengers for selected EU countries in 2000 - 2012
 <table>
 <thead>
 <tr class="header">
-<th align="left">unit</th>
-<th align="right">time</th>
-<th align="right">Austria</th>
-<th align="right">Belgium</th>
-<th align="right">Finland</th>
-<th align="right">Sweden</th>
+<th style="text-align: left;">unit</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">Austria</th>
+<th style="text-align: right;">Belgium</th>
+<th style="text-align: right;">Finland</th>
+<th style="text-align: right;">Sweden</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2000</td>
-<td align="right">9.7</td>
-<td align="right">6.3</td>
-<td align="right">5.1</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2000</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">6.3</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">6.9</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2001</td>
-<td align="right">9.7</td>
-<td align="right">6.4</td>
-<td align="right">4.8</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2001</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">6.4</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.3</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2002</td>
-<td align="right">9.7</td>
-<td align="right">6.5</td>
-<td align="right">4.8</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2002</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.2</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2003</td>
-<td align="right">9.5</td>
-<td align="right">6.5</td>
-<td align="right">4.7</td>
-<td align="right">7.0</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">6.5</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2004</td>
-<td align="right">9.4</td>
-<td align="right">7.1</td>
-<td align="right">4.7</td>
-<td align="right">6.8</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">9.5</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">4.7</td>
+<td style="text-align: right;">6.9</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2005</td>
-<td align="right">9.8</td>
-<td align="right">6.6</td>
-<td align="right">4.8</td>
-<td align="right">7.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2005</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">6.6</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2006</td>
-<td align="right">10.0</td>
-<td align="right">6.9</td>
-<td align="right">4.8</td>
-<td align="right">7.6</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2006</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">6.9</td>
+<td style="text-align: right;">4.8</td>
+<td style="text-align: right;">7.7</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2007</td>
-<td align="right">10.0</td>
-<td align="right">7.1</td>
-<td align="right">5.0</td>
-<td align="right">7.9</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2007</td>
+<td style="text-align: right;">10.0</td>
+<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">8.0</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2008</td>
-<td align="right">11.1</td>
-<td align="right">7.5</td>
-<td align="right">5.4</td>
-<td align="right">8.6</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2008</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">5.4</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2009</td>
-<td align="right">11.1</td>
-<td align="right">7.5</td>
-<td align="right">5.1</td>
-<td align="right">8.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2009</td>
+<td style="text-align: right;">11.1</td>
+<td style="text-align: right;">7.5</td>
+<td style="text-align: right;">5.1</td>
+<td style="text-align: right;">8.8</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2010</td>
-<td align="right">11.0</td>
-<td align="right">7.7</td>
-<td align="right">5.2</td>
-<td align="right">8.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2010</td>
+<td style="text-align: right;">11.0</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">5.2</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 <tr class="even">
-<td align="left">Percentage</td>
-<td align="right">2011</td>
-<td align="right">11.3</td>
-<td align="right">7.7</td>
-<td align="right">5.0</td>
-<td align="right">8.7</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2011</td>
+<td style="text-align: right;">11.3</td>
+<td style="text-align: right;">7.7</td>
+<td style="text-align: right;">5.0</td>
+<td style="text-align: right;">8.7</td>
 </tr>
 <tr class="odd">
-<td align="left">Percentage</td>
-<td align="right">2012</td>
-<td align="right">11.8</td>
-<td align="right">7.8</td>
-<td align="right">5.3</td>
-<td align="right">9.1</td>
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">11.8</td>
+<td style="text-align: right;">7.8</td>
+<td style="text-align: right;">5.3</td>
+<td style="text-align: right;">9.1</td>
 </tr>
 </tbody>
 </table>
@@ -762,359 +801,6 @@ Triangle plot is handy for visualizing data sets with three variables.
 
 ![](fig/plotGallery-1.png)
 
-Maps
-----
-
-### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap
-
-The mapping examples below use
-[`tmap`](https://github.com/mtennekes/tmap) package.
-
-    library(dplyr)
-    library(eurostat)
-    library(sf)
-
-    ## Linking to GEOS 3.6.2, GDAL 2.2.3, PROJ 4.9.3
-
-    library(tmap)
-
-    # Download attribute data from Eurostat
-    sp_data <- eurostat::get_eurostat("tgs00026",
-                              time_format = "raw",
-                                      stringsAsFactors = FALSE) %>% 
-      # subset to have only a single row per geo
-      dplyr::filter(time == 2010, nchar(geo) == 4) %>% 
-      # categorise
-      dplyr::mutate(income = cut_to_classes(values, n = 5))
-
-    ## Table tgs00026 cached at /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
-
-    # Download geospatial data from GISCO
-    geodata <- get_eurostat_geospatial(output_class = "sf",
-                                       resolution = "60",
-                       nuts_level = 2,
-                       year = 2013)
-
-    ## 
-    ## COPYRIGHT NOTICE
-    ## 
-    ## When data downloaded from this page 
-    ## <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ## is used in any printed or electronic publication, 
-    ## in addition to any other provisions 
-    ## applicable to the whole Eurostat website, 
-    ## data source will have to be acknowledged 
-    ## in the legend of the map and 
-    ## in the introductory page of the publication 
-    ## with the following copyright notice:
-    ## 
-    ## - EN: (C) EuroGeographics for the administrative boundaries
-    ## - FR: (C) EuroGeographics pour les limites administratives
-    ## - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ## For publications in languages other than 
-    ## English, French or German, 
-    ## the translation of the copyright notice 
-    ## in the language of the publication shall be used.
-    ## 
-    ## If you intend to use the data commercially, 
-    ## please contact EuroGeographics for 
-    ## information regarding their licence agreements.
-    ## 
-
-    ## No encoding supplied: defaulting to UTF-8.
-
-    ## 
-    ## # --------------------------
-    ## HEADS UP!!
-    ## 
-    ## Function now returns the data in 'sf'-class (simple features) 
-    ## by default which is different 
-    ## from previous behaviour's 'SpatialPolygonDataFrame'. 
-    ## 
-    ## If you prefer either 'SpatialPolygonDataFrame' or 
-    ## fortified 'data_frame' (for ggplot2::geom_polygon), 
-    ## please specify it explicitly to 'output_class'-argument!
-    ## 
-    ## # --------------------------          
-    ## 
-
-    # merge with attribute data with geodata
-    map_data <- inner_join(geodata, sp_data)
-
-    ## Joining, by = "geo"
-
-Construct the map
-
-    map1 <- tmap::tm_shape(geodata) +
-      tmap::tm_fill("lightgrey") +
-      tmap::tm_shape(map_data) +
-      tmap::tm_grid() +
-      tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
-                        palette = "Oranges")
-    print(map1)  
-
-![](fig/map1ex-1.png)
-
-Interactive maps can be generated as well
-
-    # Interactive
-    tmap_mode("view")
-    map1
-
-    # Set the mode back to normal plotting
-    tmap_mode("plot")
-    print(map1)
-
-### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using tmap
-
-    library(eurostat)
-    library(dplyr)
-    library(sf)
-    library(RColorBrewer)
-
-    # Downloading and manipulating the tabular data
-    print("Let us focus on year 2014 and NUTS-3 level")
-
-    ## [1] "Let us focus on year 2014 and NUTS-3 level"
-
-    euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
-                             stringsAsFactors = FALSE,
-                 filter = list(time = "2014")) %>% 
-     
-      # Subset to NUTS-3 level
-      dplyr::filter(grepl("PL",geo)) %>% 
-      # label the single geo column
-      mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
-             income = cut_to_classes(values))
-
-    print("Download geospatial data from GISCO")
-
-    ## [1] "Download geospatial data from GISCO"
-
-    geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
-
-    ## 
-    ## COPYRIGHT NOTICE
-    ## 
-    ## When data downloaded from this page 
-    ## <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ## is used in any printed or electronic publication, 
-    ## in addition to any other provisions 
-    ## applicable to the whole Eurostat website, 
-    ## data source will have to be acknowledged 
-    ## in the legend of the map and 
-    ## in the introductory page of the publication 
-    ## with the following copyright notice:
-    ## 
-    ## - EN: (C) EuroGeographics for the administrative boundaries
-    ## - FR: (C) EuroGeographics pour les limites administratives
-    ## - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ## For publications in languages other than 
-    ## English, French or German, 
-    ## the translation of the copyright notice 
-    ## in the language of the publication shall be used.
-    ## 
-    ## If you intend to use the data commercially, 
-    ## please contact EuroGeographics for 
-    ## information regarding their licence agreements.
-    ## 
-
-    ## No encoding supplied: defaulting to UTF-8.
-
-    ## 
-    ## # --------------------------
-    ## HEADS UP!!
-    ## 
-    ## Function now returns the data in 'sf'-class (simple features) 
-    ## by default which is different 
-    ## from previous behaviour's 'SpatialPolygonDataFrame'. 
-    ## 
-    ## If you prefer either 'SpatialPolygonDataFrame' or 
-    ## fortified 'data_frame' (for ggplot2::geom_polygon), 
-    ## please specify it explicitly to 'output_class'-argument!
-    ## 
-    ## # --------------------------          
-    ## 
-
-    # Merge with attribute data with geodata
-    map_data <- inner_join(geodata, euro_sf2)
-
-    ## Joining, by = "geo"
-
-    # plot map
-    map2 <- tm_shape(geodata) +
-      tm_fill("lightgrey") +
-      tm_shape(map_data, is.master = TRUE) +
-      tm_polygons("income", title = "Disposable household incomes in 2014",
-                  palette = "Oranges", border.col = "white") + 
-      tm_text("NUTS_NAME", just = "center") + 
-      tm_scale_bar()
-    map2
-
-![](fig/maps2-1.png)
-
-### Disposable income of private households by NUTS 2 regions at 1:10mln resolution using spplot
-
-    library(sp)
-    library(eurostat)
-    library(dplyr)
-    library(RColorBrewer)
-    dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
-      # subsetting to year 2014 and NUTS-2 level
-      dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
-      # classifying the values the variable
-      dplyr::mutate(cat = cut_to_classes(values))
-
-    ## Reading cache file /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
-
-    # Download geospatial data from GISCO
-    geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
-
-    ## 
-    ## COPYRIGHT NOTICE
-    ## 
-    ## When data downloaded from this page 
-    ## <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ## is used in any printed or electronic publication, 
-    ## in addition to any other provisions 
-    ## applicable to the whole Eurostat website, 
-    ## data source will have to be acknowledged 
-    ## in the legend of the map and 
-    ## in the introductory page of the publication 
-    ## with the following copyright notice:
-    ## 
-    ## - EN: (C) EuroGeographics for the administrative boundaries
-    ## - FR: (C) EuroGeographics pour les limites administratives
-    ## - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ## For publications in languages other than 
-    ## English, French or German, 
-    ## the translation of the copyright notice 
-    ## in the language of the publication shall be used.
-    ## 
-    ## If you intend to use the data commercially, 
-    ## please contact EuroGeographics for 
-    ## information regarding their licence agreements.
-    ## 
-
-    ## No encoding supplied: defaulting to UTF-8.
-
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpTCcZas/eurostat/spdf1022013.RData
-
-    ## 
-    ## # --------------------------
-    ## HEADS UP!!
-    ## 
-    ## Function now returns the data in 'sf'-class (simple features) 
-    ## by default which is different 
-    ## from previous behaviour's 'SpatialPolygonDataFrame'. 
-    ## 
-    ## If you prefer either 'SpatialPolygonDataFrame' or 
-    ## fortified 'data_frame' (for ggplot2::geom_polygon), 
-    ## please specify it explicitly to 'output_class'-argument!
-    ## 
-    ## # --------------------------          
-    ## 
-
-    # merge with attribute data with geodata
-    geodata@data <- left_join(geodata@data, dat)
-
-    ## Joining, by = "geo"
-
-    # plot map
-    sp::spplot(obj = geodata, "cat", main = "Disposable household income",
-           xlim = c(-22,34), ylim = c(35,70), 
-               col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
-           col = "white", usePolypath = FALSE)
-
-![](fig/maps3-1.png)
-
-### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
-
-Meanwhile the CRAN version of `ggplot2` is lacking support for simple
-features, you can plot maps with `ggplot2` by downloading geospatial
-data as `data.frame` with `output_class` argument set as `df`.
-
-    library(eurostat)
-    library(dplyr)
-    library(ggplot2)
-    dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
-      # subsetting to year 2014 and NUTS-2 level
-      dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
-      # classifying the values the variable
-      dplyr::mutate(cat = cut_to_classes(values))
-
-    ## Reading cache file /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpTCcZas/eurostat/tgs00026_raw_code_FF.rds
-
-    # Download geospatial data from GISCO
-    geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
-
-    ## 
-    ## COPYRIGHT NOTICE
-    ## 
-    ## When data downloaded from this page 
-    ## <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-    ## is used in any printed or electronic publication, 
-    ## in addition to any other provisions 
-    ## applicable to the whole Eurostat website, 
-    ## data source will have to be acknowledged 
-    ## in the legend of the map and 
-    ## in the introductory page of the publication 
-    ## with the following copyright notice:
-    ## 
-    ## - EN: (C) EuroGeographics for the administrative boundaries
-    ## - FR: (C) EuroGeographics pour les limites administratives
-    ## - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-    ## 
-    ## For publications in languages other than 
-    ## English, French or German, 
-    ## the translation of the copyright notice 
-    ## in the language of the publication shall be used.
-    ## 
-    ## If you intend to use the data commercially, 
-    ## please contact EuroGeographics for 
-    ## information regarding their licence agreements.
-    ## 
-
-    ## No encoding supplied: defaulting to UTF-8.
-
-    ## 
-    ## # --------------------------
-    ## HEADS UP!!
-    ## 
-    ## Function now returns the data in 'sf'-class (simple features) 
-    ## by default which is different 
-    ## from previous behaviour's 'SpatialPolygonDataFrame'. 
-    ## 
-    ## If you prefer either 'SpatialPolygonDataFrame' or 
-    ## fortified 'data_frame' (for ggplot2::geom_polygon), 
-    ## please specify it explicitly to 'output_class'-argument!
-    ## 
-    ## # --------------------------          
-    ## 
-
-    # merge with attribute data with geodata
-    map_data <- inner_join(geodata, dat)
-
-    ## Joining, by = "geo"
-
-    ggplot(data=map_data) + geom_sf(aes(fill=cat),color="dim grey", size=.1) + 
-        scale_fill_brewer(palette = "Oranges") +
-      guides(fill = guide_legend(reverse=T, title = "euro")) +
-      labs(title="Disposable household income in 2014",
-           caption="(C) EuroGeographics for the administrative boundaries 
-                    Map produced in R with a help from Eurostat-package <github.com/ropengov/eurostat/>") +
-      theme_light() + theme(legend.position=c(.8,.8)) +
-      coord_sf(xlim=c(-12,44), ylim=c(35,70))
-
-![](fig/maps4-1.png)
-
 SDMX
 ----
 
@@ -1167,7 +853,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.52 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.53 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1182,7 +868,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.52},
+    ##     note = {Version 3.3.53},
     ##   }
 
 ### Contact
@@ -1197,13 +883,13 @@ This tutorial was created with
 
     sessionInfo()
 
-    ## R version 3.5.1 (2018-07-02)
+    ## R version 3.5.2 (2018-12-20)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
-    ## Running under: Ubuntu 18.04.2 LTS
+    ## Running under: Ubuntu 19.04
     ## 
     ## Matrix products: default
-    ## BLAS: /home/lei/bin/R-3.5.1/lib/libRblas.so
-    ## LAPACK: /home/lei/bin/R-3.5.1/lib/libRlapack.so
+    ## BLAS: /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0
+    ## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.8.0
     ## 
     ## locale:
     ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1217,43 +903,27 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] sp_1.3-1           RColorBrewer_1.1-2 tmap_2.2          
-    ##  [4] sf_0.7-3           dplyr_0.8.0.1      plotrix_3.7-4     
-    ##  [7] ggplot2_3.1.0      tidyr_0.8.2        rvest_0.3.2       
-    ## [10] xml2_1.2.0         rmarkdown_1.11     pkgdown_1.3.0     
-    ## [13] knitr_1.21         eurostat_3.3.52    usethis_1.4.0     
-    ## [16] devtools_2.0.1    
+    ## [1] dplyr_0.8.3     plotrix_3.7-6   ggplot2_3.2.1   tidyr_1.0.0    
+    ## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.53 rmarkdown_1.14 
+    ## [9] knitr_1.25     
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] colorspace_1.4-0   class_7.3-15       leaflet_2.0.2     
-    ##  [4] rgdal_1.3-9        rprojroot_1.3-2    satellite_1.0.1   
-    ##  [7] base64enc_0.1-3    fs_1.2.6           dichromat_2.0-0   
-    ## [10] rstudioapi_0.9.0   roxygen2_6.1.1     remotes_2.0.2     
-    ## [13] lubridate_1.7.4    RefManageR_1.2.12  codetools_0.2-16  
-    ## [16] pkgload_1.0.2      jsonlite_1.6       tmaptools_2.0-1   
-    ## [19] Cairo_1.5-9        broom_0.5.1        png_0.1-7         
-    ## [22] rgeos_0.4-2        shiny_1.3.0        readr_1.3.1       
-    ## [25] compiler_3.5.1     httr_1.4.0         backports_1.1.4   
-    ## [28] mapview_2.6.3      assertthat_0.2.0   lazyeval_0.2.1    
-    ## [31] cli_1.0.1          later_0.8.0        htmltools_0.3.6   
-    ## [34] prettyunits_1.0.2  tools_3.5.1        gtable_0.2.0      
-    ## [37] glue_1.3.0         Rcpp_1.0.0         raster_2.8-19     
-    ## [40] countrycode_1.1.0  nlme_3.1-137       crosstalk_1.0.0   
-    ## [43] lwgeom_0.1-5       xfun_0.5           stringr_1.4.0     
-    ## [46] ps_1.3.0           testthat_2.0.1     mime_0.6          
-    ## [49] XML_3.98-1.18      MASS_7.3-51.1      scales_1.0.0      
-    ## [52] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
-    ## [55] curl_3.3           memoise_1.1.0      stringi_1.3.1     
-    ## [58] highr_0.7          desc_1.2.0         e1071_1.7-0.1     
-    ## [61] pkgbuild_1.0.2     bibtex_0.4.2       rlang_0.3.4       
-    ## [64] pkgconfig_2.0.2    commonmark_1.7     evaluate_0.13     
-    ## [67] lattice_0.20-38    purrr_0.3.0        htmlwidgets_1.3   
-    ## [70] labeling_0.3       processx_3.2.1     tidyselect_0.2.5  
-    ## [73] plyr_1.8.4         magrittr_1.5       R6_2.4.0          
-    ## [76] generics_0.0.2     DBI_1.0.0          pillar_1.3.1      
-    ## [79] withr_2.1.2        units_0.6-2        tibble_2.1.1      
-    ## [82] crayon_1.3.4       KernSmooth_2.23-15 grid_3.5.1        
-    ## [85] callr_3.1.1        digest_0.6.18      classInt_0.3-1    
-    ## [88] webshot_0.5.1      xtable_1.8-3       httpuv_1.5.1      
-    ## [91] stats4_3.5.1       munsell_0.5.0      viridisLite_0.3.0 
-    ## [94] sessioninfo_1.1.1
+    ##  [1] tidyselect_0.2.5   xfun_0.9           purrr_0.3.2       
+    ##  [4] sf_0.7-7           lattice_0.20-38    colorspace_1.4-1  
+    ##  [7] vctrs_0.2.0        generics_0.0.2     htmltools_0.3.6   
+    ## [10] yaml_2.2.0         rlang_0.4.0        e1071_1.7-2       
+    ## [13] pillar_1.4.2       withr_2.1.2        glue_1.3.1        
+    ## [16] DBI_1.0.0          sp_1.3-1           RColorBrewer_1.1-2
+    ## [19] lifecycle_0.1.0    plyr_1.8.4         stringr_1.4.0     
+    ## [22] munsell_0.5.0      gtable_0.3.0       evaluate_0.14     
+    ## [25] labeling_0.3       class_7.3-15       highr_0.8         
+    ## [28] broom_0.5.2        Rcpp_1.0.2         KernSmooth_2.23-15
+    ## [31] readr_1.3.1        backports_1.1.4    scales_1.0.0      
+    ## [34] classInt_0.4-1     jsonlite_1.6       hms_0.5.0         
+    ## [37] digest_0.6.21      stringi_1.4.3      grid_3.5.2        
+    ## [40] bibtex_0.4.2       tools_3.5.2        magrittr_1.5      
+    ## [43] lazyeval_0.2.2     tibble_2.1.3       RefManageR_1.2.12 
+    ## [46] crayon_1.3.4       pkgconfig_2.0.3    zeallot_0.1.0     
+    ## [49] ellipsis_0.3.0     lubridate_1.7.4    assertthat_0.2.1  
+    ## [52] httr_1.4.1         R6_2.4.0           units_0.6-3       
+    ## [55] nlme_3.1-141       compiler_3.5.2

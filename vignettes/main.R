@@ -1,7 +1,7 @@
 library(knitr)
 library(rmarkdown)
 render("eurostat_tutorial.Rmd", output_format = "md_document")
-render("eurostat_tutorial.Rmd", output_format = "pdf_document")
+# render("eurostat_tutorial.Rmd", output_format = "pdf_document")
 render("eurostat_tutorial.Rmd", output_format = "html_document")
 
 #knit("eurostat_tutorial.Rmd")

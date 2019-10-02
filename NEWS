@@ -1,3 +1,7 @@
+# eurostat 3.3.5
+
+* Fixed vignette
+
 # eurostat 3.3.3
 
 * Countries and Country Codes data.frames get label column for country names in the Eurostat database.
