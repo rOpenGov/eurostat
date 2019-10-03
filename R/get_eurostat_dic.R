@@ -1,6 +1,6 @@
 #' @title Download Eurostat Dictionary
 #' @description Download a Eurostat dictionary.
-#' @details For given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
+#' @details For given coded variable from Eurostat \url{https://ec.europa.eu/eurostat/}.
 #'    The dictionaries link codes with human-readable labels.
 #'    To translate codes to labels, use \code{\link{label_eurostat}}.
 #' @param dictname A character, dictionary for the variable to be downloaded.

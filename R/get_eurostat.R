@@ -1,5 +1,5 @@
 #' @title Read Eurostat Data
-#' @description Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
+#' @description Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 #' @param id A code name for the dataset of interest.
 #'        See \code{\link{search_eurostat}} or details for how to get code.
 #' @param filters a "none" (default) to get a whole dataset or a named list of 

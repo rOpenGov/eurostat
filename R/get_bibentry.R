@@ -8,8 +8,6 @@
 #' to \code{NULL}. 
 #' @param format Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
 #' or \code{'Bibtex'} (not case sensitive.)
-#' @importFrom RefManageR BibEntry toBiblatex
-#' @importFrom utils toBibtex
 #' @export
 #' @author Daniel Antal, Przemyslaw Biecek
 #' @return a bibentry, Bibtex or Biblatex object.

@@ -82,7 +82,7 @@ a tibble. One column for each dimension in the data,
         \code{\link[tidyr]{complete}}.
 }
 \description{
-Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
+Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 }
 \details{
 Data sets are downloaded from 

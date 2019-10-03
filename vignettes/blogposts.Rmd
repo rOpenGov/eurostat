@@ -4,7 +4,6 @@ date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
-  \usepackage[utf8]{inputenc}
 ---
 
 

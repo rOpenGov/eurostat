@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutorial (vignette) for the eurostat R package • eurostat</title>
+<title>Tutorial / vignette for the eurostat R package • eurostat</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
 <!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial (vignette) for the eurostat R package">
+<script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial / vignette for the eurostat R package">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.53</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.54</span>
       </span>
     </div>
 
@@ -60,7 +60,7 @@
       <a href="../articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
     </li>
     <li>
-      <a href="../articles/eurostat_tutorial.html">Tutorial (vignette) for the eurostat R package</a>
+      <a href="../articles/eurostat_tutorial.html">Tutorial / vignette for the eurostat R package</a>
     </li>
     <li>
       <a href="../articles/maps.html">Map examples for the eurostat R package</a>
@@ -84,9 +84,9 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Tutorial (vignette) for the eurostat R package</h1>
+      <h1>Tutorial / vignette for the eurostat R package</h1>
             
-            <h4 class="date">2019-10-02</h4>
+            <h4 class="date">2019-10-03</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -103,7 +103,7 @@
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h1>
-<p>Release version <a href="https://cran.r-project.org/web/packages/eurostat/index.html">(CRAN)</a>:</p>
+<p>Release version <a href="https://CRAN.R-project.org/package=eurostat">(CRAN)</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
 <p>Development version <a href="https://github.com/rOpenGov/eurostat">(Github)</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
@@ -794,19 +794,7 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="sdmx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sdmx" class="anchor"></a>SDMX</h2>
-<p>Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic <a href="https://cran.r-project.org/web/packages/rsdmx/index.html">rsdmx</a> and <a href="https://github.com/amattioc/SDMX/wiki">rjsdmx</a> R packages can be used to access data in that format when necessary:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rsdmx)</a>
-<a class="sourceLine" id="cb22-2" title="2"></a>
-<a class="sourceLine" id="cb22-3" title="3"><span class="co"># Data set URL</span></a>
-<a class="sourceLine" id="cb22-4" title="4">url &lt;-<span class="st"> "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&amp;endPeriod=2011"</span></a>
-<a class="sourceLine" id="cb22-5" title="5"></a>
-<a class="sourceLine" id="cb22-6" title="6"><span class="co"># Read the data from eurostat</span></a>
-<a class="sourceLine" id="cb22-7" title="7">d &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/rsdmx/man/readSDMX.html">readSDMX</a></span>(url)</a>
-<a class="sourceLine" id="cb22-8" title="8"></a>
-<a class="sourceLine" id="cb22-9" title="9"><span class="co"># Convert to data frame and show the first entries</span></a>
-<a class="sourceLine" id="cb22-10" title="10">df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/as.data.frame.html">as.data.frame</a></span>(d)</a>
-<a class="sourceLine" id="cb22-11" title="11"></a>
-<a class="sourceLine" id="cb22-12" title="12"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(df))</a></code></pre></div>
+<p>Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic <a href="https://CRAN.R-project.org/package=rsdmx">rsdmx</a> and <a href="https://github.com/amattioc/SDMX/wiki">rjsdmx</a> R packages can be used to access data in that format when necessary.</p>
 </div>
 </div>
 <div id="further-examples" class="section level1">
@@ -828,13 +816,13 @@ tgs00026                Auxiliary Data</code></pre>
 <a href="#citing-the-eurostat-r-package" class="anchor"></a>Citing the eurostat R package</h3>
 <p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
 <pre><code>## 
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.3.53 Package
+##   package. R Journal 9(1):385-392, 2017. Version 3.3.54 Package
 ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -849,7 +837,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.3.53},
+##     note = {Version 3.3.54},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -862,7 +850,7 @@ tgs00026                Auxiliary Data</code></pre>
 <h1 class="hasAnchor">
 <a href="#version-info" class="anchor"></a>Version info</h1>
 <p>This tutorial was created with</p>
-<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
 <pre><code>## R version 3.5.2 (2018-12-20)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 19.04
@@ -884,31 +872,31 @@ tgs00026                Auxiliary Data</code></pre>
 ## 
 ## other attached packages:
 ## [1] dplyr_0.8.3     plotrix_3.7-6   ggplot2_3.2.1   tidyr_1.0.0    
-## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.53 knitr_1.25     
+## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.54 knitr_1.25     
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.2         lubridate_1.7.4    lattice_0.20-38   
-##  [4] class_7.3-15       assertthat_0.2.1   zeallot_0.1.0     
-##  [7] rprojroot_1.3-2    digest_0.6.21      R6_2.4.0          
-## [10] plyr_1.8.4         backports_1.1.4    evaluate_0.14     
-## [13] e1071_1.7-2        httr_1.4.1         highr_0.8         
-## [16] pillar_1.4.2       rlang_0.4.0        lazyeval_0.2.2    
-## [19] rmarkdown_1.14     pkgdown_1.3.0.9100 desc_1.2.0        
-## [22] labeling_0.3       RefManageR_1.2.12  readr_1.3.1       
-## [25] stringr_1.4.0      munsell_0.5.0      broom_0.5.2       
-## [28] compiler_3.5.2     xfun_0.9           pkgconfig_2.0.3   
-## [31] htmltools_0.3.6    tidyselect_0.2.5   tibble_2.1.3      
-## [34] roxygen2_6.1.1     crayon_1.3.4       withr_2.1.2       
-## [37] sf_0.7-7           MASS_7.3-51.4      commonmark_1.7    
-## [40] grid_3.5.2         nlme_3.1-141       jsonlite_1.6      
-## [43] gtable_0.3.0       lifecycle_0.1.0    DBI_1.0.0         
-## [46] magrittr_1.5       units_0.6-3        scales_1.0.0      
-## [49] bibtex_0.4.2       KernSmooth_2.23-15 stringi_1.4.3     
-## [52] fs_1.3.1           sp_1.3-1           ellipsis_0.3.0    
-## [55] vctrs_0.2.0        generics_0.0.2     RColorBrewer_1.1-2
-## [58] tools_3.5.2        glue_1.3.1         purrr_0.3.2       
-## [61] hms_0.5.0          yaml_2.2.0         colorspace_1.4-1  
-## [64] classInt_0.4-1     memoise_1.1.0</code></pre>
+##  [1] Rcpp_1.0.2         lubridate_1.7.4    countrycode_1.1.0 
+##  [4] lattice_0.20-38    class_7.3-15       assertthat_0.2.1  
+##  [7] zeallot_0.1.0      rprojroot_1.3-2    digest_0.6.21     
+## [10] R6_2.4.0           plyr_1.8.4         backports_1.1.5   
+## [13] evaluate_0.14      e1071_1.7-2        httr_1.4.1        
+## [16] highr_0.8          pillar_1.4.2       rlang_0.4.0       
+## [19] lazyeval_0.2.2     rmarkdown_1.14     pkgdown_1.3.0.9100
+## [22] desc_1.2.0         labeling_0.3       RefManageR_1.2.12 
+## [25] readr_1.3.1        stringr_1.4.0      munsell_0.5.0     
+## [28] broom_0.5.2        compiler_3.5.2     xfun_0.9          
+## [31] pkgconfig_2.0.3    htmltools_0.3.6    tidyselect_0.2.5  
+## [34] tibble_2.1.3       roxygen2_6.1.1     crayon_1.3.4      
+## [37] withr_2.1.2        sf_0.8-0           MASS_7.3-51.4     
+## [40] commonmark_1.7     grid_3.5.2         nlme_3.1-141      
+## [43] jsonlite_1.6       gtable_0.3.0       lifecycle_0.1.0   
+## [46] DBI_1.0.0          magrittr_1.5       units_0.6-4       
+## [49] scales_1.0.0       bibtex_0.4.2       KernSmooth_2.23-15
+## [52] stringi_1.4.3      fs_1.3.1           sp_1.3-1          
+## [55] ellipsis_0.3.0     vctrs_0.2.0        generics_0.0.2    
+## [58] RColorBrewer_1.1-2 tools_3.5.2        glue_1.3.1        
+## [61] purrr_0.3.2        hms_0.5.1          yaml_2.2.0.9999   
+## [64] colorspace_1.4-1   classInt_0.4-1     memoise_1.1.0</code></pre>
 </div>
   </div>
 

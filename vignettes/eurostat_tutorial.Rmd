@@ -1,17 +1,17 @@
 ---
-title: "Tutorial (vignette) for the eurostat R package"
+title: "Tutorial / vignette for the eurostat R package"
 date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-  %\VignetteIndexEntry{eurostat tutorial}
-  %\VignetteEngine{knitr::rmarkdown}  
-  %\VignetteDepends{Cairo}
-  %\VignetteEncoding{UTF-8}
-  \usepackage[utf8]{inputenc}
-editor_options: 
-  chunk_output_type: console  
+    %\VignetteIndexEntry{eurostat tutorial}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteDepends{Cairo}
+    %\VignetteEncoding{UTF-8}
+    \usepackage[utf8]{inputenc}
+editor_options:
+    chunk_output_type: console
 ---
 
 # R Tools for Eurostat Open Data
@@ -269,22 +269,7 @@ library(tidyr)
 
 ## SDMX
 
-Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic [rsdmx](https://CRAN.R-project.org/package=rsdmx) and [rjsdmx](https://github.com/amattioc/SDMX/wiki) R packages can be used to access data in that format when necessary:
-
-```{r rsdmx, fig.width=8, fig.height=8, dev='CairoPNG', eval=FALSE}
-library(rsdmx)
-
-# Data set URL
-url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011"
-
-# Read the data from eurostat
-d <- readSDMX(url)
-
-# Convert to data frame and show the first entries
-df <- as.data.frame(d)
-
-kable(head(df))
-```
+Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic [rsdmx](https://CRAN.R-project.org/package=rsdmx) and [rjsdmx](https://github.com/amattioc/SDMX/wiki) R packages can be used to access data in that format when necessary. 
 
 
 # Further examples

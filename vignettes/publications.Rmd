@@ -1,10 +1,9 @@
 ---
 title: "Publications using the eurostat R package"
 date: "`r Sys.Date()`"
-output: 
+output:
   rmarkdown::html_vignette:
     toc: true
-  \usepackage[utf8]{inputenc}
 ---
 
 

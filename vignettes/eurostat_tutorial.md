@@ -10,8 +10,7 @@ website](http://ropengov.github.io/eurostat/).
 Installation
 ============
 
-Release version
-[(CRAN)](https://cran.r-project.org/web/packages/eurostat/index.html):
+Release version [(CRAN)](https://CRAN.R-project.org/package=eurostat):
 
     install.packages("eurostat")
 
@@ -806,22 +805,9 @@ SDMX
 
 Eurostat data is available also in the SDMX format. The eurostat R
 package does not provide custom tools for this but the generic
-[rsdmx](https://cran.r-project.org/web/packages/rsdmx/index.html) and
+[rsdmx](https://CRAN.R-project.org/package=rsdmx) and
 [rjsdmx](https://github.com/amattioc/SDMX/wiki) R packages can be used
-to access data in that format when necessary:
-
-    library(rsdmx)
-
-    # Data set URL
-    url <- "http://ec.europa.eu/eurostat/SDMX/diss-web/rest/data/cdh_e_fos/..PC.FOS1.BE/?startperiod=2005&endPeriod=2011"
-
-    # Read the data from eurostat
-    d <- readSDMX(url)
-
-    # Convert to data frame and show the first entries
-    df <- as.data.frame(d)
-
-    kable(head(df))
+to access data in that format when necessary.
 
 Further examples
 ================
@@ -853,7 +839,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.53 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.54 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -868,7 +854,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.53},
+    ##     note = {Version 3.3.54},
     ##   }
 
 ### Contact
@@ -904,26 +890,26 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ## [1] dplyr_0.8.3     plotrix_3.7-6   ggplot2_3.2.1   tidyr_1.0.0    
-    ## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.53 rmarkdown_1.14 
+    ## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.54 rmarkdown_1.14 
     ## [9] knitr_1.25     
     ## 
     ## loaded via a namespace (and not attached):
     ##  [1] tidyselect_0.2.5   xfun_0.9           purrr_0.3.2       
-    ##  [4] sf_0.7-7           lattice_0.20-38    colorspace_1.4-1  
+    ##  [4] sf_0.8-0           lattice_0.20-38    colorspace_1.4-1  
     ##  [7] vctrs_0.2.0        generics_0.0.2     htmltools_0.3.6   
-    ## [10] yaml_2.2.0         rlang_0.4.0        e1071_1.7-2       
+    ## [10] yaml_2.2.0.9999    rlang_0.4.0        e1071_1.7-2       
     ## [13] pillar_1.4.2       withr_2.1.2        glue_1.3.1        
     ## [16] DBI_1.0.0          sp_1.3-1           RColorBrewer_1.1-2
     ## [19] lifecycle_0.1.0    plyr_1.8.4         stringr_1.4.0     
     ## [22] munsell_0.5.0      gtable_0.3.0       evaluate_0.14     
     ## [25] labeling_0.3       class_7.3-15       highr_0.8         
     ## [28] broom_0.5.2        Rcpp_1.0.2         KernSmooth_2.23-15
-    ## [31] readr_1.3.1        backports_1.1.4    scales_1.0.0      
-    ## [34] classInt_0.4-1     jsonlite_1.6       hms_0.5.0         
-    ## [37] digest_0.6.21      stringi_1.4.3      grid_3.5.2        
-    ## [40] bibtex_0.4.2       tools_3.5.2        magrittr_1.5      
-    ## [43] lazyeval_0.2.2     tibble_2.1.3       RefManageR_1.2.12 
-    ## [46] crayon_1.3.4       pkgconfig_2.0.3    zeallot_0.1.0     
-    ## [49] ellipsis_0.3.0     lubridate_1.7.4    assertthat_0.2.1  
-    ## [52] httr_1.4.1         R6_2.4.0           units_0.6-3       
-    ## [55] nlme_3.1-141       compiler_3.5.2
+    ## [31] readr_1.3.1        backports_1.1.5    scales_1.0.0      
+    ## [34] classInt_0.4-1     jsonlite_1.6       countrycode_1.1.0 
+    ## [37] hms_0.5.1          digest_0.6.21      stringi_1.4.3     
+    ## [40] grid_3.5.2         bibtex_0.4.2       tools_3.5.2       
+    ## [43] magrittr_1.5       lazyeval_0.2.2     tibble_2.1.3      
+    ## [46] RefManageR_1.2.12  crayon_1.3.4       pkgconfig_2.0.3   
+    ## [49] zeallot_0.1.0      ellipsis_0.3.0     lubridate_1.7.4   
+    ## [52] assertthat_0.2.1   httr_1.4.1         R6_2.4.0          
+    ## [55] units_0.6-4        nlme_3.1-141       compiler_3.5.2

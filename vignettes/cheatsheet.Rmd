@@ -1,10 +1,9 @@
 ---
 title: "Cheat sheet: eurostat R package"
 date: "`r Sys.Date()`"
-output: 
+output:
   rmarkdown::html_vignette:
     toc: true
-  \usepackage[utf8]{inputenc}
 ---
 
  * [eurostat R package: cheat sheet (RStudio release version)](https://github.com/rstudio/cheatsheets/raw/master/eurostat.pdf)

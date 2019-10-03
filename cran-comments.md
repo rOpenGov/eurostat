@@ -7,14 +7,13 @@
 
 There were two warnings:
 
-* building ‘eurostat_3.3.53.tar.gz’
+* building ‘eurostat_3.3.54.tar.gz’
 Warning: invalid uid value replaced by that for user 'nobody'
 Warning: invalid gid value replaced by that for user 'nobody'
 
 * checking data for ASCII and uncompressed saves ... OK
  WARNING
 ‘qpdf’ is needed for checks on size reduction of PDFs
-
 
 
 

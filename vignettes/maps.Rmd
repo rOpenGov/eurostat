@@ -1,7 +1,7 @@
 ---
 title: "Map examples for the eurostat R package"
 date: "`r Sys.Date()`"
-output: 
+output:
   rmarkdown::html_vignette:
     toc: true
 ---
