@@ -177,7 +177,7 @@ levels(datl$vehicle)
 
 ## EFTA, Eurozone, EU and EU candidate countries
 
-To facilitate smooth visualization of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (eu\_candidate\_countries). These can be used to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the [countrycode](...) R package. To retrieve the country code list for EFTA, for instance, use:
+To facilitate smooth visualization of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta\_countries), Euro area (ea\_countries), EU (eu\_countries) and EU candidate countries (eu\_candidate\_countries). These can be used to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the [countrycode](https://CRAN.R-project.org/package=countrycode) R package. To retrieve the country code list for EFTA, for instance, use:
 
 ```{r, echo=TRUE, eval=TRUE}
 data(efta_countries)

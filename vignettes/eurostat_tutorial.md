@@ -21,33 +21,6 @@ Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 Overall, the eurostat package includes the following functions:
 
-    clean_eurostat_cache    Clean Eurostat Cache
-    cut_to_classes          Cuts the Values Column into Classes and
-                            Polishes the Labels
-    dic_order               Order of Variable Levels from Eurostat
-                            Dictionary.
-    eu_countries            Countries and Country Codes
-    eurostat-package        R Tools for Eurostat open data
-    eurostat_geodata_60_2016
-                            Geospatial data of Europe from Gisco in 1:60
-                            million scale from year 2016
-    eurotime2date           Date Conversion from Eurostat Time Format
-    eurotime2num            Conversion of Eurostat Time Format to Numeric
-    get_bibentry            Create A Data Bibliography
-    get_eurostat            Read Eurostat Data
-    get_eurostat_dic        Download Eurostat Dictionary
-    get_eurostat_geospatial
-                            Download Geospatial Data from GISGO
-    get_eurostat_json       Get Data from Eurostat API in JSON
-    get_eurostat_raw        Download Data from Eurostat Database
-    get_eurostat_toc        Download Table of Contents of Eurostat Data
-                            Sets
-    harmonize_country_code
-                            Harmonize Country Code
-    label_eurostat          Get Eurostat Codes
-    search_eurostat         Grep Datasets Titles from Eurostat
-    tgs00026                Auxiliary Data
-
 Finding data
 ============
 
@@ -446,7 +419,8 @@ in the eurostat database for EFTA (efta\_countries), Euro area
 (ea\_countries), EU (eu\_countries) and EU candidate countries
 (eu\_candidate\_countries). These can be used to select specific groups
 of countries for closer investigation. For conversions with other
-standard country coding systems, see the [countrycode](...) R package.
+standard country coding systems, see the
+[countrycode](https://CRAN.R-project.org/package=countrycode) R package.
 To retrieve the country code list for EFTA, for instance, use:
 
     data(efta_countries)
@@ -754,6 +728,10 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
+
+    ## Want to understand how all the pieces fit together? See the R for
+    ## Data Science book: http://r4ds.had.co.nz/
+
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -839,7 +817,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.54 Package
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.55 Package
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -854,7 +832,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.54},
+    ##     note = {Version 3.3.55},
     ##   }
 
 ### Contact
@@ -889,27 +867,34 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ## [1] dplyr_0.8.3     plotrix_3.7-6   ggplot2_3.2.1   tidyr_1.0.0    
-    ## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.54 rmarkdown_1.14 
-    ## [9] knitr_1.25     
+    ##  [1] dplyr_0.8.3        plotrix_3.7-6      ggplot2_3.2.1     
+    ##  [4] tidyr_1.0.0        rvest_0.3.4        xml2_1.2.2        
+    ##  [7] rmarkdown_1.14     pkgdown_1.3.0.9100 knitr_1.25        
+    ## [10] eurostat_3.3.55    devtools_2.1.0     usethis_1.5.1     
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] tidyselect_0.2.5   xfun_0.9           purrr_0.3.2       
-    ##  [4] sf_0.8-0           lattice_0.20-38    colorspace_1.4-1  
-    ##  [7] vctrs_0.2.0        generics_0.0.2     htmltools_0.3.6   
-    ## [10] yaml_2.2.0.9999    rlang_0.4.0        e1071_1.7-2       
-    ## [13] pillar_1.4.2       withr_2.1.2        glue_1.3.1        
-    ## [16] DBI_1.0.0          sp_1.3-1           RColorBrewer_1.1-2
-    ## [19] lifecycle_0.1.0    plyr_1.8.4         stringr_1.4.0     
-    ## [22] munsell_0.5.0      gtable_0.3.0       evaluate_0.14     
-    ## [25] labeling_0.3       class_7.3-15       highr_0.8         
-    ## [28] broom_0.5.2        Rcpp_1.0.2         KernSmooth_2.23-15
-    ## [31] readr_1.3.1        backports_1.1.5    scales_1.0.0      
-    ## [34] classInt_0.4-1     jsonlite_1.6       countrycode_1.1.0 
-    ## [37] hms_0.5.1          digest_0.6.21      stringi_1.4.3     
-    ## [40] grid_3.5.2         bibtex_0.4.2       tools_3.5.2       
-    ## [43] magrittr_1.5       lazyeval_0.2.2     tibble_2.1.3      
-    ## [46] RefManageR_1.2.12  crayon_1.3.4       pkgconfig_2.0.3   
-    ## [49] zeallot_0.1.0      ellipsis_0.3.0     lubridate_1.7.4   
-    ## [52] assertthat_0.2.1   httr_1.4.1         R6_2.4.0          
-    ## [55] units_0.6-4        nlme_3.1-141       compiler_3.5.2
+    ##  [1] httr_1.4.1         pkgload_1.0.2      jsonlite_1.6      
+    ##  [4] assertthat_0.2.1   countrycode_1.1.0  sp_1.3-1          
+    ##  [7] highr_0.8          yaml_2.2.0.9999    remotes_2.1.0     
+    ## [10] sessioninfo_1.1.1  pillar_1.4.2       backports_1.1.5   
+    ## [13] lattice_0.20-38    glue_1.3.1         digest_0.6.21     
+    ## [16] RColorBrewer_1.1-2 RefManageR_1.2.12  colorspace_1.4-1  
+    ## [19] htmltools_0.3.6    plyr_1.8.4         pkgconfig_2.0.3   
+    ## [22] bibtex_0.4.2       broom_0.5.2        purrr_0.3.2       
+    ## [25] scales_1.0.0       processx_3.4.1     tibble_2.1.3      
+    ## [28] generics_0.0.2     ellipsis_0.3.0     withr_2.1.2       
+    ## [31] lazyeval_0.2.2     cli_1.1.0          magrittr_1.5      
+    ## [34] crayon_1.3.4       memoise_1.1.0      evaluate_0.14     
+    ## [37] ps_1.3.0           fs_1.3.1           nlme_3.1-141      
+    ## [40] MASS_7.3-51.4      class_7.3-15       pkgbuild_1.0.4    
+    ## [43] tools_3.5.2        prettyunits_1.0.2  hms_0.5.1         
+    ## [46] lifecycle_0.1.0    stringr_1.4.0      munsell_0.5.0     
+    ## [49] callr_3.3.1        compiler_3.5.2     e1071_1.7-2       
+    ## [52] rlang_0.4.0        classInt_0.4-1     units_0.6-4       
+    ## [55] grid_3.5.2         rstudioapi_0.10    labeling_0.3      
+    ## [58] testthat_2.2.1     gtable_0.3.0       DBI_1.0.0         
+    ## [61] roxygen2_6.1.1     R6_2.4.0           lubridate_1.7.4   
+    ## [64] zeallot_0.1.0      commonmark_1.7     rprojroot_1.3-2   
+    ## [67] KernSmooth_2.23-15 readr_1.3.1        desc_1.2.0        
+    ## [70] stringi_1.4.3      Rcpp_1.0.2         vctrs_0.2.0       
+    ## [73] sf_0.8-0           tidyselect_0.2.5   xfun_0.9

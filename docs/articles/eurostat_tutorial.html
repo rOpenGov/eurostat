@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.54</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.55</span>
       </span>
     </div>
 
@@ -54,19 +54,19 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/blogposts.html">Blog posts</a>
-    </li>
-    <li>
-      <a href="../articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    </li>
-    <li>
       <a href="../articles/eurostat_tutorial.html">Tutorial / vignette for the eurostat R package</a>
     </li>
     <li>
-      <a href="../articles/maps.html">Map examples for the eurostat R package</a>
+      <a href="../articles/website/blogposts.html">Blog posts</a>
     </li>
     <li>
-      <a href="../articles/publications.html">Publications using the eurostat R package</a>
+      <a href="../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    </li>
+    <li>
+      <a href="../articles/website/maps.html">Map examples for the eurostat R package</a>
+    </li>
+    <li>
+      <a href="../articles/website/publications.html">Publications using the eurostat R package</a>
     </li>
   </ul>
 </li>
@@ -459,7 +459,7 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="efta-eurozone-eu-and-eu-candidate-countries" class="section level2">
 <h2 class="hasAnchor">
 <a href="#efta-eurozone-eu-and-eu-candidate-countries" class="anchor"></a>EFTA, Eurozone, EU and EU candidate countries</h2>
-<p>To facilitate smooth visualization of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta_countries), Euro area (ea_countries), EU (eu_countries) and EU candidate countries (eu_candidate_countries). These can be used to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the <a href="...">countrycode</a> R package. To retrieve the country code list for EFTA, for instance, use:</p>
+<p>To facilitate smooth visualization of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta_countries), Euro area (ea_countries), EU (eu_countries) and EU candidate countries (eu_candidate_countries). These can be used to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the <a href="https://CRAN.R-project.org/package=countrycode">countrycode</a> R package. To retrieve the country code list for EFTA, for instance, use:</p>
 <div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(efta_countries)</a>
 <a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(efta_countries)</a></code></pre></div>
 <table class="table">
