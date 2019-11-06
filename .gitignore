@@ -2,7 +2,9 @@ _pkgdown.yml
 docs/docsearch.js
 docs/articles/2015-RJournal/response.txt
 *Rcheck*
-inst/extras
+inst/extras/*
+application/*
+!inst/extras/cheatsheet/
 inst/extras/..Rcheck
 *~
 */~
