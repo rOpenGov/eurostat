@@ -42,7 +42,7 @@ build_site()
 # or run main.R in vignettes
 setwd("vignettes/")
 source("main.R")
-tools::compactPDF("./", gs_quality = "ebook")
+# tools::compactPDF("./", gs_quality = "ebook")
 
 
 

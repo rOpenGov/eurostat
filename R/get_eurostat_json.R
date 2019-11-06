@@ -96,7 +96,7 @@ get_eurostat_json <- function(id, filters = NULL,
   
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
   
-  as_data_frame(dat)
+  tibble::as_tibble(dat)
   
 }
 

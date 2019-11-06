@@ -43,13 +43,13 @@ should be used.}
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
 only queries from the bulk download facility.}
 
-\item{update_cache}{a locigal whether to update cache. Can be set also with
+\item{update_cache}{a logical whether to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
-\item{cache_dir}{a path to a cache directory. The directory have to exist.
+\item{cache_dir}{a path to a cache directory. The directory must exist.
 The \code{NULL} (default) uses and creates
 'eurostat' directory in the temporary directory from
-\code{\link{tempdir}}. Directory can also be set with
+\code{\link{tempdir}}. The directory can also be set with
 \code{option} eurostat_cache_dir.}
 
 \item{compress_file}{a logical whether to compress the
@@ -82,7 +82,7 @@ a tibble. One column for each dimension in the data,
         \code{\link[tidyr]{complete}}.
 }
 \description{
-Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
+Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 }
 \details{
 Data sets are downloaded from 

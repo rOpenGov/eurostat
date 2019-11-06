@@ -1,5 +1,5 @@
 #' @title Read Eurostat Data
-#' @description Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
+#' @description Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 #' @param id A code name for the dataset of interest.
 #'        See \code{\link{search_eurostat}} or details for how to get code.
 #' @param filters a "none" (default) to get a whole dataset or a named list of 
@@ -26,12 +26,12 @@
 #'        should be used.
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
-#' @param update_cache a locigal whether to update cache. Can be set also with
+#' @param update_cache a logical whether to update cache. Can be set also with
 #'        options(eurostat_update = TRUE)
-#' @param cache_dir a path to a cache directory. The directory have to exist.
+#' @param cache_dir a path to a cache directory. The directory must exist.
 #'        The \code{NULL} (default) uses and creates
 #'        'eurostat' directory in the temporary directory from
-#'        \code{\link{tempdir}}. Directory can also be set with
+#'        \code{\link{tempdir}}. The directory can also be set with
 #'        \code{option} eurostat_cache_dir.
 #' @param compress_file a logical whether to compress the
 #'        RDS-file in caching. Default is \code{TRUE}.

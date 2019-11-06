@@ -1,0 +1,204 @@
+---
+title: "Map examples for the eurostat R package"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+---
+
+# R Tools for Eurostat Open Data
+
+This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
+
+
+See eurostat vignette for installation and basic use.
+
+```{r, echo=FALSE}
+library(eurostat)
+```
+
+## Maps 
+
+###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap
+
+The mapping examples below use [`tmap`](https://github.com/mtennekes/tmap) package.
+
+
+```{r maps1-1, eval=TRUE, fig.width=8, fig.height=8}
+library(dplyr)
+library(eurostat)
+library(sf)
+library(tmap)
+
+# Download attribute data from Eurostat
+sp_data <- eurostat::get_eurostat("tgs00026",
+		                  time_format = "raw",
+                                  stringsAsFactors = FALSE) %>% 
+  # subset to have only a single row per geo
+  dplyr::filter(time == 2010, nchar(geo) == 4) %>% 
+  # categorise
+  dplyr::mutate(income = cut_to_classes(values, n = 5))
+
+# Download geospatial data from GISCO
+geodata <- get_eurostat_geospatial(output_class = "sf",
+                                   resolution = "60",
+				   nuts_level = 2,
+				   year = 2013)
+
+# merge with attribute data with geodata
+map_data <- inner_join(geodata, sp_data)
+```
+
+
+Construct the map
+
+```{r map1ex, eval=TRUE, warning=FALSE}
+map1 <- tmap::tm_shape(geodata) +
+  tmap::tm_fill("lightgrey") +
+  tmap::tm_shape(map_data) +
+  tmap::tm_grid() +
+  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
+                    palette = "Oranges")
+print(map1)  
+```
+
+Interactive maps can be generated as well
+
+```{r maps1-2, eval=FALSE, fig.width=8, fig.height=8}
+# Interactive
+tmap_mode("view")
+map1
+
+# Set the mode back to normal plotting
+tmap_mode("plot")
+print(map1)
+```
+
+### Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using tmap
+
+```{r maps2, fig.width=8, fig.height=8, warning=FALSE}
+library(eurostat)
+library(dplyr)
+library(sf)
+library(RColorBrewer)
+
+# Downloading and manipulating the tabular data
+print("Let us focus on year 2014 and NUTS-3 level")
+euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
+                         stringsAsFactors = FALSE,
+			 filter = list(time = "2014")) %>% 
+ 
+  # Subset to NUTS-3 level
+  dplyr::filter(grepl("PL",geo)) %>% 
+  # label the single geo column
+  mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
+         income = cut_to_classes(values))
+
+print("Download geospatial data from GISCO")
+geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
+
+# Merge with attribute data with geodata
+map_data <- inner_join(geodata, euro_sf2)
+
+# plot map
+map2 <- tm_shape(geodata) +
+  tm_fill("lightgrey") +
+  tm_shape(map_data, is.master = TRUE) +
+  tm_polygons("income", title = "Disposable household incomes in 2014",
+              palette = "Oranges", border.col = "white") + 
+  tm_text("NUTS_NAME", just = "center") + 
+  tm_scale_bar()
+map2
+```
+
+### Disposable income of private households by NUTS 2 regions at 1:10mln resolution using spplot
+
+```{r maps3, fig.width=8, fig.height=8, dev='CairoPNG'}
+library(sp)
+library(eurostat)
+library(dplyr)
+library(RColorBrewer)
+dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+  # subsetting to year 2014 and NUTS-2 level
+  dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
+  # classifying the values the variable
+  dplyr::mutate(cat = cut_to_classes(values))
+
+# Download geospatial data from GISCO
+geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
+
+# merge with attribute data with geodata
+geodata@data <- left_join(geodata@data, dat)
+
+# plot map
+sp::spplot(obj = geodata, "cat", main = "Disposable household income",
+	   xlim = c(-22,34), ylim = c(35,70), 
+           col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
+	   col = "white", usePolypath = FALSE)
+```
+
+### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
+
+Meanwhile the CRAN version of `ggplot2` is lacking support for simple features, you can plot maps with `ggplot2` by downloading geospatial data as `data.frame` with `output_class` argument set as `df`.
+
+```{r maps4, fig.width=8, fig.height=8, dev='CairoPNG'}
+library(eurostat)
+library(dplyr)
+library(ggplot2)
+dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+  # subsetting to year 2014 and NUTS-2 level
+  dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
+  # classifying the values the variable
+  dplyr::mutate(cat = cut_to_classes(values))
+
+# Download geospatial data from GISCO
+geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
+
+# merge with attribute data with geodata
+map_data <- inner_join(geodata, dat)
+
+ggplot(data=map_data) + geom_sf(aes(fill=cat),color="dim grey", size=.1) + 
+    scale_fill_brewer(palette = "Oranges") +
+  guides(fill = guide_legend(reverse=T, title = "euro")) +
+  labs(title="Disposable household income in 2014",
+       caption="(C) EuroGeographics for the administrative boundaries 
+                Map produced in R with a help from Eurostat-package <github.com/ropengov/eurostat/>") +
+  theme_light() + theme(legend.position=c(.8,.8)) +
+  coord_sf(xlim=c(-12,44), ylim=c(35,70))
+
+```
+
+
+# Citations and related work
+
+### Citing the data sources
+
+Eurostat data: cite [Eurostat](http://ec.europa.eu/eurostat/).
+
+Administrative boundaries: cite EuroGeographics
+
+
+### Citing the eurostat R package
+
+For main developers and contributors, see the [package homepage](http://ropengov.github.io/eurostat).
+
+This work can be freely used, modified and distributed under the
+BSD-2-clause (modified FreeBSD) license:
+
+```{r citation, message=FALSE, eval=TRUE, echo=TRUE}
+citation("eurostat")
+```
+
+
+### Contact
+
+For contact information, see the [package homepage](http://ropengov.github.io/eurostat).
+
+
+# Version info
+
+This tutorial was created with
+
+```{r sessioninfo, message=FALSE, warning=FALSE}
+sessionInfo()
+```

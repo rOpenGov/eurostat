@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2019-01-17
-Version: 3.3.33
+Date: 2019-10-03
+Version: 3.3.55
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5537-637X")),
@@ -24,18 +24,19 @@ Depends:
 Imports:
     broom,
     classInt,
-    dplyr,    
-    httr,    
+    countrycode,    
+    dplyr,
+    httr,
     jsonlite,
     RColorBrewer,
-    readr,    
-    sf,            
-    sp,    
+    readr,
+    RefManageR,        
+    sf,
+    sp,
     stringi,
     stringr,
     tibble,
-    tidyr,
-    countrycode
+    tidyr
 Suggests:
     Cairo,
     ggplot2,
@@ -56,4 +57,4 @@ BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 6.1.0
+RoxygenNote: 6.1.1

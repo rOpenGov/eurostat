@@ -104,8 +104,8 @@ label_eurostat <-
         names(y_code) <- paste0(names(y_code), "_code")
         y <- cbind(y_code, y)
       }
-      #return data.frame
-      return(as_data_frame(y))
+
+      return(tibble::as_tibble(y))
       
     } else { 
       if (is.null(dic))

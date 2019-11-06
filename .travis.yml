@@ -9,8 +9,8 @@ notifications:
   email:
     - leo.lahti@iki.fi
 
-
 r_packages:
+  - backports
   - broom
   - Cairo
   - classInt
@@ -19,6 +19,7 @@ r_packages:
   - devtools
   - ggplot2
   - httr
+  - httpuv
   - jsonlite
   - knitr  
   - lubridate  
@@ -34,12 +35,14 @@ r_packages:
   - rgdal
   - RColorBrewer
   - readr
+  - RefManageR
   - rmarkdown
   - rmapshaper  
   - roxygen2
   - rsdmx
   - rvest  
   - sf
+  - shiny  
   - sp  
   - tmap
   - tmaptools  
@@ -50,7 +53,8 @@ r_github_packages:
   - jimhester/covr
   - r-dbi/DBI
   - r-dbi/RPostgres
-
+  - romainfrancois/bibtex
+ 
 addons:
   postgresql: "9.6"
   apt:
@@ -110,6 +114,10 @@ before_install:
   - sudo add-apt-repository -y ppa:opencpu/jq
   - sudo apt-get --yes --force-yes update -qq
   - sudo apt-get --yes install npm
+  
+  # For RefManageR
+  - sudo apt-get install -qq qpdf ghostscript poppler-utils
+  - echo which pdfinfo
 
   # install postgis from source:
   - wget http://download.osgeo.org/postgis/source/postgis-2.3.2.tar.gz
@@ -130,9 +138,11 @@ before_install:
 
 
   - Rscript -e 'install.packages("broom",repos="http://cran.us.r-project.org")'
-  - Rscript -e 'install.packages("classInt")'
+  - Rscript -e 'install.packages("backports")'
+  - Rscript -e 'install.packages("classInt")'  
   - Rscript -e 'install.packages("jsonlite")'
   - Rscript -e 'install.packages("curl")'
+  - Rscript -e 'install.packages("countrycode")'  
   - Rscript -e 'install.packages("httr")'      
   - Rscript -e 'install.packages("RColorBrewer")'     
   - Rscript -e 'install.packages("sp")'     
@@ -143,13 +153,17 @@ before_install:
   - Rscript -e 'install.packages("mapproj")'     
   - Rscript -e 'install.packages("plotrix")'     
   - Rscript -e 'install.packages("rmarkdown")'     
+  - Rscript -e 'install.packages("RefManageR")'       
+  - Rscript -e 'install.packages("usethis")'
   - Rscript -e 'install.packages("roxygen2")'     
   - Rscript -e 'install.packages("rsdmx")'     
   - Rscript -e 'install.packages("rvest")'     
   - Rscript -e 'install.packages("testthat")'     
+  - Rscript -e 'install.packages("shiny")'       
   - Rscript -e 'install.packages("knitr")'
   - Rscript -e 'install.packages("tmap", repos="http://cran.us.r-project.org")'
   - Rscript -e 'install.packages("sf", repos="http://cran.us.r-project.org")'
+
 
 
 install:

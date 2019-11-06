@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Get Data from Eurostat API in JSON — get_eurostat_json • eurostat</title>
+<title>Create A Data Bibliography — get_bibentry • eurostat</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,10 @@
 
 
 
-<meta property="og:title" content="Get Data from Eurostat API in JSON — get_eurostat_json" />
-<meta property="og:description" content="Retrieve data from Eurostat API in JSON format." />
+<meta property="og:title" content="Create A Data Bibliography — get_bibentry" />
+<meta property="og:description" content="Creates a bibliography from selected Eurostat data files, 
+including last Eurostat update, URL access data, and optional keywords
+set by the user." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -124,85 +126,53 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Get Data from Eurostat API in JSON</h1>
+    <h1>Create A Data Bibliography</h1>
     
-    <div class="hidden name"><code>get_eurostat_json.Rd</code></div>
+    <div class="hidden name"><code>get_bibentry.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Retrieve data from Eurostat API in JSON format.</p>
+    <p>Creates a bibliography from selected Eurostat data files, 
+including last Eurostat update, URL access data, and optional keywords
+set by the user.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_eurostat_json</span>(<span class='no'>id</span>, <span class='kw'>filters</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>type</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"code"</span>, <span class='st'>"label"</span>,
-  <span class='st'>"both"</span>), <span class='kw'>lang</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"en"</span>, <span class='st'>"fr"</span>, <span class='st'>"de"</span>),
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>default.stringsAsFactors</a></span>(), <span class='no'>...</span>)</pre>
+    <pre class="usage"><span class='fu'>get_bibentry</span>(<span class='no'>code</span>, <span class='kw'>keywords</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"Biblatex"</span>)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>A code name for the dataset of interested. See the table of
-contents of eurostat datasets for more details.</p></td>
+      <th>code</th>
+      <td><p>A Eurostat data code or a vector of Eurostat data codes as
+character or factor.</p></td>
     </tr>
     <tr>
-      <th>filters</th>
-      <td><p>A named list of filters. Names of list objects are Eurostat
-variable codes and values are vectors of observation codes. If <code>NULL</code>
-(default) the whole dataset is returned. See details for more on filters
-and limitations per query.</p></td>
+      <th>keywords</th>
+      <td><p>A list of keywords to be added to the entries. Defaults
+to <code>NULL</code>.</p></td>
     </tr>
     <tr>
-      <th>type</th>
-      <td><p>A type of variables, "code" (default), "label" or "both". The
-"both" will return a data_frame with named vectors, labels as values and
-codes as names.</p></td>
-    </tr>
-    <tr>
-      <th>lang</th>
-      <td><p>A language used for metadata (en/fr/de).</p></td>
-    </tr>
-    <tr>
-      <th>stringsAsFactors</th>
-      <td><p>if <code>TRUE</code> (the default) variables are converted
-to factors in original Eurostat order. If <code>FALSE</code> they are returned as
-a character.</p></td>
-    </tr>
-    <tr>
-      <th>...</th>
-      <td><p>Other arguments passed on to <code><a href='https://httr.r-lib.org/reference/GET.html'>GET</a></code>. For example
-a proxy parameters, see details.
-.</p></td>
+      <th>format</th>
+      <td><p>Default is <code>'Biblatex'</code>, alternatives are <code>'bibentry'</code> 
+or <code>'Bibtex'</code> (not case sensitive.)</p></td>
     </tr>
     </table>
 
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    <p>A dataset as a data_frame.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
-
-    <p>Data to retrieve from
-  <a href='http://ec.europa.eu/eurostat/web/json-and-unicode-web-services'>The
-  Eurostat Web Services</a> can be specified with filters. Normally, it is
-  better to use JSON query through <code><a href='get_eurostat.html'>get_eurostat</a></code>, than to use
-  <code>get_eurostat_json</code> directly.</p>  
-<p>Queries are limited to 50 sub-indicators at a time. A time can be
-  filtered with fixed "time" filter or with "sinceTimePeriod" and
-  "lastTimePeriod" filters. A <code>sinceTimePeriod = 2000</code> returns
-  observations from 2000 to a last available. A <code>lastTimePeriod = 10</code>
-  returns a 10 last observations.</p> 
-<p>To use a proxy to connect, a <code><a href='https://httr.r-lib.org/reference/use_proxy.html'>use_proxy</a></code> can be
-  passed to <code><a href='https://httr.r-lib.org/reference/GET.html'>GET</a></code>. For example 
-  <code>get_eurostat_json(id, filters, 
-  config = httr::use_proxy(url, port, username, password))</code>.</p>
+    <p>a bibentry, Bibtex or Biblatex object.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
     <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
-   <span class='no'>tmp</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat_json</span>(<span class='st'>"cdh_e_fos"</span>)
-   <span class='co'># nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.</span>
-   <span class='co'># yy &lt;- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),</span>
-   <span class='co'>#                                                     unit="EUR_HAB",</span>
-   <span class='co'>#                                                     indic_na="B1GM"))</span>
+   <span class='no'>my_biblography</span> <span class='kw'>&lt;-</span> <span class='fu'>get_bibentry</span> (
+        <span class='kw'>code</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"tran_hv_frtra"</span>, <span class='st'>"t2020_rk310"</span>,<span class='st'>"tec00001"</span>) ,
+        <span class='kw'>keywords</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span> ( <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"railways"</span>, <span class='st'>"freight"</span>, <span class='st'>"transport"</span>),
+                          <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"railways"</span>, <span class='st'>"passengers"</span>, <span class='st'>"modal split"</span>) ),
+        <span class='kw'>format</span> <span class='kw'>=</span> <span class='st'>"Biblatex"</span> )
+
+  <span class='fu'><a href='https://rdrr.io/r/base/readLines.html'>readLines</a></span> ( <span class='no'>my_bibliograhy</span>, <span class='st'>"eurostat_data.bib"</span>)
+
 <span class='co'># }</span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -210,14 +180,11 @@ a proxy parameters, see details.
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
       <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
-  <a href='mailto:ropengov-forum@googlegroups.com'>ropengov-forum@googlegroups.com</a>
-  <a href='http://github.com/ropengov/eurostat'>http://github.com/ropengov/eurostat</a></p>
+    <p>Daniel Antal, Przemyslaw Biecek</p>
   </div>
 </div>
 
