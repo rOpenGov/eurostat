@@ -4,11 +4,20 @@
 \alias{get_eurostat}
 \title{Read Eurostat Data}
 \usage{
-get_eurostat(id, time_format = "date", filters = "none",
-  type = "code", select_time = NULL, cache = TRUE,
-  update_cache = FALSE, cache_dir = NULL, compress_file = TRUE,
-  stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE,
-  ...)
+get_eurostat(
+  id,
+  time_format = "date",
+  filters = "none",
+  type = "code",
+  select_time = NULL,
+  cache = TRUE,
+  update_cache = FALSE,
+  cache_dir = NULL,
+  compress_file = TRUE,
+  stringsAsFactors = default.stringsAsFactors(),
+  keepFlags = FALSE,
+  ...
+)
 }
 \arguments{
 \item{id}{A code name for the dataset of interest.
@@ -116,8 +125,8 @@ database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 }
 \examples{
-\dontrun{
 k <- get_eurostat("nama_10_lp_ulc")
+\dontrun{
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 dir.create(file.path(tempdir(), "r_cache"))

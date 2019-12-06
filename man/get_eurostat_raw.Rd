@@ -25,10 +25,10 @@ Data is downloaded from
  \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
 }
 \examples{
-\dontrun{
-	       tmp <- eurostat:::get_eurostat_raw("educ_iste")
-	       head(tmp)
-     }
+  \dontrun{
+    tmp <- eurostat:::get_eurostat_raw("educ_iste")
+    head(tmp)
+  }
 }
 \references{
 see citation("eurostat")
@@ -37,7 +37,7 @@ see citation("eurostat")
 \code{\link{get_eurostat}}.
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek, Leo Lahti and Janne Huovari
 }
 \keyword{database}
 \keyword{utilities}

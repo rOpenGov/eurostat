@@ -4,9 +4,15 @@
 \alias{get_eurostat_geospatial}
 \title{Download Geospatial Data from GISGO}
 \usage{
-get_eurostat_geospatial(output_class = "sf", resolution = "60",
-  nuts_level = "all", year = "2016", cache = TRUE,
-  update_cache = FALSE, cache_dir = NULL)
+get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "60",
+  nuts_level = "all",
+  year = "2016",
+  cache = TRUE,
+  update_cache = FALSE,
+  cache_dir = NULL
+)
 }
 \arguments{
 \item{output_class}{A string. Class of object returned, 
@@ -50,9 +56,9 @@ Downloads either a simple features (sf), SpatialPolygonDataFrame or a
 The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 }
 \examples{
-sf <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
-df <- get_eurostat_geospatial(output_class = "df", resolution = "20", nuts_level = "0")
-spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
+  sf <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
+  df <- get_eurostat_geospatial(output_class = "df", resolution = "20", nuts_level = "0")
+  spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
  
 }
 \author{

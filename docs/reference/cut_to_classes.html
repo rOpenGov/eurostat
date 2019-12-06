@@ -70,7 +70,7 @@ and polishes the labels ready for used in mapping with merge_with_geodata functi
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.4.1</span>
       </span>
     </div>
 
@@ -135,8 +135,15 @@ and polishes the labels ready for used in mapping with merge_with_geodata functi
 and polishes the labels ready for used in mapping with <code>merge_with_geodata</code> function and ggplot2.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>cut_to_classes</span>(<span class='no'>x</span>, <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>, <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"equal"</span>, <span class='kw'>manual</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>manual_breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>, <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>0</span>, <span class='kw'>nodata_label</span> <span class='kw'>=</span> <span class='st'>"No data"</span>)</pre>
+    <pre class="usage"><span class='fu'>cut_to_classes</span>(
+  <span class='no'>x</span>,
+  <span class='kw'>n</span> <span class='kw'>=</span> <span class='fl'>5</span>,
+  <span class='kw'>style</span> <span class='kw'>=</span> <span class='st'>"equal"</span>,
+  <span class='kw'>manual</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
+  <span class='kw'>manual_breaks</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
+  <span class='kw'>decimals</span> <span class='kw'>=</span> <span class='fl'>0</span>,
+  <span class='kw'>nodata_label</span> <span class='kw'>=</span> <span class='st'>"No data"</span>
+)</pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -177,12 +184,11 @@ and polishes the labels ready for used in mapping with <code>merge_with_geodata<
     <p>a factor.</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> </div><span class='co'># NOT RUN {</span>
+    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
    <span class='co'>#lp &lt;- get_eurostat("nama_aux_lp")</span>
    <span class='no'>lp</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='get_eurostat.html'>get_eurostat</a></span>(<span class='st'>"nama_10_lp_ulc"</span>)
    <span class='no'>lp</span>$<span class='no'>class</span> <span class='kw'>&lt;-</span> <span class='fu'>cut_to_classes</span>(<span class='no'>lp</span>$<span class='no'>values</span>, <span class='kw'>n</span><span class='kw'>=</span><span class='fl'>5</span>, <span class='kw'>style</span><span class='kw'>=</span><span class='st'>"equal"</span>, <span class='kw'>decimals</span><span class='kw'>=</span><span class='fl'>1</span>)
-
-<span class='co'># }</span></pre>
+ }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
@@ -204,7 +210,7 @@ and polishes the labels ready for used in mapping with <code>merge_with_geodata<
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

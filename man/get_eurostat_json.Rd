@@ -4,9 +4,14 @@
 \alias{get_eurostat_json}
 \title{Get Data from Eurostat API in JSON}
 \usage{
-get_eurostat_json(id, filters = NULL, type = c("code", "label",
-  "both"), lang = c("en", "fr", "de"),
-  stringsAsFactors = default.stringsAsFactors(), ...)
+get_eurostat_json(
+  id,
+  filters = NULL,
+  type = c("code", "label", "both"),
+  lang = c("en", "fr", "de"),
+  stringsAsFactors = default.stringsAsFactors(),
+  ...
+)
 }
 \arguments{
 \item{id}{A code name for the dataset of interested. See the table of
@@ -58,10 +63,10 @@ Data to retrieve from
 \examples{
  \dontrun{
    tmp <- get_eurostat_json("cdh_e_fos")
-   # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
-   # yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
-   #                                                     unit="EUR_HAB",
-   #                                                     indic_na="B1GM"))
+   nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
+   yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
+                                                        unit="EUR_HAB",
+                                                        indic_na="B1GM"))
 }
 }
 \author{

@@ -1,6 +1,7 @@
-# eurostat 3.3.54
+# eurostat 3.4.1
 
 * Fixed vignette
+* Added automated error messages to URL download failures
 
 # eurostat 3.3.3
 

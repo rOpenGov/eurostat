@@ -89,8 +89,8 @@
 #'         \code{\link[tidyr]{complete}}.
 #' @seealso \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 #' @examples 
-#' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc")
+#' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 #' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 #' dir.create(file.path(tempdir(), "r_cache"))
@@ -116,10 +116,12 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
                          compress_file = TRUE,
                          stringsAsFactors = default.stringsAsFactors(),
                          keepFlags = FALSE, ...){
+			 
   #Warning for flags with filter
   if (keepFlags & !is.character(filters) && filters != "none") {
-    warning("keepFlags can be used only without filters. No Flags returned.")
-    }
+    warning("The keepFlags argument of the get_eurostat function can be used only without filters. 
+             No Flags returned.")
+  }
   
   # No cache for json
   if (is.null(filters) || filters != "none") {
@@ -127,16 +129,20 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
   }
   
   if (cache){
+  
     # check option for update
     update_cache <- update_cache | getOption("eurostat_update", FALSE)
 
     # get cache directory
     if (is.null(cache_dir)){
+    
       cache_dir <- getOption("eurostat_cache_dir", NULL)
+      
       if (is.null(cache_dir)){
         cache_dir <- file.path(tempdir(), "eurostat")
         if (!file.exists(cache_dir)) dir.create(cache_dir)
       }
+      
     } else {
       if (!file.exists(cache_dir)) {
         stop("The folder ", cache_dir, " does not exist")
@@ -156,14 +162,20 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
   if (!cache || update_cache || !file.exists(cache_file)){
     
     if (is.null(filters) || is.list(filters)){
-      # api download
+    
+      # API Download
       y <- get_eurostat_json(id, filters, type = type,
                              stringsAsFactors = stringsAsFactors, ...)
       y$time <- convert_time_col(factor(y$time), time_format = time_format)
 
-    # bulk download
+    # Bulk download
     } else if (filters == "none") {
-      y_raw <- get_eurostat_raw(id)
+
+      y_raw <- try(get_eurostat_raw(id))
+      if (class(y_raw) == "try-error") {
+        stop(paste("get_eurostat_raw fails with the id", id))
+      }
+
       y <- tidy_eurostat(y_raw, time_format, select_time,
                          stringsAsFactors = stringsAsFactors,
                          keepFlags = keepFlags)
@@ -181,9 +193,9 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
     
   } else {
     cf <- path.expand(cache_file)
-    message(paste("Reading cache file", cf))
+      message(paste("Reading cache file", cf))
     y <- readRDS(cache_file)
-    message(paste("Table ", id, " read from cache file: ", cf))
+      message(paste("Table ", id, " read from cache file: ", cf))
   }
 
   # if update or new: save

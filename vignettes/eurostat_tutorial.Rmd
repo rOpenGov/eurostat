@@ -238,18 +238,18 @@ library(dplyr)
 library(tidyr)
 
 # Some cleaning of the data is required
- energy3 <- get_eurostat("nrg_114a") %>%
- label_eurostat(dat) %>%
- filter(time == "2013-01-01") %>%
- mutate(geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
- select(product, geo, values) %>%
- group_by(product, geo) %>%
- summarise(svalue = sum(values)) %>%
- group_by(geo) %>%
- mutate(tvalue = sum(svalue),
- svalue = svalue/sum(svalue)) %>%
- filter(tvalue > 1000) %>% # only large countries
- spread(product, svalue)
+energy3 <- get_eurostat("nrg_114a") %>%
+             label_eurostat(dat) %>%
+ 	     filter(time == "2013-01-01") %>%
+ 	     mutate(geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
+ 	     select(product, geo, values) %>%
+ 	     group_by(product, geo) %>%
+ 	     summarise(svalue = sum(values)) %>%
+ 	     group_by(geo) %>%
+ 	     mutate(tvalue = sum(svalue),
+ 	     svalue = svalue/sum(svalue)) %>%
+ 	     filter(tvalue > 1000) %>% # only large countries
+ 	     spread(product, svalue)
  
 # Triangle plot
  par(cex=0.75, mar=c(0,0,0,0))

@@ -14,7 +14,6 @@
 #' @source \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
 "eurostat_geodata_60_2016" 
 
-
 ## -- 2016
 # library(sf)
 # library(httr)

@@ -4,8 +4,15 @@
 \alias{cut_to_classes}
 \title{Cuts the Values Column into Classes and Polishes the Labels}
 \usage{
-cut_to_classes(x, n = 5, style = "equal", manual = FALSE,
-  manual_breaks = NULL, decimals = 0, nodata_label = "No data")
+cut_to_classes(
+  x,
+  n = 5,
+  style = "equal",
+  manual = FALSE,
+  manual_breaks = NULL,
+  decimals = 0,
+  nodata_label = "No data"
+)
 }
 \arguments{
 \item{x}{A numeric vector, eg. \code{values} variable in data returned by  \code{get_eurostat}}

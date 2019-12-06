@@ -21,7 +21,7 @@
 <![endif]-->
 </head>
 <body>
-    <div class="container template-article">
+    <div class="container template-home">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
     <div class="navbar-header">
@@ -33,7 +33,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.4.1</span>
       </span>
     </div>
 
@@ -84,45 +84,34 @@
       
 
       </header><div class="row">
-  <div class="col-md-9 contents">
-    
+  <div class="contents col-md-9">
 
-    
-    
+<hr>
+<p>output: html_document: keep_md: yes —</p>
 <p><br></p>
-<p><a href=""><img src="https://img.shields.io/github/license/mashape/apistatus.svg" alt="license"></a> <!--[![DOI](https://zenodo.org/badge/18989920.svg)](https://zenodo.org/badge/latestdoi/18989920)--> <a href="http://makeapullrequest.com"><img src="https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square" alt="PRs Welcome"></a> <a href="https://github.com/ropengov/eurostat/blob/master/other/CODE_OF_CONDUCT.md"><img src="https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square" alt="Code of Conduct"></a></p>
-<p><a href="https://travis-ci.org/rOpenGov/eurostat"><img src="https://travis-ci.org/rOpenGov/eurostat.svg?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/rOpenGov/eurostat"><img src="https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&amp;svg=true" alt="AppVeyor Status"></a> <a href="https://codecov.io/github/rOpenGov/eurostat?branch=master"><img src="https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=eurostat"><img src="http://cranlogs.r-pkg.org/badges/grand-total/eurostat" alt="Downloads"></a> <a href="https://cran.r-project.org/package=eurostat"><img src="http://cranlogs.r-pkg.org/badges/eurostat" alt="Downloads"></a></p>
-<p><a href="https://gitter.im/rOpenGov/eurostat?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/rOpenGov/eurostat.svg" alt="Gitter"></a> <a href="https://github.com/ropengov/eurostat/watchers"><img src="https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social" alt="Watch on GitHub"></a> <a href="https://github.com/ropengov/eurostat/stargazers"><img src="https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social" alt="Star on GitHub"></a> <a href="https://twitter.com/intent/follow?screen_name=ropengov"><img src="https://img.shields.io/twitter/follow/ropengov.svg?style=social" alt="Follow"></a></p>
+<!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
+<!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
+<!--[![PRs Welcome][prs-badge]][prs]-->
+<!--[![Code of Conduct][coc-badge]][coc]-->
+<p><a href="https://travis-ci.org/rOpenGov/eurostat"><img src="https://travis-ci.org/rOpenGov/eurostat.svg?branch=master" alt="Build Status"></a> <a href="https://ci.appveyor.com/project/rOpenGov/eurostat"><img src="https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&amp;svg=true" alt="AppVeyor Status"></a> <a href="https://codecov.io/github/rOpenGov/eurostat?branch=master"><img src="https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master" alt="codecov.io"></a> <a href="https://cran.r-project.org/package=eurostat"><img src="http://cranlogs.r-pkg.org/badges/grand-total/eurostat" alt="Downloads"></a> <a href="https://cran.r-project.org/package=eurostat"><img src="http://cranlogs.r-pkg.org/badges/eurostat" alt="Downloads"></a> <a href="https://gitter.im/rOpenGov/eurostat?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge"><img src="https://badges.gitter.im/rOpenGov/eurostat.svg" alt="Gitter"></a> <a href="https://github.com/ropengov/eurostat/watchers"><img src="https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social" alt="Watch on GitHub"></a> <a href="https://github.com/ropengov/eurostat/stargazers"><img src="https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social" alt="Star on GitHub"></a> <a href="https://twitter.com/intent/follow?screen_name=ropengov"><img src="https://img.shields.io/twitter/follow/ropengov.svg?style=social" alt="Follow"></a></p>
+<!--[![Contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg?style=flat-square)](#contributors)-->
+<!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
+<!--[![Stories in Ready](http://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
+<!--[![CRAN version](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)-->
 <p><br></p>
 <div id="eurostat-r-package" class="section level1">
 <div class="page-header"><h1 class="hasAnchor">
 <a href="#eurostat-r-package" class="anchor"></a>eurostat R package</h1></div>
+<!-- README.md is generated from README.Rmd. Please edit that file -->
 <p>R tools to access open data from <a href="http://ec.europa.eu/eurostat">Eurostat</a>. Data search, download, manipulation and visualization.</p>
-<div id="installation" class="section level3">
+<div id="installation-and-use" class="section level3">
 <h3 class="hasAnchor">
-<a href="#installation" class="anchor"></a>Installation</h3>
-<p>To install the CRAN release version, use:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
-<p>For the latest github development version, use:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw">install_github</span>(<span class="st">"ropengov/eurostat"</span>)</a></code></pre></div>
-</div>
-<div id="using-the-package" class="section level3">
-<h3 class="hasAnchor">
-<a href="#using-the-package" class="anchor"></a>Using the package</h3>
-<p>The <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/index.html">R Journal manuscript</a> provides an overview of the package. Various tutorials <a href="http://ropengov.github.io/eurostat/articles/index.html">are available</a> and provide more detailed demonstrations. Check the following:</p>
-<ul>
-<li><a href="http://ropengov.github.io/eurostat/articles/cheatsheet.html">Cheat sheet: eurostat R package</a></li>
-<li><a href="http://ropengov.github.io/eurostat/articles/eurostat_tutorial.html">Tutorial (vignette) for the eurostat R package</a></li>
-<li><a href="http://ropengov.github.io/eurostat/articles/blogposts.html">Blog posts</a></li>
-<li>
-<a href="http://ropengov.github.io/eurostat/reference/index.html">Detailed function documentation</a> <!--* [Publications using the eurostat R package](http://ropengov.github.io/eurostat/articles/publications.html)-->
-</li>
-</ul>
+<a href="#installation-and-use" class="anchor"></a>Installation and use</h3>
+<p>See the <a href="http://ropengov.github.io/eurostat">package homepage</a> for more.</p>
 </div>
 <div id="contribute" class="section level3">
 <h3 class="hasAnchor">
 <a href="#contribute" class="anchor"></a>Contribute</h3>
-<p>Check the Github page for <a href="https://github.com/rOpenGov/eurostat/">source code</a>.</p>
 <p>Contributions are very welcome:</p>
 <ul>
 <li>
@@ -135,8 +124,8 @@
 <div id="acknowledgements" class="section level3">
 <h3 class="hasAnchor">
 <a href="#acknowledgements" class="anchor"></a>Acknowledgements</h3>
-<p><strong>Kindly cite this work</strong> as follows: <a href="https://github.com/antagomir">Leo Lahti</a>, Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/index.html">R Journal 9(1):385-392, 2017</a>). R package version 3.3.54. URL: <a href="http://ropengov.github.io/eurostat" class="uri">http://ropengov.github.io/eurostat</a></p>
-<p>We are greatful to all <a href="https://github.com/rOpenGov/eurostat/graphs/contributors">contributors</a>, including Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the <a href="http://ec.europa.eu/eurostat/">Eurostat</a> open data portal! This project is part of <a href="http://ropengov.github.io">rOpenGov</a>.</p>
+<p><strong>Kindly cite this work</strong> as follows: <a href="https://github.com/antagomir">Leo Lahti</a>, Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/index.html">R Journal 9(1):385-392, 2017</a>. R package version 3.4.1. URL: <a href="http://ropengov.github.io/eurostat" class="uri">http://ropengov.github.io/eurostat</a></p>
+<p>We are grateful to all <a href="https://github.com/rOpenGov/eurostat/graphs/contributors">contributors</a>, including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the <a href="https://ec.europa.eu/eurostat/">Eurostat</a> open data portal! This project is part of <a href="http://ropengov.github.io">rOpenGov</a>.</p>
 </div>
 <div id="disclaimer" class="section level3">
 <h3 class="hasAnchor">
@@ -144,6 +133,7 @@
 <p>This package is in no way officially related to or endorsed by Eurostat.</p>
 </div>
 </div>
+
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
@@ -181,11 +171,8 @@
 </ul>
 </div>
 
-
-      </div>
-
+  </div>
 </div>
-
 
 
       <footer><div class="copyright">
@@ -193,7 +180,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>
