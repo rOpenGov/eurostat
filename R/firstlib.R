@@ -33,4 +33,5 @@
 #' @importFrom utils download.file
 #' @importFrom utils data
 #' @importFrom utils toBibtex
+#' @importFrom httr http_error
 .EurostatEnv <- new.env()

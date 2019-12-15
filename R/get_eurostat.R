@@ -172,7 +172,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
     } else if (filters == "none") {
 
       y_raw <- try(get_eurostat_raw(id))
-      if (class(y_raw) == "try-error") {
+      if ("try-error" %in% class(y_raw)) {
         stop(paste("get_eurostat_raw fails with the id", id))
       }
 
