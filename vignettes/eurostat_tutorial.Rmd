@@ -113,16 +113,25 @@ Get the whole corresponding table. As the table is annual data, it is more
 convient to use a numeric time variable than use the default date format:
 
 ```{r get_eurostat, warning=FALSE, message=FALSE, results='asis'}
-dat <- get_eurostat(id, time_format = "num")
+if (!is.na(id)){
+  dat <- get_eurostat(id, time_format = "num")
+} else {
+  dat <- tibble::tibble()
+}
+if (nrow(dat) > 0) dat_exists <- TRUE else dat_exists <- FALSE
 ```
 
 Investigate the structure of the downloaded data set:
 ```{r str_dat, warning=FALSE, message=FALSE}
+if (dat_exists){
 str(dat)
+}
 ```
 
 ```{r head_dat, warning=FALSE, message=FALSE, results='asis'}
-kable(head(dat))
+if (dat_exists){
+  kable(head(dat))
+}
 ```
 
 Or you can get only a part of the dataset by defining `filters` argument. It
@@ -132,8 +141,10 @@ time variable, in addition to a `time`, also a `sinceTimePeriod`
 and a `lastTimePeriod` can be used.
 
 ```{r get_eurostat_json, warning=FALSE, message=FALSE, results='asis', eval=FALSE}
-dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1), time_format = "num")
-kable(dat2)
+if (dat_exists){
+  dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1), time_format = "num")
+  kable(dat2)
+}
 ```
 
 ## Replacing codes with labels
@@ -142,10 +153,12 @@ By default variables are returned as Eurostat codes, but to get human-readable
 labels instead, use a `type = "label"` argument.  
 
 ```{r json_labels, warning=FALSE, message=FALSE, results='asis', eval=FALSE}
-datl2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), 
-                                         lastTimePeriod = 1), 
-                      type = "label", time_format = "num")
-kable(head(datl2))
+if (dat_exists){
+  datl2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), 
+                                           lastTimePeriod = 1), 
+                        type = "label", time_format = "num")
+  kable(head(datl2))  
+}
 ```
 
 Eurostat codes in the downloaded data set can be replaced with
@@ -153,22 +166,28 @@ human-readable labels from the Eurostat dictionaries with the
 `label_eurostat()` function.
 
 ```{r labels, warning=FALSE, message=FALSE, results='asis'}
-datl <- label_eurostat(dat)
-kable(head(datl))
+if (dat_exists){
+  datl <- label_eurostat(dat)
+  kable(head(datl))  
+}
 ```
 
 The `label_eurostat()` allows conversion of individual variable
 vectors or variable names as well.
 
 ```{r name_labels, eval = FALSE}
-label_eurostat_vars(names(datl))
+if (dat_exists){
+  label_eurostat_vars(names(datl))
+}
 ```
 
 
 Vehicle information has 3 levels. You can check them now with:
 
 ```{r vehicle_levels, eval = FALSE}
-levels(datl$vehicle)
+if (dat_exists){
+  levels(datl$vehicle)
+}
 ```
 
 
@@ -188,83 +207,36 @@ kable(efta_countries)
 ## EU data from 2012 in all vehicles:
 
 ```{r eu_12}
-dat_eu12 <- subset(datl, geo == "European Union (current composition)" & time == 2012)
-kable(dat_eu12, row.names = FALSE)
+if (dat_exists){
+  dat_eu12 <- subset(datl, geo == "European Union - 28 countries" & time == 2012)
+  kable(dat_eu12, row.names = FALSE)
+}
 ```
 
 ## EU data from 2000 - 2012 with vehicle types as variables:
 
 Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table}
-library("tidyr")
-dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
-dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
-kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
+if (dat_exists){
+  library("tidyr")
+  dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
+  dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
+  kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
+}
 ```
 
 ## Train passengers for selected EU countries in 2000 - 2012
 
 ```{r trains_table}
-dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
+if (dat_exists){
+ dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
                      & time %in% 2000:2012 
-                     & vehicle == "Trains")
-
-dat_trains_wide <- spread(dat_trains, geo, values) 
-kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
+                     & vehicle == "Trains") 
+ dat_trains_wide <- spread(dat_trains, geo, values) 
+ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
+}
 ```
 
-
-
-# Visualization
-
-Visualizing train passenger data with `ggplot2`:
-
-```{r trains_plot, fig.width=6, fig.height=3}
-library(ggplot2)
-p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
-p <- p + geom_line()
-print(p)
-```
-
-<a name="triangle"></a>**Triangle plot**
-
-Triangle plot is handy for visualizing data sets with three variables. 
-
-```{r plotGallery, warning=FALSE, message=FALSE, fig.width=6, fig.height=6}
-library(tidyr)
-library(plotrix)
-library(eurostat)
-library(dplyr)
-library(tidyr)
-
-# Some cleaning of the data is required
-energy3 <- get_eurostat("nrg_114a") %>%
-             label_eurostat(dat) %>%
- 	     filter(time == "2013-01-01") %>%
- 	     mutate(geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
- 	     select(product, geo, values) %>%
- 	     group_by(product, geo) %>%
- 	     summarise(svalue = sum(values)) %>%
- 	     group_by(geo) %>%
- 	     mutate(tvalue = sum(svalue),
- 	     svalue = svalue/sum(svalue)) %>%
- 	     filter(tvalue > 1000) %>% # only large countries
- 	     spread(product, svalue)
- 
-# Triangle plot
- par(cex=0.75, mar=c(0,0,0,0))
- positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
-                     show.grid = TRUE,
-                     label.points= FALSE, point.labels = energy3$geo,
-                     col.axis="gray50", col.grid="gray90",
-                     pch = 19, cex.axis=0.8, cex.ticks=0.7, col="grey50")
-
- # Larger labels
- ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
- df <- data.frame(positions$xypos, geo = energy3$geo)
- points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
- text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
-```
 
 
 ## SDMX
