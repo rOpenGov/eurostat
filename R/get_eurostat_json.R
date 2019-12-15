@@ -56,11 +56,16 @@ get_eurostat_json <- function(id, filters = NULL,
                               ...){
   
   # get response  
-  url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
-  if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
+  # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
+  # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
+  url <- eurostat_json_url(id = id, filters = filters, lang = lang)
   
-  resp <- try(httr::GET(url, ...))
-  if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
+  # resp <- try(httr::GET(url, ...))
+  # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
+  resp <- httr::GET(url)
+  if (httr::http_error(resp)) { 
+    stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
+  }
   
   status <- httr::status_code(resp)
   
