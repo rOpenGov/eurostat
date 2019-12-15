@@ -51,6 +51,11 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60",
   resolution <- gsub("^1$", "01", resolution)
   resolution <- gsub("^3$", "03", resolution)
   
+  # Check output_class is of correct format
+  if (!output_class %in% c("sf", "df", "spdf")) {
+    stop("output_class should be one of 'sf', 'df' or 'spdf'")
+  }
+  
   # Check year is of correct format
   year <- as.character(year)
   if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013, 2016)) {
@@ -61,32 +66,32 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60",
     stop("NUTS 2003 is not provided at 1:60 million resolution. Try 1:1 million, 1:3 million, 1:10 million or 1:20 million")
   }
 
-  message("
-COPYRIGHT NOTICE
-
-When data downloaded from this page 
-<http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
-is used in any printed or electronic publication, 
-in addition to any other provisions 
-applicable to the whole Eurostat website, 
-data source will have to be acknowledged 
-in the legend of the map and 
-in the introductory page of the publication 
-with the following copyright notice:
-
-- EN: (C) EuroGeographics for the administrative boundaries
-- FR: (C) EuroGeographics pour les limites administratives
-- DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
-
-For publications in languages other than 
-English, French or German, 
-the translation of the copyright notice 
-in the language of the publication shall be used.
-
-If you intend to use the data commercially, 
-please contact EuroGeographics for 
-information regarding their licence agreements.
-      ")
+#   message("
+# COPYRIGHT NOTICE
+# 
+# When data downloaded from this page 
+# <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+# is used in any printed or electronic publication, 
+# in addition to any other provisions 
+# applicable to the whole Eurostat website, 
+# data source will have to be acknowledged 
+# in the legend of the map and 
+# in the introductory page of the publication 
+# with the following copyright notice:
+# 
+# - EN: (C) EuroGeographics for the administrative boundaries
+# - FR: (C) EuroGeographics pour les limites administratives
+# - DE: (C) EuroGeographics bezuglich der Verwaltungsgrenzen
+# 
+# For publications in languages other than 
+# English, French or German, 
+# the translation of the copyright notice 
+# in the language of the publication shall be used.
+# 
+# If you intend to use the data commercially, 
+# please contact EuroGeographics for 
+# information regarding their licence agreements.
+#       ")
   
   if (resolution == "60" && year == 2016){
     
@@ -139,39 +144,38 @@ information regarding their licence agreements.
   if (!cache || update_cache || !file.exists(cache_file)){
   
     if (nuts_level %in% c("0","all")){
-    
       url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_0.geojson")
-      resp <- try(GET(url) )
-      if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))  }
-      nuts0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-      
+      resp <- GET(url)
+      if (httr::http_error(resp)) { 
+        stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
+      } else {
+        nuts0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)  
+        } 
     }
-    
     if (nuts_level %in% c("1","all")){
-
       url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_1.geojson")
-      resp <- try(GET(url))
-      if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))  }      
-      nuts1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-      
-    }
-    
+      resp <- GET(url)
+      if (httr::http_error(resp)) {
+        stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
+      } else {
+        nuts1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)  
+        }
+    }    
     if (nuts_level %in% c("2","all")){
-    
-      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_2.geojson")
-      resp <- try(GET(url))
-      if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))  }      
-      nuts2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-      
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_2.geojson"))
+      if (httr::http_error(resp)) { 
+        stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
+      } else {
+        nuts2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)  
+        }
     }
-    
     if (nuts_level %in% c("3","all")){
-    
-      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_3.geojson")
-      resp <- try(GET(url))
-      if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))  }            
-      nuts3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
-      
+      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_3.geojson"))
+      if (httr::http_error(resp)) { 
+        stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
+      } else {
+        nuts3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)    
+        }
     }
     
     if (nuts_level %in% c("all")){
@@ -222,19 +226,19 @@ information regarding their licence agreements.
     
   }
   
-  message("
-# --------------------------
-HEADS UP!!
-
-Function get_eurostat_geospatial now returns the data in 'sf'-class (simple features) 
-by default which is different from previous behaviour's 'SpatialPolygonDataFrame'. 
-
-If you prefer either 'SpatialPolygonDataFrame' or 
-fortified 'data_frame' (for ggplot2::geom_polygon), 
-please specify it explicitly to 'output_class'-argument!
-
-# --------------------------          
-          ")
+#   message("
+# # --------------------------
+# HEADS UP!!
+# 
+# Function get_eurostat_geospatial now returns the data in 'sf'-class (simple features) 
+# by default which is different from previous behaviour's 'SpatialPolygonDataFrame'. 
+# 
+# If you prefer either 'SpatialPolygonDataFrame' or 
+# fortified 'data_frame' (for ggplot2::geom_polygon), 
+# please specify it explicitly to 'output_class'-argument!
+# 
+# # --------------------------          
+#           ")
   
   # Adding a `geo` column for easier joins with dplyr 
   shp$geo <- shp$NUTS_ID
