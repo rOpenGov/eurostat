@@ -30,15 +30,16 @@ get_eurostat_raw <- function(id) {
   on.exit(unlink(tfile))
   
   # download and read file
-  a <- try(utils::download.file(url, tfile))
-  if (class(a) == "try-error") {
-    stop(paste("The requested url cannot be found within the get_eurostat_raw function:", url))
-  }  
+  # a <- try(utils::download.file(url, tfile))
+  # if (class(a) == "try-error") {
+  #   stop(paste("The requested url cannot be found within the get_eurostat_raw function:", url))
+  # }
+  utils::download.file(url, tfile)
   
   dat <- readr::read_tsv(gzfile(tfile), na = ":",  
                          col_types = readr::cols(.default = readr::col_character()))
 
-
+  
   # check validity  
   if (ncol(dat) < 2 | nrow(dat) < 1) {
     msg <- ". Some datasets are not accessible via the eurostat interface. You can try to search the data manually from the comext database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk download facility at http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing or annual Excel files http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
