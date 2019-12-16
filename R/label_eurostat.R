@@ -68,6 +68,10 @@ label_eurostat <-
            countrycode_nomatch = NULL,
            custom_dic = NULL,
            fix_duplicated = FALSE) {
+    
+    # Check if you have internet connection
+    internet_available <- curl::has_internet()
+    if (!internet_available) stop("You have no internet connection, please reconnect!")
 
     # Avoid warnings
     code_name <- NULL

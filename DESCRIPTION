@@ -25,6 +25,7 @@ Imports:
     broom,
     classInt,
     countrycode,    
+    curl,
     dplyr,
     httr,
     jsonlite,

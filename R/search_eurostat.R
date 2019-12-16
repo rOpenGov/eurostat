@@ -31,6 +31,11 @@
 #' }
 #' @keywords utilities database
 search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
+  
+  # Check if you have internet connection
+  internet_available <- curl::has_internet()
+  if (!internet_available) stop("You have no internet connection, please reconnect!")
+  
   set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
   if (type != "all") tmp <- tmp[ tmp$type %in% type, ]

@@ -116,6 +116,10 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
                          compress_file = TRUE,
                          stringsAsFactors = default.stringsAsFactors(),
                          keepFlags = FALSE, ...){
+  
+  # Check if you have internet connection
+  internet_available <- curl::has_internet()
+  if (!internet_available) stop("You have no internet connection, please reconnect!")
 			 
   #Warning for flags with filter
   if (keepFlags & !is.character(filters) && filters != "none") {

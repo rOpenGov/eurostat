@@ -55,6 +55,10 @@ get_eurostat_json <- function(id, filters = NULL,
                               stringsAsFactors = default.stringsAsFactors(),
                               ...){
   
+  # Check if you have internet connection
+  internet_available <- curl::has_internet()
+  if (!internet_available) stop("You have no internet connection, please reconnect!")
+  
   # get response  
   # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
   # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
