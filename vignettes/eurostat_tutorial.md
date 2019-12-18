@@ -21,6 +21,8 @@ Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 Overall, the eurostat package includes the following functions:
 
+    evaluate <- curl::has_internet()
+
 Finding data
 ============
 
@@ -107,10 +109,10 @@ selected dataset.
 <td style="text-align: left;">Consumers - monthly data</td>
 <td style="text-align: left;">ei_bsco_m</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">27.09.2019</td>
-<td style="text-align: left;">27.09.2019</td>
+<td style="text-align: left;">28.11.2019</td>
+<td style="text-align: left;">28.11.2019</td>
 <td style="text-align: left;">1980M01</td>
-<td style="text-align: left;">2019M09</td>
+<td style="text-align: left;">2019M11</td>
 <td style="text-align: left;">NA</td>
 </tr>
 </tbody>
@@ -163,40 +165,40 @@ instance datasets or tables.
 <td style="text-align: left;">Air passenger transport by reporting country</td>
 <td style="text-align: left;">avia_paoc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">30.09.2019</td>
-<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">05.12.2019</td>
+<td style="text-align: left;">07.11.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">2019Q3</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
 <td style="text-align: left;">avia_paoa</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">30.09.2019</td>
-<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">04.12.2019</td>
+<td style="text-align: left;">04.12.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">2019Q3</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Air passenger transport between reporting countries</td>
 <td style="text-align: left;">avia_paocc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">30.09.2019</td>
-<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">05.12.2019</td>
+<td style="text-align: left;">07.11.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">2019Q3</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td style="text-align: left;">avia_paoac</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">30.09.2019</td>
-<td style="text-align: left;">30.09.2019</td>
+<td style="text-align: left;">07.11.2019</td>
+<td style="text-align: left;">07.11.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2019Q2</td>
+<td style="text-align: left;">2019Q3</td>
 <td style="text-align: left;">NA</td>
 </tr>
 </tbody>
@@ -324,6 +326,62 @@ desidered series (upper case). For time variable, in addition to a
     dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod=1), time_format = "num")
     kable(dat2)
 
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">EU28</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">8.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">BUS_TOT</td>
+<td style="text-align: left;">FI</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">10.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">CAR</td>
+<td style="text-align: left;">EU28</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">83.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">CAR</td>
+<td style="text-align: left;">FI</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">84.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">TRN</td>
+<td style="text-align: left;">EU28</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC</td>
+<td style="text-align: left;">TRN</td>
+<td style="text-align: left;">FI</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">5.4</td>
+</tr>
+</tbody>
+</table>
+
 Replacing codes with labels
 ---------------------------
 
@@ -333,14 +391,70 @@ human-readable labels instead, use a `type = "label"` argument.
     datl2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), 
                                              lastTimePeriod = 1), 
                           type = "label", time_format = "num")
-    kable(head(datl2))
+    kable(head(datl2))  
+
+<table>
+<thead>
+<tr class="header">
+<th style="text-align: left;">unit</th>
+<th style="text-align: left;">vehicle</th>
+<th style="text-align: left;">geo</th>
+<th style="text-align: right;">time</th>
+<th style="text-align: right;">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">European Union - 28 countries</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">8.8</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">Finland</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">10.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Passenger cars</td>
+<td style="text-align: left;">European Union - 28 countries</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">83.3</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Passenger cars</td>
+<td style="text-align: left;">Finland</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">84.2</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Trains</td>
+<td style="text-align: left;">European Union - 28 countries</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">7.9</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Trains</td>
+<td style="text-align: left;">Finland</td>
+<td style="text-align: right;">2017</td>
+<td style="text-align: right;">5.4</td>
+</tr>
+</tbody>
+</table>
 
 Eurostat codes in the downloaded data set can be replaced with
 human-readable labels from the Eurostat dictionaries with the
 `label_eurostat()` function.
 
     datl <- label_eurostat(dat)
-    kable(head(datl))
+    kable(head(datl))  
 
 <table>
 <thead>
@@ -403,9 +517,18 @@ or variable names as well.
 
     label_eurostat_vars(names(datl))
 
+    ## [1] "Unit of measure"                                                                     
+    ## [2] "Vehicles"                                                                            
+    ## [3] "Geopolitical entity (reporting)"                                                     
+    ## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"
+
 Vehicle information has 3 levels. You can check them now with:
 
     levels(datl$vehicle)
+
+    ## [1] "Motor coaches, buses and trolley buses"
+    ## [2] "Passenger cars"                        
+    ## [3] "Trains"
 
 Selecting and modifying data
 ============================
@@ -461,7 +584,7 @@ To retrieve the country code list for EFTA, for instance, use:
 EU data from 2012 in all vehicles:
 ----------------------------------
 
-    dat_eu12 <- subset(datl, geo == "European Union (current composition)" & time == 2012)
+    dat_eu12 <- subset(datl, geo == "European Union - 28 countries" & time == 2012)
     kable(dat_eu12, row.names = FALSE)
 
 <table>
@@ -475,6 +598,27 @@ EU data from 2012 in all vehicles:
 </tr>
 </thead>
 <tbody>
+<tr class="odd">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
+<td style="text-align: left;">European Union - 28 countries</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">9.5</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Passenger cars</td>
+<td style="text-align: left;">European Union - 28 countries</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">82.8</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Percentage</td>
+<td style="text-align: left;">Trains</td>
+<td style="text-align: left;">European Union - 28 countries</td>
+<td style="text-align: right;">2012</td>
+<td style="text-align: right;">7.7</td>
+</tr>
 </tbody>
 </table>
 
@@ -597,9 +741,8 @@ Train passengers for selected EU countries in 2000 - 2012
 ---------------------------------------------------------
 
     dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden")
-                         & time %in% 2000:2012 
-                         & vehicle == "Trains")
-
+                       & time %in% 2000:2012 
+                       & vehicle == "Trains") 
     dat_trains_wide <- spread(dat_trains, geo, values) 
     kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
@@ -722,62 +865,6 @@ Train passengers for selected EU countries in 2000 - 2012
 </tbody>
 </table>
 
-Visualization
-=============
-
-Visualizing train passenger data with `ggplot2`:
-
-    library(ggplot2)
-
-    ## Want to understand how all the pieces fit together? See the R for
-    ## Data Science book: http://r4ds.had.co.nz/
-
-    p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
-    p <- p + geom_line()
-    print(p)
-
-![](fig/trains_plot-1.png)
-
-<a name="triangle"></a>**Triangle plot**
-
-Triangle plot is handy for visualizing data sets with three variables.
-
-    library(tidyr)
-    library(plotrix)
-    library(eurostat)
-    library(dplyr)
-    library(tidyr)
-
-    # Some cleaning of the data is required
-     energy3 <- get_eurostat("nrg_114a") %>%
-     label_eurostat(dat) %>%
-     filter(time == "2013-01-01") %>%
-     mutate(geo = gsub(geo, pattern=" \\(.*", replacement="")) %>%
-     select(product, geo, values) %>%
-     group_by(product, geo) %>%
-     summarise(svalue = sum(values)) %>%
-     group_by(geo) %>%
-     mutate(tvalue = sum(svalue),
-     svalue = svalue/sum(svalue)) %>%
-     filter(tvalue > 1000) %>% # only large countries
-     spread(product, svalue)
-     
-    # Triangle plot
-     par(cex=0.75, mar=c(0,0,0,0))
-     positions <- plotrix::triax.plot(as.matrix(energy3[, c(3,5,4)]),
-                         show.grid = TRUE,
-                         label.points= FALSE, point.labels = energy3$geo,
-                         col.axis="gray50", col.grid="gray90",
-                         pch = 19, cex.axis=0.8, cex.ticks=0.7, col="grey50")
-
-     # Larger labels
-     ind <- which(energy3$geo %in%  c("Norway", "Iceland","Denmark","Estonia", "Turkey", "Italy", "Finland"))
-     df <- data.frame(positions$xypos, geo = energy3$geo)
-     points(df$x[ind], df$y[ind], cex=2, col="red", pch=19)
-     text(df$x[ind], df$y[ind], df$geo[ind], adj = c(0.5,-1), cex=1.5)
-
-![](fig/plotGallery-1.png)
-
 SDMX
 ----
 
@@ -817,8 +904,8 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.55 Package
-    ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
+    ##   package. R Journal 9(1):385-392, 2017. Version 3.4.10002 Package URL:
+    ##   http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
     ## A BibTeX entry for LaTeX users is
@@ -832,7 +919,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-    ##     note = {Version 3.3.55},
+    ##     note = {Version 3.4.10002},
     ##   }
 
 ### Contact
@@ -867,34 +954,26 @@ This tutorial was created with
     ## [1] stats     graphics  grDevices utils     datasets  methods   base     
     ## 
     ## other attached packages:
-    ##  [1] dplyr_0.8.3        plotrix_3.7-6      ggplot2_3.2.1     
-    ##  [4] tidyr_1.0.0        rvest_0.3.4        xml2_1.2.2        
-    ##  [7] rmarkdown_1.14     pkgdown_1.3.0.9100 knitr_1.25        
-    ## [10] eurostat_3.3.55    devtools_2.1.0     usethis_1.5.1     
+    ## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         rmarkdown_2.0     
+    ## [5] pkgdown_1.4.1      knitr_1.26         eurostat_3.4.10002 devtools_2.2.1    
+    ## [9] usethis_1.5.1     
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] httr_1.4.1         pkgload_1.0.2      jsonlite_1.6      
-    ##  [4] assertthat_0.2.1   countrycode_1.1.0  sp_1.3-1          
-    ##  [7] highr_0.8          yaml_2.2.0.9999    remotes_2.1.0     
-    ## [10] sessioninfo_1.1.1  pillar_1.4.2       backports_1.1.5   
-    ## [13] lattice_0.20-38    glue_1.3.1         digest_0.6.21     
-    ## [16] RColorBrewer_1.1-2 RefManageR_1.2.12  colorspace_1.4-1  
-    ## [19] htmltools_0.3.6    plyr_1.8.4         pkgconfig_2.0.3   
-    ## [22] bibtex_0.4.2       broom_0.5.2        purrr_0.3.2       
-    ## [25] scales_1.0.0       processx_3.4.1     tibble_2.1.3      
-    ## [28] generics_0.0.2     ellipsis_0.3.0     withr_2.1.2       
-    ## [31] lazyeval_0.2.2     cli_1.1.0          magrittr_1.5      
-    ## [34] crayon_1.3.4       memoise_1.1.0      evaluate_0.14     
-    ## [37] ps_1.3.0           fs_1.3.1           nlme_3.1-141      
-    ## [40] MASS_7.3-51.4      class_7.3-15       pkgbuild_1.0.4    
-    ## [43] tools_3.5.2        prettyunits_1.0.2  hms_0.5.1         
-    ## [46] lifecycle_0.1.0    stringr_1.4.0      munsell_0.5.0     
-    ## [49] callr_3.3.1        compiler_3.5.2     e1071_1.7-2       
-    ## [52] rlang_0.4.0        classInt_0.4-1     units_0.6-4       
-    ## [55] grid_3.5.2         rstudioapi_0.10    labeling_0.3      
-    ## [58] testthat_2.2.1     gtable_0.3.0       DBI_1.0.0         
-    ## [61] roxygen2_6.1.1     R6_2.4.0           lubridate_1.7.4   
-    ## [64] zeallot_0.1.0      commonmark_1.7     rprojroot_1.3-2   
-    ## [67] KernSmooth_2.23-15 readr_1.3.1        desc_1.2.0        
-    ## [70] stringi_1.4.3      Rcpp_1.0.2         vctrs_0.2.0       
-    ## [73] sf_0.8-0           tidyselect_0.2.5   xfun_0.9
+    ##  [1] Rcpp_1.0.3         lubridate_1.7.4    countrycode_1.1.0  lattice_0.20-38   
+    ##  [5] prettyunits_1.0.2  class_7.3-15       ps_1.3.0           assertthat_0.2.1  
+    ##  [9] zeallot_0.1.0      rprojroot_1.3-2    digest_0.6.23      R6_2.4.1          
+    ## [13] plyr_1.8.5         backports_1.1.5    evaluate_0.14      e1071_1.7-3       
+    ## [17] highr_0.8          httr_1.4.1         pillar_1.4.2       rlang_0.4.2       
+    ## [21] curl_4.3           rstudioapi_0.10    callr_3.4.0        desc_1.2.0        
+    ## [25] RefManageR_1.2.12  readr_1.3.1        stringr_1.4.0      broom_0.5.3       
+    ## [29] compiler_3.5.2     xfun_0.11          pkgconfig_2.0.3    pkgbuild_1.0.6    
+    ## [33] htmltools_0.4.0    tidyselect_0.2.5   tibble_2.1.3       roxygen2_7.0.2    
+    ## [37] fansi_0.4.0        crayon_1.3.4       dplyr_0.8.3        withr_2.1.2       
+    ## [41] sf_0.8-0           MASS_7.3-51.4      grid_3.5.2         nlme_3.1-143      
+    ## [45] jsonlite_1.6       lifecycle_0.1.0    DBI_1.1.0          magrittr_1.5      
+    ## [49] units_0.6-5        bibtex_0.4.2       KernSmooth_2.23-15 cli_2.0.0         
+    ## [53] stringi_1.4.3      fs_1.3.1           remotes_2.1.0      sp_1.3-2          
+    ## [57] testthat_2.3.1     ellipsis_0.3.0     vctrs_0.2.1        generics_0.0.2    
+    ## [61] RColorBrewer_1.1-2 tools_3.5.2        glue_1.3.1         purrr_0.3.3       
+    ## [65] hms_0.5.2          yaml_2.2.0.9999    processx_3.4.1     pkgload_1.0.2     
+    ## [69] sessioninfo_1.1.1  classInt_0.4-2     memoise_1.1.0

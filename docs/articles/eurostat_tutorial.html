@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.3.55</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.4.10002</span>
       </span>
     </div>
 
@@ -86,7 +86,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial / vignette for the eurostat R package</h1>
             
-            <h4 class="date">2019-10-03</h4>
+            <h4 class="date">2019-12-18</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -107,7 +107,7 @@
 <div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
 <p>Development version <a href="https://github.com/rOpenGov/eurostat">(Github)</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/reexports.html">install_github</a></span>(<span class="st">"ropengov/eurostat"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ropengov/eurostat"</span>)</a></code></pre></div>
 <p>Overall, the eurostat package includes the following functions:</p>
 <pre><code>clean_eurostat_cache    Clean Eurostat Cache
 cut_to_classes          Cuts the Values Column into Classes and
@@ -135,21 +135,22 @@ harmonize_country_code
 label_eurostat          Get Eurostat Codes
 search_eurostat         Grep Datasets Titles from Eurostat
 tgs00026                Auxiliary Data</code></pre>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">evaluate &lt;-<span class="st"> </span>curl<span class="op">::</span><span class="kw"><a href="https://jeroen.cran.dev/curl/reference/nslookup.html">has_internet</a></span>()</a></code></pre></div>
 </div>
 <div id="finding-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#finding-data" class="anchor"></a>Finding data</h1>
 <p>Function <code><a href="../reference/get_eurostat_toc.html">get_eurostat_toc()</a></code> downloads a table of contents of eurostat datasets. The values in column ‘code’ should be used to download a selected dataset.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="co"># Load the package</span></a>
-<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
-<a class="sourceLine" id="cb4-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rvest)</a>
-<a class="sourceLine" id="cb4-4" title="4"></a>
-<a class="sourceLine" id="cb4-5" title="5"><span class="co"># Get Eurostat data listing</span></a>
-<a class="sourceLine" id="cb4-6" title="6">toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_toc.html">get_eurostat_toc</a></span>()</a>
-<a class="sourceLine" id="cb4-7" title="7"></a>
-<a class="sourceLine" id="cb4-8" title="8"><span class="co"># Check the first items</span></a>
-<a class="sourceLine" id="cb4-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(knitr)</a>
-<a class="sourceLine" id="cb4-10" title="10"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(toc))</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Load the package</span></a>
+<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
+<a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rvest)</a>
+<a class="sourceLine" id="cb5-4" title="4"></a>
+<a class="sourceLine" id="cb5-5" title="5"><span class="co"># Get Eurostat data listing</span></a>
+<a class="sourceLine" id="cb5-6" title="6">toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_toc.html">get_eurostat_toc</a></span>()</a>
+<a class="sourceLine" id="cb5-7" title="7"></a>
+<a class="sourceLine" id="cb5-8" title="8"><span class="co"># Check the first items</span></a>
+<a class="sourceLine" id="cb5-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(knitr)</a>
+<a class="sourceLine" id="cb5-10" title="10"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(toc))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">title</th>
@@ -216,17 +217,17 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">27.09.2019</td>
-<td align="left">27.09.2019</td>
+<td align="left">28.11.2019</td>
+<td align="left">28.11.2019</td>
 <td align="left">1980M01</td>
-<td align="left">2019M09</td>
+<td align="left">2019M11</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
 </table>
 <p>With <code><a href="../reference/search_eurostat.html">search_eurostat()</a></code> you can search the table of contents for particular patterns, e.g. all datasets related to <em>passenger transport</em>. The kable function to produces nice markdown output. Note that with the <code>type</code> argument of this function you could restrict the search to for instance datasets or tables.</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># info about passengers</span></a>
-<a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw"><a href="../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"passenger transport"</span>)))</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># info about passengers</span></a>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw"><a href="../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"passenger transport"</span>)))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">title</th>
@@ -263,40 +264,40 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">30.09.2019</td>
-<td align="left">30.09.2019</td>
+<td align="left">05.12.2019</td>
+<td align="left">07.11.2019</td>
 <td align="left">1993</td>
-<td align="left">2019Q2</td>
+<td align="left">2019Q3</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Air passenger transport by main airports in each reporting country</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">30.09.2019</td>
-<td align="left">30.09.2019</td>
+<td align="left">04.12.2019</td>
+<td align="left">04.12.2019</td>
 <td align="left">1993</td>
-<td align="left">2019Q2</td>
+<td align="left">2019Q3</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">Air passenger transport between reporting countries</td>
 <td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">30.09.2019</td>
-<td align="left">30.09.2019</td>
+<td align="left">05.12.2019</td>
+<td align="left">07.11.2019</td>
 <td align="left">1993</td>
-<td align="left">2019Q2</td>
+<td align="left">2019Q3</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">30.09.2019</td>
-<td align="left">30.09.2019</td>
+<td align="left">07.11.2019</td>
+<td align="left">07.11.2019</td>
 <td align="left">1993</td>
-<td align="left">2019Q2</td>
+<td align="left">2019Q3</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -310,23 +311,23 @@ tgs00026                Auxiliary Data</code></pre>
 <p>A user does not usually have to bother with methods, as both are used via main function <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code>. If only the table id is given, the whole table is downloaded from the bulk download facility. If also filters are defined the JSON API is used.</p>
 <p>Here an example of indicator ‘Modal split of passenger transport’. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level.</p>
 <p>Pick and print the id of the data set to download:</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># For the original data, see</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="co"># http://ec.europa.eu/eurostat/tgm/table.do?tab=table&amp;init=1&amp;plugin=1&amp;language=en&amp;pcode=tsdtr210</span></a>
-<a class="sourceLine" id="cb6-3" title="3">id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"Modal split of passenger transport"</span>, </a>
-<a class="sourceLine" id="cb6-4" title="4">                         <span class="dt">type =</span> <span class="st">"table"</span>)<span class="op">$</span>code[<span class="dv">1</span>]</a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(id)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># For the original data, see</span></a>
+<a class="sourceLine" id="cb7-2" title="2"><span class="co"># http://ec.europa.eu/eurostat/tgm/table.do?tab=table&amp;init=1&amp;plugin=1&amp;language=en&amp;pcode=tsdtr210</span></a>
+<a class="sourceLine" id="cb7-3" title="3">id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"Modal split of passenger transport"</span>, </a>
+<a class="sourceLine" id="cb7-4" title="4">                         <span class="dt">type =</span> <span class="st">"table"</span>)<span class="op">$</span>code[<span class="dv">1</span>]</a>
+<a class="sourceLine" id="cb7-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(id)</a></code></pre></div>
 <p>[1] “t2020_rk310”</p>
 <p>Get the whole corresponding table. As the table is annual data, it is more convient to use a numeric time variable than use the default date format:</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a></code></pre></div>
 <p>Investigate the structure of the downloaded data set:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dat)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dat)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    2587 obs. of  5 variables:
 ##  $ unit   : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ vehicle: Factor w/ 3 levels "BUS_TOT","CAR",..: 1 1 1 1 1 1 1 1 1 1 ...
 ##  $ geo    : Factor w/ 34 levels "AT","BE","CH",..: 1 2 3 4 5 6 7 8 9 10 ...
 ##  $ time   : num  1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...
 ##  $ values : num  11 10.6 3.7 9.1 11.3 32.4 14.9 13.5 6 24.8 ...</code></pre>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(dat))</a></code></pre></div>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(dat))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -381,19 +382,125 @@ tgs00026                Auxiliary Data</code></pre>
 </tbody>
 </table>
 <p>Or you can get only a part of the dataset by defining <code>filters</code> argument. It should be named list, where names corresponds to variable names (lower case) and values are vectors of codes corresponding desidered series (upper case). For time variable, in addition to a <code>time</code>, also a <code>sinceTimePeriod</code> and a <code>lastTimePeriod</code> can be used.</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), <span class="dt">lastTimePeriod=</span><span class="dv">1</span>), <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
-<a class="sourceLine" id="cb11-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(dat2)</a></code></pre></div>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), <span class="dt">lastTimePeriod=</span><span class="dv">1</span>), <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
+<a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(dat2)</a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">unit</th>
+<th align="left">vehicle</th>
+<th align="left">geo</th>
+<th align="right">time</th>
+<th align="right">values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">BUS_TOT</td>
+<td align="left">EU28</td>
+<td align="right">2017</td>
+<td align="right">8.8</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">BUS_TOT</td>
+<td align="left">FI</td>
+<td align="right">2017</td>
+<td align="right">10.4</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">CAR</td>
+<td align="left">EU28</td>
+<td align="right">2017</td>
+<td align="right">83.3</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">CAR</td>
+<td align="left">FI</td>
+<td align="right">2017</td>
+<td align="right">84.2</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="left">TRN</td>
+<td align="left">EU28</td>
+<td align="right">2017</td>
+<td align="right">7.9</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="left">TRN</td>
+<td align="left">FI</td>
+<td align="right">2017</td>
+<td align="right">5.4</td>
+</tr>
+</tbody>
+</table>
 <div id="replacing-codes-with-labels" class="section level2">
 <h2 class="hasAnchor">
 <a href="#replacing-codes-with-labels" class="anchor"></a>Replacing codes with labels</h2>
 <p>By default variables are returned as Eurostat codes, but to get human-readable labels instead, use a <code>type = "label"</code> argument.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">datl2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), </a>
-<a class="sourceLine" id="cb12-2" title="2">                                         <span class="dt">lastTimePeriod =</span> <span class="dv">1</span>), </a>
-<a class="sourceLine" id="cb12-3" title="3">                      <span class="dt">type =</span> <span class="st">"label"</span>, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
-<a class="sourceLine" id="cb12-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(datl2))</a></code></pre></div>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">datl2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), </a>
+<a class="sourceLine" id="cb13-2" title="2">                                         <span class="dt">lastTimePeriod =</span> <span class="dv">1</span>), </a>
+<a class="sourceLine" id="cb13-3" title="3">                      <span class="dt">type =</span> <span class="st">"label"</span>, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
+<a class="sourceLine" id="cb13-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(datl2))  </a></code></pre></div>
+<table class="table">
+<thead><tr class="header">
+<th align="left">unit</th>
+<th align="left">vehicle</th>
+<th align="left">geo</th>
+<th align="right">time</th>
+<th align="right">values</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Motor coaches, buses and trolley buses</td>
+<td align="left">European Union - 28 countries</td>
+<td align="right">2017</td>
+<td align="right">8.8</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Motor coaches, buses and trolley buses</td>
+<td align="left">Finland</td>
+<td align="right">2017</td>
+<td align="right">10.4</td>
+</tr>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Passenger cars</td>
+<td align="left">European Union - 28 countries</td>
+<td align="right">2017</td>
+<td align="right">83.3</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Passenger cars</td>
+<td align="left">Finland</td>
+<td align="right">2017</td>
+<td align="right">84.2</td>
+</tr>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Trains</td>
+<td align="left">European Union - 28 countries</td>
+<td align="right">2017</td>
+<td align="right">7.9</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Trains</td>
+<td align="left">Finland</td>
+<td align="right">2017</td>
+<td align="right">5.4</td>
+</tr>
+</tbody>
+</table>
 <p>Eurostat codes in the downloaded data set can be replaced with human-readable labels from the Eurostat dictionaries with the <code><a href="../reference/label_eurostat.html">label_eurostat()</a></code> function.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">datl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(dat)</a>
-<a class="sourceLine" id="cb13-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(datl))</a></code></pre></div>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">datl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(dat)</a>
+<a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(datl))  </a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -448,9 +555,16 @@ tgs00026                Auxiliary Data</code></pre>
 </tbody>
 </table>
 <p>The <code><a href="../reference/label_eurostat.html">label_eurostat()</a></code> allows conversion of individual variable vectors or variable names as well.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat_vars</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(datl))</a></code></pre></div>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat_vars</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(datl))</a></code></pre></div>
+<pre><code>## [1] "Unit of measure"                                                                     
+## [2] "Vehicles"                                                                            
+## [3] "Geopolitical entity (reporting)"                                                     
+## [4] "Period of time (a=annual, q=quarterly, m=monthly, d=daily, c=cumulated from January)"</code></pre>
 <p>Vehicle information has 3 levels. You can check them now with:</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(datl<span class="op">$</span>vehicle)</a></code></pre></div>
+<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/levels.html">levels</a></span>(datl<span class="op">$</span>vehicle)</a></code></pre></div>
+<pre><code>## [1] "Motor coaches, buses and trolley buses"
+## [2] "Passenger cars"                        
+## [3] "Trains"</code></pre>
 </div>
 </div>
 <div id="selecting-and-modifying-data" class="section level1">
@@ -460,8 +574,8 @@ tgs00026                Auxiliary Data</code></pre>
 <h2 class="hasAnchor">
 <a href="#efta-eurozone-eu-and-eu-candidate-countries" class="anchor"></a>EFTA, Eurozone, EU and EU candidate countries</h2>
 <p>To facilitate smooth visualization of standard European geographic areas, the package provides ready-made lists of the country codes used in the eurostat database for EFTA (efta_countries), Euro area (ea_countries), EU (eu_countries) and EU candidate countries (eu_candidate_countries). These can be used to select specific groups of countries for closer investigation. For conversions with other standard country coding systems, see the <a href="https://CRAN.R-project.org/package=countrycode">countrycode</a> R package. To retrieve the country code list for EFTA, for instance, use:</p>
-<div class="sourceCode" id="cb16"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb16-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(efta_countries)</a>
-<a class="sourceLine" id="cb16-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(efta_countries)</a></code></pre></div>
+<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/data.html">data</a></span>(efta_countries)</a>
+<a class="sourceLine" id="cb19-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(efta_countries)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">code</th>
@@ -495,8 +609,8 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="eu-data-from-2012-in-all-vehicles" class="section level2">
 <h2 class="hasAnchor">
 <a href="#eu-data-from-2012-in-all-vehicles" class="anchor"></a>EU data from 2012 in all vehicles:</h2>
-<div class="sourceCode" id="cb17"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb17-1" title="1">dat_eu12 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(datl, geo <span class="op">==</span><span class="st"> "European Union (current composition)"</span> <span class="op">&amp;</span><span class="st"> </span>time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span>)</a>
-<a class="sourceLine" id="cb17-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(dat_eu12, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1">dat_eu12 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(datl, geo <span class="op">==</span><span class="st"> "European Union - 28 countries"</span> <span class="op">&amp;</span><span class="st"> </span>time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span>)</a>
+<a class="sourceLine" id="cb20-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(dat_eu12, <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -505,17 +619,39 @@ tgs00026                Auxiliary Data</code></pre>
 <th align="right">time</th>
 <th align="right">values</th>
 </tr></thead>
-<tbody></tbody>
+<tbody>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Motor coaches, buses and trolley buses</td>
+<td align="left">European Union - 28 countries</td>
+<td align="right">2012</td>
+<td align="right">9.5</td>
+</tr>
+<tr class="even">
+<td align="left">Percentage</td>
+<td align="left">Passenger cars</td>
+<td align="left">European Union - 28 countries</td>
+<td align="right">2012</td>
+<td align="right">82.8</td>
+</tr>
+<tr class="odd">
+<td align="left">Percentage</td>
+<td align="left">Trains</td>
+<td align="left">European Union - 28 countries</td>
+<td align="right">2012</td>
+<td align="right">7.7</td>
+</tr>
+</tbody>
 </table>
 </div>
 <div id="eu-data-from-2000---2012-with-vehicle-types-as-variables" class="section level2">
 <h2 class="hasAnchor">
 <a href="#eu-data-from-2000---2012-with-vehicle-types-as-variables" class="anchor"></a>EU data from 2000 - 2012 with vehicle types as variables:</h2>
 <p>Reshaping the data is best done with <code><a href="https://tidyr.tidyverse.org/reference/spread.html">spread()</a></code> in <code>tidyr</code>.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"tidyr"</span>)</a>
-<a class="sourceLine" id="cb18-2" title="2">dat_eu_<span class="dv">0012</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(dat, geo <span class="op">==</span><span class="st"> "EU28"</span> <span class="op">&amp;</span><span class="st"> </span>time <span class="op">%in%</span><span class="st"> </span><span class="dv">2000</span><span class="op">:</span><span class="dv">2012</span>)</a>
-<a class="sourceLine" id="cb18-3" title="3">dat_eu_<span class="dv">0012</span>_wide &lt;-<span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(dat_eu_<span class="dv">0012</span>, vehicle, values)</a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(dat_eu_<span class="dv">0012</span>_wide, <span class="dt">select =</span> <span class="op">-</span>geo), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(<span class="st">"tidyr"</span>)</a>
+<a class="sourceLine" id="cb21-2" title="2">dat_eu_<span class="dv">0012</span> &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(dat, geo <span class="op">==</span><span class="st"> "EU28"</span> <span class="op">&amp;</span><span class="st"> </span>time <span class="op">%in%</span><span class="st"> </span><span class="dv">2000</span><span class="op">:</span><span class="dv">2012</span>)</a>
+<a class="sourceLine" id="cb21-3" title="3">dat_eu_<span class="dv">0012</span>_wide &lt;-<span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(dat_eu_<span class="dv">0012</span>, vehicle, values)</a>
+<a class="sourceLine" id="cb21-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(dat_eu_<span class="dv">0012</span>_wide, <span class="dt">select =</span> <span class="op">-</span>geo), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -622,12 +758,11 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="train-passengers-for-selected-eu-countries-in-2000---2012" class="section level2">
 <h2 class="hasAnchor">
 <a href="#train-passengers-for-selected-eu-countries-in-2000---2012" class="anchor"></a>Train passengers for selected EU countries in 2000 - 2012</h2>
-<div class="sourceCode" id="cb19"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb19-1" title="1">dat_trains &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(datl, geo <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Austria"</span>, <span class="st">"Belgium"</span>, <span class="st">"Finland"</span>, <span class="st">"Sweden"</span>)</a>
-<a class="sourceLine" id="cb19-2" title="2">                     <span class="op">&amp;</span><span class="st"> </span>time <span class="op">%in%</span><span class="st"> </span><span class="dv">2000</span><span class="op">:</span><span class="dv">2012</span> </a>
-<a class="sourceLine" id="cb19-3" title="3">                     <span class="op">&amp;</span><span class="st"> </span>vehicle <span class="op">==</span><span class="st"> "Trains"</span>)</a>
-<a class="sourceLine" id="cb19-4" title="4"></a>
-<a class="sourceLine" id="cb19-5" title="5">dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(dat_trains, geo, values) </a>
-<a class="sourceLine" id="cb19-6" title="6"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(dat_trains_wide, <span class="dt">select =</span> <span class="op">-</span>vehicle), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1">dat_trains &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(datl, geo <span class="op">%in%</span><span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Austria"</span>, <span class="st">"Belgium"</span>, <span class="st">"Finland"</span>, <span class="st">"Sweden"</span>)</a>
+<a class="sourceLine" id="cb22-2" title="2">                   <span class="op">&amp;</span><span class="st"> </span>time <span class="op">%in%</span><span class="st"> </span><span class="dv">2000</span><span class="op">:</span><span class="dv">2012</span> </a>
+<a class="sourceLine" id="cb22-3" title="3">                   <span class="op">&amp;</span><span class="st"> </span>vehicle <span class="op">==</span><span class="st"> "Trains"</span>) </a>
+<a class="sourceLine" id="cb22-4" title="4">dat_trains_wide &lt;-<span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(dat_trains, geo, values) </a>
+<a class="sourceLine" id="cb22-5" title="5"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/subset.html">subset</a></span>(dat_trains_wide, <span class="dt">select =</span> <span class="op">-</span>vehicle), <span class="dt">row.names =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">unit</th>
@@ -745,52 +880,6 @@ tgs00026                Auxiliary Data</code></pre>
 </tbody>
 </table>
 </div>
-</div>
-<div id="visualization" class="section level1">
-<h1 class="hasAnchor">
-<a href="#visualization" class="anchor"></a>Visualization</h1>
-<p>Visualizing train passenger data with <code>ggplot2</code>:</p>
-<div class="sourceCode" id="cb20"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb20-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb20-2" title="2">p &lt;-<span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(dat_trains, <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">x =</span> time, <span class="dt">y =</span> values, <span class="dt">colour =</span> geo)) </a>
-<a class="sourceLine" id="cb20-3" title="3">p &lt;-<span class="st"> </span>p <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/geom_path.html">geom_line</a></span>()</a>
-<a class="sourceLine" id="cb20-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(p)</a></code></pre></div>
-<p><img src="fig/trains_plot-1.png" width="576"></p>
-<p><a name="triangle"></a><strong>Triangle plot</strong></p>
-<p>Triangle plot is handy for visualizing data sets with three variables.</p>
-<div class="sourceCode" id="cb21"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb21-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyr)</a>
-<a class="sourceLine" id="cb21-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(plotrix)</a>
-<a class="sourceLine" id="cb21-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
-<a class="sourceLine" id="cb21-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb21-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(tidyr)</a>
-<a class="sourceLine" id="cb21-6" title="6"></a>
-<a class="sourceLine" id="cb21-7" title="7"><span class="co"># Some cleaning of the data is required</span></a>
-<a class="sourceLine" id="cb21-8" title="8"> energy3 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"nrg_114a"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-9" title="9"><span class="st"> </span><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(dat) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-10" title="10"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> "2013-01-01"</span>) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-11" title="11"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/grep.html">gsub</a></span>(geo, <span class="dt">pattern=</span><span class="st">" </span><span class="ch">\\</span><span class="st">(.*"</span>, <span class="dt">replacement=</span><span class="st">""</span>)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-12" title="12"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span>(product, geo, values) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-13" title="13"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(product, geo) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-14" title="14"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/summarise.html">summarise</a></span>(<span class="dt">svalue =</span> <span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(values)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-15" title="15"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span>(geo) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-16" title="16"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">tvalue =</span> <span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(svalue),</a>
-<a class="sourceLine" id="cb21-17" title="17"> <span class="dt">svalue =</span> svalue<span class="op">/</span><span class="kw"><a href="https://rdrr.io/r/base/sum.html">sum</a></span>(svalue)) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb21-18" title="18"><span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(tvalue <span class="op">&gt;</span><span class="st"> </span><span class="dv">1000</span>) <span class="op">%&gt;%</span><span class="st"> </span><span class="co"># only large countries</span></a>
-<a class="sourceLine" id="cb21-19" title="19"><span class="st"> </span><span class="kw"><a href="https://tidyr.tidyverse.org/reference/spread.html">spread</a></span>(product, svalue)</a>
-<a class="sourceLine" id="cb21-20" title="20"> </a>
-<a class="sourceLine" id="cb21-21" title="21"><span class="co"># Triangle plot</span></a>
-<a class="sourceLine" id="cb21-22" title="22"> <span class="kw"><a href="https://rdrr.io/r/graphics/par.html">par</a></span>(<span class="dt">cex=</span><span class="fl">0.75</span>, <span class="dt">mar=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>))</a>
-<a class="sourceLine" id="cb21-23" title="23"> positions &lt;-<span class="st"> </span>plotrix<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/plotrix/man/triax.plot.html">triax.plot</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/matrix.html">as.matrix</a></span>(energy3[, <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">3</span>,<span class="dv">5</span>,<span class="dv">4</span>)]),</a>
-<a class="sourceLine" id="cb21-24" title="24">                     <span class="dt">show.grid =</span> <span class="ot">TRUE</span>,</a>
-<a class="sourceLine" id="cb21-25" title="25">                     <span class="dt">label.points=</span> <span class="ot">FALSE</span>, <span class="dt">point.labels =</span> energy3<span class="op">$</span>geo,</a>
-<a class="sourceLine" id="cb21-26" title="26">                     <span class="dt">col.axis=</span><span class="st">"gray50"</span>, <span class="dt">col.grid=</span><span class="st">"gray90"</span>,</a>
-<a class="sourceLine" id="cb21-27" title="27">                     <span class="dt">pch =</span> <span class="dv">19</span>, <span class="dt">cex.axis=</span><span class="fl">0.8</span>, <span class="dt">cex.ticks=</span><span class="fl">0.7</span>, <span class="dt">col=</span><span class="st">"grey50"</span>)</a>
-<a class="sourceLine" id="cb21-28" title="28"></a>
-<a class="sourceLine" id="cb21-29" title="29"> <span class="co"># Larger labels</span></a>
-<a class="sourceLine" id="cb21-30" title="30"> ind &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/which.html">which</a></span>(energy3<span class="op">$</span>geo <span class="op">%in%</span><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"Norway"</span>, <span class="st">"Iceland"</span>,<span class="st">"Denmark"</span>,<span class="st">"Estonia"</span>, <span class="st">"Turkey"</span>, <span class="st">"Italy"</span>, <span class="st">"Finland"</span>))</a>
-<a class="sourceLine" id="cb21-31" title="31"> df &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span>(positions<span class="op">$</span>xypos, <span class="dt">geo =</span> energy3<span class="op">$</span>geo)</a>
-<a class="sourceLine" id="cb21-32" title="32"> <span class="kw"><a href="https://rdrr.io/r/graphics/points.html">points</a></span>(df<span class="op">$</span>x[ind], df<span class="op">$</span>y[ind], <span class="dt">cex=</span><span class="dv">2</span>, <span class="dt">col=</span><span class="st">"red"</span>, <span class="dt">pch=</span><span class="dv">19</span>)</a>
-<a class="sourceLine" id="cb21-33" title="33"> <span class="kw"><a href="https://rdrr.io/r/graphics/text.html">text</a></span>(df<span class="op">$</span>x[ind], df<span class="op">$</span>y[ind], df<span class="op">$</span>geo[ind], <span class="dt">adj =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="fl">0.5</span>,<span class="op">-</span><span class="dv">1</span>), <span class="dt">cex=</span><span class="fl">1.5</span>)</a></code></pre></div>
-<p><img src="fig/plotGallery-1.png" width="576"></p>
 <div id="sdmx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sdmx" class="anchor"></a>SDMX</h2>
@@ -816,14 +905,14 @@ tgs00026                Auxiliary Data</code></pre>
 <a href="#citing-the-eurostat-r-package" class="anchor"></a>Citing the eurostat R package</h3>
 <p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
-<div class="sourceCode" id="cb22"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb22-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
 <pre><code>## 
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.3.54 Package
-##   URL: http://ropengov.github.io/eurostat Manuscript URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.4.10002 Package URL:
+##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
 ## A BibTeX entry for LaTeX users is
@@ -837,7 +926,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.3.54},
+##     note = {Version 3.4.10002},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -850,7 +939,7 @@ tgs00026                Auxiliary Data</code></pre>
 <h1 class="hasAnchor">
 <a href="#version-info" class="anchor"></a>Version info</h1>
 <p>This tutorial was created with</p>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
 <pre><code>## R version 3.5.2 (2018-12-20)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 19.04
@@ -871,32 +960,25 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] dplyr_0.8.3     plotrix_3.7-6   ggplot2_3.2.1   tidyr_1.0.0    
-## [5] rvest_0.3.4     xml2_1.2.2      eurostat_3.3.54 knitr_1.25     
+## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.4.10002
+## [5] knitr_1.26        
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.2         lubridate_1.7.4    countrycode_1.1.0 
-##  [4] lattice_0.20-38    class_7.3-15       assertthat_0.2.1  
-##  [7] zeallot_0.1.0      rprojroot_1.3-2    digest_0.6.21     
-## [10] R6_2.4.0           plyr_1.8.4         backports_1.1.5   
-## [13] evaluate_0.14      e1071_1.7-2        httr_1.4.1        
-## [16] highr_0.8          pillar_1.4.2       rlang_0.4.0       
-## [19] lazyeval_0.2.2     rmarkdown_1.14     pkgdown_1.3.0.9100
-## [22] desc_1.2.0         labeling_0.3       RefManageR_1.2.12 
-## [25] readr_1.3.1        stringr_1.4.0      munsell_0.5.0     
-## [28] broom_0.5.2        compiler_3.5.2     xfun_0.9          
-## [31] pkgconfig_2.0.3    htmltools_0.3.6    tidyselect_0.2.5  
-## [34] tibble_2.1.3       roxygen2_6.1.1     crayon_1.3.4      
-## [37] withr_2.1.2        sf_0.8-0           MASS_7.3-51.4     
-## [40] commonmark_1.7     grid_3.5.2         nlme_3.1-141      
-## [43] jsonlite_1.6       gtable_0.3.0       lifecycle_0.1.0   
-## [46] DBI_1.0.0          magrittr_1.5       units_0.6-4       
-## [49] scales_1.0.0       bibtex_0.4.2       KernSmooth_2.23-15
-## [52] stringi_1.4.3      fs_1.3.1           sp_1.3-1          
-## [55] ellipsis_0.3.0     vctrs_0.2.0        generics_0.0.2    
-## [58] RColorBrewer_1.1-2 tools_3.5.2        glue_1.3.1        
-## [61] purrr_0.3.2        hms_0.5.1          yaml_2.2.0.9999   
-## [64] colorspace_1.4-1   classInt_0.4-1     memoise_1.1.0</code></pre>
+##  [1] tidyselect_0.2.5   xfun_0.11          purrr_0.3.3        sf_0.8-0          
+##  [5] lattice_0.20-38    generics_0.0.2     vctrs_0.2.1        htmltools_0.4.0   
+##  [9] yaml_2.2.0.9999    rlang_0.4.2        e1071_1.7-3        pkgdown_1.4.1     
+## [13] pillar_1.4.2       glue_1.3.1         DBI_1.1.0          sp_1.3-2          
+## [17] RColorBrewer_1.1-2 lifecycle_0.1.0    plyr_1.8.5         stringr_1.4.0     
+## [21] memoise_1.1.0      evaluate_0.14      curl_4.3           class_7.3-15      
+## [25] highr_0.8          broom_0.5.3        Rcpp_1.0.3         KernSmooth_2.23-15
+## [29] readr_1.3.1        backports_1.1.5    classInt_0.4-2     desc_1.2.0        
+## [33] jsonlite_1.6       countrycode_1.1.0  fs_1.3.1           hms_0.5.2         
+## [37] digest_0.6.23      stringi_1.4.3      dplyr_0.8.3        rprojroot_1.3-2   
+## [41] grid_3.5.2         bibtex_0.4.2       tools_3.5.2        magrittr_1.5      
+## [45] tibble_2.1.3       RefManageR_1.2.12  crayon_1.3.4       pkgconfig_2.0.3   
+## [49] zeallot_0.1.0      ellipsis_0.3.0     MASS_7.3-51.4      lubridate_1.7.4   
+## [53] assertthat_0.2.1   rmarkdown_2.0      httr_1.4.1         R6_2.4.1          
+## [57] units_0.6-5        nlme_3.1-143       compiler_3.5.2</code></pre>
 </div>
   </div>
 
@@ -920,11 +1002,7 @@ tgs00026                Auxiliary Data</code></pre>
       <li><a href="#eu-data-from-2012-in-all-vehicles">EU data from 2012 in all vehicles:</a></li>
       <li><a href="#eu-data-from-2000---2012-with-vehicle-types-as-variables">EU data from 2000 - 2012 with vehicle types as variables:</a></li>
       <li><a href="#train-passengers-for-selected-eu-countries-in-2000---2012">Train passengers for selected EU countries in 2000 - 2012</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#visualization">Visualization</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#sdmx">SDMX</a></li>
+      <li><a href="#sdmx">SDMX</a></li>
       </ul>
 </li>
       <li><a href="#further-examples">Further examples</a></li>
@@ -943,7 +1021,7 @@ tgs00026                Auxiliary Data</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.3.0.9100.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
 </div>
 
       </footer>

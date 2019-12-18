@@ -13,13 +13,13 @@
 #' @return a bibentry, Bibtex or Biblatex object.
 #' @examples
 #'  \dontrun{
-#'    my_biblography <- get_bibentry (
+#'    my_bibliography <- get_bibentry (
 #'         code = c("tran_hv_frtra", "t2020_rk310","tec00001") ,
 #'         keywords = list ( c("railways", "freight", "transport"),
 #'                           c("railways", "passengers", "modal split") ),
 #'         format = "Biblatex" )
 #'         
-#'   readLines ( my_bibliograhy, "eurostat_data.bib")
+#'    # readLines ( my_bibliograhy, "eurostat_data.bib")
 #'  }
 
 
