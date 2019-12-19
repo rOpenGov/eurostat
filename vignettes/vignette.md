@@ -20,5 +20,5 @@ Development version [(Github)](https://github.com/rOpenGov/eurostat):
     install_github("ropengov/eurostat")
 
 For examples on how to use the package, see the [online
-tutorial](ropengov.github.io/eurostat) (Articles section of the
+tutorial](http://ropengov.github.io/eurostat/) (Articles section of the
 homepage).

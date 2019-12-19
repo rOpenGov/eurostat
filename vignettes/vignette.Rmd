@@ -45,5 +45,5 @@ install_github("ropengov/eurostat")
 library(eurostat)
 ```
 
-For examples on how to use the package, see the [online tutorial](ropengov.github.io/eurostat) (Articles section of the homepage).
+For examples on how to use the package, see the [online tutorial](http://ropengov.github.io/eurostat/) (Articles section of the homepage).
 
