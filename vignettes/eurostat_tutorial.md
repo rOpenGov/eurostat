@@ -105,25 +105,14 @@ selected dataset.
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
-<<<<<<< HEAD
 <td style="text-align: left;">Consumers - monthly data</td>
 <td style="text-align: left;">ei_bsco_m</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">29.11.2018</td>
-<td style="text-align: left;">29.11.2018</td>
+<td style="text-align: left;">28.03.2019</td>
+<td style="text-align: left;">28.03.2019</td>
 <td style="text-align: left;">1980M01</td>
-<td style="text-align: left;">2018M11</td>
+<td style="text-align: left;">2019M03</td>
 <td style="text-align: left;">NA</td>
-=======
-<td align="left">Consumers - monthly data</td>
-<td align="left">ei_bsco_m</td>
-<td align="left">dataset</td>
-<td align="left">28.03.2019</td>
-<td align="left">28.03.2019</td>
-<td align="left">1980M01</td>
-<td align="left">2019M03</td>
-<td align="left">NA</td>
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
 </tr>
 </tbody>
 </table>
@@ -152,12 +141,11 @@ instance datasets or tables.
 </thead>
 <tbody>
 <tr class="odd">
-<<<<<<< HEAD
 <td style="text-align: left;">Volume of passenger transport relative to GDP</td>
 <td style="text-align: left;">tran_hv_pstra</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">30.07.2018</td>
-<td style="text-align: left;">30.07.2018</td>
+<td style="text-align: left;">26.03.2019</td>
+<td style="text-align: left;">26.03.2019</td>
 <td style="text-align: left;">2000</td>
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">NA</td>
@@ -166,112 +154,51 @@ instance datasets or tables.
 <td style="text-align: left;">Modal split of passenger transport</td>
 <td style="text-align: left;">tran_hv_psmod</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">27.08.2018</td>
-<td style="text-align: left;">27.08.2018</td>
+<td style="text-align: left;">21.03.2019</td>
+<td style="text-align: left;">21.03.2019</td>
 <td style="text-align: left;">1990</td>
 <td style="text-align: left;">2016</td>
 <td style="text-align: left;">NA</td>
-=======
-<td align="left">Volume of passenger transport relative to GDP</td>
-<td align="left">tran_hv_pstra</td>
-<td align="left">dataset</td>
-<td align="left">26.03.2019</td>
-<td align="left">26.03.2019</td>
-<td align="left">2000</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Modal split of passenger transport</td>
-<td align="left">tran_hv_psmod</td>
-<td align="left">dataset</td>
-<td align="left">21.03.2019</td>
-<td align="left">21.03.2019</td>
-<td align="left">1990</td>
-<td align="left">2016</td>
-<td align="left">NA</td>
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
 </tr>
 <tr class="odd">
-<<<<<<< HEAD
 <td style="text-align: left;">Air passenger transport by reporting country</td>
 <td style="text-align: left;">avia_paoc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">06.12.2018</td>
-<td style="text-align: left;">07.11.2018</td>
+<td style="text-align: left;">27.03.2019</td>
+<td style="text-align: left;">27.03.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">2018Q4</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
 <td style="text-align: left;">avia_paoa</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">06.12.2018</td>
-<td style="text-align: left;">03.10.2018</td>
+<td style="text-align: left;">05.04.2019</td>
+<td style="text-align: left;">05.04.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">2018Q4</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Air passenger transport between reporting countries</td>
 <td style="text-align: left;">avia_paocc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">22.10.2018</td>
-<td style="text-align: left;">07.11.2018</td>
+<td style="text-align: left;">27.03.2019</td>
+<td style="text-align: left;">27.03.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">2018Q4</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td style="text-align: left;">avia_paoac</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">22.10.2018</td>
-<td style="text-align: left;">03.10.2018</td>
+<td style="text-align: left;">27.03.2019</td>
+<td style="text-align: left;">27.03.2019</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2018Q2</td>
+<td style="text-align: left;">2018Q4</td>
 <td style="text-align: left;">NA</td>
-=======
-<td align="left">Air passenger transport by reporting country</td>
-<td align="left">avia_paoc</td>
-<td align="left">dataset</td>
-<td align="left">27.03.2019</td>
-<td align="left">27.03.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Air passenger transport by main airports in each reporting country</td>
-<td align="left">avia_paoa</td>
-<td align="left">dataset</td>
-<td align="left">05.04.2019</td>
-<td align="left">05.04.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">Air passenger transport between reporting countries</td>
-<td align="left">avia_paocc</td>
-<td align="left">dataset</td>
-<td align="left">27.03.2019</td>
-<td align="left">27.03.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
-<td align="left">avia_paoac</td>
-<td align="left">dataset</td>
-<td align="left">27.03.2019</td>
-<td align="left">27.03.2019</td>
-<td align="left">1993</td>
-<td align="left">2018Q4</td>
-<td align="left">NA</td>
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
 </tr>
 </tbody>
 </table>
@@ -502,53 +429,31 @@ To retrieve the country code list for EFTA, for instance, use:
 <table>
 <thead>
 <tr class="header">
-<<<<<<< HEAD
 <th style="text-align: left;">code</th>
 <th style="text-align: left;">name</th>
-=======
-<th align="left">code</th>
-<th align="left">name</th>
-<th align="left">label</th>
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+<th style="text-align: left;">label</th>
 </tr>
 </thead>
 <tbody>
 <tr class="odd">
-<<<<<<< HEAD
 <td style="text-align: left;">IS</td>
+<td style="text-align: left;">Iceland</td>
 <td style="text-align: left;">Iceland</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">LI</td>
 <td style="text-align: left;">Liechtenstein</td>
+<td style="text-align: left;">Liechtenstein</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">NO</td>
+<td style="text-align: left;">Norway</td>
 <td style="text-align: left;">Norway</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">CH</td>
 <td style="text-align: left;">Switzerland</td>
-=======
-<td align="left">IS</td>
-<td align="left">Iceland</td>
-<td align="left">Iceland</td>
-</tr>
-<tr class="even">
-<td align="left">LI</td>
-<td align="left">Liechtenstein</td>
-<td align="left">Liechtenstein</td>
-</tr>
-<tr class="odd">
-<td align="left">NO</td>
-<td align="left">Norway</td>
-<td align="left">Norway</td>
-</tr>
-<tr class="even">
-<td align="left">CH</td>
-<td align="left">Switzerland</td>
-<td align="left">Switzerland</td>
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+<td style="text-align: left;">Switzerland</td>
 </tr>
 </tbody>
 </table>
@@ -559,44 +464,7 @@ EU data from 2012 in all vehicles:
     dat_eu12 <- subset(datl, geo == "European Union (current composition)" & time == 2012)
     kable(dat_eu12, row.names = FALSE)
 
-<<<<<<< HEAD
-<table>
-<thead>
-<tr class="header">
-<th style="text-align: left;">unit</th>
-<th style="text-align: left;">vehicle</th>
-<th style="text-align: left;">geo</th>
-<th style="text-align: right;">time</th>
-<th style="text-align: right;">values</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td style="text-align: left;">Percentage</td>
-<td style="text-align: left;">Motor coaches, buses and trolley buses</td>
-<td style="text-align: left;">European Union (current composition)</td>
-<td style="text-align: right;">2012</td>
-<td style="text-align: right;">9.5</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">Percentage</td>
-<td style="text-align: left;">Passenger cars</td>
-<td style="text-align: left;">European Union (current composition)</td>
-<td style="text-align: right;">2012</td>
-<td style="text-align: right;">82.9</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">Percentage</td>
-<td style="text-align: left;">Trains</td>
-<td style="text-align: left;">European Union (current composition)</td>
-<td style="text-align: right;">2012</td>
-<td style="text-align: right;">7.7</td>
-</tr>
-</tbody>
-</table>
-=======
-unit vehicle geo time values ----- -------- ---- ----- -------
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+unit vehicle geo time values —– ——– —- —– ——-
 
 EU data from 2000 - 2012 with vehicle types as variables:
 ---------------------------------------------------------
@@ -620,103 +488,53 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 </thead>
 <tbody>
 <tr class="odd">
-<<<<<<< HEAD
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2000</td>
 <td style="text-align: right;">10.4</td>
-<td style="text-align: right;">82.4</td>
-<td style="text-align: right;">7.2</td>
+<td style="text-align: right;">82.5</td>
+<td style="text-align: right;">7.1</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2001</td>
 <td style="text-align: right;">10.2</td>
-<td style="text-align: right;">82.7</td>
-<td style="text-align: right;">7.1</td>
+<td style="text-align: right;">82.8</td>
+<td style="text-align: right;">7.0</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2002</td>
-<td style="text-align: right;">9.9</td>
-<td style="text-align: right;">83.3</td>
-<td style="text-align: right;">6.8</td>
-</tr>
-<tr class="even">
-<td style="text-align: left;">PC</td>
-<td style="text-align: right;">2003</td>
-<td style="text-align: right;">9.9</td>
-<td style="text-align: right;">83.5</td>
-<td style="text-align: right;">6.7</td>
-</tr>
-<tr class="odd">
-<td style="text-align: left;">PC</td>
-<td style="text-align: right;">2004</td>
 <td style="text-align: right;">9.8</td>
 <td style="text-align: right;">83.4</td>
 <td style="text-align: right;">6.8</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">PC</td>
+<td style="text-align: right;">2003</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">83.6</td>
+<td style="text-align: right;">6.6</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">PC</td>
+<td style="text-align: right;">2004</td>
+<td style="text-align: right;">9.7</td>
+<td style="text-align: right;">83.5</td>
+<td style="text-align: right;">6.7</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">PC</td>
 <td style="text-align: right;">2005</td>
 <td style="text-align: right;">9.8</td>
-<td style="text-align: right;">83.3</td>
+<td style="text-align: right;">83.4</td>
 <td style="text-align: right;">6.9</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2006</td>
-<td style="text-align: right;">9.7</td>
-<td style="text-align: right;">83.2</td>
-<td style="text-align: right;">7.1</td>
-=======
-<td align="left">PC</td>
-<td align="right">2000</td>
-<td align="right">10.4</td>
-<td align="right">82.5</td>
-<td align="right">7.1</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2001</td>
-<td align="right">10.2</td>
-<td align="right">82.8</td>
-<td align="right">7.0</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2002</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.8</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2003</td>
-<td align="right">9.8</td>
-<td align="right">83.6</td>
-<td align="right">6.6</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2004</td>
-<td align="right">9.7</td>
-<td align="right">83.5</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2005</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.9</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2006</td>
-<td align="right">9.6</td>
-<td align="right">83.4</td>
-<td align="right">7.0</td>
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+<td style="text-align: right;">9.6</td>
+<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">7.0</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">PC</td>
@@ -726,47 +544,25 @@ Reshaping the data is best done with `spread()` in `tidyr`.
 <td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
-<<<<<<< HEAD
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2008</td>
-<td style="text-align: right;">9.9</td>
-<td style="text-align: right;">82.8</td>
+<td style="text-align: right;">9.8</td>
+<td style="text-align: right;">82.9</td>
 <td style="text-align: right;">7.4</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2009</td>
-<td style="text-align: right;">9.3</td>
-<td style="text-align: right;">83.6</td>
+<td style="text-align: right;">9.2</td>
+<td style="text-align: right;">83.7</td>
 <td style="text-align: right;">7.1</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">PC</td>
 <td style="text-align: right;">2010</td>
 <td style="text-align: right;">9.4</td>
-<td style="text-align: right;">83.4</td>
+<td style="text-align: right;">83.5</td>
 <td style="text-align: right;">7.2</td>
-=======
-<td align="left">PC</td>
-<td align="right">2008</td>
-<td align="right">9.8</td>
-<td align="right">82.9</td>
-<td align="right">7.4</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2009</td>
-<td align="right">9.2</td>
-<td align="right">83.7</td>
-<td align="right">7.1</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2010</td>
-<td align="right">9.4</td>
-<td align="right">83.5</td>
-<td align="right">7.2</td>
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
 </tr>
 <tr class="even">
 <td style="text-align: left;">PC</td>
@@ -920,10 +716,6 @@ Visualization
 Visualizing train passenger data with `ggplot2`:
 
     library(ggplot2)
-
-    ## Want to understand how all the pieces fit together? See the R for
-    ## Data Science book: http://r4ds.had.co.nz/
-
     p <- ggplot(dat_trains, aes(x = time, y = values, colour = geo)) 
     p <- p + geom_line()
     print(p)
@@ -1001,6 +793,10 @@ The mapping examples below use
     ## 
     ##     lag
 
+    ## The following object is masked from 'package:testthat':
+    ## 
+    ##     matches
+
     ## The following objects are masked from 'package:stats':
     ## 
     ##     filter, lag
@@ -1025,15 +821,7 @@ The mapping examples below use
       # categorise
       dplyr::mutate(income = cut_to_classes(values, n = 5))
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ## Table tgs00026 cached at /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
-=======
-    ## Table tgs00026 cached at /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-=======
-    ## Table tgs00026 cached at /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+    ## Table tgs00026 cached at /tmp/RtmpUBcax7/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "sf",
@@ -1213,21 +1001,9 @@ Interactive maps can be generated as well
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ## Reading cache file /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpUBcax7/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
-=======
-    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-=======
-    ## Reading cache file /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpUBcax7/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = 2, year = 2013)
@@ -1261,15 +1037,7 @@ Interactive maps can be generated as well
 
     ## No encoding supplied: defaulting to UTF-8.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpxiQuGR/eurostat/spdf1022013.RData
-=======
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpBqyCdg/eurostat/spdf1022013.RData
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-=======
-    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpP01WbW/eurostat/spdf1022013.RData
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+    ## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpUBcax7/eurostat/spdf1022013.RData
 
     ## 
     ## # --------------------------
@@ -1314,21 +1082,9 @@ data as `data.frame` with `output_class` argument set as `df`.
       # classifying the values the variable
       dplyr::mutate(cat = cut_to_classes(values))
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ## Reading cache file /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
+    ## Reading cache file /tmp/RtmpUBcax7/eurostat/tgs00026_raw_code_FF.rds
 
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpxiQuGR/eurostat/tgs00026_raw_code_FF.rds
-=======
-    ## Reading cache file /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpBqyCdg/eurostat/tgs00026_raw_code_FF.rds
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-=======
-    ## Reading cache file /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
-
-    ## Table  tgs00026  read from cache file:  /tmp/RtmpP01WbW/eurostat/tgs00026_raw_code_FF.rds
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+    ## Table  tgs00026  read from cache file:  /tmp/RtmpUBcax7/eurostat/tgs00026_raw_code_FF.rds
 
     # Download geospatial data from GISCO
     geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
@@ -1502,15 +1258,7 @@ BSD-2-clause (modified FreeBSD) license:
     ## 
     ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
     ##   Retrieval and analysis of Eurostat open data with the eurostat
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.31 Package
-=======
-    ##   package. R Journal 9(1):385-392, 2017. Version 3.3.32 Package
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-=======
     ##   package. R Journal 9(1):385-392, 2017. Version 3.3.4 Package
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
     ##   URL: http://ropengov.github.io/eurostat Manuscript URL:
     ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
     ## 
@@ -1525,15 +1273,7 @@ BSD-2-clause (modified FreeBSD) license:
     ##     pages = {385-392},
     ##     year = {2017},
     ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-<<<<<<< HEAD
-<<<<<<< HEAD
-    ##     note = {Version 3.3.31},
-=======
-    ##     note = {Version 3.3.32},
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-=======
     ##     note = {Version 3.3.4},
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
     ##   }
 
 ### Related work
@@ -1569,11 +1309,7 @@ This tutorial was created with
 
     ## R version 3.5.1 (2018-07-02)
     ## Platform: x86_64-pc-linux-gnu (64-bit)
-<<<<<<< HEAD
     ## Running under: Ubuntu 18.10
-=======
-    ## Running under: Ubuntu 18.04.2 LTS
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
     ## 
     ## Matrix products: default
     ## BLAS: /usr/lib/x86_64-linux-gnu/openblas/libblas.so.3
@@ -1592,86 +1328,42 @@ This tutorial was created with
     ## 
     ## other attached packages:
     ##  [1] rsdmx_0.5-13       sp_1.3-1           RColorBrewer_1.1-2
-<<<<<<< HEAD
     ##  [4] tmap_2.1-1         sf_0.7-2           dplyr_0.7.8       
-    ##  [7] plotrix_3.7-4      ggplot2_3.1.0      tidyr_0.8.2       
-    ## [10] bindrcpp_0.2.2     rvest_0.3.2        xml2_1.2.0        
-    ## [13] rmarkdown_1.10     pkgdown_1.1.0.9000 knitr_1.20        
-<<<<<<< HEAD
-    ## [16] eurostat_3.3.31    testthat_2.0.1     usethis_1.4.0     
-=======
-    ## [16] eurostat_3.3.32    testthat_2.0.1     usethis_1.4.0     
->>>>>>> 3e253d9df083ba373a6f72e915f0530f3d050f6a
-    ## [19] devtools_2.0.1    
-=======
-    ##  [4] tmap_2.2           sf_0.7-3           dplyr_0.8.0.1     
-    ##  [7] ggplot2_3.1.0      tidyr_0.8.2        rvest_0.3.2       
-    ## [10] xml2_1.2.0         rmarkdown_1.11     pkgdown_1.3.0     
-    ## [13] knitr_1.21         eurostat_3.3.4     usethis_1.4.0     
-    ## [16] devtools_2.0.1    
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+    ##  [7] ggplot2_3.1.0      tidyr_0.8.2        bindrcpp_0.2.2    
+    ## [10] rvest_0.3.2        xml2_1.2.0         rmarkdown_1.11    
+    ## [13] pkgdown_1.1.0.9000 knitr_1.21         eurostat_3.3.4    
+    ## [16] testthat_2.0.1     usethis_1.4.0      devtools_2.0.1    
     ## 
     ## loaded via a namespace (and not attached):
-    ##  [1] colorspace_1.4-0   class_7.3-15       leaflet_2.0.2     
-    ##  [4] rgdal_1.3-9        rprojroot_1.3-2    satellite_1.0.1   
+    ##  [1] colorspace_1.3-2   class_7.3-14       leaflet_2.0.2     
+    ##  [4] rgdal_1.3-6        rprojroot_1.3-2    satellite_1.0.1   
     ##  [7] base64enc_0.1-3    fs_1.2.6           dichromat_2.0-0   
-<<<<<<< HEAD
     ## [10] rstudioapi_0.8     roxygen2_6.1.0     remotes_2.0.2     
-    ## [13] lubridate_1.7.4    codetools_0.2-15   pkgload_1.0.2     
-    ## [16] jsonlite_1.6       tmaptools_2.0-1    Cairo_1.5-9       
-    ## [19] broom_0.5.1        png_0.1-7          rgeos_0.3-28      
-    ## [22] shiny_1.2.0        readr_1.3.1        compiler_3.5.1    
-    ## [25] httr_1.4.0         backports_1.1.3    mapview_2.6.0     
-    ## [28] assertthat_0.2.0   lazyeval_0.2.1     cli_1.0.1         
-    ## [31] later_0.7.5        htmltools_0.3.6    prettyunits_1.0.2 
-    ## [34] tools_3.5.1        gtable_0.2.0       glue_1.3.0        
-    ## [37] Rcpp_1.0.0         raster_2.8-4       countrycode_1.1.0 
-    ## [40] nlme_3.1-137       crosstalk_1.0.0    lwgeom_0.1-4      
-    ## [43] stringr_1.3.1      ps_1.2.0           mime_0.6          
-    ## [46] XML_3.98-1.16      MASS_7.3-51.1      scales_1.0.0      
-    ## [49] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
-    ## [52] curl_3.2           memoise_1.1.0      stringi_1.2.4     
-    ## [55] highr_0.7          desc_1.2.0         e1071_1.7-0       
-    ## [58] pkgbuild_1.0.2     rlang_0.3.0.1      pkgconfig_2.0.2   
-    ## [61] commonmark_1.6     bitops_1.0-6       evaluate_0.12     
-    ## [64] lattice_0.20-35    purrr_0.2.5        bindr_0.1.1       
-    ## [67] htmlwidgets_1.3    labeling_0.3       processx_3.2.0    
-    ## [70] tidyselect_0.2.5   plyr_1.8.4         magrittr_1.5      
-    ## [73] R6_2.3.0           generics_0.0.2     DBI_1.0.0         
-    ## [76] pillar_1.3.1       withr_2.1.2        units_0.6-2       
-    ## [79] RCurl_1.95-4.11    tibble_1.4.2       crayon_1.3.4      
-    ## [82] KernSmooth_2.23-15 grid_3.5.1         callr_3.0.0       
-    ## [85] digest_0.6.18      classInt_0.3-1     webshot_0.5.1     
-    ## [88] xtable_1.8-3       httpuv_1.4.5       stats4_3.5.1      
-    ## [91] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.0
-=======
-    ## [10] rstudioapi_0.9.0   roxygen2_6.1.1     remotes_2.0.2     
-    ## [13] lubridate_1.7.4    RefManageR_1.2.12  codetools_0.2-16  
+    ## [13] lubridate_1.7.4    RefManageR_1.2.0   codetools_0.2-15  
     ## [16] pkgload_1.0.2      jsonlite_1.6       tmaptools_2.0-1   
     ## [19] Cairo_1.5-9        broom_0.5.1        png_0.1-7         
-    ## [22] rgeos_0.4-2        shiny_1.3.0        readr_1.3.1       
+    ## [22] rgeos_0.3-28       shiny_1.2.0        readr_1.3.1       
     ## [25] compiler_3.5.1     httr_1.4.0         backports_1.1.3   
-    ## [28] mapview_2.6.3      assertthat_0.2.0   lazyeval_0.2.1    
-    ## [31] cli_1.0.1          later_0.8.0        htmltools_0.3.6   
+    ## [28] mapview_2.6.0      assertthat_0.2.0   lazyeval_0.2.1    
+    ## [31] cli_1.0.1          later_0.7.5        htmltools_0.3.6   
     ## [34] prettyunits_1.0.2  tools_3.5.1        gtable_0.2.0      
-    ## [37] glue_1.3.0         Rcpp_1.0.0         raster_2.8-19     
+    ## [37] glue_1.3.0         Rcpp_1.0.0         raster_2.8-4      
     ## [40] countrycode_1.1.0  nlme_3.1-137       crosstalk_1.0.0   
-    ## [43] lwgeom_0.1-5       xfun_0.5           stringr_1.4.0     
-    ## [46] ps_1.3.0           testthat_2.0.1     mime_0.6          
-    ## [49] XML_3.98-1.18      MASS_7.3-51.1      scales_1.0.0      
-    ## [52] hms_0.4.2          promises_1.0.1     yaml_2.2.0        
-    ## [55] curl_3.3           memoise_1.1.0      stringi_1.3.1     
-    ## [58] highr_0.7          desc_1.2.0         e1071_1.7-0.1     
-    ## [61] pkgbuild_1.0.2     bibtex_0.4.2       bitops_1.0-6      
-    ## [64] rlang_0.3.1        pkgconfig_2.0.2    commonmark_1.7    
-    ## [67] evaluate_0.13      lattice_0.20-38    purrr_0.3.0       
-    ## [70] htmlwidgets_1.3    labeling_0.3       processx_3.2.1    
+    ## [43] lwgeom_0.1-4       xfun_0.4           stringr_1.3.1     
+    ## [46] ps_1.2.0           mime_0.6           XML_3.98-1.16     
+    ## [49] MASS_7.3-51.1      scales_1.0.0       hms_0.4.2         
+    ## [52] promises_1.0.1     yaml_2.2.0         curl_3.2          
+    ## [55] memoise_1.1.0      stringi_1.2.4      highr_0.7         
+    ## [58] desc_1.2.0         e1071_1.7-0.1      pkgbuild_1.0.2    
+    ## [61] bibtex_0.4.2       bitops_1.0-6       rlang_0.3.0.1     
+    ## [64] pkgconfig_2.0.2    commonmark_1.6     evaluate_0.12     
+    ## [67] lattice_0.20-35    purrr_0.2.5        bindr_0.1.1       
+    ## [70] htmlwidgets_1.3    labeling_0.3       processx_3.2.0    
     ## [73] tidyselect_0.2.5   plyr_1.8.4         magrittr_1.5      
-    ## [76] R6_2.4.0           generics_0.0.2     DBI_1.0.0         
+    ## [76] R6_2.3.0           generics_0.0.2     DBI_1.0.0         
     ## [79] pillar_1.3.1       withr_2.1.2        units_0.6-2       
-    ## [82] RCurl_1.95-4.12    tibble_2.0.1       crayon_1.3.4      
-    ## [85] KernSmooth_2.23-15 grid_3.5.1         callr_3.1.1       
+    ## [82] RCurl_1.95-4.11    tibble_1.4.2       crayon_1.3.4      
+    ## [85] KernSmooth_2.23-15 grid_3.5.1         callr_3.0.0       
     ## [88] digest_0.6.18      classInt_0.3-1     webshot_0.5.1     
-    ## [91] xtable_1.8-3       httpuv_1.5.1       stats4_3.5.1      
-    ## [94] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.1
->>>>>>> f86513d10e7948402a83f1d3675d88f1bf621a46
+    ## [91] xtable_1.8-3       httpuv_1.4.5       stats4_3.5.1      
+    ## [94] munsell_0.5.0      viridisLite_0.3.0  sessioninfo_1.1.0
