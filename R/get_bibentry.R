@@ -11,7 +11,7 @@
 #' @export
 #' @author Daniel Antal, Przemyslaw Biecek
 #' @return a bibentry, Bibtex or Biblatex object.
-#' @import lubridate dmy, year, month, day
+#' @importFrom  lubridate dmy year month day
 #' @examples
 #'  \dontrun{
 #'    my_bibliography <- get_bibentry (
