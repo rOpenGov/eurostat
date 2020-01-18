@@ -29,6 +29,7 @@ Imports:
     dplyr,
     httr,
     jsonlite,
+    lubridate,
     RColorBrewer,
     readr,
     RefManageR,        
