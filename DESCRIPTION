@@ -43,7 +43,6 @@ Suggests:
     Cairo,
     ggplot2,
     knitr,    
-    lubridate,
     mapproj,    
     plotrix,
     rmarkdown,
