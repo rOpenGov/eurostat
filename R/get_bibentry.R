@@ -11,6 +11,7 @@
 #' @export
 #' @author Daniel Antal, Przemyslaw Biecek
 #' @return a bibentry, Bibtex or Biblatex object.
+#' @import lubridate dmy, year, month, day
 #' @examples
 #'  \dontrun{
 #'    my_bibliography <- get_bibentry (
@@ -49,6 +50,11 @@ get_bibentry <- function(
   toc <- toc[! duplicated(toc), ]
 
   urldate <- as.character(Sys.Date())
+  last_update_date  <- lubridate::dmy(toc$`last update of data`[i])
+  last_update_year  <- lubridate::year(last_update_date)
+  last_update_month <- lubridate::month(last_update_date)
+  last_update_day   <- lubridate::day(last_update_date)
+  
 
     if (nrow(toc) == 0) {
       warning(paste0("Code ",code, "not found"))
@@ -75,7 +81,7 @@ get_bibentry <- function(
         title = paste0(toc$title[i]," [",code[i],"]"),
         url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/-/",code[i]),
         language = "en",
-        year = paste0(toc$`last update of data`[1]),
+        year = paste0(toc$`last update of data`[i]),
         publisher = "Eurostat",
         author = "Eurostat",
         keywords = keyword_entry,

@@ -1,0 +1,49 @@
+---
+title: "Vignette for the eurostat R package"
+date: "`r Sys.Date()`"
+output: 
+  rmarkdown::html_vignette:
+    toc: true
+vignette: >
+    %\VignetteIndexEntry{eurostat tutorial}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteDepends{Cairo}
+    %\VignetteEncoding{UTF-8}
+    \usepackage[utf8]{inputenc}
+editor_options:
+    chunk_output_type: console
+---
+
+# R Tools for Eurostat Open Data
+
+This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
+
+```{r setup, include=FALSE}
+# Global options
+library(knitr)
+opts_chunk$set(fig.path="fig/")
+```
+
+
+# Installation
+
+Release version [(CRAN)](https://CRAN.R-project.org/package=eurostat):
+
+
+```{r install, eval=FALSE}
+install.packages("eurostat")
+```
+
+Development version [(Github)](https://github.com/rOpenGov/eurostat):
+
+```{r install2, eval=FALSE}
+library(devtools)
+install_github("ropengov/eurostat")
+```
+
+```{r, echo=FALSE}
+library(eurostat)
+```
+
+For examples on how to use the package, see the [online tutorial](http://ropengov.github.io/eurostat/) (Articles section of the homepage).
+
