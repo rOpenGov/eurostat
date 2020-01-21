@@ -60,7 +60,7 @@ get_bibentry <- function(
 
   for ( i in 1:nrow(toc) ) {
 
-    last_update_date  <- lubridate::dmy(toc$last update of data[[i]])
+    last_update_date  <- lubridate::dmy(toc[["last update of data"]][[i]])
     last_update_year  <- lubridate::year(last_update_date)
     last_update_month <- lubridate::month(last_update_date)
     last_update_day   <- lubridate::day(last_update_date)
