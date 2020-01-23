@@ -70,8 +70,8 @@ label_eurostat <-
            fix_duplicated = FALSE) {
     
     # Check if you have internet connection
-    internet_available <- curl::has_internet()
-    if (!internet_available) stop("You have no internet connection, please reconnect!")
+    internet_available <- check_access_to_data()
+    if (!internet_available) stop("You have no access to ec.europe.eu, please check your connection and review your proxy-settings!")
 
     # Avoid warnings
     code_name <- NULL

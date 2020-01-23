@@ -33,8 +33,8 @@
 search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
   
   # Check if you have internet connection
-  internet_available <- curl::has_internet()
-  if (!internet_available) stop("You have no internet connection, please reconnect!")
+  internet_available <- check_access_to_data()
+  if (!internet_available) stop("You have no access to ec.europe.eu, please check your connection and review your proxy-settings!")
   
   set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)

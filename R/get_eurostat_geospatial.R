@@ -38,8 +38,8 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60",
                                     cache = TRUE, update_cache = FALSE,
 				    cache_dir = NULL){
   # Check if you have internet connection
-  internet_available <- curl::has_internet()
-  if (!internet_available) stop("You have no internet connection, please reconnect!")
+  internet_available <- check_access_to_data()
+  if (!internet_available) stop("You have no access to ec.europe.eu, please check your connection and review your proxy-settings!")
   
   eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
