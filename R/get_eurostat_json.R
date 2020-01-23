@@ -55,9 +55,12 @@ get_eurostat_json <- function(id, filters = NULL,
                               stringsAsFactors = default.stringsAsFactors(),
                               ...){
   
-  # Check if you have internet connection
-  internet_available <- check_access_to_data()
-  if (!internet_available) stop("You have no access to ec.europe.eu, please check your connection and review your proxy-settings!")
+  # Check if you have access to ec.europe.eu. 
+  if (!check_access_to_data()){
+    message("You have no access to ec.europe.eu. 
+             Please check your connection and/or review your proxy settings")
+  } else {
+
   
   # get response  
   # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
@@ -139,4 +142,5 @@ eurostat_json_url <- function(id, filters, lang){
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url
+}
 }

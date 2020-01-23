@@ -32,9 +32,11 @@
 #' @keywords utilities database
 search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
   
-  # Check if you have internet connection
-  internet_available <- check_access_to_data()
-  if (!internet_available) stop("You have no access to ec.europe.eu, please check your connection and review your proxy-settings!")
+  # Check if you have access to ec.europe.eu. 
+  if (!check_access_to_data()){
+    message("You have no access to ec.europe.eu. 
+             Please check your connection and/or review your proxy settings")
+  } else {
   
   set_eurostat_toc()
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
@@ -48,4 +50,5 @@ search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
 grepEurostatTOC <- function(pattern, type = "dataset"){
   .Deprecated("search_eurostat")
   search_eurostat(pattern = pattern, type = type)
+}
 }
