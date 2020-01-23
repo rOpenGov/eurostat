@@ -120,7 +120,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
-             Please check your connection and/or review your proxy settings")
+Please check your connection and/or review your proxy settings")
   } else {
   
 
