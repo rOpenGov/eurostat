@@ -2,9 +2,12 @@
 % Please edit documentation in R/search_eurostat.R
 \name{search_eurostat}
 \alias{search_eurostat}
+\alias{grepEurostatTOC}
 \title{Grep Datasets Titles from Eurostat}
 \usage{
 search_eurostat(pattern, type = "dataset", fixed = TRUE)
+
+grepEurostatTOC(pattern, type = "dataset")
 }
 \arguments{
 \item{pattern}{Character, datasets, folder or tables with this pattern in
@@ -37,7 +40,7 @@ education of teaching.
 }
 \section{Functions}{
 \itemize{
-\item \code{search_eurostat}: Old deprecated version
+\item \code{grepEurostatTOC}: Old deprecated version
 }}
 
 \examples{

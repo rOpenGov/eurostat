@@ -42,6 +42,7 @@ Please check your connection and/or review your proxy settings")
   tmp <- get(".eurostatTOC", envir = .EurostatEnv)
   if (type != "all") tmp <- tmp[ tmp$type %in% type, ]
   tmp[ grep(tmp$title, pattern = pattern, fixed = fixed), ]
+  }
 }
 
 
@@ -50,5 +51,4 @@ Please check your connection and/or review your proxy settings")
 grepEurostatTOC <- function(pattern, type = "dataset"){
   .Deprecated("search_eurostat")
   search_eurostat(pattern = pattern, type = type)
-}
 }
