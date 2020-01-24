@@ -2,6 +2,7 @@
 #' @importFrom broom tidy
 #' @importFrom classInt classIntervals
 #' @importFrom countrycode countrycode
+#' @importFrom curl curl_download
 #' @importFrom dplyr %>%
 #' @importFrom dplyr filter
 #' @importFrom dplyr mutate
