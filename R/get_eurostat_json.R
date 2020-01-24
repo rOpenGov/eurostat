@@ -136,10 +136,15 @@ eurostat_json_url <- function(id, filters, lang){
   # prepare url
   url_list <- list(scheme = "http",
                    hostname = "ec.europa.eu",
-                   path = file.path("eurostat/wdds/rest/data/v2.1/json", 
+                   path = file.path("eurostat/wdds/rest/data/v1.1/json", 
                                     lang[1], id),
                    query = filters2)
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url
 }
+
+
+
+
+
