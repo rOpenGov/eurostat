@@ -121,7 +121,7 @@ Please check your connection and/or review your proxy settings")
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
   
   tibble::as_tibble(dat)
-  
+  }
 }
 
 
@@ -142,5 +142,4 @@ eurostat_json_url <- function(id, filters, lang){
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url
-}
 }
