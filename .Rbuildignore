@@ -3,6 +3,7 @@
 inst/extras
 # inst/doc
 README.Rmd
+README.html
 index.*
 
 # pkgdown
