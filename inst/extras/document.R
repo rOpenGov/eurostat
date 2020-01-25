@@ -9,8 +9,8 @@ document("../../")
 #check("../../", vignettes = FALSE)
 #install()
 
-library(knitr)
-knit(input = "../../README.Rmd", output = "../../README.md")
+library(rmarkdown)
+render(input = "../../README.Rmd", output_file = "../../README.md")
 
 # build the ../../docs directory as a pkg website
 library(pkgdown)
