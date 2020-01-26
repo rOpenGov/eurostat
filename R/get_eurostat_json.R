@@ -58,27 +58,26 @@ get_eurostat_json <- function(id, filters = NULL,
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
-Please check your connection and/or review your proxy settings")
+      Please check your connection and/or review your proxy settings")
   } else {
 
+    # get response  
+    # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
+    # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
+    url <- eurostat_json_url(id = id, filters = filters, lang = lang)
   
-  # get response  
-  # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
-  # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
-  url <- eurostat_json_url(id = id, filters = filters, lang = lang)
+    # resp <- try(httr::GET(url, ...))
+    # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
+    resp <- httr::GET(url)
+    if (httr::http_error(resp)) { 
+      stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
+    }
   
-  # resp <- try(httr::GET(url, ...))
-  # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
-  resp <- httr::GET(url)
-  if (httr::http_error(resp)) { 
-    stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
-  }
+    status <- httr::status_code(resp)
   
-  status <- httr::status_code(resp)
+    # check status and get json
   
-  # check status and get json
-  
-  msg <- ". Some datasets are not accessible via the eurostat
+    msg <- ". Some datasets are not accessible via the eurostat
           interface. You can try to search the data manually from the comext
   	  database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk
   	  download facility at
@@ -86,41 +85,44 @@ Please check your connection and/or review your proxy settings")
   	  or annual Excel files
   	  http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
 	  
-  if (status == 200){
-    jdat <- jsonlite::fromJSON(url)
-  } else if (status == 400){
-    stop("Failure to get data. Probably invalid dataset id. Status code: ", 
+    if (status == 200){
+      jdat <- jsonlite::fromJSON(url)
+    } else if (status == 400){
+      stop("Failure to get data. Probably invalid dataset id. Status code: ", 
          status, msg)
-  } else if (status == 500){
-    stop("Failure to get data. Probably filters did not return any data 
+    } else if (status == 500){
+      stop("Failure to get data. Probably filters did not return any data 
          or data exceeded query size limitation. Status code: ", status, msg)
-  } else {
-    stop("Failure to get data. Status code: ", status, msg)
-  }
-  
-  # get json data
-  dims <- jdat[[1]]$dimension
-  ids <- dims$id
-  
-  dims_list <- lapply(dims[rev(ids)], function(x){
-    y <- x$category$label
-    if (type[1] == "label") {
-      y <- unlist(y, use.names = FALSE)
-    } else if (type[1] == "code"){
-      y <- names(unlist(y))
-    } else if (type[1] == "both"){
-      y <- unlist(y)
     } else {
-      stop("Invalid type ", type)
+      stop("Failure to get data. Status code: ", status, msg)
     }
-  })
   
-  variables <- expand.grid(dims_list, KEEP.OUT.ATTRS = FALSE, 
+    # get json data
+    # dims <- jdat[[1]]$dimension # Was called like this in API v1.1
+    dims <- jdat$dimension      # Switched to this with API v2.1
+    # ids <- dims$id # v1.1
+    ids <- jdat$id   # v2.1
+
+    dims_list <- lapply(dims[rev(ids)], function(x){
+      y <- x$category$label
+      if (type[1] == "label") {
+        y <- unlist(y, use.names = FALSE)
+      } else if (type[1] == "code"){
+        y <- names(unlist(y))
+      } else if (type[1] == "both"){
+        y <- unlist(y)
+      } else {
+        stop("Invalid type ", type)
+      }
+    })
+  
+    variables <- expand.grid(dims_list, KEEP.OUT.ATTRS = FALSE, 
                            stringsAsFactors = stringsAsFactors)
   
-  dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
-  
-  tibble::as_tibble(dat)
+    # dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value) # v1.1
+    dat <- data.frame(variables[rev(names(variables))],
+             values = unlist(jdat$value, use.names = FALSE)) # 21 
+    tibble::as_tibble(dat)
   }
 }
 
@@ -139,6 +141,17 @@ eurostat_json_url <- function(id, filters, lang){
                    path = file.path("eurostat/wdds/rest/data/v2.1/json", 
                                     lang[1], id),
                    query = filters2)
+
+  # Data pulled from API v1.1 has different structure than v.2.1
+  # names(jdat2)
+  #[1] "version"   "label"     "href"      "source"    "updated"   "status"   
+  # [7] "extension" "class"     "value"     "dimension" "id"        "size"     
+  # names(jdat1[[1]])
+  #[1] "wsVersion"      "code"           "language"       "title"         
+  #[5] "subTitle"       "description"    "lastUpdateDate" "status"        
+  #[9] "value"          "dimension"     
+
+
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url
