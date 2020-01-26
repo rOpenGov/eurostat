@@ -75,6 +75,9 @@ library(knitr)
 kable(head(toc))
 ```
 
+Some of the data sets (e.g. in the 'comext' type) are not accessible
+through the standard interface. See the get\_eurostat function documentation for more details.
+
 With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 
 ```{r search_eurostat, warning=FALSE, message=FALSE, eval = evaluate}
