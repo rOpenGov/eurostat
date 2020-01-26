@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20002</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial for the eurostat R package</h1>
             
-            <h4 class="date">2020-01-25</h4>
+            <h4 class="date">2020-01-26</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -229,6 +229,7 @@ tgs00026                Auxiliary Data</code></pre>
 </tr>
 </tbody>
 </table>
+<p>Some of the data sets (e.g. in the ‘comext’ type) are not accessible through the standard interface. See the get_eurostat function documentation for more details.</p>
 <p>With <code><a href="../../reference/search_eurostat.html">search_eurostat()</a></code> you can search the table of contents for particular patterns, e.g. all datasets related to <em>passenger transport</em>. The kable function to produces nice markdown output. Note that with the <code>type</code> argument of this function you could restrict the search to for instance datasets or tables.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># info about passengers</span></a>
 <a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw"><a href="../../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"passenger transport"</span>)))</a></code></pre></div>
@@ -887,7 +888,12 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="sdmx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sdmx" class="anchor"></a>SDMX</h2>
-<p>Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic <a href="https://CRAN.R-project.org/package=rsdmx">rsdmx</a> and <a href="https://github.com/amattioc/SDMX/wiki">rjsdmx</a> R packages can be used to access data in that format when necessary.</p>
+<p>Eurostat data is available also in the Statistical Data and Metadata eXchange (<a href="https://sdmx.org">SDMX</a>) <a href="https://ec.europa.eu/eurostat/web/sdmx-web-services/about-this-service">Web Services</a>. Our eurostat R package does not provide custom tools for this but the following generic R packages provide access to eurostat SDMX version:</p>
+<ul>
+<li><a href="https://github.com/eurostat/restatapi">restatapi</a></li>
+<li><a href="https://CRAN.R-project.org/package=rsdmx">rsdmx</a></li>
+<li><a href="https://github.com/amattioc/SDMX/wiki">rjsdmx</a></li>
+</ul>
 </div>
 </div>
 <div id="further-examples" class="section level1">
@@ -915,7 +921,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.5.2 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.5.20002 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -930,7 +936,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.5.2},
+##     note = {Version 3.5.20002},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -964,7 +970,8 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tidyr_1.0.0    rvest_0.3.5    xml2_1.2.2     eurostat_3.5.2 knitr_1.26    
+## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.5.20002
+## [5] knitr_1.26        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_0.2.5   xfun_0.11          purrr_0.3.3        sf_0.8-0          

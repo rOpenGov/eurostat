@@ -120,8 +120,13 @@ get_eurostat_json <- function(id, filters = NULL,
                            stringsAsFactors = stringsAsFactors)
   
     # dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value) # v1.1
-    dat <- data.frame(variables[rev(names(variables))],
-             values = unlist(jdat$value, use.names = FALSE)) # 21 
+    dat <- as.data.frame(variables[rev(names(variables))])
+    vals <- unlist(jdat$value, use.names = FALSE)
+    dat$values <- rep(NA, nrow(dat))
+    inds <- 1 + as.numeric(names(jdat$value)) # 0-indexed
+    if (!length(vals) == length(inds)) {stop("Complex indexing not implemented.")}
+    dat$values[inds] <- vals
+
     tibble::as_tibble(dat)
   }
 }
@@ -139,8 +144,8 @@ eurostat_json_url <- function(id, filters, lang){
   url_list <- list(scheme = "http",
                    hostname = "ec.europa.eu",
                    path = file.path("eurostat/wdds/rest/data/v2.1/json", 
-                                    lang[1], id),
-                   query = filters2)
+                                    lang[1], id), 
+                  query = filters2)
 
   # Data pulled from API v1.1 has different structure than v.2.1
   # names(jdat2)
