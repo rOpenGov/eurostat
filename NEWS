@@ -1,3 +1,8 @@
+# eurostat 3.5.1
+
+* internet and proxy setting fixes
+* bibentry fix
+
 # eurostat 3.4.1
 
 * Fixed vignette

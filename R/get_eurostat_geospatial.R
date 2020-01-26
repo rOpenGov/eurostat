@@ -37,9 +37,11 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
 				    cache_dir = NULL){
-  # Check if you have internet connection
-  internet_available <- curl::has_internet()
-  if (!internet_available) stop("You have no internet connection, please reconnect!")
+  # Check if you have access to ec.europe.eu. 
+  if (!check_access_to_data()){
+    message("You have no access to ec.europe.eu. 
+Please check your connection and/or review your proxy settings")
+  } else {
   
   eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
@@ -246,5 +248,5 @@ get_eurostat_geospatial <- function(output_class="sf",resolution="60",
   # Adding a `geo` column for easier joins with dplyr 
   shp$geo <- shp$NUTS_ID
   return(shp)
-
+}
 }

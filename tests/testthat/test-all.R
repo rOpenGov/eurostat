@@ -24,6 +24,7 @@ test_that("get_eurostat return right classes",{
 
 test_that("get_eurostat handles daily data", {
   skip_on_cran()
+  skip_on_travis()    
   dat1 <- get_eurostat("ert_bil_eur_d", 
                        filters = list(currency = "ARS", statinfo ="AVG",
                                       time = c("2017M03D09", "2017M03D10")), 
@@ -165,6 +166,7 @@ context("json")
 
 test_that("Get json data",{
   skip_on_cran()
+  skip_on_travis()    
   expect_named(get_eurostat_json("nama_10_gdp", filters = list(geo = "FI",
                                                                na_item = "B1GQ",
                                                                unit = "CLV_I10")),
@@ -174,6 +176,7 @@ test_that("Get json data",{
 
 test_that("Handle numbers in filter name",{
   skip_on_cran()
+  skip_on_travis()  
   expect_named(get_eurostat(id = "sts_inpr_a", filters = list(geo = "AT",
                                                               nace_r2 = "B",
                                                               s_adj = "CA",
@@ -188,6 +191,7 @@ context("bibliography")
 
 test_that("Bibentry gives correct results",{
   skip_on_cran()
+  skip_on_travis()  
   expect_equal(
     class (get_bibentry ( code = c("sts_inpr_a", "nama_10_gdp"),
                           keywords = list ( c("production", "industry"),

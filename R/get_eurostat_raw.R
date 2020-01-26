@@ -53,3 +53,27 @@ get_eurostat_raw <- function(id) {
     
   dat
 }
+
+
+
+# #' @title Check if download.file() can access the internet
+# #' @description Check if download.file() can access the internet.
+# #' @return A Boolean which corresponds to if base function download.file() can access the internet
+# #' @author Colm Bates
+# #' @examples
+# #'   \dontrun{
+# #'     eurostat:::has_internet:::download.file()
+# #'
+# #'   }
+# 
+# has_internet_download.file <- function(){
+#     temp <- tempfile()
+#     suppressWarnings(try(download.file("http://captive.apple.com/html", temp, quiet= TRUE), silent = TRUE))
+#     if (is.na(file.info(temp)$size)){
+#         FALSE
+#     }
+#     else{
+#         data<- readChar(temp, file.info(temp)$size)
+#         grepl("Success", readChar(temp, file.info(temp)$size), data)
+#     }
+# }
