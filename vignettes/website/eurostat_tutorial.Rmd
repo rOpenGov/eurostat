@@ -229,8 +229,11 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 ## SDMX
 
-Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic [rsdmx](https://CRAN.R-project.org/package=rsdmx) and [rjsdmx](https://github.com/amattioc/SDMX/wiki) R packages can be used to access data in that format when necessary. 
+Eurostat data is available also in the Statistical Data and Metadata eXchange ([SDMX](https://sdmx.org)) [Web Services](https://ec.europa.eu/eurostat/web/sdmx-web-services/about-this-service). Our eurostat R package does not provide custom tools for this but the following generic R packages provide access to eurostat SDMX version:
 
+ - [restatapi](https://github.com/eurostat/restatapi)
+ - [rsdmx](https://CRAN.R-project.org/package=rsdmx)
+ - [rjsdmx](https://github.com/amattioc/SDMX/wiki)
 
 # Further examples
 
