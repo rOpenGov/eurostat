@@ -18,7 +18,6 @@ editor_options:
 
 This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
 
-
 ```{r setup, include=FALSE}
 # Global options
 library(knitr)
@@ -28,8 +27,6 @@ opts_chunk$set(fig.path="fig/")
 # Installation
 
 Release version [(CRAN)](https://CRAN.R-project.org/package=eurostat):
-
-
 
 ```{r install, eval=FALSE}
 install.packages("eurostat")
@@ -89,6 +86,7 @@ Codes for the dataset can be searched also from the [Eurostat
 database](http://ec.europa.eu/eurostat/data/database). The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
+
 
 # Downloading data 
 
