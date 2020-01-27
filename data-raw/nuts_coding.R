@@ -1,6 +1,7 @@
 library ( readxl )
 library ( purrr )
 library ( dplyr )
+library ( tidyr )
 #This file reads in the NUTS correspondence table published by 
 #Eurostat ---------------------------------------------------
 
@@ -26,8 +27,7 @@ regions <- readxl::read_excel( tf,
     TRUE ~ NA_character_))
 
 nuts1_correspondence <- readxl::read_excel( 
-  file.path('data-raw', 'NUTS2013-NUTS2016.xlsx'),
-  sheet = 'Correspondence NUTS-1', 
+  tf, sheet = 'Correspondence NUTS-1', 
   skip = 0 , col_names = T) %>%
   purrr::set_names ( ., c("code13", "code16", 
                            "name", 
@@ -36,9 +36,8 @@ nuts1_correspondence <- readxl::read_excel(
   mutate ( nuts_level = 1 )
 
 
-nuts2_correspondence <- readxl::read_excel( 
-  file.path('data-raw', 'NUTS2013-NUTS2016.xlsx'),
-  sheet = 'Correspondence NUTS-2', 
+nuts2_correspondence <- readxl::read_excel(
+  tf, sheet = 'Correspondence NUTS-2', 
   skip = 0 , col_names = T) %>%
   select ( 1:5 ) %>%
   purrr::set_names ( ., c("code13", "code16", 
