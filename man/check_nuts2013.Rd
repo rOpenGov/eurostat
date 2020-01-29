@@ -11,7 +11,7 @@ check_nuts2013(dat, return_changed_regions = FALSE)
 }
 \value{
 An augmented data frame or a message about potential coding
-errors. For filtering, it marks \code{'non_EU'} and \coce{'unchanged'}
+errors. For filtering, it marks \code{'non_EU'} and \code{'unchanged'}
 regions. Observations with codes ending on \code{'ZZ'} or \code{'XX'} are
 removed from the returned data table, because these are non-territorial
 observations or they are outside of the EU.

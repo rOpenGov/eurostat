@@ -12,7 +12,7 @@ test_that("Variable names are labeled",{
 
 test_that("Label ordering is ordered", {
   skip_on_cran()
-  expect_equal(c("European Union - 28 countries",
+  expect_equal(c("European Union - 28 countries (2013-2020)",
                "Finland", "United States"),
                levels(label_eurostat(factor(c("FI", "US", "EU28")),
                               dic = "geo", eu_order = TRUE)))
@@ -34,7 +34,7 @@ test_that("Countrycodes return NA for countrycode_nomatch = NA", {
 test_that("Countrycodes use eurostat for missing", {
   expect_equal(suppressWarnings(label_eurostat(c("FI", "DE", "EU28"), dic = "geo",
                               countrycode = "country.name", countrycode_nomatch = "eurostat")),
-               c("Finland", "Germany", "European Union - 28 countries"))
+               c("Finland", "Germany", "European Union - 28 countries (2013-2020)"))
 })
 
 test_that("custom_dic works", {
