@@ -156,7 +156,6 @@ eurostat_json_url <- function(id, filters, lang){
   #[5] "subTitle"       "description"    "lastUpdateDate" "status"        
   #[9] "value"          "dimension"     
 
-
   class(url_list) <- "url"
   url <- httr::build_url(url_list)
   url
