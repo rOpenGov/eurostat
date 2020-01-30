@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Countries and Country Codes — eu_countries • eurostat</title>
+<title>Check NUTS region codes that changed with the <code>NUTS2016</code> definition — check_nuts2013 • eurostat</title>
 
 
 <!-- jquery -->
@@ -35,9 +35,11 @@
 
 
 
-<meta property="og:title" content="Countries and Country Codes — eu_countries" />
-<meta property="og:description" content="Countries and country codes in EU,
-Euro area, EFTA and EU candidate countries." />
+<meta property="og:title" content="Check NUTS region codes that changed with the <code>NUTS2016</code> definition — check_nuts2013" />
+<meta property="og:description" content="Eurostat mixes NUTS2013 and NUTS2016 geographic
+label codes in the 'geo' column, which creates time-wise comparativity issues.
+This function checks if you data is affected by this problem and gives
+information on what to do." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -128,48 +130,53 @@ Euro area, EFTA and EU candidate countries." />
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Countries and Country Codes</h1>
+    <h1>Check NUTS region codes that changed with the <code>NUTS2016</code> definition</h1>
     
-    <div class="hidden name"><code>eu_countries.Rd</code></div>
+    <div class="hidden name"><code>check_nuts2013.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Countries and country codes in EU,
-Euro area, EFTA and EU candidate countries.</p>
+    <p>Eurostat mixes <code>NUTS2013</code> and <code>NUTS2016</code> geographic
+label codes in the <code>'geo'</code> column, which creates time-wise comparativity issues.
+This function checks if you data is affected by this problem and gives
+information on what to do.</p>
     </div>
 
-    <pre class="usage"><span class='no'>eu_countries</span>
+    <pre class="usage"><span class='fu'>check_nuts2013</span>(<span class='no'>dat</span>, <span class='kw'>return_changed_regions</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</pre>
 
-<span class='no'>ea_countries</span>
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dat</th>
+      <td><p>A Eurostat data frame downloaded with <code><a href='get_eurostat.html'>get_eurostat</a></code></p></td>
+    </tr>
+    </table>
 
-<span class='no'>efta_countries</span>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-<span class='no'>eu_candidate_countries</span>
+    <p>An augmented data frame or a message about potential coding
+errors. For filtering, it marks <code>'non_EU'</code> and <code>'unchanged'</code>
+regions. Observations with codes ending on <code>'ZZ'</code> or <code>'XX'</code> are
+removed from the returned data table, because these are non-territorial
+observations or they are outside of the EU.</p>
 
-<span class='no'>regional_changes_2016</span></pre>
-
-
-    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
-
-    <p>A data_frame:</p><dl class='dl-horizontal'>
-  <dt>code</dt><dd><p>Country code in the Eurostat database</p></dd>
-  <dt>name</dt><dd><p>Country name in English</p></dd>
-  <dt>label</dt><dd><p>Country name in the Eurostat database</p></dd>
-
-</dl>
-    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
-
-    <p><a href='http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order'>http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order</a>,
-  <a href='http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area'>http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area</a></p>
-
+    <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
+    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+   <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>eurostat</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/eurostat/man/tgs00026.html'>tgs00026</a></span>
+   <span class='fu'>check_nuts2013</span>(<span class='no'>dat</span>)
+ }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#format">Format</a></li>
-      <li><a href="#source">Source</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
+      <li><a href="#examples">Examples</a></li>
     </ul>
 
+    <h2>Author</h2>
+    <p>Daniel Antal</p>
   </div>
 </div>
 
