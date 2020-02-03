@@ -4,7 +4,7 @@
 \alias{check_nuts2013}
 \title{Check NUTS region codes that changed with the \code{NUTS2016} definition}
 \usage{
-check_nuts2013(dat, return_changed_regions = FALSE)
+check_nuts2013(dat)
 }
 \arguments{
 \item{dat}{A Eurostat data frame downloaded with \code{\link{get_eurostat}}}

@@ -12,7 +12,3 @@
 #' @source \url{https://ec.europa.eu/eurostat/web/nuts/history},
 #'   \url{https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx}
 "regional_changes_2016" 
-
-#' @rdname eu_countries
-"regional_changes_2016" 
-
