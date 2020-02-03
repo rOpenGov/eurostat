@@ -1,4 +1,3 @@
-
 # Code to get countries and their codes for selected country groups.
 
 library(rvest)

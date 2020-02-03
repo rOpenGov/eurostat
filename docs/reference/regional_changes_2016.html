@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Order of Variable Levels from Eurostat Dictionary. — dic_order • eurostat</title>
+<title>Changes in regional boundaries NUTS2013-NUTS2016 — regional_changes_2016 • eurostat</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,9 @@
 
 
 
-<meta property="og:title" content="Order of Variable Levels from Eurostat Dictionary. — dic_order" />
-<meta property="og:description" content="Orders the factor levels." />
+<meta property="og:title" content="Changes in regional boundaries NUTS2013-NUTS2016 — regional_changes_2016" />
+<meta property="og:description" content="A comparison of regional boundaries, codes, and explanation for
+the change in a data frame, based on the Eurostat correspondence table." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,54 +128,42 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Order of Variable Levels from Eurostat Dictionary.</h1>
+    <h1>Changes in regional boundaries NUTS2013-NUTS2016</h1>
     
-    <div class="hidden name"><code>dic_order.Rd</code></div>
+    <div class="hidden name"><code>regional_changes_2016.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Orders the factor levels.</p>
+    <p>A comparison of regional boundaries, codes, and explanation for
+the change in a data frame, based on the Eurostat correspondence table.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>dic_order</span>(<span class='no'>x</span>, <span class='no'>dic</span>, <span class='no'>type</span>)</pre>
+    <pre class="usage"><span class='no'>regional_changes_2016</span></pre>
 
-    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
-    <table class="ref-arguments">
-    <colgroup><col class="name" /><col class="desc" /></colgroup>
-    <tr>
-      <th>x</th>
-      <td><p>a variable (code or labelled) to get order for.</p></td>
-    </tr>
-    <tr>
-      <th>dic</th>
-      <td><p>a name of the dictionary. Correspond a variable name in the 
-data_frame from <code><a href='get_eurostat.html'>get_eurostat</a></code>. Can be also data_frame from
-<code><a href='get_eurostat_dic.html'>get_eurostat_dic</a></code>.</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>a type of the x. Could be <code>code</code> or <code>label</code>.</p></td>
-    </tr>
-    </table>
 
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+    <h2 class="hasAnchor" id="format"><a class="anchor" href="#format"></a>Format</h2>
 
-    <p>A numeric vector of orders.</p>
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <p>A data_frame:</p><dl class='dl-horizontal'>
+  <dt>code13</dt><dd><p>The geographical code of the territory in the NUTS2013 definition</p></dd>
+  <dt>code16</dt><dd><p>The geographical code of the territory in the NUTS2016 definition</p></dd>
+  <dt>name</dt><dd><p>Name of the territorial unit in the Eurostat database</p></dd>
+  <dt>nuts_level</dt><dd><p>Aggregation level, i.e. 0=national, 1,2,3 for smaller regions.</p></dd>
+  <dt>change</dt><dd><p>Change with the region, or 'unchanged'</p></dd>
 
-    <p>Some variables, like classifications, have logical or conventional ordering. Eurostat data tables are nor neccessary ordered in this order. The function <code>dic_order</code> get the ordering from Eurostat classifications dictionaries. The function <code><a href='label_eurostat.html'>label_eurostat</a></code> can also order factor levels of labels with argument <code>eu_order = TRUE</code>.</p>
+</dl>
+    <h2 class="hasAnchor" id="source"><a class="anchor" href="#source"></a>Source</h2>
+
+    <p><a href='https://ec.europa.eu/eurostat/web/nuts/history'>https://ec.europa.eu/eurostat/web/nuts/history</a>,
+  <a href='https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx'>https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx</a></p>
 
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#arguments">Arguments</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#details">Details</a></li>
+      <li><a href="#format">Format</a></li>
+      <li><a href="#source">Source</a></li>
     </ul>
 
-    <h2>Author</h2>
-    <p>Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu <a href='mailto:ropengov-forum@googlegroups.com'>ropengov-forum@googlegroups.com</a> <a href='http://github.com/ropengov/eurostat'>http://github.com/ropengov/eurostat</a></p>
   </div>
 </div>
 

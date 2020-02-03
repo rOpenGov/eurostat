@@ -5,12 +5,12 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tutorial / vignette for the eurostat R package • eurostat</title>
+<title>Tutorial for the eurostat R package • eurostat</title>
 <!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/all.min.css" integrity="sha256-nAmazAk6vS34Xqo0BSrTb+abbtFlgsFK7NKSi6o7Y78=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.7.1/css/v4-shims.min.css" integrity="sha256-6qHlizsOWFskGlwVOKuns+D1nB6ssZrHQrNj1wGplHc=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../pkgdown.css" rel="stylesheet">
-<script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial / vignette for the eurostat R package">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<script src="../../pkgdown.js"></script><meta property="og:title" content="Tutorial for the eurostat R package">
 <meta property="og:description" content="">
 <meta name="twitter:card" content="summary">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
@@ -30,21 +30,21 @@
         <span class="icon-bar"></span>
       </button>
       <span class="navbar-brand">
-        <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.4.10002</span>
+        <a class="navbar-link" href="../../index.html">eurostat</a>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20003</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../index.html">
+  <a href="../../index.html">
     <span class="fas fa fas fa-home fa-lg"></span>
      
   </a>
 </li>
 <li>
-  <a href="../reference/index.html">Reference</a>
+  <a href="../../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
   <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
@@ -54,19 +54,22 @@
   </a>
   <ul class="dropdown-menu" role="menu">
 <li>
-      <a href="../articles/eurostat_tutorial.html">Tutorial / vignette for the eurostat R package</a>
+      <a href="../../articles/vignette.html">Vignette for the eurostat R package</a>
     </li>
     <li>
-      <a href="../articles/website/blogposts.html">Blog posts</a>
+      <a href="../../articles/website/blogposts.html">Blog posts</a>
     </li>
     <li>
-      <a href="../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
+      <a href="../../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
     </li>
     <li>
-      <a href="../articles/website/maps.html">Map examples for the eurostat R package</a>
+      <a href="../../articles/website/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
     </li>
     <li>
-      <a href="../articles/website/publications.html">Publications using the eurostat R package</a>
+      <a href="../../articles/website/maps.html">Map examples for the eurostat R package</a>
+    </li>
+    <li>
+      <a href="../../articles/website/publications.html">Publications using the eurostat R package</a>
     </li>
   </ul>
 </li>
@@ -84,9 +87,9 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Tutorial / vignette for the eurostat R package</h1>
+      <h1>Tutorial for the eurostat R package</h1>
             
-            <h4 class="date">2019-12-18</h4>
+            <h4 class="date">2020-01-30</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -109,7 +112,10 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ropengov/eurostat"</span>)</a></code></pre></div>
 <p>Overall, the eurostat package includes the following functions:</p>
-<pre><code>clean_eurostat_cache    Clean Eurostat Cache
+<pre><code>check_access_to_data    Check access to ec.europe.eu
+check_nuts2013          Check NUTS region codes that changed with the
+                        'NUTS2016' definition
+clean_eurostat_cache    Clean Eurostat Cache
 cut_to_classes          Cuts the Values Column into Classes and
                         Polishes the Labels
 dic_order               Order of Variable Levels from Eurostat
@@ -132,7 +138,11 @@ get_eurostat_toc        Download Table of Contents of Eurostat Data
                         Sets
 harmonize_country_code
                         Harmonize Country Code
+harmonize_geo_code      Recode geo labels from NUTS2013 to NUTS2016
 label_eurostat          Get Eurostat Codes
+nuts_correspondence     Correspondence Table NUTS2013-NUTS2016
+regional_changes_2016   Changes in regional boundaries
+                        NUTS2013-NUTS2016
 search_eurostat         Grep Datasets Titles from Eurostat
 tgs00026                Auxiliary Data</code></pre>
 <div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1">evaluate &lt;-<span class="st"> </span>curl<span class="op">::</span><span class="kw"><a href="https://jeroen.cran.dev/curl/reference/nslookup.html">has_internet</a></span>()</a></code></pre></div>
@@ -140,13 +150,13 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="finding-data" class="section level1">
 <h1 class="hasAnchor">
 <a href="#finding-data" class="anchor"></a>Finding data</h1>
-<p>Function <code><a href="../reference/get_eurostat_toc.html">get_eurostat_toc()</a></code> downloads a table of contents of eurostat datasets. The values in column ‘code’ should be used to download a selected dataset.</p>
+<p>Function <code><a href="../../reference/get_eurostat_toc.html">get_eurostat_toc()</a></code> downloads a table of contents of eurostat datasets. The values in column ‘code’ should be used to download a selected dataset.</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="co"># Load the package</span></a>
 <a class="sourceLine" id="cb5-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
 <a class="sourceLine" id="cb5-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(rvest)</a>
 <a class="sourceLine" id="cb5-4" title="4"></a>
 <a class="sourceLine" id="cb5-5" title="5"><span class="co"># Get Eurostat data listing</span></a>
-<a class="sourceLine" id="cb5-6" title="6">toc &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat_toc.html">get_eurostat_toc</a></span>()</a>
+<a class="sourceLine" id="cb5-6" title="6">toc &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_toc.html">get_eurostat_toc</a></span>()</a>
 <a class="sourceLine" id="cb5-7" title="7"></a>
 <a class="sourceLine" id="cb5-8" title="8"><span class="co"># Check the first items</span></a>
 <a class="sourceLine" id="cb5-9" title="9"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(knitr)</a>
@@ -217,17 +227,18 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">28.11.2019</td>
-<td align="left">28.11.2019</td>
+<td align="left">08.01.2020</td>
+<td align="left">08.01.2020</td>
 <td align="left">1980M01</td>
-<td align="left">2019M11</td>
+<td align="left">2019M12</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
 </table>
-<p>With <code><a href="../reference/search_eurostat.html">search_eurostat()</a></code> you can search the table of contents for particular patterns, e.g. all datasets related to <em>passenger transport</em>. The kable function to produces nice markdown output. Note that with the <code>type</code> argument of this function you could restrict the search to for instance datasets or tables.</p>
+<p>Some of the data sets (e.g. in the ‘comext’ type) are not accessible through the standard interface. See the get_eurostat function documentation for more details.</p>
+<p>With <code><a href="../../reference/search_eurostat.html">search_eurostat()</a></code> you can search the table of contents for particular patterns, e.g. all datasets related to <em>passenger transport</em>. The kable function to produces nice markdown output. Note that with the <code>type</code> argument of this function you could restrict the search to for instance datasets or tables.</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># info about passengers</span></a>
-<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw"><a href="../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"passenger transport"</span>)))</a></code></pre></div>
+<a class="sourceLine" id="cb6-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(<span class="kw"><a href="../../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"passenger transport"</span>)))</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
 <th align="left">title</th>
@@ -264,7 +275,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">05.12.2019</td>
+<td align="left">23.12.2019</td>
 <td align="left">07.11.2019</td>
 <td align="left">1993</td>
 <td align="left">2019Q3</td>
@@ -274,7 +285,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport by main airports in each reporting country</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">04.12.2019</td>
+<td align="left">23.12.2019</td>
 <td align="left">04.12.2019</td>
 <td align="left">1993</td>
 <td align="left">2019Q3</td>
@@ -284,7 +295,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport between reporting countries</td>
 <td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">05.12.2019</td>
+<td align="left">23.12.2019</td>
 <td align="left">07.11.2019</td>
 <td align="left">1993</td>
 <td align="left">2019Q3</td>
@@ -294,7 +305,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">07.11.2019</td>
+<td align="left">23.12.2019</td>
 <td align="left">07.11.2019</td>
 <td align="left">1993</td>
 <td align="left">2019Q3</td>
@@ -308,17 +319,17 @@ tgs00026                Auxiliary Data</code></pre>
 <h1 class="hasAnchor">
 <a href="#downloading-data" class="anchor"></a>Downloading data</h1>
 <p>The package supports two of the Eurostats download methods: the bulk download facility and the Web Services’ JSON API. The bulk download facility is the fastest method to download whole datasets. It is also often the only way as the JSON API has limitation of maximum 50 sub-indicators at a time and whole datasets usually exceeds that. To download only a small section of the dataset the JSON API is faster, as it allows to make a data selection before downloading.</p>
-<p>A user does not usually have to bother with methods, as both are used via main function <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code>. If only the table id is given, the whole table is downloaded from the bulk download facility. If also filters are defined the JSON API is used.</p>
+<p>A user does not usually have to bother with methods, as both are used via main function <code><a href="../../reference/get_eurostat.html">get_eurostat()</a></code>. If only the table id is given, the whole table is downloaded from the bulk download facility. If also filters are defined the JSON API is used.</p>
 <p>Here an example of indicator ‘Modal split of passenger transport’. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level.</p>
 <p>Pick and print the id of the data set to download:</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="co"># For the original data, see</span></a>
 <a class="sourceLine" id="cb7-2" title="2"><span class="co"># http://ec.europa.eu/eurostat/tgm/table.do?tab=table&amp;init=1&amp;plugin=1&amp;language=en&amp;pcode=tsdtr210</span></a>
-<a class="sourceLine" id="cb7-3" title="3">id &lt;-<span class="st"> </span><span class="kw"><a href="../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"Modal split of passenger transport"</span>, </a>
+<a class="sourceLine" id="cb7-3" title="3">id &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/search_eurostat.html">search_eurostat</a></span>(<span class="st">"Modal split of passenger transport"</span>, </a>
 <a class="sourceLine" id="cb7-4" title="4">                         <span class="dt">type =</span> <span class="st">"table"</span>)<span class="op">$</span>code[<span class="dv">1</span>]</a>
 <a class="sourceLine" id="cb7-5" title="5"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(id)</a></code></pre></div>
 <p>[1] “t2020_rk310”</p>
 <p>Get the whole corresponding table. As the table is annual data, it is more convient to use a numeric time variable than use the default date format:</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a></code></pre></div>
 <p>Investigate the structure of the downloaded data set:</p>
 <div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/str.html">str</a></span>(dat)</a></code></pre></div>
 <pre><code>## Classes 'tbl_df', 'tbl' and 'data.frame':    2587 obs. of  5 variables:
@@ -382,7 +393,7 @@ tgs00026                Auxiliary Data</code></pre>
 </tbody>
 </table>
 <p>Or you can get only a part of the dataset by defining <code>filters</code> argument. It should be named list, where names corresponds to variable names (lower case) and values are vectors of codes corresponding desidered series (upper case). For time variable, in addition to a <code>time</code>, also a <code>sinceTimePeriod</code> and a <code>lastTimePeriod</code> can be used.</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), <span class="dt">lastTimePeriod=</span><span class="dv">1</span>), <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
+<div class="sourceCode" id="cb12"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb12-1" title="1">dat2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), <span class="dt">lastTimePeriod=</span><span class="dv">1</span>), <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
 <a class="sourceLine" id="cb12-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(dat2)</a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -441,7 +452,7 @@ tgs00026                Auxiliary Data</code></pre>
 <h2 class="hasAnchor">
 <a href="#replacing-codes-with-labels" class="anchor"></a>Replacing codes with labels</h2>
 <p>By default variables are returned as Eurostat codes, but to get human-readable labels instead, use a <code>type = "label"</code> argument.</p>
-<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">datl2 &lt;-<span class="st"> </span><span class="kw"><a href="../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), </a>
+<div class="sourceCode" id="cb13"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb13-1" title="1">datl2 &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(id, <span class="dt">filters =</span> <span class="kw"><a href="https://rdrr.io/r/base/list.html">list</a></span>(<span class="dt">geo =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"EU28"</span>, <span class="st">"FI"</span>), </a>
 <a class="sourceLine" id="cb13-2" title="2">                                         <span class="dt">lastTimePeriod =</span> <span class="dv">1</span>), </a>
 <a class="sourceLine" id="cb13-3" title="3">                      <span class="dt">type =</span> <span class="st">"label"</span>, <span class="dt">time_format =</span> <span class="st">"num"</span>)</a>
 <a class="sourceLine" id="cb13-4" title="4"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(datl2))  </a></code></pre></div>
@@ -498,8 +509,8 @@ tgs00026                Auxiliary Data</code></pre>
 </tr>
 </tbody>
 </table>
-<p>Eurostat codes in the downloaded data set can be replaced with human-readable labels from the Eurostat dictionaries with the <code><a href="../reference/label_eurostat.html">label_eurostat()</a></code> function.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">datl &lt;-<span class="st"> </span><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat</a></span>(dat)</a>
+<p>Eurostat codes in the downloaded data set can be replaced with human-readable labels from the Eurostat dictionaries with the <code><a href="../../reference/label_eurostat.html">label_eurostat()</a></code> function.</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1">datl &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/label_eurostat.html">label_eurostat</a></span>(dat)</a>
 <a class="sourceLine" id="cb14-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span>(<span class="kw"><a href="https://rdrr.io/r/utils/head.html">head</a></span>(datl))  </a></code></pre></div>
 <table class="table">
 <thead><tr class="header">
@@ -554,8 +565,8 @@ tgs00026                Auxiliary Data</code></pre>
 </tr>
 </tbody>
 </table>
-<p>The <code><a href="../reference/label_eurostat.html">label_eurostat()</a></code> allows conversion of individual variable vectors or variable names as well.</p>
-<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../reference/label_eurostat.html">label_eurostat_vars</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(datl))</a></code></pre></div>
+<p>The <code><a href="../../reference/label_eurostat.html">label_eurostat()</a></code> allows conversion of individual variable vectors or variable names as well.</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb15-1" title="1"><span class="kw"><a href="../../reference/label_eurostat.html">label_eurostat_vars</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/names.html">names</a></span>(datl))</a></code></pre></div>
 <pre><code>## [1] "Unit of measure"                                                                     
 ## [2] "Vehicles"                                                                            
 ## [3] "Geopolitical entity (reporting)"                                                     
@@ -619,29 +630,7 @@ tgs00026                Auxiliary Data</code></pre>
 <th align="right">time</th>
 <th align="right">values</th>
 </tr></thead>
-<tbody>
-<tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Motor coaches, buses and trolley buses</td>
-<td align="left">European Union - 28 countries</td>
-<td align="right">2012</td>
-<td align="right">9.5</td>
-</tr>
-<tr class="even">
-<td align="left">Percentage</td>
-<td align="left">Passenger cars</td>
-<td align="left">European Union - 28 countries</td>
-<td align="right">2012</td>
-<td align="right">82.8</td>
-</tr>
-<tr class="odd">
-<td align="left">Percentage</td>
-<td align="left">Trains</td>
-<td align="left">European Union - 28 countries</td>
-<td align="right">2012</td>
-<td align="right">7.7</td>
-</tr>
-</tbody>
+<tbody></tbody>
 </table>
 </div>
 <div id="eu-data-from-2000---2012-with-vehicle-types-as-variables" class="section level2">
@@ -883,7 +872,12 @@ tgs00026                Auxiliary Data</code></pre>
 <div id="sdmx" class="section level2">
 <h2 class="hasAnchor">
 <a href="#sdmx" class="anchor"></a>SDMX</h2>
-<p>Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic <a href="https://CRAN.R-project.org/package=rsdmx">rsdmx</a> and <a href="https://github.com/amattioc/SDMX/wiki">rjsdmx</a> R packages can be used to access data in that format when necessary.</p>
+<p>Eurostat data is available also in the Statistical Data and Metadata eXchange (<a href="https://sdmx.org">SDMX</a>) <a href="https://ec.europa.eu/eurostat/web/sdmx-web-services/about-this-service">Web Services</a>. Our eurostat R package does not provide custom tools for this but the following generic R packages provide access to eurostat SDMX version:</p>
+<ul>
+<li><a href="https://github.com/eurostat/restatapi">restatapi</a></li>
+<li><a href="https://CRAN.R-project.org/package=rsdmx">rsdmx</a></li>
+<li><a href="https://github.com/amattioc/SDMX/wiki">rjsdmx</a></li>
+</ul>
 </div>
 </div>
 <div id="further-examples" class="section level1">
@@ -911,7 +905,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.4.10002 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.5.20003 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -926,7 +920,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.4.10002},
+##     note = {Version 3.5.20003},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -940,13 +934,13 @@ tgs00026                Auxiliary Data</code></pre>
 <a href="#version-info" class="anchor"></a>Version info</h1>
 <p>This tutorial was created with</p>
 <div class="sourceCode" id="cb25"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb25-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
-<pre><code>## R version 3.5.2 (2018-12-20)
+<pre><code>## R version 3.6.2 (2019-12-12)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 19.04
+## Running under: Ubuntu 19.10
 ## 
 ## Matrix products: default
-## BLAS: /usr/lib/x86_64-linux-gnu/blas/libblas.so.3.8.0
-## LAPACK: /usr/lib/x86_64-linux-gnu/lapack/liblapack.so.3.8.0
+## BLAS:   /home/lemila/bin/R-3.6.2/lib/libRblas.so
+## LAPACK: /home/lemila/bin/R-3.6.2/lib/libRlapack.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -960,29 +954,29 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.4.10002
+## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.5.20003
 ## [5] knitr_1.26        
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] tidyselect_0.2.5   xfun_0.11          purrr_0.3.3        sf_0.8-0          
 ##  [5] lattice_0.20-38    generics_0.0.2     vctrs_0.2.1        htmltools_0.4.0   
-##  [9] yaml_2.2.0.9999    rlang_0.4.2        e1071_1.7-3        pkgdown_1.4.1     
-## [13] pillar_1.4.2       glue_1.3.1         DBI_1.1.0          sp_1.3-2          
+##  [9] yaml_2.2.0         rlang_0.4.2        e1071_1.7-3        pkgdown_1.4.1.9000
+## [13] pillar_1.4.3       glue_1.3.1         DBI_1.1.0          sp_1.3-2          
 ## [17] RColorBrewer_1.1-2 lifecycle_0.1.0    plyr_1.8.5         stringr_1.4.0     
 ## [21] memoise_1.1.0      evaluate_0.14      curl_4.3           class_7.3-15      
-## [25] highr_0.8          broom_0.5.3        Rcpp_1.0.3         KernSmooth_2.23-15
+## [25] highr_0.8          broom_0.5.3        Rcpp_1.0.3         KernSmooth_2.23-16
 ## [29] readr_1.3.1        backports_1.1.5    classInt_0.4-2     desc_1.2.0        
-## [33] jsonlite_1.6       countrycode_1.1.0  fs_1.3.1           hms_0.5.2         
-## [37] digest_0.6.23      stringi_1.4.3      dplyr_0.8.3        rprojroot_1.3-2   
-## [41] grid_3.5.2         bibtex_0.4.2       tools_3.5.2        magrittr_1.5      
+## [33] jsonlite_1.6       countrycode_1.1.0  fs_1.3.1           hms_0.5.3         
+## [37] digest_0.6.23      stringi_1.4.5      dplyr_0.8.3        rprojroot_1.3-2   
+## [41] grid_3.6.2         bibtex_0.4.2.2     tools_3.6.2        magrittr_1.5      
 ## [45] tibble_2.1.3       RefManageR_1.2.12  crayon_1.3.4       pkgconfig_2.0.3   
-## [49] zeallot_0.1.0      ellipsis_0.3.0     MASS_7.3-51.4      lubridate_1.7.4   
+## [49] zeallot_0.1.0      ellipsis_0.3.0     MASS_7.3-51.5      lubridate_1.7.4   
 ## [53] assertthat_0.2.1   rmarkdown_2.0      httr_1.4.1         R6_2.4.1          
-## [57] units_0.6-5        nlme_3.1-143       compiler_3.5.2</code></pre>
+## [57] units_0.6-5        nlme_3.1-143       compiler_3.6.2</code></pre>
 </div>
   </div>
 
-  <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
+  <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
         <div id="tocnav">
       <h2 class="hasAnchor">
@@ -1021,7 +1015,7 @@ tgs00026                Auxiliary Data</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
 </div>
 
       </footer>
