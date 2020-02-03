@@ -5,6 +5,8 @@ library(ggplot2)
 
 p <- ggplot(aes(x = mpg, y = wt), data = mtcars) + geom_point()
 p <- p + theme_void() + theme_transparent()
+png("plot.png"); print(p); dev.off()
+
 imgurl <- "plot.png"
 
 sticker(imgurl, package="eurostat",

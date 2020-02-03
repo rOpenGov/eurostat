@@ -120,97 +120,95 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
-Please check your connection and/or review your proxy settings")
+      Please check your connection and/or review your proxy settings")
   } else {
+    #Warning for flags with filter
+    if (keepFlags & !is.character(filters) && filters != "none") {
+      warning("The keepFlags argument of the get_eurostat function 
+               can be used only without filters. No Flags returned.")
+    }
   
-
-  #Warning for flags with filter
-  if (keepFlags & !is.character(filters) && filters != "none") {
-    warning("The keepFlags argument of the get_eurostat function can be used only without filters. 
-             No Flags returned.")
-  }
-  
-  # No cache for json
-  if (is.null(filters) || filters != "none") {
-    cache <- FALSE
-  }
-  
-  if (cache){
-  
-    # check option for update
-    update_cache <- update_cache | getOption("eurostat_update", FALSE)
-
-    # get cache directory
-    if (is.null(cache_dir)){
-    
-      cache_dir <- getOption("eurostat_cache_dir", NULL)
-      
-      if (is.null(cache_dir)){
-        cache_dir <- file.path(tempdir(), "eurostat")
-        if (!file.exists(cache_dir)) dir.create(cache_dir)
-      }
-      
-    } else {
-      if (!file.exists(cache_dir)) {
-        stop("The folder ", cache_dir, " does not exist")
-      }
+    # No cache for json
+    if (is.null(filters) || filters != "none") {
+      cache <- FALSE
     }
 
-    # cache filename
-    cache_file <- file.path(cache_dir,
+    if (cache){
+  
+      # check option for update
+      update_cache <- update_cache | getOption("eurostat_update", FALSE)
+
+      # get cache directory
+      if (is.null(cache_dir)){
+    
+        cache_dir <- getOption("eurostat_cache_dir", NULL)
+      
+        if (is.null(cache_dir)){
+          cache_dir <- file.path(tempdir(), "eurostat")
+          if (!file.exists(cache_dir)) dir.create(cache_dir)
+        }
+      
+      } else {
+        if (!file.exists(cache_dir)) {
+          stop("The folder ", cache_dir, " does not exist")
+        }
+      }
+
+      # cache filename
+      cache_file <- file.path(cache_dir,
                             paste0(id, "_", time_format,
                                    "_", type, select_time, "_", 
                                    strtrim(stringsAsFactors, 1),
                                    strtrim(keepFlags, 1),
                                    ".rds"))
-  }
+    }
 
-  # if cache = FALSE or update or new: dowload else read from cache
-  if (!cache || update_cache || !file.exists(cache_file)){
-    
-    if (is.null(filters) || is.list(filters)){
-    
-      # API Download
-      y <- get_eurostat_json(id, filters, type = type,
+    # if cache = FALSE or update or new: dowload else read from cache
+    if (!cache || update_cache || !file.exists(cache_file)){
+
+      if (is.null(filters) || is.list(filters)){
+
+        # API Download
+        y <- get_eurostat_json(id, filters, type = type,
                              stringsAsFactors = stringsAsFactors, ...)
-      y$time <- convert_time_col(factor(y$time), time_format = time_format)
+        y$time <- convert_time_col(factor(y$time), time_format = time_format)
 
-    # Bulk download
-    } else if (filters == "none") {
+      # Bulk download
+      } else if (filters == "none") {
 
-      y_raw <- try(get_eurostat_raw(id))
-      if ("try-error" %in% class(y_raw)) {
-        stop(paste("get_eurostat_raw fails with the id", id))
-      }
+        y_raw <- try(get_eurostat_raw(id))
+        if ("try-error" %in% class(y_raw)) {
+          stop(paste("get_eurostat_raw fails with the id", id))
+        }
 
-      y <- tidy_eurostat(y_raw, time_format, select_time,
+        y <- tidy_eurostat(y_raw, time_format, select_time,
                          stringsAsFactors = stringsAsFactors,
                          keepFlags = keepFlags)
-      if (type == "code") {
-        y <- y
-      } else if (type == "label") {
-        y <- label_eurostat(y)
-      } else if (type == "both"){
-        stop("type = \"both\" can be only used with JSON API. Set filters argument")
-      } else {
-        stop("Invalid type.")
-      }
+        if (type == "code") {
+          y <- y
+        } else if (type == "label") {
+          y <- label_eurostat(y)
+        } else if (type == "both"){
+          stop("type = \"both\" can be only used with JSON API. Set filters argument")
+        } else {
+          stop("Invalid type.")
+        }
         
-    }
+      }
     
-  } else {
-    cf <- path.expand(cache_file)
-      message(paste("Reading cache file", cf))
-    y <- readRDS(cache_file)
-      message(paste("Table ", id, " read from cache file: ", cf))
-  }
+    } else {
+      cf <- path.expand(cache_file)
+        message(paste("Reading cache file", cf))
+      y <- readRDS(cache_file)
+        message(paste("Table ", id, " read from cache file: ", cf))
+    }
 
-  # if update or new: save
-  if (cache && (update_cache || !file.exists(cache_file))){
-    saveRDS(y, file = cache_file, compress = compress_file)
-    message("Table ", id, " cached at ", path.expand(cache_file))
-  }
+    # if update or new: save
+    if (cache && (update_cache || !file.exists(cache_file))){
+      saveRDS(y, file = cache_file, compress = compress_file)
+      message("Table ", id, " cached at ", path.expand(cache_file))
+    }
 
-  y
-}
+    y
+  }
 }

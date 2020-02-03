@@ -1,4 +1,8 @@
-# eurostat 3.5.1
+# eurostat 3.5.3
+
+ * get_eurostat switched to v2.1
+
+# eurostat 3.5.2
 
 * internet and proxy setting fixes
 * bibentry fix
