@@ -19,8 +19,6 @@
 }
 \usage{
 nuts_correspondence
-
-nuts_correspondence
 }
 \description{
 A tidy version of the Eurostat correspondence for 

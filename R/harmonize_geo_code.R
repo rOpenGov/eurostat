@@ -33,19 +33,10 @@ harmonize_geo_code <- function ( dat ) {
   change <- tmp <- geo <- nuts_level <- code13 <- code16 <- NULL
   remaining_eu_data <- NULL
   
-  
-  data("regional_changes_2016")
-  data("nuts_correspondence")
-  
   ## Check if geo information is present ------------------------------
-  if (check_dat_input(dat)) {
+  if ( ! 'geo' %in% names(dat) ) {
     stop ("There is no 'geo' column in the inserted data. This is an error.")  } 
-  
-  
-  if ( ! "change" %in% names ( dat) ) {
-    dat <- check_nuts2013(dat)
-    
-  }
+
   unchanged_regions <- regional_changes_2016 %>% 
     filter ( change == 'unchanged')
   
