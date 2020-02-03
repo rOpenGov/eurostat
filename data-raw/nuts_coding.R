@@ -27,6 +27,7 @@ regions <- readxl::read_excel( tf,
     TRUE ~ NA_character_))
 
 nuts1_correspondence <- readxl::read_excel( 
+  tf, sheet = 'Correspondence NUTS-1', 
   #file.path('data-raw', 'NUTS2013-NUTS2016.xlsx'),
   #file.path('.', 'NUTS2013-NUTS2016.xlsx'),
   file.path(tf),    
@@ -38,10 +39,8 @@ nuts1_correspondence <- readxl::read_excel(
   mutate_if ( is.factor, as.character ) %>%
   mutate ( nuts_level = 1 )
 
-
-nuts2_correspondence <- readxl::read_excel( 
-  #file.path('data-raw', 'NUTS2013-NUTS2016.xlsx'),
-  file.path(tf),      
+nuts2_correspondence <- readxl::read_excel(
+  tf, sheet = 'Correspondence NUTS-2',   
   sheet = 'Correspondence NUTS-2', 
   skip = 0 , col_names = T) %>%
   select ( 1:5 ) %>%
@@ -58,7 +57,7 @@ nuts_correspondence <- rbind (
 
 nuts_2016_codes <- unique (regions$code16)
 
-##In these cases, the code13 == code16
+##In these cases, the code13 == code16 ------------------------------
 unchanged_regions <- regions %>%
   filter ( is.na(change)) %>%
   fill ( nuts1_name ) %>%
@@ -66,20 +65,22 @@ unchanged_regions <- regions %>%
   select ( code13, code16, name, nuts_level, change  ) %>%
   mutate ( change = 'unchanged')
 
-## In these cases code13 != code16
+## In these cases code13 != code16 ----------------------------------
 changed_regions <- regions %>%
   filter ( !is.na(change)) %>%
   fill ( nuts1_name ) %>%
   fill ( nuts2_name ) %>%
   select ( code13, code16, name, nuts_level, change )
 
-## Regional changes
+## Regional changes ------------------------------------------------
 
 regional_changes_2016 <- rbind ( changed_regions, unchanged_regions )
 
 discontinued_regions  <- changed_regions %>%
   filter ( change == "discontinued")
 
+
+## ----------------------------------------------------------------
 message("Save changed regions")
 usethis::use_data(regional_changes_2016,
                   nuts_correspondence, overwrite = TRUE, 
