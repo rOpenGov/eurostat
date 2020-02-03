@@ -22,7 +22,6 @@ check_nuts2013 <- function (dat) {
   
   ## For non-standard evaluation -------------------------------------
   change  <- geo <- code13 <- code16 <- NULL 
-  
   data("regional_changes_2016")
  
   unchanged_regions <- regional_changes_2016 %>% 
