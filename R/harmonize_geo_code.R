@@ -31,7 +31,7 @@ harmonize_geo_code <- function ( dat ) {
   
   ## For non-standard evaluation -------------------------------------
   change <- tmp <- geo <- nuts_level <- code13 <- code16 <- NULL
-  remaining_eu_data <- NULL
+  remaining_eu_data <- resolution <- NULL
   
   ## Check if geo information is present ------------------------------
   if ( ! 'geo' %in% names(dat) ) {
