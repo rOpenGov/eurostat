@@ -196,7 +196,7 @@ harmonize_geo_code <- function ( dat ) {
                                by = join_by ) %>%
     full_join ( found_nuts1, by = join_by2 ) 
   
-  ## Add NUTS1 regions that were recoded, if there are any
+  ## Add NUTS1 regions that were recoded, if there are any -------
   if ( nrow(found_nuts1)>0  ) {
     join_by3 <-  names ( so_far_joined )
     join_by3 <- join_by3 [which ( join_by3 %in% names(found_nuts1))] 
@@ -205,9 +205,8 @@ harmonize_geo_code <- function ( dat ) {
       full_join ( found_nuts2, by = join_by3 )
   }
   
-  
-  ## Add NUTS2 regions that were recoded, if there are any
-  if ( nrow(found_nuts2)>0  ) {
+  ## Add NUTS2 regions that were recoded, if there are any -------
+  if ( nrow(found_nuts2) >0  ) {
     join_by4 <-  names ( so_far_joined )
     join_by4 <- join_by4 [which ( join_by4 %in% names(found_nuts2))] 
     
@@ -215,7 +214,8 @@ harmonize_geo_code <- function ( dat ) {
       full_join ( found_nuts2, by = join_by4 )
   }
   
-  not_recoded <- rbind (  not_recoded_nuts2_2013, not_recoded_nuts2_2013 )
+  not_recoded <- rbind (  not_recoded_nuts2_2013,
+                          not_recoded_nuts2_2013 )
   
 
 
@@ -245,7 +245,7 @@ harmonize_geo_code <- function ( dat ) {
   )
   
   if ( nrow( not_recoded ) > 0 ) {
-    message ( "There are ", nrow (remaining_eu_data), 
+    message ( "There are ", nrow(not_recoded), 
               " that could not be resolved with relabelling.")
     so_far_joined  <- rbind ( so_far_joined, not_recoded  ) 
     
@@ -259,6 +259,10 @@ harmonize_geo_code <- function ( dat ) {
           discontinued_nuts2_regions)  
   
   if ( nrow (discontinued_nuts_regions) > 0 ) {
+    
+    message ( "There are ", nrow(discontinued_nuts_regions), " observations in regions that are discontinued.")
+    message ( "These cannot be brought to NUTS2016 boundaries.")
+    
     so_far_joined  <- so_far_joined %>% 
       rbind (  discontinued_nuts_regions %>%
                  mutate ( problem_code = NA_character_ ) 
