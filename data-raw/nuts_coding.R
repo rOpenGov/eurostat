@@ -53,7 +53,7 @@ nuts_correspondence <- rbind (
 
 nuts_2016_codes <- unique (regions$code16)
 
-##In these cases, the code13 == code16
+##In these cases, the code13 == code16 ------------------------------
 unchanged_regions <- regions %>%
   filter ( is.na(change)) %>%
   fill ( nuts1_name ) %>%
@@ -61,20 +61,22 @@ unchanged_regions <- regions %>%
   select ( code13, code16, name, nuts_level, change  ) %>%
   mutate ( change = 'unchanged')
 
-## In these cases code13 != code16
+## In these cases code13 != code16 ----------------------------------
 changed_regions <- regions %>%
   filter ( !is.na(change)) %>%
   fill ( nuts1_name ) %>%
   fill ( nuts2_name ) %>%
   select ( code13, code16, name, nuts_level, change )
 
-## Regional changes
+## Regional changes ------------------------------------------------
 
 regional_changes_2016 <- rbind ( changed_regions, unchanged_regions )
 
 discontinued_regions  <- changed_regions %>%
   filter ( change == "discontinued")
 
+
+## ----------------------------------------------------------------
 message("Save changed regions")
 usethis::use_data(regional_changes_2016,
                   nuts_correspondence, overwrite = TRUE, 

@@ -14,7 +14,7 @@
 #' that cannot be brought to the current \code{'NUTS2016'} definition.
 #' If not called before, the function will use the helper function
 #'  \code{\link{check_nuts2013}}
-#' @importFrom dplyr left_join mutate filter rename
+#' @importFrom dplyr left_join mutate filter rename full_join
 #' @importFrom stringr str_sub
 #' @examples
 #'  \dontrun{
@@ -28,6 +28,14 @@
 #'  }
 
 harmonize_geo_code <- function ( dat ) {
+  
+  ## For non-standard evaluation -------------------------------------
+  change <- tmp <- geo <- nuts_level <- code13 <- code16 <- NULL
+  remaining_eu_data <- NULL
+  
+  
+  data("regional_changes_2016")
+  data("nuts_correspondence")
   
   ## Check if geo information is present ------------------------------
   if (check_dat_input(dat)) {
