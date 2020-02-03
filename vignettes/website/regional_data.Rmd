@@ -1,0 +1,152 @@
+---
+title: "Regional data examples for the eurostat R package"
+date: "`r Sys.Date()`"
+output:
+  rmarkdown::html_vignette:
+    toc: true
+---
+
+# R Tools for Eurostat Open Data
+
+This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
+
+
+See eurostat vignette for installation and basic use.
+
+```{r, echo=FALSE, message=FALSE}
+library(eurostat)
+library(dplyr)
+```
+
+## Motivation
+
+Working with regional data has many advantages and many challenges. I had three aims when creating this article:
+
+- I wanted to highlight how you can use existing eurostat functions to work with Eurostat's regional products;
+- To create simple helper functions and guidance on more complex data manipulations to improve the quality of the raw regional data;
+- To start a dialogue on improving the data products of Eurostat.
+
+The advantage over national data is lies in the homogeneity in units, and the larger number of units, which enables us to better understand social and economic differences.  National boundaries, i.e. NUTS0 regions, are historical and political constructions. They greatly vary in size and complexity.  Within the EU, Germany and Malta are equally NUTS0 regions or countries, although Malta’s size would make it a small NUTS3 region in Germany.  Comparing Germany with Malta hides a huge diversity within Germany.
+
+Statistical regions are largely homogeneous in size and in urban complexity.  The smallest, NUTS3 region are cities, or towns with their rural hinterland; it can be expected that most people go to school or work within this region.  Malta itself is the size of a NUTS3 region, so it could be compared with the NUTS3 regions of Germany the most meaningfully.  NUTS1 units are usually provinces of larger countries, such as Bavaria in Germany.  NUTS2 units comprise of (usually) several NUTS3 units within a NUTS1 large region.
+
+The smallest member states are the size of NUTS2 and NUTS3 regions and can be best compared with all the similar sized regions of Europe.  Bit larger member states like Slovakia are NUTS1 regions, and they can be best compared with all NUTS1 regions of Europe:  Bavaria and Slovakia make a more meaningful comparison in many cases than Germany and Slovakia.
+There are several difficulties with working on sub-national level of data.These are related to data availability, changes in boundaries, and data & metadata quality.  
+
+### Boundary changes
+
+Changes in boundaries meant that unlike national boundaries, regional boundaries change very often. Since standardizing the NUTS regions in 2003 with the EU, boundary changes were made on average every three years.  Boundary changes make organizing data panels (which are several time instances of the cross section regional data) very tedious. 
+
+### Data availability and quality
+
+Data availability means that many statistical produces are only available on NUTS0 country level.  The creation of NUTS1-NUTS3 statistics is usually slow, the data product range is smaller.  
+
+NUTS-level data is often disaggregated with the use of various estimations from higher levels. While some original data sources are available from NUTS3 levels (or even lower level), such as population or mortality data, many economic activities are theoretically difficult to connect to one place and geographical disaggregation is only estimated. For example, since the GDP is mainly produced in companies, and many companies work in several locations across municipal and regional borders, locating their contribution to the GDP is the result of a more or less precise estimation.
+
+Pan European surveys are very important data sources for many social data products, but they are often created with the use of nationally representative samples.  Even if they contain regional coding, and they can be re-arranged into regional statistics, the results are of lower quality, as the original survey sample is not representative to each and every NUTS2 or NUTS3 region of Germany, for example.  (Of course, since Malta is a NUTS2 region, survey data from Malta is representative on NUTS2 = NUTS1 = NUTS0 level.)  Practically this means that many statistical products of Eurostat are mixed products, i.e. they contain NUTS1 level data for larger member states, such as Germany, France or Italy, and they contain NUTS2 level data for other member states.
+
+### Metadata quality
+
+And at last, the metadata quality of Eurostat’s products is not as good as on NUTS0 national level. A particularly problematic issue is that Eurostat’s tables do not differentiate between the current NUTS2016 regional boundaries and the NUTS2013 or NUTS2010 boundaries.  Some data tables contain rows that cannot and must not be compared.  For example, France went under a very thorough change in its regional boundaries, meaning that NUTS2013 regional data from 2013 can only be compared in the case of a very small fraction of the country with NUTS2016 data from 2016 or 2018. 
+
+Furthermore, Eurostat has a very problematic practice with simply removing statistical products when metadata definitions change.  So, you may have downloaded industry-level data with the NACE Rev 2 definition or French regional data with the NUTS 2013 definition, but under the same title, you will be downloading a differently defined dataset in 2020.  Or, you will not be able to reproduce your code, because they will remove the data with your earlier definition.  
+
+The logical workflow is the following:
+
+- correct metadata (labelling) errors;
+- impute additve data based on the correspondence table;
+- impute non-additive data from larger territorial units;
+- optionally estimate non-additive boundary change effects.
+
+# Taking care of boundaries
+
+Most regional statistical products are made on the NUTS2 level, or they are mixed NUTS1-NUTS2 level statistics.  This means that usually you have 150-300 units to compare, which is gives an unprecedented richness in cross-sectional analysis.  Most US or Australian datasets are not so detailed in cross-section, and data availability in the rest of the world is just lower.
+
+The power of statistical analysis can be increased when you order such data into panels, because the different change in a time interval in this huge cross-section contains usually a lot more information about the underlying social or economic process.  However, organizing panels – or just simple time series of an individual region – is often hindered by changes in regional boundaries.
+
+A simple strategy is to create a _panel of only those data that do not change boundaries_.  However, if you have many variables, this leads very quickly to a huge loss in data, because missing data is often independent from boundary changes.  With the addition of each new variable you are likely to loose new and new rows of observations. 
+
+Keeping track of the changes is a much better strategy, and up to a point, it is a costless in the amount of work, because often _only the metadata is changing_. Member states, when they change tow regions’ boundary only, will nevertheless create new regional codes for all their regions, to make sure that regional labels do not mix. However, Eurostat is not following this practice well, and it does mixes up different labels.
+
+With the new helper function check_nuts2013() you can see which geo labels have been changing.
+
+```{r checknuts2013}
+eurostat::tgs00026 %>%
+  filter ( time == 2012 ) %>%
+  check_nuts2013() 
+```
+
+Zooming on regions `UKM` you can see that `UKM5` and `UKM6` are unchanged, `UKM3` gave birth to two new regional units `UKM8` and `UKM9` (this is an additive change) and `UKM2` lost a NUTS3 unit `UKM24`. This latter one is also an additive change, but maybe far more difficult to handle in practice, because data about `UKM24` may not be available in most cases, as NUTS1 and NUTS2 level data is only available for a very few basic indicators on NUTS3 level. You can, however, easily maintain backward compatibility among `UKM3`, `UKM8`, `UKM9`, because the new data is just available in higher resolution, or, in other words, for two halves of the earlier `UKM3` region.
+
+```{r checknutsUK}
+# for readability the previous example is filtered and reduced
+eurostat::tgs00026 %>%
+  filter ( time == 2012 ) %>%
+  check_nuts2013() %>%
+  filter ( grepl("UKM", geo) ) %>%
+  select ( geo, values, change )
+```
+
+## Only metadata changed
+
+The first, logical step is to find those data points which are in fact identical, only their regional codes have changed.  For example, `FRC1` is in fact identical to region with the NUTS2013 label `FR26` (Bourgogne region in France.)  In this case, you can simply re-label the regions that appear to be different just because of the different codes applied.
+		
+The helper function `harmonize_geo_code()` will assist you with these cases. 
+
+```{r harmonize}
+#If check_nuts2013() is not called, the function will call it.    
+eurostat::tgs00026  %>% 
+  harmonize_geo_code()   
+```
+
+To make the example more clear, let's zoom on changes in France.  You can see that many regions changes, but some of them only changed labels.  For forward compatibility,  `harmonize_geo_code()` changed all geo labels to the current, `NUTS2016` definition. In fact, this is needed to use maps, for example. 
+
+```{r harmonizeFR}
+# for readability the previous example is filtered and reduced
+eurostat::tgs00026 %>%
+  filter ( time == 2012 ) %>%
+  harmonize_geo_code() %>%
+  filter ( grepl("FR", geo) ) %>%
+  select ( geo, code13,  code16, change, resolution, values )
+```
+
+## Backfill to historical boundaries, fill new boundaries
+
+The second step may be to backfill data for earlier boundaries or fill historical data for new boundaries.  The ability to do so will depend both on the nature of the boundary changes and the nature of the data. For example, Budapest and Central Hungary became two regional units in 2016, but otherwise the boundary did not change.  You can easily fill the old boundary population data by adding together data from Budapest and the new Central Hungary. But you cannot do this with GDP per capita, because the historical boundary data is a weighted average of GDP and population in the new subsequent regional units.
+
+Eurostat released an untidy Excel document that contains all boundary changes from the `NUTS2013` to the `NUTS2016` boundary definition. You can load these tidy tables into your global environment with  `data("nuts_correspondence")` and `data ("regional_changes_2016")` or simply reference them as `eurostat::nuts_correspondence` and `eurostat::regional_changes_2016`. (The `eurostat::` part can be omitted if you have called earlier`library(eurostat)` in your code.)
+
+
+# Citations and related work
+
+### Citing the data sources
+
+Eurostat data: cite [Eurostat](http://ec.europa.eu/eurostat/).
+
+Administrative boundaries: cite EuroGeographics
+
+
+### Citing the eurostat R package
+
+For main developers and contributors, see the [package homepage](http://ropengov.github.io/eurostat).
+
+This work can be freely used, modified and distributed under the
+BSD-2-clause (modified FreeBSD) license:
+
+```{r citation, message=FALSE, eval=TRUE, echo=TRUE}
+citation("eurostat")
+```
+
+
+### Contact
+
+For contact information, see the [package homepage](http://ropengov.github.io/eurostat).
+
+
+# Version info
+
+This tutorial was created with
+
+```{r sessioninfo, message=FALSE, warning=FALSE}
+sessionInfo()
+```

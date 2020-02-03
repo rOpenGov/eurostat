@@ -48,7 +48,10 @@ harmonize_geo_code <- function ( dat ) {
   # step as tmp2, tmp3...  Debugging is particulary difficult, because
   # not only the program code, but the underlying logic may have faults.
   
-  tmp_eu_only <- tmp %>%
+  tmp <- dat %>% 
+    check_nuts2013()
+  
+  tmp_eu_only <- tmp  %>%
     filter ( change != "not_eu") # leave out non-EU regions.
   
   #Find those codes that are missing from the correct NUTS2016 codes
@@ -84,9 +87,9 @@ harmonize_geo_code <- function ( dat ) {
   incorrectly_labelled_nuts1_2013 <- incorrectlly_labelled_nuts1 %>%
     left_join ( nuts_correspondence %>%
                   filter ( nuts_level == 1 ) %>%
-                  dplyr::rename ( geo = code13 ) %>%
+                  mutate ( geo = code13 ) %>%
                   filter ( !is.na(geo)) %>%
-                  select ( geo, code16, change, resolution ), 
+                  select ( geo, code13, code16, change, resolution ), 
                 by = c('geo', 'change'))
   
   discontinued_nuts1_regions <- incorrectly_labelled_nuts1_2013 %>%
@@ -135,9 +138,9 @@ harmonize_geo_code <- function ( dat ) {
   incorrectly_labelled_nuts2_2013 <- incorrectlly_labelled_nuts2 %>%
     left_join ( nuts_correspondence %>%
                   filter ( nuts_level == 2 ) %>%
-                  rename ( geo = code13 ) %>%
+                  mutate ( geo = code13 ) %>%
                   filter ( !is.na(geo)) %>%
-                  select ( geo, code16, change, resolution ), 
+                  select ( geo, code13, code16, change, resolution ), 
                 by = c('geo', 'change'))
   
   discontinued_nuts2_regions <- incorrectly_labelled_nuts2_2013 %>%
@@ -206,7 +209,7 @@ harmonize_geo_code <- function ( dat ) {
   ## Add NUTS2 regions that were recoded, if there are any
   if ( nrow(found_nuts2)>0  ) {
     join_by4 <-  names ( so_far_joined )
-    join_by4 <- join_by3 [which ( join_by4 %in% names(found_nuts2))] 
+    join_by4 <- join_by4 [which ( join_by4 %in% names(found_nuts2))] 
     
     so_far_joined <- so_far_joined  %>%
       full_join ( found_nuts2, by = join_by4 )
