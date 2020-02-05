@@ -75,7 +75,7 @@ harmonize_geo_code <- function ( dat ) {
   
   labelled_by_nuts_2013 <- tmp %>%
     anti_join ( labelled_by_nuts_2016, 
-                by = join_by_vector ) %>%
+                by = names(tmp)) %>%
     filter ( geo %in% nuts_2013_codes )  # These are following NUTS2013
   
   message ( "There are ", nrow(labelled_by_nuts_2013), " regions that were changed",
@@ -108,7 +108,8 @@ harmonize_geo_code <- function ( dat ) {
               nrow(), " of these changed their names, too.]")
   
   other_cases <- can_be_found %>%
-    anti_join ( recoded_regions, by = names ( can_be_found ) ) %>%
+    anti_join ( recoded_regions,
+                by = names ( can_be_found ) ) %>%
     mutate ( nuts2016 = FALSE )  # I think these are 'small changes' 
   
   if ( nrow(other_cases) + nrow(recoded_regions) != nrow(can_be_found) ) {
@@ -133,7 +134,9 @@ harmonize_geo_code <- function ( dat ) {
     full_join ( other_cases, by = names ( other_cases )) %>%
     full_join ( cannot_be_found, by = (names ( cannot_be_found ))) 
   
-  if ( nrow ( eu_joined %>% semi_join ( labelled_by_other ))>0 ) {
+  if ( nrow ( eu_joined %>%
+              semi_join ( labelled_by_other, 
+                          by = names (eu_joined) ))>0 ) {
     stop ( "Joining error between EU and non-EU regions")
   }
   
@@ -142,11 +145,11 @@ harmonize_geo_code <- function ( dat ) {
   all_regions <- labelled_by_other %>%
     full_join ( eu_joined, by = names ( eu_joined ))
  
-  if ( nrow(all_regions %>% add_count ( geo, time, values ) %>% filter ( n>1 )
-  ) >0 ) {
+  if ( nrow(all_regions %>%
+            add_count ( geo, time, values ) %>%
+            filter ( n>1 )) > 0 ) {
     stop("Joining error - there are duplicates in the data frame.")
   } 
-  
  
  all_regions %>%
    dplyr::arrange(., time, geo, code16 )

@@ -66,7 +66,7 @@ check_nuts2013 <- function (dat) {
       nuts_level == 9 & nchar(geo) == 5 ~ 3,
       TRUE ~ NA_real_ ))
   
-  if ( all ( tmp$change %in% unique(regional_changes$code16) )) {
+  if ( all ( tmp$change %in% unique(regional_changes_2016$code16) )) {
     message ( "All observations are coded with NUTS2016 codes" )
     there_are_changes <- FALSE
   }
