@@ -15,7 +15,7 @@
 #' If not called before, the function will use the helper function
 #'  \code{\link{check_nuts2013}}
 #' @importFrom dplyr mutate filter rename arrange add_count
-#' @importFrom dplyr left_join full_join anti_join
+#' @importFrom dplyr left_join full_join anti_join right_join semi_join
 #' @importFrom tidyselect all_of
 #' @importFrom stringr str_sub
 #' @examples
@@ -33,12 +33,33 @@ harmonize_geo_code <- function ( dat ) {
   
   ## For non-standard evaluation -------------------------------------
   change <- tmp <- geo <- nuts_level <- code13 <- code16 <- NULL
-  remaining_eu_data <- resolution <- NULL
+  . <- n  <- remaining_eu_data <- resolution <- time <- values <- NULL
+  regional_changes_2016 <- NULL
   
   ## Check if geo information is present ------------------------------
   if ( ! 'geo' %in% names(dat) ) {
-    stop ("There is no 'geo' column in the inserted data. This is an error.")  } 
+    stop ("There is no 'geo' column in the inserted data. This is an error.")
+    } 
 
+  ## Load the correspondence tables, but not to the global environment --
+  
+  .myDataEnv <- new.env(parent=emptyenv()) # the local environment
+  
+  getData <- function(dataset) {
+    isLoaded <- function(dataset) {
+      exists(x = dataset, envir = .myDataEnv)
+    }
+    if ( !isLoaded(dataset) ) {
+      if ( dataset == "regional_changes_2016" )
+        data(regional_changes_2016, envir=.myDataEnv)
+    } else if ( dataset == "nuts_correspondence" ) {
+      data(nuts_correspondence, envir=.myDataEnv)
+      .myDataEnv[[dataset]]
+    }
+  }
+  
+  getData(dataset = "regional_changes_2016")
+  
   unchanged_regions <- regional_changes_2016 %>% 
     filter ( change == 'unchanged' ) 
   
@@ -125,7 +146,7 @@ harmonize_geo_code <- function ( dat ) {
     full_join ( cannot_be_found, by = all_of(names ( cannot_be_found )) ) 
   
   if ( nrow ( eu_joined %>%
-              semi_join ( labelled_by_other, 
+                dplyr::semi_join ( labelled_by_other, 
                           by = all_of(names (eu_joined))) ) > 0 ) {
     stop ( "Joining error between EU and non-EU regions")
   }
