@@ -11,7 +11,8 @@
 #' regions. Observations with codes ending on \code{'ZZ'} or \code{'XX'} are
 #' removed from the returned data table, because these are non-territorial
 #' observations or they are outside of the EU.
-#' @importFrom  dplyr left_join mutate filter rename mutate_if
+#' @importFrom dplyr mutate filter rename mutate_if case_when
+#' @importFrom dplyr left_join full_join anti_join
 #' @examples
 #'  \dontrun{
 #'    dat <- eurostat::tgs00026
@@ -29,25 +30,55 @@ check_nuts2013 <- function (dat) {
   changed_regions <- regional_changes_2016 %>% 
     filter ( change != 'unchanged')
   
-  tmp <- dat  %>%
+  ## Changed regions to be looked up by their NUTS2016 codes -----------
+  regional_changes_by_2016 <- regional_changes_2016 %>%
+    mutate ( geo = code16 ) %>% 
+    filter ( !is.na(code13))
+  
+  nrow(regional_changes_by_2016)
+  
+  ## adding those that have no equivalent in the previous group
+  ## some regions have to be identified by their old and new codes -----
+  regional_changes_by_2013 <- regional_changes_2016 %>%
+    mutate ( geo = code13 ) %>% 
+    filter ( !is.na(code13)) %>%
+    anti_join ( regional_changes_by_2016, 
+                by = c("code13", "code16", "name", "nuts_level", "change", "geo"))
+  
+  ## Region can be found by new or old NUTS code -----------------------
+  
+  all_regional_changes <- regional_changes_by_2016 %>%
+    full_join ( regional_changes_by_2013, 
+                by = c("code13", "code16", "name", "nuts_level",
+                       "change", "geo") )
+  
+  
+  tmp <- dat %>%
     mutate_if ( is.factor, as.character ) %>%
-    left_join (  regional_changes_2016 %>% 
-                  select ( code16, change ) %>%
-                  dplyr::rename ( geo = code16 ),
-                by = 'geo')
+    left_join ( all_regional_changes, by = 'geo' ) %>%
+    mutate ( nuts_level = ifelse (is.na(nuts_level), 
+                                  9, nuts_level)) %>%
+    mutate ( nuts_level = case_when ( 
+      nuts_level < 9                    ~ nuts_level,
+      nuts_level == 9 & nchar(geo) == 2 ~ 0,
+      nuts_level == 9 & nchar(geo) == 3 ~ 1,
+      nuts_level == 9 & nchar(geo) == 4 ~ 2,
+      nuts_level == 9 & nchar(geo) == 5 ~ 3,
+      TRUE ~ NA_real_ ))
   
-  there_are_changes <- FALSE
-  
-  if ( any (is.na(tmp$change)) ) {
-    tmp <- dat  %>%
-      mutate_if ( is.factor, as.character ) %>%
-      left_join (  regional_changes_2016 %>% 
-                     select ( code13, change ) %>%
-                     dplyr::rename ( geo = code13 ),
-                   by = 'geo')
-    
-    there_are_changes <- TRUE
+  if ( all ( tmp$change %in% unique(regional_changes_2016$code16) )) {
+    message ( "All observations are coded with NUTS2016 codes" )
+    there_are_changes <- FALSE
   }
+ 
+  non_eu <- select ( tmp, geo, code13, code16, change ) %>%
+    mutate ( change = ifelse (rowSums(is.na(.))==3, 
+                              "not in the EU", change )) %>%
+    filter ( change == 'not in the EU' )
+  
+  tmp <- tmp %>% mutate ( change = ifelse ( geo %in% non_eu$geo, 
+                                            'not in the EU', change ))  
+  
   
   eu_country_vector <-  eurostat::eu_countries$code
   tmp_country_vector <- unique ( substr(tmp$geo, 1, 2) )
@@ -59,20 +90,6 @@ check_nuts2013 <- function (dat) {
                "In this data frame: ", not_EU_country_vector )
   }
   
-  if ( any( stringr::str_sub(tmp$geo, -2,-1) %in% c('ZZ', 'XX')) ) {
-    
-    warning ( "Regional codes ending with ZZ or XX are extra-territorial", 
-              "\n to the EU and they are removed from the data frame.")
-    
-  }
-    
-  tmp %>%
-    mutate ( change  = ifelse (  geo %in% not_EU_country_vector , 
-                                 'not_EU', change )) %>%
-    filter ( stringr::str_sub(geo, -3,-1) != "ZZZ", 
-             stringr::str_sub(geo, -2,-1) != "ZZ", 
-             stringr::str_sub(geo, -3,-1) != "XXX", 
-             stringr::str_sub(geo, -2,-1) != "XX" ) %>%
-    mutate_if ( is.factor, as.character ) 
+  tmp
   
 }

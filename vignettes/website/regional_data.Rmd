@@ -110,12 +110,105 @@ eurostat::tgs00026 %>%
   select ( geo, code13,  code16, change, resolution, values )
 ```
 
-## Backfill to historical boundaries, fill new boundaries
+In the change log, `recoded` means that the geo code was changed in the transition to NUTS2016, `recoded and relabelled` means that not only the code, but also the official name of the region changed.
 
-The second step may be to backfill data for earlier boundaries or fill historical data for new boundaries.  The ability to do so will depend both on the nature of the boundary changes and the nature of the data. For example, Budapest and Central Hungary became two regional units in 2016, but otherwise the boundary did not change.  You can easily fill the old boundary population data by adding together data from Budapest and the new Central Hungary. But you cannot do this with GDP per capita, because the historical boundary data is a weighted average of GDP and population in the new subsequent regional units.
+For comparing with additional data sources, it may be useful to make sure that you use the current name of the region. Function `convert_to_nuts2016()` changes the name column to the NUTS2016 definition, when applicable.
+
+```{r convertFR}
+# for readability the previous example is filtered and reduced
+eurostat::tgs00026 %>%
+  filter ( time == 2012 ) %>%
+  convert_to_nuts2016() %>%
+  filter ( grepl("FR", geo) ) %>%
+  select ( geo, name,  code16, change, resolution, values )
+```
+
+You can create a NUTS2016-only dataframe with filtering for `nuts2016 == TRUE` or review the observation which are not part of the NUTS2016 definition with `nuts2016 == FALSE`. 
+
+Another useful filter is `change == "not in the EU"`.  The non-EU member state region definitions (and their possible changes) are not covered in the Eurostat correspondence table.  You may need to review these manually, and if you have a problem with the boundaries, refer to the national statistical authorities of these non-EU countries.
+
+```{r convertfilter}
+# for readability the previous example is filtered and reduced
+eurostat::tgs00026 %>%
+  filter ( time == 2012 ) %>%
+  convert_to_nuts2016() %>%
+  filter ( ! nuts2016 ) %>%
+  filter ( ! change == "not in the EU")
+```
+
+## Filling in new boundaries with historical data
 
 Eurostat released an untidy Excel document that contains all boundary changes from the `NUTS2013` to the `NUTS2016` boundary definition. You can load these tidy tables into your global environment with  `data("nuts_correspondence")` and `data ("regional_changes_2016")` or simply reference them as `eurostat::nuts_correspondence` and `eurostat::regional_changes_2016`. (The `eurostat::` part can be omitted if you have called earlier`library(eurostat)` in your code.)
 
+Because NUTS3 level data is very scarce, we did not create a programmatic solution to filling in new boundaries for NUTS2 regions. 
+
+However, using these correspondence information, many NUTS1 regions, when NUTS2 data is present in the data, can be filled in with historical data using simple equivalence or addition. 
+
+```{r correspondence}
+nuts_correspondence %>%
+  filter ( nuts_level == 1 ) %>% 
+  select ( code16, resolution )
+```
+
+For example, the new NUTS1 regions `FRB` is simply the continuation of the earlier NUTS2 region `FR24`. Or, the new NUTS1 region `FRC` can be filled with historical data with simply adding `FR26` and `FR43` NUTS2 data observations.
+
+## Backfill to historical boundaries
+
+When applying the latest boundaries (and visualizing according to current boundaries) is not important, it may be easier, or leave you with a larger panel of data if you use the correspondence information to backfill new, NUTS2016 data into the NUTS2013 boundaries, simply because you have more data following the earlier definition.
+
+## Imputation strategies
+
+There are many imputation methodologies implemented in various R libraries (see [CRAN Task View: Missing Data](https://cran.r-project.org/web/views/MissingData.html)) You have to beware that most of these methods are not satisfactory in regional datasets. Whenever misssingness is caused by boundary changes, it will certainly violate many imputation method's conditions.  For example, many imputation strategies work when missingness is random. Therefore, it is very important that you first align the boundaries, and then apply imputation.
+
+Consider the following very simple example:
+
+```{r example1}
+
+tibble ( regions =c("A02 - from 2015 in D1 greater region", 
+                    "B01 - from 2015 in D1 greater region", 
+                    "C1", 
+                    "D1 - from 2015 A02+B02"), 
+         Y2014 = c(1,2,10,NA_real_), 
+         Y2015 = c(rep(NA_real_, 4)), 
+         Y2016 = c(rep(NA_real_,2), 10, 5))
+
+```
+
+How would you interpolate the missing 2015 data?  In the case of region `C`, there are no boundary changes, and the data seems constant. You would interpolate the value 10.  
+
+However, in the case of the new `D1` region, we first reconstruct the sum of its smaller regions, `A02` + `B01` where we have historical data.  If `D1` region would have been defined as a region in 2014, its value would have been 3.  So the correct intrapolation is 4.
+
+```{r example2}
+tibble ( regions =c("A02 - from 2015 in D1 greater region", 
+                    "B01 - from 2015 in D1 greater region", 
+                    "C1 - 2015: intrapolated", 
+                    "D1 - 2014: A02+B02"), 
+         Y2014 = c(1,2,10,3), 
+         Y2015 = c(rep(NA_real_, 2), 10,4), 
+         Y2016 = c(rep(NA_real_,2), 10, 5))
+
+```
+
+However, you dataset is richer in the old boundary set, because `D1` had a higher resolution with data given for its constituent subregions, `A02` and `B01`. 
+
+```{r example3}
+tibble ( regions =c("A02 - extrapolated with D1 data", 
+                    "B01 - extrapoloated with D1 data", 
+                    "C1  - 2015: intrapolated", 
+                    "D1 -  2014: A02+B02"), 
+         Y2014 = c(1,2,10,3), 
+         Y2015 = c(1.5, 2.5, 10,4), 
+         Y2016 = c(2,3, 10, 5))
+
+```
+
+There are a few things to keep in mind when you start actually analyze the data. 
+
+Your dataset appears to be bigger, but it does not contain more information. Keeping both `A02 and B01`  and `D1` in your panel duplicates the new D1 region in your panel which is formerly known as `A02` and `B01`. If you measure growth, you will overestimate average growth, because the high-growth region is duplicated in the dataset. You must remove either `A02 and B01` or `D1` from your panel, otherwise you will skew the effect that you analyze towards `D1`.
+
+The use of the old boundaries makes sense if you have more data in the old definiton prior to 2014.  In this case, your dataset will contain less estimated values if you stick to the historical boundaries, and extrapoloate the discontinued `A02` and `B01` regions.
+
+The use of new boundaries is useful when you have more data after Y2016. In this case, the switch to a lower geographical resolution (merging A02 and `B01` to `D1`) is balanced by the fact that you have more recent and more factual data about the less detailed `D1` observation.  In this case, backfilling via reverse extrapolation the `D1` data is the better strategy.
 
 # Citations and related work
 
