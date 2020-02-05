@@ -11,7 +11,8 @@
 #' regions. Observations with codes ending on \code{'ZZ'} or \code{'XX'} are
 #' removed from the returned data table, because these are non-territorial
 #' observations or they are outside of the EU.
-#' @importFrom  dplyr left_join mutate filter rename mutate_if
+#' @importFrom dplyr mutate filter rename mutate_if case_when
+#' @importFrom dplyr left_join full_join anti_join
 #' @examples
 #'  \dontrun{
 #'    dat <- eurostat::tgs00026
@@ -44,13 +45,12 @@ check_nuts2013 <- function (dat) {
     anti_join ( regional_changes_by_2016, 
                 by = c("code13", "code16", "name", "nuts_level", "change", "geo"))
   
-  nrow(regional_changes_by_2013)
-  
-  ## Region can be found by new or old NUTS code -----
+  ## Region can be found by new or old NUTS code -----------------------
   
   all_regional_changes <- regional_changes_by_2016 %>%
     full_join ( regional_changes_by_2013, 
-                by = c("code13", "code16", "name", "nuts_level", "change", "geo"))
+                by = c("code13", "code16", "name", "nuts_level",
+                       "change", "geo") )
   
   
   tmp <- dat %>%
@@ -59,11 +59,11 @@ check_nuts2013 <- function (dat) {
     mutate ( nuts_level = ifelse (is.na(nuts_level), 
                                   9, nuts_level)) %>%
     mutate ( nuts_level = case_when ( 
-      nuts_level < 9                  ~ nuts_level,
-      nuts_level == 9 & nchar(geo)==2 ~ 0,
-      nuts_level == 9 & nchar(geo)==3 ~ 1,
-      nuts_level == 9 & nchar(geo)==4 ~ 2,
-      nuts_level == 9 & nchar(geo)==5 ~ 3,
+      nuts_level < 9                    ~ nuts_level,
+      nuts_level == 9 & nchar(geo) == 2 ~ 0,
+      nuts_level == 9 & nchar(geo) == 3 ~ 1,
+      nuts_level == 9 & nchar(geo) == 4 ~ 2,
+      nuts_level == 9 & nchar(geo) == 5 ~ 3,
       TRUE ~ NA_real_ ))
   
   if ( all ( tmp$change %in% unique(regional_changes$code16) )) {
