@@ -14,7 +14,8 @@
 #' that cannot be brought to the current \code{'NUTS2016'} definition.
 #' If not called before, the function will use the helper function
 #'  \code{\link{check_nuts2013}}
-#' @importFrom dplyr left_join mutate filter rename full_join
+#' @importFrom dplyr mutate filter rename arrange add_count
+#' @importFrom dplyr left_join full_join anti_join
 #' @importFrom stringr str_sub
 #' @examples
 #'  \dontrun{
@@ -49,8 +50,12 @@ harmonize_geo_code <- function ( dat ) {
   # step as tmp2, tmp3...  Debugging is particulary difficult, because
   # not only the program code, but the underlying logic may have faults.
   
-  tmp <- dat %>% 
-    check_nuts2013() 
+  if (! all(c("change", "code16", "code13") %in% names (dat)) ) {
+    tmp <- dat %>% 
+      check_nuts2013() 
+  } else {
+    tmp <- dat
+  }
  
   #Find those codes that are missing from the correct NUTS2016 codes -------
   missing_2016_codes <- nuts_2016_codes [which (! nuts_2016_codes %in% tmp_eu_only$geo )]
@@ -61,26 +66,25 @@ harmonize_geo_code <- function ( dat ) {
   missing_nuts1_2016 <- missing_2016_codes [ which (nchar(missing_2016_codes) == 3)]
   missing_nuts2_2016 <- missing_2016_codes [ which (nchar(missing_2016_codes) == 4)]
   
-  # Separating labels that need to be corrected into tmp3 ----------------
+  # Separating row that need to be corrected ----------------------------
   
   labelled_by_nuts_2016 <- tmp %>%
-    filter ( geo %in% nuts_2016_codes )  
+    filter ( geo %in% nuts_2016_codes )  # These are following NUTS2016
   
-  join_by_vector <- names ( labelled_by_nuts2016 %in% tmp )
+  join_by_vector <- names ( labelled_by_nuts_2016 %in% tmp )
   
   labelled_by_nuts_2013 <- tmp %>%
-    anti_join ( labelled_by_nuts2016, 
+    anti_join ( labelled_by_nuts_2016, 
                 by = join_by_vector ) %>%
-    filter ( geo %in% nuts_2013_codes )
+    filter ( geo %in% nuts_2013_codes )  # These are following NUTS2013
   
   message ( "There are ", nrow(labelled_by_nuts_2013), " regions that were changed",
             " in the transition to NUTS2016 and\nthe data frame uses their NUTS2013 geo codes.")
-  
-  
+ 
   labelled_by_other <- tmp %>%
     filter ( ! geo %in% nuts_2013_codes ) %>%
     filter ( ! geo %in% nuts_2016_codes ) %>% 
-    mutate ( nuts2016  = FALSE )
+    mutate ( nuts2016  = FALSE )        # These are not in the correspondence table (non-EU)
   
   message ( "There are ", nrow(labelled_by_other), " regions that are not covered by the correspondence tables.")
   message ( "These are likely to be non-EU regions and their consistency cannot be checked.")
@@ -90,6 +94,7 @@ harmonize_geo_code <- function ( dat ) {
     stop ( "Joining error Type I")
   }
  
+  ## NUTS regions that are NUTS2013 coded but have NUTS2016 equivalents -----
   can_be_found  <- labelled_by_nuts_2013 %>%
     filter ( !is.na(code16 ) )
   
@@ -98,17 +103,19 @@ harmonize_geo_code <- function ( dat ) {
     mutate ( nuts2016 = TRUE )
   
   message ( "There are ", nrow(recoded_regions), " regions that only changed their geo labels.")
-  message ( recoded_regions %>%
+  message ( "[", recoded_regions %>%
               filter ( grepl ("relabelled", change)) %>%
-              nrow(), " of these also changed their name.")
+              nrow(), " of these changed their names, too.]")
   
   other_cases <- can_be_found %>%
     anti_join ( recoded_regions, by = names ( can_be_found ) ) %>%
-    mutate ( nuts2016 = FALSE )
+    mutate ( nuts2016 = FALSE )  # I think these are 'small changes' 
   
   if ( nrow(other_cases) + nrow(recoded_regions) != nrow(can_be_found) ) {
     stop ( "Joining error in NUTS2013 regions that can be found in NUTS2016")
   }
+  
+  ## Discontinued regions -----------------------------------------------
   
   cannot_be_found <- labelled_by_nuts_2013 %>%
     filter ( is.na(code16) ) %>%
@@ -118,10 +125,8 @@ harmonize_geo_code <- function ( dat ) {
     stop ("Joining error in NUTS2013 regions that can or cannot be found.")
   }
   
-  nrow ( labelled_by_nuts_2016) +
-    nrow( recoded_regions ) + nrow ( other_cases) +
-    nrow ( cannot_be_found ) + nrow ( labelled_by_other )
-
+  ## First join all EU regions ----------------------------------------
+  
   eu_joined <- labelled_by_nuts_2016 %>%
     mutate ( nuts2016 = TRUE ) %>%
     full_join ( recoded_regions, by = names ( recoded_regions ) ) %>%
@@ -132,7 +137,10 @@ harmonize_geo_code <- function ( dat ) {
     stop ( "Joining error between EU and non-EU regions")
   }
   
-  all_regions <- labelled_by_other %>% full_join ( eu_joined, by = names ( eu_joined ))
+  ## Add non-EU regions  ----------------------------------------------
+  
+  all_regions <- labelled_by_other %>%
+    full_join ( eu_joined, by = names ( eu_joined ))
  
   if ( nrow(all_regions %>% add_count ( geo, time, values ) %>% filter ( n>1 )
   ) >0 ) {
@@ -140,7 +148,8 @@ harmonize_geo_code <- function ( dat ) {
   } 
   
  
- all_regions
+ all_regions %>%
+   dplyr::arrange(., time, geo, code16 )
   
 }
 
