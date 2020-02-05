@@ -36,6 +36,7 @@
 #' @importFrom tibble as_tibble
 #' @importFrom tidyr separate
 #' @importFrom tidyr gather_
+#' @importFrom tidyselect all_of
 #' @importFrom utils download.file
 #' @importFrom utils data
 #' @importFrom utils toBibtex
