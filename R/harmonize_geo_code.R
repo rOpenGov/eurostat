@@ -16,15 +16,16 @@
 #'  \code{\link{check_nuts2013}}
 #' @importFrom dplyr mutate filter rename arrange add_count
 #' @importFrom dplyr left_join full_join anti_join
+#' @importFrom tidyselect all_of
 #' @importFrom stringr str_sub
 #' @examples
 #'  \dontrun{
-#'    dat <- eurostat::tgs00026 %>%
+#'   eurostat::tgs00026 %>%
 #'      check_nuts2013() %>%
 #'      harmonize_geo_code()
 #'      
 #'  #If check_nuts2013() is not called, the function will call it.    
-#'   dat <- eurostat::tgs00026
+#'   eurostat::tgs00026
 #'      harmonize_geo_code(dat)    
 #'  }
 
@@ -57,25 +58,14 @@ harmonize_geo_code <- function ( dat ) {
     tmp <- dat
   }
  
-  #Find those codes that are missing from the correct NUTS2016 codes -------
-  missing_2016_codes <- nuts_2016_codes [which (! nuts_2016_codes %in% tmp_eu_only$geo )]
-  missing_2016_codes <- missing_2016_codes [ which (stringr::str_sub(missing_2016_codes, -3, -1) != "ZZZ")]
-  missing_2016_codes <- missing_2016_codes [ which (stringr::str_sub(missing_2016_codes, -2, -1) != "ZZ")]
-  
-  #Sort them out by NUTS1 and NUTS2 levels 
-  missing_nuts1_2016 <- missing_2016_codes [ which (nchar(missing_2016_codes) == 3)]
-  missing_nuts2_2016 <- missing_2016_codes [ which (nchar(missing_2016_codes) == 4)]
-  
   # Separating row that need to be corrected ----------------------------
   
   labelled_by_nuts_2016 <- tmp %>%
     filter ( geo %in% nuts_2016_codes )  # These are following NUTS2016
   
-  join_by_vector <- names ( labelled_by_nuts_2016 %in% tmp )
-  
   labelled_by_nuts_2013 <- tmp %>%
     anti_join ( labelled_by_nuts_2016, 
-                by = names(tmp)) %>%
+                by = all_of(names(tmp)) ) %>%
     filter ( geo %in% nuts_2013_codes )  # These are following NUTS2013
   
   message ( "There are ", nrow(labelled_by_nuts_2013), " regions that were changed",
@@ -130,13 +120,13 @@ harmonize_geo_code <- function ( dat ) {
   
   eu_joined <- labelled_by_nuts_2016 %>%
     mutate ( nuts2016 = TRUE ) %>%
-    full_join ( recoded_regions, by = names ( recoded_regions ) ) %>%
-    full_join ( other_cases, by = names ( other_cases )) %>%
-    full_join ( cannot_be_found, by = (names ( cannot_be_found ))) 
+    full_join ( recoded_regions, by = all_of(names ( recoded_regions )) ) %>%
+    full_join ( other_cases,     by = all_of(names ( other_cases )) ) %>%
+    full_join ( cannot_be_found, by = all_of(names ( cannot_be_found )) ) 
   
   if ( nrow ( eu_joined %>%
               semi_join ( labelled_by_other, 
-                          by = names (eu_joined) ))>0 ) {
+                          by = all_of(names (eu_joined))) ) > 0 ) {
     stop ( "Joining error between EU and non-EU regions")
   }
   
