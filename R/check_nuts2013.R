@@ -22,7 +22,26 @@
 check_nuts2013 <- function (dat) {
   
   ## For non-standard evaluation -------------------------------------
-  change  <- geo <- code13 <- code16 <- NULL 
+  . <- change  <- geo <- code13 <- code16 <- nuts_level <- NULL
+  regional_changes_2016 <- NULL
+  
+  ## The data is not loaded into the global environment --------------
+  .myDataEnv <- new.env(parent=emptyenv()) # the local environment
+  
+  getData <- function(dataset) {
+    isLoaded <- function(dataset) {
+      exists(x = dataset, envir = .myDataEnv)
+    }
+    if (!isLoaded(dataset)) {
+      if ( dataset == "regional_changes_2016")
+        data(regional_changes_2016, envir=.myDataEnv)
+    } else if ( dataset == "nuts_correspondence") {
+      data(nuts_correspondence, envir=.myDataEnv)
+    }
+    .myDataEnv[[dataset]]
+  }
+  
+  getData(dataset = "regional_changes_2016")
 
   unchanged_regions <- regional_changes_2016 %>% 
     filter ( change == 'unchanged')
@@ -33,17 +52,16 @@ check_nuts2013 <- function (dat) {
   ## Changed regions to be looked up by their NUTS2016 codes -----------
   regional_changes_by_2016 <- regional_changes_2016 %>%
     mutate ( geo = code16 ) %>% 
-    filter ( !is.na(code13))
-  
-  nrow(regional_changes_by_2016)
+    filter ( !is.na(code13) )
   
   ## adding those that have no equivalent in the previous group
   ## some regions have to be identified by their old and new codes -----
   regional_changes_by_2013 <- regional_changes_2016 %>%
     mutate ( geo = code13 ) %>% 
-    filter ( !is.na(code13)) %>%
+    filter ( !is.na(code13) ) %>%
     anti_join ( regional_changes_by_2016, 
-                by = c("code13", "code16", "name", "nuts_level", "change", "geo"))
+                by = c("code13", "code16", "name",
+                       "nuts_level", "change", "geo") )
   
   ## Region can be found by new or old NUTS code -----------------------
   
@@ -82,12 +100,13 @@ check_nuts2013 <- function (dat) {
   
   eu_country_vector <-  eurostat::eu_countries$code
   tmp_country_vector <- unique ( substr(tmp$geo, 1, 2) )
-  not_EU_country_vector <- tmp_country_vector [! tmp_country_vector %in% eu_country_vector] 
+  not_EU_country_vector <- tmp_country_vector [! tmp_country_vector %in%
+                                                 eu_country_vector] 
 
   if ( length(not_EU_country_vector) > 0 ) {
      ## The correspondence table only covers EU regions.
      message ( "Not checking for regional label consistency in non-EU countries\n",
-               "In this data frame: ", not_EU_country_vector )
+               "In this data frame non-EU country: ", not_EU_country_vector )
   }
   
   tmp

@@ -17,7 +17,7 @@
 #' If not called before, the function will use the helper function
 #'  \code{\link{check_nuts2013}} and  \code{\link{harmonize_geo_code}}
 #' @importFrom dplyr mutate filter rename arrange case_when
-#' @importFrom dplyr left_join inner_join anti_join
+#' @importFrom dplyr left_join inner_join anti_join right_join semi_join
 #' @importFrom tidyselect all_of
 #' @examples
 #'  \dontrun{
@@ -33,6 +33,27 @@
 #' @export
  
 convert_to_nuts2016 <- function (dat) {
+  
+  . <- nuts_level <- geo <- code13 <- code16 <- time <- name <- NULL
+  type <- nuts_correspondence <- regional_changes_2016 <- NULL
+  
+  .myDataEnv <- new.env(parent=emptyenv()) # the local environment
+  
+  getData <- function(dataset) {
+    isLoaded <- function(dataset) {
+      exists(x = dataset, envir = .myDataEnv)
+    }
+    if (!isLoaded(dataset)) {
+      if ( dataset == "regional_changes_2016")
+        data(regional_changes_2016, envir=.myDataEnv)
+    } else if ( dataset == "nuts_correspondence") {
+      data(nuts_correspondence, envir=.myDataEnv)
+    }
+    .myDataEnv[[dataset]]
+  }
+  
+  getData(dataset = "regional_changes_2016")
+  getData(dataset = "nuts_correspondence")
   
   if ( ! all(c("change", "code16", "code13") %in% names (dat)) ) {
     tmp <- harmonize_geo_code(dat)
