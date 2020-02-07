@@ -33,7 +33,8 @@
 #'   df <- get_eurostat_geospatial(output_class = "df", resolution = "20", nuts_level = "0")
 #'   spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
 #'  
-get_eurostat_geospatial <- function(output_class="sf",resolution="60",
+get_eurostat_geospatial <- function(output_class="sf", 
+                                    resolution="60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
 				    cache_dir = NULL){
@@ -45,7 +46,9 @@ Please check your connection and/or review your proxy settings")
   
   eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
-  data("eurostat_geodata_60_2016", envir = environment(), package = "eurostat")
+  data("eurostat_geodata_60_2016", 
+       envir = environment(),
+       package = "eurostat")
 
   # Check resolution is of correct format
   resolution <- as.character(resolution)
@@ -103,10 +106,14 @@ Please check your connection and/or review your proxy settings")
     if (nuts_level %in% c("all")){
       shp <- eurostat_geodata_60_2016 
     }
-    if (nuts_level == "0") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 0)
-    if (nuts_level == "1") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 1)
-    if (nuts_level == "2") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 2)
-    if (nuts_level == "3") shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == 3)
+    if (nuts_level == "0") shp <- filter(eurostat_geodata_60_2016, 
+                                         LEVL_CODE == 0)
+    if (nuts_level == "1") shp <- filter(eurostat_geodata_60_2016, 
+                                         LEVL_CODE == 1)
+    if (nuts_level == "2") shp <- filter(eurostat_geodata_60_2016, 
+                                         LEVL_CODE == 2)
+    if (nuts_level == "3") shp <- filter(eurostat_geodata_60_2016, 
+                                         LEVL_CODE == 3)
     
     if (output_class == "df"){
       nuts_sp <- as(shp, "Spatial")
@@ -141,7 +148,8 @@ Please check your connection and/or review your proxy settings")
     # cache filename
     cache_file <- file.path(cache_dir,
                             paste0(
-                              output_class, resolution, nuts_level, year, ".RData")
+                              output_class, resolution, 
+                              nuts_level, year, ".RData")
     )
   }
   
@@ -154,7 +162,8 @@ Please check your connection and/or review your proxy settings")
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)  
+        nuts0 <- st_read(content(resp, as="text"), 
+                         stringsAsFactors = FALSE, quiet = TRUE)  
         } 
     }
     if (nuts_level %in% c("1","all")){
@@ -163,7 +172,8 @@ Please check your connection and/or review your proxy settings")
       if (httr::http_error(resp)) {
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts1 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)  
+        nuts1 <- st_read(content(resp, as="text"), 
+                         stringsAsFactors = FALSE, quiet = TRUE)  
         }
     }    
     if (nuts_level %in% c("2","all")){
@@ -171,7 +181,8 @@ Please check your connection and/or review your proxy settings")
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts2 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)  
+        nuts2 <- st_read(content(resp, as="text"), 
+                         stringsAsFactors = FALSE, quiet = TRUE)  
         }
     }
     if (nuts_level %in% c("3","all")){
@@ -179,12 +190,13 @@ Please check your connection and/or review your proxy settings")
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)    
+        nuts3 <- st_read(content(resp, as="text"), 
+                         stringsAsFactors = FALSE, quiet = TRUE)    
         }
     }
     
     if (nuts_level %in% c("all")){
-      shp <- rbind(nuts0,nuts1,nuts2,nuts3)
+      shp <- rbind(nuts0, nuts1, nuts2, nuts3)
     }
     
     if (nuts_level == "0") shp <- nuts0
@@ -195,8 +207,8 @@ Please check your connection and/or review your proxy settings")
     if (output_class == "df"){
       nuts_sp <- as(shp, "Spatial")
       nuts_sp$id <- row.names(nuts_sp)
-      nuts_ff <- broom::tidy(nuts_sp)
-      shp <- left_join(nuts_ff,nuts_sp@data)
+      nuts_ff    <- broom::tidy(nuts_sp)
+      shp        <- left_join(nuts_ff,nuts_sp@data)
     }
     if (output_class == "spdf"){
       shp <- as(shp, "Spatial")
@@ -210,24 +222,39 @@ Please check your connection and/or review your proxy settings")
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))
     load(file = cache_file)
-    if (output_class == "sf") message(paste("sf at resolution 1:", resolution, " from year ",year," read from cache file: ", cf))
-    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " from year ",year," read from cache file: ", cf))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " from year ",year," read from cache file: ", cf))
+    if (output_class == "sf") message(paste("sf at resolution 1:", 
+                                            resolution, " from year ",
+                                            year," read from cache file: ",
+                                            cf))
+    if (output_class == "df") message(paste("data_frame at resolution 1:",
+                                            resolution, " from year ", 
+                                            year," read from cache file: ", 
+                                            cf))
+    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", 
+                                              resolution, " from year ", 
+                                              year," read from cache file: ",
+                                              cf))
   }
   
   # if update or new: save
   if (cache && (update_cache || !file.exists(cache_file))){
     save(shp, file = cache_file)
-    if (output_class == "sf") message(paste("sf at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
-    if (output_class == "df") message(paste("data_frame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", resolution, " cached at: ", path.expand(cache_file)))
+    if (output_class == "sf") message(paste("sf at resolution 1:", 
+                                            resolution, " cached at: ", 
+                                            path.expand(cache_file)))
+    if (output_class == "df") message(paste("data_frame at resolution 1:", 
+                                            resolution, " cached at: ", 
+                                            path.expand(cache_file)))
+    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", 
+                                              resolution, " cached at: ", 
+                                              path.expand(cache_file)))
   }
   }
   
   if (resolution == "60" & year == 2016){
-    if (output_class == "sf") message(paste("sf at resolution 1:60 read from local file"))
-    if (output_class == "df") message(paste("data_frame at resolution 1:60 read from local file"))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:60 read from local file"))
+    if (output_class == "sf") message("sf at resolution 1:60 read from local file")
+    if (output_class == "df") message("data_frame at resolution 1:60 read from local file")
+    if (output_class == "spdf") message("SpatialPolygonDataFrame at resolution 1:60 read from local file")
     
   }
   

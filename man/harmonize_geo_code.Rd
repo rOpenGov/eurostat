@@ -16,7 +16,8 @@ contains all formerly \code{'NUTS2013'} definition geo labels in the
 boundary did not. It also contains some information on other geo labels
 that cannot be brought to the current \code{'NUTS2016'} definition.
 If not called before, the function will use the helper function
- \code{\link{check_nuts2013}}
+ \code{\link{check_nuts_2013}}
+
 }
 \description{
 Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
@@ -28,10 +29,10 @@ somehow compared to current \code{'NUTS2016'} boundaries.
 \examples{
  \dontrun{
   eurostat::tgs00026 \%>\%
-     check_nuts2013() \%>\%
+     check_nuts_2013() \%>\%
      harmonize_geo_code()
      
- #If check_nuts2013() is not called, the function will call it.    
+ #If check_nuts_2013() is not called, the function will call it.    
   eurostat::tgs00026
      harmonize_geo_code(dat)    
  }

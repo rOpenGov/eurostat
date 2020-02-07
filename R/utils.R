@@ -12,3 +12,19 @@ available_freq <- function(x){
   freq <- c(freq, freq_char)
   freq
 }
+
+## load a eurostat package data without causing binding errors
+## controlled loading in functions without loading the data 
+## to the global environment
+
+load_package_data <- function(dataset) {
+  
+  .new_data_environment <- new.env(parent=emptyenv()) # a new environment
+
+  if (! exists(x = dataset, envir = .new_data_environment) ) {
+    data(list = dataset, 
+         package = "eurostat", 
+         envir=.new_data_environment)
+  } 
+  .new_data_environment[[dataset]]
+}

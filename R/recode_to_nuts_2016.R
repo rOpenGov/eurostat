@@ -15,46 +15,31 @@
 #' Furthermore, when the official name of the region changed, it will use
 #' the new name (if the otherwise the region boundary did not change.)
 #' If not called before, the function will use the helper function
-#'  \code{\link{check_nuts2013}} and  \code{\link{harmonize_geo_code}}
+#'  \code{\link{check_nuts_2013}} and  \code{\link{harmonize_geo_code}}
 #' @importFrom dplyr mutate filter rename arrange case_when
-#' @importFrom dplyr left_join inner_join anti_join right_join semi_join
+#' @importFrom dplyr left_join inner_join anti_join semi_join
 #' @importFrom tidyselect all_of
 #' @examples
 #'  \dontrun{
 #'   eurostat::tgs00026 %>%
 #'      check_nuts2013() %>%
 #'      harmonize_geo_code() %>%
-#'      convert_to_nuts2016() 
+#'      recode_to_nuts_2016() 
 #'      
 #'  #If check_nuts2013() is not called, the function will call it.    
 #'   eurostat::tgs00026 %>%
-#'      convert_to_nuts2016()    
+#'      recode_to_nuts_2016()    
 #'  }
 #' @export
  
-convert_to_nuts2016 <- function (dat) {
+recode_to_nuts_2016 <- function (dat) {
   
   . <- nuts_level <- geo <- code13 <- code16 <- time <- name <- NULL
   type <- nuts_correspondence <- regional_changes_2016 <- NULL
-  
-  .myDataEnv <- new.env(parent=emptyenv()) # the local environment
-  
-  getData <- function(dataset) {
-    isLoaded <- function(dataset) {
-      exists(x = dataset, envir = .myDataEnv)
-    }
-    if (!isLoaded(dataset)) {
-      if ( dataset == "regional_changes_2016")
-        data(regional_changes_2016, envir=.myDataEnv)
-    } else if ( dataset == "nuts_correspondence") {
-      data(nuts_correspondence, envir=.myDataEnv)
-    }
-    .myDataEnv[[dataset]]
-  }
-  
-  getData(dataset = "regional_changes_2016")
-  getData(dataset = "nuts_correspondence")
-  
+
+  regional_changes_2016 <- load_package_data(dataset = "regional_changes_2016")
+  nuts_correspondence <- load_package_data(dataset = "nuts_correspondence")
+
   if ( ! all(c("change", "code16", "code13") %in% names (dat)) ) {
     tmp <- harmonize_geo_code(dat)
   } else {
@@ -88,11 +73,12 @@ convert_to_nuts2016 <- function (dat) {
   
   regions_with_other_names <- tmp %>% 
     anti_join ( regions_by_nuts2016_names, 
-                    by = all_of(names(tmp)) )
+                    by = tidyselect::all_of(names(tmp)) )
   
   rbind ( regions_by_nuts2016_names,
           regions_with_other_names ) %>%
     arrange ( time, geo, code16 ) %>%
-    left_join ( nuts_correspondence )
+    left_join ( nuts_correspondence, 
+                by = c("code13", "code16", "nuts_level", "change", "name"))
   
 }
