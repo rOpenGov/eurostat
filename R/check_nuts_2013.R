@@ -16,38 +16,24 @@
 #' @examples
 #'  \dontrun{
 #'    dat <- eurostat::tgs00026
-#'    check_nuts2013(dat)
+#'    check_nuts_2013(dat)
 #'  }
 
-check_nuts2013 <- function (dat) {
+check_nuts_2013 <- function (dat) {
   
   ## For non-standard evaluation -------------------------------------
   . <- change  <- geo <- code13 <- code16 <- nuts_level <- NULL
-  regional_changes_2016 <- NULL
+  regional_changes_2016 <- country_code <- NULL
   
   ## The data is not loaded into the global environment --------------
-  .myDataEnv <- new.env(parent=emptyenv()) # the local environment
   
-  getData <- function(dataset) {
-    isLoaded <- function(dataset) {
-      exists(x = dataset, envir = .myDataEnv)
-    }
-    if (!isLoaded(dataset)) {
-      if ( dataset == "regional_changes_2016")
-        data(regional_changes_2016, envir=.myDataEnv)
-    } else if ( dataset == "nuts_correspondence") {
-      data(nuts_correspondence, envir=.myDataEnv)
-    }
-    .myDataEnv[[dataset]]
-  }
+  regional_changes_2016 <- load_package_data(dataset = "regional_changes_2016")
   
-  getData(dataset = "regional_changes_2016")
-
   unchanged_regions <- regional_changes_2016 %>% 
-    filter ( change == 'unchanged')
+    filter ( change == 'unchanged' )
   
   changed_regions <- regional_changes_2016 %>% 
-    filter ( change != 'unchanged')
+    filter ( change != 'unchanged' )
   
   ## Changed regions to be looked up by their NUTS2016 codes -----------
   regional_changes_by_2016 <- regional_changes_2016 %>%
@@ -67,7 +53,8 @@ check_nuts2013 <- function (dat) {
   
   all_regional_changes <- regional_changes_by_2016 %>%
     full_join ( regional_changes_by_2013, 
-                by = c("code13", "code16", "name", "nuts_level",
+                by = c("code13", "code16", "name",
+                       "nuts_level",
                        "change", "geo") )
   
   
@@ -75,40 +62,43 @@ check_nuts2013 <- function (dat) {
     mutate_if ( is.factor, as.character ) %>%
     left_join ( all_regional_changes, by = 'geo' ) %>%
     mutate ( nuts_level = ifelse (is.na(nuts_level), 
-                                  9, nuts_level)) %>%
-    mutate ( nuts_level = case_when ( 
-      nuts_level < 9                    ~ nuts_level,
-      nuts_level == 9 & nchar(geo) == 2 ~ 0,
-      nuts_level == 9 & nchar(geo) == 3 ~ 1,
-      nuts_level == 9 & nchar(geo) == 4 ~ 2,
-      nuts_level == 9 & nchar(geo) == 5 ~ 3,
-      TRUE ~ NA_real_ ))
+                                  add_nuts_level(geo),
+                                  nuts_level))
   
   if ( all ( tmp$change %in% unique(regional_changes_2016$code16) )) {
     message ( "All observations are coded with NUTS2016 codes" )
     there_are_changes <- FALSE
   }
  
-  non_eu <- select ( tmp, geo, code13, code16, change ) %>%
-    mutate ( change = ifelse (rowSums(is.na(.))==3, 
-                              "not in the EU", change )) %>%
-    filter ( change == 'not in the EU' )
-  
-  tmp <- tmp %>% mutate ( change = ifelse ( geo %in% non_eu$geo, 
-                                            'not in the EU', change ))  
-  
-  
-  eu_country_vector <-  eurostat::eu_countries$code
-  tmp_country_vector <- unique ( substr(tmp$geo, 1, 2) )
-  not_EU_country_vector <- tmp_country_vector [! tmp_country_vector %in%
-                                                 eu_country_vector] 
+  eu_countries <- load_package_data(dataset = "eu_countries")
 
-  if ( length(not_EU_country_vector) > 0 ) {
-     ## The correspondence table only covers EU regions.
-     message ( "Not checking for regional label consistency in non-EU countries\n",
-               "In this data frame non-EU country: ", not_EU_country_vector )
+  eu_country_vector <-  unique ( substr(eu_countries$code, 1, 2) )
+  
+  tmp <- tmp %>%
+    mutate ( country_code = substr(geo,1,2) ) %>%
+    mutate ( change = ifelse ( country_code %in% eu_country_vector, 
+                               yes  = change,
+                               no = "not in the EU")) %>%
+    select ( -country_code )
+
+  if ( any(tmp$change == 'not in the EU') ) {
+    
+    not_EU_country_vector <- substr(tmp$geo, 1,2)
+    not_EU_country_vector <- not_EU_country_vector [ !not_EU_country_vector %in% eu_country_vector]
+    ## The correspondence table only covers EU regions.
+    message ( "Not checking for regional label consistency in non-EU countries\n",
+              "In this data frame non-EU country: ", 
+              paste (sort(unique(not_EU_country_vector)),
+                     collapse = ", "), "." )
   }
   
-  tmp
+  nuts_2016_codes <- unique(regional_changes_2016$code16)
+  nuts_2013_codes <- unique(regional_changes_2016$code13)
+  
+  tmp <- tmp %>%
+    mutate ( nuts_2016 = ifelse ( geo %in% nuts_2016_codes, 
+                                  TRUE, FALSE),
+             nuts_2013 = ifelse ( geo %in% nuts_2013_codes, 
+                                  TRUE, FALSE))
   
 }
