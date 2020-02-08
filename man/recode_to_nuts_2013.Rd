@@ -19,7 +19,7 @@ that cannot be brought to the current \code{'NUTS2013'} definition.
 Furthermore, when the official name of the region changed, it will use
 the new name (if the otherwise the region boundary did not change.)
 If not called before, the function will use the helper function
- \code{\link{check_nuts_2013}} and  \code{\link{harmonize_geo_code}}
+\code{\link{harmonize_geo_code}}
 }
 \description{
 Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
@@ -29,16 +29,21 @@ marks discontinued regions, and other regions which may or may not be
 somehow compared to the historic \code{'NUTS2013'} boundaries.
 }
 \examples{
- \dontrun{
-  eurostat::tgs00026 \%>\%
-     check_nuts2013() \%>\%
-     harmonize_geo_code() \%>\%
-     recode_to_nuts_2013() 
-     
- #If check_nuts2013() is not called, the function will call it.    
-  eurostat::tgs00026 \%>\%
-     recode_to_nuts_2013()    
- }
+test_regional_codes <- data.frame ( 
+  geo = c("FRB", "FRE", "UKN02", "IE022", "FR243", "FRB03"),
+  time = c(rep(as.Date ("2014-01-01"), 5), as.Date("2015-01-01")), 
+  values = c(1:6), 
+  control = c("Changed from NUTS2 to NUTS1", 
+              "New region NUTS2016 only", 
+              "Discontinued region NUTS2013", 
+              "Boundary shift NUTS2013", 
+              "Recoded in NUTS2013", 
+              "Recoded in NUTS2016"
+  )) 
+ 
+ test_regional_codes \%>\%
+  harmonize_geo_code () \%>\%
+   recode_to_nuts_2013()
 }
 \author{
 Daniel Antal
