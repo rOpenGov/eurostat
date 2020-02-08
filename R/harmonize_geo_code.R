@@ -6,10 +6,10 @@
 #' @param dat A Eurostat data frame downloaded with \code{\link{get_eurostat}}
 #' @export
 #' @author Daniel Antal
-#' @return An augmented data frame or a message about potential coding
-#' errors.
-#' @importFrom dplyr mutate filter rename mutate_if case_when
-#' @importFrom dplyr left_join full_join anti_join
+#' @return An augmented data frame that explains potential problems and 
+#' possible solutions.
+#' @importFrom dplyr mutate filter rename mutate_if case_when distinct
+#' @importFrom dplyr left_join full_join anti_join add_count semi_join
 #' @examples
 #'  \dontrun{
 #'    dat <- eurostat::tgs00026
@@ -20,7 +20,7 @@ harmonize_geo_code <- function (dat) {
   
   ## For non-standard evaluation -------------------------------------
   . <- change  <- geo <- code13 <- code16 <- nuts_level <- NULL
-  country_code <- NULL
+  country_code <- n <- values <- time <- name <- resolution <- NULL
   
   dat <- mutate_if ( dat, is.factor, as.character)
   

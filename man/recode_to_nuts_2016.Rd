@@ -41,9 +41,7 @@ test_regional_codes <- data.frame (
               "Recoded in NUTS2016"
   )) 
  
- test_regional_codes \%>\%
-  harmonize_geo_code () \%>\%
-   recode_to_nuts_2016()
+recode_to_nuts_2016(test_regional_codes)
 }
 \author{
 Daniel Antal

@@ -31,9 +31,7 @@
 #'               "Recoded in NUTS2016"
 #'   )) 
 #'  
-#'  test_regional_codes %>%
-#'   harmonize_geo_code () %>%
-#'    recode_to_nuts_2013()
+#' recode_to_nuts_2013(test_regional_codes)
 #' @export
  
 recode_to_nuts_2013 <- function (dat) {
@@ -42,7 +40,7 @@ recode_to_nuts_2013 <- function (dat) {
   type  <- NULL
 
   regional_changes_2016 <- load_package_data(dataset = "regional_changes_2016")
-  nuts_correspondence <- load_package_data(dataset = "nuts_correspondence")
+  nuts_correspondence   <- load_package_data(dataset = "nuts_correspondence")
 
   if ( ! all(c("change", "code16", "code13") %in% names (dat)) ) {
     tmp <- harmonize_geo_code(dat)
