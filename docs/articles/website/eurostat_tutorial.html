@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20004</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20005</span>
       </span>
     </div>
 
@@ -89,7 +89,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial for the eurostat R package</h1>
             
-            <h4 class="date">2020-02-06</h4>
+            <h4 class="date">2020-02-07</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -112,12 +112,12 @@
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(devtools)</a>
 <a class="sourceLine" id="cb2-2" title="2"><span class="kw"><a href="https://rdrr.io/pkg/devtools/man/remote-reexports.html">install_github</a></span>(<span class="st">"ropengov/eurostat"</span>)</a></code></pre></div>
 <p>Overall, the eurostat package includes the following functions:</p>
-<pre><code>check_access_to_data    Check access to ec.europe.eu
-check_nuts2013          Check NUTS region codes that changed with the
+<pre><code>add_nuts_level          Add the statistical aggregation level to data
+                        frame
+check_access_to_data    Check access to ec.europe.eu
+check_nuts_2013         Check NUTS region codes that changed with the
                         'NUTS2016' definition
 clean_eurostat_cache    Clean Eurostat Cache
-convert_to_nuts2016     Recode geo labels and rename regions from
-                        NUTS2013 to NUTS2016
 cut_to_classes          Cuts the Values Column into Classes and
                         Polishes the Labels
 dic_order               Order of Variable Levels from Eurostat
@@ -143,6 +143,10 @@ harmonize_country_code
 harmonize_geo_code      Recode geo labels from NUTS2013 to NUTS2016
 label_eurostat          Get Eurostat Codes
 nuts_correspondence     Correspondence Table NUTS2013-NUTS2016
+recode_to_nuts_2013     Recode geo labels and rename regions from
+                        NUTS2016 to NUTS2013
+recode_to_nuts_2016     Recode geo labels and rename regions from
+                        NUTS2013 to NUTS2016
 regional_changes_2016   Changes in regional boundaries
                         NUTS2013-NUTS2016
 search_eurostat         Grep Datasets Titles from Eurostat
@@ -907,7 +911,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.5.20004 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.5.20005 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -922,7 +926,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.5.20004},
+##     note = {Version 3.5.20005},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -956,7 +960,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.5.20004
+## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.5.20005
 ## [5] knitr_1.26        
 ## 
 ## loaded via a namespace (and not attached):

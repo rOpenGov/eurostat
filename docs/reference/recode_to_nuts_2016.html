@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>R Tools for Eurostat open data — eurostat-package • eurostat</title>
+<title>Recode geo labels and rename regions from NUTS2013 to NUTS2016 — recode_to_nuts_2016 • eurostat</title>
 
 
 <!-- jquery -->
@@ -35,8 +35,12 @@
 
 
 
-<meta property="og:title" content="R Tools for Eurostat open data — eurostat-package" />
-<meta property="og:description" content="Brief summary of the eurostat package" />
+<meta property="og:title" content="Recode geo labels and rename regions from NUTS2013 to NUTS2016 — recode_to_nuts_2016" />
+<meta property="og:description" content="Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
+in the 'geo' column, which creates time-wise comparativity issues.
+This function recodes the observations where only the coding changed, and
+marks discontinued regions, and other regions which may or may not be 
+somehow compared to current 'NUTS2016' boundaries." />
 <meta name="twitter:card" content="summary" />
 
 
@@ -127,49 +131,65 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>R Tools for Eurostat open data</h1>
+    <h1>Recode geo labels and rename regions from NUTS2013 to NUTS2016</h1>
     
-    <div class="hidden name"><code>eurostat-package.Rd</code></div>
+    <div class="hidden name"><code>recode_to_nuts_2016.Rd</code></div>
     </div>
 
     <div class="ref-description">
-    <p>Brief summary of the eurostat package</p>
+    <p>Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
+in the <code>'geo'</code> column, which creates time-wise comparativity issues.
+This function recodes the observations where only the coding changed, and
+marks discontinued regions, and other regions which may or may not be 
+somehow compared to current <code>'NUTS2016'</code> boundaries.</p>
     </div>
 
+    <pre class="usage"><span class='fu'>recode_to_nuts_2016</span>(<span class='no'>dat</span>)</pre>
 
+    <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
+    <table class="ref-arguments">
+    <colgroup><col class="name" /><col class="desc" /></colgroup>
+    <tr>
+      <th>dat</th>
+      <td><p>A Eurostat data frame downloaded with 
+<code><a href='get_eurostat.html'>get_eurostat</a></code>.</p></td>
+    </tr>
+    </table>
 
-    <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
-    
-<table class='table'>
-<tr><td>Package:</td><td>eurostat</td></tr>
-<tr><td>Type:</td><td>Package</td></tr>
-<tr><td>Version:</td><td>See sessionInfo() or DESCRIPTION file</td></tr>
-<tr><td>Date:</td><td>2014-2017</td></tr>
-<tr><td>License:</td><td>BSD_2_clause + LICENSE</td></tr>
-<tr><td>LazyLoad:</td><td>yes</td></tr>
-</table>
-
-
-<p>R Tools for Eurostat Open Data</p>
-    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
-
-    <p>See citation("eurostat")
-<a href='https://ropengov.github.io/eurostat'>https://ropengov.github.io/eurostat</a></p>
+    <p>An augmented and potentially relabelled data frame which 
+contains all formerly <code>'NUTS2013'</code> definition geo labels in the 
+<code>'NUTS2016'</code> vocabulary when only the code changed, but the 
+boundary did not. It also contains some information on other geo labels
+that cannot be brought to the current <code>'NUTS2016'</code> definition. 
+Furthermore, when the official name of the region changed, it will use
+the new name (if the otherwise the region boundary did not change.)
+If not called before, the function will use the helper function
+ <code><a href='check_nuts_2013.html'>check_nuts_2013</a></code> and  <code><a href='harmonize_geo_code.html'>harmonize_geo_code</a></code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'><a href='https://rdrr.io/r/base/library.html'>library</a></span>(<span class='no'>eurostat</span>)</div></pre>
+    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
+  <span class='kw pkg'>eurostat</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/eurostat/man/tgs00026.html'>tgs00026</a></span> <span class='kw'>%&gt;%</span>
+     <span class='fu'>check_nuts2013</span>() <span class='kw'>%&gt;%</span>
+     <span class='fu'><a href='harmonize_geo_code.html'>harmonize_geo_code</a></span>() <span class='kw'>%&gt;%</span>
+     <span class='fu'>recode_to_nuts_2016</span>()
+
+ <span class='co'>#If check_nuts2013() is not called, the function will call it.    </span>
+  <span class='kw pkg'>eurostat</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/eurostat/man/tgs00026.html'>tgs00026</a></span> <span class='kw'>%&gt;%</span>
+     <span class='fu'>recode_to_nuts_2016</span>()
+ }</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
-      <li><a href="#details">Details</a></li>
-      <li><a href="#references">References</a></li>
+      <li><a href="#arguments">Arguments</a></li>
+      <li><a href="#value">Value</a></li>
       <li><a href="#examples">Examples</a></li>
     </ul>
 
     <h2>Author</h2>
-    <p>Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek <a href='mailto:ropengov-forum@googlegroups.com'>ropengov-forum@googlegroups.com</a> <a href='https://ropengov.github.io/eurostat'>https://ropengov.github.io/eurostat</a></p>
+    <p>Daniel Antal</p>
   </div>
 </div>
 
