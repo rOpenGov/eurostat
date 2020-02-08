@@ -2,38 +2,27 @@
 % Please edit documentation in R/harmonize_geo_code.R
 \name{harmonize_geo_code}
 \alias{harmonize_geo_code}
-\title{Recode geo labels from NUTS2013 to NUTS2016}
+\title{Harmonize NUTS region codes that changed with the \code{NUTS2016} definition}
 \usage{
 harmonize_geo_code(dat)
 }
 \arguments{
-\item{dat}{A Eurostat data frame downloaded with \code{\link{get_eurostat}}.}
+\item{dat}{A Eurostat data frame downloaded with \code{\link{get_eurostat}}}
 }
 \value{
-An augmented and potentially relabelled data frame which 
-contains all formerly \code{'NUTS2013'} definition geo labels in the 
-\code{'NUTS2016'} vocabulary when only the code changed, but the 
-boundary did not. It also contains some information on other geo labels
-that cannot be brought to the current \code{'NUTS2016'} definition.
-If not called before, the function will use the helper function
- \code{\link{check_nuts_2013}}
+An augmented data frame or a message about potential coding
+errors.
 }
 \description{
-Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
-in the \code{'geo'} column, which creates time-wise comparativity issues.
-This function recodes the observations where only the coding changed, and
-marks discontinued regions, and other regions which may or may not be 
-somehow compared to current \code{'NUTS2016'} boundaries.
+Eurostat mixes \code{NUTS2013} and \code{NUTS2016} geographic
+label codes in the \code{'geo'} column, which creates time-wise comparativity issues.
+This function checks if you data is affected by this problem and gives
+information on what to do.
 }
 \examples{
  \dontrun{
-  eurostat::tgs00026 \%>\%
-     check_nuts_2013() \%>\%
-     harmonize_geo_code()
-     
- #If check_nuts_2013() is not called, the function will call it.    
-  eurostat::tgs00026
-     harmonize_geo_code(dat)    
+   dat <- eurostat::tgs00026
+   harmonize_geo_code(dat)
  }
 }
 \author{
