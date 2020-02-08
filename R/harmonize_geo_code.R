@@ -84,14 +84,7 @@ harmonize_geo_code <- function (dat) {
   nuts_2016_codes <- unique (all_regions_full_metadata$code16)#[!is.na(all_regions_full_metadata$code16)]
   nuts_2013_codes <- nuts_2013_codes[!is.na(nuts_2013_codes)]
   nuts_2016_codes <- nuts_2016_codes[!is.na(nuts_2016_codes)]
-  
-  "PL2" %in% all_regions_full_metadata$code13
-  "PL2" %in% unique ( all_regions_full_metadata$code13)
-  "UKN01" %in% nuts_2013_codes
-  "UKN01" %in% nuts_2016_codes
-  
-  any ( is.na(nuts_2013_codes))
-  
+
   tmp_by_code16 <- dat %>%
     mutate ( geo = as.character(geo)) %>%
     filter ( geo %in% all_regions_full_metadata$code16 ) %>%
@@ -120,7 +113,7 @@ harmonize_geo_code <- function (dat) {
     semi_join (  tmp_by_code13, 
                  by = names ( tmp_by_code13)) # found in both (unchanged and relabelled)
  
-  if (! all(tmp_s$nuts_2013 && tmp_s$nuts_2016)) { stop ("Wrong selection of unchanged regions.") }
+  if (! all(tmp_s$nuts_2013 & tmp_s$nuts_2016)) { stop ("Wrong selection of unchanged regions.") }
   
   
   tmp_s2 <- tmp_by_code13 %>%
@@ -130,14 +123,16 @@ harmonize_geo_code <- function (dat) {
   
   tmp_a1 <- tmp_by_code16 %>%
     anti_join (  tmp_by_code13, 
-                 by = names(tmp_by_code13)) # not found in code13 (new regions)
-  if ( ! all(tmp_a2$nuts_2013)) { stop ("Wrong selection of NUTS2013-only regions.") }
+                 by = names(tmp_by_code13)
+                 ) # not found in code13 (new regions)
+  if ( any(tmp_a1$nuts_2013) ) { stop ("Wrong selection of NUTS2013-only regions.") }
   
   
   tmp_a2 <- tmp_by_code13 %>%
     anti_join (  tmp_by_code16, 
-                 by = names(tmp_by_code13)) # not found in code16 (changes)
-  if ( ! all(tmp_a2$nuts_2013)) { stop ("Wrong selection of NUTS2013-only regions.") }
+                 by = names(tmp_by_code13)
+                 ) # not found in code16 (changes)
+  if ( any(tmp_a2$nuts_2016) ) { stop ("Wrong selection of NUTS2013-only regions.") }
   
   tmp <- rbind ( tmp_s, tmp_a1, tmp_a2 )
   
