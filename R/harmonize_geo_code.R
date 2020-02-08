@@ -126,8 +126,7 @@ harmonize_geo_code <- function (dat) {
                  by = names(tmp_by_code13)
                  ) # not found in code13 (new regions)
   if ( any(tmp_a1$nuts_2013) ) { stop ("Wrong selection of NUTS2013-only regions.") }
-  
-  
+ 
   tmp_a2 <- tmp_by_code13 %>%
     anti_join (  tmp_by_code16, 
                  by = names(tmp_by_code13)
