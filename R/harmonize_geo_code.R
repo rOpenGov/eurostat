@@ -137,7 +137,7 @@ harmonize_geo_code <- function (dat) {
   
   tmp2 <- rbind ( tmp_s, tmp_a1, tmp_a2 )
   
-  not_found_geo <- unique(dat$geo[! dat$geo %in% tmp$geo ])
+  not_found_geo <- unique(dat$geo[! dat$geo %in% tmp2$geo ])
   not_eu_regions <- not_found_geo[! substr(not_found_geo,1,2) %in% eu_countries$code]
   
   ## Checking if there are unmatched EU regions-------------------------
@@ -145,12 +145,14 @@ harmonize_geo_code <- function (dat) {
   not_found_eu_regions <-  not_found_geo[ substr(not_found_geo,1,2) %in% eu_countries$code]
  
   if ( length(not_found_eu_regions)>0 ) {
-    warning ( "The following geo labels were not found in the correspondence table:")
-    message ( paste(not_found_eu_regions, collapse = ", "))
-    if ( any(geo%in% c("SI02", "SI01", "EL1", "EL2"))) {
+       if ( any( not_found_eu_regions %in% c("SI02", "SI01", "EL1", "EL2"))) {
       message ( "Some or all of these regions use codes earlier than NUTS2013 definition.")
-    }
+       }
     
+    if ( any(grepl("XX", not_found_eu_regions ))) {
+      message ( "Some or all of these regions use data that cannot be connected to a regional unit.")
+    }
+  
     tmp_not_found <- dat %>%
       filter ( geo %in% not_found_eu_regions ) %>%
       mutate ( nuts_level = nchar(geo)-2, 
@@ -164,25 +166,39 @@ harmonize_geo_code <- function (dat) {
         geo == "EL2"  ~ "EL6", 
         geo == "SI01" ~ "SI03", 
         geo == "SI02" ~ "SI04", 
+        substr(geo,3,4) == "XX" ~ geo,
         TRUE ~ NA_character_ )) %>% 
       mutate ( code16 = case_when ( 
         geo == "EL1" ~  "EL5", 
         geo == "EL2"  ~ "EL6", 
         geo == "SI01" ~ "SI03", 
         geo == "SI02" ~ "SI04",
+        substr(geo,3,4) == "XX" ~ geo,
         TRUE ~ NA_character_) ) %>%
       mutate ( name = dplyr::case_when ( 
         geo == "SI01" ~ "Vzhodna Slovenija", 
         geo == "SI02" ~ "Zahodna Slovenija",
         geo == "EL1" ~ "Voreia Ellada",
         geo == "EL2" ~ "Kentriki Ellada",
+        substr(geo,3,4) == "XX" ~ "data not related to any territorial unit",
         TRUE ~ NA_character_)) %>%
       mutate ( change  = dplyr::case_when ( 
         geo %in% c("EL1", "EL2")   ~ "boundary shift in 2013 (NUTS2010 coding)", 
         geo %in% c("SI01", "SI02") ~ "boundary shift in 2013 (NUTS2010 coding)", 
+        substr(geo,3,4) == "XX" ~ "data not related to any territorial unit",
         TRUE ~ NA_character_ )) %>%
       mutate ( resolution = "You should control these changes and see how they affect your data.")
     
+    still_not_found_vector <- tmp_not_found %>%
+      filter ( is.na(code16)) %>%
+      select (geo) %>% unlist () %>%
+      unique() 
+    
+    if ( length(still_not_found_vector)>0) {
+      warning ( "The following geo labels were not found in the correspondence table:", 
+                paste(still_not_found_vector, collapse = ", "), ".")
+    }
+
     tmp2 <- rbind ( tmp2, tmp_not_found )
     
   }
@@ -204,6 +220,9 @@ harmonize_geo_code <- function (dat) {
 
   ## Check if all original rows are handled correctly ------------------
   if ( length(dat$geo [! dat$geo %in% tmp3$geo ])>0 ) {
+    
+    unique ( dat$geo [! dat$geo %in% tmp3$geo ])
+    
     message (tmp3 %>% anti_join (dat))
     message (dat %>% anti_join (tmp3))
     stop ("Not all original rows were checked.")
@@ -216,7 +235,7 @@ harmonize_geo_code <- function (dat) {
   if ( any(tmp3$change == 'not in EU - not controlled') ) {
     
     not_EU_country_vector <- tmp3 %>%
-      filter ( tmp2$change == 'not in EU - not controlled' ) %>%
+      filter ( change == 'not in EU - not controlled' ) %>%
       select ( geo ) 
     
     not_eu_observations <- nrow (not_EU_country_vector)
@@ -229,7 +248,7 @@ harmonize_geo_code <- function (dat) {
               "In this data frame not controlled countries: ", 
               paste (not_EU_country_vector,
                      collapse = ", "), " \n", 
-              "with alltogether ", not_eu_observations, " observations/rows.")
+              "with altogether ", not_eu_observations, " observations/rows.")
   }
   
   ## Reorder columns for readability -------------------------------
