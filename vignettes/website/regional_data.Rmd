@@ -1,5 +1,6 @@
 ---
 title: "Regional data examples for the eurostat R package"
+author: Daniel Antal, CFA
 date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
@@ -9,7 +10,6 @@ output:
 # R Tools for Eurostat Open Data
 
 This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
-
 
 See eurostat vignette for installation and basic use.
 
@@ -27,6 +27,8 @@ Working with regional data has many advantages and many challenges. I had three 
 - To create simple helper functions and guidance on more complex data manipulations to improve the quality of the raw regional data;
 - To start a dialogue on improving the data products of Eurostat.
 
+This work has some similarities with my other eurostat package related extension released on CRAN and rOpenGov, iotables.  The [iotables packages](http://iotables.ceemid.eu/) deals with national accounts data, where the use of Eurostat's metadata system requires domain-specific knowledge, and where the correct joining of different tables based on this knowledge, coded in the metadata, is critical to make the downloaded tables work. Similarly, a domain-specific knowledge of regional metadata is necessary to put the regional data into tidy data pipelines, or even to put them on a map (see article on using [maps](http://ropengov.github.io/eurostat/articles/website/maps.html)).
+
 The advantage over national data is lies in the homogeneity in units, and the larger number of units, which enables us to better understand social and economic differences.  National boundaries, i.e. NUTS0 regions, are historical and political constructions. They greatly vary in size and complexity.  Within the EU, Germany and Malta are equally NUTS0 regions or countries, although Malta’s size would make it a small NUTS3 region in Germany.  Comparing Germany with Malta hides a huge diversity within Germany.
 
 Statistical regions are largely homogeneous in size and in urban complexity.  The smallest, NUTS3 region are cities, or towns with their rural hinterland; it can be expected that most people go to school or work within this region.  Malta itself is the size of a NUTS3 region, so it could be compared with the NUTS3 regions of Germany the most meaningfully.  NUTS1 units are usually provinces of larger countries, such as Bavaria in Germany.  NUTS2 units comprise of (usually) several NUTS3 units within a NUTS1 large region.
@@ -37,6 +39,10 @@ There are several difficulties with working on sub-national level of data.These 
 ### Boundary changes
 
 Changes in boundaries meant that unlike national boundaries, regional boundaries change very often. Since standardizing the NUTS regions in 2003 with the EU, boundary changes were made on average every three years.  Boundary changes make organizing data panels (which are several time instances of the cross section regional data) very tedious. 
+
+You can review the NUTS change [history](https://ec.europa.eu/eurostat/web/nuts/history) on the Eurostat website.
+
+![](https://ec.europa.eu/eurostat/documents/345175/501899/Nuts-history)
 
 ### Data availability and quality
 
@@ -52,7 +58,7 @@ One problem of Eurostat's data products is that they have no legal mandate to fo
 
 And at last, the metadata quality of Eurostat’s products is not as good as on NUTS0 national level. A particularly problematic issue is that Eurostat’s tables do not differentiate between the current NUTS2016 regional boundaries and the NUTS2013 or NUTS2010 boundaries.  Some data tables contain rows that cannot and must not be compared.  For example, France went under a very thorough change in its regional boundaries, meaning that NUTS2013 regional data from 2013 can only be compared in the case of a very small fraction of the country with NUTS2016 data from 2016 or 2018. 
 
-You can download the correspondence table in Excel.
+We programatically coded the NUTS2013-2016 changes into the new functions presented in this article. You can download the correspondence table in Excel or review it with `data(nuts_correspondence)`. Whenever we found examples of the use NUTS2010 data (in Slovenia and Greece), we treated them as exception in the functions.
 
 ```{r download, eval=FALSE}
 # download to a temporary file 
@@ -60,31 +66,33 @@ tf <- tempfile(fileext = ".xlsx")
 download.file(url = 'https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx', destfile = tf,  mode = 'wb'  )
 ```
 
-The correspondence table(s) are not tidy, and they are in several sheets which are not fully consistent.  The name of the French region `FR7` or Centre-Est is marked as `discontinued` in the sheet `Correspondence NUTS-1` and at the same time as `relabelled and recoded` to `FRK`, or Auvergne-Rhône-Alpes. We believe that the latter case is correct and use only this row in the correspondence table to avoid duplications in joining.
+The correspondence tables themselves are not tidy, and they are in several sheets which are not fully consistent. In the 2013-2016 table the French region `FR7` or Centre-Est is marked as `discontinued` in the sheet `Correspondence NUTS-1` and at the same time as `relabelled and recoded` to `FRK`, or Auvergne-Rhône-Alpes. We believe that the latter case is correct and use only this row in the correspondence table to avoid duplications in joining.
 
-Furthermore, Eurostat has a very problematic practice with simply removing statistical products when metadata definitions change.  So, you may have downloaded industry-level data with the NACE Rev 2 definition or French regional data with the NUTS 2013 definition, but under the same title, you will be downloading a differently defined dataset in 2020.  Or, you will not be able to reproduce your code, because they will remove the data with your earlier definition.  While it is clear that Eurostat cannot take care of boundary changes if the responsible national statistical offices fail to do this, removing the history of data products makes the validation of professional and academic work made with such data impossible in some cases. 
+Furthermore, Eurostat has a very problematic practice with simply removing statistical products when metadata definitions change.  So, you may have downloaded industry-level data with the NACE Rev2 definition or French regional data with the NUTS 2013 definition, but under the same title, you will be downloading a differently defined dataset in 2020.  Or, you will not be able to reproduce your code, because they will remove the data with your earlier definition.  While it is clear that Eurostat cannot take care of boundary changes if the responsible national statistical offices fail to do this, removing the history of data products makes the validation of professional and academic work made with such data impossible in some cases. 
 
 The logical workflow is the following:
 
 - understand how different parts of your data are affected by the problem, particularly if you want to join different data sets, such as GDP with population;
-- correct metadata (labelling) errors;
+- correct metadata (labelling) errors, which may require the use of several metadata definitions for NUTS2013, NUTS2016 and in some cases NUTS2010;
 - impute additive data based on the correspondence table;
 - impute non-additive data from larger territorial units;
 - optionally estimate non-additive boundary change effects.
 
-Instead of creating only the correction functions, I added a few further steps down the road, because if you work with different dataset, not to mention different data sources, the problem may be different in each dataset that you try to join.  
+It is very important that data missingness is often caused by incorrect joining by wrong metadata labels. In a limited number of further cases, the missing data is functionally dependent of other data. In these cases general imputation methods give misleading or plain wrong imputation results.  You must get the metadata right to make valid imputation on missing data, or to join several data tables meaningfully (and successfully) together. So the data imputation should be the last step.
 
 # Taking care of boundaries
 
-Most regional statistical products are made on the NUTS2 level, or they are mixed NUTS1-NUTS2 level statistics.  This means that usually you have 150-300 units to compare, which is gives an unprecedented richness in cross-sectional analysis.  Most US or Australian datasets are not so detailed in cross-section, and data availability in the rest of the world is just lower.
+Most regional statistical products are made on the NUTS2 level, or they are mixed NUTS1-NUTS2 level statistics. This means that when you open a Eurostat data table, some rows refer to NUTS1 regions and others to NUTS2 regions, or even you find all NUTS0-NUTS3 level data in the same table. And sometimes not. 
 
 The power of statistical analysis can be increased when you order such data into panels, because the different change in a time interval in this huge cross-section contains usually a lot more information about the underlying social or economic process.  However, organizing panels – or just simple time series of an individual region – is often hindered by changes in regional boundaries.
 
-A simple strategy is to create a _panel of only those data that do not change boundaries_.  However, if you have many variables, this leads very quickly to a huge loss in data, because missing data is often independent from boundary changes.  With the addition of each new variable you are likely to loose new and new rows of observations. 
+Usually you have 150-300 units to compare, which is gives an unprecedented richness in cross-sectional analysis.  Most US or Australian datasets are not so detailed in cross-section, and data availability in the rest of the world is just lower. But joining this data with spatial maps or other data is challenging because the data tables are not consistently made, and often their titles or description is misleading, for example, the description claims that you will get NUTS2 level data, but in reality you get an assortment of all level data.
 
-Keeping track of the changes is a much better strategy, and up to a point, it is a costless in the amount of work, because often _only the metadata is changing_. Member states, when they change tow regions’ boundary only, will nevertheless create new regional codes for all their regions, to make sure that regional labels do not mix. However, Eurostat is not following this practice well, and it does mixes up different labels.
+A simple strategy is to create a _panel of only those data that do not change boundaries_.  However, if you have many variables, this leads very quickly to a huge loss in data, because missing data is often independent from boundary changes.  With the addition of each new variable you are likely to loose new and new rows of observations when you keep only complete cases. 
 
-With the new helper function `check_nuts_2013()` you can see if your geo label codes are affected by these changes, and you get a first view on how you can continue your work.
+Keeping track of the changes is a much better strategy, and up to a point, it is a costless in the amount of work, because often _only the metadata is changing_, so, in fact, the data itself is not missing, just it is labelled inconsistently. Member states, when they change two regions’ boundary only, will nevertheless create new regional codes for all their regions, to make sure that regional labels do not mix. However, Eurostat is not following this practice well, and it does mixes up different labels.
+
+With the new helper function `harmonize_geo_code()` you can see if your geo label codes are affected by these changes, and you get a first view on how you can continue your work.
 
 ```{r checknuts2013}
 eurostat::tgs00026 %>%
@@ -98,7 +106,7 @@ Zooming on regions `UKM` you can see that `UKM5` and `UKM6` are unchanged, `UKM3
 # for readability the previous example is filtered and reduced
 eurostat::tgs00026 %>%
   filter ( time == 2012 ) %>%
-  harmonize_geo_code() %>%
+  harmonize_geo_code()    %>%
   filter ( grepl("UKM", geo) ) %>%
   select ( geo, values, change )
 ```
@@ -110,7 +118,7 @@ The following example will filter out all rows that use a geo code which is defi
 ```{r filterdifference}
 eurostat::tgs00026 %>%
   filter ( time == 2012 ) %>%
-  check_nuts_2013() %>%
+  harmonize_geo_code() %>%
   filter ( nuts_2013, ! nuts_2016 ) 
 ```
 
@@ -232,20 +240,18 @@ The use of the old boundaries makes sense if you have more data in the old defin
 The use of new boundaries is useful when you have more data after Y2016. In this case, the switch to a lower geographical resolution (merging A02 and `B01` to `D1`) is balanced by the fact that you have more recent and more factual data about the less detailed `D1` observation.  In this case, backfilling via reverse extrapolation the `D1` data is the better strategy. You should leave `A02` and `B01` out of your further analysis.
 
 # Suggestions for Eurostat
-
-
 There are problems with Eurostat’s data products on two levels: with the data and with the metadata.
 
 The data problems are affecting the work of national statistical authorities, because they are responsible for the creation, validation, and when necessary, the later correction of data.  Eurostat cannot change the data they submit; however, it can change harmonization methodology, guidelines, and when necessary, initiate change in statistical regulation.
 I think that updating guidelines, and possible even regulation would not be controversial in the case when member states would be asked to provide the history of their statistics in the cases when the content of the data did not change, only its metadata, i.e. the labelling. If a member state changed the boundaries of a region, it may or may not be possible to re-calculate the data for this region. However, when only the name and short code changed, the data points are there, and they should be included in the data products.
 
-Regarding metadata, Eurostat could improve its products without the involvement of member states.  The current problem with the metadata of the regional statistics is that they are not tidy and not fully consistent.  The variable column ‘geo’ in the statistical products in fact contains at least three different information: the level of aggregation, the label of the information in the NUTS2013 definition and the label of the information in the NUTS2016 information.  Depending on what view you take on the contents of the table, this means that a seemingly single data table in fact is an unlabelled join of three tables: a national data table, and two regional data tables following different regional boundaries.
+Regarding metadata, Eurostat could improve its products without the involvement of member states.  The current problem with the metadata of the regional statistics is that they are not tidy and not fully consistent.  The variable column ‘geo’ in the statistical products in fact contains at least four different information: the level of aggregation, the label of the information in the NUTS2013 definition and the label of the information in the NUTS2016 information - and at least in the case of Greece and Slovenia NUTS2010 sometimes information, too.  Depending on what view you take on the contents of the table, this means that a seemingly single data table in fact is an unlabelled join of four tables: a national data table, and three regional data tables following different regional boundaries.
 
 The addition of the NUTS (or NUTS equivalent non-EU) level would already remove a lot of confusion and several metadata errors. The source of the confusion is that many products claim to contain NUTS2 information, but they contain a mixture of NUTS0, NUTS1 and NUTS3 information.  While the geo column can be easily filtered (by the number of characters of the geo code) this information is not known to all users. Adding the nuts_level variable in our case makes joining various data sources far easier and less confusing.
 
 Several ways could be found to add the information currently contained in the (otherwise not tidy) Correspondence Table to each regional product.  This would require adding the information to which NUTS definition does the row (observation) in the dataset comply with.  It could be done in several ways from a data presentation and organization point of view. What should be minimally added is the NUTS definition (vocabulary) where the NUTS unit can be found, and potentially, as our helper functions do, further information about conversion.
 
-A solution to the metadata presentation of the regional statistical products does not require the modification of statistical regulations (which must be adopted by the member states of the EU) and it is very urgent, because the next NUTS changes are already announced.
+A solution to the metadata presentation of the regional statistical products does not require the modification of statistical regulations (which must be adopted by the member states of the EU) and it is very urgent, because the next NUTS changes are already announced, and if NUTS2021 will be implemented in the same way, the usability of the data tables will decrease even more, as more joining errors will occur in mapping or modelling use.
 
 And at last, it would be a non-controversial change, which may require updating guidelines or regulations, is to add, at least on a non-mandatory basis, non-EU countries to the Correspondence tables.  It is very unlikely that EEA countries like Norway or potential candidate countries like North Macedonia would have objections to report their regional boundary changes to the Correspondence tables.  This is a self-evident change, which is also necessary after Brexit, given that the United Kingdom’s boundary data will have to remain in the Correspondence tables. 
 
@@ -255,8 +261,7 @@ And at last, it would be a non-controversial change, which may require updating 
 
 Eurostat data: cite [Eurostat](http://ec.europa.eu/eurostat/).
 
-Administrative boundaries: cite EuroGeographics
-
+Administrative boundaries: cite [EuroGeographics](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 ### Citing the eurostat R package
 
