@@ -24,7 +24,7 @@ harmonize_geo_code <- function (dat) {
   
   dat <- mutate_if ( dat, is.factor, as.character)
   
-  ## The data is not loaded into the global environment --------------
+  ## The data is not loaded into the global environment ---------------
   
   regional_changes_2016 <- load_package_data(dataset = "regional_changes_2016")
   nuts_correspondence   <- load_package_data(dataset = "nuts_correspondence")
@@ -125,15 +125,17 @@ harmonize_geo_code <- function (dat) {
     anti_join (  tmp_by_code13, 
                  by = names(tmp_by_code13)
                  ) # not found in code13 (new regions)
-  if ( any(tmp_a1$nuts_2013) ) { stop ("Wrong selection of NUTS2013-only regions.") }
+  if ( any(tmp_a1$nuts_2013) ) { 
+    stop ("Wrong selection of NUTS2013-only regions.") }
  
   tmp_a2 <- tmp_by_code13 %>%
     anti_join (  tmp_by_code16, 
                  by = names(tmp_by_code13)
                  ) # not found in code16 (changes)
-  if ( any(tmp_a2$nuts_2016) ) { stop ("Wrong selection of NUTS2013-only regions.") }
+  if ( any(tmp_a2$nuts_2016) ) { 
+    stop ("Wrong selection of NUTS2013-only regions.") }
   
-  tmp <- rbind ( tmp_s, tmp_a1, tmp_a2 )
+  tmp2 <- rbind ( tmp_s, tmp_a1, tmp_a2 )
   
   not_found_geo <- unique(dat$geo[! dat$geo %in% tmp$geo ])
   not_eu_regions <- not_found_geo[! substr(not_found_geo,1,2) %in% eu_countries$code]
@@ -142,8 +144,47 @@ harmonize_geo_code <- function (dat) {
   
   not_found_eu_regions <-  not_found_geo[ substr(not_found_geo,1,2) %in% eu_countries$code]
  
-  if ( length(not_found_eu_regions)>0) {
-    stop ( "Some EU regions were not found in the correspondence table.")
+  if ( length(not_found_eu_regions)>0 ) {
+    warning ( "The following geo labels were not found in the correspondence table:")
+    message ( paste(not_found_eu_regions, collapse = ", "))
+    if ( any(geo%in% c("SI02", "SI01", "EL1", "EL2"))) {
+      message ( "Some or all of these regions use codes earlier than NUTS2013 definition.")
+    }
+    
+    tmp_not_found <- dat %>%
+      filter ( geo %in% not_found_eu_regions ) %>%
+      mutate ( nuts_level = nchar(geo)-2, 
+               name   = NA_character_,
+               code13 = NA_character_, 
+               code16 = NA_character_,
+               nuts_2016 = FALSE, 
+               nuts_2013 = FALSE) %>%
+      mutate ( code13 = case_when ( 
+        geo == "EL1"  ~ "EL5", 
+        geo == "EL2"  ~ "EL6", 
+        geo == "SI01" ~ "SI03", 
+        geo == "SI02" ~ "SI04", 
+        TRUE ~ NA_character_ )) %>% 
+      mutate ( code16 = case_when ( 
+        geo == "EL1" ~  "EL5", 
+        geo == "EL2"  ~ "EL6", 
+        geo == "SI01" ~ "SI03", 
+        geo == "SI02" ~ "SI04",
+        TRUE ~ NA_character_) ) %>%
+      mutate ( name = dplyr::case_when ( 
+        geo == "SI01" ~ "Vzhodna Slovenija", 
+        geo == "SI02" ~ "Zahodna Slovenija",
+        geo == "EL1" ~ "Voreia Ellada",
+        geo == "EL2" ~ "Kentriki Ellada",
+        TRUE ~ NA_character_)) %>%
+      mutate ( change  = dplyr::case_when ( 
+        geo %in% c("EL1", "EL2")   ~ "boundary shift in 2013 (NUTS2010 coding)", 
+        geo %in% c("SI01", "SI02") ~ "boundary shift in 2013 (NUTS2010 coding)", 
+        TRUE ~ NA_character_ )) %>%
+      mutate ( resolution = "You should control these changes and see how they affect your data.")
+    
+    tmp2 <- rbind ( tmp2, tmp_not_found )
+    
   }
   
   ## Adding columns for non-EU regions ----------------------------------
@@ -158,24 +199,23 @@ harmonize_geo_code <- function (dat) {
              nuts_2016 = FALSE, 
              nuts_2013 = FALSE)
   
-  tmp2 <- rbind ( tmp, tmp_not_eu)
+  tmp3 <- rbind ( tmp2, tmp_not_eu )
   
 
   ## Check if all original rows are handled correctly ------------------
-  if (length(dat$geo [! dat$geo %in% tmp2$geo ])>0) {
-    message (tmp2 %>% anti_join (dat))
-    message (dat %>% anti_join (tmp2))
+  if ( length(dat$geo [! dat$geo %in% tmp3$geo ])>0 ) {
+    message (tmp3 %>% anti_join (dat))
+    message (dat %>% anti_join (tmp3))
     stop ("Not all original rows were checked.")
   }
 
   eu_countries <- load_package_data(dataset = "eu_countries")
-
   eu_country_vector <-  unique ( substr(eu_countries$code, 1, 2) )
   
 
-  if ( any(tmp2$change == 'not in EU - not controlled') ) {
+  if ( any(tmp3$change == 'not in EU - not controlled') ) {
     
-    not_EU_country_vector <- tmp2 %>%
+    not_EU_country_vector <- tmp3 %>%
       filter ( tmp2$change == 'not in EU - not controlled' ) %>%
       select ( geo ) 
     
@@ -194,8 +234,8 @@ harmonize_geo_code <- function (dat) {
   
   ## Reorder columns for readability -------------------------------
   
-  tmp_left <- tmp2 %>% select ( geo,  time, values, code13, code16, name )
-  tmp_right <- tmp2 %>% select ( -geo, -code13, -code16, -time, -values, -name )
+  tmp_left  <- tmp3 %>% select ( geo,  time, values, code13, code16, name )
+  tmp_right <- tmp3 %>% select ( -geo, -code13, -code16, -time, -values, -name )
 
   cbind ( tmp_left, tmp_right)
 }
