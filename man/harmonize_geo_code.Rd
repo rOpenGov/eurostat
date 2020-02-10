@@ -10,10 +10,8 @@ harmonize_geo_code(dat)
 \item{dat}{A Eurostat data frame downloaded with \code{\link{get_eurostat}}}
 }
 \value{
-
 An augmented data frame that explains potential problems and 
 possible solutions.
-
 }
 \description{
 Eurostat mixes \code{NUTS2013} and \code{NUTS2016} geographic

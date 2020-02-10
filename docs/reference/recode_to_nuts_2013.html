@@ -113,6 +113,9 @@ somehow compared to the historic 'NUTS2013' boundaries." />
     <li>
       <a href="../articles/website/publications.html">Publications using the eurostat R package</a>
     </li>
+    <li>
+      <a href="../articles/website/regional_data.html">Regional data examples for the eurostat R package</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -166,19 +169,50 @@ that cannot be brought to the current <code>'NUTS2013'</code> definition.
 Furthermore, when the official name of the region changed, it will use
 the new name (if the otherwise the region boundary did not change.)
 If not called before, the function will use the helper function
- <code><a href='check_nuts_2013.html'>check_nuts_2013</a></code> and  <code><a href='harmonize_geo_code.html'>harmonize_geo_code</a></code></p>
+<code><a href='harmonize_geo_code.html'>harmonize_geo_code</a></code></p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-  <span class='kw pkg'>eurostat</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/eurostat/man/tgs00026.html'>tgs00026</a></span> <span class='kw'>%&gt;%</span>
-     <span class='fu'>check_nuts2013</span>() <span class='kw'>%&gt;%</span>
-     <span class='fu'><a href='harmonize_geo_code.html'>harmonize_geo_code</a></span>() <span class='kw'>%&gt;%</span>
-     <span class='fu'>recode_to_nuts_2013</span>()
+    <pre class="examples"><div class='input'><span class='no'>test_regional_codes</span> <span class='kw'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> (
+  <span class='kw'>geo</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"FRB"</span>, <span class='st'>"FRE"</span>, <span class='st'>"UKN02"</span>, <span class='st'>"IE022"</span>, <span class='st'>"FR243"</span>, <span class='st'>"FRB03"</span>),
+  <span class='kw'>time</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/rep.html'>rep</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span> (<span class='st'>"2014-01-01"</span>), <span class='fl'>5</span>), <span class='fu'><a href='https://rdrr.io/r/base/as.Date.html'>as.Date</a></span>(<span class='st'>"2015-01-01"</span>)),
+  <span class='kw'>values</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='fl'>1</span>:<span class='fl'>6</span>),
+  <span class='kw'>control</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span>(<span class='st'>"Changed from NUTS2 to NUTS1"</span>,
+              <span class='st'>"New region NUTS2016 only"</span>,
+              <span class='st'>"Discontinued region NUTS2013"</span>,
+              <span class='st'>"Boundary shift NUTS2013"</span>,
+              <span class='st'>"Recoded in NUTS2013"</span>,
+              <span class='st'>"Recoded in NUTS2016"</span>
+  ))
 
- <span class='co'>#If check_nuts2013() is not called, the function will call it.    </span>
-  <span class='kw pkg'>eurostat</span><span class='kw ns'>::</span><span class='no'><a href='https://rdrr.io/pkg/eurostat/man/tgs00026.html'>tgs00026</a></span> <span class='kw'>%&gt;%</span>
-     <span class='fu'>recode_to_nuts_2013</span>()
- }</div></pre>
+<span class='fu'>recode_to_nuts_2013</span>(<span class='no'>test_regional_codes</span>)</div><div class='output co'>#&gt; <span class='message'>In this data frame 3 observations are coded with the current NUTS2016</span>
+#&gt; <span class='message'>geo labels and 3 observations/rows have NUTS2013 historical labels.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: The following regions have no NUTS2013 geo labels: FRB, FRE.</span></div><div class='output co'>#&gt;     geo       time values code13 code16                        name
+#&gt; 1 FR243 2014-01-01      5  FR243  FRB03                       Indre
+#&gt; 2 IE022 2014-01-01      4  IE022  IE062                    Mid-East
+#&gt; 3 UKN02 2014-01-01      3  UKN02   &lt;NA&gt;               Outer Belfast
+#&gt; 4  &lt;NA&gt; 2014-01-01      1   &lt;NA&gt;    FRB       CENTRE — VAL DE LOIRE
+#&gt; 5  &lt;NA&gt; 2014-01-01      2   &lt;NA&gt;    FRE NORD-PAS DE CALAIS-PICARDIE
+#&gt; 6 FR243 2015-01-01      6  FR243  FRB03                       Indre
+#&gt;                        control nuts_level
+#&gt; 1          Recoded in NUTS2013          2
+#&gt; 2      Boundary shift NUTS2013          2
+#&gt; 3 Discontinued region NUTS2013          2
+#&gt; 4  Changed from NUTS2 to NUTS1          1
+#&gt; 5     New region NUTS2016 only          1
+#&gt; 6          Recoded in NUTS2016          2
+#&gt;                                                        change    resolution
+#&gt; 1                                                     recoded   FRB03=FR243
+#&gt; 2                                              boundary shift          &lt;NA&gt;
+#&gt; 3                                                discontinued          &lt;NA&gt;
+#&gt; 4       new NUTS 1 region, identical to ex-NUTS 2 region FR24      FRB=FR24
+#&gt; 5 new NUTS 1 region, merge of ex-NUTS 2 regions FR22 and FR30 FRE=FR22+FR30
+#&gt; 6                                                     recoded   FRB03=FR243
+#&gt;   nuts_2016 nuts_2013
+#&gt; 1     FALSE      TRUE
+#&gt; 2     FALSE      TRUE
+#&gt; 3     FALSE      TRUE
+#&gt; 4      TRUE     FALSE
+#&gt; 5      TRUE     FALSE
+#&gt; 6      TRUE     FALSE</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <h2>Contents</h2>
