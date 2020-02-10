@@ -26,8 +26,11 @@ harmonize_geo_code <- function (dat) {
   
   ## The data is not loaded into the global environment ---------------
   
-  regional_changes_2016 <- load_package_data(dataset = "regional_changes_2016")
-  nuts_correspondence   <- load_package_data(dataset = "nuts_correspondence")
+  #regional_changes_2016 <- eurostat:::load_package_data(dataset = "regional_changes_2016")
+  #nuts_correspondence   <- eurostat:::load_package_data(dataset = "nuts_correspondence")
+  
+  data ("nuts_correspondence", package = "eurostat", envir = environment())
+  data ("regional_changes_2016", package = "eurostat", envir = environment())
   
   ## Creating constants -----------------------------------------------
   regions_in_correspondence <- unique(c(nuts_correspondence$code13, nuts_correspondence$code16))
@@ -145,7 +148,9 @@ harmonize_geo_code <- function (dat) {
   not_found_eu_regions <-  not_found_geo[ substr(not_found_geo,1,2) %in% eu_countries$code]
  
   if ( length(not_found_eu_regions)>0 ) {
-       if ( any( not_found_eu_regions %in% c("SI02", "SI01", "EL1", "EL2"))) {
+       if ( any( not_found_eu_regions %in% c("SI02", "SI01",
+                                             "EL1", "EL2", 
+                                             "UKI1", "UK2"))) {
       message ( "Some or all of these regions use codes earlier than NUTS2013 definition.")
        }
     
@@ -166,6 +171,7 @@ harmonize_geo_code <- function (dat) {
         geo == "EL2"  ~ "EL6", 
         geo == "SI01" ~ "SI03", 
         geo == "SI02" ~ "SI04", 
+        geo %in% c("UKI1", "UKI2") ~ NA_character_,
         substr(geo,3,4) == "XX" ~ geo,
         TRUE ~ NA_character_ )) %>% 
       mutate ( code16 = case_when ( 
@@ -173,6 +179,7 @@ harmonize_geo_code <- function (dat) {
         geo == "EL2"  ~ "EL6", 
         geo == "SI01" ~ "SI03", 
         geo == "SI02" ~ "SI04",
+        geo %in% c("UKI1", "UKI2") ~ NA_character_,
         substr(geo,3,4) == "XX" ~ geo,
         TRUE ~ NA_character_) ) %>%
       mutate ( name = dplyr::case_when ( 
@@ -180,9 +187,11 @@ harmonize_geo_code <- function (dat) {
         geo == "SI02" ~ "Zahodna Slovenija",
         geo == "EL1" ~ "Voreia Ellada",
         geo == "EL2" ~ "Kentriki Ellada",
+        geo %in% c("UKI1", "UKI2") ~ NA_character_,
         substr(geo,3,4) == "XX" ~ "data not related to any territorial unit",
         TRUE ~ NA_character_)) %>%
       mutate ( change  = dplyr::case_when ( 
+        geo %in% c("UKI1", "UKI2") ~ "split in 2013 (NUTS2010 coding)",
         geo %in% c("EL1", "EL2")   ~ "boundary shift in 2013 (NUTS2010 coding)", 
         geo %in% c("SI01", "SI02") ~ "boundary shift in 2013 (NUTS2010 coding)", 
         substr(geo,3,4) == "XX" ~ "data not related to any territorial unit",
@@ -228,7 +237,8 @@ harmonize_geo_code <- function (dat) {
     stop ("Not all original rows were checked.")
   }
 
-  eu_countries <- load_package_data(dataset = "eu_countries")
+  #eu_countries <- load_package_data(dataset = "eu_countries")
+  data( eu_countries, package ="eurostat", envir = environment())
   eu_country_vector <-  unique ( substr(eu_countries$code, 1, 2) )
   
 
