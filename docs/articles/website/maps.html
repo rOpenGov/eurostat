@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20006</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20007</span>
       </span>
     </div>
 
@@ -139,7 +139,7 @@
 <a class="sourceLine" id="cb12-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2010</span>, <span class="kw"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb12-7" title="7"><span class="st">  </span><span class="co"># categorise</span></a>
 <a class="sourceLine" id="cb12-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">income =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values, <span class="dt">n =</span> <span class="dv">5</span>))</a></code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/Rtmp8Jo366/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/Rtmp2tW0jn/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># Download geospatial data from GISCO</span></a>
 <a class="sourceLine" id="cb14-2" title="2">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>,</a>
 <a class="sourceLine" id="cb14-3" title="3">                                   <span class="dt">resolution =</span> <span class="st">"60"</span>,</a>
@@ -186,82 +186,83 @@
 <a class="sourceLine" id="cb22-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="kw"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"PL"</span>,geo)) <span class="op">%&gt;%</span><span class="st"> </span></a>
 <a class="sourceLine" id="cb22-7" title="7"><span class="st">  </span><span class="co"># label the single geo column</span></a>
 <a class="sourceLine" id="cb22-8" title="8"><span class="st">  </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">label =</span> <span class="kw"><a href="https://rdrr.io/r/base/paste.html">paste0</a></span>(<span class="kw"><a href="../../reference/label_eurostat.html">label_eurostat</a></span>(.)[[<span class="st">"geo"</span>]], <span class="st">"</span><span class="ch">\n</span><span class="st">"</span>, values, <span class="st">"€"</span>),</a>
-<a class="sourceLine" id="cb22-9" title="9">         <span class="dt">income =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</a>
-<a class="sourceLine" id="cb22-10" title="10"></a>
-<a class="sourceLine" id="cb22-11" title="11"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Download geospatial data from GISCO"</span>)</a></code></pre></div>
+<a class="sourceLine" id="cb22-9" title="9">         <span class="dt">income =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</a></code></pre></div>
+<pre><code>## You have no access to ec.europe.eu. 
+## Please check your connection and/or review your proxy settings</code></pre>
+<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/print.html">print</a></span>(<span class="st">"Download geospatial data from GISCO"</span>)</a></code></pre></div>
 <pre><code>## [1] "Download geospatial data from GISCO"</code></pre>
-<div class="sourceCode" id="cb24"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb24-1" title="1">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"sf"</span>, <span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</a></code></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<div class="sourceCode" id="cb26"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb26-1" title="1"><span class="co"># Merge with attribute data with geodata</span></a>
-<a class="sourceLine" id="cb26-2" title="2">map_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(geodata, euro_sf2)</a></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># Merge with attribute data with geodata</span></a>
+<a class="sourceLine" id="cb28-2" title="2">map_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(geodata, euro_sf2)</a></code></pre></div>
 <pre><code>## Joining, by = "geo"</code></pre>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1"><span class="co"># plot map</span></a>
-<a class="sourceLine" id="cb28-2" title="2">map2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span>(geodata) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span>(<span class="st">"lightgrey"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-4" title="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span>(map_data, <span class="dt">is.master =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb28-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span>(<span class="st">"income"</span>, <span class="dt">title =</span> <span class="st">"Disposable household incomes in 2014"</span>,</a>
-<a class="sourceLine" id="cb28-6" title="6">              <span class="dt">palette =</span> <span class="st">"Oranges"</span>, <span class="dt">border.col =</span> <span class="st">"white"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-7" title="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_text.html">tm_text</a></span>(<span class="st">"NUTS_NAME"</span>, <span class="dt">just =</span> <span class="st">"center"</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-8" title="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_scale_bar.html">tm_scale_bar</a></span>()</a>
-<a class="sourceLine" id="cb28-9" title="9">map2</a></code></pre></div>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb30-1" title="1"><span class="co"># plot map</span></a>
+<a class="sourceLine" id="cb30-2" title="2">map2 &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span>(geodata) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_fill</a></span>(<span class="st">"lightgrey"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-4" title="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_shape.html">tm_shape</a></span>(map_data, <span class="dt">is.master =</span> <span class="ot">TRUE</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb30-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_polygons.html">tm_polygons</a></span>(<span class="st">"income"</span>, <span class="dt">title =</span> <span class="st">"Disposable household incomes in 2014"</span>,</a>
+<a class="sourceLine" id="cb30-6" title="6">              <span class="dt">palette =</span> <span class="st">"Oranges"</span>, <span class="dt">border.col =</span> <span class="st">"white"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-7" title="7"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_text.html">tm_text</a></span>(<span class="st">"NUTS_NAME"</span>, <span class="dt">just =</span> <span class="st">"center"</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb30-8" title="8"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/pkg/tmap/man/tm_scale_bar.html">tm_scale_bar</a></span>()</a>
+<a class="sourceLine" id="cb30-9" title="9">map2</a></code></pre></div>
 <p><img src="maps_files/figure-html/maps2-1.png" width="768"></p>
 </div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-at-110mln-resolution-using-spplot" class="section level3">
 <h3 class="hasAnchor">
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-at-110mln-resolution-using-spplot" class="anchor"></a>Disposable income of private households by NUTS 2 regions at 1:10mln resolution using spplot</h3>
-<div class="sourceCode" id="cb29"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb29-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sp)</a>
-<a class="sourceLine" id="cb29-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
-<a class="sourceLine" id="cb29-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb29-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RColorBrewer)</a>
-<a class="sourceLine" id="cb29-5" title="5">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"tgs00026"</span>, <span class="dt">time_format =</span> <span class="st">"raw"</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb29-6" title="6"><span class="st">  </span><span class="co"># subsetting to year 2014 and NUTS-2 level</span></a>
-<a class="sourceLine" id="cb29-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb29-8" title="8"><span class="st">  </span><span class="co"># classifying the values the variable</span></a>
-<a class="sourceLine" id="cb29-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</a></code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp8Jo366/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp8Jo366/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb32-1" title="1"><span class="co"># Download geospatial data from GISCO</span></a>
-<a class="sourceLine" id="cb32-2" title="2">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb31-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(sp)</a>
+<a class="sourceLine" id="cb31-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
+<a class="sourceLine" id="cb31-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb31-4" title="4"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(RColorBrewer)</a>
+<a class="sourceLine" id="cb31-5" title="5">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"tgs00026"</span>, <span class="dt">time_format =</span> <span class="st">"raw"</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-6" title="6"><span class="st">  </span><span class="co"># subsetting to year 2014 and NUTS-2 level</span></a>
+<a class="sourceLine" id="cb31-7" title="7"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb31-8" title="8"><span class="st">  </span><span class="co"># classifying the values the variable</span></a>
+<a class="sourceLine" id="cb31-9" title="9"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</a></code></pre></div>
+<pre><code>## Reading cache file /tmp/Rtmp2tW0jn/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp2tW0jn/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb34-1" title="1"><span class="co"># Download geospatial data from GISCO</span></a>
+<a class="sourceLine" id="cb34-2" title="2">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">output_class =</span> <span class="st">"spdf"</span>, <span class="dt">resolution =</span> <span class="st">"10"</span>, <span class="dt">nuts_level =</span> <span class="dv">2</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</a></code></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp8Jo366/eurostat/spdf1022013.RData</code></pre>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="co"># merge with attribute data with geodata</span></a>
-<a class="sourceLine" id="cb35-2" title="2">geodata<span class="op">@</span>data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(geodata<span class="op">@</span>data, dat)</a></code></pre></div>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp2tW0jn/eurostat/spdf1022013.RData</code></pre>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># merge with attribute data with geodata</span></a>
+<a class="sourceLine" id="cb37-2" title="2">geodata<span class="op">@</span>data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">left_join</a></span>(geodata<span class="op">@</span>data, dat)</a></code></pre></div>
 <pre><code>## Joining, by = "geo"</code></pre>
-<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb37-1" title="1"><span class="co"># plot map</span></a>
-<a class="sourceLine" id="cb37-2" title="2">sp<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sp/man/spplot.html">spplot</a></span>(<span class="dt">obj =</span> geodata, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,</a>
-<a class="sourceLine" id="cb37-3" title="3">       <span class="dt">xlim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">35</span>,<span class="dv">70</span>), </a>
-<a class="sourceLine" id="cb37-4" title="4">           <span class="dt">col.regions =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dim grey"</span>, <span class="kw"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">name =</span> <span class="st">"Oranges"</span>)),</a>
-<a class="sourceLine" id="cb37-5" title="5">       <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">usePolypath =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb39-1" title="1"><span class="co"># plot map</span></a>
+<a class="sourceLine" id="cb39-2" title="2">sp<span class="op">::</span><span class="kw"><a href="https://rdrr.io/pkg/sp/man/spplot.html">spplot</a></span>(<span class="dt">obj =</span> geodata, <span class="st">"cat"</span>, <span class="dt">main =</span> <span class="st">"Disposable household income"</span>,</a>
+<a class="sourceLine" id="cb39-3" title="3">       <span class="dt">xlim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">22</span>,<span class="dv">34</span>), <span class="dt">ylim =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">35</span>,<span class="dv">70</span>), </a>
+<a class="sourceLine" id="cb39-4" title="4">           <span class="dt">col.regions =</span> <span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="st">"dim grey"</span>, <span class="kw"><a href="https://rdrr.io/pkg/RColorBrewer/man/ColorBrewer.html">brewer.pal</a></span>(<span class="dt">n =</span> <span class="dv">5</span>, <span class="dt">name =</span> <span class="st">"Oranges"</span>)),</a>
+<a class="sourceLine" id="cb39-5" title="5">       <span class="dt">col =</span> <span class="st">"white"</span>, <span class="dt">usePolypath =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="maps_files/figure-html/maps3-1.png" width="768"></p>
 </div>
 <div id="disposable-income-of-private-households-by-nuts-2-regions-at-160mln-resolution-using-ggplot2" class="section level3">
 <h3 class="hasAnchor">
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-at-160mln-resolution-using-ggplot2" class="anchor"></a>Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2</h3>
 <p>Meanwhile the CRAN version of <code>ggplot2</code> is lacking support for simple features, you can plot maps with <code>ggplot2</code> by downloading geospatial data as <code>data.frame</code> with <code>output_class</code> argument set as <code>df</code>.</p>
-<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb38-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
-<a class="sourceLine" id="cb38-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
-<a class="sourceLine" id="cb38-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
-<a class="sourceLine" id="cb38-4" title="4">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"tgs00026"</span>, <span class="dt">time_format =</span> <span class="st">"raw"</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-5" title="5"><span class="st">  </span><span class="co"># subsetting to year 2014 and NUTS-2 level</span></a>
-<a class="sourceLine" id="cb38-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb38-7" title="7"><span class="st">  </span><span class="co"># classifying the values the variable</span></a>
-<a class="sourceLine" id="cb38-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</a></code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp8Jo366/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp8Jo366/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb41-1" title="1"><span class="co"># Download geospatial data from GISCO</span></a>
-<a class="sourceLine" id="cb41-2" title="2">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb40-1" title="1"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(eurostat)</a>
+<a class="sourceLine" id="cb40-2" title="2"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(dplyr)</a>
+<a class="sourceLine" id="cb40-3" title="3"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span>(ggplot2)</a>
+<a class="sourceLine" id="cb40-4" title="4">dat &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat.html">get_eurostat</a></span>(<span class="st">"tgs00026"</span>, <span class="dt">time_format =</span> <span class="st">"raw"</span>, <span class="dt">stringsAsFactors =</span> <span class="ot">FALSE</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-5" title="5"><span class="st">  </span><span class="co"># subsetting to year 2014 and NUTS-2 level</span></a>
+<a class="sourceLine" id="cb40-6" title="6"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(time <span class="op">==</span><span class="st"> </span><span class="dv">2014</span>, <span class="kw"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(geo) <span class="op">==</span><span class="st"> </span><span class="dv">4</span>) <span class="op">%&gt;%</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb40-7" title="7"><span class="st">  </span><span class="co"># classifying the values the variable</span></a>
+<a class="sourceLine" id="cb40-8" title="8"><span class="st">  </span>dplyr<span class="op">::</span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="dt">cat =</span> <span class="kw"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(values))</a></code></pre></div>
+<pre><code>## Reading cache file /tmp/Rtmp2tW0jn/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp2tW0jn/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># Download geospatial data from GISCO</span></a>
+<a class="sourceLine" id="cb43-2" title="2">geodata &lt;-<span class="st"> </span><span class="kw"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="dt">resolution =</span> <span class="st">"60"</span>, <span class="dt">nuts_level =</span> <span class="st">"2"</span>, <span class="dt">year =</span> <span class="dv">2013</span>)</a></code></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb43-1" title="1"><span class="co"># merge with attribute data with geodata</span></a>
-<a class="sourceLine" id="cb43-2" title="2">map_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(geodata, dat)</a></code></pre></div>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="co"># merge with attribute data with geodata</span></a>
+<a class="sourceLine" id="cb45-2" title="2">map_data &lt;-<span class="st"> </span><span class="kw"><a href="https://dplyr.tidyverse.org/reference/join.html">inner_join</a></span>(geodata, dat)</a></code></pre></div>
 <pre><code>## Joining, by = "geo"</code></pre>
-<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb45-1" title="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>map_data) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"dim grey"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb45-2" title="2"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Oranges"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-3" title="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span>(<span class="dt">reverse=</span>T, <span class="dt">title =</span> <span class="st">"euro"</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-4" title="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title=</span><span class="st">"Disposable household income in 2014"</span>,</a>
-<a class="sourceLine" id="cb45-5" title="5">       <span class="dt">caption=</span><span class="st">"(C) EuroGeographics for the administrative boundaries </span></a>
-<a class="sourceLine" id="cb45-6" title="6"><span class="st">                Map produced in R with a help from Eurostat-package &lt;github.com/ropengov/eurostat/&gt;"</span>) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-7" title="7"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(.<span class="dv">8</span>,.<span class="dv">8</span>)) <span class="op">+</span></a>
-<a class="sourceLine" id="cb45-8" title="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span>(<span class="dt">xlim=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">44</span>), <span class="dt">ylim=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">35</span>,<span class="dv">70</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb47"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb47-1" title="1"><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span>(<span class="dt">data=</span>map_data) <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span>(<span class="kw"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span>(<span class="dt">fill=</span>cat),<span class="dt">color=</span><span class="st">"dim grey"</span>, <span class="dt">size=</span>.<span class="dv">1</span>) <span class="op">+</span><span class="st"> </span></a>
+<a class="sourceLine" id="cb47-2" title="2"><span class="st">    </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/scale_brewer.html">scale_fill_brewer</a></span>(<span class="dt">palette =</span> <span class="st">"Oranges"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-3" title="3"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span>(<span class="dt">fill =</span> <span class="kw"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span>(<span class="dt">reverse=</span>T, <span class="dt">title =</span> <span class="st">"euro"</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-4" title="4"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span>(<span class="dt">title=</span><span class="st">"Disposable household income in 2014"</span>,</a>
+<a class="sourceLine" id="cb47-5" title="5">       <span class="dt">caption=</span><span class="st">"(C) EuroGeographics for the administrative boundaries </span></a>
+<a class="sourceLine" id="cb47-6" title="6"><span class="st">                Map produced in R with a help from Eurostat-package &lt;github.com/ropengov/eurostat/&gt;"</span>) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-7" title="7"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span>() <span class="op">+</span><span class="st"> </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span>(<span class="dt">legend.position=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(.<span class="dv">8</span>,.<span class="dv">8</span>)) <span class="op">+</span></a>
+<a class="sourceLine" id="cb47-8" title="8"><span class="st">  </span><span class="kw"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span>(<span class="dt">xlim=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="op">-</span><span class="dv">12</span>,<span class="dv">44</span>), <span class="dt">ylim=</span><span class="kw"><a href="https://rdrr.io/r/base/c.html">c</a></span>(<span class="dv">35</span>,<span class="dv">70</span>))</a></code></pre></div>
 <p><img src="maps_files/figure-html/maps4-1.png" width="768"></p>
 </div>
 </div>
@@ -280,13 +281,13 @@
 <a href="#citing-the-eurostat-r-package" class="anchor"></a>Citing the eurostat R package</h3>
 <p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
-<div class="sourceCode" id="cb46"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb46-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
 <pre><code>## 
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.5.20006 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.5.20007 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -301,7 +302,7 @@
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.5.20006},
+##     note = {Version 3.5.20007},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -314,7 +315,7 @@
 <h1 class="hasAnchor">
 <a href="#version-info" class="anchor"></a>Version info</h1>
 <p>This tutorial was created with</p>
-<div class="sourceCode" id="cb48"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb48-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb50"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb50-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
 <pre><code>## R version 3.6.2 (2019-12-12)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 19.10
@@ -336,7 +337,7 @@
 ## 
 ## other attached packages:
 ## [1] ggplot2_3.2.1      sp_1.3-2           RColorBrewer_1.1-2 tmap_2.3-1        
-## [5] sf_0.8-0           dplyr_0.8.3        eurostat_3.5.20006
+## [5] sf_0.8-0           dplyr_0.8.3        eurostat_3.5.20007
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] httr_1.4.1         tidyr_1.0.0        jsonlite_1.6       viridisLite_0.3.0 

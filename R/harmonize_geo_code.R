@@ -28,9 +28,12 @@ harmonize_geo_code <- function (dat) {
   
   #regional_changes_2016 <- eurostat:::load_package_data(dataset = "regional_changes_2016")
   #nuts_correspondence   <- eurostat:::load_package_data(dataset = "nuts_correspondence")
-  
+
+  nuts_correspondence <- regional_changes_2016 <- eu_countries <- NULL
+
   data ("nuts_correspondence", package = "eurostat", envir = environment())
   data ("regional_changes_2016", package = "eurostat", envir = environment())
+  data ("eu_countries", package = "eurostat", envir = environment())  
   
   ## Creating constants -----------------------------------------------
   regions_in_correspondence <- unique(c(nuts_correspondence$code13, nuts_correspondence$code16))
