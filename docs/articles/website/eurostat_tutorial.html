@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20005</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20007</span>
       </span>
     </div>
 
@@ -71,6 +71,9 @@
     <li>
       <a href="../../articles/website/publications.html">Publications using the eurostat R package</a>
     </li>
+    <li>
+      <a href="../../articles/website/regional_data.html">Regional data examples for the eurostat R package</a>
+    </li>
   </ul>
 </li>
       </ul>
@@ -89,7 +92,7 @@
     <div class="page-header toc-ignore">
       <h1>Tutorial for the eurostat R package</h1>
             
-            <h4 class="date">2020-02-07</h4>
+            <h4 class="date">2020-02-11</h4>
       
       
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -115,8 +118,6 @@
 <pre><code>add_nuts_level          Add the statistical aggregation level to data
                         frame
 check_access_to_data    Check access to ec.europe.eu
-check_nuts_2013         Check NUTS region codes that changed with the
-                        'NUTS2016' definition
 clean_eurostat_cache    Clean Eurostat Cache
 cut_to_classes          Cuts the Values Column into Classes and
                         Polishes the Labels
@@ -140,7 +141,8 @@ get_eurostat_toc        Download Table of Contents of Eurostat Data
                         Sets
 harmonize_country_code
                         Harmonize Country Code
-harmonize_geo_code      Recode geo labels from NUTS2013 to NUTS2016
+harmonize_geo_code      Harmonize NUTS region codes that changed with
+                        the 'NUTS2016' definition
 label_eurostat          Get Eurostat Codes
 nuts_correspondence     Correspondence Table NUTS2013-NUTS2016
 recode_to_nuts_2013     Recode geo labels and rename regions from
@@ -291,8 +293,8 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport by main airports in each reporting country</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">31.01.2020</td>
-<td align="left">31.01.2020</td>
+<td align="left">11.02.2020</td>
+<td align="left">11.02.2020</td>
 <td align="left">1993</td>
 <td align="left">2019Q4</td>
 <td align="left">NA</td>
@@ -311,7 +313,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
 <td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">30.01.2020</td>
+<td align="left">10.02.2020</td>
 <td align="left">31.01.2020</td>
 <td align="left">1993</td>
 <td align="left">2019Q4</td>
@@ -911,7 +913,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.5.20005 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.5.20007 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -926,7 +928,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.5.20005},
+##     note = {Version 3.5.20007},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -960,7 +962,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.5.20005
+## [1] tidyr_1.0.0        rvest_0.3.5        xml2_1.2.2         eurostat_3.5.20007
 ## [5] knitr_1.26        
 ## 
 ## loaded via a namespace (and not attached):
