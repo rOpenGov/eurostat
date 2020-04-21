@@ -158,7 +158,7 @@ Please check your connection and/or review your proxy settings")
   
     if (nuts_level %in% c("0","all")){
       url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_0.geojson")
-      resp <- GET(url)
+      resp <- RETRY("GET", url, terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
@@ -168,7 +168,7 @@ Please check your connection and/or review your proxy settings")
     }
     if (nuts_level %in% c("1","all")){
       url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_1.geojson")
-      resp <- GET(url)
+      resp <- RETRY("GET", url, terminate_on = c(404))
       if (httr::http_error(resp)) {
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
@@ -177,7 +177,7 @@ Please check your connection and/or review your proxy settings")
         }
     }    
     if (nuts_level %in% c("2","all")){
-      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_2.geojson"))
+      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_2.geojson"), terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
@@ -186,7 +186,7 @@ Please check your connection and/or review your proxy settings")
         }
     }
     if (nuts_level %in% c("3","all")){
-      resp <- GET(paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_3.geojson"))
+      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_3.geojson"), terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
