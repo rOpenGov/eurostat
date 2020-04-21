@@ -1,3 +1,7 @@
+# eurostat 3.6.3
+
+ * Stabilized http requests (PR by @annnvv)
+
 # eurostat 3.5.3
 
  * get_eurostat switched to v2.1
