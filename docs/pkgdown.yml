@@ -1,16 +1,6 @@
-<<<<<<< HEAD
-pandoc: 2.2.1
-pkgdown: 1.1.0.9000
-pkgdown_sha: 16c6506a153dacf99c185f0ef62488458297d301
-articles:
-  blogposts: blogposts.html
-  cheatsheet: cheatsheet.html
-  eurostat_tutorial: eurostat_tutorial.html
-  publications: publications.html
-=======
 pandoc: '2.5'
-pkgdown: 1.4.1.9000
-pkgdown_sha: 24ef1bbdec0de44fe11eb1d58b40dba961525d43
+pkgdown: 1.5.0
+pkgdown_sha: ~
 articles:
   vignette: vignette.html
   blogposts: website/blogposts.html
@@ -19,5 +9,5 @@ articles:
   maps: website/maps.html
   publications: website/publications.html
   regional_data: website/regional_data.html
->>>>>>> 96d3303e54245e75bc911e000325cfdc41ec036f
+last_built: 2020-04-21T11:04Z
 

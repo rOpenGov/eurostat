@@ -4,7 +4,9 @@
 \name{tgs00026}
 \alias{tgs00026}
 \title{Auxiliary Data}
-\format{data_frame}
+\format{
+data_frame
+}
 \usage{
 tgs00026
 }
