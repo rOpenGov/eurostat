@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2019-12-19
-Version: 3.4.20002
+Date: 2020-02-11
+Version: 3.6.1
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5537-637X")),
@@ -24,25 +24,26 @@ Depends:
 Imports:
     broom,
     classInt,
-    countrycode,    
+    countrycode,
     curl,
     dplyr,
     httr,
     jsonlite,
+    lubridate,
     RColorBrewer,
     readr,
-    RefManageR,        
+    RefManageR,
     sf,
     sp,
     stringi,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    tidyselect
 Suggests:
     Cairo,
     ggplot2,
     knitr,    
-    lubridate,
     mapproj,    
     plotrix,
     rmarkdown,

@@ -9,8 +9,8 @@ document("../../")
 #check("../../", vignettes = FALSE)
 #install()
 
-library(knitr)
-knit(input = "../../README.Rmd", output = "../../README.md")
+library(rmarkdown)
+render(input = "../../README.Rmd", output_format = "md_document")
 
 # build the ../../docs directory as a pkg website
 library(pkgdown)
@@ -26,7 +26,7 @@ build_site()
 
 # Utilities:
 #
-# build_win("../../") # Windows check
+# check_win_devel("../../") # Windows check
 # revdep_check("../../")
 # add_rstudio_project("../../")
 # use_build_ignore("../NEWS.md", pkg = "../../") # NEWS.md not supported by CRAN

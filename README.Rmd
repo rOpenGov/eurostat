@@ -1,4 +1,5 @@
 ---
+title: eurostat R package
 output: 
   html_document: 
     keep_md: yes
@@ -48,7 +49,7 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 
 ### Installation and use
 
-See the [package homepage](http://ropengov.github.io/eurostat) for more.
+See the Articles section at the [package homepage](http://ropengov.github.io/eurostat) for more.
 
 
 ### Contribute

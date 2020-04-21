@@ -9,6 +9,9 @@ notifications:
   email:
     - leo.lahti@iki.fi
 
+r_github_packages:
+  - sf
+
 r_packages:
   - backports
   - broom
@@ -41,7 +44,6 @@ r_packages:
   - roxygen2
   - rsdmx
   - rvest  
-  - sf
   - shiny  
   - sp  
   - tmap

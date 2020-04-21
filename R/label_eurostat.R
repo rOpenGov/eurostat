@@ -69,9 +69,11 @@ label_eurostat <-
            custom_dic = NULL,
            fix_duplicated = FALSE) {
     
-    # Check if you have internet connection
-    internet_available <- curl::has_internet()
-    if (!internet_available) stop("You have no internet connection, please reconnect!")
+    # Check if you have access to ec.europe.eu. 
+    if (!check_access_to_data()){
+      message("You have no access to ec.europe.eu. 
+Please check your connection and/or review your proxy settings")
+    } else {
 
     # Avoid warnings
     code_name <- NULL
@@ -201,7 +203,7 @@ label_eurostat <-
 
     
     y
-    
+    }
   }
 
 #' @describeIn label_eurostat Get definitions for variable (column) names. For

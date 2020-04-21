@@ -18,7 +18,6 @@ editor_options:
 
 This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
 
-
 ```{r setup, include=FALSE}
 # Global options
 library(knitr)
@@ -28,8 +27,6 @@ opts_chunk$set(fig.path="fig/")
 # Installation
 
 Release version [(CRAN)](https://CRAN.R-project.org/package=eurostat):
-
-
 
 ```{r install, eval=FALSE}
 install.packages("eurostat")
@@ -75,6 +72,9 @@ library(knitr)
 kable(head(toc))
 ```
 
+Some of the data sets (e.g. in the 'comext' type) are not accessible
+through the standard interface. See the get\_eurostat function documentation for more details.
+
 With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 
 ```{r search_eurostat, warning=FALSE, message=FALSE, eval = evaluate}
@@ -86,6 +86,7 @@ Codes for the dataset can be searched also from the [Eurostat
 database](http://ec.europa.eu/eurostat/data/database). The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
+
 
 # Downloading data 
 
@@ -226,8 +227,11 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 ## SDMX
 
-Eurostat data is available also in the SDMX format. The eurostat R package does not provide custom tools for this but the generic [rsdmx](https://CRAN.R-project.org/package=rsdmx) and [rjsdmx](https://github.com/amattioc/SDMX/wiki) R packages can be used to access data in that format when necessary. 
+Eurostat data is available also in the Statistical Data and Metadata eXchange ([SDMX](https://sdmx.org)) [Web Services](https://ec.europa.eu/eurostat/web/sdmx-web-services/about-this-service). Our eurostat R package does not provide custom tools for this but the following generic R packages provide access to eurostat SDMX version:
 
+ - [restatapi](https://github.com/eurostat/restatapi)
+ - [rsdmx](https://CRAN.R-project.org/package=rsdmx)
+ - [rjsdmx](https://github.com/amattioc/SDMX/wiki)
 
 # Further examples
 
