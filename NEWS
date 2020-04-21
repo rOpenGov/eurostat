@@ -1,3 +1,8 @@
+# eurostat 3.4.1
+
+* Fixed vignette
+* Added automated error messages to URL download failures
+
 # eurostat 3.3.3
 
 * Countries and Country Codes data.frames get label column for country names in the Eurostat database.

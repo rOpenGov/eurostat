@@ -4,11 +4,20 @@
 \alias{get_eurostat}
 \title{Read Eurostat Data}
 \usage{
-get_eurostat(id, time_format = "date", filters = "none",
-  type = "code", select_time = NULL, cache = TRUE,
-  update_cache = FALSE, cache_dir = NULL, compress_file = TRUE,
-  stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE,
-  ...)
+get_eurostat(
+  id,
+  time_format = "date",
+  filters = "none",
+  type = "code",
+  select_time = NULL,
+  cache = TRUE,
+  update_cache = FALSE,
+  cache_dir = NULL,
+  compress_file = TRUE,
+  stringsAsFactors = default.stringsAsFactors(),
+  keepFlags = FALSE,
+  ...
+)
 }
 \arguments{
 \item{id}{A code name for the dataset of interest.
@@ -43,13 +52,13 @@ should be used.}
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
 only queries from the bulk download facility.}
 
-\item{update_cache}{a locigal whether to update cache. Can be set also with
+\item{update_cache}{a logical whether to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
-\item{cache_dir}{a path to a cache directory. The directory have to exist.
+\item{cache_dir}{a path to a cache directory. The directory must exist.
 The \code{NULL} (default) uses and creates
 'eurostat' directory in the temporary directory from
-\code{\link{tempdir}}. Directory can also be set with
+\code{\link{tempdir}}. The directory can also be set with
 \code{option} eurostat_cache_dir.}
 
 \item{compress_file}{a logical whether to compress the
@@ -82,7 +91,7 @@ a tibble. One column for each dimension in the data,
         \code{\link[tidyr]{complete}}.
 }
 \description{
-Download data sets from Eurostat \url{ec.europa.eu/eurostat}.
+Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 }
 \details{
 Data sets are downloaded from 
@@ -116,8 +125,8 @@ database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 }
 \examples{
-\dontrun{
 k <- get_eurostat("nama_10_lp_ulc")
+\dontrun{
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 dir.create(file.path(tempdir(), "r_cache"))

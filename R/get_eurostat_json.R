@@ -43,10 +43,10 @@
 #' @examples
 #'  \dontrun{
 #'    tmp <- get_eurostat_json("cdh_e_fos")
-#'    # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
-#'    # yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
-#'    #                                                     unit="EUR_HAB",
-#'    #                                                     indic_na="B1GM"))
+#'    nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
+#'    yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
+#'                                                         unit="EUR_HAB",
+#'                                                         indic_na="B1GM"))
 #' }
 #' @keywords utilities database
 get_eurostat_json <- function(id, filters = NULL, 
@@ -55,13 +55,34 @@ get_eurostat_json <- function(id, filters = NULL,
                               stringsAsFactors = default.stringsAsFactors(),
                               ...){
   
-  #get response
+  # Check if you have internet connection
+  internet_available <- curl::has_internet()
+  if (!internet_available) stop("You have no internet connection, please reconnect!")
+  
+  # get response  
+  # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
+  # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
   url <- eurostat_json_url(id = id, filters = filters, lang = lang)
-  resp <- httr::GET(url, ...)
+  
+  # resp <- try(httr::GET(url, ...))
+  # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
+  resp <- httr::GET(url)
+  if (httr::http_error(resp)) { 
+    stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
+  }
+  
   status <- httr::status_code(resp)
   
   # check status and get json
-  msg <- ". Some datasets are not accessible via the eurostat interface. You can try to search the data manually from the comext database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk download facility at http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing or annual Excel files http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
+  
+  msg <- ". Some datasets are not accessible via the eurostat
+          interface. You can try to search the data manually from the comext
+  	  database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk
+  	  download facility at
+  	  http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing
+  	  or annual Excel files
+  	  http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
+	  
   if (status == 200){
     jdat <- jsonlite::fromJSON(url)
   } else if (status == 400){
@@ -96,7 +117,7 @@ get_eurostat_json <- function(id, filters = NULL,
   
   dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value)
   
-  as_data_frame(dat)
+  tibble::as_tibble(dat)
   
 }
 

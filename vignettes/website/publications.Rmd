@@ -1,15 +1,9 @@
 ---
 title: "Publications using the eurostat R package"
 date: "`r Sys.Date()`"
-output: 
+output:
   rmarkdown::html_vignette:
     toc: true
-vignette: >
-  %\VignetteIndexEntry{eurostat publications}
-  %\VignetteEngine{knitr::rmarkdown}
-  %\VignetteDepends{Cairo}
-  %\VignetteEncoding{UTF-8}
-  \usepackage[utf8]{inputenc}
 ---
 
 

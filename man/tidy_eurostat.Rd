@@ -4,8 +4,13 @@
 \alias{tidy_eurostat}
 \title{Transform Data into Row-Column-Value Format}
 \usage{
-tidy_eurostat(dat, time_format = "date", select_time = NULL,
-  stringsAsFactors = default.stringsAsFactors(), keepFlags = FALSE)
+tidy_eurostat(
+  dat,
+  time_format = "date",
+  select_time = NULL,
+  stringsAsFactors = default.stringsAsFactors(),
+  keepFlags = FALSE
+)
 }
 \arguments{
 \item{dat}{a data_frame from \code{\link{get_eurostat_raw}}.}

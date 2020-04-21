@@ -18,7 +18,7 @@ tibble with two columns: code names and full names.
 Download a Eurostat dictionary.
 }
 \details{
-For given coded variable from Eurostat \url{ec.europa.eu/eurostat}.
+For given coded variable from Eurostat \url{https://ec.europa.eu/eurostat/}.
    The dictionaries link codes with human-readable labels.
    To translate codes to labels, use \code{\link{label_eurostat}}.
 }

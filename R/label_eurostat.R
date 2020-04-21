@@ -68,6 +68,10 @@ label_eurostat <-
            countrycode_nomatch = NULL,
            custom_dic = NULL,
            fix_duplicated = FALSE) {
+    
+    # Check if you have internet connection
+    internet_available <- curl::has_internet()
+    if (!internet_available) stop("You have no internet connection, please reconnect!")
 
     # Avoid warnings
     code_name <- NULL
@@ -104,8 +108,8 @@ label_eurostat <-
         names(y_code) <- paste0(names(y_code), "_code")
         y <- cbind(y_code, y)
       }
-      #return data.frame
-      return(as_data_frame(y))
+
+      return(tibble::as_tibble(y))
       
     } else { 
       if (is.null(dic))

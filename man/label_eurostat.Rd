@@ -6,9 +6,17 @@
 \alias{label_eurostat_tables}
 \title{Get Eurostat Codes}
 \usage{
-label_eurostat(x, dic = NULL, code = NULL, eu_order = FALSE,
-  lang = "en", countrycode = NULL, countrycode_nomatch = NULL,
-  custom_dic = NULL, fix_duplicated = FALSE)
+label_eurostat(
+  x,
+  dic = NULL,
+  code = NULL,
+  eu_order = FALSE,
+  lang = "en",
+  countrycode = NULL,
+  countrycode_nomatch = NULL,
+  custom_dic = NULL,
+  fix_duplicated = FALSE
+)
 
 label_eurostat_vars(x, lang = "en")
 
