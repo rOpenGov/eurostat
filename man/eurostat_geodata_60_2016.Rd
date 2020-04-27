@@ -4,7 +4,8 @@
 \name{eurostat_geodata_60_2016}
 \alias{eurostat_geodata_60_2016}
 \title{Geospatial data of Europe from Gisco in 1:60 million scale from year 2016}
-\format{sf
+\format{
+sf
 \describe{
   \item{id}{Country code in the Eurostat database}
   \item{CNTRY_CODE}{Country code}
@@ -14,7 +15,8 @@
   \item{NUTS_ID}{NUTS code}
   \item{geometry}{geospatial information}
   \item{geo}{NUTS code}
-}}
+}
+}
 \source{
 \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
 }

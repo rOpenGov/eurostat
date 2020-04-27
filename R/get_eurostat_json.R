@@ -68,7 +68,7 @@ get_eurostat_json <- function(id, filters = NULL,
   
     # resp <- try(httr::GET(url, ...))
     # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
-    resp <- httr::GET(url)
+    resp <- httr::RETRY("GET", url, terminate_on = c(404))
     if (httr::http_error(resp)) { 
       stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
     }

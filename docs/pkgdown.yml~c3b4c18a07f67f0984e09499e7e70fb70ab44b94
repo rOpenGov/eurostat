@@ -1,0 +1,11 @@
+pandoc: 2.2.1
+pkgdown: 1.4.1
+pkgdown_sha: ~
+articles:
+  vignette: vignette.html
+  blogposts: website/blogposts.html
+  cheatsheet: website/cheatsheet.html
+  eurostat_tutorial: website/eurostat_tutorial.html
+  maps: website/maps.html
+  publications: website/publications.html
+

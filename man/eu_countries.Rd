@@ -7,12 +7,20 @@
 \alias{efta_countries}
 \alias{eu_candidate_countries}
 \title{Countries and Country Codes}
-\format{A data_frame:
+\format{
+A data_frame:
 \describe{
   \item{code}{Country code in the Eurostat database}
   \item{name}{Country name in English}
   \item{label}{Country name in the Eurostat database}
-}}
+}
+
+An object of class \code{data.frame} with 19 rows and 3 columns.
+
+An object of class \code{data.frame} with 4 rows and 3 columns.
+
+An object of class \code{data.frame} with 5 rows and 3 columns.
+}
 \source{
 \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
   \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}

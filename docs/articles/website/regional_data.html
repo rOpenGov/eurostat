@@ -6,19 +6,19 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Regional data examples for the eurostat R package • eurostat</title>
-<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha256-916EbMg70RQy9LHiGkXzG8hSg9EdNy97GazNG/aiY1w=" crossorigin="anonymous">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha256-U5ZEeKfGNOja007MMD3YBI0A3OSZOQbeG6z2f2Y0hu8=" crossorigin="anonymous"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/all.min.css" integrity="sha256-PbSmjxuVAzJ6FPvNYsrXygfGhNJYyZ2GktDbkMBqQZg=" crossorigin="anonymous">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.1/css/v4-shims.min.css" integrity="sha256-A6jcAdwFD48VMjlI3GDxUd+eCQa7/KWy6G9oe/ovaPA=" crossorigin="anonymous">
-<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.4/clipboard.min.js" integrity="sha256-FiZwavyI2V6+EXO1U+xzLG3IKldpiTFf3153ea9zikQ=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/headroom.min.js" integrity="sha256-DJFC1kqIhelURkuza0AvYal5RxMtpzLjFhsnVIeuk+U=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.9.4/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
+<!-- jquery --><script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script><!-- Bootstrap --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha256-bZLfwXAP04zRMK2BjiO8iu9pf4FbLqX6zitd+tIvLhE=" crossorigin="anonymous">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/js/bootstrap.min.js" integrity="sha256-nuL8/2cJ5NDSSwnKD8VqreErSWHtnEP9E7AySL+1ev4=" crossorigin="anonymous"></script><!-- bootstrap-toc --><link rel="stylesheet" href="../../bootstrap-toc.css">
+<script src="../../bootstrap-toc.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
+<!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- pkgdown --><link href="../../pkgdown.css" rel="stylesheet">
 <script src="../../pkgdown.js"></script><meta property="og:title" content="Regional data examples for the eurostat R package">
-<meta property="og:description" content="">
-<meta name="twitter:card" content="summary">
+<meta property="og:description" content="eurostat">
 <!-- mathjax --><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script><!--[if lt IE 9]>
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]-->
 </head>
-<body>
+<body data-spy="scroll" data-target="#toc">
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.5.20007</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.3</span>
       </span>
     </div>
 
@@ -77,7 +77,14 @@
   </ul>
 </li>
       </ul>
-<ul class="nav navbar-nav navbar-right"></ul>
+<ul class="nav navbar-nav navbar-right">
+<li>
+  <a href="https://github.com/ropengov/eurostat/">
+    <span class="fab fa fab fa-github fa-lg"></span>
+     
+  </a>
+</li>
+      </ul>
 </div>
 <!--/.nav-collapse -->
   </div>
@@ -90,12 +97,12 @@
       </header><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
-      <h1>Regional data examples for the eurostat R package</h1>
+      <h1 data-toc-skip>Regional data examples for the eurostat R package</h1>
                         <h4 class="author">Daniel Antal, CFA</h4>
             
-            <h4 class="date">2020-02-11</h4>
+            <h4 class="date">2020-04-21</h4>
       
-      
+      <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/regional_data.Rmd"><code>vignettes/website/regional_data.Rmd</code></a></small>
       <div class="hidden name"><code>regional_data.Rmd</code></div>
 
     </div>
@@ -140,9 +147,9 @@
 <a href="#metadata-quality" class="anchor"></a>Metadata quality</h3>
 <p>And at last, the metadata quality of Eurostat’s products is not as good as on NUTS0 national level. A particularly problematic issue is that Eurostat’s tables do not differentiate between the current NUTS2016 regional boundaries and the NUTS2013 or NUTS2010 boundaries. Some data tables contain rows that cannot and must not be compared. For example, France went under a very thorough change in its regional boundaries, meaning that NUTS2013 regional data from 2013 can only be compared in the case of a very small fraction of the country with NUTS2016 data from 2016 or 2018.</p>
 <p>We programatically coded the NUTS2013-2016 changes into the new functions presented in this article. You can download the correspondence table in Excel or review it with <code><a href="https://rdrr.io/r/utils/data.html">data(nuts_correspondence)</a></code>. Whenever we found examples of the use NUTS2010 data (in Slovenia and Greece), we treated them as exception in the functions.</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="co"># download to a temporary file </span></a>
-<a class="sourceLine" id="cb1-2" title="2">tf &lt;-<span class="st"> </span><span class="kw"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="dt">fileext =</span> <span class="st">".xlsx"</span>)</a>
-<a class="sourceLine" id="cb1-3" title="3"><span class="kw"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="dt">url =</span> <span class="st">'https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx'</span>, <span class="dt">destfile =</span> tf,  <span class="dt">mode =</span> <span class="st">'wb'</span>  )</a></code></pre></div>
+<div class="sourceCode" id="cb1"><html><body><pre class="r"><span class="co"># download to a temporary file </span>
+<span class="no">tf</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span>(<span class="kw">fileext</span> <span class="kw">=</span> <span class="st">".xlsx"</span>)
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span>(<span class="kw">url</span> <span class="kw">=</span> <span class="st">'https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx'</span>, <span class="kw">destfile</span> <span class="kw">=</span> <span class="no">tf</span>,  <span class="kw">mode</span> <span class="kw">=</span> <span class="st">'wb'</span>  )</pre></body></html></div>
 <p>The correspondence tables themselves are not tidy, and they are in several sheets which are not fully consistent. In the 2013-2016 table the French region <code>FR7</code> or Centre-Est is marked as <code>discontinued</code> in the sheet <code>Correspondence NUTS-1</code> and at the same time as <code>relabelled and recoded</code> to <code>FRK</code>, or Auvergne-Rhône-Alpes. We believe that the latter case is correct and use only this row in the correspondence table to avoid duplications in joining.</p>
 <p>Furthermore, Eurostat has a very problematic practice with simply removing statistical products when metadata definitions change. So, you may have downloaded industry-level data with the NACE Rev2 definition or French regional data with the NUTS 2013 definition, but under the same title, you will be downloading a differently defined dataset in 2020. Or, you will not be able to reproduce your code, because they will remove the data with your earlier definition. While it is clear that Eurostat cannot take care of boundary changes if the responsible national statistical offices fail to do this, removing the history of data products makes the validation of professional and academic work made with such data impossible in some cases.</p>
 <p>The logical workflow is the following:</p>
@@ -166,9 +173,9 @@
 <p>A simple strategy is to create a <em>panel of only those data that do not change boundaries</em>. However, if you have many variables, this leads very quickly to a huge loss in data, because missing data is often independent from boundary changes. With the addition of each new variable you are likely to loose new and new rows of observations when you keep only complete cases.</p>
 <p>Keeping track of the changes is a much better strategy, and up to a point, it is a costless in the amount of work, because often <em>only the metadata is changing</em>, so, in fact, the data itself is not missing, just it is labelled inconsistently. Member states, when they change two regions’ boundary only, will nevertheless create new regional codes for all their regions, to make sure that regional labels do not mix. However, Eurostat is not following this practice well, and it does mixes up different labels.</p>
 <p>With the new helper function <code><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code()</a></code> you can see if your geo label codes are affected by these changes, and you get a first view on how you can continue your work.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">eurostat<span class="op">::</span>tgs00026 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-2" title="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb2-3" title="3"><span class="st">  </span><span class="kw"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>() </a></code></pre></div>
+<div class="sourceCode" id="cb2"><html><body><pre class="r"><span class="kw pkg">eurostat</span><span class="kw ns">::</span><span class="no"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">time</span> <span class="kw">==</span> <span class="fl">2012</span> ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>()</pre></body></html></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1311,12 +1318,12 @@
 ## 282 check with national authorities     FALSE     FALSE
 ## 283 check with national authorities     FALSE     FALSE</code></pre>
 <p>Zooming on regions <code>UKM</code> you can see that <code>UKM5</code> and <code>UKM6</code> are unchanged, <code>UKM3</code> gave birth to two new regional units <code>UKM8</code> and <code>UKM9</code> (this is an additive change) and <code>UKM2</code> lost a NUTS3 unit <code>UKM24</code>. This latter one is also an additive change, but maybe far more difficult to handle in practice, because data about <code>UKM24</code> may not be available in most cases, as NUTS1 and NUTS2 level data is only available for a very few basic indicators on NUTS3 level. You can, however, easily maintain backward compatibility among <code>UKM3</code>, <code>UKM8</code>, <code>UKM9</code>, because the new data is just available in higher resolution, or, in other words, for two halves of the earlier <code>UKM3</code> region.</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="co"># for readability the previous example is filtered and reduced</span></a>
-<a class="sourceLine" id="cb6-2" title="2">eurostat<span class="op">::</span>tgs00026 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-4" title="4"><span class="st">  </span><span class="kw"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>()    <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="kw"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"UKM"</span>, geo) ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb6-6" title="6"><span class="st">  </span><span class="kw">select</span> ( geo, values, change )</a></code></pre></div>
+<div class="sourceCode" id="cb6"><html><body><pre class="r"><span class="co"># for readability the previous example is filtered and reduced</span>
+<span class="kw pkg">eurostat</span><span class="kw ns">::</span><span class="no"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">time</span> <span class="kw">==</span> <span class="fl">2012</span> ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>()    <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"UKM"</span>, <span class="no">geo</span>) ) <span class="kw">%&gt;%</span>
+  <span class="fu">select</span> ( <span class="no">geo</span>, <span class="no">values</span>, <span class="no">change</span> )</pre></body></html></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1329,10 +1336,10 @@
 ## 4 UKM3  16000 discontinued; split into new UKM8 and UKM9</code></pre>
 <p>For easier filtering in further use, there are two logical variables added to the data frame, i.e. <code>nuts_2013</code> and <code>nuts_2016</code>. Many datasets contain non-EU regions not covered in the Eurostat correspondence tables, their filter is <code>nuts_2013 == FALSE &amp; nuts_2016 == FALSE</code>.</p>
 <p>The following example will filter out all rows that use a geo code which is defined in NUTS2013 and cannot be found in NUTS2016. These are the main sources of incompatibility in your data panel.</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1">eurostat<span class="op">::</span>tgs00026 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-2" title="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-3" title="3"><span class="st">  </span><span class="kw"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb10-4" title="4"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( nuts_<span class="dv">2013</span>, <span class="op">!</span><span class="st"> </span>nuts_<span class="dv">2016</span> ) </a></code></pre></div>
+<div class="sourceCode" id="cb10"><html><body><pre class="r"><span class="kw pkg">eurostat</span><span class="kw ns">::</span><span class="no"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">time</span> <span class="kw">==</span> <span class="fl">2012</span> ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">nuts_2013</span>, ! <span class="no">nuts_2016</span> )</pre></body></html></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1461,12 +1468,12 @@
 <p>The first, logical step is to find those data points which are in fact identical, only their regional codes have changed. For example, <code>FRC1</code> is in fact identical to region with the NUTS2013 label <code>FR26</code> (Bourgogne region in France.) In this case, you can simply re-label the regions that appear to be different just because of the different codes applied.</p>
 <p>The helper function <code><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code()</a></code> will assist you with these cases.</p>
 <p>To make the example more clear, let’s zoom on changes in France. You can see that many regions changes, but some of them only changed labels. For forward compatibility, <code><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code()</a></code> changed all geo labels to the current, <code>NUTS2016</code> definition. In fact, this is needed to use maps, for example.</p>
-<div class="sourceCode" id="cb14"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb14-1" title="1"><span class="co"># for readability the previous example is filtered and reduced</span></a>
-<a class="sourceLine" id="cb14-2" title="2">eurostat<span class="op">::</span>tgs00026 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-4" title="4"><span class="st">  </span><span class="kw"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="kw"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"FR"</span>, geo) ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb14-6" title="6"><span class="st">  </span><span class="kw">select</span> ( geo, code13,  code16, change, values )</a></code></pre></div>
+<div class="sourceCode" id="cb14"><html><body><pre class="r"><span class="co"># for readability the previous example is filtered and reduced</span>
+<span class="kw pkg">eurostat</span><span class="kw ns">::</span><span class="no"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">time</span> <span class="kw">==</span> <span class="fl">2012</span> ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"FR"</span>, <span class="no">geo</span>) ) <span class="kw">%&gt;%</span>
+  <span class="fu">select</span> ( <span class="no">geo</span>, <span class="no">code13</span>,  <span class="no">code16</span>, <span class="no">change</span>, <span class="no">values</span> )</pre></body></html></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1503,12 +1510,12 @@
 <p>In the change log, <code>recoded</code> means that the geo code was changed in the transition to NUTS2016, <code>recoded and relabelled</code> means that not only the code, but also the official name of the region changed.</p>
 <p>You can decide which coding you prefer to use. Beware to use consistent map definitions if you will visualize your work - you can add the NUTS2013 labelled data to a map that contains the NUTS2013 boundary definitions.</p>
 <p>For comparing with additional data sources, it may be useful to make sure that you use the current name of the region. Function <code><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016()</a></code> changes the name column to the NUTS2016 definition, when applicable, and <code><a href="../../reference/recode_to_nuts_2013.html">recode_to_nuts_2013()</a></code> will use the earlier definition.</p>
-<div class="sourceCode" id="cb18"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb18-1" title="1"><span class="co"># for readability the previous example is filtered and reduced</span></a>
-<a class="sourceLine" id="cb18-2" title="2">eurostat<span class="op">::</span>tgs00026 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-4" title="4"><span class="st">  </span><span class="kw"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-5" title="5"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="kw"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"FR"</span>, geo) ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb18-6" title="6"><span class="st">  </span><span class="kw">select</span> ( geo, name,  code16, change, resolution, values )</a></code></pre></div>
+<div class="sourceCode" id="cb18"><html><body><pre class="r"><span class="co"># for readability the previous example is filtered and reduced</span>
+<span class="kw pkg">eurostat</span><span class="kw ns">::</span><span class="no"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">time</span> <span class="kw">==</span> <span class="fl">2012</span> ) <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span>() <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span>(<span class="st">"FR"</span>, <span class="no">geo</span>) ) <span class="kw">%&gt;%</span>
+  <span class="fu">select</span> ( <span class="no">geo</span>, <span class="no">name</span>,  <span class="no">code16</span>, <span class="no">change</span>, <span class="no">resolution</span>, <span class="no">values</span> )</pre></body></html></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1573,11 +1580,11 @@
 ## 26  13700
 ## 27   4600</code></pre>
 <p>Another useful filter is <code>change == "not in the EU"</code>. The non-EU member state region definitions (and their possible changes) are not covered in the Eurostat correspondence table.</p>
-<div class="sourceCode" id="cb23"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb23-1" title="1"><span class="co"># for readability the previous example is filtered and reduced</span></a>
-<a class="sourceLine" id="cb23-2" title="2">eurostat<span class="op">::</span>tgs00026 <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-3" title="3"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( time <span class="op">==</span><span class="st"> </span><span class="dv">2012</span> ) <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-4" title="4"><span class="st">   </span><span class="kw"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span>() <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb23-5" title="5"><span class="st">   </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="op">!</span><span class="st"> </span>nuts_<span class="dv">2013</span>, <span class="op">!</span><span class="st"> </span>nuts_<span class="dv">2016</span> )</a></code></pre></div>
+<div class="sourceCode" id="cb23"><html><body><pre class="r"><span class="co"># for readability the previous example is filtered and reduced</span>
+<span class="kw pkg">eurostat</span><span class="kw ns">::</span><span class="no"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">time</span> <span class="kw">==</span> <span class="fl">2012</span> ) <span class="kw">%&gt;%</span>
+   <span class="fu"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span>() <span class="kw">%&gt;%</span>
+   <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( ! <span class="no">nuts_2013</span>, ! <span class="no">nuts_2016</span> )</pre></body></html></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1614,12 +1621,12 @@
 <div id="imputing-to-new-boundaries-with-historical-data" class="section level2">
 <h2 class="hasAnchor">
 <a href="#imputing-to-new-boundaries-with-historical-data" class="anchor"></a>Imputing to new boundaries with historical data</h2>
-<p>Eurostat released an untidy Excel document that contains all boundary changes from the <code>NUTS2013</code> to the <code>NUTS2016</code> boundary definition. You can load these tidy tables into your global environment with <code><a href="https://rdrr.io/r/utils/data.html">data("nuts_correspondence")</a></code> and <code><a href="https://rdrr.io/r/utils/data.html">data ("regional_changes_2016")</a></code> or simply reference them as <code><a href="../../reference/nuts_correspondence.html">eurostat::nuts_correspondence</a></code> and <code><a href="../../reference/regional_changes_2016.html">eurostat::regional_changes_2016</a></code>. (The <code>eurostat::</code> part can be omitted if you have called earlier<code><a href="https://rdrr.io/r/base/library.html">library(eurostat)</a></code> in your code.)</p>
+<p>Eurostat released an untidy Excel document that contains all boundary changes from the <code>NUTS2013</code> to the <code>NUTS2016</code> boundary definition. You can load these tidy tables into your global environment with <code><a href="https://rdrr.io/r/utils/data.html">data("nuts_correspondence")</a></code> and <code><a href="https://rdrr.io/r/utils/data.html">data ("regional_changes_2016")</a></code> or simply reference them as <code><a href="../../reference/nuts_correspondence.html">eurostat::nuts_correspondence</a></code> and <code><a href="../../reference/regional_changes_2016.html">eurostat::regional_changes_2016</a></code>. (The <code>eurostat::</code> part can be omitted if you have called earlier<code><a href="https://rdrr.io/pkg/eurostat/man">library(eurostat)</a></code> in your code.)</p>
 <p>Because NUTS3 level data is very scarce, we did not create a programmatic solution to filling in new boundaries for NUTS2 regions.</p>
 <p>However, using these correspondence information, many NUTS1 regions, when NUTS2 data is present in the data, can be filled in with historical data using simple equivalence or addition.</p>
-<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb28-1" title="1">nuts_correspondence <span class="op">%&gt;%</span></a>
-<a class="sourceLine" id="cb28-2" title="2"><span class="st">  </span><span class="kw"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( nuts_level <span class="op">==</span><span class="st"> </span><span class="dv">1</span> ) <span class="op">%&gt;%</span><span class="st"> </span></a>
-<a class="sourceLine" id="cb28-3" title="3"><span class="st">  </span><span class="kw">select</span> ( code16, resolution )</a></code></pre></div>
+<div class="sourceCode" id="cb28"><html><body><pre class="r"><span class="no">nuts_correspondence</span> <span class="kw">%&gt;%</span>
+  <span class="fu"><a href="https://rdrr.io/r/stats/filter.html">filter</a></span> ( <span class="no">nuts_level</span> <span class="kw">==</span> <span class="fl">1</span> ) <span class="kw">%&gt;%</span>
+  <span class="fu">select</span> ( <span class="no">code16</span>, <span class="no">resolution</span> )</pre></body></html></div>
 <pre><code>## # A tibble: 28 x 2
 ##    code16 resolution        
 ##    &lt;chr&gt;  &lt;chr&gt;             
@@ -1699,13 +1706,13 @@
 <a href="#citing-the-eurostat-r-package" class="anchor"></a>Citing the eurostat R package</h3>
 <p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
-<div class="sourceCode" id="cb33"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb33-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb33"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span>(<span class="st">"eurostat"</span>)</pre></body></html></div>
 <pre><code>## 
 ## Kindly cite the eurostat R package as follows:
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.5.20007 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.6.3 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -1720,7 +1727,7 @@
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.5.20007},
+##     note = {Version 3.6.3},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -1733,14 +1740,14 @@
 <h1 class="hasAnchor">
 <a href="#version-info" class="anchor"></a>Version info</h1>
 <p>This tutorial was created with</p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb35-1" title="1"><span class="kw"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</a></code></pre></div>
-<pre><code>## R version 3.6.2 (2019-12-12)
+<div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</pre></body></html></div>
+<pre><code>## R version 3.6.3 Patched (2020-03-11 r78037)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 19.10
 ## 
 ## Matrix products: default
-## BLAS:   /home/lemila/bin/R-3.6.2/lib/libRblas.so
-## LAPACK: /home/lemila/bin/R-3.6.2/lib/libRlapack.so
+## BLAS:   /home/lei/bin/R-patched/lib/libRblas.so
+## LAPACK: /home/lei/bin/R-patched/lib/libRlapack.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1754,51 +1761,38 @@
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tibble_2.1.3       dplyr_0.8.3        eurostat_3.5.20007
+## [1] tibble_2.1.3      dplyr_0.8.99.9002 eurostat_3.6.3   
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.0.0   xfun_0.11          purrr_0.3.3        sf_0.8-0          
-##  [5] lattice_0.20-38    generics_0.0.2     vctrs_0.2.2        htmltools_0.4.0   
-##  [9] yaml_2.2.0         utf8_1.1.4         rlang_0.4.4        e1071_1.7-3       
-## [13] pkgdown_1.4.1.9000 pillar_1.4.3       glue_1.3.1         DBI_1.1.0         
-## [17] sp_1.3-2           RColorBrewer_1.1-2 lifecycle_0.1.0    plyr_1.8.5        
-## [21] stringr_1.4.0      memoise_1.1.0      evaluate_0.14      knitr_1.26        
-## [25] curl_4.3           class_7.3-15       fansi_0.4.1        broom_0.5.3       
-## [29] Rcpp_1.0.3         KernSmooth_2.23-16 readr_1.3.1        backports_1.1.5   
-## [33] classInt_0.4-2     desc_1.2.0         jsonlite_1.6       countrycode_1.1.0 
-## [37] fs_1.3.1           hms_0.5.3          digest_0.6.23      stringi_1.4.5     
-## [41] rprojroot_1.3-2    grid_3.6.2         bibtex_0.4.2.2     cli_2.0.1         
-## [45] tools_3.6.2        magrittr_1.5       RefManageR_1.2.12  crayon_1.3.4      
-## [49] tidyr_1.0.0        pkgconfig_2.0.3    MASS_7.3-51.5      xml2_1.2.2        
-## [53] lubridate_1.7.4    assertthat_0.2.1   rmarkdown_2.0      httr_1.4.1        
-## [57] R6_2.4.1           units_0.6-5        nlme_3.1-143       compiler_3.6.2</code></pre>
+##  [1] tidyselect_1.0.0     xfun_0.12            purrr_0.3.3         
+##  [4] sf_0.9-0             lattice_0.20-40      vctrs_0.2.99.9010   
+##  [7] generics_0.0.2       htmltools_0.4.0.9002 yaml_2.2.1          
+## [10] utf8_1.1.4           rlang_0.4.5.9000     e1071_1.7-3         
+## [13] pkgdown_1.5.0        pillar_1.4.3         glue_1.3.2          
+## [16] DBI_1.1.0            sp_1.4-1             RColorBrewer_1.1-2  
+## [19] lifecycle_0.2.0      plyr_1.8.6           stringr_1.4.0       
+## [22] memoise_1.1.0        evaluate_0.14        knitr_1.28          
+## [25] curl_4.3             class_7.3-16         fansi_0.4.1         
+## [28] broom_0.5.5          Rcpp_1.0.4           KernSmooth_2.23-16  
+## [31] readr_1.3.1          backports_1.1.5      classInt_0.4-2      
+## [34] desc_1.2.0           jsonlite_1.6.1       countrycode_1.1.1   
+## [37] fs_1.3.2             hms_0.5.3            digest_0.6.25       
+## [40] stringi_1.4.6        rprojroot_1.3-2      grid_3.6.3          
+## [43] bibtex_0.4.2.2       cli_2.0.2            tools_3.6.3         
+## [46] magrittr_1.5         RefManageR_1.2.12    crayon_1.3.4        
+## [49] tidyr_1.0.2          pkgconfig_2.0.3      MASS_7.3-51.5       
+## [52] ellipsis_0.3.0       xml2_1.2.5           lubridate_1.7.4     
+## [55] assertthat_0.2.1     rmarkdown_2.1        httr_1.4.1          
+## [58] R6_2.4.1             units_0.6-6          nlme_3.1-145        
+## [61] compiler_3.6.3</code></pre>
 </div>
   </div>
 
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
 
-        <div id="tocnav">
-      <h2 class="hasAnchor">
-<a href="#tocnav" class="anchor"></a>Contents</h2>
-      <ul class="nav nav-pills nav-stacked">
-<li>
-<a href="#r-tools-for-eurostat-open-data">R Tools for Eurostat Open Data</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#motivation">Motivation</a></li>
-      </ul>
-</li>
-      <li>
-<a href="#taking-care-of-boundaries">Taking care of boundaries</a><ul class="nav nav-pills nav-stacked">
-<li><a href="#recoding-needed-only-the-metadata-changed">Recoding needed: only the metadata changed</a></li>
-      <li><a href="#imputing-to-new-boundaries-with-historical-data">Imputing to new boundaries with historical data</a></li>
-      <li><a href="#imputation-strategies">Imputation strategies</a></li>
-      </ul>
-</li>
-      <li><a href="#suggestions-for-eurostat">Suggestions for Eurostat</a></li>
-      <li><a href="#citations-and-related-work">Citations and related work</a></li>
-      <li><a href="#version-info">Version info</a></li>
-      </ul>
+        <nav id="toc" data-toggle="toc"><h2 data-toc-skip>Contents</h2>
+    </nav>
 </div>
-      </div>
 
 </div>
 
@@ -1809,7 +1803,7 @@
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.4.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.0.</p>
 </div>
 
       </footer>
