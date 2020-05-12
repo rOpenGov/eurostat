@@ -27,7 +27,7 @@ add_nuts_level <- function (dat, geo_labels = "geo") {
       input <- 'label'
       geo <- dat 
       dat <- data.frame( geo = as.character(geo), 
-                         stringsAsFactors = FALSE )
+                         stringsAsFactors = FALSE)
     } else { 
       input <- "not_label" 
       }

@@ -32,8 +32,7 @@ library(tmap)
 
 # Download attribute data from Eurostat
 sp_data <- eurostat::get_eurostat("tgs00026",
-		                  time_format = "raw",
-                                  stringsAsFactors = FALSE) %>% 
+		                  time_format = "raw") %>% 
   # subset to have only a single row per geo
   dplyr::filter(time == 2010, nchar(geo) == 4) %>% 
   # categorise
@@ -85,7 +84,6 @@ library(RColorBrewer)
 # Downloading and manipulating the tabular data
 print("Let us focus on year 2014 and NUTS-3 level")
 euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
-                         stringsAsFactors = FALSE,
 			 filter = list(time = "2014")) %>% 
  
   # Subset to NUTS-3 level
@@ -118,7 +116,7 @@ library(sp)
 library(eurostat)
 library(dplyr)
 library(RColorBrewer)
-dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2014 and NUTS-2 level
   dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
   # classifying the values the variable
@@ -145,7 +143,7 @@ Meanwhile the CRAN version of `ggplot2` is lacking support for simple features, 
 library(eurostat)
 library(dplyr)
 library(ggplot2)
-dat <- get_eurostat("tgs00026", time_format = "raw", stringsAsFactors = FALSE) %>% 
+dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
   # subsetting to year 2014 and NUTS-2 level
   dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
   # classifying the values the variable

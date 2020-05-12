@@ -52,7 +52,7 @@
 get_eurostat_json <- function(id, filters = NULL, 
                               type = c("code", "label", "both"), 
                               lang = c("en", "fr", "de"),
-                              stringsAsFactors = default.stringsAsFactors(),
+                              stringsAsFactors = FALSE,
                               ...){
   
   # Check if you have access to ec.europe.eu. 

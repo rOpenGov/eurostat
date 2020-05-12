@@ -24,7 +24,7 @@
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
 #' @keywords internal utilities database
 tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
-           stringsAsFactors = default.stringsAsFactors(),
+           stringsAsFactors = FALSE,
            keepFlags = FALSE) {
 
     # To avoid warnings

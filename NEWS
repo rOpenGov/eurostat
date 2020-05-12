@@ -1,3 +1,7 @@
+# eurostat 3.6.4
+
+ * Fixed stringsAsFactors for R-4.0.0 and moved default to FALSE
+
 # eurostat 3.6.3
 
  * Stabilized http requests (PR by @annnvv)

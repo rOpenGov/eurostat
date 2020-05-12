@@ -9,7 +9,7 @@ get_eurostat_json(
   filters = NULL,
   type = c("code", "label", "both"),
   lang = c("en", "fr", "de"),
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   ...
 )
 }

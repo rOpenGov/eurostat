@@ -8,7 +8,7 @@ tidy_eurostat(
   dat,
   time_format = "date",
   select_time = NULL,
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   keepFlags = FALSE
 )
 }

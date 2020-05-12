@@ -114,7 +114,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
                          select_time = NULL,
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL,
                          compress_file = TRUE,
-                         stringsAsFactors = default.stringsAsFactors(),
+                         stringsAsFactors = FALSE,
                          keepFlags = FALSE, ...){
   
   # Check if you have access to ec.europe.eu. 

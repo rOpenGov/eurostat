@@ -14,7 +14,7 @@ get_eurostat(
   update_cache = FALSE,
   cache_dir = NULL,
   compress_file = TRUE,
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   keepFlags = FALSE,
   ...
 )
