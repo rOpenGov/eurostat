@@ -26,17 +26,8 @@ get_eurostat_raw <- function(id) {
     "estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",
     id, ".tsv.gz")
 
-  tfile <- tempfile()
-  on.exit(unlink(tfile))
-  
-  # download and read file
-  # a <- try(utils::download.file(url, tfile))
-  # if (class(a) == "try-error") {
-  #   stop(paste("The requested url cannot be found within the get_eurostat_raw function:", url))
-  # }
-  utils::download.file(url, tfile)
-  
-  dat <- readr::read_tsv(gzfile(tfile), na = ":",  
+
+  dat <- readr::read_tsv(url, na = ":",  
                          col_types = readr::cols(.default = readr::col_character()))
 
   
