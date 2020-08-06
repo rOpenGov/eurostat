@@ -36,7 +36,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     cnames2 <- cnames[length(cnames)]   # for colnames
     
     # Separe variables from first column
-    dat <- tidyr::separate_(dat, col = colnames(dat)[1],
+    dat <- tidyr::separate(dat, col = 1,
                        into = cnames1,
                        sep = ",", convert = FALSE)
     
@@ -58,7 +58,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     }
     
     # clean time and values
-    dat$time <- gsub("X", "", dat$time)
+    
     dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
       
     # variable columns
