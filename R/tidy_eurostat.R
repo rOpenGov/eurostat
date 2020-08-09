@@ -35,6 +35,9 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     cnames1 <- cnames[-length(cnames)]  # for columns
     cnames2 <- cnames[length(cnames)]   # for colnames
     
+    # time frequencies if time on colnames, because fastest
+    if (cnames2 == "time") freqs <- available_freq(colnames(dat)[-1]) else freqs <- NULL
+    
     # Separe variables from first column
     dat <- tidyr::separate(dat, col = 1,
                        into = cnames1,
@@ -74,8 +77,9 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
                               function(x) factor(x, levels = unique(x)))
     }
 
-    # For multiple time frequency
-    freqs <- available_freq(dat$time)
+    # for multiple frequencies
+    #  freqs here is not done in begging
+    if (is.null(freqs)) freqs <- available_freq(unique(dat$time)) 
     
     if (!is.null(select_time)){
       if (length(select_time) > 1) stop(

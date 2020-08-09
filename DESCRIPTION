@@ -59,4 +59,4 @@ BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1
