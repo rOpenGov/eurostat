@@ -38,10 +38,11 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     # time frequencies if time on colnames, because fastest
     if (cnames2 == "time") freqs <- available_freq(colnames(dat)[-1]) else freqs <- NULL
     
-    # Separe variables from first column
-    dat <- tidyr::separate(dat, col = 1,
-                       into = cnames1,
-                       sep = ",", convert = FALSE)
+    # Separe variables from the first column
+
+    var_cols <- stringr::str_split(dat[[1]], ",", simplify = TRUE) 
+    colnames(var_cols) <- cnames1
+    dat <- cbind(as_tibble(var_cols), dat[-1])
     
     # Get variable from column names
 
