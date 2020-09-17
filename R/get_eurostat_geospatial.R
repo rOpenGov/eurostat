@@ -14,7 +14,7 @@
 #' @param nuts_level Level of NUTS classification of the geospatial data. One of
 #'    "0", "1", "2", "3" or "all" (mimics the original behaviour)
 #' @param year NUTS release year. One of
-#'    "2003", "2006", "2010", "2013" or "2016"
+#'    "2003", "2006", "2010", "2013", "2016" or "2021"
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
 #' @param update_cache a locigal whether to update cache. Can be set also with
@@ -24,6 +24,12 @@
 #'        'eurostat' directory in the temporary directory from
 #'        \code{\link{tempdir}}. Directory can also be set with
 #'        \code{option} eurostat_cache_dir.
+#' @param crs projection of the map: 4-digit \href{http://spatialreference.org/ref/epsg/}{EPSG code}. One of:
+#' \itemize{
+#' \item "4326" - WGS84
+#' \item "3035" - ETRS89 / ETRS-LAEA
+#' \item "3857" - Pseudo-Mercator
+#' }
 #' @export
 #' @details The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 #' @author Markus Kainu <markuskainu@gmail.com>
@@ -37,7 +43,7 @@ get_eurostat_geospatial <- function(output_class="sf",
                                     resolution="60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
-				    cache_dir = NULL){
+				    cache_dir = NULL, crs = "4326"){
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
@@ -66,12 +72,18 @@ Please check your connection and/or review your proxy settings")
   
   # Check year is of correct format
   year <- as.character(year)
-  if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013, 2016)) {
-    stop("Year should be one of 2003, 2006, 2010, 2013 or 2016")
+  if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013, 2016, 2021)) {
+    stop("Year should be one of 2003, 2006, 2010, 2013, 2016 or 2021")
   }
   
   if (as.numeric(year) == 2003 & as.numeric(resolution) == 60) {
     stop("NUTS 2003 is not provided at 1:60 million resolution. Try 1:1 million, 1:3 million, 1:10 million or 1:20 million")
+  }
+  
+  # Check crs is of correct format
+  crs <- as.character(crs)
+  if (!as.numeric(crs) %in% c(4326, 3035, 3857)) {
+    stop("crs should be one of 4326, 3035 or 3857")
   }
 
 #   message("
@@ -101,7 +113,7 @@ Please check your connection and/or review your proxy settings")
 # information regarding their licence agreements.
 #       ")
   
-  if (resolution == "60" && year == 2016){
+  if (resolution == "60" && year == 2016 && crs == "4326"){
     
     if (nuts_level %in% c("all")){
       shp <- eurostat_geodata_60_2016 
@@ -157,7 +169,7 @@ Please check your connection and/or review your proxy settings")
   if (!cache || update_cache || !file.exists(cache_file)){
   
     if (nuts_level %in% c("0","all")){
-      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_0.geojson")
+      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_0.geojson")
       resp <- RETRY("GET", url, terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
@@ -167,7 +179,7 @@ Please check your connection and/or review your proxy settings")
         } 
     }
     if (nuts_level %in% c("1","all")){
-      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_1.geojson")
+      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_1.geojson")
       resp <- RETRY("GET", url, terminate_on = c(404))
       if (httr::http_error(resp)) {
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
@@ -177,7 +189,7 @@ Please check your connection and/or review your proxy settings")
         }
     }    
     if (nuts_level %in% c("2","all")){
-      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_2.geojson"), terminate_on = c(404))
+      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_2.geojson"), terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
@@ -186,7 +198,7 @@ Please check your connection and/or review your proxy settings")
         }
     }
     if (nuts_level %in% c("3","all")){
-      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_4326_LEVL_3.geojson"), terminate_on = c(404))
+      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_3.geojson"), terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
@@ -251,7 +263,7 @@ Please check your connection and/or review your proxy settings")
   }
   }
   
-  if (resolution == "60" & year == 2016){
+  if (resolution == "60" & year == 2016 & crs == "4326"){
     if (output_class == "sf") message("sf at resolution 1:60 read from local file")
     if (output_class == "df") message("data_frame at resolution 1:60 read from local file")
     if (output_class == "spdf") message("SpatialPolygonDataFrame at resolution 1:60 read from local file")
