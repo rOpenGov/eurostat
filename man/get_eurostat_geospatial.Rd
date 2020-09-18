@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_geospatial.R
 \name{get_eurostat_geospatial}
 \alias{get_eurostat_geospatial}
-\title{Download Geospatial Data from GISGO}
+\title{Download Geospatial Data from GISCO}
 \usage{
 get_eurostat_geospatial(
   output_class = "sf",

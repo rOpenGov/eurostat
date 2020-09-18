@@ -1,4 +1,4 @@
-#' @title Download Geospatial Data from GISGO
+#' @title Download Geospatial Data from GISCO
 #' @description Downloads either a simple features (sf), SpatialPolygonDataFrame or a
 #'    data_frame preprocessed using
 #'    \code{broom::tidy()}.
