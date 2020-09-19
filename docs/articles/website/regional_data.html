@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.4</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.5</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
       <h1 data-toc-skip>Regional data examples for the eurostat R package</h1>
                         <h4 class="author">Daniel Antal, CFA</h4>
             
-            <h4 class="date">2020-05-12</h4>
+            <h4 class="date">2020-09-19</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/regional_data.Rmd"><code>vignettes/website/regional_data.Rmd</code></a></small>
       <div class="hidden name"><code>regional_data.Rmd</code></div>
@@ -1712,7 +1712,7 @@
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.6.4 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.6.5 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -1727,7 +1727,7 @@
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.6.4},
+##     note = {Version 3.6.5},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -1743,7 +1743,7 @@
 <div class="sourceCode" id="cb35"><html><body><pre class="r"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span>()</pre></body></html></div>
 <pre><code>## R version 4.0.0 (2020-04-24)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 19.10
+## Running under: Ubuntu 20.04.1 LTS
 ## 
 ## Matrix products: default
 ## BLAS:   /home/lei/bin/R-4.0.0/lib/libRblas.so
@@ -1761,30 +1761,24 @@
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tibble_3.0.1   dplyr_0.8.5    eurostat_3.6.4
+## [1] tibble_3.0.3   dplyr_1.0.1    eurostat_3.6.5
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.0.0     xfun_0.13            purrr_0.3.4         
-##  [4] sf_0.9-2             lattice_0.20-41      vctrs_0.2.4         
-##  [7] generics_0.0.2       htmltools_0.4.0.9003 yaml_2.2.1          
-## [10] utf8_1.1.4           rlang_0.4.6          e1071_1.7-3         
-## [13] pkgdown_1.5.1.9000   pillar_1.4.4         glue_1.4.0          
-## [16] DBI_1.1.0            sp_1.4-1             RColorBrewer_1.1-2  
-## [19] lifecycle_0.2.0      plyr_1.8.6           stringr_1.4.0       
-## [22] memoise_1.1.0        evaluate_0.14        knitr_1.28          
-## [25] curl_4.3             class_7.3-16         fansi_0.4.1         
-## [28] broom_0.5.6          Rcpp_1.0.4.6         KernSmooth_2.23-16  
-## [31] readr_1.3.1          backports_1.1.6      classInt_0.4-3      
-## [34] desc_1.2.0           jsonlite_1.6.1       countrycode_1.1.2   
-## [37] fs_1.4.1             hms_0.5.3            digest_0.6.25       
-## [40] stringi_1.4.6        rprojroot_1.3-2      grid_4.0.0          
-## [43] bibtex_0.4.2.2       cli_2.0.2            tools_4.0.0         
-## [46] magrittr_1.5         RefManageR_1.2.12    crayon_1.3.4        
-## [49] tidyr_1.0.3          pkgconfig_2.0.3      MASS_7.3-51.5       
-## [52] ellipsis_0.3.0       xml2_1.3.2           lubridate_1.7.8     
-## [55] assertthat_0.2.1     rmarkdown_2.1        httr_1.4.1          
-## [58] R6_2.4.1             units_0.6-6          nlme_3.1-147        
-## [61] compiler_4.0.0</code></pre>
+##  [1] Rcpp_1.0.5         compiler_4.0.0     pillar_1.4.6       RColorBrewer_1.1-2
+##  [5] plyr_1.8.6         class_7.3-17       tools_4.0.0        digest_0.6.25     
+##  [9] lattice_0.20-41    lubridate_1.7.9    jsonlite_1.7.0     evaluate_0.14     
+## [13] memoise_1.1.0      lifecycle_0.2.0    pkgconfig_2.0.3    rlang_0.4.7       
+## [17] bibtex_0.4.2.2     cli_2.0.2          DBI_1.1.0          curl_4.3          
+## [21] yaml_2.2.1         pkgdown_1.5.1.9000 xfun_0.16          e1071_1.7-3       
+## [25] RefManageR_1.2.12  httr_1.4.2         stringr_1.4.0      knitr_1.29        
+## [29] xml2_1.3.2         hms_0.5.3          desc_1.2.0         generics_0.0.2    
+## [33] fs_1.4.2           vctrs_0.3.2        grid_4.0.0         classInt_0.4-3    
+## [37] rprojroot_1.3-2    tidyselect_1.1.0   glue_1.4.1         sf_0.9-5          
+## [41] R6_2.4.1           fansi_0.4.1        rmarkdown_2.3      sp_1.4-2          
+## [45] readr_1.3.1        tidyr_1.1.0        purrr_0.3.4        magrittr_1.5      
+## [49] units_0.6-7        backports_1.1.8    htmltools_0.5.0    ellipsis_0.3.1    
+## [53] MASS_7.3-51.6      assertthat_0.2.1   countrycode_1.2.0  utf8_1.1.4        
+## [57] KernSmooth_2.23-17 stringi_1.4.6      broom_0.7.0        crayon_1.3.4</code></pre>
 </div>
   </div>
 

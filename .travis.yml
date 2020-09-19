@@ -1,7 +1,7 @@
 language: r
 sudo: required
 cache: packages
-dist: trusty
+dist: xenia
 
 warnings_are_errors: false
 
