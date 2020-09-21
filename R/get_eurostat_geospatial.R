@@ -17,7 +17,7 @@
 #'    "2003", "2006", "2010", "2013", "2016" or "2021"
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
-#' @param update_cache a locigal whether to update cache. Can be set also with
+#' @param update_cache a logical whether to update cache. Can be set also with
 #'        options(eurostat_update = TRUE)
 #' @param cache_dir a path to a cache directory. The directory have to exist.
 #'        The \code{NULL} (default) uses and creates
