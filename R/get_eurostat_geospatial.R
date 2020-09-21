@@ -113,7 +113,7 @@ Please check your connection and/or review your proxy settings")
 # information regarding their licence agreements.
 #       ")
   
-  if (resolution == "60" && year == 2016 && crs == "4326"){
+  if (resolution == "60" && year == "2016" && crs == "4326"){
     
     if (nuts_level %in% c("all")){
       shp <- eurostat_geodata_60_2016 
@@ -229,7 +229,7 @@ Please check your connection and/or review your proxy settings")
   }
   }
 
-  if (resolution != "60" & year != 2016){
+  if (resolution != "60" & year != "2016"){
   if (cache & file.exists(cache_file)) {
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))
