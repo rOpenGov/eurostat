@@ -161,7 +161,7 @@ Please check your connection and/or review your proxy settings")
     cache_file <- file.path(cache_dir,
                             paste0(
                               output_class, resolution, 
-                              nuts_level, year, ".RData")
+                              nuts_level, year, crs, ".RData")
     )
   }
   
@@ -229,20 +229,20 @@ Please check your connection and/or review your proxy settings")
   }
   }
 
-  if (resolution != "60" & year != "2016"){
-  if (cache & file.exists(cache_file)) {
-    cf <- path.expand(cache_file)
-    message(paste("Reading cache file", cf))
-    load(file = cache_file)
-    if (output_class == "sf") message(paste("sf at resolution 1:", 
+  if (!(resolution == "60" & year == "2016" & crs == "4326")){
+    if (cache & file.exists(cache_file)) {
+      cf <- path.expand(cache_file)
+      message(paste("Reading cache file", cf))
+      load(file = cache_file)
+      if (output_class == "sf") message(paste("sf at resolution 1:", 
                                             resolution, " from year ",
                                             year," read from cache file: ",
                                             cf))
-    if (output_class == "df") message(paste("data_frame at resolution 1:",
+      if (output_class == "df") message(paste("data_frame at resolution 1:",
                                             resolution, " from year ", 
                                             year," read from cache file: ", 
                                             cf))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", 
+      if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", 
                                               resolution, " from year ", 
                                               year," read from cache file: ",
                                               cf))
