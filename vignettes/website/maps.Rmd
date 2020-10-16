@@ -4,9 +4,15 @@ date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
+vignette: >
+    %\VignetteIndexEntry{Map examples for the eurostat R package}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteDepends{Cairo}
+    %\VignetteEncoding{UTF-8}
+    \usepackage[utf8]{inputenc}        
 ---
 
-# R Tools for Eurostat Open Data
+# R Tools for Eurostat Open Data: maps
 
 This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
 
@@ -18,6 +24,8 @@ library(eurostat)
 ```
 
 ## Maps 
+
+NOTE: we recommend to check also the `giscoR` package (https://dieghernan.github.io/giscoR/). This is another API package that provides R tools for Eurostat geographic data to support geospatial analysis and visualization.
 
 ###  Disposable income of private households by NUTS 2 regions at 1:60mln resolution using tmap
 

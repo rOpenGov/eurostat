@@ -52,6 +52,12 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 See the Articles section at the [package homepage](http://ropengov.github.io/eurostat) for more.
 
 
+### Recommended packages
+
+It is recommended to install the `giscoR` package (https://dieghernan.github.io/giscoR/). This is another API package that provides R tools for Eurostat geographic data to support geospatial analysis and visualization.
+
+
+
 ### Contribute
 
 Contributions are very welcome:

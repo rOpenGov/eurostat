@@ -40,6 +40,13 @@ manipulation and visualization.
 See the Articles section at the [package
 homepage](http://ropengov.github.io/eurostat) for more.
 
+### Recommended packages
+
+It is recommended to install the `giscoR` package
+(<a href="https://dieghernan.github.io/giscoR/" class="uri">https://dieghernan.github.io/giscoR/</a>).
+This is another API package that provides R tools for Eurostat
+geographic data to support geospatial analysis and visualization.
+
 ### Contribute
 
 Contributions are very welcome:
@@ -57,7 +64,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.6.5. URL: <http://ropengov.github.io/eurostat>
+R package version 3.6.6. URL: <http://ropengov.github.io/eurostat>
 
 We are grateful to all
 [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors),

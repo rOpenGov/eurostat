@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.5</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.6</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
       <h1 data-toc-skip>Regional data examples for the eurostat R package</h1>
                         <h4 class="author">Daniel Antal, CFA</h4>
             
-            <h4 class="date">2020-09-19</h4>
+            <h4 class="date">2020-10-17</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/regional_data.Rmd"><code>vignettes/website/regional_data.Rmd</code></a></small>
       <div class="hidden name"><code>regional_data.Rmd</code></div>
@@ -109,9 +109,9 @@
 
     
     
-<div id="r-tools-for-eurostat-open-data" class="section level1">
+<div id="r-tools-for-eurostat-open-data-regional-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#r-tools-for-eurostat-open-data" class="anchor"></a>R Tools for Eurostat Open Data</h1>
+<a href="#r-tools-for-eurostat-open-data-regional-data" class="anchor"></a>R Tools for Eurostat Open Data: regional data</h1>
 <p>This <a href="http://ropengov.github.io">rOpenGov</a> R package provides tools to access <a href="http://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for the data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
 <p>See eurostat vignette for installation and basic use.</p>
 <div id="motivation" class="section level2">
@@ -1712,7 +1712,7 @@
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.6.5 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.6.6 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -1727,7 +1727,7 @@
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.6.5},
+##     note = {Version 3.6.6},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -1746,8 +1746,8 @@
 ## Running under: Ubuntu 20.04.1 LTS
 ## 
 ## Matrix products: default
-## BLAS:   /home/lei/bin/R-4.0.0/lib/libRblas.so
-## LAPACK: /home/lei/bin/R-4.0.0/lib/libRlapack.so
+## BLAS:   /home/lemila/bin/R-4.0.0/lib/libRblas.so
+## LAPACK: /home/lemila/bin/R-4.0.0/lib/libRlapack.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1761,24 +1761,29 @@
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tibble_3.0.3   dplyr_1.0.1    eurostat_3.6.5
+## [1] tibble_3.0.4   dplyr_1.0.2    eurostat_3.6.6
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.5         compiler_4.0.0     pillar_1.4.6       RColorBrewer_1.1-2
-##  [5] plyr_1.8.6         class_7.3-17       tools_4.0.0        digest_0.6.25     
-##  [9] lattice_0.20-41    lubridate_1.7.9    jsonlite_1.7.0     evaluate_0.14     
-## [13] memoise_1.1.0      lifecycle_0.2.0    pkgconfig_2.0.3    rlang_0.4.7       
-## [17] bibtex_0.4.2.2     cli_2.0.2          DBI_1.1.0          curl_4.3          
-## [21] yaml_2.2.1         pkgdown_1.5.1.9000 xfun_0.16          e1071_1.7-3       
-## [25] RefManageR_1.2.12  httr_1.4.2         stringr_1.4.0      knitr_1.29        
-## [29] xml2_1.3.2         hms_0.5.3          desc_1.2.0         generics_0.0.2    
-## [33] fs_1.4.2           vctrs_0.3.2        grid_4.0.0         classInt_0.4-3    
-## [37] rprojroot_1.3-2    tidyselect_1.1.0   glue_1.4.1         sf_0.9-5          
-## [41] R6_2.4.1           fansi_0.4.1        rmarkdown_2.3      sp_1.4-2          
-## [45] readr_1.3.1        tidyr_1.1.0        purrr_0.3.4        magrittr_1.5      
-## [49] units_0.6-7        backports_1.1.8    htmltools_0.5.0    ellipsis_0.3.1    
-## [53] MASS_7.3-51.6      assertthat_0.2.1   countrycode_1.2.0  utf8_1.1.4        
-## [57] KernSmooth_2.23-17 stringi_1.4.6      broom_0.7.0        crayon_1.3.4</code></pre>
+##  [1] Rcpp_1.0.5           compiler_4.0.0       pillar_1.4.6        
+##  [4] RColorBrewer_1.1-2   plyr_1.8.6           class_7.3-17        
+##  [7] tools_4.0.0          digest_0.6.25        lattice_0.20-41     
+## [10] lubridate_1.7.9      jsonlite_1.7.1       evaluate_0.14       
+## [13] memoise_1.1.0        lifecycle_0.2.0      pkgconfig_2.0.3     
+## [16] rlang_0.4.8          bibtex_0.4.2.3       cli_2.1.0           
+## [19] DBI_1.1.0            curl_4.3             yaml_2.2.1          
+## [22] pkgdown_1.5.1.9000   xfun_0.16            e1071_1.7-3         
+## [25] RefManageR_1.2.12    httr_1.4.2           stringr_1.4.0       
+## [28] knitr_1.29           xml2_1.3.2           hms_0.5.3           
+## [31] desc_1.2.0           generics_0.0.2       fs_1.4.1            
+## [34] vctrs_0.3.4          grid_4.0.0           classInt_0.4-3      
+## [37] rprojroot_1.3-2      tidyselect_1.1.0     glue_1.4.2          
+## [40] sf_0.9-6             R6_2.4.1             fansi_0.4.1         
+## [43] rmarkdown_2.2        sp_1.4-2             readr_1.3.1         
+## [46] tidyr_1.1.2          purrr_0.3.4          magrittr_1.5        
+## [49] units_0.6-7          backports_1.1.10     htmltools_0.4.0.9003
+## [52] ellipsis_0.3.1       MASS_7.3-51.6        assertthat_0.2.1    
+## [55] countrycode_1.2.0    utf8_1.1.4           KernSmooth_2.23-17  
+## [58] stringi_1.5.3        broom_0.7.0          crayon_1.3.4</code></pre>
 </div>
   </div>
 
