@@ -142,7 +142,7 @@
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">time</span> <span class="kw">==</span> <span class="fl">2010</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="no">geo</span>) <span class="kw">==</span> <span class="fl">4</span>) <span class="kw">%&gt;%</span>
   <span class="co"># categorise</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">income</span> <span class="kw">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(<span class="no">values</span>, <span class="kw">n</span> <span class="kw">=</span> <span class="fl">5</span>))</pre></body></html></div>
-<pre><code>## Table tgs00026 cached at /tmp/RtmpFpkd8V/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/RtmpkRODjt/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb9"><html><body><pre class="r"><span class="co"># Download geospatial data from GISCO</span>
 <span class="no">geodata</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="kw">output_class</span> <span class="kw">=</span> <span class="st">"sf"</span>,
                                    <span class="kw">resolution</span> <span class="kw">=</span> <span class="st">"60"</span>,
@@ -220,12 +220,12 @@
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">time</span> <span class="kw">==</span> <span class="fl">2014</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="no">geo</span>) <span class="kw">==</span> <span class="fl">4</span>) <span class="kw">%&gt;%</span>
   <span class="co"># classifying the values the variable</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">cat</span> <span class="kw">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(<span class="no">values</span>))</pre></body></html></div>
-<pre><code>## Reading cache file /tmp/RtmpFpkd8V/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpFpkd8V/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpkRODjt/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpkRODjt/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb27"><html><body><pre class="r"><span class="co"># Download geospatial data from GISCO</span>
 <span class="no">geodata</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="kw">output_class</span> <span class="kw">=</span> <span class="st">"spdf"</span>, <span class="kw">resolution</span> <span class="kw">=</span> <span class="st">"10"</span>, <span class="kw">nuts_level</span> <span class="kw">=</span> <span class="fl">2</span>, <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2013</span>)</pre></body></html></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpFpkd8V/eurostat/spdf1022013.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpkRODjt/eurostat/spdf1022013.RData</code></pre>
 <div class="sourceCode" id="cb30"><html><body><pre class="r"><span class="co"># merge with attribute data with geodata</span>
 <span class="no">geodata</span>@<span class="kw">data</span> <span class="kw">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span>(<span class="no">geodata</span>@<span class="kw">data</span>, <span class="no">dat</span>)</pre></body></html></div>
 <pre><code>## Joining, by = "geo"</code></pre>
@@ -248,8 +248,8 @@
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span>(<span class="no">time</span> <span class="kw">==</span> <span class="fl">2014</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span>(<span class="no">geo</span>) <span class="kw">==</span> <span class="fl">4</span>) <span class="kw">%&gt;%</span>
   <span class="co"># classifying the values the variable</span>
   <span class="kw pkg">dplyr</span><span class="kw ns">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span>(<span class="kw">cat</span> <span class="kw">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span>(<span class="no">values</span>))</pre></body></html></div>
-<pre><code>## Reading cache file /tmp/RtmpFpkd8V/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpFpkd8V/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpkRODjt/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpkRODjt/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb36"><html><body><pre class="r"><span class="co"># Download geospatial data from GISCO</span>
 <span class="no">geodata</span> <span class="kw">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span>(<span class="kw">resolution</span> <span class="kw">=</span> <span class="st">"60"</span>, <span class="kw">nuts_level</span> <span class="kw">=</span> <span class="st">"2"</span>, <span class="kw">year</span> <span class="kw">=</span> <span class="fl">2013</span>)</pre></body></html></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
