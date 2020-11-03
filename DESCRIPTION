@@ -53,6 +53,8 @@ Suggests:
     testthat,
     tmap,
     usethis
+Remotes:
+    ropensci/RefManageR
 LazyData: true
 URL: https://ropengov.github.io/eurostat
 BugReports: https://github.com/ropengov/eurostat/issues
