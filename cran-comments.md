@@ -1,19 +1,30 @@
 ## Test environments
-* local OS X install, R 3.5.1
-* ubuntu 18.04 (on travis-ci), R 3.3.1
+* local OS X install, R 4.0.0
+* ubuntu 20.04 (on travis-ci), R 4.4.0
 * win-builder (devel and release)
 
 ## R CMD check results
 
-There were two warnings:
+There is one note:
 
-* building ‘eurostat_3.3.54.tar.gz’
-Warning: invalid uid value replaced by that for user 'nobody'
-Warning: invalid gid value replaced by that for user 'nobody'
+* checking CRAN incoming feasibility ... NOTE
+Maintainer: ‘Leo Lahti <leo.lahti@iki.fi>’
 
-* checking data for ASCII and uncompressed saves ... OK
- WARNING
-‘qpdf’ is needed for checks on size reduction of PDFs
+New submission
+
+Package was archived on CRAN
+
+CRAN repository db overrides:
+  X-CRAN-Comment: Archived on 2020-10-27 as reauired archived package
+      'RefManageR'.
+      
+
+-> The reason is that RefManageR was removed from CRAN against our
+expectations, and then subsequently eurostat, which depends on
+RefManageR, was removed. We have been waiting for RefManageR fix. But
+this is taking long, so I removed those parts while waiting and hope
+to have eurostat in CRAN while RefManageR problem is getting solved
+with CRAN.
 
 
 

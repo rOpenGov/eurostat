@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Harmonize NUTS region codes that changed with the <code>NUTS2016</code> definition — harmonize_geo_code • eurostat</title>
+<title>Harmonize NUTS region codes that changed with the NUTS2016 definition — harmonize_geo_code • eurostat</title>
 
 
 <!-- jquery -->
@@ -39,7 +39,7 @@
 
 
 
-<meta property="og:title" content="Harmonize NUTS region codes that changed with the <code>NUTS2016</code> definition — harmonize_geo_code" />
+<meta property="og:title" content="Harmonize NUTS region codes that changed with the NUTS2016 definition — harmonize_geo_code" />
 <meta property="og:description" content="Eurostat mixes NUTS2013 and NUTS2016 geographic
 label codes in the 'geo' column, which creates time-wise comparativity issues.
 This function checks if you data is affected by this problem and gives
@@ -75,7 +75,7 @@ information on what to do." />
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.7</span>
       </span>
     </div>
 
@@ -153,7 +153,7 @@ This function checks if you data is affected by this problem and gives
 information on what to do.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>harmonize_geo_code</span>(<span class='no'>dat</span>)</pre>
+    <pre class="usage"><span class='fu'>harmonize_geo_code</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -168,12 +168,16 @@ information on what to do.</p>
 
     <p>An augmented data frame that explains potential problems and 
 possible solutions.</p>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Daniel Antal</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-   <span class='no'>dat</span> <span class='kw'>&lt;-</span> <span class='kw pkg'>eurostat</span><span class='kw ns'>::</span><span class='no'><a href='tgs00026.html'>tgs00026</a></span>
-   <span class='fu'>harmonize_geo_code</span>(<span class='no'>dat</span>)
- }</div></pre>
+    <pre class="examples"><div class='input'> <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+   <span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'>eurostat</span><span class='fu'>::</span><span class='va'><a href='tgs00026.html'>tgs00026</a></span>
+   <span class='fu'>harmonize_geo_code</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
+ <span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -189,7 +193,7 @@ possible solutions.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
