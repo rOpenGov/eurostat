@@ -171,25 +171,25 @@ for example.</p>
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
 
     <p>a new numeric variable nuts_level with the numeric value of
-NUTS level 0 (country), 1 (greater region),
-2 (region), 3 (small region).</p>
+NUTS level 0 (country), 1 (greater region), 2 (region),
+3 (small region).</p>
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
 
     <p>Daniel Antal</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'> <span class='op'>{</span>
-   <span class='va'>dat</span> <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> <span class='op'>(</span>
+    <pre class="examples"><div class='input'> 
+<span class='va'>dat</span> <span class='op'>&lt;-</span> <span class='fu'><a href='https://rdrr.io/r/base/data.frame.html'>data.frame</a></span> <span class='op'>(</span>
         geo    <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='st'>"FR"</span>, <span class='st'>"IE04"</span>, <span class='st'>"DEB1C"</span><span class='op'>)</span>, 
         values <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/c.html'>c</a></span><span class='op'>(</span><span class='fl'>1000</span>, <span class='fl'>23</span>, <span class='fl'>12</span><span class='op'>)</span>
    <span class='op'>)</span>
    
-   <span class='fu'>add_nuts_level</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
- <span class='op'>}</span>
+<span class='fu'>add_nuts_level</span><span class='op'>(</span><span class='va'>dat</span><span class='op'>)</span>
 </div><div class='output co'>#&gt;     geo values nuts_level
 #&gt; 1    FR   1000          0
 #&gt; 2  IE04     23          2
-#&gt; 3 DEB1C     12          3</div></pre>
+#&gt; 3 DEB1C     12          3</div><div class='input'>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">

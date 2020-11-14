@@ -21,14 +21,17 @@ test_that("Label ordering is ordered", {
 
 
 test_that("Countrycodes are labelled for factors", {
-  expect_equal(as.character(levels(label_eurostat(factor(c("FI", "DE", "EU28"),
+  skip_on_cran()
+  res <- as.character(levels(label_eurostat(factor(c("FI", "DE", "EU28"),
                                             c("FI", "DE", "EU28")),
 		 dic = "geo",
-		 countrycode = "country.name"))),
+		 countrycode = "country.name")))
+  expect_equal(res,
                c("Finland", "Germany", "EU28"))
 })
 
 test_that("Countrycodes return NA for countrycode_nomatch = NA", {
+  skip_on_cran()
   res <- suppressWarnings(label_eurostat(c("FI", "DE", "EU28"),
            dic = "geo",
            countrycode = "country.name", countrycode_nomatch = NA))
@@ -37,6 +40,7 @@ test_that("Countrycodes return NA for countrycode_nomatch = NA", {
 })
 
 test_that("Countrycodes use eurostat for missing", {
+  skip_on_cran()
   res <- suppressWarnings(label_eurostat(c("FI", "DE", "EU28"),
                  dic = "geo",
                  countrycode = "country.name",
@@ -46,6 +50,7 @@ test_that("Countrycodes use eurostat for missing", {
 })
 
 test_that("custom_dic works", {
+  skip_on_cran()
   expect_equal(label_eurostat(c("FI", "DE"), dic = "geo", custom_dic = c(DE = "Germany")),
                c("Finland", "Germany"))
 })

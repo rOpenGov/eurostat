@@ -65,7 +65,7 @@ Contributions are very welcome:
 
   * [Use issue tracker](https://github.com/ropengov/eurostat/issues) for feedback and bug reports.
   * [Send pull requests](https://github.com/ropengov/eurostat/)
-  * [Star us on the Github page](https://github.com/ropengov/eurostat)
+  * [Star us on the Github page](https://github.com/ropengov/eurostat/)
   * [Join the discussion in Gitter](https://gitter.im/rOpenGov/eurostat)
 
 
@@ -105,4 +105,4 @@ This package is in no way officially related to or endorsed by Eurostat.
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20eurostat!%20%E2%9C%A8%20Recognize%20all%20contributors,%20not%20just%20the%20ones%20who%20commit%20code%20%E2%9C%A8%20https://github.com/ropengov/eurostat%20%F0%9F%A4%97
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/ropengov/eurostat.svg?style=social
 [emojis]: https://github.com/ropengov/eurostat#emoji-key
-[eurostat]: https://github.com/ropengov/eurostat
+[eurostat]: https://github.com/ropengov/eurostat/
