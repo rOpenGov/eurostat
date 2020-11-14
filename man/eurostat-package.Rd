@@ -25,9 +25,9 @@ library(eurostat)
 }
 \references{
 See citation("eurostat")
-\url{https://ropengov.github.io/eurostat}
+\url{https://ropengov.github.io/eurostat/}
 }
 \author{
-Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek \email{ropengov-forum@googlegroups.com} \url{https://ropengov.github.io/eurostat}
+Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek \email{ropengov-forum@googlegroups.com} \url{https://ropengov.github.io/eurostat/}
 }
 \keyword{package}

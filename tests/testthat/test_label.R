@@ -1,6 +1,7 @@
 context("Label")
 
 test_that("Variable names are labeled",{
+
   skip_on_cran()
   expect_equal(label_eurostat_vars("geo"), "Geopolitical entity (reporting)")
   expect_equal(label_eurostat_vars("housing", lang = "fr"), "Habitation")
@@ -20,21 +21,28 @@ test_that("Label ordering is ordered", {
 
 
 test_that("Countrycodes are labelled for factors", {
-  expect_equal(levels(label_eurostat(factor(c("FI", "DE", "EU28"), c("FI", "DE", "EU28")), dic = "geo",
-                                     countrycode = "country.name")),
+  expect_equal(as.character(levels(label_eurostat(factor(c("FI", "DE", "EU28"),
+                                            c("FI", "DE", "EU28")),
+		 dic = "geo",
+		 countrycode = "country.name"))),
                c("Finland", "Germany", "EU28"))
 })
 
 test_that("Countrycodes return NA for countrycode_nomatch = NA", {
-  expect_equal(suppressWarnings(label_eurostat(c("FI", "DE", "EU28"), dic = "geo",
-                              countrycode = "country.name", countrycode_nomatch = NA)),
+  res <- suppressWarnings(label_eurostat(c("FI", "DE", "EU28"),
+           dic = "geo",
+           countrycode = "country.name", countrycode_nomatch = NA))
+  expect_equal(res,
                c("Finland", "Germany", NA))
 })
 
 test_that("Countrycodes use eurostat for missing", {
-  expect_equal(suppressWarnings(label_eurostat(c("FI", "DE", "EU28"), dic = "geo",
-                              countrycode = "country.name", countrycode_nomatch = "eurostat")),
-               c("Finland", "Germany", "European Union - 28 countries (2013-2020)"))
+  res <- suppressWarnings(label_eurostat(c("FI", "DE", "EU28"),
+                 dic = "geo",
+                 countrycode = "country.name",
+		 countrycode_nomatch = "eurostat"))
+  expect_equal(res,
+          c("Finland", "Germany", "European Union - 28 countries (2013-2020)"))
 })
 
 test_that("custom_dic works", {

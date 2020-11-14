@@ -13,8 +13,8 @@ add_nuts_level(dat, geo_labels = "geo")
 }
 \value{
 a new numeric variable nuts_level with the numeric value of
-NUTS level 0 (country), 1 (greater region),
-2 (region), 3 (small region).
+NUTS level 0 (country), 1 (greater region), 2 (region),
+3 (small region).
 }
 \description{
 Eurostat regional statistics contain country, and various
@@ -23,14 +23,14 @@ it is useful to filter out national level data from NUTS2 level regional data,
 for example.
 }
 \examples{
- {
-   dat = data.frame (
+ 
+dat <- data.frame (
         geo    = c("FR", "IE04", "DEB1C"), 
         values = c(1000, 23, 12)
    )
    
-   add_nuts_level(dat)
- }
+add_nuts_level(dat)
+
 }
 \author{
 Daniel Antal
