@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.7</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.71</span>
       </span>
     </div>
 
@@ -100,7 +100,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Map examples for the eurostat R package</h1>
             
-            <h4 class="date">2020-11-13</h4>
+            <h4 class="date">2020-11-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/maps.Rmd"><code>vignettes/website/maps.Rmd</code></a></small>
       <div class="hidden name"><code>maps.Rmd</code></div>
@@ -133,7 +133,7 @@
 ## 
 ##     intersect, setdiff, setequal, union</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat">eurostat</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span></pre></div>
 <pre><code>## Linking to GEOS 3.8.0, GDAL 3.0.4, PROJ 6.3.1</code></pre>
 <div class="sourceCode" id="cb7"><pre class="downlit">
@@ -146,7 +146,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2010</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># categorise</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/Rtmp7SfPMz/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/RtmpodCshu/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit">
 <span class="co"># Download geospatial data from GISCO</span>
 <span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>output_class <span class="op">=</span> <span class="st">"sf"</span>,
@@ -182,7 +182,7 @@
 <h3 class="hasAnchor">
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-in-poland-with-labels-at-11mln-resolution-using-tmap" class="anchor"></a>Disposable income of private households by NUTS 2 regions in Poland with labels at 1:1mln resolution using tmap</h3>
 <div class="sourceCode" id="cb15"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat">eurostat</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://r-spatial.github.io/sf/">sf</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
@@ -226,7 +226,7 @@
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-at-110mln-resolution-using-spplot" class="anchor"></a>Disposable income of private households by NUTS 2 regions at 1:10mln resolution using spplot</h3>
 <div class="sourceCode" id="cb24"><pre class="downlit">
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://github.com/edzer/sp/">sp</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat">eurostat</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va">RColorBrewer</span><span class="op">)</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"tgs00026"</span>, time_format <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -234,13 +234,13 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2014</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># classifying the values the variable</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp7SfPMz/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp7SfPMz/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpodCshu/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpodCshu/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb27"><pre class="downlit">
 <span class="co"># Download geospatial data from GISCO</span>
 <span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>output_class <span class="op">=</span> <span class="st">"spdf"</span>, resolution <span class="op">=</span> <span class="st">"10"</span>, nuts_level <span class="op">=</span> <span class="fl">2</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/Rtmp7SfPMz/eurostat/spdf1022013.RData</code></pre>
+<pre><code>## SpatialPolygonDataFrame at resolution 1: 10  cached at:  /tmp/RtmpodCshu/eurostat/spdf1022013.RData</code></pre>
 <div class="sourceCode" id="cb30"><pre class="downlit">
 <span class="co"># merge with attribute data with geodata</span>
 <span class="va">geodata</span><span class="op">@</span><span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span><span class="op">(</span><span class="va">geodata</span><span class="op">@</span><span class="va">data</span>, <span class="va">dat</span><span class="op">)</span></pre></div>
@@ -1217,7 +1217,7 @@
 <a href="#disposable-income-of-private-households-by-nuts-2-regions-at-160mln-resolution-using-ggplot2" class="anchor"></a>Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2</h3>
 <p>Meanwhile the CRAN version of <code>ggplot2</code> is lacking support for simple features, you can plot maps with <code>ggplot2</code> by downloading geospatial data as <code>data.frame</code> with <code>output_class</code> argument set as <code>df</code>.</p>
 <div class="sourceCode" id="cb34"><pre class="downlit">
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat">eurostat</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span>
 <span class="va">dat</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"tgs00026"</span>, time_format <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -1225,8 +1225,8 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2014</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># classifying the values the variable</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmp7SfPMz/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmp7SfPMz/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpodCshu/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpodCshu/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb37"><pre class="downlit">
 <span class="co"># Download geospatial data from GISCO</span>
 <span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="st">"60"</span>, nuts_level <span class="op">=</span> <span class="st">"2"</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></pre></div>
@@ -1269,7 +1269,7 @@
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.6.7 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.6.71 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -1284,7 +1284,7 @@
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.6.7},
+##     note = {Version 3.6.71},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -1320,7 +1320,7 @@
 ## 
 ## other attached packages:
 ## [1] ggplot2_3.3.2      sp_1.4-4           RColorBrewer_1.1-2 tmap_3.2          
-## [5] sf_0.9-6           dplyr_1.0.2        eurostat_3.6.7    
+## [5] sf_0.9-6           dplyr_1.0.2        eurostat_3.6.71   
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] httr_1.4.2         tidyr_1.1.2        jsonlite_1.7.1     viridisLite_0.3.0 

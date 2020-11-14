@@ -21,7 +21,7 @@
 #' @return tibble in the molten format with the last column 'values'.
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat").
-#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{https://github.com/ropengov/eurostat}
 #' @keywords internal utilities database
 tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = FALSE,

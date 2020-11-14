@@ -150,5 +150,5 @@ dd <- get_eurostat("nama_10_gdp",
 \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{https://github.com/ropengov/eurostat}
 }

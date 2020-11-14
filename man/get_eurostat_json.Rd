@@ -72,7 +72,7 @@ Data to retrieve from
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
   \email{ropengov-forum@googlegroups.com}
-  \url{http://github.com/ropengov/eurostat}
+  \url{https://github.com/ropengov/eurostat}
 }
 \keyword{database}
 \keyword{utilities}
