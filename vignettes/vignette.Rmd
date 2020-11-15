@@ -6,7 +6,7 @@ output:
     toc: true
 vignette: >
     %\VignetteIndexEntry{Vignette for the eurostat R package}
-    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEngine{knitr::knitr}
     %\VignetteDepends{Cairo}
     %\VignetteEncoding{UTF-8}
     \usepackage[utf8]{inputenc}
