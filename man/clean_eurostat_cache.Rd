@@ -18,5 +18,5 @@ Delete all .rds files from the eurostat cache directory.
 clean_eurostat_cache() 
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 }

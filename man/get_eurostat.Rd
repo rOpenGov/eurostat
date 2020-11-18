@@ -146,9 +146,12 @@ dd <- get_eurostat("nama_10_gdp",
                                     unit = "CLV_I10"))
 }
 }
+\references{
+See citation("eurostat").
+}
 \seealso{
 \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 }

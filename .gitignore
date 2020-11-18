@@ -1,4 +1,5 @@
 _pkgdown.yml
+inst/doc
 docs/docsearch.js
 docs/articles/2015-RJournal/response.txt
 *Rcheck*
@@ -25,3 +26,5 @@ packrat/lib*/
 .Rhistory
 
 /revdep/.cache.rds
+doc
+Meta

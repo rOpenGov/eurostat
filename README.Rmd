@@ -50,7 +50,7 @@ R tools to access open data from [Eurostat](http://ec.europa.eu/eurostat). Data 
 
 ### Installation and use
 
-See the Articles section at the [package homepage](http://ropengov.github.io/eurostat) for more.
+See the Articles section at the [package homepage](https://ropengov.github.io/eurostat/) for more.
 
 
 ### Recommended packages
@@ -65,15 +65,15 @@ Contributions are very welcome:
 
   * [Use issue tracker](https://github.com/ropengov/eurostat/issues) for feedback and bug reports.
   * [Send pull requests](https://github.com/ropengov/eurostat/)
-  * [Star us on the Github page](https://github.com/ropengov/eurostat)
+  * [Star us on the Github page](https://github.com/ropengov/eurostat/)
   * [Join the discussion in Gitter](https://gitter.im/rOpenGov/eurostat)
 
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [http://ropengov.github.io/eurostat](http://ropengov.github.io/eurostat)
+**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [https://ropengov.github.io/eurostat/](https://ropengov.github.io/eurostat/)
 
-We are grateful to all [contributors](https://github.com/rOpenGov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
+We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.github.io).
 
 
 
@@ -102,7 +102,7 @@ This package is in no way officially related to or endorsed by Eurostat.
 [github-watch]: https://github.com/ropengov/eurostat/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social
 [github-star]: https://github.com/ropengov/eurostat/stargazers
-[twitter]: https://twitter.com/intent/tweet?text=Check%20out%20eurostat!%20%E2%9C%A8%20Recognize%20all%20contributors,%20not%20just%20the%20ones%20who%20commit%20code%20%E2%9C%A8%20https://github.com/ropengov/eurostat%20%F0%9F%A4%97
+[twitter]: https://twitter.com/intent/tweet?text=Check%20out%20eurostat!%20%E2%9C%A8%20Recognize%20all%20contributors,%20not%20just%20the%20ones%20who%20commit%20code%20%E2%9C%A8%20https://github.com/ropengov/eurostat/%20%F0%9F%A4%97
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/ropengov/eurostat.svg?style=social
-[emojis]: https://github.com/ropengov/eurostat#emoji-key
-[eurostat]: https://github.com/ropengov/eurostat
+[emojis]: https://github.com/ropengov/eurostat/#emoji-key
+[eurostat]: https://github.com/ropengov/eurostat/

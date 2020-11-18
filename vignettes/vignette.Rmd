@@ -1,9 +1,7 @@
 ---
 title: "Vignette for the eurostat R package"
 date: "`r Sys.Date()`"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
+output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Vignette for the eurostat R package}
     %\VignetteEngine{knitr::rmarkdown}
@@ -21,7 +19,7 @@ This [rOpenGov](http://ropengov.github.io) R package provides tools to access [E
 ```{r setup, include=FALSE}
 # Global options
 library(knitr)
-opts_chunk$set(fig.path="fig/")
+# opts_chunk$set(fig.path="fig/")
 ```
 
 

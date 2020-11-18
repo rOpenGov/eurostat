@@ -24,7 +24,7 @@
 #'        'eurostat' directory in the temporary directory from
 #'        \code{\link{tempdir}}. Directory can also be set with
 #'        \code{option} eurostat_cache_dir.
-#' @param crs projection of the map: 4-digit \href{http://spatialreference.org/ref/epsg/}{EPSG code}. One of:
+#' @param crs projection of the map: 4-digit \href{https://spatialreference.org/ref/epsg/}{EPSG code}. One of:
 #' \itemize{
 #' \item "4326" - WGS84
 #' \item "3035" - ETRS89 / ETRS-LAEA

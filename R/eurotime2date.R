@@ -7,6 +7,7 @@
 #'        the first date of the period (month, quarter or year). If \code{TRUE} 
 #'        the date is the last date of the period.
 #' @export
+#' @references See citation("eurostat").
 #' @return an object of class \code{\link{Date}}.
 #' @author Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @examples \dontrun{

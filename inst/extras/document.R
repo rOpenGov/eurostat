@@ -16,7 +16,7 @@ render(input = "../../README.Rmd", output_format = "md_document")
 library(pkgdown)
 setwd("../../")
 build_site()
-
+devtools::build_vignettes()
 
 
 # Submissions:
@@ -42,6 +42,7 @@ build_site()
 # or run main.R in vignettes
 setwd("vignettes/")
 source("main.R")
+# system("cp vignette.html ../inst/doc/")
 # tools::compactPDF("./", gs_quality = "ebook")
 
 

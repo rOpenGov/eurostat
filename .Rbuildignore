@@ -1,7 +1,6 @@
 ^CRAN-RELEASE$
 # Extra material related but not to be included in the package
 inst/extras
-# inst/doc
 README.Rmd
 README.html
 index.*
@@ -10,25 +9,10 @@ index.*
 docs
 
 # Vignette
-./vignettes/2015-RJournal
-./vignettes/2017_RJournal_manuscript/*
-./vignettes/cheatsheet/
-./vignettes/cheatsheet.Rmd
-./vignettes/blogposts.Rmd
-./vignettes/website
-./vignettes/publications.Rmd
-./vignettes/eurostat_tutorial.Rmd
-./vignettes/eurostat_tutorial.pdf
-./vignettes/eurostat_tutorial.md
+#./vignettes/website
 ./vignettes/*.Rmd
-./vignettes/NUTS_2010_60M_SH/*
-./vignettes/NUTS_2010_60M_SH.zip
-./vignettes/NUTS_2010.xls
-./vignettes/zipfile
-./vignettes/figure
-./vignettes/fig
-./vignettes/cheatsheet
-./vignettes/main.R
+#./vignettes/fig
+#./vignettes/fig/
 ./figure$
 ./cache$
 # Git related
@@ -51,3 +35,5 @@ docs
 ^appveyor\.yml$
 ^_pkgdown\.yml$
 ^docs$
+^doc$
+^Meta$
