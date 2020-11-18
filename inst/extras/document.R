@@ -16,7 +16,7 @@ render(input = "../../README.Rmd", output_format = "md_document")
 library(pkgdown)
 setwd("../../")
 build_site()
-devtools::build_vignettes()
+# devtools::build_vignettes()
 
 
 # Submissions:
