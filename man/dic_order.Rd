@@ -25,5 +25,5 @@ Orders the factor levels.
 Some variables, like classifications, have logical or conventional ordering. Eurostat data tables are nor neccessary ordered in this order. The function \code{dic_order} get the ordering from Eurostat classifications dictionaries. The function \code{\link{label_eurostat}} can also order factor levels of labels with argument \code{eu_order = TRUE}.
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 }

@@ -36,6 +36,9 @@ representing calendar dates.
    eur_d$time <- eurotime2date(x = eur_d$time)
    }
 }
+\references{
+See citation("eurostat").
+}
 \author{
 Janne Huovari \email{janne.huovari@ptt.fi}
 }

@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2020-10-16
-Version: 3.6.6
+Date: 2020-11-17
+Version: 3.6.82
 Encoding: UTF-8
 Authors@R: c(
   person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5537-637X")),
@@ -46,7 +46,8 @@ Suggests:
     knitr,    
     mapproj,    
     plotrix,
-    rmarkdown,
+    markdown,
+    rmarkdown,    
     roxygen2,
     rsdmx,
     rvest,
@@ -54,7 +55,7 @@ Suggests:
     tmap,
     usethis
 LazyData: true
-URL: https://ropengov.github.io/eurostat
+URL: https://ropengov.github.io/eurostat/
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no

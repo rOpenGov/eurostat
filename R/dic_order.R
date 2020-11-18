@@ -8,7 +8,7 @@
 #'    \code{\link{get_eurostat_dic}}.
 #' @param type a type of the x. Could be \code{code} or \code{label}.
 #' @export
-#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 #' @return A numeric vector of orders.
 dic_order <- function(x, dic, type) {
   if (!is_tibble(dic)) dic <- get_eurostat_dic(dic)
