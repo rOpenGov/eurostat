@@ -35,10 +35,12 @@
 #' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
-#'   sf <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = "all")
-#'   df <- get_eurostat_geospatial(output_class = "df", resolution = "20", nuts_level = "0")
-#'   spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
-#'  
+#'   sf   <- get_eurostat_geospatial(output_class = "sf",   resolution = "60", nuts_level = "all")
+#'   df   <- get_eurostat_geospatial(output_class = "df",   resolution = "20", nuts_level = "0")
+#'   \dontrun{
+#'     spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
+#'   }
+#' 
 get_eurostat_geospatial <- function(output_class="sf", 
                                     resolution="60",
                                     nuts_level = "all", year = "2016",
