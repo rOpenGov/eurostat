@@ -16,12 +16,15 @@ knitr::opts_chunk$set(
 
 <br>
 
+<!-- badges: start -->
+[![R build status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
+
 <!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
 <!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
 <!--[![PRs Welcome][prs-badge]][prs]-->
 <!--[![Code of Conduct][coc-badge]][coc]-->
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
+<!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
 [![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
@@ -38,6 +41,8 @@ knitr::opts_chunk$set(
 
 <!--[![Stories in Ready](http://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
 <!--[![CRAN version](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)-->
+
+<!-- badges: end -->
 
 <br>
 
@@ -84,8 +89,8 @@ This package is in no way officially related to or endorsed by Eurostat.
 
 [chat-badge]: https://img.shields.io/badge/chat-on%20gitter-46BC99.svg?style=flat-square
 [chat]: https://gitter.im/ropengov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square
-[build]: https://travis-ci.org/ropengov/eurostat
+<!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
+<!--[build]: https://travis-ci.org/ropengov/eurostat-->
 [version-badge]: https://img.shields.io/npm/v/eurostat.svg?style=flat-square
 [package]: https://www.npmjs.com/package/eurostat
 [license-badge]: https://img.shields.io/npm/l/eurostat.svg?style=flat-square

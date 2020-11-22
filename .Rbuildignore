@@ -37,3 +37,4 @@ docs
 ^docs$
 ^doc$
 ^Meta$
+^\.github$
