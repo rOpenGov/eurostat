@@ -1,13 +1,15 @@
 <br>
 
+<!-- badges: start -->
+
+[![R build
+status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
 <!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
 <!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
 <!--[![PRs Welcome][prs-badge]][prs]-->
 <!--[![Code of Conduct][coc-badge]][coc]-->
-
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
-[![Build
-Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)
+<!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
 [![AppVeyor
 Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
@@ -24,6 +26,7 @@ GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)]
 <!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
 <!--[![Stories in Ready](http://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
 <!--[![CRAN version](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)-->
+<!-- badges: end -->
 
 <br>
 
@@ -76,3 +79,6 @@ portal! This project is part of [rOpenGov](http://ropengov.github.io).
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
+
+<!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
+<!--[build]: https://travis-ci.org/ropengov/eurostat-->

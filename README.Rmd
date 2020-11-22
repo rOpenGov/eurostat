@@ -18,7 +18,6 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![R build status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
-
 <!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
 <!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
 <!--[![PRs Welcome][prs-badge]][prs]-->
