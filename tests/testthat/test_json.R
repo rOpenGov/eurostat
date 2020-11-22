@@ -2,7 +2,7 @@ context("json")
 
 test_that("Get json data",{
   skip_on_cran()
-  skip_on_travis()    
+  skip_on_ci()    
   expect_named(get_eurostat_json("nama_10_gdp", filters = list(geo = "FI",
                                                                na_item = "B1GQ",
                                                                unit = "CLV_I10")),
@@ -12,7 +12,7 @@ test_that("Get json data",{
 
 test_that("Handle numbers in filter name",{
   skip_on_cran()
-  skip_on_travis()  
+  skip_on_ci()  
   expect_named(get_eurostat(id = "sts_inpr_a", filters = list(geo = "AT",
                                                               nace_r2 = "B",
                                                               s_adj = "CA",

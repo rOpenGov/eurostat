@@ -35,6 +35,11 @@ build_site()
 # test() # Run tests
 # run_examples()
 
+# Add Github actions (Travis replacement)
+#usethis::use_github_action_check_standard()
+# -> .github/workflows/..
+# See https://github.com/r-lib/actions
+
 # Vignettes:
 #
 # library(knitr)

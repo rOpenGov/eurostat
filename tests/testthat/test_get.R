@@ -15,7 +15,7 @@ test_that("get_eurostat works with multi-frequency",{
 
 test_that("get_eurostat return right classes",{
   skip_on_cran()
-  skip_on_travis()  
+  skip_on_ci()  
   expect_true(all(c("character", "numeric") %in%
                     sapply(get_eurostat("road_eqr_trams"), class)))
   expect_true(all(c("character", "numeric") %in%
@@ -25,7 +25,7 @@ test_that("get_eurostat return right classes",{
 
 test_that("get_eurostat handles daily data", {
   skip_on_cran()
-  skip_on_travis()    
+  skip_on_ci()    
   dat1 <- get_eurostat("ert_bil_eur_d", 
                        filters = list(currency = "ARS", statinfo ="AVG",
                                       time = c("2017M03D09", "2017M03D10")), 
