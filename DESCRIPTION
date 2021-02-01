@@ -10,7 +10,7 @@ Authors@R: c(
   person("Markus", "Kainu", role = "aut"),
   person("Przemyslaw" , "Biecek", role = "aut"),
   person("Daniel", "Antal", role = "ctb"),
-  person("Dieg", "Hernan", role = "ctb"),    
+  person("Diego", "Hernangomez", role = "ctb"),    
   person("Joona", "Lehtomaki", role = "ctb"), 
   person("Francois", "Briatte", role = "ctb"),
   person("Paul", "Rougieux", role = "ctb"),
