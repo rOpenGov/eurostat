@@ -25,6 +25,10 @@
 #'        \code{\link{tempdir}}. Directory can also be set with
 #'        \code{option} eurostat_cache_dir.
 #' @param crs projection of the map: 4-digit \href{https://spatialreference.org/ref/epsg/}{EPSG code}. One of:
+#' @param make_valid logical; ensure that valid (multi-)polygon features are returned
+#'        if \code{output_class="sf"}, see Details. Current default \code{FALSE}, will be changed
+#'        in the future.
+#'        
 #' \itemize{
 #' \item "4326" - WGS84
 #' \item "3035" - ETRS89 / ETRS-LAEA
@@ -32,6 +36,12 @@
 #' }
 #' @export
 #' @details The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
+#' The source provides feature collections as line strings (GeoJSON format),
+#' not as (multi-)polygons which, in some cases, yields invalid
+#' self-intersecting (multi-)polygon geometries (for some years/resolutions).
+#' This can cause problems, e.g., when using these geometries as input argument
+#' to \code{sf::st_interpolate_aw()}). \code{make_valid = TRUE} makes sure that
+#' only valid (multi-)polygons are returned, example included below.
 #' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
@@ -41,11 +51,36 @@
 #'     spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
 #'   }
 #' 
+#'   \dontrun{
+#'     # -------------------------------------------------------------------
+#'     # Minimal example to demonstrate reason/effect of 'make_valid = TRUE'
+#'     # Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
+#'     # Requires the R package sf.
+#'     library("sf")
+#'     poly <- st_polygon(list(matrix(c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90), ncol = 2, byrow = TRUE)))
+#'     data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L), crs = st_crs(4326))
+#'     
+#'     # Causing an error: Self-intersection of some points of the geometry
+#'     NUTS2_A <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
+#'                                        crs = 4326, make_valid = FALSE)
+#'     res <- tryCatch(st_interpolate_aw(data, NUTS2_A, extensive = FALSE),
+#'                     error   = function(e) e)
+#'     print(res)
+#'     
+#'     # Resolving the problem using make_valid = TRUE. 'extensive = FALSE' returns
+#'     # average over each area, thus resulting in a constant value of 1 for each
+#'     # geometry in NUTS2_B.
+#'     NUTS2_B <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
+#'                                        crs = 4326, make_valid = TRUE)
+#'     res <- st_interpolate_aw(data, NUTS2_B, extensive = FALSE)
+#'     print(head(res))
+#'   }
+#' 
 get_eurostat_geospatial <- function(output_class="sf", 
                                     resolution="60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
-				    cache_dir = NULL, crs = "4326"){
+				    cache_dir = NULL, crs = "4326", make_valid = FALSE){
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
@@ -285,6 +320,12 @@ Please check your connection and/or review your proxy settings")
 # 
 # # --------------------------          
 #           ")
+  if (output_class == "sf" & make_valid) {
+      shp <- st_buffer(shp, 0)
+  } else {
+      warning(paste("Default of 'make_valid' for 'output_class=\"sf\"'",
+                    "will be changed in the future (see function details)."))
+  }
   
   # Adding a `geo` column for easier joins with dplyr 
   shp$geo <- shp$NUTS_ID

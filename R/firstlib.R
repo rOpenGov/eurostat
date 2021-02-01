@@ -27,6 +27,7 @@
 #' @importFrom readr read_tsv
 #' @importFrom readr col_character
 #' @importFrom sf st_read
+#' @importFrom sf st_buffer
 #' @importFrom sp merge
 #' @importFrom sp spplot
 #' @importFrom stringi stri_match_first_regex
