@@ -17,7 +17,7 @@
 #'    "2003", "2006", "2010", "2013", "2016" or "2021"
 #' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
 #'        only queries from the bulk download facility.
-#' @param update_cache a locigal whether to update cache. Can be set also with
+#' @param update_cache a logical whether to update cache. Can be set also with
 #'        options(eurostat_update = TRUE)
 #' @param cache_dir a path to a cache directory. The directory have to exist.
 #'        The \code{NULL} (default) uses and creates
@@ -115,7 +115,7 @@ Please check your connection and/or review your proxy settings")
 # information regarding their licence agreements.
 #       ")
   
-  if (resolution == "60" && year == 2016 && crs == "4326"){
+  if (resolution == "60" && year == "2016" && crs == "4326"){
     
     if (nuts_level %in% c("all")){
       shp <- eurostat_geodata_60_2016 
@@ -163,7 +163,7 @@ Please check your connection and/or review your proxy settings")
     cache_file <- file.path(cache_dir,
                             paste0(
                               output_class, resolution, 
-                              nuts_level, year, ".RData")
+                              nuts_level, year, crs, ".RData")
     )
   }
   
@@ -231,20 +231,20 @@ Please check your connection and/or review your proxy settings")
   }
   }
 
-  if (resolution != "60" & year != 2016){
-  if (cache & file.exists(cache_file)) {
-    cf <- path.expand(cache_file)
-    message(paste("Reading cache file", cf))
-    load(file = cache_file)
-    if (output_class == "sf") message(paste("sf at resolution 1:", 
+  if (!(resolution == "60" & year == "2016" & crs == "4326")){
+    if (cache & file.exists(cache_file)) {
+      cf <- path.expand(cache_file)
+      message(paste("Reading cache file", cf))
+      load(file = cache_file)
+      if (output_class == "sf") message(paste("sf at resolution 1:", 
                                             resolution, " from year ",
                                             year," read from cache file: ",
                                             cf))
-    if (output_class == "df") message(paste("data_frame at resolution 1:",
+      if (output_class == "df") message(paste("data_frame at resolution 1:",
                                             resolution, " from year ", 
                                             year," read from cache file: ", 
                                             cf))
-    if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", 
+      if (output_class == "spdf") message(paste("SpatialPolygonDataFrame at resolution 1:", 
                                               resolution, " from year ", 
                                               year," read from cache file: ",
                                               cf))

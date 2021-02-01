@@ -36,7 +36,7 @@ either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
 only queries from the bulk download facility.}
 
-\item{update_cache}{a locigal whether to update cache. Can be set also with
+\item{update_cache}{a logical whether to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
 \item{cache_dir}{a path to a cache directory. The directory have to exist.
