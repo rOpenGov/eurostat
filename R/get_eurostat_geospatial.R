@@ -123,6 +123,9 @@ Please check your connection and/or review your proxy settings")
     stop("crs should be one of 4326, 3035 or 3857")
   }
 
+  # Checking input `make_valid`
+  stopifnot(is.logical(make_valid) || length(make_valid == 1L))
+
 #   message("
 # COPYRIGHT NOTICE
 # 
