@@ -76,11 +76,11 @@
 #'     print(head(res))
 #'   }
 #' 
-get_eurostat_geospatial <- function(output_class="sf", 
-                                    resolution="60",
+get_eurostat_geospatial <- function(output_class = "sf", 
+                                    resolution = "60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
-				    cache_dir = NULL, crs = "4326", make_valid = FALSE){
+                                    cache_dir = NULL, crs = "4326", make_valid = FALSE){
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
@@ -93,38 +93,40 @@ Please check your connection and/or review your proxy settings")
        envir = environment(),
        package = "eurostat")
 
-  # Check resolution is of correct format
-  resolution <- as.character(resolution)
-  resolution <- gsub("^0+", "", resolution)
-  if (!as.numeric(resolution) %in% c(1, 3, 10, 20, 60)) {
-    stop("Resolution should be one of 01, 1, 03, 3, 10, 20, 60")
-  }
-  resolution <- gsub("^1$", "01", resolution)
-  resolution <- gsub("^3$", "03", resolution)
-  
   # Check output_class is of correct format
-  if (!output_class %in% c("sf", "df", "spdf")) {
-    stop("output_class should be one of 'sf', 'df' or 'spdf'")
-  }
-  
+  stopifnot(length(output_class) == 1L)
+  output_class <- match.arg(as.character(output_class), c("sf", "df", "spdf"))
+
+  # Check resolution is of correct format
+  stopifnot(length(resolution) == 1L)
+  resolution <- as.integer(regmatches(resolution, regexpr("^[0-9]+", resolution)))
+  resolution <- sprintf("%02d", match.arg(as.character(resolution), c(1, 3, 10, 20, 60)))
+
+  # Sanity check for nuts_level
+  stopifnot(length(nuts_level) == 1L)
+  nuts_level <- regmatches(nuts_level, regexpr("^(all|[0-9]+)", nuts_level))
+  nuts_level <- match.arg(nuts_level, c("all", 0:3))
+
   # Check year is of correct format
-  year <- as.character(year)
-  if (!as.numeric(year) %in% c(2003, 2006, 2010, 2013, 2016, 2021)) {
-    stop("Year should be one of 2003, 2006, 2010, 2013, 2016 or 2021")
-  }
+  year <- match.arg(as.character(year), c(2003, 2006, 2010, 2013, 2016, 2021))
   
+  # Sanity check for cache and update_cache
+  stopifnot(is.logical(cache) && length(cache) == 1 && cache %in% c(TRUE, FALSE))
+  stopifnot(is.logical(update_cache) && length(update_cache) == 1 && update_cache %in% c(TRUE, FALSE))
+
+  # Sanity check for cache_dir
+  stopifnot(is.null(cache_dir) || (is.character(cache_dir) && length(cache_dir) == 1L))
+
+  # Check crs is of correct format
+  crs <- match.arg(as.character(crs), c(4326, 3035, 3857))
+  
+  # Invalid combination of year and resolution: stop and show hint/error message.
   if (as.numeric(year) == 2003 & as.numeric(resolution) == 60) {
     stop("NUTS 2003 is not provided at 1:60 million resolution. Try 1:1 million, 1:3 million, 1:10 million or 1:20 million")
   }
-  
-  # Check crs is of correct format
-  crs <- as.character(crs)
-  if (!as.numeric(crs) %in% c(4326, 3035, 3857)) {
-    stop("crs should be one of 4326, 3035 or 3857")
-  }
 
-  # Checking input `make_valid`
-  stopifnot(is.logical(make_valid) || length(make_valid == 1L))
+  # Sanity check for input `make_valid`
+  stopifnot(is.logical(make_valid) && length(make_valid) == 1L && make_valid %in% c(TRUE, FALSE))
 
 #   message("
 # COPYRIGHT NOTICE
@@ -206,7 +208,7 @@ Please check your connection and/or review your proxy settings")
   }
   
   # if cache = FALSE or update or new: dowload else read from cache
-  if (!cache || update_cache || !file.exists(cache_file)){
+  if (!cache | update_cache | !file.exists(cache_file)){
   
     if (nuts_level %in% c("0","all")){
       url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_0.geojson")
