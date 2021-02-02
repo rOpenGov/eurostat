@@ -157,25 +157,20 @@ Please check your connection and/or review your proxy settings")
   
   if (resolution == "60" && year == 2016 && crs == "4326"){
     
-    if (nuts_level %in% c("all")){
+    # nuts_levels are mutually exclusive; either "all"
+    # or one of "0", "1", "2", "3".
+    if (nuts_level == c("all")){
       shp <- eurostat_geodata_60_2016 
+    } else {
+      shp <- filter(eurostat_geodata_60_2016, LEVL_CODE == as.integer(nuts_level))
     }
-    if (nuts_level == "0") shp <- filter(eurostat_geodata_60_2016, 
-                                         LEVL_CODE == 0)
-    if (nuts_level == "1") shp <- filter(eurostat_geodata_60_2016, 
-                                         LEVL_CODE == 1)
-    if (nuts_level == "2") shp <- filter(eurostat_geodata_60_2016, 
-                                         LEVL_CODE == 2)
-    if (nuts_level == "3") shp <- filter(eurostat_geodata_60_2016, 
-                                         LEVL_CODE == 3)
     
     if (output_class == "df"){
       nuts_sp <- as(shp, "Spatial")
       nuts_sp$id <- row.names(nuts_sp)
       nuts_ff <- broom::tidy(nuts_sp)
       shp <- left_join(nuts_ff,nuts_sp@data)
-    }
-    if (output_class == "spdf"){
+    } else if (output_class == "spdf"){
       shp <- as(shp, "Spatial")
     }
     
@@ -249,14 +244,11 @@ Please check your connection and/or review your proxy settings")
         }
     }
     
-    if (nuts_level %in% c("all")){
+    if (nuts_level == "all") {
       shp <- rbind(nuts0, nuts1, nuts2, nuts3)
+    } else {
+      shp <- eval(parse(text = paste0("nuts", nuts_level)))
     }
-    
-    if (nuts_level == "0") shp <- nuts0
-    if (nuts_level == "1") shp <- nuts1
-    if (nuts_level == "2") shp <- nuts2
-    if (nuts_level == "3") shp <- nuts3
     
     if (output_class == "df"){
       nuts_sp <- as(shp, "Spatial")

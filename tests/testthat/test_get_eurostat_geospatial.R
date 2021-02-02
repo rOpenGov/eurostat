@@ -47,7 +47,6 @@ test_that("get_eurostat_geospatial wrong input arguments for output_format = \"s
 })
 
 
-#devtools::load_all("../../")
 # Tests explicitly for output_class = "sf"; first unnamed argument
 test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   skip_on_cran()
@@ -55,8 +54,8 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
 
   # Custom function expecting that:
   # we have a warning, then a message, and the final object is of class "sf"
-  expect_ismw <- function(x) {
-      expect_is(expect_message(expect_warning(x)), "sf")
+  expect_ismw <- function(x, cls = "sf") {
+      expect_is(expect_message(expect_warning(x)), cls)
   }
 
   # Testing nuts_level first, such that we can stick to one nuts_level later on ...
@@ -104,6 +103,38 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, make_valid = TRUE))
 
 })
+
+# Tests explicitly for output_class = "sf"; first unnamed argument
+test_that("get_eurostat_geospatial tests to cover internals", {
+  skip_on_cran()
+
+  # Custom function expecting that:
+  # we have a warning, then a message, and the final object is of class "sf"
+  expect_ismw <- function(x, cls = "sf") {
+      expect_is(expect_message(expect_warning(x)), cls)
+  }
+  # Special case where resolution == 60 && year == 2016 && crs == 4326.
+  # Testing for correct return object class.
+  expect_ismw(get_eurostat_geospatial("sf",   resolution = 60, year = 2016, crs = 4326, make_valid = TRUE))
+  expect_ismw(get_eurostat_geospatial("df",   resolution = 60, year = 2016, crs = 4326, make_valid = TRUE), cls = "data.frame")
+  expect_ismw(get_eurostat_geospatial("spdf", resolution = 60, year = 2016, crs = 4326, make_valid = TRUE), cls = "SpatialPolygonsDataFrame")
+
+  # General case (not resolution == 60 && year == 2016 && crs == 4326.
+  # Testing for correct return object class.
+  expect_ismw(get_eurostat_geospatial("sf",   resolution = 20, year = 2013, make_valid = TRUE))
+  expect_ismw(get_eurostat_geospatial("df",   resolution = 20, year = 2013, make_valid = TRUE), cls = "data.frame")
+  expect_ismw(get_eurostat_geospatial("spdf", resolution = 20, year = 2013, make_valid = TRUE), cls = "SpatialPolygonsDataFrame")
+
+  # Setting cache to false; everything else default
+  expect_ismw(get_eurostat_geospatial("sf", cache = FALSE))
+  expect_ismw(get_eurostat_geospatial("sf",   resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE))
+  expect_ismw(get_eurostat_geospatial("df",   resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "data.frame")
+  expect_ismw(get_eurostat_geospatial("spdf", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "SpatialPolygonsDataFrame")
+
+})
+
+
+
 
 
 
