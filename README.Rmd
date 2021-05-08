@@ -24,8 +24,8 @@ knitr::opts_chunk$set(
 <!--[![Code of Conduct][coc-badge]][coc]-->
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://www.tidyverse.org/lifecycle/#stable)
 <!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
-<!--[![AppVeyor
-Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
+<!--[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
+[![R-CMD-check](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
 [![codecov.io](https://codecov.io/github/rOpenGov/eurostat/coverage.svg?branch=master)](https://codecov.io/github/rOpenGov/eurostat?branch=master)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
