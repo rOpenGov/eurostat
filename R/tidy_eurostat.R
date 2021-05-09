@@ -21,6 +21,7 @@
 #' @return tibble in the molten format with the last column 'values'.
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat").
+#' @importFrom stringi stri_match_first_regex
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari
 #' @keywords internal utilities database
 tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,

@@ -39,7 +39,8 @@ Imports:
     readr,
     RefManageR,
     sf,
-    stringr,
+    stringi,
+    stringr,    
     tibble,
     tidyr,
     tidyselect
