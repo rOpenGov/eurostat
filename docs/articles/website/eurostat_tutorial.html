@@ -31,18 +31,12 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.1</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.2</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
-<li>
-  <a href="../../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
 <li>
   <a href="../../reference/index.html">Reference</a>
 </li>
@@ -94,12 +88,12 @@
 
       
 
-      </header><script src="eurostat_tutorial_files/header-attrs-2.6.4/header-attrs.js"></script><script src="eurostat_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="eurostat_tutorial_files/header-attrs-2.7/header-attrs.js"></script><script src="eurostat_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tutorial for the eurostat R package</h1>
             
-            <h4 class="date">2021-02-01</h4>
+            <h4 class="date">2021-05-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/eurostat_tutorial.Rmd"><code>vignettes/website/eurostat_tutorial.Rmd</code></a></small>
       <div class="hidden name"><code>eurostat_tutorial.Rmd</code></div>
@@ -172,7 +166,7 @@ tgs00026                Auxiliary Data</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="http://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/">rvest</a></span><span class="op">)</span>
 
 <span class="co"># Get Eurostat data listing</span>
 <span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_toc.html">get_eurostat_toc</a></span><span class="op">(</span><span class="op">)</span>
@@ -256,10 +250,10 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Consumers - monthly data</td>
 <td align="left">ei_bsco_m</td>
 <td align="left">dataset</td>
-<td align="left">28.01.2021</td>
-<td align="left">28.01.2021</td>
+<td align="left">29.04.2021</td>
+<td align="left">29.04.2021</td>
 <td align="left">1980M01</td>
-<td align="left">2021M01</td>
+<td align="left">2021M04</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -271,14 +265,14 @@ tgs00026                Auxiliary Data</code></pre>
 <span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="fu"><a href="../../reference/search_eurostat.html">search_eurostat</a></span><span class="op">(</span><span class="st">"passenger transport"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="51%">
+<col width="40%">
+<col width="8%">
+<col width="4%">
+<col width="12%">
+<col width="17%">
 <col width="6%">
-<col width="3%">
-<col width="9%">
-<col width="13%">
 <col width="5%">
 <col width="4%">
-<col width="3%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">title</th>
@@ -292,63 +286,63 @@ tgs00026                Auxiliary Data</code></pre>
 </tr></thead>
 <tbody>
 <tr class="odd">
+<td align="left">Air passenger transport</td>
+<td align="left">enps_avia_pa</td>
+<td align="left">dataset</td>
+<td align="left">16.04.2021</td>
+<td align="left">NA</td>
+<td align="left">2005</td>
+<td align="left">2020</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
 <td align="left">01.09.2020</td>
-<td align="left">31.08.2020</td>
+<td align="left">08.02.2021</td>
 <td align="left">1990</td>
 <td align="left">2018</td>
 <td align="left">NA</td>
 </tr>
-<tr class="even">
+<tr class="odd">
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
 <td align="left">01.09.2020</td>
-<td align="left">31.08.2020</td>
+<td align="left">08.02.2021</td>
 <td align="left">1990</td>
 <td align="left">2018</td>
 <td align="left">NA</td>
 </tr>
-<tr class="odd">
+<tr class="even">
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">26.01.2021</td>
-<td align="left">26.01.2021</td>
+<td align="left">07.05.2021</td>
+<td align="left">07.05.2021</td>
 <td align="left">1993</td>
-<td align="left">2020Q4</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Air passenger transport by main airports in each reporting country</td>
-<td align="left">avia_paoa</td>
-<td align="left">dataset</td>
-<td align="left">26.01.2021</td>
-<td align="left">26.01.2021</td>
-<td align="left">1993</td>
-<td align="left">2020Q4</td>
+<td align="left">2021Q1</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Air passenger transport between reporting countries</td>
-<td align="left">avia_paocc</td>
+<td align="left">Air passenger transport by main airports in each reporting country</td>
+<td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">26.01.2021</td>
-<td align="left">26.01.2021</td>
+<td align="left">07.05.2021</td>
+<td align="left">07.05.2021</td>
 <td align="left">1993</td>
-<td align="left">2020Q4</td>
+<td align="left">2021Q1</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport between main airports in each reporting country and partner reporting countries</td>
-<td align="left">avia_paoac</td>
+<td align="left">Air passenger transport between reporting countries</td>
+<td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">26.01.2021</td>
-<td align="left">26.01.2021</td>
+<td align="left">07.05.2021</td>
+<td align="left">07.05.2021</td>
 <td align="left">1993</td>
-<td align="left">2020Q4</td>
+<td align="left">2021Q1</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -375,7 +369,7 @@ tgs00026                Auxiliary Data</code></pre>
 <p>Investigate the structure of the downloaded data set:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/str.html">str</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></code></pre></div>
-<pre><code>## tibble [2,798 × 5] (S3: tbl_df/tbl/data.frame)
+<pre><code>## tibble[,5] [2,798 × 5] (S3: tbl_df/tbl/data.frame)
 ##  $ unit   : chr [1:2798] "PC" "PC" "PC" "PC" ...
 ##  $ vehicle: chr [1:2798] "BUS_TOT" "BUS_TOT" "BUS_TOT" "BUS_TOT" ...
 ##  $ geo    : chr [1:2798] "AT" "BE" "CH" "DE" ...
@@ -974,7 +968,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.7.1 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.7.2 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -989,7 +983,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.7.1},
+##     note = {Version 3.7.2},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -1024,25 +1018,27 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tidyr_1.1.2    rvest_0.3.6    xml2_1.3.2     eurostat_3.7.1 knitr_1.31    
+## [1] tidyr_1.1.3    rvest_1.0.0    eurostat_3.7.2 knitr_1.31    
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] tidyselect_1.1.0   xfun_0.20          purrr_0.3.4        sf_0.9-7          
-##  [5] lattice_0.20-41    vctrs_0.3.6        generics_0.1.0     htmltools_0.5.1.1 
-##  [9] yaml_2.2.1         rlang_0.4.10       e1071_1.7-4        pkgdown_1.6.1     
-## [13] pillar_1.4.7       glue_1.4.2         DBI_1.1.1          sp_1.4-5          
-## [17] RColorBrewer_1.1-2 lifecycle_0.2.0    plyr_1.8.6         stringr_1.4.0     
-## [21] ragg_0.4.1         memoise_2.0.0      evaluate_0.14      fastmap_1.1.0     
-## [25] curl_4.3           class_7.3-18       fansi_0.4.2        highr_0.8         
-## [29] broom_0.7.4        Rcpp_1.0.6         KernSmooth_2.23-18 readr_1.4.0       
-## [33] backports_1.2.1    classInt_0.4-3     cachem_1.0.1       desc_1.2.0        
-## [37] jsonlite_1.7.2     countrycode_1.2.0  systemfonts_0.3.2  fs_1.5.0          
-## [41] textshaping_0.2.1  hms_1.0.0          digest_0.6.27      stringi_1.5.3     
-## [45] dplyr_1.0.3        rprojroot_2.0.2    grid_4.0.3         cli_2.2.0         
-## [49] tools_4.0.3        magrittr_2.0.1     tibble_3.0.6       RefManageR_1.3.0  
-## [53] crayon_1.3.4       pkgconfig_2.0.3    ellipsis_0.3.1     lubridate_1.7.9.2 
-## [57] assertthat_0.2.1   rmarkdown_2.6.4    httr_1.4.2         R6_2.5.0          
-## [61] units_0.6-7        compiler_4.0.3</code></pre>
+##  [1] Rcpp_1.0.6         lubridate_1.7.10   countrycode_1.2.0  lattice_0.20-41   
+##  [5] class_7.3-18       assertthat_0.2.1   rprojroot_2.0.2    digest_0.6.27     
+##  [9] utf8_1.2.1         R6_2.5.0           plyr_1.8.6         backports_1.2.1   
+## [13] evaluate_0.14      e1071_1.7-6        highr_0.8          httr_1.4.2        
+## [17] pillar_1.6.0       rlang_0.4.10       curl_4.3           rstudioapi_0.13   
+## [21] jquerylib_0.1.3    rmarkdown_2.7      pkgdown_1.6.1.9000 textshaping_0.3.3 
+## [25] desc_1.3.0         RefManageR_1.3.0   readr_1.4.0        stringr_1.4.0     
+## [29] proxy_0.4-25       broom_0.7.6        compiler_4.0.3     xfun_0.22         
+## [33] pkgconfig_2.0.3    systemfonts_1.0.1  htmltools_0.5.1.1  tidyselect_1.1.0  
+## [37] tibble_3.1.0       fansi_0.4.2        crayon_1.4.1       dplyr_1.0.5       
+## [41] sf_0.9-8           grid_4.0.3         jsonlite_1.7.2     lifecycle_1.0.0   
+## [45] DBI_1.1.1          magrittr_2.0.1     units_0.7-1        KernSmooth_2.23-18
+## [49] cli_2.4.0          stringi_1.5.3      cachem_1.0.4       fs_1.5.0          
+## [53] sp_1.4-5           xml2_1.3.2         bslib_0.2.4        ellipsis_0.3.1    
+## [57] ragg_1.1.2         generics_0.1.0     vctrs_0.3.7        RColorBrewer_1.1-2
+## [61] tools_4.0.3        glue_1.4.2         purrr_0.3.4        hms_1.0.0         
+## [65] fastmap_1.1.0      yaml_2.2.1         classInt_0.4-3     memoise_2.0.0     
+## [69] sass_0.3.1</code></pre>
 </div>
   </div>
 
@@ -1061,7 +1057,7 @@ tgs00026                Auxiliary Data</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

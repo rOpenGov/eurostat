@@ -1,4 +1,5 @@
-#' @title Download Geospatial Data from GISCO
+#' Download Geospatial Data from GISCO
+#'
 #' @description Downloads either a simple features (sf), SpatialPolygonDataFrame or a
 #'    data_frame preprocessed using
 #'    \code{broom::tidy()}.
@@ -45,10 +46,16 @@
 #' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
-#'   sf   <- get_eurostat_geospatial(output_class = "sf",   resolution = "60", nuts_level = "all")
-#'   df   <- get_eurostat_geospatial(output_class = "df",   resolution = "20", nuts_level = "0")
+#'   sf   <- get_eurostat_geospatial(output_class = "sf",
+#'                                   resolution = "60",
+#'                                   nuts_level = "all")
+#'   df   <- get_eurostat_geospatial(output_class = "df",
+#'                                   resolution = "20",
+#'                                   nuts_level = "0")
 #'   \dontrun{
-#'     spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
+#'     spdf <- get_eurostat_geospatial(output_class = "spdf",
+#'                                     resolution = "10",
+#'                                     nuts_level = "3")
 #'   }
 #' 
 #'   \dontrun{
@@ -57,8 +64,10 @@
 #'     # Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
 #'     # Requires the R package sf.
 #'     library("sf")
-#'     poly <- st_polygon(list(matrix(c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90), ncol = 2, byrow = TRUE)))
-#'     data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L), crs = st_crs(4326))
+#'     d <- c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90)
+#'     poly <- st_polygon(list(matrix(d, ncol = 2, byrow = TRUE)))
+#'     data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L),
+#'               crs = st_crs(4326))
 #'     
 #'     # Causing an error: Self-intersection of some points of the geometry
 #'     NUTS2_A <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
@@ -67,9 +76,10 @@
 #'                     error   = function(e) e)
 #'     print(res)
 #'     
-#'     # Resolving the problem using make_valid = TRUE. 'extensive = FALSE' returns
-#'     # average over each area, thus resulting in a constant value of 1 for each
-#'     # geometry in NUTS2_B.
+#'     # Resolving the problem using
+#'     # make_valid = TRUE. 'extensive = FALSE' returns
+#'     # average over each area, thus resulting in a
+#'     # constant value of 1 for each geometry in NUTS2_B.
 #'     NUTS2_B <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
 #'                                        crs = 4326, make_valid = TRUE)
 #'     res <- st_interpolate_aw(data, NUTS2_B, extensive = FALSE)
@@ -80,11 +90,12 @@ get_eurostat_geospatial <- function(output_class = "sf",
                                     resolution = "60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
-                                    cache_dir = NULL, crs = "4326", make_valid = FALSE){
+                                    cache_dir = NULL, crs = "4326",
+				    make_valid = FALSE){
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
-Please check your connection and/or review your proxy settings")
+             Please check your connection and/or review your proxy settings")
   } else {
   
   eurostat_geodata_60_2016 <- NULL
@@ -99,8 +110,10 @@ Please check your connection and/or review your proxy settings")
 
   # Check resolution is of correct format
   stopifnot(length(resolution) == 1L)
-  resolution <- as.integer(regmatches(resolution, regexpr("^[0-9]+", resolution)))
-  resolution <- sprintf("%02d", match.arg(as.character(resolution), c(1, 3, 10, 20, 60)))
+  resolution <- as.integer(regmatches(resolution, regexpr("^[0-9]+",
+    resolution)))
+  resolution <- sprintf("%02d", match.arg(as.character(resolution),
+    c(1, 3, 10, 20, 60)))
 
   # Sanity check for nuts_level
   stopifnot(length(nuts_level) == 1L)
@@ -111,22 +124,28 @@ Please check your connection and/or review your proxy settings")
   year <- match.arg(as.character(year), c(2003, 2006, 2010, 2013, 2016, 2021))
   
   # Sanity check for cache and update_cache
-  stopifnot(is.logical(cache) && length(cache) == 1 && cache %in% c(TRUE, FALSE))
-  stopifnot(is.logical(update_cache) && length(update_cache) == 1 && update_cache %in% c(TRUE, FALSE))
+  stopifnot(is.logical(cache) && length(cache) == 1 &&
+            cache %in% c(TRUE, FALSE))
+  stopifnot(is.logical(update_cache) && length(update_cache) == 1 &&
+            update_cache %in% c(TRUE, FALSE))
 
   # Sanity check for cache_dir
-  stopifnot(is.null(cache_dir) || (is.character(cache_dir) && length(cache_dir) == 1L))
+  stopifnot(is.null(cache_dir) || (is.character(cache_dir) &&
+            length(cache_dir) == 1L))
 
   # Check crs is of correct format
   crs <- match.arg(as.character(crs), c(4326, 3035, 3857))
   
-  # Invalid combination of year and resolution: stop and show hint/error message.
+  # Invalid combination of year and resolution: stop and show
+  # hint/error message.
   if (as.numeric(year) == 2003 & as.numeric(resolution) == 60) {
-    stop("NUTS 2003 is not provided at 1:60 million resolution. Try 1:1 million, 1:3 million, 1:10 million or 1:20 million")
+    stop("NUTS 2003 is not provided at 1:60 million resolution. 
+          Try 1:1 million, 1:3 million, 1:10 million or 1:20 million")
   }
 
   # Sanity check for input `make_valid`
-  stopifnot(is.logical(make_valid) && length(make_valid) == 1L && make_valid %in% c(TRUE, FALSE))
+  stopifnot(is.logical(make_valid) && length(make_valid) == 1L &&
+    make_valid %in% c(TRUE, FALSE))
 
 #   message("
 # COPYRIGHT NOTICE
@@ -204,19 +223,22 @@ Please check your connection and/or review your proxy settings")
   
   # if cache = FALSE or update or new: dowload else read from cache
   if (!cache | update_cache | !file.exists(cache_file)){
-  
+
+    burl <- "http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_"
+
     if (nuts_level %in% c("0","all")){
-      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_0.geojson")
+      url <- paste0(burl,resolution,"M_",year,"_",crs,"_LEVL_0.geojson")
       resp <- RETRY("GET", url, terminate_on = c(404))
       if (httr::http_error(resp)) { 
-        stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
+        stop(paste("The requested url cannot be found within 
+          the get_eurostat_geospatial function:", url))
       } else {
         nuts0 <- st_read(content(resp, as="text"), 
                          stringsAsFactors = FALSE, quiet = TRUE)  
         } 
     }
     if (nuts_level %in% c("1","all")){
-      url <- paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_1.geojson")
+      url <- paste0(burl,resolution,"M_",year,"_",crs,"_LEVL_1.geojson")
       resp <- RETRY("GET", url, terminate_on = c(404))
       if (httr::http_error(resp)) {
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
@@ -226,7 +248,7 @@ Please check your connection and/or review your proxy settings")
         }
     }    
     if (nuts_level %in% c("2","all")){
-      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_2.geojson"), terminate_on = c(404))
+      resp <- RETRY("GET", paste0(burl,resolution,"M_",year,"_",crs,"_LEVL_2.geojson"), terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
@@ -235,7 +257,7 @@ Please check your connection and/or review your proxy settings")
         }
     }
     if (nuts_level %in% c("3","all")){
-      resp <- RETRY("GET", paste0("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_",resolution,"M_",year,"_",crs,"_LEVL_3.geojson"), terminate_on = c(404))
+      resp <- RETRY("GET", paste0(burl,resolution,"M_",year,"_",crs,"_LEVL_3.geojson"), terminate_on = c(404))
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {

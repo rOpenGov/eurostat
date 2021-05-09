@@ -22,11 +22,11 @@ build_site()
 # Submissions:
 #
 # release() # Submit to CRAN
+# devtools::check_win_devel("../../") # Windows check
 # submit_cran() # Submit to CRAN without all release() questions
 
 # Utilities:
 #
-# check_win_devel("../../") # Windows check
 # revdep_check("../../")
 # add_rstudio_project("../../")
 # use_build_ignore("../NEWS.md", pkg = "../../") # NEWS.md not supported by CRAN

@@ -76,10 +76,16 @@ to \code{sf::st_interpolate_aw()}). \code{make_valid = TRUE} makes sure that
 only valid (multi-)polygons are returned, example included below.
 }
 \examples{
-  sf   <- get_eurostat_geospatial(output_class = "sf",   resolution = "60", nuts_level = "all")
-  df   <- get_eurostat_geospatial(output_class = "df",   resolution = "20", nuts_level = "0")
+  sf   <- get_eurostat_geospatial(output_class = "sf",
+                                  resolution = "60",
+                                  nuts_level = "all")
+  df   <- get_eurostat_geospatial(output_class = "df",
+                                  resolution = "20",
+                                  nuts_level = "0")
   \dontrun{
-    spdf <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nuts_level = "3")
+    spdf <- get_eurostat_geospatial(output_class = "spdf",
+                                    resolution = "10",
+                                    nuts_level = "3")
   }
 
   \dontrun{
@@ -88,8 +94,10 @@ only valid (multi-)polygons are returned, example included below.
     # Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
     # Requires the R package sf.
     library("sf")
-    poly <- st_polygon(list(matrix(c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90), ncol = 2, byrow = TRUE)))
-    data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L), crs = st_crs(4326))
+    d <- c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90)
+    poly <- st_polygon(list(matrix(d, ncol = 2, byrow = TRUE)))
+    data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L),
+              crs = st_crs(4326))
     
     # Causing an error: Self-intersection of some points of the geometry
     NUTS2_A <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
@@ -98,9 +106,10 @@ only valid (multi-)polygons are returned, example included below.
                     error   = function(e) e)
     print(res)
     
-    # Resolving the problem using make_valid = TRUE. 'extensive = FALSE' returns
-    # average over each area, thus resulting in a constant value of 1 for each
-    # geometry in NUTS2_B.
+    # Resolving the problem using
+    # make_valid = TRUE. 'extensive = FALSE' returns
+    # average over each area, thus resulting in a
+    # constant value of 1 for each geometry in NUTS2_B.
     NUTS2_B <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
                                        crs = 4326, make_valid = TRUE)
     res <- st_interpolate_aw(data, NUTS2_B, extensive = FALSE)
