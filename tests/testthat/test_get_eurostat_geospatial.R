@@ -1,6 +1,7 @@
 
 
 test_that("get_eurostat_geospatial wrong input arguments for output_format = \"sf\"", {
+  skip_on_cran()
   # Testing argument 'output_class'
   expect_error(get_eurostat_geospatial(output_class = 0))
   expect_error(get_eurostat_geospatial(output_class = "foo"))
