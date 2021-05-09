@@ -1,3 +1,9 @@
+# eurostat 3.7.2
+
+ * Non-intersecting sf-geometries in get_eurostat_geospatial (PR by @retostauffer)
+ * Removed outdated dependencies
+ 
+
 # eurostat 3.6.4
 
  * Fixed stringsAsFactors for R-4.0.0 and moved default to FALSE
