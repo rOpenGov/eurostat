@@ -22,8 +22,8 @@ An object of class \code{data.frame} with 4 rows and 3 columns.
 An object of class \code{data.frame} with 5 rows and 3 columns.
 }
 \source{
-\url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
-  \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}
+\url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
+  \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}
 }
 \usage{
 eu_countries

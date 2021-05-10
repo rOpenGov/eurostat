@@ -22,13 +22,14 @@ Download data from the eurostat database.
 }
 \details{
 Data is downloaded from
- \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
+ \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
 }
 \examples{
   \dontrun{
     tmp <- eurostat:::get_eurostat_raw("educ_iste")
     head(tmp)
   }
+  
 }
 \references{
 see citation("eurostat")

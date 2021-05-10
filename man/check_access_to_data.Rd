@@ -16,6 +16,7 @@ Check if R has access to resources at http://ec.europa.eu
  \dontrun{
    check_access_to_data()
  }
+ 
 }
 \author{
 Markus Kainu \email{markus.kainu@kapsi.fi}

@@ -35,6 +35,7 @@ representing calendar dates.
    eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
    eur_d$time <- eurotime2date(x = eur_d$time)
    }
+   
 }
 \references{
 See citation("eurostat").

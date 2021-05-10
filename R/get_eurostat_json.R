@@ -2,7 +2,7 @@
 #' @description Retrieve data from Eurostat API in JSON format.
 #' @details 
 #'   Data to retrieve from
-#'   \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The
+#'   \href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The
 #'   Eurostat Web Services} can be specified with filters. Normally, it is
 #'   better to use JSON query through \code{\link{get_eurostat}}, than to use
 #'   \code{\link{get_eurostat_json}} directly.
@@ -47,6 +47,11 @@
 #'                                                         unit="EUR_HAB",
 #'                                                         indic_na="B1GM"))
 #' }
+#' 
+#' @importFrom httr RETRY http_error status_code build_url
+#' @importFrom jsonlite fromJSON
+#' @importFrom tibble as_tibble
+#' 
 #' @keywords utilities database
 get_eurostat_json <- function(id, filters = NULL, 
                               type = c("code", "label", "both"), 

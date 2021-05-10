@@ -7,8 +7,8 @@
 #'   \item{name}{Country name in English}
 #'   \item{label}{Country name in the Eurostat database}
 #' }
-#' @source \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
-#'   \url{http://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}
+#' @source \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
+#'   \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}
 "eu_countries" 
 
 #' @rdname eu_countries

@@ -24,6 +24,7 @@ information on what to do.
    dat <- eurostat::tgs00026
    harmonize_geo_code(dat)
  }
+ 
 }
 \author{
 Daniel Antal

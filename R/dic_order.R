@@ -7,12 +7,15 @@
 #'    data_frame from \code{\link{get_eurostat}}. Can be also data_frame from
 #'    \code{\link{get_eurostat_dic}}.
 #' @param type a type of the x. Could be \code{code} or \code{label}.
-#' @export
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 #' @return A numeric vector of orders.
+#' 
+#' @importFrom tibble is_tibble
+#' 
+#' @export
 dic_order <- function(x, dic, type) {
-  if (!is_tibble(dic)) dic <- get_eurostat_dic(dic)
-  
+  if (!tibble::is_tibble(dic)) dic <- get_eurostat_dic(dic)
+
   # code or label
   n_type <- match(type, c("code", "label"))
   if (is.na(n_type)) stop("Invalid type.")

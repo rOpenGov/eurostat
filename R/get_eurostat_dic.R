@@ -16,6 +16,9 @@
 #' 	       head(tmp)
 #' 	       tmp <- get_eurostat_dic("crop_pro", lang = "fr")
 #'	     }
+#'	     
+#' @importFrom readr read_tsv cols col_character
+#'	     
 #' @keywords utilities database
 get_eurostat_dic <- function(dictname, lang = "en") {
   dictlang <- paste0(dictname, "_", lang)

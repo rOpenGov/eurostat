@@ -28,6 +28,7 @@ For given coded variable from Eurostat \url{https://ec.europa.eu/eurostat/}.
 	       head(tmp)
 	       tmp <- get_eurostat_dic("crop_pro", lang = "fr")
      }
+     
 }
 \references{
 See citation("eurostat").

@@ -67,7 +67,7 @@ Downloads either a simple features (sf), SpatialPolygonDataFrame or a
    \code{broom::tidy()}.
 }
 \details{
-The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
+The data source URL is \url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 The source provides feature collections as line strings (GeoJSON format),
 not as (multi-)polygons which, in some cases, yields invalid
 self-intersecting (multi-)polygon geometries (for some years/resolutions).

@@ -44,7 +44,7 @@ Retrieve data from Eurostat API in JSON format.
 }
 \details{
 Data to retrieve from
-  \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The
+  \href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The
   Eurostat Web Services} can be specified with filters. Normally, it is
   better to use JSON query through \code{\link{get_eurostat}}, than to use
   \code{\link{get_eurostat_json}} directly.
@@ -68,6 +68,7 @@ Data to retrieve from
                                                         unit="EUR_HAB",
                                                         indic_na="B1GM"))
 }
+
 }
 \references{
 See citation("eurostat").

@@ -1,4 +1,4 @@
-#' Download Geospatial Data from GISCO
+#' @title Download Geospatial Data from GISCO
 #'
 #' @description Downloads either a simple features (sf), SpatialPolygonDataFrame or a
 #'    data_frame preprocessed using
@@ -35,8 +35,7 @@
 #' \item "3035" - ETRS89 / ETRS-LAEA
 #' \item "3857" - Pseudo-Mercator
 #' }
-#' @export
-#' @details The data source URL is \url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
+#' @details The data source URL is \url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 #' The source provides feature collections as line strings (GeoJSON format),
 #' not as (multi-)polygons which, in some cases, yields invalid
 #' self-intersecting (multi-)polygon geometries (for some years/resolutions).
@@ -86,6 +85,13 @@
 #'     print(head(res))
 #'   }
 #' 
+#' @importFrom sf st_read st_buffer
+#' @importFrom utils data
+#' @importFrom broom tidy
+#' @importFrom httr http_error content
+#' @importFrom methods as
+#' 
+#' @export
 get_eurostat_geospatial <- function(output_class = "sf", 
                                     resolution = "60",
                                     nuts_level = "all", year = "2016",
@@ -100,7 +106,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
   
   eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
-  data("eurostat_geodata_60_2016", 
+  utils::data("eurostat_geodata_60_2016", 
        envir = environment(),
        package = "eurostat")
 
@@ -151,7 +157,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
 # COPYRIGHT NOTICE
 # 
 # When data downloaded from this page 
-# <http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+# <https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
 # is used in any printed or electronic publication, 
 # in addition to any other provisions 
 # applicable to the whole Eurostat website, 
@@ -190,7 +196,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
       nuts_ff <- broom::tidy(nuts_sp)
       shp <- left_join(nuts_ff,nuts_sp@data)
     } else if (output_class == "spdf"){
-      shp <- as(shp, "Spatial")
+      shp <- methods::as(shp, "Spatial")
     }
     
   } else {
@@ -233,7 +239,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
         stop(paste("The requested url cannot be found within 
           the get_eurostat_geospatial function:", url))
       } else {
-        nuts0 <- st_read(content(resp, as="text"), 
+        nuts0 <- sf::st_read(httr::content(resp, as="text"), 
                          stringsAsFactors = FALSE, quiet = TRUE)  
         } 
     }
@@ -243,7 +249,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
       if (httr::http_error(resp)) {
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts1 <- st_read(content(resp, as="text"), 
+        nuts1 <- sf::st_read(httr::content(resp, as="text"), 
                          stringsAsFactors = FALSE, quiet = TRUE)  
         }
     }    
@@ -252,7 +258,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts2 <- st_read(content(resp, as="text"), 
+        nuts2 <- sf::st_read(httr::content(resp, as="text"), 
                          stringsAsFactors = FALSE, quiet = TRUE)  
         }
     }
@@ -261,7 +267,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
       if (httr::http_error(resp)) { 
         stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
       } else {
-        nuts3 <- st_read(content(resp, as="text"), 
+        nuts3 <- sf::st_read(httr::content(resp, as="text"), 
                          stringsAsFactors = FALSE, quiet = TRUE)    
         }
     }
@@ -340,7 +346,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
 # # --------------------------          
 #           ")
   if (output_class == "sf" & make_valid) {
-      shp <- st_buffer(shp, 0)
+      shp <- sf::st_buffer(shp, 0)
   } else {
       warning(paste("Default of 'make_valid' for 'output_class=\"sf\"'",
                     "will be changed in the future (see function details)."))

@@ -8,7 +8,6 @@
 #' to \code{NULL}. 
 #' @param format Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
 #' or \code{'Bibtex'} (not case sensitive.)
-#' @export
 #' @author Daniel Antal, Przemyslaw Biecek
 #' @return a bibentry, Bibtex or Biblatex object.
 #' @examples
@@ -21,6 +20,12 @@
 #'         
 #'    # readLines ( my_bibliograhy, "eurostat_data.bib")
 #'  }
+#'  
+#' @importFrom lubridate dmy year month day
+#' @importFrom utils toBibtex
+#' @importFrom RefManageR BibEntry toBiblatex
+#'  
+#' @export
 
 
 get_bibentry <- function(

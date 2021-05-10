@@ -6,7 +6,6 @@
 #' @param last a logical. If \code{FALsE} (default) the date  is 
 #'        the first date of the period (month, quarter or year). If \code{TRUE} 
 #'        the date is the last date of the period.
-#' @export
 #' @references See citation("eurostat").
 #' @return an object of class \code{\link{Date}}.
 #' @author Janne Huovari \email{janne.huovari@@ptt.fi}
@@ -23,6 +22,10 @@
 #'    eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
 #'    eur_d$time <- eurotime2date(x = eur_d$time)
 #'    }
+#'    
+#' @importFrom lubridate ymd
+#'  
+#' @export
 eurotime2date <- function(x, last = FALSE){
   if (!is.factor(x)) x <- factor(x)
   times <- levels(x)

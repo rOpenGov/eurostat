@@ -41,7 +41,7 @@
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'        "provisional") should be kept in a separate column or if they
 #'        can be removed. Default is \code{FALSE}. For flag values see: 
-#'        \url{http://ec.europa.eu/eurostat/data/database/information}.
+#'        \url{https://ec.europa.eu/eurostat/data/database/information}.
 #'        Also possible non-real zero "0n" is indicated in flags column. 
 #'        Flags are not available for eurostat API, so \code{keepFlags}
 #'        can not be used with a \code{filters}.
@@ -50,8 +50,8 @@
 #' @references See citation("eurostat").
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu 
 #' @details Data sets are downloaded from 
-#' \href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
-#' \href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
+#' \href{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
+#' \href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 #' If only the table \code{id} is given, the whole table is downloaded from the
 #' bulk download facility. If also \code{filters} are defined the JSON API is
 #' used.
@@ -75,7 +75,7 @@
 #' 
 #' The \code{id}, a code, for the dataset can be searched with
 #' the \code{\link{search_eurostat}} or from the Eurostat database
-#' \url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+#' \url{https://ec.europa.eu/eurostat/data/database}. The Eurostat
 #' database gives codes in the Data Navigation Tree after every dataset
 #' in parenthesis.
 #' @return a tibble. One column for each dimension in the data,

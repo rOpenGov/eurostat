@@ -102,6 +102,7 @@ objects other than characters or factors definitions are get for names.
    # In Finnish
    label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
  }
+ 
 }
 \author{
 Janne Huovari \email{janne.huovari@ptt.fi}
