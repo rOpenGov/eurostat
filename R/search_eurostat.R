@@ -37,11 +37,10 @@ search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
     message("You have no access to ec.europe.eu. 
       Please check your connection and/or review your proxy settings")
   } else {
-  
-  set_eurostat_toc()
-  tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-  if (type != "all") tmp <- tmp[ tmp$type %in% type, ]
-  tmp[ grep(tmp$title, pattern = pattern, fixed = fixed), ]
+    set_eurostat_toc()
+    tmp <- get(".eurostatTOC", envir = .EurostatEnv)
+    if (type != "all") tmp <- tmp[ tmp$type %in% type, ]
+    tmp[ grep(tmp$title, pattern = pattern, fixed = fixed), ]
   }
 }
 

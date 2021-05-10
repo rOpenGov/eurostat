@@ -2,7 +2,7 @@ Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
 Date: 2021-05-10
-Version: 3.7.2
+Version: 3.7.3
 Encoding: UTF-8
 Authors@R: 
     c(person(given = "Leo",

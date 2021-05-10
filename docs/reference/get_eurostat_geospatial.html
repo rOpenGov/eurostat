@@ -47,8 +47,6 @@
 
 
 
-
-
 <!-- mathjax -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js" integrity="sha256-nvJJv9wWKEm88qvoQl9ekL2J+k/RWIsaSScxxlsrv8k=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/config/TeX-AMS-MML_HTMLorMML.js" integrity="sha256-84DKXVJXs0/F8OTMzX4UR909+jtl4G7SPypPavF+GfA=" crossorigin="anonymous"></script>
@@ -60,18 +58,9 @@
 
 
 
-<!-- dependencies from examples -->
-
-
-  
-
-  
-
   </head>
 
   <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-reference-topic">
       <header>
       <div class="navbar navbar-default navbar-fixed-top" role="navigation">
@@ -85,13 +74,19 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
+<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -251,10 +246,10 @@ only valid (multi-)polygons are returned, example included below.</p>
     <pre class="examples"><div class='input'>  <span class='va'>sf</span>   <span class='op'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span><span class='op'>(</span>output_class <span class='op'>=</span> <span class='st'>"sf"</span>,
                                   resolution <span class='op'>=</span> <span class='st'>"60"</span>,
                                   nuts_level <span class='op'>=</span> <span class='st'>"all"</span><span class='op'>)</span>
-</div><div class='co'>#&gt; sf at resolution 1:60 read from local file</div><div class='co'>#&gt; <span class='warning'>Warning: </span>Default of 'make_valid' for 'output_class="sf"' will be changed in the future (see function details).</div><div class='input'>  <span class='va'>df</span>   <span class='op'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span><span class='op'>(</span>output_class <span class='op'>=</span> <span class='st'>"df"</span>,
+</div><div class='output co'>#&gt; <span class='message'>sf at resolution 1:60 read from local file</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Default of 'make_valid' for 'output_class="sf"' will be changed in the future (see function details).</span></div><div class='input'>  <span class='va'>df</span>   <span class='op'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span><span class='op'>(</span>output_class <span class='op'>=</span> <span class='st'>"df"</span>,
                                   resolution <span class='op'>=</span> <span class='st'>"20"</span>,
                                   nuts_level <span class='op'>=</span> <span class='st'>"0"</span><span class='op'>)</span>
-</div><div class='co'>#&gt; No encoding supplied: defaulting to UTF-8.</div><div class='co'>#&gt; Regions defined for each Polygons</div><div class='co'>#&gt; Joining, by = "id"</div><div class='co'>#&gt; data_frame at resolution 1: 20  cached at:  /var/folders/nb/sxk6cbzd5455n3_rhxnw2xnw0000gn/T//Rtmp6MRjnU/eurostat/df20020164326.RData</div><div class='co'>#&gt; <span class='warning'>Warning: </span>Default of 'make_valid' for 'output_class="sf"' will be changed in the future (see function details).</div><div class='input'>  <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
+</div><div class='output co'>#&gt; <span class='message'>No encoding supplied: defaulting to UTF-8.</span></div><div class='output co'>#&gt; <span class='message'>Regions defined for each Polygons</span></div><div class='output co'>#&gt; <span class='message'>Joining, by = "id"</span></div><div class='output co'>#&gt; <span class='message'>data_frame at resolution 1: 20  cached at:  /tmp/RtmpS7k1p8/eurostat/df20020164326.RData</span></div><div class='output co'>#&gt; <span class='warning'>Warning: Default of 'make_valid' for 'output_class="sf"' will be changed in the future (see function details).</span></div><div class='input'>  <span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span>
     <span class='va'>spdf</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat_geospatial</span><span class='op'>(</span>output_class <span class='op'>=</span> <span class='st'>"spdf"</span>,
                                     resolution <span class='op'>=</span> <span class='st'>"10"</span>,
                                     nuts_level <span class='op'>=</span> <span class='st'>"3"</span><span class='op'>)</span>
@@ -300,11 +295,11 @@ only valid (multi-)polygons are returned, example included below.</p>
 
       <footer>
       <div class="copyright">
-  <p><p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p></p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">
-  <p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.6.1.9001.</p></p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -312,8 +307,6 @@ only valid (multi-)polygons are returned, example included below.</p>
 
   
 
-
-  
 
   </body>
 </html>

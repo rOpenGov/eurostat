@@ -19,8 +19,6 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
-    
-
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -33,12 +31,18 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.2</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.3</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
+<li>
+  <a href="../index.html">
+    <span class="fas fa-home fa-lg"></span>
+     
+  </a>
+</li>
 <li>
   <a href="../reference/index.html">Reference</a>
 </li>
@@ -75,7 +79,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropengov/eurostat/" class="external-link">
+  <a href="https://github.com/ropengov/eurostat/">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -90,14 +94,14 @@
 
       
 
-      </header><script src="vignette_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
+      </header><script src="vignette_files/header-attrs-2.7.12/header-attrs.js"></script><script src="vignette_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Vignette for the eurostat R package</h1>
             
-            <h4 data-toc-skip class="date">2021-05-10</h4>
+            <h4 class="date">2021-05-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/vignette.Rmd" class="external-link"><code>vignettes/vignette.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/vignette.Rmd"><code>vignettes/vignette.Rmd</code></a></small>
       <div class="hidden name"><code>vignette.Rmd</code></div>
 
     </div>
@@ -106,20 +110,20 @@
     
 <div id="r-tools-for-eurostat-open-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#r-tools-for-eurostat-open-data" class="anchor" aria-hidden="true"></a>R Tools for Eurostat Open Data</h1>
-<p>This <a href="http://ropengov.github.io" class="external-link">rOpenGov</a> R package provides tools to access <a href="https://ec.europa.eu/eurostat/data/database" class="external-link">Eurostat database</a>, which you can also browse on-line for the data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/" class="external-link">package website</a>.</p>
+<a href="#r-tools-for-eurostat-open-data" class="anchor"></a>R Tools for Eurostat Open Data</h1>
+<p>This <a href="http://ropengov.github.io">rOpenGov</a> R package provides tools to access <a href="https://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for the data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
 </div>
 <div id="installation" class="section level1">
 <h1 class="hasAnchor">
-<a href="#installation" class="anchor" aria-hidden="true"></a>Installation</h1>
-<p>Release version <a href="https://CRAN.R-project.org/package=eurostat" class="external-link">(CRAN)</a>:</p>
+<a href="#installation" class="anchor"></a>Installation</h1>
+<p>Release version <a href="https://CRAN.R-project.org/package=eurostat">(CRAN)</a>:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></code></pre></div>
-<p>Development version <a href="https://github.com/rOpenGov/eurostat" class="external-link">(Github)</a>:</p>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html">install.packages</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></code></pre></div>
+<p>Development version <a href="https://github.com/rOpenGov/eurostat">(Github)</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
-<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropengov/eurostat"</span><span class="op">)</span></code></pre></div>
-<p>For examples on how to use the package, see the <a href="http://ropengov.github.io/eurostat/" class="external-link">online tutorial</a> (Articles section of the homepage).</p>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/">devtools</a></span><span class="op">)</span>
+<span class="fu"><a href="https://devtools.r-lib.org//reference/remote-reexports.html">install_github</a></span><span class="op">(</span><span class="st">"ropengov/eurostat"</span><span class="op">)</span></code></pre></div>
+<p>For examples on how to use the package, see the <a href="http://ropengov.github.io/eurostat/">online tutorial</a> (Articles section of the homepage).</p>
 </div>
   </div>
 
@@ -134,13 +138,11 @@
 
 
       <footer><div class="copyright">
-  <p></p>
-<p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">
-  <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
 </div>
 
       </footer>
@@ -148,8 +150,6 @@
 
   
 
-
-  
 
   </body>
 </html>

@@ -1,4 +1,3 @@
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
@@ -27,7 +26,8 @@ GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)]
 <!--[![CRAN version](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)-->
 <!-- badges: end -->
 
-# eurostat R package
+eurostat R package
+==================
 
 R tools to access open data from
 [Eurostat](https://ec.europa.eu/eurostat). Data search, download,
@@ -35,35 +35,109 @@ manipulation and visualization.
 
 ### Installation and use
 
-``` r
-# Install from CRAN
-install.packages("eurostat")
+    # Install from CRAN
+    install.packages("eurostat")
 
-# Install from GitHub
-library(devtools)
-devtools::install_github("ropengov/eurostat")
-```
+    # Install from GitHub
+    library(devtools)
+    devtools::install_github("ropengov/eurostat")
 
 The package provides several different ways to get datasets from
 Eurostat. Searching for data is one way, if you know what to look for.
 
-``` r
-# Load the package
-library(eurostat)
+    # Load the package
+    library(eurostat)
 
-# Perform a simple search and print a table
-passengers <- search_eurostat("passenger transport")
-knitr::kable(head(passengers))
-```
+    # Perform a simple search and print a table
+    passengers <- search_eurostat("passenger transport")
+    knitr::kable(head(passengers))
 
-| title                                                              | code            | type    | last update of data | last table structure change | data start | data end | values |
-|:-------------------------------------------------------------------|:----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|:-------|
-| Air passenger transport                                            | enps\_avia\_pa  | dataset | 16.04.2021          | NA                          | 2005       | 2020     | NA     |
-| Volume of passenger transport relative to GDP                      | tran\_hv\_pstra | dataset | 01.09.2020          | 08.02.2021                  | 1990       | 2018     | NA     |
-| Modal split of passenger transport                                 | tran\_hv\_psmod | dataset | 01.09.2020          | 08.02.2021                  | 1990       | 2018     | NA     |
-| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 07.05.2021          | 07.05.2021                  | 1993       | 2021Q1   | NA     |
-| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 07.05.2021          | 07.05.2021                  | 1993       | 2021Q1   | NA     |
-| Air passenger transport between reporting countries                | avia\_paocc     | dataset | 07.05.2021          | 07.05.2021                  | 1993       | 2021Q1   | NA     |
+<table style="width:100%;">
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 8%" />
+<col style="width: 4%" />
+<col style="width: 12%" />
+<col style="width: 17%" />
+<col style="width: 6%" />
+<col style="width: 5%" />
+<col style="width: 4%" />
+</colgroup>
+<thead>
+<tr class="header">
+<th style="text-align: left;">title</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: left;">type</th>
+<th style="text-align: left;">last update of data</th>
+<th style="text-align: left;">last table structure change</th>
+<th style="text-align: left;">data start</th>
+<th style="text-align: left;">data end</th>
+<th style="text-align: left;">values</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Air passenger transport</td>
+<td style="text-align: left;">enps_avia_pa</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">16.04.2021</td>
+<td style="text-align: left;">NA</td>
+<td style="text-align: left;">2005</td>
+<td style="text-align: left;">2020</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Volume of passenger transport relative to GDP</td>
+<td style="text-align: left;">tran_hv_pstra</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">01.09.2020</td>
+<td style="text-align: left;">08.02.2021</td>
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Modal split of passenger transport</td>
+<td style="text-align: left;">tran_hv_psmod</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">01.09.2020</td>
+<td style="text-align: left;">08.02.2021</td>
+<td style="text-align: left;">1990</td>
+<td style="text-align: left;">2018</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Air passenger transport by reporting country</td>
+<td style="text-align: left;">avia_paoc</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2021Q1</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
+<td style="text-align: left;">avia_paoa</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2021Q1</td>
+<td style="text-align: left;">NA</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Air passenger transport between reporting countries</td>
+<td style="text-align: left;">avia_paocc</td>
+<td style="text-align: left;">dataset</td>
+<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">1993</td>
+<td style="text-align: left;">2021Q1</td>
+<td style="text-align: left;">NA</td>
+</tr>
+</tbody>
+</table>
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html)
@@ -74,9 +148,9 @@ examples.
 ### Recommended packages
 
 It is recommended to install the `giscoR` package
-(<https://dieghernan.github.io/giscoR/>). This is another API package
-that provides R tools for Eurostat geographic data to support geospatial
-analysis and visualization.
+(<a href="https://dieghernan.github.io/giscoR/" class="uri">https://dieghernan.github.io/giscoR/</a>).
+This is another API package that provides R tools for Eurostat
+geographic data to support geospatial analysis and visualization.
 
 ### Contribute
 
@@ -95,7 +169,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.2. URL: <https://ropengov.github.io/eurostat/>
+R package version 3.7.3. URL: <https://ropengov.github.io/eurostat/>
 
 We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),
