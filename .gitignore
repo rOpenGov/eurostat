@@ -1,3 +1,11 @@
+.Rproj.user
+.Rhistory
+.RData
+.Ruserdata
+.Rdata
+.httr-oauth
+.DS_Store
+
 _pkgdown.yml
 inst/doc
 docs/docsearch.js
@@ -15,7 +23,6 @@ vignettes/*_tutorial.html
 vignettes/*~
 vignettes/tmp*
 vignettes/fig/*.pdf
-.Rproj.user
 eurostat.Rproj
 vignettes/NUTS_2010.xls
 vignettes/NUTS_2010_60M_SH*
@@ -23,8 +30,9 @@ vignettes/zipfile
 NUTS_2010.xls
 zipfile
 packrat/lib*/
-.Rhistory
 
 /revdep/.cache.rds
 doc
 Meta
+/doc/
+/Meta/
