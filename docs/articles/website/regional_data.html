@@ -19,6 +19,8 @@
 <![endif]-->
 </head>
 <body data-spy="scroll" data-target="#toc">
+    
+
     <div class="container template-article">
       <header><div class="navbar navbar-default navbar-fixed-top" role="navigation">
   <div class="container">
@@ -73,7 +75,7 @@
       </ul>
 <ul class="nav navbar-nav navbar-right">
 <li>
-  <a href="https://github.com/ropengov/eurostat/">
+  <a href="https://github.com/ropengov/eurostat/" class="external-link">
     <span class="fab fa-github fa-lg"></span>
      
   </a>
@@ -88,15 +90,15 @@
 
       
 
-      </header><script src="regional_data_files/header-attrs-2.7/header-attrs.js"></script><script src="regional_data_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="regional_data_files/header-attrs-2.8/header-attrs.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Regional data examples for the eurostat R package</h1>
-                        <h4 class="author">Daniel Antal, CFA</h4>
+                        <h4 data-toc-skip class="author">Daniel Antal, CFA</h4>
             
-            <h4 class="date">2021-05-09</h4>
+            <h4 data-toc-skip class="date">2021-05-10</h4>
       
-      <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/regional_data.Rmd"><code>vignettes/website/regional_data.Rmd</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/regional_data.Rmd" class="external-link"><code>vignettes/website/regional_data.Rmd</code></a></small>
       <div class="hidden name"><code>regional_data.Rmd</code></div>
 
     </div>
@@ -105,32 +107,32 @@
     
 <div id="r-tools-for-eurostat-open-data-regional-data" class="section level1">
 <h1 class="hasAnchor">
-<a href="#r-tools-for-eurostat-open-data-regional-data" class="anchor"></a>R Tools for Eurostat Open Data: regional data</h1>
-<p>This <a href="http://ropengov.github.io">rOpenGov</a> R package provides tools to access <a href="http://ec.europa.eu/eurostat/data/database">Eurostat database</a>, which you can also browse on-line for the data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/">package website</a>.</p>
+<a href="#r-tools-for-eurostat-open-data-regional-data" class="anchor" aria-hidden="true"></a>R Tools for Eurostat Open Data: regional data</h1>
+<p>This <a href="http://ropengov.github.io" class="external-link">rOpenGov</a> R package provides tools to access <a href="http://ec.europa.eu/eurostat/data/database" class="external-link">Eurostat database</a>, which you can also browse on-line for the data sets and documentation. For contact information and source code, see the <a href="http://ropengov.github.io/eurostat/" class="external-link">package website</a>.</p>
 <p>See eurostat vignette for installation and basic use.</p>
 <div id="motivation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#motivation" class="anchor"></a>Motivation</h2>
+<a href="#motivation" class="anchor" aria-hidden="true"></a>Motivation</h2>
 <p>Working with regional data has many advantages and many challenges. I had three aims when creating this article:</p>
 <ul>
 <li>I wanted to highlight how you can use existing eurostat functions to work with Eurostat’s regional products;</li>
 <li>To create simple helper functions and guidance on more complex data manipulations to improve the quality of the raw regional data;</li>
 <li>To start a dialogue on improving the data products of Eurostat.</li>
 </ul>
-<p>This work has some similarities with my other eurostat package related extension released on CRAN and rOpenGov, iotables. The <a href="http://iotables.ceemid.eu/">iotables packages</a> deals with national accounts data, where the use of Eurostat’s metadata system requires domain-specific knowledge, and where the correct joining of different tables based on this knowledge, coded in the metadata, is critical to make the downloaded tables work. Similarly, a domain-specific knowledge of regional metadata is necessary to put the regional data into tidy data pipelines, or even to put them on a map (see article on using <a href="http://ropengov.github.io/eurostat/articles/website/maps.html">maps</a>).</p>
+<p>This work has some similarities with my other eurostat package related extension released on CRAN and rOpenGov, iotables. The <a href="http://iotables.ceemid.eu/" class="external-link">iotables packages</a> deals with national accounts data, where the use of Eurostat’s metadata system requires domain-specific knowledge, and where the correct joining of different tables based on this knowledge, coded in the metadata, is critical to make the downloaded tables work. Similarly, a domain-specific knowledge of regional metadata is necessary to put the regional data into tidy data pipelines, or even to put them on a map (see article on using <a href="http://ropengov.github.io/eurostat/articles/website/maps.html" class="external-link">maps</a>).</p>
 <p>The advantage over national data is lies in the homogeneity in units, and the larger number of units, which enables us to better understand social and economic differences. National boundaries, i.e. NUTS0 regions, are historical and political constructions. They greatly vary in size and complexity. Within the EU, Germany and Malta are equally NUTS0 regions or countries, although Malta’s size would make it a small NUTS3 region in Germany. Comparing Germany with Malta hides a huge diversity within Germany.</p>
 <p>Statistical regions are largely homogeneous in size and in urban complexity. The smallest, NUTS3 region are cities, or towns with their rural hinterland; it can be expected that most people go to school or work within this region. Malta itself is the size of a NUTS3 region, so it could be compared with the NUTS3 regions of Germany the most meaningfully. NUTS1 units are usually provinces of larger countries, such as Bavaria in Germany. NUTS2 units comprise of (usually) several NUTS3 units within a NUTS1 large region.</p>
 <p>The smallest member states are the size of NUTS2 and NUTS3 regions and can be best compared with all the similar sized regions of Europe. Bit larger member states like Slovakia are NUTS1 regions, and they can be best compared with all NUTS1 regions of Europe: Bavaria and Slovakia make a more meaningful comparison in many cases than Germany and Slovakia. There are several difficulties with working on sub-national level of data.These are related to data availability, changes in boundaries, and data &amp; metadata quality.</p>
 <div id="boundary-changes" class="section level3">
 <h3 class="hasAnchor">
-<a href="#boundary-changes" class="anchor"></a>Boundary changes</h3>
+<a href="#boundary-changes" class="anchor" aria-hidden="true"></a>Boundary changes</h3>
 <p>Changes in boundaries meant that unlike national boundaries, regional boundaries change very often. Since standardizing the NUTS regions in 2003 with the EU, boundary changes were made on average every three years. Boundary changes make organizing data panels (which are several time instances of the cross section regional data) very tedious.</p>
-<p>You can review the NUTS change <a href="https://ec.europa.eu/eurostat/web/nuts/history">history</a> on the Eurostat website.</p>
+<p>You can review the NUTS change <a href="https://ec.europa.eu/eurostat/web/nuts/history" class="external-link">history</a> on the Eurostat website.</p>
 <p><img src="https://ec.europa.eu/eurostat/documents/345175/501899/Nuts-history"></p>
 </div>
 <div id="data-availability-and-quality" class="section level3">
 <h3 class="hasAnchor">
-<a href="#data-availability-and-quality" class="anchor"></a>Data availability and quality</h3>
+<a href="#data-availability-and-quality" class="anchor" aria-hidden="true"></a>Data availability and quality</h3>
 <p>Data availability means that many statistical produces are only available on NUTS0 country level. The creation of NUTS1-NUTS3 statistics is usually slow and the data product range is narrower at these levels.</p>
 <p>NUTS-level data is often disaggregated with the use of various estimations from higher levels. While some original data sources are available from NUTS3 levels (or even higher geographical resolution data, i.e. lower level of aggregation level), such as population or mortality data, many economic activities are theoretically difficult to be connected to one place and geographical disaggregation is only estimated. For example, since the GDP is mainly produced in companies, and many companies work in several locations across municipal and regional borders, locating their contribution to the GDP is the result of a more or less precise estimation.</p>
 <p>Pan-European surveys are very important data sources for many social data products, but they are often created with the use of nationally representative samples. Even if they contain regional coding, and they can be re-arranged into regional statistics, the results are of lower quality, as the original survey sample is not representative to each and every NUTS2 or NUTS3 region of Germany, for example. (Of course, since Malta is a NUTS2 region, survey data from Malta is representative on NUTS2 = NUTS1 = NUTS0 level.) Practically this means that many statistical products of Eurostat are mixed products, i.e. they contain NUTS1 level data for larger member states, such as Germany, France or Italy, and they contain NUTS2 level data for other member states.</p>
@@ -138,13 +140,13 @@
 </div>
 <div id="metadata-quality" class="section level3">
 <h3 class="hasAnchor">
-<a href="#metadata-quality" class="anchor"></a>Metadata quality</h3>
+<a href="#metadata-quality" class="anchor" aria-hidden="true"></a>Metadata quality</h3>
 <p>And at last, the metadata quality of Eurostat’s products is not as good as on NUTS0 national level. A particularly problematic issue is that Eurostat’s tables do not differentiate between the current NUTS2016 regional boundaries and the NUTS2013 or NUTS2010 boundaries. Some data tables contain rows that cannot and must not be compared. For example, France went under a very thorough change in its regional boundaries, meaning that NUTS2013 regional data from 2013 can only be compared in the case of a very small fraction of the country with NUTS2016 data from 2016 or 2018.</p>
-<p>We programatically coded the NUTS2013-2016 changes into the new functions presented in this article. You can download the correspondence table in Excel or review it with <code><a href="https://rdrr.io/r/utils/data.html">data(nuts_correspondence)</a></code>. Whenever we found examples of the use NUTS2010 data (in Slovenia and Greece), we treated them as exception in the functions.</p>
+<p>We programatically coded the NUTS2013-2016 changes into the new functions presented in this article. You can download the correspondence table in Excel or review it with <code>data(nuts_correspondence)</code>. Whenever we found examples of the use NUTS2010 data (in Slovenia and Greece), we treated them as exception in the functions.</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># download to a temporary file </span>
-<span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".xlsx"</span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">'https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx'</span>, destfile <span class="op">=</span> <span class="va">tf</span>,  mode <span class="op">=</span> <span class="st">'wb'</span>  <span class="op">)</span></code></pre></div>
+<span class="va">tf</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempfile</a></span><span class="op">(</span>fileext <span class="op">=</span> <span class="st">".xlsx"</span><span class="op">)</span>
+<span class="fu"><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">download.file</a></span><span class="op">(</span>url <span class="op">=</span> <span class="st">'https://ec.europa.eu/eurostat/documents/345175/629341/NUTS2013-NUTS2016.xlsx'</span>, destfile <span class="op">=</span> <span class="va">tf</span>,  mode <span class="op">=</span> <span class="st">'wb'</span>  <span class="op">)</span></code></pre></div>
 <p>The correspondence tables themselves are not tidy, and they are in several sheets which are not fully consistent. In the 2013-2016 table the French region <code>FR7</code> or Centre-Est is marked as <code>discontinued</code> in the sheet <code>Correspondence NUTS-1</code> and at the same time as <code>relabelled and recoded</code> to <code>FRK</code>, or Auvergne-Rhône-Alpes. We believe that the latter case is correct and use only this row in the correspondence table to avoid duplications in joining.</p>
 <p>Furthermore, Eurostat has a very problematic practice with simply removing statistical products when metadata definitions change. So, you may have downloaded industry-level data with the NACE Rev2 definition or French regional data with the NUTS 2013 definition, but under the same title, you will be downloading a differently defined dataset in 2020. Or, you will not be able to reproduce your code, because they will remove the data with your earlier definition. While it is clear that Eurostat cannot take care of boundary changes if the responsible national statistical offices fail to do this, removing the history of data products makes the validation of professional and academic work made with such data impossible in some cases.</p>
 <p>The logical workflow is the following:</p>
@@ -161,7 +163,7 @@
 </div>
 <div id="taking-care-of-boundaries" class="section level1">
 <h1 class="hasAnchor">
-<a href="#taking-care-of-boundaries" class="anchor"></a>Taking care of boundaries</h1>
+<a href="#taking-care-of-boundaries" class="anchor" aria-hidden="true"></a>Taking care of boundaries</h1>
 <p>Most regional statistical products are made on the NUTS2 level, or they are mixed NUTS1-NUTS2 level statistics. This means that when you open a Eurostat data table, some rows refer to NUTS1 regions and others to NUTS2 regions, or even you find all NUTS0-NUTS3 level data in the same table. And sometimes not.</p>
 <p>The power of statistical analysis can be increased when you order such data into panels, because the different change in a time interval in this huge cross-section contains usually a lot more information about the underlying social or economic process. However, organizing panels – or just simple time series of an individual region – is often hindered by changes in regional boundaries.</p>
 <p>Usually you have 150-300 units to compare, which is gives an unprecedented richness in cross-sectional analysis. Most US or Australian datasets are not so detailed in cross-section, and data availability in the rest of the world is just lower. But joining this data with spatial maps or other data is challenging because the data tables are not consistently made, and often their titles or description is misleading, for example, the description claims that you will get NUTS2 level data, but in reality you get an assortment of all level data.</p>
@@ -169,8 +171,8 @@
 <p>Keeping track of the changes is a much better strategy, and up to a point, it is a costless in the amount of work, because often <em>only the metadata is changing</em>, so, in fact, the data itself is not missing, just it is labelled inconsistently. Member states, when they change two regions’ boundary only, will nevertheless create new regional codes for all their regions, to make sure that regional labels do not mix. However, Eurostat is not following this practice well, and it does mixes up different labels.</p>
 <p>With the new helper function <code><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code()</a></code> you can see if your geo label codes are affected by these changes, and you get a first view on how you can continue your work.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op">%&gt;%</span>
+<code class="sourceCode R"><span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span> </code></pre></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
@@ -1316,11 +1318,11 @@
 <p>Zooming on regions <code>UKM</code> you can see that <code>UKM5</code> and <code>UKM6</code> are unchanged, <code>UKM3</code> gave birth to two new regional units <code>UKM8</code> and <code>UKM9</code> (this is an additive change) and <code>UKM2</code> lost a NUTS3 unit <code>UKM24</code>. This latter one is also an additive change, but maybe far more difficult to handle in practice, because data about <code>UKM24</code> may not be available in most cases, as NUTS1 and NUTS2 level data is only available for a very few basic indicators on NUTS3 level. You can, however, easily maintain backward compatibility among <code>UKM3</code>, <code>UKM8</code>, <code>UKM9</code>, because the new data is just available in higher resolution, or, in other words, for two halves of the earlier <code>UKM3</code> region.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for readability the previous example is filtered and reduced</span>
-<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span>    <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"UKM"</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="op">(</span> <span class="va">geo</span>, <span class="va">values</span>, <span class="va">change</span> <span class="op">)</span></code></pre></div>
+<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span>    <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"UKM"</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span> <span class="op">(</span> <span class="va">geo</span>, <span class="va">values</span>, <span class="va">change</span> <span class="op">)</span></code></pre></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1334,10 +1336,10 @@
 <p>For easier filtering in further use, there are two logical variables added to the data frame, i.e. <code>nuts_2013</code> and <code>nuts_2016</code>. Many datasets contain non-EU regions not covered in the Eurostat correspondence tables, their filter is <code>nuts_2013 == FALSE &amp; nuts_2016 == FALSE</code>.</p>
 <p>The following example will filter out all rows that use a geo code which is defined in NUTS2013 and cannot be found in NUTS2016. These are the main sources of incompatibility in your data panel.</p>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">nuts_2013</span>, <span class="op">!</span> <span class="va">nuts_2016</span> <span class="op">)</span> </code></pre></div>
+<code class="sourceCode R"><span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">nuts_2013</span>, <span class="op">!</span> <span class="va">nuts_2016</span> <span class="op">)</span> </code></pre></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1462,17 +1464,17 @@
 ## 38     FALSE      TRUE</code></pre>
 <div id="recoding-needed-only-the-metadata-changed" class="section level2">
 <h2 class="hasAnchor">
-<a href="#recoding-needed-only-the-metadata-changed" class="anchor"></a>Recoding needed: only the metadata changed</h2>
+<a href="#recoding-needed-only-the-metadata-changed" class="anchor" aria-hidden="true"></a>Recoding needed: only the metadata changed</h2>
 <p>The first, logical step is to find those data points which are in fact identical, only their regional codes have changed. For example, <code>FRC1</code> is in fact identical to region with the NUTS2013 label <code>FR26</code> (Bourgogne region in France.) In this case, you can simply re-label the regions that appear to be different just because of the different codes applied.</p>
 <p>The helper function <code><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code()</a></code> will assist you with these cases.</p>
 <p>To make the example more clear, let’s zoom on changes in France. You can see that many regions changes, but some of them only changed labels. For forward compatibility, <code><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code()</a></code> changed all geo labels to the current, <code>NUTS2016</code> definition. In fact, this is needed to use maps, for example.</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for readability the previous example is filtered and reduced</span>
-<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"FR"</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="op">(</span> <span class="va">geo</span>, <span class="va">code13</span>,  <span class="va">code16</span>, <span class="va">change</span>, <span class="va">values</span> <span class="op">)</span></code></pre></div>
+<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../../reference/harmonize_geo_code.html">harmonize_geo_code</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"FR"</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span> <span class="op">(</span> <span class="va">geo</span>, <span class="va">code13</span>,  <span class="va">code16</span>, <span class="va">change</span>, <span class="va">values</span> <span class="op">)</span></code></pre></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1511,11 +1513,11 @@
 <p>For comparing with additional data sources, it may be useful to make sure that you use the current name of the region. Function <code><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016()</a></code> changes the name column to the NUTS2016 definition, when applicable, and <code><a href="../../reference/recode_to_nuts_2013.html">recode_to_nuts_2013()</a></code> will use the earlier definition.</p>
 <div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for readability the previous example is filtered and reduced</span>
-<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"FR"</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="op">(</span> <span class="va">geo</span>, <span class="va">name</span>,  <span class="va">code16</span>, <span class="va">change</span>, <span class="va">resolution</span>, <span class="va">values</span> <span class="op">)</span></code></pre></div>
+<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">grepl</a></span><span class="op">(</span><span class="st">"FR"</span>, <span class="va">geo</span><span class="op">)</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span> <span class="op">(</span> <span class="va">geo</span>, <span class="va">name</span>,  <span class="va">code16</span>, <span class="va">change</span>, <span class="va">resolution</span>, <span class="va">values</span> <span class="op">)</span></code></pre></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1582,10 +1584,10 @@
 <p>Another useful filter is <code>change == "not in the EU"</code>. The non-EU member state region definitions (and their possible changes) are not covered in the Eurostat correspondence table.</p>
 <div class="sourceCode" id="cb23"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># for readability the previous example is filtered and reduced</span>
-<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-   <span class="fu"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
-   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="op">!</span> <span class="va">nuts_2013</span>, <span class="op">!</span> <span class="va">nuts_2016</span> <span class="op">)</span></code></pre></div>
+<span class="fu">eurostat</span><span class="fu">::</span><span class="va"><a href="../../reference/tgs00026.html">tgs00026</a></span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">time</span> <span class="op">==</span> <span class="fl">2012</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+   <span class="fu"><a href="../../reference/recode_to_nuts_2016.html">recode_to_nuts_2016</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="op">!</span> <span class="va">nuts_2013</span>, <span class="op">!</span> <span class="va">nuts_2016</span> <span class="op">)</span></code></pre></div>
 <pre><code>## In this data frame 238 observations are coded with the current NUTS2016
 ## geo labels and 276 observations/rows have NUTS2013 historical labels.</code></pre>
 <pre><code>## Not checking for regional label consistency in non-EU countries.
@@ -1621,14 +1623,14 @@
 </div>
 <div id="imputing-to-new-boundaries-with-historical-data" class="section level2">
 <h2 class="hasAnchor">
-<a href="#imputing-to-new-boundaries-with-historical-data" class="anchor"></a>Imputing to new boundaries with historical data</h2>
-<p>Eurostat released an untidy Excel document that contains all boundary changes from the <code>NUTS2013</code> to the <code>NUTS2016</code> boundary definition. You can load these tidy tables into your global environment with <code><a href="https://rdrr.io/r/utils/data.html">data("nuts_correspondence")</a></code> and <code><a href="https://rdrr.io/r/utils/data.html">data ("regional_changes_2016")</a></code> or simply reference them as <code><a href="../../reference/nuts_correspondence.html">eurostat::nuts_correspondence</a></code> and <code><a href="../../reference/regional_changes_2016.html">eurostat::regional_changes_2016</a></code>. (The <code>eurostat::</code> part can be omitted if you have called earlier<code><a href="https://ropengov.github.io/eurostat/">library(eurostat)</a></code> in your code.)</p>
+<a href="#imputing-to-new-boundaries-with-historical-data" class="anchor" aria-hidden="true"></a>Imputing to new boundaries with historical data</h2>
+<p>Eurostat released an untidy Excel document that contains all boundary changes from the <code>NUTS2013</code> to the <code>NUTS2016</code> boundary definition. You can load these tidy tables into your global environment with <code>data("nuts_correspondence")</code> and <code>data ("regional_changes_2016")</code> or simply reference them as <code><a href="../../reference/nuts_correspondence.html">eurostat::nuts_correspondence</a></code> and <code><a href="../../reference/regional_changes_2016.html">eurostat::regional_changes_2016</a></code>. (The <code>eurostat::</code> part can be omitted if you have called earlier<code><a href="https://ropengov.github.io/eurostat/" class="external-link">library(eurostat)</a></code> in your code.)</p>
 <p>Because NUTS3 level data is very scarce, we did not create a programmatic solution to filling in new boundaries for NUTS2 regions.</p>
 <p>However, using these correspondence information, many NUTS1 regions, when NUTS2 data is present in the data, can be filled in with historical data using simple equivalence or addition.</p>
 <div class="sourceCode" id="cb28"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="va">nuts_correspondence</span> <span class="op">%&gt;%</span>
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">nuts_level</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">)</span> <span class="op">%&gt;%</span> 
-  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="op">(</span> <span class="va">code16</span>, <span class="va">resolution</span> <span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="va">nuts_correspondence</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span> <span class="op">(</span> <span class="va">nuts_level</span> <span class="op">==</span> <span class="fl">1</span> <span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span> 
+  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html" class="external-link">select</a></span> <span class="op">(</span> <span class="va">code16</span>, <span class="va">resolution</span> <span class="op">)</span></code></pre></div>
 <pre><code>## # A tibble: 28 x 2
 ##    code16 resolution        
 ##    &lt;chr&gt;  &lt;chr&gt;             
@@ -1646,14 +1648,14 @@
 <p>For example, the new NUTS1 regions <code>FRB</code> is simply the continuation of the earlier NUTS2 region <code>FR24</code>. Or, the new NUTS1 region <code>FRC</code> can be filled with historical data with simply adding <code>FR26</code> and <code>FR43</code> NUTS2 data observations.</p>
 <div id="backfill-to-historical-boundaries" class="section level3">
 <h3 class="hasAnchor">
-<a href="#backfill-to-historical-boundaries" class="anchor"></a>Backfill to historical boundaries</h3>
+<a href="#backfill-to-historical-boundaries" class="anchor" aria-hidden="true"></a>Backfill to historical boundaries</h3>
 <p>When applying the latest boundaries (and visualizing according to current boundaries) is not important, it may be easier, or leave you with a larger panel of data if you use the correspondence information to backfill new, NUTS2016 data into the NUTS2013 boundaries, simply because you have more data following the earlier definition.</p>
 </div>
 </div>
 <div id="imputation-strategies" class="section level2">
 <h2 class="hasAnchor">
-<a href="#imputation-strategies" class="anchor"></a>Imputation strategies</h2>
-<p>There are many imputation methodologies implemented in various R libraries (see <a href="https://cran.r-project.org/web/views/MissingData.html">CRAN Task View: Missing Data</a>) You have to beware that most of these methods are not satisfactory in regional datasets. Whenever missingness is caused by boundary changes, it will certainly violate many imputation method’s conditions. For example, many imputation strategies work when missingness is random. Therefore, it is very important that you first align the boundaries, and then apply imputation.</p>
+<a href="#imputation-strategies" class="anchor" aria-hidden="true"></a>Imputation strategies</h2>
+<p>There are many imputation methodologies implemented in various R libraries (see <a href="https://cran.r-project.org/web/views/MissingData.html" class="external-link">CRAN Task View: Missing Data</a>) You have to beware that most of these methods are not satisfactory in regional datasets. Whenever missingness is caused by boundary changes, it will certainly violate many imputation method’s conditions. For example, many imputation strategies work when missingness is random. Therefore, it is very important that you first align the boundaries, and then apply imputation.</p>
 <p>Consider the following very simple, hypothetical example:</p>
 <pre><code>## # A tibble: 4 x 4
 ##   regions                              Y2014 Y2015 Y2016
@@ -1685,7 +1687,7 @@
 </div>
 <div id="suggestions-for-eurostat" class="section level1">
 <h1 class="hasAnchor">
-<a href="#suggestions-for-eurostat" class="anchor"></a>Suggestions for Eurostat</h1>
+<a href="#suggestions-for-eurostat" class="anchor" aria-hidden="true"></a>Suggestions for Eurostat</h1>
 <p>There are problems with Eurostat’s data products on two levels: with the data and with the metadata.</p>
 <p>The data problems are affecting the work of national statistical authorities, because they are responsible for the creation, validation, and when necessary, the later correction of data. Eurostat cannot change the data they submit; however, it can change harmonization methodology, guidelines, and when necessary, initiate change in statistical regulation. I think that updating guidelines, and possible even regulation would not be controversial in the case when member states would be asked to provide the history of their statistics in the cases when the content of the data did not change, only its metadata, i.e. the labelling. If a member state changed the boundaries of a region, it may or may not be possible to re-calculate the data for this region. However, when only the name and short code changed, the data points are there, and they should be included in the data products.</p>
 <p>Regarding metadata, Eurostat could improve its products without the involvement of member states. The current problem with the metadata of the regional statistics is that they are not tidy and not fully consistent. The variable column ‘geo’ in the statistical products in fact contains at least four different information: the level of aggregation, the label of the information in the NUTS2013 definition and the label of the information in the NUTS2016 information - and at least in the case of Greece and Slovenia NUTS2010 sometimes information, too. Depending on what view you take on the contents of the table, this means that a seemingly single data table in fact is an unlabelled join of four tables: a national data table, and three regional data tables following different regional boundaries.</p>
@@ -1696,20 +1698,20 @@
 </div>
 <div id="citations-and-related-work" class="section level1">
 <h1 class="hasAnchor">
-<a href="#citations-and-related-work" class="anchor"></a>Citations and related work</h1>
+<a href="#citations-and-related-work" class="anchor" aria-hidden="true"></a>Citations and related work</h1>
 <div id="citing-the-data-sources" class="section level3">
 <h3 class="hasAnchor">
-<a href="#citing-the-data-sources" class="anchor"></a>Citing the data sources</h3>
-<p>Eurostat data: cite <a href="http://ec.europa.eu/eurostat/">Eurostat</a>.</p>
-<p>Administrative boundaries: cite <a href="https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units">EuroGeographics</a>.</p>
+<a href="#citing-the-data-sources" class="anchor" aria-hidden="true"></a>Citing the data sources</h3>
+<p>Eurostat data: cite <a href="http://ec.europa.eu/eurostat/" class="external-link">Eurostat</a>.</p>
+<p>Administrative boundaries: cite <a href="https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units" class="external-link">EuroGeographics</a>.</p>
 </div>
 <div id="citing-the-eurostat-r-package" class="section level3">
 <h3 class="hasAnchor">
-<a href="#citing-the-eurostat-r-package" class="anchor"></a>Citing the eurostat R package</h3>
-<p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
+<a href="#citing-the-eurostat-r-package" class="anchor" aria-hidden="true"></a>Citing the eurostat R package</h3>
+<p>For main developers and contributors, see the <a href="http://ropengov.github.io/eurostat" class="external-link">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html" class="external-link">citation</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></code></pre></div>
 <pre><code>## 
 ## Kindly cite the eurostat R package as follows:
 ## 
@@ -1735,56 +1737,51 @@
 </div>
 <div id="contact" class="section level3">
 <h3 class="hasAnchor">
-<a href="#contact" class="anchor"></a>Contact</h3>
-<p>For contact information, see the <a href="http://ropengov.github.io/eurostat">package homepage</a>.</p>
+<a href="#contact" class="anchor" aria-hidden="true"></a>Contact</h3>
+<p>For contact information, see the <a href="http://ropengov.github.io/eurostat" class="external-link">package homepage</a>.</p>
 </div>
 </div>
 <div id="version-info" class="section level1">
 <h1 class="hasAnchor">
-<a href="#version-info" class="anchor"></a>Version info</h1>
+<a href="#version-info" class="anchor" aria-hidden="true"></a>Version info</h1>
 <p>This tutorial was created with</p>
 <div class="sourceCode" id="cb35"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## R version 4.0.3 (2020-10-10)
-## Platform: x86_64-pc-linux-gnu (64-bit)
-## Running under: Ubuntu 20.10
+<code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
+<pre><code>## R version 4.0.5 (2021-03-31)
+## Platform: x86_64-apple-darwin17.0 (64-bit)
+## Running under: macOS Big Sur 10.16
 ## 
 ## Matrix products: default
-## BLAS:   /home/lemila/bin/R-4.0.3/lib/libRblas.so
-## LAPACK: /home/lemila/bin/R-4.0.3/lib/libRlapack.so
+## BLAS:   /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRblas.dylib
+## LAPACK: /Library/Frameworks/R.framework/Versions/4.0/Resources/lib/libRlapack.dylib
 ## 
 ## locale:
-##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
-##  [3] LC_TIME=en_US.UTF-8        LC_COLLATE=en_US.UTF-8    
-##  [5] LC_MONETARY=en_US.UTF-8    LC_MESSAGES=en_US.UTF-8   
-##  [7] LC_PAPER=en_US.UTF-8       LC_NAME=C                 
-##  [9] LC_ADDRESS=C               LC_TELEPHONE=C            
-## [11] LC_MEASUREMENT=en_US.UTF-8 LC_IDENTIFICATION=C       
+## [1] en_US.UTF-8/en_US.UTF-8/en_US.UTF-8/C/en_US.UTF-8/en_US.UTF-8
 ## 
 ## attached base packages:
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tibble_3.1.0   dplyr_1.0.5    eurostat_3.7.2
+## [1] tibble_3.1.1   dplyr_1.0.6    eurostat_3.7.2
 ## 
 ## loaded via a namespace (and not attached):
-##  [1] Rcpp_1.0.6         lubridate_1.7.10   countrycode_1.2.0  tidyr_1.1.3       
-##  [5] ps_1.6.0           class_7.3-18       assertthat_0.2.1   rprojroot_2.0.2   
-##  [9] digest_0.6.27      utf8_1.2.1         R6_2.5.0           plyr_1.8.6        
-## [13] backports_1.2.1    evaluate_0.14      e1071_1.7-6        httr_1.4.2        
-## [17] pillar_1.6.0       rlang_0.4.10       curl_4.3           rstudioapi_0.13   
-## [21] jquerylib_0.1.3    rmarkdown_2.7      pkgdown_1.6.1.9000 textshaping_0.3.3 
-## [25] desc_1.3.0         RefManageR_1.3.0   readr_1.4.0        stringr_1.4.0     
-## [29] proxy_0.4-25       broom_0.7.6        compiler_4.0.3     xfun_0.22         
-## [33] pkgconfig_2.0.3    systemfonts_1.0.1  htmltools_0.5.1.1  tidyselect_1.1.0  
-## [37] fansi_0.4.2        crayon_1.4.1       sf_0.9-8           grid_4.0.3        
-## [41] jsonlite_1.7.2     lifecycle_1.0.0    DBI_1.1.1          magrittr_2.0.1    
-## [45] units_0.7-1        KernSmooth_2.23-18 cli_2.4.0          stringi_1.5.3     
-## [49] cachem_1.0.4       fs_1.5.0           xml2_1.3.2         bslib_0.2.4       
-## [53] ellipsis_0.3.1     ragg_1.1.2         generics_0.1.0     vctrs_0.3.7       
-## [57] RColorBrewer_1.1-2 tools_4.0.3        glue_1.4.2         purrr_0.3.4       
-## [61] hms_1.0.0          fastmap_1.1.0      yaml_2.2.1         classInt_0.4-3    
-## [65] memoise_2.0.0      knitr_1.31         sass_0.3.1</code></pre>
+##  [1] tidyselect_1.1.1   xfun_0.22          bslib_0.2.4        sf_0.9-8          
+##  [5] purrr_0.3.4        vctrs_0.3.8        generics_0.1.0     htmltools_0.5.1.1 
+##  [9] yaml_2.2.1         utf8_1.2.1         rlang_0.4.11       e1071_1.7-6       
+## [13] pkgdown_1.6.1.9001 jquerylib_0.1.4    pillar_1.6.0       glue_1.4.2        
+## [17] DBI_1.1.1          lifecycle_1.0.0    plyr_1.8.6         stringr_1.4.0     
+## [21] ragg_1.1.2         memoise_2.0.0      evaluate_0.14      knitr_1.33        
+## [25] fastmap_1.1.0      curl_4.3.1         class_7.3-19       fansi_0.4.2       
+## [29] broom_0.7.6        Rcpp_1.0.6         readr_1.4.0        KernSmooth_2.23-20
+## [33] backports_1.2.1    classInt_0.4-3     cachem_1.0.4       desc_1.3.0        
+## [37] jsonlite_1.7.2     countrycode_1.2.0  systemfonts_1.0.1  fs_1.5.0          
+## [41] textshaping_0.3.3  hms_1.0.0          digest_0.6.27      stringi_1.6.1     
+## [45] grid_4.0.5         rprojroot_2.0.2    cli_2.5.0          tools_4.0.5       
+## [49] magrittr_2.0.1     sass_0.3.1         proxy_0.4-25       RefManageR_1.3.0  
+## [53] crayon_1.4.1       tidyr_1.1.3        pkgconfig_2.0.3    ellipsis_0.3.2    
+## [57] xml2_1.3.2         lubridate_1.7.10   rstudioapi_0.13    assertthat_0.2.1  
+## [61] rmarkdown_2.8      httr_1.4.2         R6_2.5.0           units_0.7-1       
+## [65] compiler_4.0.5</code></pre>
 </div>
   </div>
 
@@ -1799,11 +1796,13 @@
 
 
       <footer><div class="copyright">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
+  <p></p>
+<p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
+  <p></p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
 </div>
 
       </footer>
@@ -1811,6 +1810,8 @@
 
   
 
+
+  
 
   </body>
 </html>

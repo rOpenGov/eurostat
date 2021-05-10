@@ -6,10 +6,10 @@ output:
     toc: true
 vignette: >
     %\VignetteIndexEntry{Tutorial for the eurostat R package}
-    %\VignetteEngine{knitr::rmarkdown}
     %\VignetteDepends{Cairo}
     %\VignetteEncoding{UTF-8}
     \usepackage[utf8]{inputenc}
+    %\VignetteEngine{knitr::rmarkdown}
 editor_options:
     chunk_output_type: console
 ---
