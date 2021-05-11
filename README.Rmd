@@ -19,6 +19,7 @@ knitr::opts_chunk$set(
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
@@ -110,10 +111,12 @@ This package is in no way officially related to or endorsed by Eurostat.
 [coc]: https://github.com/ropengov/eurostat/blob/master/other/CODE_OF_CONDUCT.md
 [implementations-badge]: https://img.shields.io/badge/%F0%9F%92%A1-implementations-8C8E93.svg?style=flat-square
 [implementations]: https://github.com/ropengov/eurostat/blob/master/other/IMPLEMENTATIONS.md
+
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social
 [github-watch]: https://github.com/ropengov/eurostat/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social
 [github-star]: https://github.com/ropengov/eurostat/stargazers
+
 [twitter]: https://twitter.com/intent/tweet?text=Check%20out%20eurostat!%20%E2%9C%A8%20Recognize%20all%20contributors,%20not%20just%20the%20ones%20who%20commit%20code%20%E2%9C%A8%20https://github.com/ropengov/eurostat/%20%F0%9F%A4%97
 [twitter-badge]: https://img.shields.io/twitter/url/https/github.com/ropengov/eurostat.svg?style=social
 [emojis]: https://github.com/ropengov/eurostat/#emoji-key
