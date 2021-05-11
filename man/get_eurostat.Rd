@@ -125,8 +125,8 @@ database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 }
 \examples{
+\dontrun{ 
 k <- get_eurostat("nama_10_lp_ulc")
-\dontrun{
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 dir.create(file.path(tempdir(), "r_cache"))

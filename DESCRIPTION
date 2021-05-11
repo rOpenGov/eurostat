@@ -1,7 +1,7 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2021-05-10
+Date: 2021-05-11
 Version: 3.7.3
 Encoding: UTF-8
 Authors@R: 
@@ -69,10 +69,10 @@ Imports:
     RefManageR,
     sf,
     stringi,
+    stringr,
     tibble,
     tidyr,
-    tidyselect,
-    stringr
+    tidyselect (>= 1.1.0)
 Suggests:
     Cairo,
     ggplot2,

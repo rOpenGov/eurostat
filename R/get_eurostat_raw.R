@@ -18,7 +18,7 @@
 #'     head(tmp)
 #'   }
 #'   
-#' @importFrom readr read_tsv cols
+#' @importFrom readr read_tsv cols col_character
 #' @importFrom utils download.file
 #'   
 #' @keywords utilities database

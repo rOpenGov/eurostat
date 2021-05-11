@@ -20,6 +20,7 @@
 #'  }
 #'  
 #' @importFrom dplyr mutate case_when
+#' @importFrom magrittr %>%
 #'  
 #' @export
 

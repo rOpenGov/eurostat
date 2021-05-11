@@ -89,9 +89,9 @@
 #'         bulk download facility can be completed for example with 
 #'         \code{\link[tidyr]{complete}}.
 #' @seealso \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
-#' @examples 
+#' @examples
+#' \dontrun{ 
 #' k <- get_eurostat("nama_10_lp_ulc")
-#' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 #' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 #' dir.create(file.path(tempdir(), "r_cache"))

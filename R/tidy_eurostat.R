@@ -26,7 +26,6 @@
 #' @importFrom stringi stri_extract_first_regex
 #' @import tidyr
 #' @import dplyr
-#' @import tidyselect
 #' 
 #' @keywords internal utilities database
 tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
@@ -42,7 +41,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     cnames2 <- cnames[length(cnames)]   # for colnames
     
     # Separe variables from first column
-    dat <- tidyr::separate_(dat, col = colnames(dat)[1],
+    dat <- tidyr::separate(dat, col = colnames(dat)[1],
                        into = cnames1,
                        sep = ",", convert = FALSE)
     
