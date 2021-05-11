@@ -31,7 +31,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.3</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.4</span>
       </span>
     </div>
 
@@ -99,7 +99,7 @@
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Map examples for the eurostat R package</h1>
             
-            <h4 class="date">2021-05-10</h4>
+            <h4 class="date">2021-05-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/maps.Rmd"><code>vignettes/website/maps.Rmd</code></a></small>
       <div class="hidden name"><code>maps.Rmd</code></div>
@@ -145,7 +145,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2010</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># categorise</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/RtmpRAawm5/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/Rtmpul7BCp/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Download geospatial data from GISCO</span>
 <span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>output_class <span class="op">=</span> <span class="st">"sf"</span>,
@@ -153,7 +153,7 @@
                    nuts_level <span class="op">=</span> <span class="fl">2</span>,
                    year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## sf at resolution 1: 60  cached at:  /tmp/RtmpRAawm5/eurostat/sf60220134326.RData</code></pre>
+<pre><code>## sf at resolution 1: 60  cached at:  /tmp/Rtmpul7BCp/eurostat/sf60220134326.RData</code></pre>
 <pre><code>## Warning in get_eurostat_geospatial(output_class = "sf", resolution = "60", :
 ## Default of 'make_valid' for 'output_class="sf"' will be changed in the future
 ## (see function details).</code></pre>
@@ -207,8 +207,8 @@
 <pre><code>## [1] "Download geospatial data from GISCO"</code></pre>
 <div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>output_class <span class="op">=</span> <span class="st">"sf"</span>, resolution <span class="op">=</span> <span class="st">"60"</span>, nuts_level <span class="op">=</span> <span class="fl">2</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpRAawm5/eurostat/sf60220134326.RData</code></pre>
-<pre><code>## sf at resolution 1: 60  from year  2013  read from cache file:  /tmp/RtmpRAawm5/eurostat/sf60220134326.RData</code></pre>
+<pre><code>## Reading cache file /tmp/Rtmpul7BCp/eurostat/sf60220134326.RData</code></pre>
+<pre><code>## sf at resolution 1: 60  from year  2013  read from cache file:  /tmp/Rtmpul7BCp/eurostat/sf60220134326.RData</code></pre>
 <div class="sourceCode" id="cb24"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Merge with attribute data with geodata</span>
 <span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">inner_join</a></span><span class="op">(</span><span class="va">geodata</span>, <span class="va">euro_sf2</span><span class="op">)</span></code></pre></div>
@@ -264,13 +264,13 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2014</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op">%&gt;%</span> 
   <span class="co"># classifying the values the variable</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpRAawm5/eurostat/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpRAawm5/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/Rtmpul7BCp/eurostat/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpul7BCp/eurostat/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb31"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Download geospatial data from GISCO</span>
 <span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="st">"60"</span>, nuts_level <span class="op">=</span> <span class="st">"2"</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
-<pre><code>## Reading cache file /tmp/RtmpRAawm5/eurostat/sf60220134326.RData</code></pre>
-<pre><code>## sf at resolution 1: 60  from year  2013  read from cache file:  /tmp/RtmpRAawm5/eurostat/sf60220134326.RData</code></pre>
+<pre><code>## Reading cache file /tmp/Rtmpul7BCp/eurostat/sf60220134326.RData</code></pre>
+<pre><code>## sf at resolution 1: 60  from year  2013  read from cache file:  /tmp/Rtmpul7BCp/eurostat/sf60220134326.RData</code></pre>
 <pre><code>## Warning in get_eurostat_geospatial(resolution = "60", nuts_level = "2", :
 ## Default of 'make_valid' for 'output_class="sf"' will be changed in the future
 ## (see function details).</code></pre>
@@ -312,7 +312,7 @@
 ## 
 ##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 ##   Retrieval and analysis of Eurostat open data with the eurostat
-##   package. R Journal 9(1):385-392, 2017. Version 3.7.3 Package URL:
+##   package. R Journal 9(1):385-392, 2017. Version 3.7.4 Package URL:
 ##   http://ropengov.github.io/eurostat Manuscript URL:
 ##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 ## 
@@ -327,7 +327,7 @@
 ##     pages = {385-392},
 ##     year = {2017},
 ##     url = {https://journal.r-project.org/archive/2017/RJ-2017-019/index.html},
-##     note = {Version 3.7.3},
+##     note = {Version 3.7.4},
 ##   }</code></pre>
 </div>
 <div id="contact" class="section level3">
@@ -363,7 +363,7 @@
 ## 
 ## other attached packages:
 ## [1] ggplot2_3.3.3      RColorBrewer_1.1-2 tmap_3.3-1         sf_0.9-8          
-## [5] dplyr_1.0.5        eurostat_3.7.3    
+## [5] dplyr_1.0.5        eurostat_3.7.4    
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] fs_1.5.0           lubridate_1.7.10   httr_1.4.2         rprojroot_2.0.2   

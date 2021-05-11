@@ -170,7 +170,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.3. URL: <https://ropengov.github.io/eurostat/>
+R package version 3.7.4. URL: <https://ropengov.github.io/eurostat/>
 
 We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),
