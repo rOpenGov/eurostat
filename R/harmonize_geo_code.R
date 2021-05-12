@@ -19,6 +19,7 @@
 #' @importFrom dplyr mutate filter rename mutate_if case_when distinct
 #' @importFrom dplyr left_join full_join anti_join add_count semi_join
 #' @importFrom utils data
+#' @importFrom magrittr %>%
 #'  
 #' @export
 

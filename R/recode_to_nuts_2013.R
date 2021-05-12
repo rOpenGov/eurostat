@@ -33,6 +33,7 @@
 #' 
 #' @importFrom dplyr mutate filter rename arrange case_when
 #' @importFrom dplyr left_join inner_join anti_join
+#' @importFrom magrittr %>%
 #' 
 #' @export
  

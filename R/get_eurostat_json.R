@@ -48,7 +48,7 @@
 #'                                                         indic_na="B1GM"))
 #' }
 #' 
-#' @importFrom httr RETRY http_error status_code build_url
+#' @import httr
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' 
