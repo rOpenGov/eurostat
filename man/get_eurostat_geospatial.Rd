@@ -76,17 +76,20 @@ to \code{sf::st_interpolate_aw()}). \code{make_valid = TRUE} makes sure that
 only valid (multi-)polygons are returned, example included below.
 }
 \examples{
-  sf   <- get_eurostat_geospatial(output_class = "sf",
-                                  resolution = "60",
-                                  nuts_level = "all")
-  df   <- get_eurostat_geospatial(output_class = "df",
-                                  resolution = "20",
-                                  nuts_level = "0")
-  \dontrun{
-    spdf <- get_eurostat_geospatial(output_class = "spdf",
-                                    resolution = "10",
-                                    nuts_level = "3")
-  }
+\dontrun{
+sf <- get_eurostat_geospatial(output_class = "sf",
+                              resolution = "60",
+                              nuts_level = "all")
+df <- get_eurostat_geospatial(output_class = "df",
+                              resolution = "20",
+                              nuts_level = "0")
+}
+
+\dontrun{
+spdf <- get_eurostat_geospatial(output_class = "spdf",
+                                resolution = "10",
+                                nuts_level = "3")
+}
 
   \dontrun{
     # -------------------------------------------------------------------

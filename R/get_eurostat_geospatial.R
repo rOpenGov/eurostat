@@ -45,17 +45,20 @@
 #' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
-#'   sf   <- get_eurostat_geospatial(output_class = "sf",
-#'                                   resolution = "60",
-#'                                   nuts_level = "all")
-#'   df   <- get_eurostat_geospatial(output_class = "df",
-#'                                   resolution = "20",
-#'                                   nuts_level = "0")
-#'   \dontrun{
-#'     spdf <- get_eurostat_geospatial(output_class = "spdf",
-#'                                     resolution = "10",
-#'                                     nuts_level = "3")
-#'   }
+#' \dontrun{
+#' sf <- get_eurostat_geospatial(output_class = "sf",
+#'                               resolution = "60",
+#'                               nuts_level = "all")
+#' df <- get_eurostat_geospatial(output_class = "df",
+#'                               resolution = "20",
+#'                               nuts_level = "0")
+#' }
+#'
+#' \dontrun{
+#' spdf <- get_eurostat_geospatial(output_class = "spdf",
+#'                                 resolution = "10",
+#'                                 nuts_level = "3")
+#' }
 #' 
 #'   \dontrun{
 #'     # -------------------------------------------------------------------
@@ -97,7 +100,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
                                     cache_dir = NULL, crs = "4326",
-				    make_valid = FALSE){
+				                            make_valid = FALSE){
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
@@ -107,8 +110,8 @@ get_eurostat_geospatial <- function(output_class = "sf",
   eurostat_geodata_60_2016 <- NULL
   LEVL_CODE <- NULL
   utils::data("eurostat_geodata_60_2016", 
-       envir = environment(),
-       package = "eurostat")
+              envir = environment(),
+              package = "eurostat")
 
   # Check output_class is of correct format
   stopifnot(length(output_class) == 1L)
