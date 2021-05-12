@@ -24,10 +24,10 @@ For given coded variable from Eurostat \url{https://ec.europa.eu/eurostat/}.
 }
 \examples{
 \dontrun{
-	       tmp <- get_eurostat_dic("crop_pro")
-	       head(tmp)
-	       tmp <- get_eurostat_dic("crop_pro", lang = "fr")
-     }
+tmp <- get_eurostat_dic("crop_pro")
+head(tmp)
+tmp <- get_eurostat_dic("crop_pro", lang = "fr")
+}
      
 }
 \references{

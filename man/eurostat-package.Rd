@@ -13,7 +13,7 @@ Brief summary of the eurostat package
 Package: \tab eurostat\cr
 Type: \tab Package\cr
 Version: \tab See sessionInfo() or DESCRIPTION file\cr
-Date: \tab 2014-2020\cr
+Date: \tab 2014-2021\cr
 License: \tab BSD_2_clause + LICENSE\cr
 LazyLoad: \tab yes\cr
 }

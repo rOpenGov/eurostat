@@ -91,7 +91,7 @@ spdf <- get_eurostat_geospatial(output_class = "spdf",
                                 nuts_level = "3")
 }
 
-  \dontrun{
+\dontrun{
     # -------------------------------------------------------------------
     # Minimal example to demonstrate reason/effect of 'make_valid = TRUE'
     # Spatial data set; rectangle spanning the entire globe with a constant value of 1L.

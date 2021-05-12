@@ -73,6 +73,7 @@ Imports:
     tibble,
     tidyr
 Suggests:
+    covr,
     Cairo,
     ggplot2,
     knitr,

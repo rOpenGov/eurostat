@@ -60,7 +60,7 @@
 #'                                 nuts_level = "3")
 #' }
 #' 
-#'   \dontrun{
+#' \dontrun{
 #'     # -------------------------------------------------------------------
 #'     # Minimal example to demonstrate reason/effect of 'make_valid = TRUE'
 #'     # Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
@@ -99,8 +99,8 @@ get_eurostat_geospatial <- function(output_class = "sf",
                                     resolution = "60",
                                     nuts_level = "all", year = "2016",
                                     cache = TRUE, update_cache = FALSE,
-                                    cache_dir = NULL, crs = "4326",
-				                            make_valid = FALSE){
+                                    cache_dir = NULL, crs = "4326", 
+                                    make_valid = FALSE){
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 

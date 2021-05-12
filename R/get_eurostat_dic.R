@@ -11,11 +11,12 @@
 #'          \code{\link{search_eurostat}}.
 #' @references See citation("eurostat"). 
 #' @author Przemyslaw Biecek and Leo Lahti \email{leo.lahti@@iki.fi}. Thanks to Wietse Dol for contributions. 
-#' @examples \dontrun{
-#' 	       tmp <- get_eurostat_dic("crop_pro")
-#' 	       head(tmp)
-#' 	       tmp <- get_eurostat_dic("crop_pro", lang = "fr")
-#'	     }
+#' @examples 
+#' \dontrun{
+#' tmp <- get_eurostat_dic("crop_pro")
+#' head(tmp)
+#' tmp <- get_eurostat_dic("crop_pro", lang = "fr")
+#' }
 #'	     
 #' @importFrom readr read_tsv cols col_character
 #'	     

@@ -61,7 +61,7 @@ Data to retrieve from
   config = httr::use_proxy(url, port, username, password))}.
 }
 \examples{
- \dontrun{
+\dontrun{
    tmp <- get_eurostat_json("cdh_e_fos")
    # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
    yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
