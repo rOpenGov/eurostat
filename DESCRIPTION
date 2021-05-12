@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2021-05-11
-Version: 3.7.4
+Date: 2021-05-12
+Version: 3.7.5
 Encoding: UTF-8
 Authors@R: 
     c(person(given = "Leo",
@@ -71,8 +71,7 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr,
-    tidyselect (>= 1.1.0)
+    tidyr
 Suggests:
     Cairo,
     ggplot2,
