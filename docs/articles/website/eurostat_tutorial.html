@@ -38,12 +38,6 @@
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
 <li>
-  <a href="../../index.html">
-    <span class="fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -94,7 +88,7 @@
 
       
 
-      </header><script src="eurostat_tutorial_files/header-attrs-2.7.12/header-attrs.js"></script><script src="eurostat_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
+      </header><script src="eurostat_tutorial_files/header-attrs-2.7/header-attrs.js"></script><script src="eurostat_tutorial_files/accessible-code-block-0.0.1/empty-anchor.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1 data-toc-skip>Tutorial for the eurostat R package</h1>
@@ -1004,13 +998,13 @@ tgs00026                Auxiliary Data</code></pre>
 <p>This tutorial was created with</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></code></pre></div>
-<pre><code>## R version 4.0.4 (2021-02-15)
+<pre><code>## R version 4.0.3 (2020-10-10)
 ## Platform: x86_64-pc-linux-gnu (64-bit)
 ## Running under: Ubuntu 20.10
 ## 
 ## Matrix products: default
-## BLAS:   /home/lemila/bin/R-4.0.4/lib/libRblas.so
-## LAPACK: /home/lemila/bin/R-4.0.4/lib/libRlapack.so
+## BLAS:   /home/lemila/bin/R-4.0.3/lib/libRblas.so
+## LAPACK: /home/lemila/bin/R-4.0.3/lib/libRlapack.so
 ## 
 ## locale:
 ##  [1] LC_CTYPE=en_US.UTF-8       LC_NUMERIC=C              
@@ -1024,24 +1018,24 @@ tgs00026                Auxiliary Data</code></pre>
 ## [1] stats     graphics  grDevices utils     datasets  methods   base     
 ## 
 ## other attached packages:
-## [1] tidyr_1.1.3    rvest_1.0.0    eurostat_3.7.5 knitr_1.33    
+## [1] tidyr_1.1.3    rvest_1.0.0    eurostat_3.7.5 knitr_1.31    
 ## 
 ## loaded via a namespace (and not attached):
 ##  [1] Rcpp_1.0.6         lubridate_1.7.10   countrycode_1.2.0  class_7.3-18      
 ##  [5] assertthat_0.2.1   rprojroot_2.0.2    digest_0.6.27      utf8_1.2.1        
 ##  [9] R6_2.5.0           plyr_1.8.6         backports_1.2.1    evaluate_0.14     
-## [13] e1071_1.7-6        httr_1.4.2         highr_0.9          pillar_1.6.0      
-## [17] rlang_0.4.10       curl_4.3           rstudioapi_0.13    jquerylib_0.1.4   
-## [21] rmarkdown_2.7.12   pkgdown_1.6.1      textshaping_0.3.3  desc_1.3.0        
+## [13] e1071_1.7-6        httr_1.4.2         highr_0.8          pillar_1.6.0      
+## [17] rlang_0.4.11       curl_4.3           rstudioapi_0.13    jquerylib_0.1.3   
+## [21] rmarkdown_2.7      pkgdown_1.6.1.9000 textshaping_0.3.3  desc_1.3.0        
 ## [25] RefManageR_1.3.0   readr_1.4.0        stringr_1.4.0      proxy_0.4-25      
-## [29] broom_0.7.6        compiler_4.0.4     xfun_0.22          pkgconfig_2.0.3   
-## [33] systemfonts_1.0.1  htmltools_0.5.1.1  tidyselect_1.1.0   tibble_3.1.1      
-## [37] fansi_0.4.2        crayon_1.4.1       dplyr_1.0.5        sf_0.9-8          
-## [41] grid_4.0.4         jsonlite_1.7.2     lifecycle_1.0.0    DBI_1.1.1         
+## [29] broom_0.7.6        compiler_4.0.3     xfun_0.22          pkgconfig_2.0.3   
+## [33] systemfonts_1.0.1  htmltools_0.5.1.1  tidyselect_1.1.1   tibble_3.1.1      
+## [37] fansi_0.4.2        crayon_1.4.1       dplyr_1.0.6        sf_0.9-8          
+## [41] grid_4.0.3         jsonlite_1.7.2     lifecycle_1.0.0    DBI_1.1.1         
 ## [45] magrittr_2.0.1     units_0.7-1        KernSmooth_2.23-18 cli_2.5.0         
 ## [49] stringi_1.5.3      cachem_1.0.4       fs_1.5.0           xml2_1.3.2        
-## [53] bslib_0.2.4        ellipsis_0.3.1     ragg_1.1.2         generics_0.1.0    
-## [57] vctrs_0.3.7        tools_4.0.4        glue_1.4.2         purrr_0.3.4       
+## [53] bslib_0.2.4        ellipsis_0.3.2     ragg_1.1.2         generics_0.1.0    
+## [57] vctrs_0.3.8        tools_4.0.3        glue_1.4.2         purrr_0.3.4       
 ## [61] hms_1.0.0          fastmap_1.1.0      yaml_2.2.1         classInt_0.4-3    
 ## [65] memoise_2.0.0      sass_0.3.1</code></pre>
 </div>
@@ -1062,7 +1056,7 @@ tgs00026                Auxiliary Data</code></pre>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>
