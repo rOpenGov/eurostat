@@ -16,8 +16,6 @@
 #' the new name (if the otherwise the region boundary did not change.)
 #' If not called before, the function will use the helper function
 #' \code{\link{harmonize_geo_code}}
-#' @importFrom dplyr mutate filter rename arrange case_when
-#' @importFrom dplyr left_join inner_join anti_join
 #' @examples
 #' test_regional_codes <- data.frame ( 
 #'   geo = c("FRB", "FRE", "UKN02", "IE022", "FR243", "FRB03"),
@@ -32,6 +30,11 @@
 #'   )) 
 #'  
 #' recode_to_nuts_2013(test_regional_codes)
+#' 
+#' @importFrom dplyr mutate filter rename arrange case_when
+#' @importFrom dplyr left_join inner_join anti_join
+#' @importFrom magrittr %>%
+#' 
 #' @export
  
 recode_to_nuts_2013 <- function (dat) {

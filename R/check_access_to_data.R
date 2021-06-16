@@ -1,12 +1,16 @@
 #' @title Check access to ec.europe.eu
 #' @description Check if R has access to resources at http://ec.europa.eu
-#' @export
 #' @author Markus Kainu \email{markus.kainu@@kapsi.fi}
 #' @return a logical.
 #' @examples
 #'  \dontrun{
 #'    check_access_to_data()
 #'  }
+#'  
+#' @importFrom curl curl_download 
+#' @importFrom utils download.file
+#'  
+#' @export
 
 check_access_to_data <- function(){ 
   temp <- tempfile()
@@ -23,7 +27,7 @@ check_access_to_data <- function(){
   } else {
     suppressWarnings(
       try(
-        download.file(http_url, 
+        utils::download.file(http_url, 
                       temp, 
                       quiet= TRUE), 
         silent = TRUE)

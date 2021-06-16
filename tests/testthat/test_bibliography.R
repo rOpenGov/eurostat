@@ -4,7 +4,7 @@ context("bibliography")
 
 test_that("Bibentry gives correct results",{
   skip_on_cran()
-  skip_on_travis()  
+  skip_on_ci()  
   expect_equal(
     class (get_bibentry ( code = c("sts_inpr_a", "nama_10_gdp"),
                           keywords = list ( c("production", "industry"),

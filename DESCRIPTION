@@ -1,21 +1,54 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2020-04-21
-Version: 3.6.3
+Date: 2021-05-12
+Version: 3.7.5
 Encoding: UTF-8
-Authors@R: c(
-  person("Leo", "Lahti", email = "leo.lahti@iki.fi", role = c("aut", "cre"), comment = c(ORCID = "0000-0001-5537-637X")),
-  person("Janne", "Huovari", role = "aut"),  
-  person("Markus", "Kainu", role = "aut"),
-  person("Przemyslaw" , "Biecek", role = "aut"),  
-  person("Joona", "Lehtomaki", role = "ctb"), 
-  person("Francois", "Briatte", role = "ctb"), 
-  person("Oliver", "Reiter", role = "ctb"))
-Maintainer: Leo Lahti <leo.lahti@iki.fi>
+Authors@R: 
+    c(person(given = "Leo",
+             family = "Lahti",
+             role = c("aut", "cre"),
+             email = "leo.lahti@iki.fi",
+             comment = c(ORCID = "0000-0001-5537-637X")),
+      person(given = "Janne",
+             family = "Huovari",
+             role = "aut"),
+      person(given = "Markus",
+             family = "Kainu",
+             role = "aut"),
+      person(given = "Przemyslaw",
+             family = "Biecek",
+             role = "aut"),
+      person(given = "Daniel",
+             family = "Antal",
+             role = "ctb"),
+      person(given = "Diego",
+             family = "Hernangomez",
+             role = "ctb"),
+      person(given = "Joona",
+             family = "Lehtomaki",
+             role = "ctb"),
+      person(given = "Francois",
+             family = "Briatte",
+             role = "ctb"),
+      person(given = "Reto",
+             family = "Stauffer",
+             role = "ctb"),
+      person(given = "Paul",
+             family = "Rougieux",
+             role = "ctb"),
+      person(given = "Anna",
+             family = "Vasylytsya",
+             role = "ctb"),
+      person(given = "Oliver",
+             family = "Reiter",
+             role = "ctb"),
+      person(given = "Pyry",
+             family = "Kantanen",
+             role = "ctb"))
 MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 Description: Tools to download data from the Eurostat database
-    <http://ec.europa.eu/eurostat> together with search and
+    <https://ec.europa.eu/eurostat> together with search and
     manipulation utilities.
 License: BSD_2_clause + file LICENSE
 Depends:
@@ -28,35 +61,33 @@ Imports:
     curl,
     dplyr,
     httr,
+    magrittr,
     jsonlite,
     lubridate,
     RColorBrewer,
     readr,
     RefManageR,
     sf,
-    sp,
     stringi,
     stringr,
     tibble,
-    tidyr,
-    tidyselect
+    tidyr
 Suggests:
+    covr,
     Cairo,
     ggplot2,
-    knitr,    
-    mapproj,    
-    plotrix,
+    knitr,
+    markdown,
     rmarkdown,
     roxygen2,
-    rsdmx,
     rvest,
     testthat,
     tmap,
     usethis
 LazyData: true
-URL: https://ropengov.github.io/eurostat
+URL: https://ropengov.github.io/eurostat/
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 7.1.0
+RoxygenNote: 7.1.1

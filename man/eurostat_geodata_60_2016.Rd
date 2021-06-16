@@ -18,7 +18,7 @@ sf
 }
 }
 \source{
-\url{http://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
+\url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
 }
 \usage{
 eurostat_geodata_60_2016

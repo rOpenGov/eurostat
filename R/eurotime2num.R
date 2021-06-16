@@ -4,7 +4,6 @@
 #'          the year in beginning of the period. Conversion of daily data is not 
 #'          supported.  
 #' @param x a charter string with time information in Eurostat time format.
-#' @export
 #' @return see \code{\link{as.numeric}}.
 #' @author Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @examples \dontrun{
@@ -17,6 +16,8 @@
 #'    na_a <- get_eurostat("nama_10_pc", time_format = "raw")
 #'    na_a$time <- eurotime2num(x = na_a$time)
 #'    }
+#'    
+#' @export
 eurotime2num <- function(x){
 
   x <- as.factor(x)

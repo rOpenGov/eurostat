@@ -43,6 +43,7 @@ and polishes the labels ready for used in mapping with \code{merge_with_geodata}
    lp <- get_eurostat("nama_10_lp_ulc")
    lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
  }
+ 
 }
 \author{
 Markus Kainu <markuskainu@gmail.com>

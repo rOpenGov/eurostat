@@ -15,6 +15,13 @@
 #'    dat <- eurostat::tgs00026
 #'    harmonize_geo_code(dat)
 #'  }
+#'  
+#' @importFrom dplyr mutate filter rename mutate_if case_when distinct
+#' @importFrom dplyr left_join full_join anti_join add_count semi_join
+#' @importFrom utils data
+#' @importFrom magrittr %>%
+#'  
+#' @export
 
 harmonize_geo_code <- function (dat) {
   
@@ -31,9 +38,9 @@ harmonize_geo_code <- function (dat) {
 
   nuts_correspondence <- regional_changes_2016 <- eu_countries <- NULL
 
-  data ("nuts_correspondence", package = "eurostat", envir = environment())
-  data ("regional_changes_2016", package = "eurostat", envir = environment())
-  data ("eu_countries", package = "eurostat", envir = environment())  
+  utils::data("nuts_correspondence", package = "eurostat", envir = environment())
+  utils::data("regional_changes_2016", package = "eurostat", envir = environment())
+  utils::data("eu_countries", package = "eurostat", envir = environment())  
   
   ## Creating constants -----------------------------------------------
   regions_in_correspondence <- unique(c(nuts_correspondence$code13, nuts_correspondence$code16))
@@ -241,7 +248,7 @@ harmonize_geo_code <- function (dat) {
   }
 
   #eu_countries <- load_package_data(dataset = "eu_countries")
-  data( eu_countries, package ="eurostat", envir = environment())
+  utils::data(eu_countries, package ="eurostat", envir = environment())
   eu_country_vector <-  unique ( substr(eu_countries$code, 1, 2) )
   
 

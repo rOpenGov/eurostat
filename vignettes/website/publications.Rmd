@@ -4,6 +4,12 @@ date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
+vignette: >
+    %\VignetteIndexEntry{Publications using the eurostat R package}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteDepends{Cairo}
+    %\VignetteEncoding{UTF-8}
+    \usepackage[utf8]{inputenc}    
 ---
 
 

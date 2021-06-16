@@ -5,11 +5,11 @@ output:
   rmarkdown::html_vignette:
     toc: true
 vignette: >
-    %\VignetteIndexEntry{eurostat tutorial}
-    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteIndexEntry{Tutorial for the eurostat R package}
     %\VignetteDepends{Cairo}
     %\VignetteEncoding{UTF-8}
     \usepackage[utf8]{inputenc}
+    %\VignetteEngine{knitr::rmarkdown}
 editor_options:
     chunk_output_type: console
 ---
@@ -239,6 +239,11 @@ For further examples, see the [package homepage](http://ropengov.github.io/euros
 
 
 # Citations and related work
+
+### Recommended packages
+
+NOTE: we recommend to check also the `giscoR` package (https://dieghernan.github.io/giscoR/). This is another API package that provides R tools for Eurostat geographic data to support geospatial analysis and visualization.
+
 
 ### Citing the data sources
 

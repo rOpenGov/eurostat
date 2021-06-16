@@ -14,7 +14,7 @@ get_eurostat(
   update_cache = FALSE,
   cache_dir = NULL,
   compress_file = TRUE,
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   keepFlags = FALSE,
   ...
 )
@@ -71,7 +71,7 @@ they are returned as a character.}
 \item{keepFlags}{a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
 can be removed. Default is \code{FALSE}. For flag values see: 
-\url{http://ec.europa.eu/eurostat/data/database/information}.
+\url{https://ec.europa.eu/eurostat/data/database/information}.
 Also possible non-real zero "0n" is indicated in flags column. 
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
@@ -95,8 +95,8 @@ Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 }
 \details{
 Data sets are downloaded from 
-\href{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
-\href{http://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
+\href{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
+\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 If only the table \code{id} is given, the whole table is downloaded from the
 bulk download facility. If also \code{filters} are defined the JSON API is
 used.
@@ -120,13 +120,13 @@ The cache can be emptied with \code{\link{clean_eurostat_cache}}.
 
 The \code{id}, a code, for the dataset can be searched with
 the \code{\link{search_eurostat}} or from the Eurostat database
-\url{http://ec.europa.eu/eurostat/data/database}. The Eurostat
+\url{https://ec.europa.eu/eurostat/data/database}. The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 }
 \examples{
+\dontrun{ 
 k <- get_eurostat("nama_10_lp_ulc")
-\dontrun{
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 dir.create(file.path(tempdir(), "r_cache"))
@@ -146,9 +146,12 @@ dd <- get_eurostat("nama_10_gdp",
                                     unit = "CLV_I10"))
 }
 }
+\references{
+See citation("eurostat").
+}
 \seealso{
 \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 }

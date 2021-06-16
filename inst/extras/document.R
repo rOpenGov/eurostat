@@ -16,17 +16,17 @@ render(input = "../../README.Rmd", output_format = "md_document")
 library(pkgdown)
 setwd("../../")
 build_site()
-
+# devtools::build_vignettes()
 
 
 # Submissions:
 #
 # release() # Submit to CRAN
+# devtools::check_win_devel("../../") # Windows check
 # submit_cran() # Submit to CRAN without all release() questions
 
 # Utilities:
 #
-# check_win_devel("../../") # Windows check
 # revdep_check("../../")
 # add_rstudio_project("../../")
 # use_build_ignore("../NEWS.md", pkg = "../../") # NEWS.md not supported by CRAN
@@ -35,6 +35,11 @@ build_site()
 # test() # Run tests
 # run_examples()
 
+# Add Github actions (Travis replacement)
+#usethis::use_github_action_check_standard()
+# -> .github/workflows/..
+# See https://github.com/r-lib/actions
+
 # Vignettes:
 #
 # library(knitr)
@@ -42,6 +47,7 @@ build_site()
 # or run main.R in vignettes
 setwd("vignettes/")
 source("main.R")
+# system("cp vignette.html ../inst/doc/")
 # tools::compactPDF("./", gs_quality = "ebook")
 
 

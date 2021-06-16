@@ -5,9 +5,15 @@ date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
+vignette: >
+    %\VignetteIndexEntry{Regional data examples for the eurostat R package}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteDepends{Cairo}
+    %\VignetteEncoding{UTF-8}
+    \usepackage[utf8]{inputenc}    
 ---
 
-# R Tools for Eurostat Open Data
+# R Tools for Eurostat Open Data: regional data
 
 This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](http://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
 

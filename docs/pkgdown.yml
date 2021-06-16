@@ -1,13 +1,13 @@
-pandoc: '2.5'
-pkgdown: 1.5.0
-pkgdown_sha: ~
+pandoc: 2.9.2.1
+pkgdown: 1.6.1.9000
+pkgdown_sha: e1e46f2e13c7efdb17bc4eae40bc3779c2b0b517
 articles:
   vignette: vignette.html
-  blogposts: website/blogposts.html
-  cheatsheet: website/cheatsheet.html
-  eurostat_tutorial: website/eurostat_tutorial.html
-  maps: website/maps.html
-  publications: website/publications.html
-  regional_data: website/regional_data.html
-last_built: 2020-04-21T12:08Z
+  website/blogposts: blogposts.html
+  website/cheatsheet: cheatsheet.html
+  website/eurostat_tutorial: eurostat_tutorial.html
+  website/maps: maps.html
+  website/publications: publications.html
+  website/regional_data: regional_data.html
+last_built: 2021-05-12T15:31Z
 

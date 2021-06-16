@@ -8,7 +8,7 @@ tidy_eurostat(
   dat,
   time_format = "date",
   select_time = NULL,
-  stringsAsFactors = default.stringsAsFactors(),
+  stringsAsFactors = FALSE,
   keepFlags = FALSE
 )
 }
@@ -49,7 +49,7 @@ See citation("eurostat").
 \code{\link{get_eurostat}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti and Janne Huovari
 }
 \keyword{database}
 \keyword{internal}

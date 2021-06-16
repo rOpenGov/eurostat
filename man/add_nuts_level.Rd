@@ -31,6 +31,7 @@ for example.
    
    add_nuts_level(dat)
  }
+ 
 }
 \author{
 Daniel Antal

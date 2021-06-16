@@ -4,6 +4,12 @@ date: "`r Sys.Date()`"
 output:
   rmarkdown::html_vignette:
     toc: true
+vignette: >
+    %\VignetteIndexEntry{Cheat sheet: eurostat R package}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteDepends{Cairo}
+    %\VignetteEncoding{UTF-8}
+    \usepackage[utf8]{inputenc}        
 ---
 
  * [eurostat R package: cheat sheet (RStudio release version)](https://github.com/rstudio/cheatsheets/raw/master/eurostat.pdf)
