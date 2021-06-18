@@ -67,7 +67,6 @@ Imports:
     RColorBrewer,
     readr,
     RefManageR,
-    sf,
     stringi,
     stringr,
     tibble,
@@ -83,7 +82,8 @@ Suggests:
     rvest,
     testthat,
     tmap,
-    usethis
+    usethis,
+    sf
 LazyData: true
 URL: https://ropengov.github.io/eurostat/
 BugReports: https://github.com/ropengov/eurostat/issues
