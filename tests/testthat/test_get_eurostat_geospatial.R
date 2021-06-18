@@ -1,6 +1,6 @@
 
-
 test_that("get_eurostat_geospatial wrong input arguments for output_format = \"sf\"", {
+  skip_if_not_installed(pkg = "sf")
   skip_on_cran()
   # Testing argument 'output_class'
   expect_error(get_eurostat_geospatial(output_class = 0))
@@ -50,6 +50,7 @@ test_that("get_eurostat_geospatial wrong input arguments for output_format = \"s
 
 # Tests explicitly for output_class = "sf"; first unnamed argument
 test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
+  skip_if_not_installed(pkg = "sf")
   skip_on_cran()
   #skip_on_ci()    
 
@@ -107,6 +108,7 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
 
 # Tests explicitly for output_class = "sf"; first unnamed argument
 test_that("get_eurostat_geospatial tests to cover internals", {
+  skip_if_not_installed(pkg = "sf")
   skip_on_cran()
 
   # Custom function expecting that:

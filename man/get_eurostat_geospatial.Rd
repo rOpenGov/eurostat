@@ -76,7 +76,7 @@ to \code{sf::st_interpolate_aw()}). \code{make_valid = TRUE} makes sure that
 only valid (multi-)polygons are returned, example included below.
 }
 \examples{
-\dontrun{
+\donttest{
 sf <- get_eurostat_geospatial(output_class = "sf",
                               resolution = "60",
                               nuts_level = "all")
