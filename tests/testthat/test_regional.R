@@ -16,13 +16,20 @@ test_regional_codes <- data.frame (
               "Recoded in NUTS2016"
   )) 
 
+test_that("deprecation warning works", {
+  expect_warning (recode_to_nuts_2013(test_regional_codes))
+  expect_warning (recode_to_nuts_2016(test_regional_codes))
+})
+
 
 test_that("Recoding gives correct results",{
 
   skip_on_cran()
   skip_on_ci()
-
-  test_harmonized <- harmonize_geo_code(test_regional_codes)
+  
+  expect_warning (harmonize_geo_code(test_regional_codes))
+  
+  suppressWarnings(test_harmonized <- harmonize_geo_code(test_regional_codes))
 
   suppressWarnings(try_recode_2013 <- recode_to_nuts_2013(test_harmonized))
 

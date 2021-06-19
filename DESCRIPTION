@@ -71,7 +71,8 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr
+    tidyr,
+    regions
 Suggests:
     covr,
     Cairo,
