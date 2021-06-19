@@ -16,10 +16,24 @@ test_regional_codes <- data.frame (
               "Recoded in NUTS2016"
   )) 
 
+
+
+dat = data.frame (
+  geo    = c("FR", "IE04", "DEB1C"), 
+  values = c(1000, 23, 12)
+)
+
 test_that("deprecation warning works", {
   expect_warning (recode_to_nuts_2013(test_regional_codes))
   expect_warning (recode_to_nuts_2016(test_regional_codes))
+  expect_message(add_nuts_level(dat))
 })
+
+suppressMessages(
+  test_that("add_nuts_level works", {
+    expect_equal(add_nuts_level(dat)$nuts_level, c(0,2,3))
+  })
+)
 
 
 test_that("Recoding gives correct results",{
@@ -32,8 +46,6 @@ test_that("Recoding gives correct results",{
   suppressWarnings(test_harmonized <- harmonize_geo_code(test_regional_codes))
 
   suppressWarnings(try_recode_2013 <- recode_to_nuts_2013(test_harmonized))
-
-  suppressWarnings(try_recode_2016 <- recode_to_nuts_2016(test_harmonized))
 
   lookup_code16 <- test_harmonized %>%
     filter ( geo  == "FR243") %>%
