@@ -22,10 +22,6 @@ information on what to do.
 This function is deprecated, and a more general function was moved to 
 \code{regions::\link[regions]{validate_nuts_regions}}.
 }
-\details{
-DEPRECATED FUNCTIONS FOR BACKWARD COMPATIBILITY
-FUNCTIONS GIVE WARNING AND CALL APPROPRIATE regions FUNCTIONS
-}
 \examples{
  \dontrun{
    dat <- eurostat::tgs00026
