@@ -34,6 +34,7 @@ set by the user.
         
    # readLines ( my_bibliograhy, "eurostat_data.bib")
  }
+ 
 }
 \author{
 Daniel Antal, Przemyslaw Biecek

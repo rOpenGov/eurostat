@@ -22,7 +22,7 @@ load_package_data <- function(dataset) {
   .new_data_environment <- new.env(parent=emptyenv()) # a new environment
 
   if (! exists(x = dataset, envir = .new_data_environment) ) {
-    data(list = dataset, 
+    utils::data(list = dataset, 
          package = "eurostat", 
          envir=.new_data_environment)
   } 

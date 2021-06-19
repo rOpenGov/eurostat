@@ -31,6 +31,7 @@ Bi-annual, quarterly and monthly data is presented as fraction of
    na_a <- get_eurostat("nama_10_pc", time_format = "raw")
    na_a$time <- eurotime2num(x = na_a$time)
    }
+   
 }
 \author{
 Janne Huovari \email{janne.huovari@ptt.fi}

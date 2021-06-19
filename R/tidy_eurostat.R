@@ -21,7 +21,12 @@
 #' @return tibble in the molten format with the last column 'values'.
 #' @seealso \code{\link{get_eurostat}}
 #' @references See citation("eurostat").
-#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari
+#' 
+#' @importFrom stringi stri_extract_first_regex
+#' @import tidyr
+#' @import dplyr
+#' 
 #' @keywords internal utilities database
 tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
            stringsAsFactors = FALSE,
@@ -36,7 +41,7 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
     cnames2 <- cnames[length(cnames)]   # for colnames
     
     # Separe variables from first column
-    dat <- tidyr::separate_(dat, col = colnames(dat)[1],
+    dat <- tidyr::separate(dat, col = colnames(dat)[1],
                        into = cnames1,
                        sep = ",", convert = FALSE)
     

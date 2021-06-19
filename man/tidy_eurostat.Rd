@@ -49,7 +49,7 @@ See citation("eurostat").
 \code{\link{get_eurostat}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari \email{ropengov-forum@googlegroups.com} \url{http://github.com/ropengov/eurostat}
+Przemyslaw Biecek, Leo Lahti and Janne Huovari
 }
 \keyword{database}
 \keyword{internal}

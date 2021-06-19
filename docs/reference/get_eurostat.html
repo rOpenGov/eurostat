@@ -72,19 +72,13 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="../index.html">eurostat</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.6.6</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">3.7.5</span>
       </span>
     </div>
 
     <div id="navbar" class="navbar-collapse collapse">
       <ul class="nav navbar-nav">
         <li>
-  <a href="../index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
-     
-  </a>
-</li>
-<li>
   <a href="../reference/index.html">Reference</a>
 </li>
 <li class="dropdown">
@@ -121,7 +115,7 @@
       <ul class="nav navbar-nav navbar-right">
         <li>
   <a href="https://github.com/ropengov/eurostat/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -147,20 +141,20 @@
     <p>Download data sets from Eurostat <a href='https://ec.europa.eu/eurostat/'>https://ec.europa.eu/eurostat/</a>.</p>
     </div>
 
-    <pre class="usage"><span class='fu'>get_eurostat</span>(
-  <span class='no'>id</span>,
-  <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='st'>"date"</span>,
-  <span class='kw'>filters</span> <span class='kw'>=</span> <span class='st'>"none"</span>,
-  <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"code"</span>,
-  <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='kw'>NULL</span>,
-  <span class='kw'>compress_file</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>,
-  <span class='kw'>stringsAsFactors</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='kw'>keepFlags</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>,
-  <span class='no'>...</span>
-)</pre>
+    <pre class="usage"><span class='fu'>get_eurostat</span><span class='op'>(</span>
+  <span class='va'>id</span>,
+  time_format <span class='op'>=</span> <span class='st'>"date"</span>,
+  filters <span class='op'>=</span> <span class='st'>"none"</span>,
+  type <span class='op'>=</span> <span class='st'>"code"</span>,
+  select_time <span class='op'>=</span> <span class='cn'>NULL</span>,
+  cache <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  update_cache <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  cache_dir <span class='op'>=</span> <span class='cn'>NULL</span>,
+  compress_file <span class='op'>=</span> <span class='cn'>TRUE</span>,
+  stringsAsFactors <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  keepFlags <span class='op'>=</span> <span class='cn'>FALSE</span>,
+  <span class='va'>...</span>
+<span class='op'>)</span></pre>
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
@@ -238,7 +232,7 @@ they are returned as a character.</p></td>
       <td><p>a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
 can be removed. Default is <code>FALSE</code>. For flag values see: 
-<a href='http://ec.europa.eu/eurostat/data/database/information'>http://ec.europa.eu/eurostat/data/database/information</a>.
+<a href='https://ec.europa.eu/eurostat/data/database/information'>https://ec.europa.eu/eurostat/data/database/information</a>.
 Also possible non-real zero "0n" is indicated in flags column. 
 Flags are not available for eurostat API, so <code>keepFlags</code>
 can not be used with a <code>filters</code>.</p></td>
@@ -264,8 +258,8 @@ can not be used with a <code>filters</code>.</p></td>
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details"></a>Details</h2>
 
     <p>Data sets are downloaded from 
-<a href='http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing'>the Eurostat bulk download facility</a> or from The Eurostat Web Services 
-<a href='http://ec.europa.eu/eurostat/web/json-and-unicode-web-services'>JSON API</a>.
+<a href='https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing'>the Eurostat bulk download facility</a> or from The Eurostat Web Services 
+<a href='https://ec.europa.eu/eurostat/web/json-and-unicode-web-services'>JSON API</a>.
 If only the table <code>id</code> is given, the whole table is downloaded from the
 bulk download facility. If also <code>filters</code> are defined the JSON API is
 used.</p>
@@ -285,33 +279,41 @@ a named directory if cache_dir or option eurostat_cache_dir is defined.
 The cache can be emptied with <code><a href='clean_eurostat_cache.html'>clean_eurostat_cache</a></code>.</p>
 <p>The <code>id</code>, a code, for the dataset can be searched with
 the <code><a href='search_eurostat.html'>search_eurostat</a></code> or from the Eurostat database
-<a href='http://ec.europa.eu/eurostat/data/database'>http://ec.europa.eu/eurostat/data/database</a>. The Eurostat
+<a href='https://ec.europa.eu/eurostat/data/database'>https://ec.europa.eu/eurostat/data/database</a>. The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.</p>
+    <h2 class="hasAnchor" id="references"><a class="anchor" href="#references"></a>References</h2>
+
+    <p>See citation("eurostat").</p>
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also"></a>See also</h2>
 
     <div class='dont-index'><p><code><a href='search_eurostat.html'>search_eurostat</a></code>, <code><a href='label_eurostat.html'>label_eurostat</a></code></p></div>
+    <h2 class="hasAnchor" id="author"><a class="anchor" href="#author"></a>Author</h2>
+
+    <p>Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu</p>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>)</div><div class='output co'>#&gt; <span class='message'>Table nama_10_lp_ulc cached at /tmp/RtmpZs8nv2/eurostat/nama_10_lp_ulc_date_code_FF.rds</span></div><div class='input'><span class='kw'>if</span> (<span class='fl'>FALSE</span>) {
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>, <span class='kw'>time_format</span> <span class='kw'>=</span> <span class='st'>"num"</span>)
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>, <span class='kw'>update_cache</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>,
-                  <span class='kw'>cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>eurostat_update</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>eurostat_update</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span>(<span class='kw'>eurostat_cache_dir</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span>(<span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span>(), <span class='st'>"r_cache"</span>))
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>)
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_lp_ulc"</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
-<span class='no'>k</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"avia_gonc"</span>, <span class='kw'>select_time</span> <span class='kw'>=</span> <span class='st'>"Y"</span>, <span class='kw'>cache</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)
+    <pre class="examples"><div class='input'><span class='kw'>if</span> <span class='op'>(</span><span class='cn'>FALSE</span><span class='op'>)</span> <span class='op'>{</span> 
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span>, time_format <span class='op'>=</span> <span class='st'>"num"</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span>, update_cache <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/files2.html'>dir.create</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span>, 
+                  cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>eurostat_update <span class='op'>=</span> <span class='cn'>TRUE</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>eurostat_update <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='fu'><a href='https://rdrr.io/r/base/options.html'>options</a></span><span class='op'>(</span>eurostat_cache_dir <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/file.path.html'>file.path</a></span><span class='op'>(</span><span class='fu'><a href='https://rdrr.io/r/base/tempfile.html'>tempdir</a></span><span class='op'>(</span><span class='op'>)</span>, <span class='st'>"r_cache"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_lp_ulc"</span>, cache <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
+<span class='va'>k</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"avia_gonc"</span>, select_time <span class='op'>=</span> <span class='st'>"Y"</span>, cache <span class='op'>=</span> <span class='cn'>FALSE</span><span class='op'>)</span>
 
-<span class='no'>dd</span> <span class='kw'>&lt;-</span> <span class='fu'>get_eurostat</span>(<span class='st'>"nama_10_gdp"</span>,
-                     <span class='kw'>filters</span> <span class='kw'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span>(<span class='kw'>geo</span> <span class='kw'>=</span> <span class='st'>"FI"</span>,
-                                    <span class='kw'>na_item</span> <span class='kw'>=</span> <span class='st'>"B1GQ"</span>,
-                                    <span class='kw'>unit</span> <span class='kw'>=</span> <span class='st'>"CLV_I10"</span>))
-}</div></pre>
+<span class='va'>dd</span> <span class='op'>&lt;-</span> <span class='fu'>get_eurostat</span><span class='op'>(</span><span class='st'>"nama_10_gdp"</span>, 
+                     filters <span class='op'>=</span> <span class='fu'><a href='https://rdrr.io/r/base/list.html'>list</a></span><span class='op'>(</span>geo <span class='op'>=</span> <span class='st'>"FI"</span>, 
+                                    na_item <span class='op'>=</span> <span class='st'>"B1GQ"</span>, 
+                                    unit <span class='op'>=</span> <span class='st'>"CLV_I10"</span><span class='op'>)</span><span class='op'>)</span>
+<span class='op'>}</span>
+</div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
     <nav id="toc" data-toggle="toc" class="sticky-top">
@@ -327,7 +329,7 @@ in parenthesis.</p>
 </div>
 
 <div class="pkgdown">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.5.1.9000.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/">pkgdown</a> 1.6.1.9000.</p>
 </div>
 
       </footer>

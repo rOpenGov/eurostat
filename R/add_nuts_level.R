@@ -5,8 +5,6 @@
 #' for example. 
 #' @param dat A data frame or tibble returned by \code{\link{get_eurostat}}.
 #' @param geo_labels A geographical label, defaults to \code{geo}.
-#' @export
-#' @importFrom dplyr mutate case_when
 #' @author Daniel Antal
 #' @return a new numeric variable nuts_level with the numeric value of
 #' NUTS level 0 (country), 1 (greater region),
@@ -20,6 +18,11 @@
 #'    
 #'    add_nuts_level(dat)
 #'  }
+#'  
+#' @importFrom dplyr mutate case_when
+#' @importFrom magrittr %>%
+#'  
+#' @export
 
 add_nuts_level <- function (dat, geo_labels = "geo") {
   
@@ -41,7 +44,7 @@ add_nuts_level <- function (dat, geo_labels = "geo") {
     }
     
     dat <- dat %>% 
-      mutate ( nuts_level = case_when (
+      dplyr::mutate ( nuts_level = dplyr::case_when (
         nchar(as.character(geo)) == 2  ~ 0,
         nchar(as.character(geo)) == 3  ~ 1,
         nchar(as.character(geo)) == 4  ~ 2,

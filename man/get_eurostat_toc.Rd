@@ -19,7 +19,7 @@ A tibble with eight columns
 Download table of contents (TOC) of eurostat datasets.
 }
 \details{
-The TOC is downloaded from \url{http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
+The TOC is downloaded from \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
 }
 \examples{
 \dontrun{tmp <- get_eurostat_toc(); head(tmp)}

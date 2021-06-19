@@ -9,7 +9,6 @@
 #' @param manual_breaks Numeric vector with manual threshold values
 #' @param decimals Number of decimals to include with labels
 #' @param nodata_label String. Text label for NA category.
-#' @export
 #' @author Markus Kainu <markuskainu@@gmail.com>
 #' @return a factor.
 #' @examples
@@ -18,6 +17,11 @@
 #'    lp <- get_eurostat("nama_10_lp_ulc")
 #'    lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
 #'  }
+#'  
+#' @importFrom classInt classIntervals
+#' @importFrom stringr str_replace_all
+#'  
+#' @export
 cut_to_classes <- function(x, n=5, style="equal", manual=FALSE, 
                            manual_breaks = NULL, decimals=0, 
                            nodata_label="No data") {
@@ -50,9 +54,9 @@ cut_to_classes <- function(x, n=5, style="equal", manual=FALSE,
   }
 
   names(levs) <- "orig"
-  levs$mod <- str_replace_all(levs$orig, "\\[", "")
-  levs$mod <- str_replace_all(levs$mod, "\\]", "")
-  levs$mod <- str_replace_all(levs$mod, "\\(", "")
+  levs$mod <- stringr::str_replace_all(levs$orig, "\\[", "")
+  levs$mod <- stringr::str_replace_all(levs$mod, "\\]", "")
+  levs$mod <- stringr::str_replace_all(levs$mod, "\\(", "")
   levs$lower <- gsub(",.*$","", levs$mod)
   levs$upper <- gsub(".*,","", levs$mod)
   

@@ -38,7 +38,6 @@
 #' @param fix_duplicated A logical. If TRUE, the code is added to the
 #'     duplicated label values. If FALSE (default) error is given if 
 #'     labelling produce duplicates.
-#' @export
 #' @author Janne Huovari \email{janne.huovari@@ptt.fi}
 #' @return a vector or a data_frame.
 #' @examples
@@ -58,6 +57,12 @@
 #'    # In Finnish
 #'    label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
 #'  }
+#'  
+#' @importFrom countrycode countrycode
+#' @importFrom tibble as_tibble
+#' @importFrom dplyr filter coalesce
+#'  
+#' @export
 label_eurostat <-
   function(x,
            dic = NULL,
