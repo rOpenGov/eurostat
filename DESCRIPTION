@@ -72,7 +72,8 @@ Imports:
     stringr,
     tibble,
     tidyr,
-    regions
+    regions,
+    rlang
 Suggests:
     covr,
     Cairo,
@@ -84,7 +85,8 @@ Suggests:
     rvest,
     testthat,
     tmap,
-    usethis
+    usethis,
+    here
 LazyData: true
 URL: https://ropengov.github.io/eurostat/
 BugReports: https://github.com/ropengov/eurostat/issues
