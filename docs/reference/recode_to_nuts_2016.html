@@ -194,28 +194,20 @@ If not called before, the function will use the helper function
   <span class='op'>)</span><span class='op'>)</span> 
  
 <span class='fu'>recode_to_nuts_2016</span><span class='op'>(</span><span class='va'>test_regional_codes</span><span class='op'>)</span>
-</div><div class='output co'>#&gt; <span class='message'>In this data frame 3 observations are coded with the current NUTS2016</span>
-#&gt; <span class='message'>geo labels and 3 observations/rows have NUTS2013 historical labels.</span></div><div class='output co'>#&gt; <span class='warning'>Warning: The following regions have no NUTS2016 labels: UKN02.</span></div><div class='output co'>#&gt;     geo       time values code13 code16                      control nuts_level
-#&gt; 1   FRB 2014-01-01      1   &lt;NA&gt;    FRB  Changed from NUTS2 to NUTS1          1
-#&gt; 2 FRB03 2014-01-01      5  FR243  FRB03          Recoded in NUTS2013          2
-#&gt; 3   FRE 2014-01-01      2   &lt;NA&gt;    FRE     New region NUTS2016 only          1
-#&gt; 4 IE062 2014-01-01      4  IE022  IE062      Boundary shift NUTS2013          2
-#&gt; 5  &lt;NA&gt; 2014-01-01      3  UKN02   &lt;NA&gt; Discontinued region NUTS2013          2
-#&gt; 6 FRB03 2015-01-01      6  FR243  FRB03          Recoded in NUTS2016          2
-#&gt;                                                        change    resolution
-#&gt; 1       new NUTS 1 region, identical to ex-NUTS 2 region FR24      FRB=FR24
-#&gt; 2                                                     recoded   FRB03=FR243
-#&gt; 3 new NUTS 1 region, merge of ex-NUTS 2 regions FR22 and FR30 FRE=FR22+FR30
-#&gt; 4                                              boundary shift          &lt;NA&gt;
-#&gt; 5                                                discontinued          &lt;NA&gt;
-#&gt; 6                                                     recoded   FRB03=FR243
-#&gt;   nuts_2016 nuts_2013                        name
-#&gt; 1      TRUE     FALSE       CENTRE — VAL DE LOIRE
-#&gt; 2     FALSE      TRUE                       Indre
-#&gt; 3      TRUE     FALSE NORD-PAS DE CALAIS-PICARDIE
-#&gt; 4     FALSE      TRUE                    Mid-East
-#&gt; 5     FALSE      TRUE               Outer Belfast
-#&gt; 6      TRUE     FALSE                       Indre</div><div class='input'>
+</div><div class='output co'>#&gt; <span class='warning'>Warning: The 'recode_to_nuts_2013' function is deprecated. Use instead regions::recode_nuts(dat, nuts_year = 2016)</span></div><div class='output co'>#&gt;     geo       time values                      control     typology
+#&gt; 1   FRB 2014-01-01      1  Changed from NUTS2 to NUTS1 nuts_level_1
+#&gt; 2   FRE 2014-01-01      2     New region NUTS2016 only nuts_level_1
+#&gt; 3 FRB03 2015-01-01      6          Recoded in NUTS2016 nuts_level_3
+#&gt; 4 IE022 2014-01-01      4      Boundary shift NUTS2013 nuts_level_3
+#&gt; 5 FR243 2014-01-01      5          Recoded in NUTS2013 nuts_level_3
+#&gt; 6 UKN02 2014-01-01      3 Discontinued region NUTS2013 nuts_level_3
+#&gt;                               typology_change code_2016
+#&gt; 1                                        &lt;NA&gt;       FRB
+#&gt; 2                                        &lt;NA&gt;       FRE
+#&gt; 3                                        &lt;NA&gt;     FRB03
+#&gt; 4 Recoded from IE022 [used in NUTS 2013-2013]     IE062
+#&gt; 5 Recoded from FR243 [used in NUTS 1999-2013]     FRB03
+#&gt; 6                      Used in NUTS 1999-2013      &lt;NA&gt;</div><div class='input'>
 </div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
