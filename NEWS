@@ -1,3 +1,8 @@
+# eurostat 3.7.5
+
+ * Deprecated add_nuts_level, harmonize_geo_code, recode_to_nuts_2016 and recode_to_nuts_2013; these functions were moved to the
+    new package regions. The problem of sub-national geo codes is explained in the new vignette "Mapping Regional Data, Mapping Metadata Problems", which replaces the "Regional data  examples for the eurostat R package" vignette. This is a shared vignette, but the new regions package has more articles on how to work with sub-national data. 
+
 # eurostat 3.7.2
 
  * Non-intersecting sf-geometries in get_eurostat_geospatial (PR by @retostauffer)
