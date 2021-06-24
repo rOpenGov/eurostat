@@ -20,6 +20,12 @@ LazyLoad: \tab yes\cr
 
 R Tools for Eurostat Open Data
 }
+\section{regions functions}{
+
+For working with sub-national statistics the basic functions of the regions package 
+are imported \url{https://ropengov.github.io/regions/}.
+}
+
 \examples{
 library(eurostat)
 }

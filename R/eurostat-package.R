@@ -21,5 +21,8 @@
 #' See citation("eurostat")
 #' \url{https://ropengov.github.io/eurostat/}
 #' @examples library(eurostat)
+#' @section regions functions:
+#' For working with sub-national statistics the basic functions of the regions package 
+#' are imported \url{https://ropengov.github.io/regions/}.
 #' @keywords package
 NULL
