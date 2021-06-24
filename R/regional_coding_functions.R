@@ -41,10 +41,10 @@
 
 
 #' @title Validate Conformity With NUTS Geo Codes
-#'
-#' Validate that \code{geo_var} is conforming with the \code{NUTS1},
+#' @description  Validate that \code{geo_var} is conforming with the \code{NUTS1},
 #' \code{NUTS2}, or \code{NUTS3} typologies.
-#' While country codes are technically not part of the NUTS typologies,
+#' 
+#' @details While country codes are technically not part of the NUTS typologies,
 #' Eurostat de facto uses a \code{NUTS0} typology to identify countries.
 #' This de facto typology has three exception which are handled by the
 #' \link[regions]{validate_nuts_countries} function.
