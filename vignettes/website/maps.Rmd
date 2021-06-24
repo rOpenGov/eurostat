@@ -60,11 +60,17 @@ map_data <- inner_join(geodata, sp_data)
 Construct the map
 
 ```{r map1ex, eval=TRUE, warning=FALSE}
+# Fix / remove some broken entries for the demo purpose
+geodata <- sf::st_make_valid(geodata)
+geodata <- geodata[sf::st_is_valid(geodata),]
+
+# Create and plot the map
 map1 <- tmap::tm_shape(geodata) +
   tmap::tm_fill("lightgrey") +
   tmap::tm_shape(map_data) +
   tmap::tm_grid() +
-  tmap::tm_polygons("income", title = "Disposable household\nincomes in 2010",  
+  tmap::tm_polygons("income",
+	            title = "Disposable household\nincomes in 2010",  
                     palette = "Oranges")
 print(map1)  
 ```
@@ -106,7 +112,13 @@ geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_
 # Merge with attribute data with geodata
 map_data <- inner_join(geodata, euro_sf2)
 
+# Fix / remove some broken entries for the demo purpose
+geodata <- sf::st_make_valid(geodata)
+geodata <- geodata[sf::st_is_valid(geodata),]
+
 # plot map
+library(tmap)
+
 map2 <- tm_shape(geodata) +
   tm_fill("lightgrey") +
   tm_shape(map_data, is.master = TRUE) +

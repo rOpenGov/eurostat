@@ -42,7 +42,6 @@ test_regional_codes <- data.frame (
   )) 
  
 recode_to_nuts_2016(test_regional_codes)
-
 }
 \author{
 Daniel Antal

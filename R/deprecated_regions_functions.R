@@ -90,7 +90,6 @@ add_nuts_level <- function (dat, geo_labels = "geo") {
 #'    regions::validate_nuts_regions(dat)
 #'  }
 #'  
-#' @importFrom regions validate_nuts_regions
 #' @export
 
 harmonize_geo_code <- function (dat) {
@@ -135,7 +134,6 @@ harmonize_geo_code <- function (dat) {
 #'   )) 
 #'  
 #' recode_to_nuts_2016(test_regional_codes)
-#' 
 #' @importFrom regions recode_nuts
 #' @export
 
@@ -182,7 +180,6 @@ recode_to_nuts_2016 <- function (dat) {
 #'   )) 
 #'  
 #' recode_to_nuts_2013(test_regional_codes)
-#' 
 #' @importFrom regions recode_nuts
 #' @export
 
@@ -190,5 +187,5 @@ recode_to_nuts_2013 <- function (dat) {
   
   warning("The 'recode_to_nuts_2013' function is deprecated. Use instead regions::recode_nuts(dat, nuts_year = 2013)")
   
-  regions::recode_nuts(dat, nuts_year = 2013)
+  recode_nuts(dat, nuts_year = 2013)
 }

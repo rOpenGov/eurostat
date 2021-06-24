@@ -111,7 +111,7 @@ Eurostat. Searching for data is one way, if you know what to look for.
 <td style="text-align: left;">Air passenger transport by reporting country</td>
 <td style="text-align: left;">avia_paoc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">16.06.2021</td>
+<td style="text-align: left;">21.06.2021</td>
 <td style="text-align: left;">26.05.2021</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2021Q1</td>
@@ -121,8 +121,8 @@ Eurostat. Searching for data is one way, if you know what to look for.
 <td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
 <td style="text-align: left;">avia_paoa</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">16.06.2021</td>
-<td style="text-align: left;">07.05.2021</td>
+<td style="text-align: left;">21.06.2021</td>
+<td style="text-align: left;">21.06.2021</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2021Q1</td>
 <td style="text-align: left;">NA</td>
@@ -131,7 +131,7 @@ Eurostat. Searching for data is one way, if you know what to look for.
 <td style="text-align: left;">Air passenger transport between reporting countries</td>
 <td style="text-align: left;">avia_paocc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">16.06.2021</td>
+<td style="text-align: left;">21.06.2021</td>
 <td style="text-align: left;">26.05.2021</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2021Q1</td>
@@ -170,7 +170,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.6. URL: <https://ropengov.github.io/eurostat/>
+R package version 3.7.7. URL: <https://ropengov.github.io/eurostat/>
 
 We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),

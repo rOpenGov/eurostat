@@ -59,6 +59,11 @@ get_eurostat_json <- function(id, filters = NULL,
                               stringsAsFactors = FALSE,
                               ...){
   
+  ## Special products that must be built to matrix
+  ## User gets message to use iotables::iotables_download() and halt this operation.
+  user_want_stop <- special_id_values(id)
+  if ( user_want_stop ) return(NULL)
+  
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
@@ -97,6 +102,9 @@ get_eurostat_json <- function(id, filters = NULL,
     } else if (status == 500){
       stop("Failure to get data. Probably filters did not return any data 
          or data exceeded query size limitation. Status code: ", status, msg)
+    } else if (status == 416) {
+      stop ("Too many categories have been requested. Maximum is 50.", 
+            status, msg)
     } else {
       stop("Failure to get data. Status code: ", status, msg)
     }
@@ -119,7 +127,7 @@ get_eurostat_json <- function(id, filters = NULL,
         stop("Invalid type ", type)
       }
     })
-  
+ 
     variables <- expand.grid(dims_list, KEEP.OUT.ATTRS = FALSE, 
                            stringsAsFactors = stringsAsFactors)
   
@@ -130,6 +138,8 @@ get_eurostat_json <- function(id, filters = NULL,
     inds <- 1 + as.numeric(names(jdat$value)) # 0-indexed
     if (!length(vals) == length(inds)) {stop("Complex indexing not implemented.")}
     dat$values[inds] <- vals
+    
+    
 
     tibble::as_tibble(dat)
   }
@@ -164,8 +174,38 @@ eurostat_json_url <- function(id, filters, lang){
   url <- httr::build_url(url_list)
   url
 }
+# Internal function to give warning if symmetric input-output tables need to download into strict matirx formats.
+special_id_values <- function(id) {
+  siot_id_codes <- c("naio_10_cp1700", "naio_10_pyp1700",
+                     "naio_10_cp1750", "naio_10_pyp1750",
+                     "naio_10_cp15", "naio_10_cp16",
+                     "naio_10_cp1610","naio_10_pyp1610",
+                     "naio_10_cp1620", "naio_10_pyp1620",
+                     "naio_10_cp1630", "naio_10_pyp1630")
+  if (id %in% siot_id_codes ) {
+    message("The requested product id is a special input-output matrix.", 
+    "\nTo keep the matrix structure for further use, download it with iotables::iotables_download().\nThe iotables package is an extension for such cases to the eurostat package.")
+    answer <- readline (prompt = "Do you want to stop downloading now? [y/n] ")
+    if ( tolower(answer)=="y") TRUE else FALSE
+  } else {
+    # By default evaluates to FALSE and no interruption happens
+    FALSE
+  }
+}
 
+# Internal function to give warning if sub-national geo codes need validation
+is_regional_nuts_present <- function(geo) {
 
-
-
-
+  potentional_regional_codes <- unique (dat$geo)[nchar(unique (dat$geo))>2]
+  
+  potentional_regional_codes <- potentional_regional_codes[! substr(potentional_regional_codes, 1,2) %in% c("EU", "EA")]
+  
+  if( length(potentional_regional_codes)>0) {
+    
+    types_found <- paste ( sort (unique(validate_geo_code( potentional_regional_codes, nuts_year = 2021))), collapse = ', ')
+    message("The following sub-national geographical codes present in the dataset:\n", types_found, 
+            "\nRegional and metropolitian area boundaries, codes and names are changing frequently.", 
+            "\nSee ?validate_geo_code, ?validate_nuts_regions and ?recode_nuts or the", 
+            "\n'Mapping Regional Data, Mapping Metadata Problems' vignette for a tutorial.")
+  }
+}
