@@ -1,4 +1,4 @@
-#' Recode Region Codes From Source To Target NUTS Typology
+#' @title Recode Region Codes From Source To Target NUTS Typology
 #'
 #' Validate your geo codes, pair them with the appropriate standard
 #' typology, look up potential causes of invalidity in the EU correspondence
@@ -6,8 +6,9 @@
 #' (target) typology.  For example, validate geo codes in the \code{'NUTS2016'}
 #' typology and translate them to the now obsolete the \code{'NUTS2010'} typology
 #' to join current data with historical data sets.
-#' 
+#'  
 #' Imported from the \url{https://ropengov.github.io/regions/}{regions} package.
+#' 
 #' @param dat A data frame with a 3-5 character \code{geo_var} variable
 #' to be validated.
 #' @param geo_var Defaults to \code{"geo"}. The variable that contains
@@ -18,13 +19,14 @@
 #' \code{2010}, \code{2013}, the currently used \code{2016} and the
 #' already announced and defined \code{2021}. Defaults to the current
 #' typology in force, which is \code{2016}.
-#' @importFrom regions recode_nuts(
+#' @importFrom regions recode_nuts
 #' @return The original data frame with a \code{'geo_var'} column is extended
 #' with a \code{'typology'} column that states in which typology is the \code{'geo_var'}
 #' a valid code.  For invalid codes, looks up potential reasons of invalidity
 #' and adds them to the \code{'typology_change'} column, and at last it
 #' adds a column of character vector containing the desired codes in the
 #' target typology, for example, in the NUTS2013 typology.
+#' @family regions functions
 #' @examples{
 #' foo <- data.frame (
 #'   geo  =  c("FR", "DEE32", "UKI3" ,
@@ -37,7 +39,7 @@
 #' }
 #' @export
 
-#' Validate Conformity With NUTS Geo Codes
+#' @title Validate Conformity With NUTS Geo Codes
 #'
 #' Validate that \code{geo_var} is conforming with the \code{NUTS1},
 #' \code{NUTS2}, or \code{NUTS3} typologies.
@@ -73,6 +75,7 @@
 #' @return Returns the original \code{dat} data frame with a column
 #' that specifies the comformity with the NUTS definition of the year
 #' \code{nuts_year}.
+#' @family regions functions
 #' @examples
 #' \donttest{
 #' my_reg_data <- data.frame (
@@ -90,7 +93,7 @@
 #' @export
 
 
-#' Validate Conformity with NUTS Geo Codes (vector)
+#' @titel Validate Conformity with NUTS Geo Codes (vector)
 #'
 #' Validate that \code{geo} is conforming with the \code{NUTS1},
 #' \code{NUTS2}, or \code{NUTS3} typologies.
@@ -115,6 +118,7 @@
 #' @param geo A vector of geographical code to validate.
 #' @param nuts_year A valid NUTS edition year.
 #' @importFrom regions validate_geo_code
+#' @family regions functions
 #' @return A character list with the valid typology, or 'invalid' in the cases
 #' when the geo coding is not valid.
 #' @examples
