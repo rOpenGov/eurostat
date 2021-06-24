@@ -1,8 +1,8 @@
 Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
-Date: 2021-05-12
-Version: 3.7.5
+Date: 2021-06-20
+Version: 3.7.6
 Encoding: UTF-8
 Authors@R: 
     c(person(given = "Leo",
@@ -67,7 +67,6 @@ Imports:
     RColorBrewer,
     readr,
     RefManageR,
-    sf,
     stringi,
     stringr,
     tibble,
@@ -86,6 +85,7 @@ Suggests:
     testthat,
     tmap,
     usethis,
+    sf,
     here
 LazyData: true
 URL: https://ropengov.github.io/eurostat/

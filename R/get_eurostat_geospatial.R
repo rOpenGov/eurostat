@@ -45,7 +45,7 @@
 #' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' sf <- get_eurostat_geospatial(output_class = "sf",
 #'                               resolution = "60",
 #'                               nuts_level = "all")
@@ -88,7 +88,6 @@
 #'     print(head(res))
 #'   }
 #' 
-#' @importFrom sf st_read st_buffer
 #' @importFrom utils data
 #' @importFrom broom tidy
 #' @importFrom httr http_error content
@@ -101,6 +100,12 @@ get_eurostat_geospatial <- function(output_class = "sf",
                                     cache = TRUE, update_cache = FALSE,
                                     cache_dir = NULL, crs = "4326", 
                                     make_valid = FALSE){
+  # Check if package "sf" is installed
+  if (!requireNamespace("sf")){
+    message("'sf' package is required for geospatial functionalities")
+    return(invisible())
+  }
+  
   # Check if you have access to ec.europe.eu. 
   if (!check_access_to_data()){
     message("You have no access to ec.europe.eu. 
@@ -230,7 +235,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
     )
   }
   
-  # if cache = FALSE or update or new: dowload else read from cache
+  # if cache = FALSE or update or new: download else read from cache
   if (!cache | update_cache | !file.exists(cache_file)){
 
     burl <- "http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_"
