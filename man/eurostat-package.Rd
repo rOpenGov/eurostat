@@ -20,6 +20,10 @@ LazyLoad: \tab yes\cr
 
 R Tools for Eurostat Open Data
 }
+\section{}{
+NA
+}
+
 \examples{
 library(eurostat)
 }

@@ -21,5 +21,12 @@
 #' See citation("eurostat")
 #' \url{https://ropengov.github.io/eurostat/}
 #' @examples library(eurostat)
+#' @section regions functions:
+#' The most important functions are imported from the regions package. 
+#' \url{https://ropengov.github.io/regions/}
+#' When working with the sub-national data, you may need the full functionality of the regions package.
+#' \code\{\link{validate_nuts_regions}}\cr
+#' \code\{\link{validate_geo_code}}\cr
+#' \code\{\link{recode_nuts}}\cr
 #' @keywords package
 NULL
