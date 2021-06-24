@@ -27,6 +27,7 @@
 #' adds a column of character vector containing the desired codes in the
 #' target typology, for example, in the NUTS2013 typology.
 #' @family regions functions
+#' @export
 #' @examples{
 #' foo <- data.frame (
 #'   geo  =  c("FR", "DEE32", "UKI3" ,
@@ -37,7 +38,7 @@
 #'
 #' recode_nuts(foo, nuts_year = 2013)
 #' }
-#' @export
+
 
 #' @title Validate Conformity With NUTS Geo Codes
 #'
@@ -76,6 +77,7 @@
 #' that specifies the comformity with the NUTS definition of the year
 #' \code{nuts_year}.
 #' @family regions functions
+#' @export
 #' @examples
 #' \donttest{
 #' my_reg_data <- data.frame (
@@ -90,7 +92,7 @@
 #'
 #' validate_nuts_regions (my_reg_data, nuts_year = 2003)
 #' }
-#' @export
+
 
 
 #' @titel Validate Conformity with NUTS Geo Codes (vector)
@@ -121,6 +123,7 @@
 #' @family regions functions
 #' @return A character list with the valid typology, or 'invalid' in the cases
 #' when the geo coding is not valid.
+#' @export
 #' @examples
 #' \donttest{
 #' my_reg_data <- data.frame (
@@ -131,4 +134,4 @@
 #'
 #' validate_geo_code(my_reg_data$geo)
 #' }
-#' @export
+
