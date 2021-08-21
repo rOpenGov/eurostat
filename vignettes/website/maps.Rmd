@@ -160,30 +160,31 @@ sp::spplot(obj = geodata, "cat", main = "Disposable household income",
 Meanwhile the CRAN version of `ggplot2` is lacking support for simple features, you can plot maps with `ggplot2` by downloading geospatial data as `data.frame` with `output_class` argument set as `df`.
 
 ```{r maps4, fig.width=8, fig.height=8, dev='CairoPNG'}
+# Disposable income of private households by NUTS 2 regions at 1:60mln res
 library(eurostat)
 library(dplyr)
 library(ggplot2)
-dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
-  # subsetting to year 2014 and NUTS-2 level
-  dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
-  # classifying the values the variable
-  dplyr::mutate(cat = cut_to_classes(values))
+data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>% 
+    dplyr::filter(time == 2018, nchar(geo) == 4) %>% 
+    # classifying the values the variable
+    dplyr::mutate(cat = cut_to_classes(values))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2013)
+data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2021)
 
 # merge with attribute data with geodata
-map_data <- inner_join(geodata, dat)
+data <- inner_join(data_geo, data_eurostat)
 
-ggplot(data=map_data) + geom_sf(aes(fill=cat),color="dim grey", size=.1) + 
+## Joining, by = "geo"
+ggplot(data = data) + geom_sf(aes(fill = cat), color = "dim grey", size = 0.1) + 
     scale_fill_brewer(palette = "Oranges") +
-  guides(fill = guide_legend(reverse=T, title = "euro")) +
-  labs(title="Disposable household income in 2014",
-       caption="(C) EuroGeographics for the administrative boundaries 
-                Map produced in R with a help from Eurostat-package <github.com/ropengov/eurostat/>") +
-  theme_light() + theme(legend.position=c(.8,.8)) +
-  coord_sf(xlim=c(-12,44), ylim=c(35,70))
-
+    guides(fill = guide_legend(reverse = TRUE, title = "euro")) +
+    labs(title = "Disposable household income in 2018",
+         caption="(C) EuroGeographics for the administrative boundaries 
+                Map produced in R with data from Eurostat-package <http://ropengov.github.io/eurostat>") +
+    theme_light() + 
+    theme(legend.position = c(.8, .8)) +
+    coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
 ```
 
 
