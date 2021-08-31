@@ -88,7 +88,7 @@ Suggests:
     sf,
     here
 LazyData: true
-URL: https://ropengov.github.io/eurostat/
+URL: http://ropengov.github.io/eurostat, https://ropengov.github.io/eurostat/
 BugReports: https://github.com/ropengov/eurostat/issues
 VignetteBuilder: knitr
 NeedsCompilation: no
