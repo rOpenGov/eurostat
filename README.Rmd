@@ -41,7 +41,6 @@ knitr::opts_chunk$set(
 
 R tools to access open data from [Eurostat](https://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
 
-
 ### Installation and use
 
 Install stable version from CRAN:
