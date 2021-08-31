@@ -44,10 +44,15 @@ R tools to access open data from [Eurostat](https://ec.europa.eu/eurostat). Data
 
 ### Installation and use
 
-```{r, eval = FALSE}
-# Install from CRAN
-install.packages("eurostat")
+Install stable version from CRAN:
 
+```{r, eval = TRUE}
+install.packages("eurostat")
+```
+
+Alternatively, install development version from GitHub:
+
+```{r, eval = FALSE}
 # Install from GitHub
 library(devtools)
 devtools::install_github("ropengov/eurostat")
