@@ -1,0 +1,13 @@
+pandoc: 2.9.2.1
+pkgdown: 1.6.1
+pkgdown_sha: ~
+articles:
+  vignette: vignette.html
+  website/blogposts: blogposts.html
+  website/cheatsheet: cheatsheet.html
+  website/eurostat_tutorial: eurostat_tutorial.html
+  website/mapping: mapping.html
+  website/maps: maps.html
+  website/publications: publications.html
+last_built: 2021-08-21T09:06Z
+
