@@ -39,3 +39,4 @@ docs
 ^Meta$
 ^\.github$
 ^codecov\.yml$
+^pkgdown$
