@@ -56,7 +56,7 @@ install.packages("eurostat")
 #> also installing the dependencies 'sys', 'bit', 'prettyunits', 'proxy', 'utf8', 'askpass', 'bit64', 'withr', 'progress', 'wk', 'backports', 'ellipsis', 'generics', 'purrr', 'e1071', 'lifecycle', 'R6', 'tidyselect', 'vctrs', 'pillar', 'openssl', 'Rcpp', 'cli', 'clipr', 'crayon', 'hms', 'vroom', 'cpp11', 'tzdb', 'xml2', 'plyr', 'DBI', 's2', 'units', 'fansi', 'pkgconfig', 'broom', 'classInt', 'countrycode', 'curl', 'dplyr', 'httr', 'lubridate', 'RColorBrewer', 'readr', 'RefManageR', 'sf', 'tibble', 'tidyr'
 #> 
 #> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpVDMsgF/downloaded_packages
+#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAxhaCw/downloaded_packages
 ```
 
 Alternatively, install development version from GitHub:
