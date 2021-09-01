@@ -100,7 +100,7 @@
       <h1 data-toc-skip>Mapping Regional Data, Mapping Metadata Problems</h1>
                         <h4 class="author">Daniel Antal, CFA</h4>
             
-            <h4 class="date">2021-08-31</h4>
+            <h4 class="date">2021-09-01</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/vignettes/website/mapping.Rmd"><code>vignettes/website/mapping.Rmd</code></a></small>
       <div class="hidden name"><code>mapping.Rmd</code></div>
@@ -139,42 +139,50 @@
 <h2 class="hasAnchor">
 <a href="#choropleth-map" class="anchor"></a>Choropleth Map</h2>
 <p>Let us try to place the data on a <code>ggplot2</code> map.</p>
-<p>Let us download a map with <a href="https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a>. We will use the <code>NUTS2016</code>, i.e., <code>year = 2016</code>, which is the regional boundary definition set in 2016 and used in the period 2018-2020. This is the most used definition in 2021.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org">ggplot2</a></span><span class="op">)</span></code></pre></div>
+<p>Let us download a map with <a href="https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a>. We will use the <code>NUTS2016</code>, i.e., <code>year = 2016</code>, which is the regional boundary definition set in 2016 and used in the period 2018-2020. This is the most used definition in 2021.</p>
+<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">map_nuts_2</span> <span class="op">&lt;-</span> <span class="fu">eurostat</span><span class="fu">::</span><span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>
   resolution <span class="op">=</span> <span class="st">"60"</span>,
   nuts_level <span class="op">=</span> <span class="st">"2"</span>,
-  year <span class="op">=</span> <span class="fl">2016</span><span class="op">)</span></code></pre></div>
+  year <span class="op">=</span> <span class="fl">2016</span><span class="op">)</span>
+<span class="co">#&gt; Loading required namespace: sf</span>
+<span class="co">#&gt; old-style crs object detected; please recreate object with a recent sf::st_crs()</span>
+<span class="co">#&gt; sf at resolution 1:60 read from local file</span>
+<span class="co">#&gt; Warning in eurostat::get_eurostat_geospatial(resolution = "60", nuts_level =</span>
+<span class="co">#&gt; "2", : Default of 'make_valid' for 'output_class="sf"' will be changed in the</span>
+<span class="co">#&gt; future (see function details).</span></code></pre></div>
 <p>You should always join your data with the geometric information of the regions starting from left with the map:</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">indicator_with_map</span> <span class="op">&lt;-</span> <span class="va">map_nuts_2</span> <span class="op">%&gt;%</span> 
   <span class="fu">left_join</span> <span class="op">(</span> <span class="va">regional_rd_personnel</span>, by <span class="op">=</span> <span class="st">"geo"</span> <span class="op">)</span> </code></pre></div>
 <p>Huge parts of Europe are not covered, but the missing values are not randomly missing. France went under a regional reform; Turkey and Albania did not provide this data earlier. Ireland has no regional statistics available.</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">indicator_with_map</span>  <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span> <span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill<span class="op">=</span><span class="va">values</span><span class="op">)</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">values</span><span class="op">)</span>,
           color<span class="op">=</span><span class="st">"dim grey"</span>, size<span class="op">=</span><span class="fl">.1</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">scale_fill_gradient</span><span class="op">(</span> low <span class="op">=</span><span class="st">"#FAE000"</span>, high <span class="op">=</span> <span class="st">"#00843A"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span> <span class="op">(</span> facets <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"R&amp;D Personnel &amp; Researchers"</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_gradient.html">scale_fill_gradient</a></span><span class="op">(</span> low <span class="op">=</span><span class="st">"#FAE000"</span>, high <span class="op">=</span> <span class="st">"#00843A"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span> <span class="op">(</span> facets <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"R&amp;D Personnel &amp; Researchers"</span>,
        subtitle <span class="op">=</span> <span class="st">"In all sectors, both sexes by NUTS 2 regions"</span>,
        caption<span class="op">=</span><span class="st">"\ua9 EuroGeographics for the administrative boundaries 
                 \ua9 Tutorial and ready-to-use data on economy.dataobservatory.eu"</span>, 
        fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_light</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">theme</span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">coord_sf</span><span class="op">(</span>xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">22</span>,<span class="fl">48</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="../fig/indicator_with_map.png" width="80%" style="display: block; margin: auto;"></p>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="st">"none"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">22</span>,<span class="fl">48</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="mapping_files/figure-html/unnamed-chunk-5-1.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div id="missing-values-and-seemingly-missing-values" class="section level2">
 <h2 class="hasAnchor">
 <a href="#missing-values-and-seemingly-missing-values" class="anchor"></a>Missing Values and Seemingly Missing Values</h2>
 <p>Some of these problems are real missing data problems, but some of them are coding problem. In other words, the data is there, but it is not conforming the boundaries that you have on the <code>NUTS2016</code> map. First we need to validate the geographical coding of the dataset. This is the task of <a href="https://regions.dataobservatory.eu/reference/validate_nuts_regions.html">validate_nuts_regions()</a>.</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">validated_indicator</span> <span class="op">&lt;-</span> <span class="fu">regions</span><span class="fu">::</span><span class="fu"><a href="https://regions.dataobservatory.eu/reference/validate_nuts_regions.html">validate_nuts_regions</a></span><span class="op">(</span><span class="va">regional_rd_personnel</span><span class="op">)</span></code></pre></div>
 <p>If we validate the dataset, we will see many interesting metadata observations.</p>
-<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org">dplyr</a></span><span class="op">)</span>
 <span class="va">validation_summary_2016</span> <span class="op">&lt;-</span> <span class="va">validated_indicator</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">group_by</a></span> <span class="op">(</span> <span class="va">.data</span><span class="op">$</span><span class="va">time</span>, <span class="va">.data</span><span class="op">$</span><span class="va">typology</span><span class="op">)</span> <span class="op">%&gt;%</span>
@@ -183,7 +191,7 @@
               values_present <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">values</span><span class="op">)</span><span class="op">)</span>, 
               valid_present <span class="op">=</span> <span class="va">values_present</span> <span class="op">/</span><span class="va">observations</span><span class="op">)</span></code></pre></div>
 <p>Even though the dataset is called <a href="https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=rd_p_persreg&amp;lang=en">R&amp;D personnel and researchers by sector of performance, sex and NUTS 2 regions <span class="math display">\[rd_p_persreg\]</span></a>, in fact, it contains data on country and <code>NUTS1</code> levels. And it has data on non-EU countries that in 2009 were not part of the NUTS system.</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">validation_summary_2016</span>  <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="st">"2009"</span><span class="op">)</span>
@@ -198,7 +206,7 @@
 <span class="co">#&gt; 6 2009  nuts_level_2                 265             49            216         0.815</span>
 <span class="co">#&gt; 7 2009  &lt;NA&gt;                          56              3             53         0.946</span></code></pre></div>
 <p>The situation is not better in 2018:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">validation_summary_2016</span>  <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="st">"2018"</span><span class="op">)</span>
@@ -214,7 +222,7 @@
 <span class="co">#&gt; 7 2018  &lt;NA&gt;                          56             45             11         0.196</span></code></pre></div>
 <p>The dataset is plagued with data that has no place in the <code>NUTS2016</code> boundary definition, and therefore on a <code>NUTS2016</code> map!</p>
 <p>What are the non-conforming bits?</p>
-<div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
 <code class="sourceCode R"> <span class="va">validated_indicator</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="op">!</span> <span class="va">.data</span><span class="op">$</span><span class="va">valid_2016</span> <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/select.html">select</a></span> <span class="op">(</span> <span class="fu"><a href="https://tidyselect.r-lib.org/reference/all_of.html">all_of</a></span><span class="op">(</span><span class="st">"geo"</span><span class="op">)</span> <span class="op">)</span> <span class="op">%&gt;%</span> 
@@ -251,13 +259,13 @@
 <a href="#recoding-and-renaming" class="anchor"></a>Recoding and Renaming</h2>
 <p>The question is, can we save some of the French data? If the boundaries of regions changed, then we cannot: somebody must reaggregate the number of researchers who used to work in the newly defined region back then, before the reform.</p>
 <p>But in some cases, the regional boundaries did not change, only the name and the code of the region, which is the task performed by <a href="https://regions.dataobservatory.eu/reference/recode_nuts.html">recode_nuts()</a>:</p>
-<div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoded_indicator</span> <span class="op">&lt;-</span> <span class="va">regional_rd_personnel</span> <span class="op">%&gt;%</span> 
   <span class="fu">regions</span><span class="fu">::</span><span class="fu"><a href="https://regions.dataobservatory.eu/reference/recode_nuts.html">recode_nuts</a></span><span class="op">(</span>
     geo_var <span class="op">=</span> <span class="st">"geo"</span>, <span class="co"># your geograhical ID variable name</span>
     nuts_year <span class="op">=</span> <span class="fl">2016</span> <span class="co"># change this for other definitions</span>
     <span class="op">)</span></code></pre></div>
-<div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoding_summary</span> <span class="op">&lt;-</span> <span class="va">recoded_indicator</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span> observations  <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/nrow.html">nrow</a></span><span class="op">(</span><span class="va">.data</span><span class="op">)</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span> typology_change <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/ifelse.html">ifelse</a></span> <span class="op">(</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html">grepl</a></span><span class="op">(</span><span class="st">"Recoded"</span>, <span class="va">.data</span><span class="op">$</span><span class="va">typology_change</span><span class="op">)</span>, 
@@ -268,7 +276,7 @@
               values_present <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/sum.html">sum</a></span><span class="op">(</span><span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">values</span><span class="op">)</span><span class="op">)</span>, 
               pct <span class="op">=</span> <span class="va">values_present</span> <span class="op">/</span> <span class="op">(</span><span class="va">values_present</span> <span class="op">+</span> <span class="va">values_missing</span> <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>Let us take a look at the problems identified by <code><a href="https://regions.dataobservatory.eu/reference/recode_nuts.html">regions::recode_nuts()</a></code>:</p>
-<div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoding_summary</span> 
 <span class="co">#&gt; # A tibble: 12 × 5</span>
 <span class="co">#&gt; # Groups:   typology_change [6]</span>
@@ -291,7 +299,7 @@
 <li><p>We identify further problems. We have coding the that was used in various time periods, but there is no clear recoding possibility, because the regions boundaries have changed. To have the history of the data, we would need to recalculate them, say, by adding up the R&amp;D personnel from each settlement in the new regional boundary.</p></li>
 </ul>
 <p>The following non-empty cases were present in the dataset, just not with the coding that we used in the 2018-2020 period (i.e., the <code>NUTS2016</code> coding.) We are able to save 27 observations just by fixing the regional codes!</p>
-<div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoded_indicator</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="va">.data</span><span class="op">$</span><span class="va">typology</span> <span class="op">==</span> <span class="st">"nuts_level_2"</span> <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">typology_change</span><span class="op">)</span> <span class="op">)</span>  <span class="op">%&gt;%</span>
@@ -319,7 +327,7 @@
 <span class="co">#&gt; 10 FR42  FRF1     </span>
 <span class="co">#&gt; # … with 17 more rows</span></code></pre></div>
 <p>So, let us do the trick: change the <code>geo</code> variable to <code>code_2016</code>, which is, whenever there is an equivalent <code>geo</code> code in the <code>NUTS2016</code> definition, the data that you should have. Your original geo variable contains codes that were used, for example, in the <code>NUTS2010</code> or <code>NUTS2013</code> boundary definitions.</p>
-<div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoded_with_map</span> <span class="op">&lt;-</span> <span class="va">map_nuts_2</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span> <span class="op">(</span> 
     <span class="va">recoded_indicator</span> <span class="op">%&gt;%</span>
@@ -334,7 +342,7 @@
 <li>
 <code>after</code> which became visible after recoding.</li>
 </ul>
-<div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">regional_rd_personnel_recoded</span> <span class="op">&lt;-</span> <span class="va">recoded_indicator</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html">mutate</a></span> <span class="op">(</span> geo <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">code_2016</span> <span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/rename.html">rename</a></span> <span class="op">(</span> values_2016 <span class="op">=</span> <span class="va">.data</span><span class="op">$</span><span class="va">values</span> <span class="op">)</span> <span class="op">%&gt;%</span>
@@ -349,27 +357,27 @@
     <span class="cn">TRUE</span> <span class="op">~</span> <span class="st">"before"</span>
     <span class="op">)</span><span class="op">)</span></code></pre></div>
 <p>And let’s place it now on the map:</p>
-<div class="sourceCode" id="cb18"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">map_nuts_2</span> <span class="op">%&gt;%</span> 
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html">left_join</a></span> <span class="op">(</span> <span class="va">regional_rd_personnel_recoded</span> , by <span class="op">=</span> <span class="st">"geo"</span><span class="op">)</span> <span class="op">%&gt;%</span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html">filter</a></span> <span class="op">(</span> 
     <span class="co"># remove completely missing cases</span>
     <span class="op">!</span><span class="fu"><a href="https://rdrr.io/r/base/NA.html">is.na</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span><span class="op">)</span> <span class="op">)</span> <span class="op">%&gt;%</span>
-  <span class="fu">ggplot</span> <span class="op">(</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">geom_sf</span><span class="op">(</span><span class="fu">aes</span><span class="op">(</span>fill<span class="op">=</span><span class="va">type</span><span class="op">)</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html">ggplot</a></span> <span class="op">(</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">geom_sf</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html">aes</a></span><span class="op">(</span>fill<span class="op">=</span><span class="va">type</span><span class="op">)</span>,
           color<span class="op">=</span><span class="st">"dim grey"</span>, size<span class="op">=</span><span class="fl">.1</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">scale_fill_manual</span> <span class="op">(</span> values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"#FAE000"</span>, <span class="st">"#007CBB"</span>, <span class="st">"grey70"</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
-  <span class="fu">guides</span><span class="op">(</span>fill <span class="op">=</span> <span class="fu">guide_legend</span><span class="op">(</span>reverse<span class="op">=</span><span class="cn">T</span>, title <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">facet_wrap</span> <span class="op">(</span> facets <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">labs</span><span class="op">(</span>title<span class="op">=</span><span class="st">"R&amp;D Personnel &amp; Researchers"</span>,
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/scale_manual.html">scale_fill_manual</a></span> <span class="op">(</span> values <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span> <span class="st">"#FAE000"</span>, <span class="st">"#007CBB"</span>, <span class="st">"grey70"</span><span class="op">)</span> <span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guides.html">guides</a></span><span class="op">(</span>fill <span class="op">=</span> <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/guide_legend.html">guide_legend</a></span><span class="op">(</span>reverse<span class="op">=</span><span class="cn">T</span>, title <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/facet_wrap.html">facet_wrap</a></span> <span class="op">(</span> facets <span class="op">=</span> <span class="st">"time"</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/labs.html">labs</a></span><span class="op">(</span>title<span class="op">=</span><span class="st">"R&amp;D Personnel &amp; Researchers"</span>,
        subtitle <span class="op">=</span> <span class="st">"In all sectors, both sexes by NUTS 2 regions"</span>,
        caption<span class="op">=</span><span class="st">"\ua9 EuroGeographics for the administrative boundaries 
                 \ua9 Daniel Antal, rOpenGov"</span>, 
        fill <span class="op">=</span> <span class="cn">NULL</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">theme_light</span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
-  <span class="fu">theme</span><span class="op">(</span>legend.position<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.93</span>,<span class="fl">.7</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
-  <span class="fu">coord_sf</span><span class="op">(</span>xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">22</span>,<span class="fl">48</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<p><img src="../fig/recoded_indicator_with_map.png" width="80%" style="display: block; margin: auto;"></p>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggtheme.html">theme_light</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span> 
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/theme.html">theme</a></span><span class="op">(</span>legend.position<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">.93</span>,<span class="fl">.7</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span>
+  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggsf.html">coord_sf</a></span><span class="op">(</span>xlim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">22</span>,<span class="fl">48</span><span class="op">)</span>, ylim<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="fl">34</span>,<span class="fl">70</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<p><img src="mapping_files/figure-html/unnamed-chunk-11-1.png" width="80%" style="display: block; margin: auto;"></p>
 </div>
 <div id="conclusion" class="section level2">
 <h2 class="hasAnchor">
@@ -392,7 +400,7 @@
 <a href="#citing-the-eurostat-r-package" class="anchor"></a>Citing the eurostat R package</h3>
 <p>For main developers and contributors, see the <a href="https://ropengov.github.io/eurostat">package homepage</a>.</p>
 <p>This work can be freely used, modified and distributed under the BSD-2-clause (modified FreeBSD) license:</p>
-<div class="sourceCode" id="cb19"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; Kindly cite the eurostat R package as follows:</span>
@@ -422,7 +430,7 @@
 <a href="#citing-the-regions-r-package" class="anchor"></a>Citing the regions R package</h3>
 <p>For main developer and contributors, see the <a href="https://regions.dataobservatory.eu/">package</a>.</p>
 <p>This work can be freely used, modified and distributed under the GPL-3 license:</p>
-<div class="sourceCode" id="cb20"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/citation.html">citation</a></span><span class="op">(</span><span class="st">"regions"</span><span class="op">)</span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; To cite package 'regions' in publications use:</span>
@@ -450,7 +458,7 @@
 <h1 class="hasAnchor">
 <a href="#version-info" class="anchor"></a>Version info</h1>
 <p>This tutorial was created with</p>
-<div class="sourceCode" id="cb21"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html">sessionInfo</a></span><span class="op">(</span><span class="op">)</span>
 <span class="co">#&gt; R version 4.1.1 (2021-08-10)</span>
 <span class="co">#&gt; Platform: x86_64-pc-linux-gnu (64-bit)</span>
@@ -483,14 +491,15 @@
 <span class="co">#&gt; [29] stringr_1.4.0      munsell_0.5.0      proxy_0.4-26       broom_0.7.9       </span>
 <span class="co">#&gt; [33] compiler_4.1.1     xfun_0.25          pkgconfig_2.0.3    systemfonts_1.0.2 </span>
 <span class="co">#&gt; [37] htmltools_0.5.2    tidyselect_1.1.1   tibble_3.1.4       fansi_0.5.0       </span>
-<span class="co">#&gt; [41] withr_2.4.2        crayon_1.4.1       tzdb_0.1.2         grid_4.1.1        </span>
-<span class="co">#&gt; [45] jsonlite_1.7.2     gtable_0.3.0       lifecycle_1.0.0    magrittr_2.0.1    </span>
-<span class="co">#&gt; [49] scales_1.1.1       KernSmooth_2.23-20 cli_3.0.1          stringi_1.7.4     </span>
-<span class="co">#&gt; [53] cachem_1.0.6       fs_1.5.0           xml2_1.3.2         ellipsis_0.3.2    </span>
-<span class="co">#&gt; [57] ragg_1.1.3         generics_0.1.0     vctrs_0.3.8        tools_4.1.1       </span>
-<span class="co">#&gt; [61] glue_1.4.2         purrr_0.3.4        hms_1.1.0          fastmap_1.1.0     </span>
-<span class="co">#&gt; [65] yaml_2.2.1         colorspace_2.0-2   classInt_0.4-3     memoise_2.0.0     </span>
-<span class="co">#&gt; [69] knitr_1.33</span></code></pre></div>
+<span class="co">#&gt; [41] sf_1.0-2           withr_2.4.2        crayon_1.4.1       tzdb_0.1.2        </span>
+<span class="co">#&gt; [45] wk_0.5.0           grid_4.1.1         DBI_1.1.1          jsonlite_1.7.2    </span>
+<span class="co">#&gt; [49] gtable_0.3.0       lifecycle_1.0.0    magrittr_2.0.1     units_0.7-2       </span>
+<span class="co">#&gt; [53] scales_1.1.1       KernSmooth_2.23-20 cli_3.0.1          stringi_1.7.4     </span>
+<span class="co">#&gt; [57] cachem_1.0.6       farver_2.1.0       fs_1.5.0           xml2_1.3.2        </span>
+<span class="co">#&gt; [61] ellipsis_0.3.2     ragg_1.1.3         generics_0.1.0     vctrs_0.3.8       </span>
+<span class="co">#&gt; [65] s2_1.0.6           tools_4.1.1        glue_1.4.2         purrr_0.3.4       </span>
+<span class="co">#&gt; [69] hms_1.1.0          fastmap_1.1.0      yaml_2.2.1         colorspace_2.0-2  </span>
+<span class="co">#&gt; [73] classInt_0.4-3     memoise_2.0.0      knitr_1.33</span></code></pre></div>
 </div>
   </div>
 
