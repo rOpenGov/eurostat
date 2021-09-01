@@ -13,8 +13,6 @@ vignette: >
     \usepackage[utf8]{inputenc}    
 ---
 
-# Mapping Regional Data, Mapping Metadata Problems
-
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
@@ -134,7 +132,7 @@ validation_summary_2016 <- validated_indicator %>%
               valid_present = values_present /observations)
 ```
 
-Even though the dataset is called [R\&D personnel and researchers by sector of performance, sex and NUTS 2 regions \[rd_p_persreg\]](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=rd_p_persreg&lang=en), in fact, it contains data on country and `NUTS1` levels. And it has data on non-EU countries that in 2009 were not part of the NUTS system.
+Even though the dataset is called [R&D personnel and researchers by sector of performance, sex and NUTS 2 regions (rd_p_persreg)](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=rd_p_persreg&lang=en), in fact, it contains data on country and `NUTS1` levels. And it has data on non-EU countries that in 2009 were not part of the NUTS system.
 
 ```{r}
 validation_summary_2016  %>%
