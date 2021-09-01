@@ -70,13 +70,13 @@ But this is not the only problem with the dataset.
 
 Let us try to place the data on a `ggplot2` map. 
 
-```{r, echo=FALSE}
+```{r, echo=TRUE}
 library(ggplot2)
 ```
 
 Let us download a map with [get_eurostat_geospatial](https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html).  We will use the `NUTS2016`, i.e., `year = 2016`, which is the regional boundary definition set in 2016 and used in the period 2018-2020. This is the most used definition in 2021.
 
-```{r get-map, eval=FALSE}
+```{r get-map, eval=TRUE}
 map_nuts_2 <- eurostat::get_eurostat_geospatial(
   resolution = "60",
   nuts_level = "2",
@@ -85,14 +85,14 @@ map_nuts_2 <- eurostat::get_eurostat_geospatial(
 
 You should always join your data with the geometric information of the regions starting from left with the map:
 
-```{r, eval=FALSE}
+```{r, eval=TRUE}
 indicator_with_map <- map_nuts_2 %>% 
   left_join ( regional_rd_personnel, by = "geo" ) 
 ```
 
 Huge parts of Europe are not covered, but the missing values are not randomly missing. France went under a regional reform; Turkey and Albania did not provide this data earlier. Ireland has no regional statistics available.
 
-```{r, eval=FALSE}
+```{r, eval=TRUE, out.width='80%', fig.align='center'}
 indicator_with_map  %>%
   ggplot () +
   geom_sf(aes(fill=values),
@@ -108,7 +108,7 @@ indicator_with_map  %>%
   theme(legend.position="none") +
   coord_sf(xlim=c(-22,48), ylim=c(34,70))
 ```
-```{r original-map, echo=FALSE, out.width='80%', fig.align='center'}
+```{r original-map, echo=FALSE, out.width='80%', fig.align='center', eval = FALSE}
 knitr::include_graphics(
   here::here("vignettes", "fig", "indicator_with_map.png")
 )
@@ -220,7 +220,7 @@ recoded_indicator %>%
 ```
 So, let us do the trick: change the `geo` variable to `code_2016`, which is, whenever there is an equivalent `geo` code in the `NUTS2016` definition, the data that you should have. Your original geo variable contains codes that were used, for example, in the `NUTS2010` or `NUTS2013` boundary definitions.
 
-```{r change-to-nuts2016, eval=FALSE}
+```{r change-to-nuts2016, eval=TRUE}
 recoded_with_map <- map_nuts_2 %>% 
   left_join ( 
     recoded_indicator %>%
@@ -252,7 +252,7 @@ regional_rd_personnel_recoded <- recoded_indicator %>%
 
 And let's place it now on the map:
 
-```{r, eval=FALSE}
+```{r, eval=TRUE, out.width='80%', fig.align='center'}
 map_nuts_2 %>% 
   left_join ( regional_rd_personnel_recoded , by = "geo") %>%
   filter ( 
@@ -273,7 +273,7 @@ map_nuts_2 %>%
   theme(legend.position=c(.93,.7)) +
   coord_sf(xlim=c(-22,48), ylim=c(34,70))
 ```
-```{r recoded-map, echo=FALSE, out.width='80%', fig.align='center'}
+```{r recoded-map, echo=FALSE, out.width='80%', fig.align='center', eval=FALSE}
 knitr::include_graphics(
   here::here("vignettes", "fig", "recoded_indicator_with_map.png")
 )
