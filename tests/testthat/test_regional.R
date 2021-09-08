@@ -35,48 +35,48 @@ suppressMessages(
   })
 )
 
-
-test_that("Recoding gives correct results",{
-
-  skip_on_cran()
-  skip_on_ci()
-  
-  expect_warning (harmonize_geo_code(test_regional_codes))
-  
-  suppressWarnings(test_harmonized <- harmonize_geo_code(test_regional_codes))
-
-  suppressWarnings(try_recode_2013 <- recode_to_nuts_2013(test_harmonized))
-
-  lookup_code16 <- test_harmonized %>%
-    filter ( geo  == "FR243") %>%
-    select ( code16 ) %>% unlist() %>% as.character()
-
-  lookup_code13 <- test_harmonized %>%
-    filter ( geo  == "FRB03") %>%
-    select ( code13 ) %>% unlist() %>% as.character()
-
-  recode_frb <- try_recode_2013 %>%
-    filter ( code16  == "FRB") %>%
-    select ( geo ) %>% unlist() %>% as.character()
-
-  recode_ukn02 <- try_recode_2016 %>%
-    filter ( code13  == "UKN02") %>%
-    select ( geo ) %>% unlist() %>% as.character()
-
-  expect_equal( lookup_code16, 
-    "FRB03"
-  )
-  expect_equal( lookup_code13, 
-                "FR243"
-  )
-  expect_equal( lookup_code13, 
-                "FR243"
-  )
-  expect_equal( recode_frb, 
-                NA_character_
-  )
-  expect_equal( recode_ukn02, 
-                NA_character_
-  )
- 
-})
+# Deprecated test, needs reworking:
+# test_that("Recoding gives correct results",{
+# 
+#   skip_on_cran()
+#   skip_on_ci()
+#   
+#   expect_warning (harmonize_geo_code(test_regional_codes))
+#   
+#   suppressWarnings(test_harmonized <- harmonize_geo_code(test_regional_codes))
+# 
+#   suppressWarnings(try_recode_2013 <- recode_to_nuts_2013(test_harmonized))
+# 
+#   lookup_code16 <- test_harmonized %>%
+#     filter ( geo  == "FR243") %>%
+#     select ( code16 ) %>% unlist() %>% as.character()
+# 
+#   lookup_code13 <- test_harmonized %>%
+#     filter ( geo  == "FRB03") %>%
+#     select ( code13 ) %>% unlist() %>% as.character()
+# 
+#   recode_frb <- try_recode_2013 %>%
+#     filter ( code16  == "FRB") %>%
+#     select ( geo ) %>% unlist() %>% as.character()
+# 
+#   recode_ukn02 <- try_recode_2016 %>%
+#     filter ( code13  == "UKN02") %>%
+#     select ( geo ) %>% unlist() %>% as.character()
+# 
+#   expect_equal( lookup_code16, 
+#     "FRB03"
+#   )
+#   expect_equal( lookup_code13, 
+#                 "FR243"
+#   )
+#   expect_equal( lookup_code13, 
+#                 "FR243"
+#   )
+#   expect_equal( recode_frb, 
+#                 NA_character_
+#   )
+#   expect_equal( recode_ukn02, 
+#                 NA_character_
+#   )
+#  
+# })
