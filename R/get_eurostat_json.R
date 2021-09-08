@@ -194,7 +194,7 @@ special_id_values <- function(id) {
 }
 
 # Internal function to give warning if sub-national geo codes need validation
-is_regional_nuts_present <- function(geo) {
+is_regional_nuts_present <- function(dat, geo) {
 
   potentional_regional_codes <- unique (dat$geo)[nchar(unique (dat$geo))>2]
   
