@@ -31,7 +31,7 @@ jobs:
           
           # Use older ubuntu to maximise backward compatibility
           - {os: ubuntu-20.04,   r: 'oldrel-1'}
-          - {os: ubuntu-18.04,   r: 'oldrel-4'}
+          - {os: ubuntu-18.04,   r: 'oldrel-3'}
 
 
     env:
