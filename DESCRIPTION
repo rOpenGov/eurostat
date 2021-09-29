@@ -98,3 +98,5 @@ Repository: CRAN
 RoxygenNote: 7.1.2
 Config/testthat/parallel: false
 Config/testthat/edition: 3
+X-schema.org-isPartOf: http://ropengov.org/
+X-schema.org-keywords: ropengov
