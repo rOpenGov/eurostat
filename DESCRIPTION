@@ -2,7 +2,7 @@ Package: eurostat
 Type: Package
 Title: Tools for Eurostat Open Data
 Date: 2021-06-24
-Version: 3.7.7
+Version: 3.7.8
 Encoding: UTF-8
 Authors@R: 
     c(person(given = "Leo",
@@ -84,7 +84,7 @@ Suggests:
     rmarkdown,
     roxygen2,
     rvest,
-    testthat,
+    testthat (>= 3.0.0),
     tmap,
     usethis,
     sf,
@@ -96,3 +96,5 @@ VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
 RoxygenNote: 7.1.2
+Config/testthat/parallel: false
+Config/testthat/edition: 3
