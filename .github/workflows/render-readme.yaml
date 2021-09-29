@@ -2,6 +2,7 @@
 # and https://fromthebottomoftheheap.net/2020/04/30/rendering-your-readme-with-github-actions/
 # Workflow triggering derived from: https://stevenmortimer.com/running-github-actions-sequentially/
 on:
+  workflow_dispatch:
   push:
     paths:
       - 'README.Rmd'
@@ -18,16 +19,22 @@ jobs:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@v1
       - uses: r-lib/actions/setup-pandoc@v1
-      - name: Install rmarkdown
-        run: Rscript -e 'install.packages("rmarkdown")'
+      - name: Install rmarkdown, remotes, and the local package
+        run: |
+          install.packages("remotes")
+          remotes::install_local(".")
+          remotes::install_cran("rmarkdown")
+          remotes::install_github("ropengov/rogtemplate")
+        shell: Rscript {0}
       - name: Render README
-        run: Rscript -e 'rmarkdown::render("README.Rmd")'
+        run: Rscript -e 'rmarkdown::render("examples/README.Rmd")'
       - name: Commit results
         run: |
           git config --local user.email "actions@github.com"
           git config --local user.name "GitHub Actions"
-          git commit README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
+          git commit examples/README.md -m 'Re-build README.Rmd' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
+          
       - name: Trigger pkgdown workflow
         if: success()
         uses: peter-evans/repository-dispatch@v1
