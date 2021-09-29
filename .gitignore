@@ -6,7 +6,6 @@
 .httr-oauth
 .DS_Store
 
-_pkgdown.yml
 inst/doc
 docs/docsearch.js
 docs/articles/2015-RJournal/response.txt

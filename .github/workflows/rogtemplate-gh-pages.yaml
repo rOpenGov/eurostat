@@ -1,0 +1,56 @@
+# Workflow derived from https://github.com/r-lib/actions/tree/master/examples
+# Need help debugging build failures? Start at https://github.com/r-lib/actions#where-to-find-help
+on:
+  push:
+    branches: [main, master]
+    tags: ['*']
+    paths-ignore: 
+      - 'README.Rmd'
+  repository_dispatch:
+    types: [trigger-pkgdown-workflow]
+  workflow_dispatch:
+
+name: rogtemplate-gh-pages
+
+jobs:
+  rogtemplate-gh-pages:
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v2
+
+      - uses: r-lib/actions/setup-pandoc@v1
+
+      - uses: r-lib/actions/setup-r@v1
+        with:
+          use-public-rspm: true
+
+      - uses: r-lib/actions/setup-r-dependencies@v1
+        with:
+          extra-packages: |
+            magick
+            ropengov/rogtemplate
+
+          needs: website
+
+      - name: Build logo if not present and prepare template
+        run: |
+          # Check that logo is not present
+          if (isFALSE(file.exists(file.path("man", "figures", "logo.png")) ||
+            file.exists(file.path("man", "figures", "logo.png")))) {
+            rogtemplate::rog_logo()
+          } else {
+
+            message("The package already has a logo")
+          }
+
+          rogtemplate::rog_add_template_pkgdown()
+
+        shell: Rscript {0}
+
+      - name: Deploy package
+        run: |
+          git config --local user.name "$GITHUB_ACTOR"
+          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'

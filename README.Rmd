@@ -10,6 +10,8 @@ knitr::opts_chunk$set(
   comment = "#>",
   fig.path = "README-"
 )
+
+library(eurostat)
 ```
 
 <!-- badges: start -->
@@ -37,7 +39,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: end -->
 
-# eurostat R package
+# eurostat R package <a href='https://ropengov.github.io/eurostat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 R tools to access open data from [Eurostat](https://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
 
@@ -45,7 +47,7 @@ R tools to access open data from [Eurostat](https://ec.europa.eu/eurostat). Data
 
 Install stable version from CRAN:
 
-```{r, eval = TRUE}
+```{r, eval = FALSE}
 install.packages("eurostat")
 ```
 
@@ -68,7 +70,7 @@ passengers <- search_eurostat("passenger transport")
 knitr::kable(head(passengers))
 ```
 
-See the [Tutorial](https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html) and other resources at the [package homepage](https://ropengov.github.io/eurostat/) for more information and examples.
+See the [Tutorial](https://ropengov.github.io/eurostat//articles/website/eurostat_tutorial.html) and other resources at the [package homepage](https://ropengov.github.io/eurostat//) for more information and examples.
 
 ### Recommended packages
 
@@ -87,7 +89,7 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [https://ropengov.github.io/eurostat/](https://ropengov.github.io/eurostat/)
+**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. URL: [https://ropengov.github.io/eurostat//](https://ropengov.github.io/eurostat//)
 
 We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.org).
 
