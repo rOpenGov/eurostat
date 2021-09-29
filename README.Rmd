@@ -39,7 +39,6 @@ library(eurostat)
 
 <!-- badges: end -->
 
-
 # eurostat R package <a href='https://ropengov.github.io/eurostat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 R tools to access open data from [Eurostat](https://ec.europa.eu/eurostat). Data search, download, manipulation and visualization. 
