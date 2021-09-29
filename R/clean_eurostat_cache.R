@@ -29,7 +29,7 @@ clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE) {
   }
   # nocov end
 
-  cache_dir <- eur_helper_detect_cache_dir(cache_dir)
+  cache_dir <- eur_helper_cachedir(cache_dir)
 
   if (!file.exists(cache_dir)) {
     stop(
