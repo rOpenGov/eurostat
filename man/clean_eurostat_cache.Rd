@@ -18,7 +18,9 @@ Delete all .rds files from the eurostat cache directory.
              See \code{\link{get_eurostat}} for more on cache.
 }
 \examples{
+\dontrun{
 clean_eurostat_cache()
+}
 }
 \seealso{
 Other cache utilities: 

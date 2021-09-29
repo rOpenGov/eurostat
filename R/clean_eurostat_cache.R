@@ -9,7 +9,10 @@
 #' @family cache utilities
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and
 #'   Diego Hernangómez
-#' @examples clean_eurostat_cache()
+#' @examples
+#' \dontrun{
+#' clean_eurostat_cache()
+#' }
 clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE){
 
   # Config
