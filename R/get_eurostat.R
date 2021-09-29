@@ -2,12 +2,12 @@
 #' @description Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
 #' @param id A code name for the dataset of interest.
 #'        See \code{\link{search_eurostat}} or details for how to get code.
-#' @param filters a "none" (default) to get a whole dataset or a named list of 
-#'        filters to get just part of the table. Names of list objects are 
-#'        Eurostat variable codes and values are vectors of observation codes. 
-#'        If \code{NULL} the whole 
-#'        dataset is returned via API. More on details. See more on filters and 
-#'        limitations per query via API from for 
+#' @param filters a "none" (default) to get a whole dataset or a named list of
+#'        filters to get just part of the table. Names of list objects are
+#'        Eurostat variable codes and values are vectors of observation codes.
+#'        If \code{NULL} the whole
+#'        dataset is returned via API. More on details. See more on filters and
+#'        limitations per query via API from for
 #'        \code{\link{get_eurostat_json}}.
 #' @param time_format a string giving a type of the conversion of the time
 #'        column from the eurostat format. A "date" (default) convers to
@@ -24,7 +24,7 @@
 #'    	  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
 #'        For all frequencies in same data frame \code{time_format = "raw"}
 #'        should be used.
-#' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects 
+#' @param cache a logical whether to do caching. Default is \code{TRUE}. Affects
 #'        only queries from the bulk download facility.
 #' @param update_cache a logical whether to update cache. Can be set also with
 #'        options(eurostat_update = TRUE)
@@ -32,7 +32,7 @@
 #'        The \code{NULL} (default) uses and creates
 #'        'eurostat' directory in the temporary directory from
 #'        \code{\link{tempdir}}. The directory can also be set with
-#'        \code{option} eurostat_cache_dir.
+#'        \code{\link{set_eurostat_cache_dir}}.
 #' @param compress_file a logical whether to compress the
 #'        RDS-file in caching. Default is \code{TRUE}.
 #' @param stringsAsFactors if \code{TRUE} (the default) variables are
@@ -40,39 +40,39 @@
 #'        they are returned as a character.
 #' @param keepFlags a logical whether the flags (e.g. "confidential",
 #'        "provisional") should be kept in a separate column or if they
-#'        can be removed. Default is \code{FALSE}. For flag values see: 
+#'        can be removed. Default is \code{FALSE}. For flag values see:
 #'        \url{https://ec.europa.eu/eurostat/data/database/information}.
-#'        Also possible non-real zero "0n" is indicated in flags column. 
+#'        Also possible non-real zero "0n" is indicated in flags column.
 #'        Flags are not available for eurostat API, so \code{keepFlags}
 #'        can not be used with a \code{filters}.
 #' @param ... further argument for \code{\link{get_eurostat_json}}.
 #' @export
 #' @references See citation("eurostat").
-#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu 
-#' @details Data sets are downloaded from 
-#' \href{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services 
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
+#' @details Data sets are downloaded from
+#' \href{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services
 #' \href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
 #' If only the table \code{id} is given, the whole table is downloaded from the
 #' bulk download facility. If also \code{filters} are defined the JSON API is
 #' used.
-#' 
+#'
 #' The bulk download facility is the fastest method to download whole datasets.
-#' It is also often the only way as the JSON API has limitation of maximum 
-#' 50 sub-indicators at time and whole datasets usually exceeds that. Also, 
-#' it seems that multi frequency datasets can only be retrived via 
-#' bulk download facility and the \code{select_time} is not available for 
+#' It is also often the only way as the JSON API has limitation of maximum
+#' 50 sub-indicators at time and whole datasets usually exceeds that. Also,
+#' it seems that multi frequency datasets can only be retrived via
+#' bulk download facility and the \code{select_time} is not available for
 #' JSON API method.
-#' 
+#'
 #' If your connection is thru a proxy, you probably have to set proxy parameters
 #' to use JSON API, see \code{\link{get_eurostat_json}}.
-#' 
+#'
 #' By default datasets from the bulk download facility are cached as they are
-#' often rather large. Caching is not (currently) possible for datasets from 
+#' often rather large. Caching is not (currently) possible for datasets from
 #' JSON API.
 #' Cache files are stored in a temporary directory by default or in
-#' a named directory if cache_dir or option eurostat_cache_dir is defined.
+#' a named directory (See \code{\link{set_eurostat_cache_dir}}).
 #' The cache can be emptied with \code{\link{clean_eurostat_cache}}.
-#' 
+#'
 #' The \code{id}, a code, for the dataset can be searched with
 #' the \code{\link{search_eurostat}} or from the Eurostat database
 #' \url{https://ec.europa.eu/eurostat/data/database}. The Eurostat
@@ -82,83 +82,71 @@
 #'         the time column for a time dimension and
 #'         the values column for numerical values.
 #'         Eurostat data does not include all missing values and a treatment of
-#'         missing values depend on source. In bulk download 
+#'         missing values depend on source. In bulk download
 #'         facility missing values are dropped if all dimensions are missing
 #'         on particular time. In JSON API missing values are dropped
 #'         only if all dimensions are missing on all times. The data from
-#'         bulk download facility can be completed for example with 
+#'         bulk download facility can be completed for example with
 #'         \code{\link[tidyr]{complete}}.
 #' @seealso \code{\link{search_eurostat}}, \code{\link{label_eurostat}}
 #' @examples
-#' \dontrun{ 
+#' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 #' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 #' dir.create(file.path(tempdir(), "r_cache"))
-#' k <- get_eurostat("nama_10_lp_ulc", 
+#' k <- get_eurostat("nama_10_lp_ulc",
 #'                   cache_dir = file.path(tempdir(), "r_cache"))
 #' options(eurostat_update = TRUE)
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' options(eurostat_update = FALSE)
-#' options(eurostat_cache_dir = file.path(tempdir(), "r_cache"))
+#'
+#' set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
-#' 
-#' dd <- get_eurostat("nama_10_gdp", 
-#'                      filters = list(geo = "FI", 
-#'                                     na_item = "B1GQ", 
+#'
+#' dd <- get_eurostat("nama_10_gdp",
+#'                      filters = list(geo = "FI",
+#'                                     na_item = "B1GQ",
 #'                                     unit = "CLV_I10"))
 #' }
-get_eurostat <- function(id, time_format = "date", filters = "none", 
+get_eurostat <- function(id, time_format = "date", filters = "none",
                          type = "code",
                          select_time = NULL,
                          cache = TRUE, update_cache = FALSE, cache_dir = NULL,
                          compress_file = TRUE,
                          stringsAsFactors = FALSE,
                          keepFlags = FALSE, ...){
-  
-  # Check if you have access to ec.europe.eu. 
+
+  # Check if you have access to ec.europe.eu.
   if (!check_access_to_data()){
-    message("You have no access to ec.europe.eu. 
+    message("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
   } else {
     #Warning for flags with filter
     if (keepFlags & !is.character(filters) && filters != "none") {
-      warning("The keepFlags argument of the get_eurostat function 
+      warning("The keepFlags argument of the get_eurostat function
                can be used only without filters. No Flags returned.")
     }
-  
+
     # No cache for json
     if (is.null(filters) || filters != "none") {
       cache <- FALSE
     }
 
     if (cache){
-  
+
       # check option for update
       update_cache <- update_cache | getOption("eurostat_update", FALSE)
 
       # get cache directory
-      if (is.null(cache_dir)){
-    
-        cache_dir <- getOption("eurostat_cache_dir", NULL)
-      
-        if (is.null(cache_dir)){
-          cache_dir <- file.path(tempdir(), "eurostat")
-          if (!file.exists(cache_dir)) dir.create(cache_dir)
-        }
-      
-      } else {
-        if (!file.exists(cache_dir)) {
-          stop("The folder ", cache_dir, " does not exist")
-        }
-      }
+      cache_dir <- eur_helper_cachedir(cache_dir)
 
       # cache filename
       cache_file <- file.path(cache_dir,
                             paste0(id, "_", time_format,
-                                   "_", type, select_time, "_", 
+                                   "_", type, select_time, "_",
                                    strtrim(stringsAsFactors, 1),
                                    strtrim(keepFlags, 1),
                                    ".rds"))
@@ -194,9 +182,9 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
         } else {
           stop("Invalid type.")
         }
-        
+
       }
-    
+
     } else {
       cf <- path.expand(cache_file)
         message(paste("Reading cache file", cf))
