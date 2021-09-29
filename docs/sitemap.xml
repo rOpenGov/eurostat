@@ -1,129 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>/404.html</loc>
+    <loc>https://ropengov.github.io/eurostat/404.html</loc>
   </url>
   <url>
-    <loc>/LICENSE-text.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/index.html</loc>
   </url>
   <url>
-    <loc>/articles/index.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/vignette.html</loc>
   </url>
   <url>
-    <loc>/articles/vignette.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/website/blogposts.html</loc>
   </url>
   <url>
-    <loc>/articles/website/blogposts.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/website/cheatsheet.html</loc>
   </url>
   <url>
-    <loc>/articles/website/cheatsheet.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html</loc>
   </url>
   <url>
-    <loc>/articles/website/eurostat_tutorial.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/website/mapping.html</loc>
   </url>
   <url>
-    <loc>/articles/website/maps.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/website/maps.html</loc>
   </url>
   <url>
-    <loc>/articles/website/publications.html</loc>
+    <loc>https://ropengov.github.io/eurostat/articles/website/publications.html</loc>
   </url>
   <url>
-    <loc>/articles/website/regional_data.html</loc>
+    <loc>https://ropengov.github.io/eurostat/authors.html</loc>
   </url>
   <url>
-    <loc>/authors.html</loc>
+    <loc>https://ropengov.github.io/eurostat/index.html</loc>
   </url>
   <url>
-    <loc>/index.html</loc>
+    <loc>https://ropengov.github.io/eurostat/LICENSE-text.html</loc>
   </url>
   <url>
-    <loc>/reference/add_nuts_level.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/add_nuts_level.html</loc>
   </url>
   <url>
-    <loc>/reference/check_access_to_data.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/check_access_to_data.html</loc>
   </url>
   <url>
-    <loc>/reference/clean_eurostat_cache.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/clean_eurostat_cache.html</loc>
   </url>
   <url>
-    <loc>/reference/convert_time_col.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/convert_time_col.html</loc>
   </url>
   <url>
-    <loc>/reference/cut_to_classes.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/cut_to_classes.html</loc>
   </url>
   <url>
-    <loc>/reference/dic_order.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/dic_order.html</loc>
   </url>
   <url>
-    <loc>/reference/eu_countries.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/eurostat-package.html</loc>
   </url>
   <url>
-    <loc>/reference/eurostat-package.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2016.html</loc>
   </url>
   <url>
-    <loc>/reference/eurostat_geodata_60_2016.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/eurotime2date.html</loc>
   </url>
   <url>
-    <loc>/reference/eurotime2date.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/eurotime2num.html</loc>
   </url>
   <url>
-    <loc>/reference/eurotime2num.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/eu_countries.html</loc>
   </url>
   <url>
-    <loc>/reference/get_bibentry.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_bibentry.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eurostat.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eurostat_dic.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_dic.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eurostat_geospatial.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eurostat_json.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_json.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eurostat_raw.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_raw.html</loc>
   </url>
   <url>
-    <loc>/reference/get_eurostat_toc.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_toc.html</loc>
   </url>
   <url>
-    <loc>/reference/harmonize_country_code.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/harmonize_country_code.html</loc>
   </url>
   <url>
-    <loc>/reference/harmonize_geo_code.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/harmonize_geo_code.html</loc>
   </url>
   <url>
-    <loc>/reference/index.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/index.html</loc>
   </url>
   <url>
-    <loc>/reference/label_eurostat.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/label_eurostat.html</loc>
   </url>
   <url>
-    <loc>/reference/nuts_correspondence.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/recode_to_nuts_2013.html</loc>
   </url>
   <url>
-    <loc>/reference/recode_to_nuts_2013.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/recode_to_nuts_2016.html</loc>
   </url>
   <url>
-    <loc>/reference/recode_to_nuts_2016.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/reexports.html</loc>
   </url>
   <url>
-    <loc>/reference/regional_changes_2016.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/search_eurostat.html</loc>
   </url>
   <url>
-    <loc>/reference/search_eurostat.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/set_eurostat_toc.html</loc>
   </url>
   <url>
-    <loc>/reference/set_eurostat_toc.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/tgs00026.html</loc>
   </url>
   <url>
-    <loc>/reference/tgs00026.html</loc>
-  </url>
-  <url>
-    <loc>/reference/tidy_eurostat.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat.html</loc>
   </url>
 </urlset>

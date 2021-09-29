@@ -94,3 +94,5 @@ VignetteBuilder: knitr
 NeedsCompilation: no
 Repository: CRAN
 RoxygenNote: 7.1.1
+X-schema.org-isPartOf: http://ropengov.org/
+X-schema.org-keywords: ropengov
