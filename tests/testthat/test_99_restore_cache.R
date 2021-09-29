@@ -1,5 +1,3 @@
-context("Restore cache")
-
 test_that("Restore user cache dir after testing",{
   skip_on_cran()
 

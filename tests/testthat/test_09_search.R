@@ -1,5 +1,3 @@
-context("Search")
-
 test_that("search_eurostat finds",{
   skip_on_cran()
   expect_equal(search_eurostat(

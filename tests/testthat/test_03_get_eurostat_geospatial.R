@@ -57,7 +57,7 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   # Custom function expecting that:
   # we have a warning, then a message, and the final object is of class "sf"
   expect_ismw <- function(x, cls = "sf") {
-      expect_is(expect_message(expect_warning(x)), cls)
+      expect_s3_class(expect_message(expect_warning(x)), cls)
   }
 
   # Testing nuts_level first, such that we can stick to one nuts_level later on ...

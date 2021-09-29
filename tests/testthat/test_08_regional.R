@@ -1,5 +1,3 @@
-context ("Regional code harmonization")
-
 library(dplyr)
 library(magrittr)
 

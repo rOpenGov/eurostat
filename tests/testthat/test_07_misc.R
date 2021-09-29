@@ -1,5 +1,3 @@
-context("Misc")
-
 test_that("Dic downloading works", {
   skip_on_cran()
   expect_warning(get_eurostat_dic("na_item"), NA)
@@ -8,7 +6,7 @@ test_that("Dic downloading works", {
 test_that("Factors are retained in data.frame", {
   skip_on_cran()
   y <- label_eurostat(data.frame(unit = factor("EUR")))
-  expect_is(y$unit, "factor")
+  expect_s3_class(y$unit, "factor")
 })
 
 test_that("Duplicated gives an error", {

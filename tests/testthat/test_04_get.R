@@ -1,5 +1,3 @@
-context("Get")
-
 test_that("get_eurostat includes time and value",{
   skip_on_cran()
   expect_true(all(c("time", "values") %in%
