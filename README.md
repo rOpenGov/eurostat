@@ -12,6 +12,8 @@ status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](h
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![r-universe](https://ropengov.r-universe.dev/badges/eurostat)](https://ropengov.r-universe.dev/)
+
 
 [![Watch on
 GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/watchers)
@@ -61,6 +63,20 @@ Alternatively, install development version from GitHub:
 # Install from GitHub
 library(devtools)
 devtools::install_github("ropengov/eurostat")
+```
+
+Development version can be also installed using the
+[r-universe](https://ropengov.r-universe.dev):
+
+``` r
+# Enable this universe
+options(repos = c(
+  ropengov = "https://ropengov.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+
+
+install.packages("eurostat")
 ```
 
 The package provides several different ways to get datasets from
