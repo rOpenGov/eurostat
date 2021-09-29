@@ -13,9 +13,10 @@
 #' \dontrun{
 #' clean_eurostat_cache()
 #' }
-clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE){
+clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE) {
 
   # Config
+  # nocov start
   if (isTRUE(config)) {
     config_dir <- rappdirs::user_config_dir("eurostat", "R")
 
@@ -26,9 +27,16 @@ clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE){
 
     set_eurostat_cache_dir(file.path(tempdir(), "eurostat"))
   }
-  if (is.null(cache_dir)) cache_dir <- eur_helper_detect_cache_dir()
+  # nocov end
 
-  if (!file.exists(cache_dir)) stop("The cache folder ", cache_dir, " does not exist")
+  cache_dir <- eur_helper_detect_cache_dir(cache_dir)
+
+  if (!file.exists(cache_dir)) {
+    stop(
+      "The cache folder ", cache_dir,
+      " does not exist"
+    )
+  }
 
   files <- list.files(cache_dir, pattern = "rds|RData", full.names = TRUE)
   if (length(files) == 0) {

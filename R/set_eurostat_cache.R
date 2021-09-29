@@ -51,6 +51,7 @@ set_eurostat_cache_dir <- function(cache_dir,
                                    install = FALSE,
                                    verbose = TRUE) {
 
+  # nocov start
   # Default if not provided
   if (missing(cache_dir) || cache_dir == "") {
     if (verbose) {
@@ -66,6 +67,7 @@ set_eurostat_cache_dir <- function(cache_dir,
   } else {
     is_temp <- FALSE
   }
+  # nocov end
 
   cache_dir <- path.expand(cache_dir)
 
@@ -93,6 +95,7 @@ set_eurostat_cache_dir <- function(cache_dir,
 
   # Install path on environ var.
 
+  # nocov start
   if (install) {
     config_dir <- rappdirs::user_config_dir("eurostat", "R")
     # Create cache dir if not presente
@@ -112,6 +115,7 @@ set_eurostat_cache_dir <- function(cache_dir,
         call. = FALSE
       )
     }
+    # nocov end
   } else {
     if (verbose && !is_temp) {
       message(
@@ -123,7 +127,6 @@ set_eurostat_cache_dir <- function(cache_dir,
 
   Sys.setenv(EUROSTAT_CACHE_DIR = cache_dir)
   return(invisible(cache_dir))
-
 }
 
 
