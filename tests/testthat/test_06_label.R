@@ -1,5 +1,3 @@
-context("Label")
-
 test_that("Variable names are labeled",{
   skip_on_cran()
   expect_equal(label_eurostat_vars("geo"), "Geopolitical entity (reporting)")

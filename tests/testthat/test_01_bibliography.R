@@ -1,7 +1,3 @@
-
-
-context("bibliography")
-
 test_that("Bibentry gives correct results",{
   skip_on_cran()
   skip_on_ci()  

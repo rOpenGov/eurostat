@@ -17,7 +17,7 @@ get_eurostat_geospatial(
 )
 }
 \arguments{
-\item{output_class}{A string. Class of object returned, 
+\item{output_class}{A string. Class of object returned,
 either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
    \code{spdf} (\code{SpatialPolygonDataFrame})}
 
@@ -34,7 +34,7 @@ either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
 \item{year}{NUTS release year. One of
 "2003", "2006", "2010", "2013", "2016" or "2021"}
 
-\item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects 
+\item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects
 only queries from the bulk download facility.}
 
 \item{update_cache}{a logical whether to update cache. Can be set also with
@@ -51,7 +51,7 @@ The \code{NULL} (default) uses and creates
 \item{make_valid}{logical; ensure that valid (multi-)polygon features are returned
        if \code{output_class="sf"}, see Details. Current default \code{FALSE}, will be changed
        in the future.
-       
+
 \itemize{
 \item "4326" - WGS84
 \item "3035" - ETRS89 / ETRS-LAEA
@@ -101,14 +101,14 @@ spdf <- get_eurostat_geospatial(output_class = "spdf",
     poly <- st_polygon(list(matrix(d, ncol = 2, byrow = TRUE)))
     data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L),
               crs = st_crs(4326))
-    
+
     # Causing an error: Self-intersection of some points of the geometry
     NUTS2_A <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
                                        crs = 4326, make_valid = FALSE)
     res <- tryCatch(st_interpolate_aw(data, NUTS2_A, extensive = FALSE),
                     error   = function(e) e)
     print(res)
-    
+
     # Resolving the problem using
     # make_valid = TRUE. 'extensive = FALSE' returns
     # average over each area, thus resulting in a
