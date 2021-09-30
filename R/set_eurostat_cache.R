@@ -8,18 +8,17 @@
 #'
 #' Alternatively, you can store the `cache_dir` manually with the following
 #' options:
-#' \itemize{
-#'   \item{ Run `Sys.setenv(EUROSTAT_CACHE_DIR = "cache_dir")`. You
+#'   * Run `Sys.setenv(EUROSTAT_CACHE_DIR = "cache_dir")`. You
 #'    would need to run this command on each session
-#'    (Similar to `install = FALSE`).}
-#'   \item{Set `options(eurostat_cache_dir  = "cache_dir")`. Similar to
-#'   the previous option. This is provided for backwards compatibility
-#'   purposes.}
-#'   \item{Write this line on your .Renviron file:
+#'    (Similar to `install = FALSE`).
+#'   * Set `options(eurostat_cache_dir  = "cache_dir")`. Similar to
+#'     the previous option. This is provided for backwards compatibility
+#'     purposes.
+#'   * Write this line on your .Renviron file:
 #'     `EUROSTAT_CACHE_DIR = "value_for_cache_dir"` (same behavior than
 #'     `install = TRUE`). This would store your `cache_dir`
-#'     permanently.}
-#' }
+#'     permanently.
+#'
 #' @param cache_dir A path to a cache directory. On missing value the function
 #'   would store the cached files on a temporary dir (See
 #'   [base::tempdir()]).

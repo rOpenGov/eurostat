@@ -38,16 +38,16 @@ find your cached path.
 Alternatively, you can store the \code{cache_dir} manually with the following
 options:
 \itemize{
-\item{ Run \code{Sys.setenv(EUROSTAT_CACHE_DIR = "cache_dir")}. You
+\item Run \code{Sys.setenv(EUROSTAT_CACHE_DIR = "cache_dir")}. You
 would need to run this command on each session
-(Similar to \code{install = FALSE}).}
-\item{Set \code{options(eurostat_cache_dir  = "cache_dir")}. Similar to
+(Similar to \code{install = FALSE}).
+\item Set \code{options(eurostat_cache_dir  = "cache_dir")}. Similar to
 the previous option. This is provided for backwards compatibility
-purposes.}
-\item{Write this line on your .Renviron file:
+purposes.
+\item Write this line on your .Renviron file:
 \code{EUROSTAT_CACHE_DIR = "value_for_cache_dir"} (same behavior than
 \code{install = TRUE}). This would store your \code{cache_dir}
-permanently.}
+permanently.
 }
 }
 \examples{

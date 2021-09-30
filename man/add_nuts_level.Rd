@@ -19,8 +19,8 @@ NUTS level 0 (country), 1 (greater region),
 \description{
 Eurostat regional statistics contain country, and various
 regional level information.  In many cases, for example, when mapping,
-it is useful to filter out national level data from NUTS2 level regional data,
-for example.
+it is useful to filter out national level data from NUTS2 level regional
+data, for example.
 
 This function will be deprecated. Use the more comprehensive
 \verb{regions::[validate_nuts_regions][regions::validate_nuts_regions]} instead.

@@ -4,8 +4,8 @@
 #' @title Add the statistical aggregation level to data frame
 #' @description Eurostat regional statistics contain country, and various
 #' regional level information.  In many cases, for example, when mapping,
-#' it is useful to filter out national level data from NUTS2 level regional data,
-#' for example.
+#' it is useful to filter out national level data from NUTS2 level regional
+#' data, for example.
 #'
 #' This function will be deprecated. Use the more comprehensive
 #' `regions::[validate_nuts_regions][regions::validate_nuts_regions]` instead.
@@ -72,14 +72,15 @@ add_nuts_level <- function(dat, geo_labels = "geo") {
   }
 }
 
-#' @title Harmonize NUTS region codes that changed with the `NUTS2016` definition
+#' @title Harmonize NUTS region codes that changed with the `NUTS2016`
+#'  definition
 #' @description Eurostat mixes `NUTS2013` and `NUTS2016` geographic
-#' label codes in the `'geo'` column, which creates time-wise comparativity issues.
-#' This deprecated function checke if you data is affected by this problem and gives
-#' information on what to do.
+#' label codes in the `'geo'` column, which creates time-wise comparativity
+#' issues. This deprecated function checke if you data is affected by this
+#' problem and gives information on what to do.
 #'
 #' This function is deprecated, and a more general function was moved to
-#' `regions::[validate_nuts_regions][regions::validate_nuts_regions]`.
+#' [regions::validate_nuts_regions()].
 #'
 #' @param dat A Eurostat data frame downloaded with [get_eurostat()]
 #' @export

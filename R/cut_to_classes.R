@@ -28,7 +28,8 @@ cut_to_classes <- function(x, n = 5, style = "equal", manual = FALSE,
                            manual_breaks = NULL, decimals = 0,
                            nodata_label = "No data") {
   manual_breaks_orig <- manual_breaks
-  if (!is.null(manual_breaks) && (length(unique(manual_breaks)) == length(manual_breaks))) {
+  if (!is.null(manual_breaks) && (length(unique(manual_breaks)) ==
+    length(manual_breaks))) {
     warning("manual_breaks in cut_to_classes are not unique. Using unique breaks only.")
     manual_breaks <- unique(manual_breaks)
   }

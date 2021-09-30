@@ -22,7 +22,11 @@ A numeric vector of orders.
 Orders the factor levels.
 }
 \details{
-Some variables, like classifications, have logical or conventional ordering. Eurostat data tables are nor neccessary ordered in this order. The function \code{dic_order} get the ordering from Eurostat classifications dictionaries. The function \code{\link[=label_eurostat]{label_eurostat()}} can also order factor levels of labels with argument \code{eu_order = TRUE}.
+Some variables, like classifications, have logical or conventional
+ordering. Eurostat data tables are nor neccessary ordered in this order.
+The function \code{\link[=dic_order]{dic_order()}} get the ordering from Eurostat classifications
+dictionaries. The function \code{\link[=label_eurostat]{label_eurostat()}} can also order factor levels
+of labels with argument \code{eu_order = TRUE}.
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu

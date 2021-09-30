@@ -65,8 +65,11 @@ eurotime2date <- function(x, last = FALSE) {
     return(x)
     # for unkown
   } else {
-    warning("Unknown time code, ", tcode, ". No date conversion was made.\n
-            Please fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+    warning(
+      "Unknown time code, ", tcode, ". No date conversion was made.\n
+            Please fill bug report at ",
+      "https://github.com/rOpenGov/eurostat/issues."
+    )
     return(x)
   }
 
@@ -75,7 +78,9 @@ eurotime2date <- function(x, last = FALSE) {
   # The date as the last date of the period
   if (last == TRUE) {
     shift <- c("Y" = 367, "S" = 186, "Q" = 96, "M" = 32, "D" = 0)[tcode]
-    levels(x) <- lubridate::ymd(cut(lubridate::ymd(levels(x)) + shift, "month")) - 1
+    levels(x) <- lubridate::ymd(
+      cut(lubridate::ymd(levels(x)) + shift, "month")
+    ) - 1
   }
   y <- lubridate::ymd(x)
   y

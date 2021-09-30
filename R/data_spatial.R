@@ -1,5 +1,7 @@
-#' @title Geospatial data of Europe from Gisco in 1:60 million scale from year 2016
-#' @description Geospatial data of Europe from Gisco in 1:60 million scale from year 2016
+#' @title Geospatial data of Europe from Gisco in 1:60 million scale from
+#'   year 2016
+#' @description Geospatial data of Europe from Gisco in 1:60 million scale
+#'  from year 2016
 #' @format sf
 #'   * **id**: Country code in the Eurostat database.
 #'   * **CNTRY_CODE**: Country code.

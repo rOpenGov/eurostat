@@ -1,12 +1,12 @@
 #' @title Download Table of Contents of Eurostat Data Sets
 #' @description Download table of contents (TOC) of eurostat datasets.
 #' @return A tibble with eight columns
-#'    \itemize{
-#'      \item{title}{The name of dataset of theme}
-#'      \item{code}{The codename of dataset of theme, will be used by the eurostat and get_eurostat_raw functions.}
-#'      \item{type}{Is it a dataset, folder or table.}
-#'      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
-#'    }
+#'      * title: The name of dataset of theme
+#'      * code: The codename of dataset of theme, will be used by the
+#'        [get_eurostat()] and [get_eurostat_raw()] functions.
+#'      * type: Is it a dataset, folder or table.
+#'      * last.update.of.data, last.table.structure.change,
+#'        data.start, data.end: Dates.
 #' @export
 #' @seealso [get_eurostat()], [search_eurostat()].
 #' @details The TOC is downloaded from <https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt>. The values in column 'code' should be used to download a selected dataset.
