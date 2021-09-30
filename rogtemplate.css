@@ -128,3 +128,17 @@ footer a:focus {
     margin-left: 10rem;
   }
 }
+
+/* Clipboard button */
+
+.btn-copy-ex {
+  color: white;
+  background-color: #343a40;
+  border-color: #343a40;
+}
+
+.btn-copy-ex:hover, .btn-copy-ex:focus {
+    color: white;
+    background-color: #ff6600;
+    border-color: #ff6600;
+}
