@@ -16,7 +16,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.7</button>
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.8</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3"><li class="active nav-item">
@@ -76,7 +76,7 @@
 
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments" aria-hidden="true"></a>Arguments</h2>
     <dl class="row" id="ref-arguments"><dt class="col-sm-3 section level2" id="pkg-arg-output_class">output_class</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>A string. Class of object returned, 
+      <dd class="col-sm-9" id="ref-arguments desc"><p>A string. Class of object returned,
 either <code>sf</code> <code>simple features</code>, <code>df</code> (<code>data_frame</code>) or
    <code>spdf</code> (<code>SpatialPolygonDataFrame</code>)</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-resolution">resolution</dt>
@@ -93,7 +93,7 @@ either <code>sf</code> <code>simple features</code>, <code>df</code> (<code>data
       <dd class="col-sm-9" id="ref-arguments desc"><p>NUTS release year. One of
 "2003", "2006", "2010", "2013", "2016" or "2021"</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-cache">cache</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to do caching. Default is <code>TRUE</code>. Affects 
+      <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to do caching. Default is <code>TRUE</code>. Affects
 only queries from the bulk download facility.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-update_cache">update_cache</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to update cache. Can be set also with
@@ -109,7 +109,7 @@ The <code>NULL</code> (default) uses and creates
     <dt class="col-sm-3 section level2" id="pkg-arg-make_valid">make_valid</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>logical; ensure that valid (multi-)polygon features are returned
        if <code>output_class="sf"</code>, see Details. Current default <code>FALSE</code>, will be changed
-       in the future.</p>       
+       in the future.</p>
 <ul><li><p>"4326" - WGS84</p></li>
 <li><p>"3035" - ETRS89 / ETRS-LAEA</p></li>
 <li><p>"3857" - Pseudo-Mercator</p></li>
@@ -147,10 +147,11 @@ only valid (multi-)polygons are returned, example included below.</p>
 <span class="r-in"><span class="va">df</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_geospatial</span><span class="op">(</span>output_class <span class="op">=</span> <span class="st">"df"</span>,</span>
 <span class="r-in">                              resolution <span class="op">=</span> <span class="st">"20"</span>,</span>
 <span class="r-in">                              nuts_level <span class="op">=</span> <span class="st">"0"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Object cached at /tmp/RtmpHKxLs4/eurostat/df20020164326.RData</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> No encoding supplied: defaulting to UTF-8.</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Regions defined for each Polygons</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> Joining, by = "id"</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> data_frame at resolution 1: 20  cached at:  /tmp/RtmpV7M2Q1/eurostat/df20020164326.RData</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> data_frame at resolution 1: 20  cached at:  /tmp/RtmpHKxLs4/eurostat/df20020164326.RData</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>Default of 'make_valid' for 'output_class="sf"' will be changed in the future (see function details).</span>
 <span class="r-in"><span class="co"># }</span></span>
 <span class="r-in"></span>
@@ -170,14 +171,14 @@ only valid (multi-)polygons are returned, example included below.</p>
 <span class="r-in">    <span class="va">poly</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st.html">st_polygon</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/matrix.html">matrix</a></span><span class="op">(</span><span class="va">d</span>, ncol <span class="op">=</span> <span class="fl">2</span>, byrow <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in">    <span class="va">data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sf.html">st_sf</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/data.frame.html">data.frame</a></span><span class="op">(</span>geom <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/sfc.html">st_sfc</a></span><span class="op">(</span><span class="va">poly</span><span class="op">)</span>, data <span class="op">=</span> <span class="fl">1L</span><span class="op">)</span>,</span>
 <span class="r-in">              crs <span class="op">=</span> <span class="fu"><a href="https://r-spatial.github.io/sf/reference/st_crs.html">st_crs</a></span><span class="op">(</span><span class="fl">4326</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in">    </span>
+<span class="r-in"></span>
 <span class="r-in">    <span class="co"># Causing an error: Self-intersection of some points of the geometry</span></span>
 <span class="r-in">    <span class="va">NUTS2_A</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_geospatial</span><span class="op">(</span><span class="st">"sf"</span>, <span class="fl">60</span>, nuts_level <span class="op">=</span> <span class="fl">2</span>, year <span class="op">=</span> <span class="fl">2013</span>,</span>
 <span class="r-in">                                       crs <span class="op">=</span> <span class="fl">4326</span>, make_valid <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in">    <span class="va">res</span> <span class="op">&lt;-</span> <span class="kw"><a href="https://rdrr.io/r/base/conditions.html">tryCatch</a></span><span class="op">(</span><span class="fu"><a href="https://r-spatial.github.io/sf/reference/interpolate_aw.html">st_interpolate_aw</a></span><span class="op">(</span><span class="va">data</span>, <span class="va">NUTS2_A</span>, extensive <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span>,</span>
 <span class="r-in">                    error   <span class="op">=</span> <span class="kw">function</span><span class="op">(</span><span class="va">e</span><span class="op">)</span> <span class="va">e</span><span class="op">)</span></span>
 <span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/base/print.html">print</a></span><span class="op">(</span><span class="va">res</span><span class="op">)</span></span>
-<span class="r-in">    </span>
+<span class="r-in"></span>
 <span class="r-in">    <span class="co"># Resolving the problem using</span></span>
 <span class="r-in">    <span class="co"># make_valid = TRUE. 'extensive = FALSE' returns</span></span>
 <span class="r-in">    <span class="co"># average over each area, thus resulting in a</span></span>
