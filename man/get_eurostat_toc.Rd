@@ -8,12 +8,12 @@ get_eurostat_toc()
 }
 \value{
 A tibble with eight columns
-   \itemize{
-     \item{title}{The name of dataset of theme}
-     \item{code}{The codename of dataset of theme, will be used by the eurostat and get_eurostat_raw functions.}
-     \item{type}{Is it a dataset, folder or table.}
-     \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
-   }
+\itemize{
+\item{title}{The name of dataset of theme}
+\item{code}{The codename of dataset of theme, will be used by the eurostat and get_eurostat_raw functions.}
+\item{type}{Is it a dataset, folder or table.}
+\item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
+}
 }
 \description{
 Download table of contents (TOC) of eurostat datasets.
@@ -22,16 +22,19 @@ Download table of contents (TOC) of eurostat datasets.
 The TOC is downloaded from \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
 }
 \examples{
-\dontrun{tmp <- get_eurostat_toc(); head(tmp)}
+\dontrun{
+tmp <- get_eurostat_toc()
+head(tmp)
+}
 }
 \references{
 See citation("eurostat").
 }
 \seealso{
-\code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
+\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}.
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
 }
 \keyword{database}
 \keyword{utilities}

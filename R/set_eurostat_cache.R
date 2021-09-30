@@ -1,40 +1,40 @@
 #' Set Eurostat Cache
 #'
 #' @description
-#' This function will store your \code{cache_dir} path on your local machine
+#' This function will store your `cache_dir` path on your local machine
 #' and would load it for future sessions. Type
-#' \code{Sys.getenv("EUROSTAT_CACHE_DIR")} to
+#' `Sys.getenv("EUROSTAT_CACHE_DIR")` to
 #' find your cached path.
 #'
-#' Alternatively, you can store the \code{cache_dir} manually with the following
+#' Alternatively, you can store the `cache_dir` manually with the following
 #' options:
 #' \itemize{
-#'   \item{ Run \code{Sys.setenv(EUROSTAT_CACHE_DIR = "cache_dir")}. You
+#'   \item{ Run `Sys.setenv(EUROSTAT_CACHE_DIR = "cache_dir")`. You
 #'    would need to run this command on each session
-#'    (Similar to \code{install = FALSE}).}
-#'   \item{Set \code{options(eurostat_cache_dir  = "cache_dir")}. Similar to
+#'    (Similar to `install = FALSE`).}
+#'   \item{Set `options(eurostat_cache_dir  = "cache_dir")`. Similar to
 #'   the previous option. This is provided for backwards compatibility
 #'   purposes.}
 #'   \item{Write this line on your .Renviron file:
-#'     \code{EUROSTAT_CACHE_DIR = "value_for_cache_dir"} (same behavior than
-#'     \code{install = TRUE}). This would store your \code{cache_dir}
+#'     `EUROSTAT_CACHE_DIR = "value_for_cache_dir"` (same behavior than
+#'     `install = TRUE`). This would store your `cache_dir`
 #'     permanently.}
 #' }
 #' @param cache_dir A path to a cache directory. On missing value the function
 #'   would store the cached files on a temporary dir (See
-#'   \code{\link[base]{tempdir}}).
-#' @param overwrite If this is set to \code{TRUE}, it will overwrite an existing
-#'   \code{EUROSTAT_CACHE_DIR} that you already have in local machine.
+#'   [base::tempdir()]).
+#' @param overwrite If this is set to `TRUE`, it will overwrite an existing
+#'   `EUROSTAT_CACHE_DIR` that you already have in local machine.
 #' @param verbose Logical, displays information. Useful for debugging,
-#'   default is \code{FALSE}.
-#' @param install if \code{TRUE}, will install the key in your local machine for
-#'   use in future sessions. Defaults to \code{FALSE}. If \code{cache_dir} is
-#'   \code{FALSE} this parameter is set to \code{FALSE} automatically.
+#'   default is `FALSE`.
+#' @param install if `TRUE`, will install the key in your local machine for
+#'   use in future sessions. Defaults to `FALSE`. If `cache_dir` is
+#'   `FALSE` this parameter is set to `FALSE` automatically.
 #'
 #' @family cache utilities
-#' @seealso \code{\link[rappdirs]{user_config_dir}}
+#' @seealso [rappdirs::user_config_dir()]
 #'
-#' @return An (invisible) character with the path to your \code{cache_dir}.
+#' @return An (invisible) character with the path to your `cache_dir`.
 #'
 #' @author Diego Hernangómez
 #' @examples

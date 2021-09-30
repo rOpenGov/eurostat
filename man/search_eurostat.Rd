@@ -21,12 +21,16 @@ Change to FALSE if more complex regex matching is needed.}
 }
 \value{
 A tibble with eight columns
-   \itemize{
- 	\item{title}{The name of dataset of theme}
-\item{code}{The codename of dataset of theme, will be used by the get_eurostat and get_eurostat_raw functions.}
-\item{type}{Is it a dataset, folder or table.}
-\item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
-   }
+\itemize{
+\item \strong{title}: The name of dataset of theme
+\itemize{
+\item \strong{code}: The codename of dataset of theme, will be used by the
+\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions.
+\item \strong{type}: Is it a dataset, folder or table.
+\item \strong{last.update.of.data, last.table.structure.change, data.start,
+data.end}: Dates.
+}
+}
 }
 \description{
 Lists names of dataset from eurostat with the particular
@@ -45,21 +49,21 @@ education of teaching.
 
 \examples{
 \dontrun{
-  tmp <- search_eurostat("education")
-  head(tmp)
-  # Use "fixed = TRUE" when pattern has characters that would need escaping.
-  # Here, parentheses would normally need to be escaped in regex
-  tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
+tmp <- search_eurostat("education")
+head(tmp)
+# Use "fixed = TRUE" when pattern has characters that would need escaping.
+# Here, parentheses would normally need to be escaped in regex
+tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
 }
 }
 \references{
 See citation("eurostat")
 }
 \seealso{
-\code{\link{get_eurostat}}, \code{\link{get_eurostat_toc}}
+\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=get_eurostat_toc]{get_eurostat_toc()}}
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
 }
 \keyword{database}
 \keyword{utilities}

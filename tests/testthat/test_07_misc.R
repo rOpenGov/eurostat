@@ -17,7 +17,9 @@ test_that("Duplicated gives an error", {
 test_that("Duplicated with fix_duplicated does not give an error", {
   skip_on_cran()
   expect_match(as.character(
-    label_eurostat(x = factor(c("P5G", "P5")), dic = "na_item", 
-                              fix_duplicated = TRUE)), "P5", all = TRUE)
+    label_eurostat(
+      x = factor(c("P5G", "P5")), dic = "na_item",
+      fix_duplicated = TRUE
+    )
+  ), "P5", all = TRUE)
 })
-

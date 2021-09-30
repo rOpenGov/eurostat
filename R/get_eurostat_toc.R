@@ -1,5 +1,5 @@
 #' @title Download Table of Contents of Eurostat Data Sets
-#' @description Download table of contents (TOC) of eurostat datasets. 
+#' @description Download table of contents (TOC) of eurostat datasets.
 #' @return A tibble with eight columns
 #'    \itemize{
 #'      \item{title}{The name of dataset of theme}
@@ -8,11 +8,14 @@
 #'      \item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
 #'    }
 #' @export
-#' @seealso \code{\link{get_eurostat}}, \code{\link{search_eurostat}}.
-#' @details The TOC is downloaded from \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
-#' @references See citation("eurostat"). 
-#' @author Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@@googlegroups.com}
-#' @examples \dontrun{tmp <- get_eurostat_toc(); head(tmp)}
+#' @seealso [get_eurostat()], [search_eurostat()].
+#' @details The TOC is downloaded from <https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt>. The values in column 'code' should be used to download a selected dataset.
+#' @references See citation("eurostat").
+#' @author Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
+#' @examples \dontrun{
+#' tmp <- get_eurostat_toc()
+#' head(tmp)
+#' }
 #' @keywords utilities database
 get_eurostat_toc <- function() {
   set_eurostat_toc()
@@ -21,10 +24,7 @@ get_eurostat_toc <- function() {
 
 # @describeIn get_eurostat_toc Old deprecated version
 # @export
-#getEurostatTOC <- function() {
+# getEurostatTOC <- function() {
 #  .Deprecated("get_eurostat_toc")
 #  get_eurostat_toc()
-#}
-
-
-
+# }

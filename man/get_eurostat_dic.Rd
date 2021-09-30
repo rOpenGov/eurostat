@@ -9,7 +9,7 @@ get_eurostat_dic(dictname, lang = "en")
 \arguments{
 \item{dictname}{A character, dictionary for the variable to be downloaded.}
 
-\item{lang}{A character, language code. Options: "en" (default) / "fr" / "de".}
+\item{lang}{A character, language code. Options: "en" (default), "fr", "de".}
 }
 \value{
 tibble with two columns: code names and full names.
@@ -18,9 +18,10 @@ tibble with two columns: code names and full names.
 Download a Eurostat dictionary.
 }
 \details{
-For given coded variable from Eurostat \url{https://ec.europa.eu/eurostat/}.
-   The dictionaries link codes with human-readable labels.
-   To translate codes to labels, use \code{\link{label_eurostat}}.
+For given coded variable from Eurostat
+\url{https://ec.europa.eu/eurostat/}. The dictionaries link codes with
+human-readable labels. To translate codes to labels, use
+\code{\link[=label_eurostat]{label_eurostat()}}.
 }
 \examples{
 \dontrun{
@@ -28,17 +29,18 @@ tmp <- get_eurostat_dic("crop_pro")
 head(tmp)
 tmp <- get_eurostat_dic("crop_pro", lang = "fr")
 }
-     
+
 }
 \references{
 See citation("eurostat").
 }
 \seealso{
-\code{\link{label_eurostat}}, \code{\link{get_eurostat}}, 
-         \code{\link{search_eurostat}}.
+\code{\link[=label_eurostat]{label_eurostat()}}, \code{\link[=get_eurostat]{get_eurostat()}},
+\code{\link[=search_eurostat]{search_eurostat()}}.
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{leo.lahti@iki.fi}. Thanks to Wietse Dol for contributions.
+Przemyslaw Biecek and Leo Lahti \href{mailto:leo.lahti@iki.fi}{leo.lahti@iki.fi}. Thanks to
+Wietse Dol for contributions.
 }
 \keyword{database}
 \keyword{utilities}

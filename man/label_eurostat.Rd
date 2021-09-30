@@ -38,25 +38,26 @@ Affects only factors.}
 \item{lang}{A character, code for language. Available are "en" (default),
 "fr" and "de".}
 
-\item{countrycode}{A \code{NULL} or a name of the coding scheme for 
-the \code{\link[countrycode]{countrycode}} 
+\item{countrycode}{A \code{NULL} or a name of the coding scheme for
+the \code{\link[countrycode:countrycode]{countrycode::countrycode()}}
 to label "geo" variable with countrycode-package. It can be used to
 convert to short and long country names in many different languages.
 If \code{NULL} (default) eurostat dictionary is used instead.}
 
-\item{countrycode_nomatch}{What to do when using the countrycode to label a "geo" and
-countrycode fails to find a match, for example other than country codes like EU28.
-the original code is used with 
+\item{countrycode_nomatch}{What to do when using the countrycode to label
+a "geo" and countrycode fails to find a match, for example other than
+country codes like EU28. The original code is used with
 a \code{NULL} (default), eurostat dictionary label is used with "eurostat",
 and \code{NA} is used with NA.}
 
-\item{custom_dic}{a named vector or named list of named vectors to give an own dictionary
-for (part of) codes. Names of the vector should be codes and values labels. List
-can be used to spesify dictonaries and then list names should be dictionary codes.}
+\item{custom_dic}{a named vector or named list of named vectors to give an
+own dictionary for (part of) codes. Names of the vector should be codes
+and values labels. List can be used to specify dictionaries and then
+list names should be dictionary codes.}
 
 \item{fix_duplicated}{A logical. If TRUE, the code is added to the
-duplicated label values. If FALSE (default) error is given if 
-labelling produce duplicates.}
+duplicated label values. If FALSE (default) error is given if
+labeling produce duplicates.}
 }
 \value{
 a vector or a data_frame.
@@ -65,17 +66,17 @@ a vector or a data_frame.
 Get definitions for Eurostat codes from Eurostat dictionaries.
 }
 \details{
-A character or a factor vector of codes returns a corresponding 
-   vector of definitions. \code{label_eurostat} labels also data_frames from 
-   \code{\link{get_eurostat}}. For vectors a dictionary name have to be 
-   supplied. For data_frames dictonary names are taken from column names. 
-   "time" and "values" columns are returned as they were, so you can supply 
-   data_frame from \code{\link{get_eurostat}} and get data_frame with 
-   definitions instead of codes.
-   
-   Some Eurostat dictionaries includes dublicated labels. By default 
-   dublicated labels cause an error, but they can be fixed automatically 
-   with \code{fix_duplicated = TRUE}.
+A character or a factor vector of codes returns a corresponding
+vector of definitions. \code{label_eurostat} labels also data_frames from
+\code{\link[=get_eurostat]{get_eurostat()}}. For vectors a dictionary name have to be
+supplied. For data_frames dictonary names are taken from column names.
+"time" and "values" columns are returned as they were, so you can supply
+data_frame from \code{\link[=get_eurostat]{get_eurostat()}} and get data_frame with
+definitions instead of codes.
+
+Some Eurostat dictionaries includes dublicated labels. By default
+dublicated labels cause an error, but they can be fixed automatically
+with \code{fix_duplicated = TRUE}.
 }
 \section{Functions}{
 \itemize{
@@ -86,24 +87,26 @@ objects other than characters or factors definitions are get for names.
 }}
 
 \examples{
- \dontrun{
-   lp <- get_eurostat("nama_10_lp_ulc")
-   lpl <- label_eurostat(lp)
-   str(lpl)
-   lpl_order <- label_eurostat(lp, eu_order = TRUE)
-   lpl_code <- label_eurostat(lp, code = "unit")
-   label_eurostat_vars(names(lp))
-   label_eurostat_tables("nama_10_lp_ulc")
-   label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
-   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
-   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name",
-                  custom_dic = c(EU28 = "EU"))
-   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
-   # In Finnish
-   label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
- }
- 
+\dontrun{
+lp <- get_eurostat("nama_10_lp_ulc")
+lpl <- label_eurostat(lp)
+str(lpl)
+lpl_order <- label_eurostat(lp, eu_order = TRUE)
+lpl_code <- label_eurostat(lp, code = "unit")
+label_eurostat_vars(names(lp))
+label_eurostat_tables("nama_10_lp_ulc")
+label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
+label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
+label_eurostat(c("FI", "DE", "EU28"),
+  dic = "geo", countrycode = "country.name",
+  custom_dic = c(EU28 = "EU")
+)
+label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
+# In Finnish
+label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
+}
+
 }
 \author{
-Janne Huovari \email{janne.huovari@ptt.fi}
+Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }

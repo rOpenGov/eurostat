@@ -32,7 +32,7 @@ codes as names.}
 to factors in original Eurostat order. If \code{FALSE} they are returned as
 a character.}
 
-\item{...}{Other arguments passed on to \code{\link[httr]{GET}}. For example
+\item{...}{Other arguments passed on to \code{\link[httr:GET]{httr::GET()}}. For example
 a proxy parameters, see details.
 .}
 }
@@ -44,29 +44,29 @@ Retrieve data from Eurostat API in JSON format.
 }
 \details{
 Data to retrieve from
-  \href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The
-  Eurostat Web Services} can be specified with filters. Normally, it is
-  better to use JSON query through \code{\link{get_eurostat}}, than to use
-  \code{\link{get_eurostat_json}} directly.
-  
-  Queries are limited to 50 sub-indicators at a time. A time can be
-  filtered with fixed "time" filter or with "sinceTimePeriod" and
-  "lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
-  observations from 2000 to a last available. A \code{lastTimePeriod = 10}
-  returns a 10 last observations.
- 
-  To use a proxy to connect, a \code{\link[httr]{use_proxy}} can be
-  passed to \code{\link[httr]{GET}}. For example 
-  \code{get_eurostat_json(id, filters, 
-  config = httr::use_proxy(url, port, username, password))}.
+\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services} can be specified with filters. Normally, it is
+better to use JSON query through \code{\link[=get_eurostat]{get_eurostat()}}, than to use
+\code{\link[=get_eurostat_json]{get_eurostat_json()}} directly.
+
+Queries are limited to 50 sub-indicators at a time. A time can be
+filtered with fixed "time" filter or with "sinceTimePeriod" and
+"lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
+observations from 2000 to a last available. A \code{lastTimePeriod = 10}
+returns a 10 last observations.
+
+To use a proxy to connect, a \code{\link[httr:use_proxy]{httr::use_proxy()}} can be
+passed to \code{\link[httr:GET]{httr::GET()}}. For example
+\code{get_eurostat_json(id, filters, config = httr::use_proxy(url, port, username, password))}.
 }
 \examples{
 \dontrun{
-   tmp <- get_eurostat_json("cdh_e_fos")
-   # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
-   yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
-                                                        unit="EUR_HAB",
-                                                        indic_na="B1GM"))
+tmp <- get_eurostat_json("cdh_e_fos")
+# nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
+yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(
+  geo = c("EU28", "FI"),
+  unit = "EUR_HAB",
+  indic_na = "B1GM"
+))
 }
 
 }

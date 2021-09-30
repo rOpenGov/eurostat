@@ -14,17 +14,18 @@ a vector.
 }
 \description{
 The European Commission and the Eurostat generally uses ISO
-   3166-1 alpha-2 codes with two exceptions: EL (not GR) is used to
-   represent Greece, and UK (not GB) is used to represent the
-   United Kingdom. This function turns country codes into to ISO
-   3166-1 alpha-2.
+3166-1 alpha-2 codes with two exceptions: EL (not GR) is used to
+represent Greece, and UK (not GB) is used to represent the
+United Kingdom. This function turns country codes into to ISO
+3166-1 alpha-2.
 }
 \examples{
- \dontrun{
-   lp <- get_eurostat("nama_10_lp_ulc")
-   lp$geo <- harmonize_country_code(lp$geo)
- }
+\dontrun{
+lp <- get_eurostat("nama_10_lp_ulc")
+lp$geo <- harmonize_country_code(lp$geo)
+}
+
 }
 \author{
-Janne Huovari \email{janne.huovari@ptt.fi}
+Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }

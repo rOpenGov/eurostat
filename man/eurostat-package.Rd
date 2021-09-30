@@ -10,20 +10,22 @@ Brief summary of the eurostat package
 }
 \details{
 \tabular{ll}{
-Package: \tab eurostat\cr
-Type: \tab Package\cr
-Version: \tab See sessionInfo() or DESCRIPTION file\cr
-Date: \tab 2014-2021\cr
-License: \tab BSD_2_clause + LICENSE\cr
-LazyLoad: \tab yes\cr
+    \tab  \cr
+   \strong{Package} \tab eurostat \cr
+   \strong{Type} \tab Package \cr
+   \strong{Version} \tab 3.7.8 \cr
+   \strong{Date} \tab `2014-2021 \cr
+   \strong{License} \tab BSD_2_clause + file LICENSE \cr
+   \strong{LazyLoad} \tab yes \cr
 }
+
 
 R Tools for Eurostat Open Data
 }
 \section{regions functions}{
 
-For working with sub-national statistics the basic functions of the regions package 
-are imported \url{https://ropengov.github.io/regions/}.
+For working with sub-national statistics the basic functions of the
+regions package are imported \url{https://regions.dataobservatory.eu/}.
 }
 
 \examples{

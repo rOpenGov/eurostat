@@ -18,15 +18,17 @@ get_eurostat_geospatial(
 }
 \arguments{
 \item{output_class}{A string. Class of object returned,
-either \code{sf} \code{simple features}, \code{df} (\code{data_frame}) or
-   \code{spdf} (\code{SpatialPolygonDataFrame})}
+either \code{sf} \verb{simple features}, \code{df} (\code{data_frame}) or
+\code{spdf} (\code{SpatialPolygonDataFrame})}
 
 \item{resolution}{Resolution of the geospatial data. One of
-"60" (1:60million),
-"20" (1:20million)
-"10" (1:10million)
-"03" (1:3million) or
-"01" (1:1million).}
+\itemize{
+\item "60" (1:60million),
+\item "20" (1:20million)
+\item "10" (1:10million)
+\item "03" (1:3million) or
+\item "01" (1:1million).
+}}
 
 \item{nuts_level}{Level of NUTS classification of the geospatial data. One of
 "0", "1", "2", "3" or "all" (mimics the original behaviour)}
@@ -43,83 +45,95 @@ options(eurostat_update = TRUE)}
 \item{cache_dir}{a path to a cache directory. The directory have to exist.
 The \code{NULL} (default) uses and creates
 'eurostat' directory in the temporary directory from
-\code{\link{tempdir}}. Directory can also be set with
+\code{\link[=tempdir]{tempdir()}}. Directory can also be set with
 \code{option} eurostat_cache_dir.}
 
-\item{crs}{projection of the map: 4-digit \href{https://spatialreference.org/ref/epsg/}{EPSG code}. One of:}
-
-\item{make_valid}{logical; ensure that valid (multi-)polygon features are returned
-       if \code{output_class="sf"}, see Details. Current default \code{FALSE}, will be changed
-       in the future.
-
+\item{crs}{projection of the map: 4-digit
+\href{https://spatialreference.org/ref/epsg/}{EPSG code}. One of:
 \itemize{
 \item "4326" - WGS84
 \item "3035" - ETRS89 / ETRS-LAEA
 \item "3857" - Pseudo-Mercator
 }}
+
+\item{make_valid}{logical; ensure that valid (multi-)polygon features are
+returned if \code{output_class="sf"}, see Details. Current default
+\code{FALSE}, will be changed in the future.}
 }
 \value{
 a sf, data_frame or SpatialPolygonDataFrame.
 }
 \description{
-Downloads either a simple features (sf), SpatialPolygonDataFrame or a
-   data_frame preprocessed using
-   \code{broom::tidy()}.
+Downloads either a simple features (sf),
+SpatialPolygonDataFrame or a data_frame preprocessed using \code{\link[broom:reexports]{broom::tidy()}}.
 }
 \details{
-The data source URL is \url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
+The data source URL is
+\url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
 The source provides feature collections as line strings (GeoJSON format),
 not as (multi-)polygons which, in some cases, yields invalid
 self-intersecting (multi-)polygon geometries (for some years/resolutions).
 This can cause problems, e.g., when using these geometries as input argument
-to \code{sf::st_interpolate_aw()}). \code{make_valid = TRUE} makes sure that
+to \code{\link[sf:interpolate_aw]{sf::st_interpolate_aw()}}. \code{make_valid = TRUE} makes sure that
 only valid (multi-)polygons are returned, example included below.
 }
 \examples{
 \donttest{
-sf <- get_eurostat_geospatial(output_class = "sf",
-                              resolution = "60",
-                              nuts_level = "all")
-df <- get_eurostat_geospatial(output_class = "df",
-                              resolution = "20",
-                              nuts_level = "0")
+sf <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "60",
+  nuts_level = "all"
+)
+df <- get_eurostat_geospatial(
+  output_class = "df",
+  resolution = "20",
+  nuts_level = "0"
+)
 }
 
 \dontrun{
-spdf <- get_eurostat_geospatial(output_class = "spdf",
-                                resolution = "10",
-                                nuts_level = "3")
+spdf <- get_eurostat_geospatial(
+  output_class = "spdf",
+  resolution = "10",
+  nuts_level = "3"
+)
 }
 
 \dontrun{
-    # -------------------------------------------------------------------
-    # Minimal example to demonstrate reason/effect of 'make_valid = TRUE'
-    # Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
-    # Requires the R package sf.
-    library("sf")
-    d <- c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90)
-    poly <- st_polygon(list(matrix(d, ncol = 2, byrow = TRUE)))
-    data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L),
-              crs = st_crs(4326))
+# -------------------------------------------------------------------
+# Minimal example to demonstrate reason/effect of 'make_valid = TRUE'
+# Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
+# Requires the R package sf.
+library("sf")
+d <- c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90)
+poly <- st_polygon(list(matrix(d, ncol = 2, byrow = TRUE)))
+data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L),
+  crs = st_crs(4326)
+)
 
-    # Causing an error: Self-intersection of some points of the geometry
-    NUTS2_A <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
-                                       crs = 4326, make_valid = FALSE)
-    res <- tryCatch(st_interpolate_aw(data, NUTS2_A, extensive = FALSE),
-                    error   = function(e) e)
-    print(res)
+# Causing an error: Self-intersection of some points of the geometry
+NUTS2_A <- get_eurostat_geospatial("sf", 60,
+  nuts_level = 2, year = 2013,
+  crs = 4326, make_valid = FALSE
+)
+res <- tryCatch(st_interpolate_aw(data, NUTS2_A, extensive = FALSE),
+  error = function(e) e
+)
+print(res)
 
-    # Resolving the problem using
-    # make_valid = TRUE. 'extensive = FALSE' returns
-    # average over each area, thus resulting in a
-    # constant value of 1 for each geometry in NUTS2_B.
-    NUTS2_B <- get_eurostat_geospatial("sf", 60, nuts_level = 2, year = 2013,
-                                       crs = 4326, make_valid = TRUE)
-    res <- st_interpolate_aw(data, NUTS2_B, extensive = FALSE)
-    print(head(res))
-  }
+# Resolving the problem using
+# make_valid = TRUE. 'extensive = FALSE' returns
+# average over each area, thus resulting in a
+# constant value of 1 for each geometry in NUTS2_B.
+NUTS2_B <- get_eurostat_geospatial("sf", 60,
+  nuts_level = 2, year = 2013,
+  crs = 4326, make_valid = TRUE
+)
+res <- st_interpolate_aw(data, NUTS2_B, extensive = FALSE)
+print(head(res))
+}
 
 }
 \author{
-Markus Kainu <markuskainu@gmail.com>
+Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}
 }

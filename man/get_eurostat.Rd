@@ -21,15 +21,15 @@ get_eurostat(
 }
 \arguments{
 \item{id}{A code name for the dataset of interest.
-See \code{\link{search_eurostat}} or details for how to get code.}
+See \code{\link[=search_eurostat]{search_eurostat()}} or details for how to get code.}
 
 \item{time_format}{a string giving a type of the conversion of the time
 column from the eurostat format. A "date" (default) convers to
-a \code{\link{Date}} with a first date of the period.
-A "date_last" convers to a \code{\link{Date}} with
- a last date of the period. A "num" convers to a numeric and "raw"
- does not do conversion. See \code{\link{eurotime2date}} and
- \code{\link{eurotime2num}}.}
+a \code{\link[=Date]{Date()}} with a first date of the period.
+A "date_last" convers to a \code{\link[=Date]{Date()}} with
+a last date of the period. A "num" convers to a numeric and "raw"
+does not do conversion. See \code{\link[=eurotime2date]{eurotime2date()}} and
+\code{\link[=eurotime2num]{eurotime2num()}}.}
 
 \item{filters}{a "none" (default) to get a whole dataset or a named list of
 filters to get just part of the table. Names of list objects are
@@ -37,7 +37,7 @@ Eurostat variable codes and values are vectors of observation codes.
 If \code{NULL} the whole
 dataset is returned via API. More on details. See more on filters and
 limitations per query via API from for
-\code{\link{get_eurostat_json}}.}
+\code{\link[=get_eurostat_json]{get_eurostat_json()}}.}
 
 \item{type}{A type of variables, "code" (default) or "label".}
 
@@ -45,7 +45,7 @@ limitations per query via API from for
 which is used by default as most datasets have just one time
 frequency. For datasets with multiple time
 frequencies, select the desired time format with:
-  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
+Y = annual, S = semi-annual, Q = quarterly, M = monthly.
 For all frequencies in same data frame \code{time_format = "raw"}
 should be used.}
 
@@ -58,8 +58,8 @@ options(eurostat_update = TRUE)}
 \item{cache_dir}{a path to a cache directory. The directory must exist.
 The \code{NULL} (default) uses and creates
 'eurostat' directory in the temporary directory from
-\code{\link{tempdir}}. The directory can also be set with
-\code{\link{set_eurostat_cache_dir}}.}
+\code{\link[=tempdir]{tempdir()}}. The directory can also be set with
+\code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}.}
 
 \item{compress_file}{a logical whether to compress the
 RDS-file in caching. Default is \code{TRUE}.}
@@ -76,19 +76,19 @@ Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
 
-\item{...}{further argument for \code{\link{get_eurostat_json}}.}
+\item{...}{further argument for \code{\link[=get_eurostat_json]{get_eurostat_json()}}.}
 }
 \value{
 a tibble. One column for each dimension in the data,
-        the time column for a time dimension and
-        the values column for numerical values.
-        Eurostat data does not include all missing values and a treatment of
-        missing values depend on source. In bulk download
-        facility missing values are dropped if all dimensions are missing
-        on particular time. In JSON API missing values are dropped
-        only if all dimensions are missing on all times. The data from
-        bulk download facility can be completed for example with
-        \code{\link[tidyr]{complete}}.
+the time column for a time dimension and
+the values column for numerical values.
+Eurostat data does not include all missing values and a treatment of
+missing values depend on source. In bulk download
+facility missing values are dropped if all dimensions are missing
+on particular time. In JSON API missing values are dropped
+only if all dimensions are missing on all times. The data from
+bulk download facility can be completed for example with
+\code{\link[tidyr:complete]{tidyr::complete()}}.
 }
 \description{
 Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
@@ -109,17 +109,17 @@ bulk download facility and the \code{select_time} is not available for
 JSON API method.
 
 If your connection is thru a proxy, you probably have to set proxy parameters
-to use JSON API, see \code{\link{get_eurostat_json}}.
+to use JSON API, see \code{\link[=get_eurostat_json]{get_eurostat_json()}}.
 
 By default datasets from the bulk download facility are cached as they are
 often rather large. Caching is not (currently) possible for datasets from
 JSON API.
 Cache files are stored in a temporary directory by default or in
-a named directory (See \code{\link{set_eurostat_cache_dir}}).
-The cache can be emptied with \code{\link{clean_eurostat_cache}}.
+a named directory (See \code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}).
+The cache can be emptied with \code{\link[=clean_eurostat_cache]{clean_eurostat_cache()}}.
 
 The \code{id}, a code, for the dataset can be searched with
-the \code{\link{search_eurostat}} or from the Eurostat database
+the \code{\link[=search_eurostat]{search_eurostat()}} or from the Eurostat database
 \url{https://ec.europa.eu/eurostat/data/database}. The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
@@ -131,7 +131,8 @@ k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
 dir.create(file.path(tempdir(), "r_cache"))
 k <- get_eurostat("nama_10_lp_ulc",
-                  cache_dir = file.path(tempdir(), "r_cache"))
+  cache_dir = file.path(tempdir(), "r_cache")
+)
 options(eurostat_update = TRUE)
 k <- get_eurostat("nama_10_lp_ulc")
 options(eurostat_update = FALSE)
@@ -142,16 +143,19 @@ k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
 
 dd <- get_eurostat("nama_10_gdp",
-                     filters = list(geo = "FI",
-                                    na_item = "B1GQ",
-                                    unit = "CLV_I10"))
+  filters = list(
+    geo = "FI",
+    na_item = "B1GQ",
+    unit = "CLV_I10"
+  )
+)
 }
 }
 \references{
 See citation("eurostat").
 }
 \seealso{
-\code{\link{search_eurostat}}, \code{\link{label_eurostat}}
+\code{\link[=search_eurostat]{search_eurostat()}}, \code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu

@@ -10,29 +10,29 @@ eurotime2num(x)
 \item{x}{a charter string with time information in Eurostat time format.}
 }
 \value{
-see \code{\link{as.numeric}}.
+see \code{\link[=as.numeric]{as.numeric()}}.
 }
 \description{
 A conversion of a Eurostat time format to numeric.
 }
 \details{
-Bi-annual, quarterly and monthly data is presented as fraction of 
-         the year in beginning of the period. Conversion of daily data is not 
-         supported.
+Bi-annual, quarterly and monthly data is presented as fraction of
+the year in beginning of the period. Conversion of daily data is not
+supported.
 }
 \examples{
 \dontrun{
-   na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-   na_q$time <- eurotime2num(x = na_q$time)
-   
-   un <- get_eurostat("une_rt_m", time_format = "raw")
-   un$time <- eurotime2num(x = un$time)
-   
-   na_a <- get_eurostat("nama_10_pc", time_format = "raw")
-   na_a$time <- eurotime2num(x = na_a$time)
-   }
-   
+na_q <- get_eurostat("namq_10_pc", time_format = "raw")
+na_q$time <- eurotime2num(x = na_q$time)
+
+un <- get_eurostat("une_rt_m", time_format = "raw")
+un$time <- eurotime2num(x = un$time)
+
+na_a <- get_eurostat("nama_10_pc", time_format = "raw")
+na_a$time <- eurotime2num(x = na_a$time)
+}
+
 }
 \author{
-Janne Huovari \email{janne.huovari@ptt.fi}
+Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }

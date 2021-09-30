@@ -19,6 +19,6 @@ Internal function.
 see citation("eurostat")
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
 }
 \keyword{internal}

@@ -1,18 +1,17 @@
-#' @title Countries and Country Codes 
+#' @title Countries and Country Codes
 #' @description Countries and country codes in EU,
 #' Euro area, EFTA and EU candidate countries.
 #' @format A data_frame:
-#' \describe{
-#'   \item{code}{Country code in the Eurostat database}
-#'   \item{name}{Country name in English}
-#'   \item{label}{Country name in the Eurostat database}
-#' }
-#' @source \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
-#'   \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area}
-"eu_countries" 
+#'   * **code**: Country code in the Eurostat database.
+#'   * **name**: Country name in English.
+#'   * **label**: Country name in the Eurostat database.
+#'
+#' @source <https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order>,
+#'   <https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area>
+"eu_countries"
 
 #' @rdname eu_countries
-"ea_countries" 
+"ea_countries"
 
 #' @rdname eu_countries
 "efta_countries"

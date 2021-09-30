@@ -11,31 +11,31 @@ get_eurostat_raw(id)
 contents of eurostat datasets for more details.}
 }
 \value{
-A dataset in tibble format. First column contains comma 
-	  separated codes of cases. Other columns usually corresponds to 
-  years and column names are years with preceding X. Data is in 
-  character format as it contains values together with eurostat 
-  flags for data.
+A dataset in tibble format. First column contains comma
+separated codes of cases. Other columns usually corresponds to
+years and column names are years with preceding X. Data is in
+character format as it contains values together with eurostat
+flags for data.
 }
 \description{
 Download data from the eurostat database.
 }
 \details{
 Data is downloaded from
- \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
+\url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
 }
 \examples{
-  \dontrun{
-    tmp <- eurostat:::get_eurostat_raw("educ_iste")
-    head(tmp)
-  }
-  
+\dontrun{
+tmp <- eurostat:::get_eurostat_raw("educ_iste")
+head(tmp)
+}
+
 }
 \references{
 see citation("eurostat")
 }
 \seealso{
-\code{\link{get_eurostat}}.
+\code{\link[=get_eurostat]{get_eurostat()}}.
 }
 \author{
 Przemyslaw Biecek, Leo Lahti and Janne Huovari

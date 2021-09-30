@@ -9,37 +9,37 @@ eurotime2date(x, last = FALSE)
 \arguments{
 \item{x}{a charter string with time information in Eurostat time format.}
 
-\item{last}{a logical. If \code{FALsE} (default) the date  is 
-the first date of the period (month, quarter or year). If \code{TRUE} 
+\item{last}{a logical. If \code{FALsE} (default) the date  is
+the first date of the period (month, quarter or year). If \code{TRUE}
 the date is the last date of the period.}
 }
 \value{
-an object of class \code{\link{Date}}.
+an object of class \code{\link[=Date]{Date()}}.
 }
 \description{
 Date conversion from Eurostat time format. A function to
-convert Eurostat time values to objects of class \code{\link{Date}}
+convert Eurostat time values to objects of class \code{\link[=Date]{Date()}}
 representing calendar dates.
 }
 \examples{
 \dontrun{
-   na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-   na_q$time <- eurotime2date(x = na_q$time)
-   
-   un <- get_eurostat("une_rt_m", time_format = "raw")
-   un$time <- eurotime2date(x = un$time)
-   
-   na_a <- get_eurostat("nama_10_pc", time_format = "raw")
-   na_a$time <- eurotime2date(x = na_a$time)
-   
-   eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
-   eur_d$time <- eurotime2date(x = eur_d$time)
-   }
-   
+na_q <- get_eurostat("namq_10_pc", time_format = "raw")
+na_q$time <- eurotime2date(x = na_q$time)
+
+un <- get_eurostat("une_rt_m", time_format = "raw")
+un$time <- eurotime2date(x = un$time)
+
+na_a <- get_eurostat("nama_10_pc", time_format = "raw")
+na_a$time <- eurotime2date(x = na_a$time)
+
+eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
+eur_d$time <- eurotime2date(x = eur_d$time)
+}
+
 }
 \references{
 See citation("eurostat").
 }
 \author{
-Janne Huovari \email{janne.huovari@ptt.fi}
+Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }

@@ -7,10 +7,10 @@
 harmonize_geo_code(dat)
 }
 \arguments{
-\item{dat}{A Eurostat data frame downloaded with \code{\link{get_eurostat}}}
+\item{dat}{A Eurostat data frame downloaded with \code{\link[=get_eurostat]{get_eurostat()}}}
 }
 \value{
-An augmented data frame that explains potential problems and 
+An augmented data frame that explains potential problems and
 possible solutions.
 }
 \description{
@@ -19,15 +19,15 @@ label codes in the \code{'geo'} column, which creates time-wise comparativity is
 This deprecated function checke if you data is affected by this problem and gives
 information on what to do.
 
-This function is deprecated, and a more general function was moved to 
-\code{regions::\link[regions]{validate_nuts_regions}}.
+This function is deprecated, and a more general function was moved to
+\verb{regions::[validate_nuts_regions][regions::validate_nuts_regions]}.
 }
 \examples{
- \dontrun{
-   dat <- eurostat::tgs00026
-   regions::validate_nuts_regions(dat)
- }
- 
+\dontrun{
+dat <- eurostat::tgs00026
+regions::validate_nuts_regions(dat)
+}
+
 }
 \author{
 Daniel Antal

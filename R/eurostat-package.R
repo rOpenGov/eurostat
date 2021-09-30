@@ -1,13 +1,14 @@
 #' Brief summary of the eurostat package
 #'
-#' \tabular{ll}{
-#' Package: \tab eurostat\cr
-#' Type: \tab Package\cr
-#' Version: \tab See sessionInfo() or DESCRIPTION file\cr
-#' Date: \tab 2014-2021\cr
-#' License: \tab BSD_2_clause + LICENSE\cr
-#' LazyLoad: \tab yes\cr
-#' }
+#' |              |          |
+#' | :---         | :--      |
+#' | **Package**  | eurostat |
+#' | **Type**     | Package  |
+#' | **Version**  | `r packageVersion("eurostat")` |
+#' | **Date**     | `2014-2021     |
+#' | **License**  | `r as.character(utils::packageDescription("eurostat")["License"])`|
+#' | **LazyLoad** | yes      |
+#'
 #'
 #' R Tools for Eurostat Open Data
 #'
@@ -19,10 +20,10 @@
 #' @author Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
 #' @references
 #' See citation("eurostat")
-#' \url{https://ropengov.github.io/eurostat/}
+#' <https://ropengov.github.io/eurostat/>
 #' @examples library(eurostat)
 #' @section regions functions:
-#' For working with sub-national statistics the basic functions of the regions package 
-#' are imported \url{https://ropengov.github.io/regions/}.
+#' For working with sub-national statistics the basic functions of the
+#' regions package are imported <https://regions.dataobservatory.eu/>.
 #' @keywords package
 NULL
