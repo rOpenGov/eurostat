@@ -57,13 +57,13 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="articles/articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="articles/articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="articles/articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="articles/vignette.html">Vignette for the eurostat R package</a>
-    <a class="dropdown-item" href="articles/website/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="articles/website/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="articles/website/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="articles/website/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="articles/website/publications.html">Publications using the eurostat R package</a>
   </div>
 </li>
       </ul>
@@ -127,21 +127,21 @@
 <p>The package provides several different ways to get datasets from Eurostat. Searching for data is one way, if you know what to look for.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the package</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="http://ropengov.github.io/eurostat" class="external-link">eurostat</a></span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
 
 <span class="co"># Perform a simple search and print a table</span>
 <span class="va">passengers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_eurostat.html">search_eurostat</a></span><span class="op">(</span><span class="st">"passenger transport"</span><span class="op">)</span>
 <span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">passengers</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="41%">
+<col width="39%">
 <col width="9%">
-<col width="4%">
+<col width="5%">
 <col width="12%">
-<col width="17%">
+<col width="16%">
 <col width="6%">
 <col width="5%">
-<col width="3%">
+<col width="4%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">title</th>

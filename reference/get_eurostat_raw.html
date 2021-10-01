@@ -21,13 +21,13 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="../articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="../articles/articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="../articles/vignette.html">Vignette for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="../articles/website/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/publications.html">Publications using the eurostat R package</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
@@ -65,27 +65,52 @@ contents of eurostat datasets for more details.</p></dd>
     </dl><div class="ref-section section level2" id="section-value">
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value" aria-hidden="true"></a>Value</h2>
 
-    <p>A dataset in tibble format. First column contains comma 
-	  separated codes of cases. Other columns usually corresponds to 
-  years and column names are years with preceding X. Data is in 
-  character format as it contains values together with eurostat 
-  flags for data.</p>
+    <p>A dataset in tibble format. First column contains comma
+separated codes of cases. Other columns usually corresponds to
+years and column names are years with preceding X. Data is in
+character format as it contains values together with eurostat
+flags for data.</p>
     </div>
     <div class="ref-section section level2" id="section-details">
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details" aria-hidden="true"></a>Details</h2>
 
     <p>Data is downloaded from
- <a href="https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing">https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing</a> and transformed into tabular format.</p>
+<a href="https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing">https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing</a>
+and transformed into tabular format.</p>
     </div>
     <div class="ref-section section level2" id="section-references">
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references" aria-hidden="true"></a>References</h2>
 
-    <p>see citation("eurostat")</p>
+    <p>See <code>citation("eurostat")</code>:</p><pre class="sourceCode r"><code><span class="co"># </span>
+<span class="co"># Kindly cite the eurostat R package as follows:</span>
+<span class="co"># </span>
+<span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of</span>
+<span class="co">#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version</span>
+<span class="co">#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article</span>
+<span class="co">#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
+<span class="co"># </span>
+<span class="co"># A BibTeX entry for LaTeX users is</span>
+<span class="co"># </span>
+<span class="co">#   @Article{,</span>
+<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the</span>
+<span class="co">#            eurostat Package},</span>
+<span class="co">#     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},</span>
+<span class="co">#     journal = {The R Journal},</span>
+<span class="co">#     volume = {9},</span>
+<span class="co">#     number = {1},</span>
+<span class="co">#     pages = {385--392},</span>
+<span class="co">#     year = {2017},</span>
+<span class="co">#     doi = {10.32614/RJ-2017-019},</span>
+<span class="co">#     url = {https://doi.org/10.32614/RJ-2017-019},</span>
+<span class="co">#     note = {Version 3.7.8},</span>
+<span class="co">#   }</span>
+</code></pre>
+
     </div>
     <div class="ref-section section level2" id="section-see-also">
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also" aria-hidden="true"></a>See also</h2>
 
-    <div class="dont-index"><p><code><a href="get_eurostat.html">get_eurostat</a></code>.</p></div>
+    <div class="dont-index"><p><code><a href="get_eurostat.html">get_eurostat()</a></code>.</p></div>
     </div>
     <div class="ref-section section level2" id="section-author">
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author" aria-hidden="true"></a>Author</h2>
@@ -94,11 +119,24 @@ contents of eurostat datasets for more details.</p></dd>
     </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in">  <span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">    <span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">eurostat</span><span class="fu">:::</span><span class="fu">get_eurostat_raw</span><span class="op">(</span><span class="st">"educ_iste"</span><span class="op">)</span></span>
-<span class="r-in">    <span class="fu"><a href="https://rdrr.io/r/utils/head.html">head</a></span><span class="op">(</span><span class="va">tmp</span><span class="op">)</span></span>
-<span class="r-in">  <span class="op">}</span></span>
-<span class="r-in">  </span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+<span class="r-in"><span class="fu">eurostat</span><span class="fu">:::</span><span class="fu">get_eurostat_raw</span><span class="op">(</span><span class="st">"educ_iste"</span><span class="op">)</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># A tibble: 213 × 16</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    `indic_ed,geo\\time` `2012` `2011` `2010` `2009` `2008` `2007` `2006` `2005`</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 1</span> ST1_1,AL             <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>     <span style="color: #BB0000;">NA</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 2</span> ST1_1,AT             10.1   10.2   10.4   10.6   11.0   11.5   11.7   11.8  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 3</span> ST1_1,BE             10.5 d 10.5 d 10.5 d 10.5 d 10.8 d 10.8 d 10.9 d 10.8 d</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 4</span> ST1_1,BE_FRA         <span style="color: #BB0000;">NA</span>     10.1   10.2   10.3   <span style="color: #BB0000;">NA</span>     10.4   10.4   <span style="color: #BB0000;">NA</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 5</span> ST1_1,BE_VLA         <span style="color: #BB0000;">NA</span>     10.8   10.7   10.7   11.0   11.1   11.2   <span style="color: #BB0000;">NA</span>    </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 6</span> ST1_1,BG             13.9   13.8   13.6   13.5   12.8   12.8   12.9   13.2  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 7</span> ST1_1,CY             11.5   11.4   11.5   11.8   12.3   13.0   14.0   14.1  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 8</span> ST1_1,CZ             13.2   13.3   14.2 d 14.2 d 14.2 d 14.5 d 13.4   14.4  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;"> 9</span> ST1_1,DE             15.4   15.7   16.1   16.6   16.7   16.9   17.2   17.2  </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">10</span> ST1_1,DK             : u    : u    : u    : u    : u    : u    : u    : u   </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># … with 203 more rows, and 7 more variables: 2004 &lt;chr&gt;, 2003 &lt;chr&gt;,</span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;">#   2002 &lt;chr&gt;, 2001 &lt;chr&gt;, 2000 &lt;chr&gt;, 1999 &lt;chr&gt;, 1998 &lt;chr&gt;</span></span>
+<span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">
