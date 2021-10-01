@@ -21,7 +21,7 @@
 #' \donttest{
 #' na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 #' na_q$time <- eurotime2date(x = na_q$time)
-#' na_q$time
+#' unique(na_q$time)
 #' }
 #'
 #' @importFrom lubridate ymd
