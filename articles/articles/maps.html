@@ -133,7 +133,7 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2010</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># categorise</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Table tgs00026 cached at /tmp/Rtmpl9YFR6/r_cache2/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table tgs00026 cached at /tmp/RtmpA1nZwj/r_cache2/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Download geospatial data from GISCO</span>
 <span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>
@@ -142,9 +142,9 @@
   nuts_level <span class="op">=</span> <span class="fl">2</span>,
   year <span class="op">=</span> <span class="fl">2013</span>
 <span class="op">)</span></code></pre></div>
-<pre><code>## Object cached at /tmp/Rtmpl9YFR6/r_cache2/sf60220134326.RData</code></pre>
+<pre><code>## Object cached at /tmp/RtmpA1nZwj/r_cache2/sf60220134326.RData</code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## sf at resolution 1: 60  cached at:  /tmp/Rtmpl9YFR6/r_cache2/sf60220134326.RData</code></pre>
+<pre><code>## sf at resolution 1: 60  cached at:  /tmp/RtmpA1nZwj/r_cache2/sf60220134326.RData</code></pre>
 <pre><code>## Warning in get_eurostat_geospatial(output_class = "sf", resolution = "60", :
 ## Default of 'make_valid' for 'output_class="sf"' will be changed in the future
 ## (see function details).</code></pre>
@@ -208,9 +208,9 @@
 <pre><code>## [1] "Download geospatial data from GISCO"</code></pre>
 <div class="sourceCode" id="cb22"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>output_class <span class="op">=</span> <span class="st">"sf"</span>, resolution <span class="op">=</span> <span class="st">"60"</span>, nuts_level <span class="op">=</span> <span class="fl">2</span>, year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></code></pre></div>
-<pre><code>## Object cached at /tmp/Rtmpl9YFR6/r_cache2/sf60220134326.RData</code></pre>
-<pre><code>## Reading cache file /tmp/Rtmpl9YFR6/r_cache2/sf60220134326.RData</code></pre>
-<pre><code>## sf at resolution 1: 60  from year  2013  read from cache file:  /tmp/Rtmpl9YFR6/r_cache2/sf60220134326.RData</code></pre>
+<pre><code>## Object cached at /tmp/RtmpA1nZwj/r_cache2/sf60220134326.RData</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpA1nZwj/r_cache2/sf60220134326.RData</code></pre>
+<pre><code>## sf at resolution 1: 60  from year  2013  read from cache file:  /tmp/RtmpA1nZwj/r_cache2/sf60220134326.RData</code></pre>
 <div class="sourceCode" id="cb26"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Merge with attribute data with geodata</span>
 <span class="va">map_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate-joins.html" class="external-link">inner_join</a></span><span class="op">(</span><span class="va">geodata</span>, <span class="va">euro_sf2</span><span class="op">)</span></code></pre></div>
@@ -276,14 +276,14 @@
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">time</span> <span class="op">==</span> <span class="fl">2018</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="co"># classifying the values the variable</span>
   <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="fu"><a href="../../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></code></pre></div>
-<pre><code>## Reading cache file /tmp/Rtmpl9YFR6/r_cache2/tgs00026_raw_code_FF.rds</code></pre>
-<pre><code>## Table  tgs00026  read from cache file:  /tmp/Rtmpl9YFR6/r_cache2/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Reading cache file /tmp/RtmpA1nZwj/r_cache2/tgs00026_raw_code_FF.rds</code></pre>
+<pre><code>## Table  tgs00026  read from cache file:  /tmp/RtmpA1nZwj/r_cache2/tgs00026_raw_code_FF.rds</code></pre>
 <div class="sourceCode" id="cb33"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Download geospatial data from GISCO</span>
 <span class="va">data_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>resolution <span class="op">=</span> <span class="st">"60"</span>, nuts_level <span class="op">=</span> <span class="st">"2"</span>, year <span class="op">=</span> <span class="fl">2021</span><span class="op">)</span></code></pre></div>
-<pre><code>## Object cached at /tmp/Rtmpl9YFR6/r_cache2/sf60220214326.RData</code></pre>
+<pre><code>## Object cached at /tmp/RtmpA1nZwj/r_cache2/sf60220214326.RData</code></pre>
 <pre><code>## No encoding supplied: defaulting to UTF-8.</code></pre>
-<pre><code>## sf at resolution 1: 60  cached at:  /tmp/Rtmpl9YFR6/r_cache2/sf60220214326.RData</code></pre>
+<pre><code>## sf at resolution 1: 60  cached at:  /tmp/RtmpA1nZwj/r_cache2/sf60220214326.RData</code></pre>
 <pre><code>## Warning in get_eurostat_geospatial(resolution = "60", nuts_level = "2", :
 ## Default of 'make_valid' for 'output_class="sf"' will be changed in the future
 ## (see function details).</code></pre>
