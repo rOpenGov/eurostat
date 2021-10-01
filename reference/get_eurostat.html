@@ -80,10 +80,10 @@
 See <code><a href="search_eurostat.html">search_eurostat()</a></code> or details for how to get code.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-time_format">time_format</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a string giving a type of the conversion of the time
-column from the eurostat format. A "date" (default) convers to
+column from the eurostat format. A "date" (default) converts to
 a <code><a href="https://rdrr.io/r/base/Dates.html">Date()</a></code> with a first date of the period.
-A "date_last" convers to a <code><a href="https://rdrr.io/r/base/Dates.html">Date()</a></code> with
-a last date of the period. A "num" convers to a numeric and "raw"
+A "date_last" converts to a <code><a href="https://rdrr.io/r/base/Dates.html">Date()</a></code> with
+a last date of the period. A "num" converts to a numeric and "raw"
 does not do conversion. See <code><a href="eurotime2date.html">eurotime2date()</a></code> and
 <code><a href="eurotime2num.html">eurotime2num()</a></code>.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-filters">filters</dt>
@@ -97,7 +97,7 @@ limitations per query via API from for
     <dt class="col-sm-3 section level2" id="pkg-arg-type">type</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>A type of variables, "code" (default) or "label".</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-select_time">select_time</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>a character symbol for a time frequence or NULL,
+      <dd class="col-sm-9" id="ref-arguments desc"><p>a character symbol for a time frequency or NULL,
 which is used by default as most datasets have just one time
 frequency. For datasets with multiple time
 frequencies, select the desired time format with:
@@ -161,7 +161,7 @@ used.</p>
 <p>The bulk download facility is the fastest method to download whole datasets.
 It is also often the only way as the JSON API has limitation of maximum
 50 sub-indicators at time and whole datasets usually exceeds that. Also,
-it seems that multi frequency datasets can only be retrived via
+it seems that multi frequency datasets can only be retrieved via
 bulk download facility and the <code>select_time</code> is not available for
 JSON API method.</p>
 <p>If your connection is thru a proxy, you probably have to set proxy parameters
@@ -182,18 +182,12 @@ in parenthesis.</p>
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references" aria-hidden="true"></a>References</h2>
 
     <p>See <code>citation("eurostat")</code>:</p><pre class="sourceCode r"><code><span class="co"># </span>
-<span class="co"># Kindly cite the eurostat R package as</span>
-<span class="co"># follows:</span>
+<span class="co"># Kindly cite the eurostat R package as follows:</span>
 <span class="co"># </span>
-<span class="co">#   (C) Leo Lahti, Janne Huovari, Markus</span>
-<span class="co">#   Kainu, Przemyslaw Biecek. Retrieval and</span>
-<span class="co">#   analysis of Eurostat open data with the</span>
-<span class="co">#   eurostat package. R Journal 9(1):385-392,</span>
-<span class="co">#   2017. Version 3.7.9 doi:</span>
-<span class="co">#   10.32614/RJ-2017-019 Package URL:</span>
-<span class="co">#   http://ropengov.github.io/eurostat Article</span>
-<span class="co">#   URL:</span>
-<span class="co">#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
+<span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of</span>
+<span class="co">#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version</span>
+<span class="co">#   3.7.9 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article</span>
+<span class="co">#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
 <span class="co"># </span>
 <span class="co"># A BibTeX entry for LaTeX users is</span>
 <span class="co"># </span>
@@ -227,28 +221,28 @@ in parenthesis.</p>
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file /tmp/RtmpYBxbum/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmpYBxbum/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file /tmp/RtmphMoTFQ/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmphMoTFQ/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, time_format <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpYBxbum/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmphMoTFQ/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, update_cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpYBxbum/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmphMoTFQ/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>,</span>
 <span class="r-in">  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpYBxbum/r_cache/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmphMoTFQ/r_cache/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpYBxbum/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmphMoTFQ/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache2"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> eurostat cache dir is: /tmp/RtmpYBxbum/r_cache2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> eurostat cache dir is: /tmp/RtmphMoTFQ/r_cache2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> To install your cache_dir path for use in future sessions,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> run this function with `install = TRUE`.</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpYBxbum/r_cache2/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmphMoTFQ/r_cache2/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"avia_gonc"</span>, select_time <span class="op">=</span> <span class="st">"Y"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># }</span></span>

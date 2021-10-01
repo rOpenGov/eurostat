@@ -80,7 +80,7 @@
       <dd class="col-sm-9" id="ref-arguments desc"><p>A character or a factor vector or a data_frame.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-dic">dic</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>A string (vector) naming eurostat dictionary or dictionaries.
-If <code>NULL</code> (default) dictionry names taken from column names of
+If <code>NULL</code> (default) dictionary names taken from column names of
 the data_frame.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-code">code</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>For data_frames names of the column for which also code columns
@@ -123,12 +123,12 @@ labeling produce duplicates.</p></dd>
     <p>A character or a factor vector of codes returns a corresponding
 vector of definitions. <code>label_eurostat()</code> labels also data_frames from
 <code><a href="get_eurostat.html">get_eurostat()</a></code>. For vectors a dictionary name have to be
-supplied. For data_frames dictonary names are taken from column names.
+supplied. For data_frames dictionary names are taken from column names.
 "time" and "values" columns are returned as they were, so you can supply
 data_frame from <code><a href="get_eurostat.html">get_eurostat()</a></code> and get data_frame with
 definitions instead of codes.</p>
-<p>Some Eurostat dictionaries includes dublicated labels. By default
-dublicated labels cause an error, but they can be fixed automatically
+<p>Some Eurostat dictionaries includes duplicated labels. By default
+duplicated labels cause an error, but they can be fixed automatically
 with <code>fix_duplicated = TRUE</code>.</p>
     </div>
     <div class="ref-section section level2" id="section-functions">
