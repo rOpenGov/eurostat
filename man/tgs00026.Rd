@@ -16,4 +16,9 @@ Auxiliary Data Sets
 \details{
 Retrieved with: \code{tgs00026 <- get_eurostat("tgs00026", time_format = "raw") }
 }
+\seealso{
+Other datasets: 
+\code{\link{eurostat_geodata_60_2016}}
+}
+\concept{datasets}
 \keyword{datasets}

@@ -9,7 +9,7 @@ convert_time_col(x, time_format)
 \arguments{
 \item{x}{A time column (vector)}
 
-\item{time_format}{see \code{\link{tidy_eurostat}}}
+\item{time_format}{see \code{\link[=tidy_eurostat]{tidy_eurostat()}}}
 }
 \description{
 Internal function to convert time column.

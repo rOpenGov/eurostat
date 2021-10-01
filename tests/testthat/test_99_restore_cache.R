@@ -1,5 +1,6 @@
-test_that("Restore user cache dir after testing",{
+test_that("Restore user cache dir after testing", {
   skip_on_cran()
+  skip_if_offline()
 
   # Clear test cache
   cat("Test cache was ", eur_helper_detect_cache_dir(), "\n")
@@ -13,8 +14,7 @@ test_that("Restore user cache dir after testing",{
   newcache <- expect_message(set_eurostat_cache_dir(user_dir))
 
   expect_equal(newcache, user_dir)
-  expect_equal(user_dir,    Sys.getenv("EUROSTAT_CACHE_DIR"))
-  
-  cat("Cache restored to ", Sys.getenv("EUROSTAT_CACHE_DIR"), "\n")
+  expect_equal(user_dir, Sys.getenv("EUROSTAT_CACHE_DIR"))
 
+  cat("Cache restored to ", Sys.getenv("EUROSTAT_CACHE_DIR"), "\n")
 })

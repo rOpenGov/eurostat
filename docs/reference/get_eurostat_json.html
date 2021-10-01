@@ -12,7 +12,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.7</button>
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.8</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3"><li class="active nav-item">
@@ -21,20 +21,20 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="../articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="../articles/articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="../articles/vignette.html">Vignette for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="../articles/website/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/publications.html">Publications using the eurostat R package</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off"></form>
 
       <ul class="navbar-nav ml-1"><li class="nav-item">
-  <a class="nav-link" href="https://github.com/ropengov/eurostat/" aria-label="github">
+  <a class="nav-link" href="https://github.com/rOpenGov/eurostat/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -46,7 +46,7 @@
   <div class="col-md-9 contents">
     <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
     <h1 class="display-4">Get Data from Eurostat API in JSON</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/R/get_eurostat_json.R"><code>R/get_eurostat_json.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/R/get_eurostat_json.R"><code>R/get_eurostat_json.R</code></a></small>
     <div class="d-none name"><code>get_eurostat_json.Rd</code></div>
     </div>
 
@@ -85,9 +85,20 @@ codes as names.</p></dd>
 to factors in original Eurostat order. If <code>FALSE</code> they are returned as
 a character.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-...">...</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>Other arguments passed on to <code><a href="https://httr.r-lib.org/reference/GET.html">GET</a></code>. For example
-a proxy parameters, see details.
-.</p></dd>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>Arguments passed on to <code><a href="https://httr.r-lib.org/reference/GET.html">httr::GET</a></code></p><dl><dt><code>url</code></dt><dd><p>the url of the page to retrieve</p></dd>
+    <dt><code>config</code></dt><dd><p>Additional configuration settings such as http
+authentication (<code><a href="https://httr.r-lib.org/reference/authenticate.html">authenticate()</a></code>), additional headers
+(<code><a href="https://httr.r-lib.org/reference/add_headers.html">add_headers()</a></code>), cookies (<code><a href="https://httr.r-lib.org/reference/set_cookies.html">set_cookies()</a></code>) etc.
+See <code><a href="https://httr.r-lib.org/reference/config.html">config()</a></code> for full details and list of helpers.</p></dd>
+    <dt><code>handle</code></dt><dd><p>The handle to use with this request. If not
+supplied, will be retrieved and reused from the <code><a href="https://httr.r-lib.org/reference/handle_pool.html">handle_pool()</a></code>
+based on the scheme, hostname and port of the url. By default <span class="pkg">httr</span>
+requests to the same scheme/host/port combo. This substantially reduces
+connection time, and ensures that cookies are maintained over multiple
+requests to the same host. See <code><a href="https://httr.r-lib.org/reference/handle_pool.html">handle_pool()</a></code> for more
+details.</p></dd>
+  
+</dl></dd>
     </dl><div class="ref-section section level2" id="section-value">
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value" aria-hidden="true"></a>Value</h2>
 
@@ -97,24 +108,51 @@ a proxy parameters, see details.
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details" aria-hidden="true"></a>Details</h2>
 
     <p>Data to retrieve from
-  <a href="https://ec.europa.eu/eurostat/web/json-and-unicode-web-services">The
-  Eurostat Web Services</a> can be specified with filters. Normally, it is
-  better to use JSON query through <code><a href="get_eurostat.html">get_eurostat</a></code>, than to use
-  <code>get_eurostat_json</code> directly.</p>  
+<a href="https://ec.europa.eu/eurostat/web/json-and-unicode-web-services">The Eurostat Web Services</a> can be specified with filters. Normally, it is
+better to use JSON query through <code><a href="get_eurostat.html">get_eurostat()</a></code>, than to use
+<code>get_eurostat_json()</code> directly.</p>
 <p>Queries are limited to 50 sub-indicators at a time. A time can be
-  filtered with fixed "time" filter or with "sinceTimePeriod" and
-  "lastTimePeriod" filters. A <code>sinceTimePeriod = 2000</code> returns
-  observations from 2000 to a last available. A <code>lastTimePeriod = 10</code>
-  returns a 10 last observations.</p> 
-<p>To use a proxy to connect, a <code><a href="https://httr.r-lib.org/reference/use_proxy.html">use_proxy</a></code> can be
-  passed to <code><a href="https://httr.r-lib.org/reference/GET.html">GET</a></code>. For example 
-  <code>get_eurostat_json(id, filters, 
-  config = httr::use_proxy(url, port, username, password))</code>.</p>
+filtered with fixed "time" filter or with "sinceTimePeriod" and
+"lastTimePeriod" filters. A <code>sinceTimePeriod = 2000</code> returns
+observations from 2000 to a last available. A <code>lastTimePeriod = 10</code>
+returns a 10 last observations.</p>
+<p>To use a proxy to connect, a <code><a href="https://httr.r-lib.org/reference/use_proxy.html">httr::use_proxy()</a></code> can be
+passed to <code><a href="https://httr.r-lib.org/reference/GET.html">httr::GET()</a></code>. For example
+<code>get_eurostat_json(id, filters, config = httr::use_proxy(url, port, username, password))</code>.</p>
     </div>
     <div class="ref-section section level2" id="section-references">
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references" aria-hidden="true"></a>References</h2>
 
-    <p>See citation("eurostat").</p>
+    <p>See <code>citation("eurostat")</code>:</p><pre class="sourceCode r"><code><span class="co"># </span>
+<span class="co"># Kindly cite the eurostat R package as follows:</span>
+<span class="co"># </span>
+<span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of</span>
+<span class="co">#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version</span>
+<span class="co">#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article</span>
+<span class="co">#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
+<span class="co"># </span>
+<span class="co"># A BibTeX entry for LaTeX users is</span>
+<span class="co"># </span>
+<span class="co">#   @Article{,</span>
+<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the</span>
+<span class="co">#            eurostat Package},</span>
+<span class="co">#     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},</span>
+<span class="co">#     journal = {The R Journal},</span>
+<span class="co">#     volume = {9},</span>
+<span class="co">#     number = {1},</span>
+<span class="co">#     pages = {385--392},</span>
+<span class="co">#     year = {2017},</span>
+<span class="co">#     doi = {10.32614/RJ-2017-019},</span>
+<span class="co">#     url = {https://doi.org/10.32614/RJ-2017-019},</span>
+<span class="co">#     note = {Version 3.7.8},</span>
+<span class="co">#   }</span>
+</code></pre>
+
+    </div>
+    <div class="ref-section section level2" id="section-see-also">
+    <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also" aria-hidden="true"></a>See also</h2>
+
+    <div class="dont-index"><p><code><a href="https://httr.r-lib.org/reference/GET.html">httr::GET()</a></code></p></div>
     </div>
     <div class="ref-section section level2" id="section-author">
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author" aria-hidden="true"></a>Author</h2>
@@ -123,14 +161,15 @@ a proxy parameters, see details.
     </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
-<span class="r-in">   <span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span><span class="st">"cdh_e_fos"</span><span class="op">)</span></span>
-<span class="r-in">   <span class="co"># nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.</span></span>
-<span class="r-in">   <span class="va">yy</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"nama_gdp_c"</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>geo<span class="op">=</span><span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"EU28"</span>, <span class="st">"FI"</span><span class="op">)</span>,</span>
-<span class="r-in">                                                        unit<span class="op">=</span><span class="st">"EUR_HAB"</span>,</span>
-<span class="r-in">                                                        indic_na<span class="op">=</span><span class="st">"B1GM"</span><span class="op">)</span><span class="op">)</span></span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.</span></span>
+<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span><span class="st">"cdh_e_fos"</span><span class="op">)</span></span>
+<span class="r-in"><span class="va">yy</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"nama_gdp_c"</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span class="r-in">  geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html">c</a></span><span class="op">(</span><span class="st">"EU28"</span>, <span class="st">"FI"</span><span class="op">)</span>,</span>
+<span class="r-in">  unit <span class="op">=</span> <span class="st">"EUR_HAB"</span>,</span>
+<span class="r-in">  indic_na <span class="op">=</span> <span class="st">"B1GM"</span></span>
+<span class="r-in"><span class="op">)</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
-<span class="r-in"></span>
 </code></pre></div>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="pkgdown-sidebar">

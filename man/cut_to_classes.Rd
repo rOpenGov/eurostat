@@ -15,12 +15,12 @@ cut_to_classes(
 )
 }
 \arguments{
-\item{x}{A numeric vector, eg. \code{values} variable in data returned by  \code{get_eurostat}}
+\item{x}{A numeric vector, eg. \code{values} variable in data returned by
+\code{\link[=get_eurostat]{get_eurostat()}}.}
 
 \item{n}{A numeric. number of classes/categories}
 
-\item{style}{Chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust",
-"bclust", "fisher", or "jenks"}
+\item{style}{chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih" or "headtails"}
 
 \item{manual}{Logical. If manual breaks are being used}
 
@@ -34,17 +34,29 @@ cut_to_classes(
 a factor.
 }
 \description{
-Categorises a numeric vector into automatic or manually defined categories.
-and polishes the labels ready for used in mapping with \code{merge_with_geodata} function and ggplot2.
+Categorises a numeric vector into automatic or manually defined
+categories and polishes the labels ready for used in mapping with \code{ggplot2}.
 }
 \examples{
- \dontrun{
-   #lp <- get_eurostat("nama_aux_lp")
-   lp <- get_eurostat("nama_10_lp_ulc")
-   lp$class <- cut_to_classes(lp$values, n=5, style="equal", decimals=1)
- }
- 
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+# lp <- get_eurostat("nama_aux_lp")
+lp <- get_eurostat("nama_10_lp_ulc")
+lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
+}
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+\code{\link[classInt:classIntervals]{classInt::classIntervals()}}
+
+Other helpers: 
+\code{\link{dic_order}()},
+\code{\link{eurotime2date}()},
+\code{\link{eurotime2num}()},
+\code{\link{harmonize_country_code}()},
+\code{\link{label_eurostat}()}
 }
 \author{
-Markus Kainu <markuskainu@gmail.com>
+Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}
 }
+\concept{helpers}

@@ -7,7 +7,7 @@
 add_nuts_level(dat, geo_labels = "geo")
 }
 \arguments{
-\item{dat}{A data frame or tibble returned by \code{\link{get_eurostat}}.}
+\item{dat}{A data frame or tibble returned by \code{\link[=get_eurostat]{get_eurostat()}}.}
 
 \item{geo_labels}{A geographical label, defaults to \code{geo}.}
 }
@@ -19,27 +19,37 @@ NUTS level 0 (country), 1 (greater region),
 \description{
 Eurostat regional statistics contain country, and various
 regional level information.  In many cases, for example, when mapping,
-it is useful to filter out national level data from NUTS2 level regional data,
-for example. 
+it is useful to filter out national level data from NUTS2 level regional
+data, for example.
 
 This function will be deprecated. Use the more comprehensive
-\code{regions::\link[regions]{validate_nuts_regions}} instead.
+\verb{[regions::validate_nuts_regions()]} instead.
 }
 \details{
 DEPRECATED FUNCTIONS FOR BACKWARD COMPATIBILITY
 FUNCTIONS GIVE WARNING AND CALL APPROPRIATE regions FUNCTIONS
 }
 \examples{
- {
-   dat = data.frame (
-        geo    = c("FR", "IE04", "DEB1C"), 
-        values = c(1000, 23, 12)
-   )
-   
-   add_nuts_level(dat)
- }
- 
+{
+  dat <- data.frame(
+    geo    = c("FR", "IE04", "DEB1C"),
+    values = c(1000, 23, 12)
+  )
+
+  add_nuts_level(dat)
+}
+}
+\seealso{
+\code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
+
+Other regions functions: 
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()},
+\code{\link{reexports}}
 }
 \author{
 Daniel Antal
 }
+\concept{regions functions}
+\keyword{internal}

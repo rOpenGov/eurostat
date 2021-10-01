@@ -1,9 +1,9 @@
 #' @title Clean Eurostat Cache
 #' @description Delete all .rds files from the eurostat cache directory.
-#'              See \code{\link{get_eurostat}} for more on cache.
-#' @param cache_dir A path to cache directory. If \code{NULL} (default)
+#'              See [get_eurostat()] for more on cache.
+#' @param cache_dir A path to cache directory. If `NULL` (default)
 #'        tries to clean default temporary cache directory.
-#' @param config Logical \code{TRUE/FALSE}. Should the cached path be
+#' @param config Logical `TRUE/FALSE`. Should the cached path be
 #'       deleted?
 #' @export
 #' @family cache utilities

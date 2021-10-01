@@ -40,17 +40,20 @@ library(tmap)
 
 # Download attribute data from Eurostat
 sp_data <- eurostat::get_eurostat("tgs00026",
-		                  time_format = "raw") %>% 
+  time_format = "raw"
+) %>%
   # subset to have only a single row per geo
-  dplyr::filter(time == 2010, nchar(geo) == 4) %>% 
+  dplyr::filter(time == 2010, nchar(geo) == 4) %>%
   # categorise
   dplyr::mutate(income = cut_to_classes(values, n = 5))
 
 # Download geospatial data from GISCO
-geodata <- get_eurostat_geospatial(output_class = "sf",
-                                   resolution = "60",
-				   nuts_level = 2,
-				   year = 2013)
+geodata <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "60",
+  nuts_level = 2,
+  year = 2013
+)
 
 # merge with attribute data with geodata
 map_data <- inner_join(geodata, sp_data)
@@ -62,7 +65,7 @@ Construct the map
 ```{r map1ex, eval=TRUE, warning=FALSE}
 # Fix / remove some broken entries for the demo purpose
 geodata <- sf::st_make_valid(geodata)
-geodata <- geodata[sf::st_is_valid(geodata),]
+geodata <- geodata[sf::st_is_valid(geodata), ]
 
 # Create and plot the map
 map1 <- tmap::tm_shape(geodata) +
@@ -70,9 +73,10 @@ map1 <- tmap::tm_shape(geodata) +
   tmap::tm_shape(map_data) +
   tmap::tm_grid() +
   tmap::tm_polygons("income",
-	            title = "Disposable household\nincomes in 2010",  
-                    palette = "Oranges")
-print(map1)  
+    title = "Disposable household\nincomes in 2010",
+    palette = "Oranges"
+  )
+print(map1)
 ```
 
 Interactive maps can be generated as well
@@ -97,14 +101,17 @@ library(RColorBrewer)
 
 # Downloading and manipulating the tabular data
 print("Let us focus on year 2014 and NUTS-3 level")
-euro_sf2 <- get_eurostat("tgs00026", time_format = "raw",
-			 filter = list(time = "2014")) %>% 
- 
+euro_sf2 <- get_eurostat("tgs00026",
+  time_format = "raw",
+  filter = list(time = "2014")
+) %>%
   # Subset to NUTS-3 level
-  dplyr::filter(grepl("PL",geo)) %>% 
+  dplyr::filter(grepl("PL", geo)) %>%
   # label the single geo column
-  mutate(label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
-         income = cut_to_classes(values))
+  mutate(
+    label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
+    income = cut_to_classes(values)
+  )
 
 print("Download geospatial data from GISCO")
 geodata <- get_eurostat_geospatial(output_class = "sf", resolution = "60", nuts_level = 2, year = 2013)
@@ -114,7 +121,7 @@ map_data <- inner_join(geodata, euro_sf2)
 
 # Fix / remove some broken entries for the demo purpose
 geodata <- sf::st_make_valid(geodata)
-geodata <- geodata[sf::st_is_valid(geodata),]
+geodata <- geodata[sf::st_is_valid(geodata), ]
 
 # plot map
 library(tmap)
@@ -122,9 +129,11 @@ library(tmap)
 map2 <- tm_shape(geodata) +
   tm_fill("lightgrey") +
   tm_shape(map_data, is.master = TRUE) +
-  tm_polygons("income", title = "Disposable household incomes in 2014",
-              palette = "Oranges", border.col = "white") + 
-  tm_text("NUTS_NAME", just = "center") + 
+  tm_polygons("income",
+    title = "Disposable household incomes in 2014",
+    palette = "Oranges", border.col = "white"
+  ) +
+  tm_text("NUTS_NAME", just = "center") +
   tm_scale_bar()
 map2
 ```
@@ -136,9 +145,9 @@ library(sp)
 library(eurostat)
 library(dplyr)
 library(RColorBrewer)
-dat <- get_eurostat("tgs00026", time_format = "raw") %>% 
+dat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # subsetting to year 2014 and NUTS-2 level
-  dplyr::filter(time == 2014, nchar(geo) == 4) %>% 
+  dplyr::filter(time == 2014, nchar(geo) == 4) %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 
@@ -149,10 +158,12 @@ geodata <- get_eurostat_geospatial(output_class = "spdf", resolution = "10", nut
 geodata@data <- left_join(geodata@data, dat)
 
 # plot map
-sp::spplot(obj = geodata, "cat", main = "Disposable household income",
-	   xlim = c(-22,34), ylim = c(35,70), 
-           col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
-	   col = "white", usePolypath = FALSE)
+sp::spplot(
+  obj = geodata, "cat", main = "Disposable household income",
+  xlim = c(-22, 34), ylim = c(35, 70),
+  col.regions = c("dim grey", brewer.pal(n = 5, name = "Oranges")),
+  col = "white", usePolypath = FALSE
+)
 ```
 
 ### Disposable income of private households by NUTS 2 regions at 1:60mln resolution using ggplot2
@@ -164,10 +175,10 @@ Meanwhile the CRAN version of `ggplot2` is lacking support for simple features, 
 library(eurostat)
 library(dplyr)
 library(ggplot2)
-data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>% 
-    dplyr::filter(time == 2018, nchar(geo) == 4) %>% 
-    # classifying the values the variable
-    dplyr::mutate(cat = cut_to_classes(values))
+data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
+  dplyr::filter(time == 2018, nchar(geo) == 4) %>%
+  # classifying the values the variable
+  dplyr::mutate(cat = cut_to_classes(values))
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 2021)
@@ -176,15 +187,18 @@ data_geo <- get_eurostat_geospatial(resolution = "60", nuts_level = "2", year = 
 data <- inner_join(data_geo, data_eurostat)
 
 ## Joining, by = "geo"
-ggplot(data = data) + geom_sf(aes(fill = cat), color = "dim grey", size = 0.1) + 
-    scale_fill_brewer(palette = "Oranges") +
-    guides(fill = guide_legend(reverse = TRUE, title = "euro")) +
-    labs(title = "Disposable household income in 2018",
-         caption="(C) EuroGeographics for the administrative boundaries 
-                Map produced in R with data from Eurostat-package <http://ropengov.github.io/eurostat>") +
-    theme_light() + 
-    theme(legend.position = c(.8, .8)) +
-    coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
+ggplot(data = data) +
+  geom_sf(aes(fill = cat), color = "dim grey", size = 0.1) +
+  scale_fill_brewer(palette = "Oranges") +
+  guides(fill = guide_legend(reverse = TRUE, title = "euro")) +
+  labs(
+    title = "Disposable household income in 2018",
+    caption = "(C) EuroGeographics for the administrative boundaries
+                Map produced in R with data from Eurostat-package <http://ropengov.github.io/eurostat>"
+  ) +
+  theme_light() +
+  theme(legend.position = c(.8, .8)) +
+  coord_sf(xlim = c(-12, 44), ylim = c(35, 70))
 ```
 
 

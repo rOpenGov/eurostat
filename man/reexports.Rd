@@ -37,13 +37,13 @@ when the geo coding is not valid.
 While country codes are technically not part of the NUTS typologies,
 Eurostat de facto uses a \code{NUTS0} typology to identify countries.
 This de facto typology has three exception which are handled by the
-\link[regions]{validate_nuts_countries} function.
+\link[regions:validate_nuts_countries]{validate_nuts_countries} function.
 
 NUTS typologies have different versions, therefore the conformity
 is validated with one specific versions, which can be any of these:
 \code{1999}, \code{2003}, \code{2006}, \code{2010},
- \code{2013}, the currently used \code{2016} and the already
- announced and defined \code{2021}.
+\code{2013}, the currently used \code{2016} and the already
+announced and defined \code{2021}.
 
 The NUTS typology was codified with the \code{NUTS2003}, and the
 pre-1999 NUTS typologies may confuse programmatic data processing,
@@ -65,27 +65,52 @@ foo <- data.frame (
 recode_nuts(foo, nuts_year = 2013)
 }
 \donttest{
-my_reg_data <- data.frame (
-  geo = c("BE1", "HU102", "FR1",
-          "DED", "FR7", "TR", "DED2",
-          "EL", "XK", "GB"),
-  values = runif(10))
+my_reg_data <- data.frame(
+  geo = c(
+    "BE1", "HU102", "FR1",
+    "DED", "FR7", "TR", "DED2",
+    "EL", "XK", "GB"
+  ),
+  values = runif(10)
+)
 
-validate_nuts_regions (my_reg_data)
+validate_nuts_regions(my_reg_data)
 
-validate_nuts_regions (my_reg_data, nuts_year = 2013)
+validate_nuts_regions(my_reg_data, nuts_year = 2013)
 
-validate_nuts_regions (my_reg_data, nuts_year = 2003)
+validate_nuts_regions(my_reg_data, nuts_year = 2003)
 }
 \donttest{
-my_reg_data <- data.frame (
-  geo = c("BE1", "HU102", "FR1",
-          "DED", "FR7", "TR", "DED2",
-          "EL", "XK", "GB"),
-  values = runif(10))
+my_reg_data <- data.frame(
+  geo = c(
+    "BE1", "HU102", "FR1",
+    "DED", "FR7", "TR", "DED2",
+    "EL", "XK", "GB"
+  ),
+  values = runif(10)
+)
 
 validate_geo_code(my_reg_data$geo)
 }
+}
+\seealso{
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()}
 }
 \concept{regions functions}
 \keyword{internal}

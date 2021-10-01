@@ -12,7 +12,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.7</button>
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.8</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3"><li class="active nav-item">
@@ -21,20 +21,20 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="../articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="../articles/articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="../articles/vignette.html">Vignette for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="../articles/website/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/publications.html">Publications using the eurostat R package</a>
   </div>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
         <input type="search" class="form-control mr-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off"></form>
 
       <ul class="navbar-nav ml-1"><li class="nav-item">
-  <a class="nav-link" href="https://github.com/ropengov/eurostat/" aria-label="github">
+  <a class="nav-link" href="https://github.com/rOpenGov/eurostat/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -46,7 +46,7 @@
   <div class="col-md-9 contents">
     <img src="../logo.png" class="pkg-logo" alt=""><div class="page-header pb-2 mt-4 mb-2 border-bottom toc-ignore">
     <h1 class="display-4">Read Eurostat Data</h1>
-    <small class="dont-index">Source: <a href="https://github.com/ropengov/eurostat/blob/master/R/get_eurostat.R"><code>R/get_eurostat.R</code></a></small>
+    <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/R/get_eurostat.R"><code>R/get_eurostat.R</code></a></small>
     <div class="d-none name"><code>get_eurostat.Rd</code></div>
     </div>
 
@@ -74,23 +74,23 @@
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments" aria-hidden="true"></a>Arguments</h2>
     <dl class="row" id="ref-arguments"><dt class="col-sm-3 section level2" id="pkg-arg-id">id</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>A code name for the dataset of interest.
-See <code><a href="search_eurostat.html">search_eurostat</a></code> or details for how to get code.</p></dd>
+See <code><a href="search_eurostat.html">search_eurostat()</a></code> or details for how to get code.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-time_format">time_format</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a string giving a type of the conversion of the time
 column from the eurostat format. A "date" (default) convers to
-a <code><a href="https://rdrr.io/r/base/Dates.html">Date</a></code> with a first date of the period.
-A "date_last" convers to a <code><a href="https://rdrr.io/r/base/Dates.html">Date</a></code> with
- a last date of the period. A "num" convers to a numeric and "raw"
- does not do conversion. See <code><a href="eurotime2date.html">eurotime2date</a></code> and
- <code><a href="eurotime2num.html">eurotime2num</a></code>.</p></dd>
+a <code><a href="https://rdrr.io/r/base/Dates.html">Date()</a></code> with a first date of the period.
+A "date_last" convers to a <code><a href="https://rdrr.io/r/base/Dates.html">Date()</a></code> with
+a last date of the period. A "num" convers to a numeric and "raw"
+does not do conversion. See <code><a href="eurotime2date.html">eurotime2date()</a></code> and
+<code><a href="eurotime2num.html">eurotime2num()</a></code>.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-filters">filters</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>a "none" (default) to get a whole dataset or a named list of 
-filters to get just part of the table. Names of list objects are 
-Eurostat variable codes and values are vectors of observation codes. 
-If <code>NULL</code> the whole 
-dataset is returned via API. More on details. See more on filters and 
-limitations per query via API from for 
-<code><a href="get_eurostat_json.html">get_eurostat_json</a></code>.</p></dd>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>a "none" (default) to get a whole dataset or a named list of
+filters to get just part of the table. Names of list objects are
+Eurostat variable codes and values are vectors of observation codes.
+If <code>NULL</code> the whole
+dataset is returned via API. More on details. See more on filters and
+limitations per query via API from for
+<code><a href="get_eurostat_json.html">get_eurostat_json()</a></code>.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-type">type</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>A type of variables, "code" (default) or "label".</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-select_time">select_time</dt>
@@ -98,11 +98,11 @@ limitations per query via API from for
 which is used by default as most datasets have just one time
 frequency. For datasets with multiple time
 frequencies, select the desired time format with:
-  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
+Y = annual, S = semi-annual, Q = quarterly, M = monthly.
 For all frequencies in same data frame <code>time_format = "raw"</code>
 should be used.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-cache">cache</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to do caching. Default is <code>TRUE</code>. Affects 
+      <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to do caching. Default is <code>TRUE</code>. Affects
 only queries from the bulk download facility.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-update_cache">update_cache</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to update cache. Can be set also with
@@ -111,8 +111,8 @@ options(eurostat_update = TRUE)</p></dd>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a path to a cache directory. The directory must exist.
 The <code>NULL</code> (default) uses and creates
 'eurostat' directory in the temporary directory from
-<code><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></code>. The directory can also be set with
-<code>option</code> eurostat_cache_dir.</p></dd>
+<code><a href="https://rdrr.io/r/base/tempfile.html">tempdir()</a></code>. The directory can also be set with
+<code><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir()</a></code>.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-compress_file">compress_file</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether to compress the
 RDS-file in caching. Default is <code>TRUE</code>.</p></dd>
@@ -123,52 +123,54 @@ they are returned as a character.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-keepFlags">keepFlags</dt>
       <dd class="col-sm-9" id="ref-arguments desc"><p>a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
-can be removed. Default is <code>FALSE</code>. For flag values see: 
+can be removed. Default is <code>FALSE</code>. For flag values see:
 <a href="https://ec.europa.eu/eurostat/data/database/information">https://ec.europa.eu/eurostat/data/database/information</a>.
-Also possible non-real zero "0n" is indicated in flags column. 
+Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so <code>keepFlags</code>
 can not be used with a <code>filters</code>.</p></dd>
     <dt class="col-sm-3 section level2" id="pkg-arg-...">...</dt>
-      <dd class="col-sm-9" id="ref-arguments desc"><p>further argument for <code><a href="get_eurostat_json.html">get_eurostat_json</a></code>.</p></dd>
+      <dd class="col-sm-9" id="ref-arguments desc"><p>Arguments passed on to <code><a href="get_eurostat_json.html">get_eurostat_json</a></code></p><dl><dt><code>lang</code></dt><dd><p>A language used for metadata (en/fr/de).</p></dd>
+  
+</dl></dd>
     </dl><div class="ref-section section level2" id="section-value">
     <h2 class="hasAnchor" id="value"><a class="anchor" href="#value" aria-hidden="true"></a>Value</h2>
 
     <p>a tibble. One column for each dimension in the data,
-        the time column for a time dimension and
-        the values column for numerical values.
-        Eurostat data does not include all missing values and a treatment of
-        missing values depend on source. In bulk download 
-        facility missing values are dropped if all dimensions are missing
-        on particular time. In JSON API missing values are dropped
-        only if all dimensions are missing on all times. The data from
-        bulk download facility can be completed for example with 
-        <code><a href="https://tidyr.tidyverse.org/reference/complete.html">complete</a></code>.</p>
+the time column for a time dimension and
+the values column for numerical values.
+Eurostat data does not include all missing values and a treatment of
+missing values depend on source. In bulk download
+facility missing values are dropped if all dimensions are missing
+on particular time. In JSON API missing values are dropped
+only if all dimensions are missing on all times. The data from
+bulk download facility can be completed for example with
+<code><a href="https://tidyr.tidyverse.org/reference/complete.html">tidyr::complete()</a></code>.</p>
     </div>
     <div class="ref-section section level2" id="section-details">
     <h2 class="hasAnchor" id="details"><a class="anchor" href="#details" aria-hidden="true"></a>Details</h2>
 
-    <p>Data sets are downloaded from 
-<a href="https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing">the Eurostat bulk download facility</a> or from The Eurostat Web Services 
+    <p>Data sets are downloaded from
+<a href="https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing">the Eurostat bulk download facility</a> or from The Eurostat Web Services
 <a href="https://ec.europa.eu/eurostat/web/json-and-unicode-web-services">JSON API</a>.
 If only the table <code>id</code> is given, the whole table is downloaded from the
 bulk download facility. If also <code>filters</code> are defined the JSON API is
 used.</p>
 <p>The bulk download facility is the fastest method to download whole datasets.
-It is also often the only way as the JSON API has limitation of maximum 
-50 sub-indicators at time and whole datasets usually exceeds that. Also, 
-it seems that multi frequency datasets can only be retrived via 
-bulk download facility and the <code>select_time</code> is not available for 
+It is also often the only way as the JSON API has limitation of maximum
+50 sub-indicators at time and whole datasets usually exceeds that. Also,
+it seems that multi frequency datasets can only be retrived via
+bulk download facility and the <code>select_time</code> is not available for
 JSON API method.</p>
 <p>If your connection is thru a proxy, you probably have to set proxy parameters
-to use JSON API, see <code><a href="get_eurostat_json.html">get_eurostat_json</a></code>.</p>
+to use JSON API, see <code><a href="get_eurostat_json.html">get_eurostat_json()</a></code>.</p>
 <p>By default datasets from the bulk download facility are cached as they are
-often rather large. Caching is not (currently) possible for datasets from 
+often rather large. Caching is not (currently) possible for datasets from
 JSON API.
 Cache files are stored in a temporary directory by default or in
-a named directory if cache_dir or option eurostat_cache_dir is defined.
-The cache can be emptied with <code><a href="clean_eurostat_cache.html">clean_eurostat_cache</a></code>.</p>
+a named directory (See <code><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir()</a></code>).
+The cache can be emptied with <code><a href="clean_eurostat_cache.html">clean_eurostat_cache()</a></code>.</p>
 <p>The <code>id</code>, a code, for the dataset can be searched with
-the <code><a href="search_eurostat.html">search_eurostat</a></code> or from the Eurostat database
+the <code><a href="search_eurostat.html">search_eurostat()</a></code> or from the Eurostat database
 <a href="https://ec.europa.eu/eurostat/data/database">https://ec.europa.eu/eurostat/data/database</a>. The Eurostat
 database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.</p>
@@ -176,12 +178,36 @@ in parenthesis.</p>
     <div class="ref-section section level2" id="section-references">
     <h2 class="hasAnchor" id="references"><a class="anchor" href="#references" aria-hidden="true"></a>References</h2>
 
-    <p>See citation("eurostat").</p>
+    <p>See <code>citation("eurostat")</code>:</p><pre class="sourceCode r"><code><span class="co"># </span>
+<span class="co"># Kindly cite the eurostat R package as follows:</span>
+<span class="co"># </span>
+<span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of</span>
+<span class="co">#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version</span>
+<span class="co">#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article</span>
+<span class="co">#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
+<span class="co"># </span>
+<span class="co"># A BibTeX entry for LaTeX users is</span>
+<span class="co"># </span>
+<span class="co">#   @Article{,</span>
+<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the</span>
+<span class="co">#            eurostat Package},</span>
+<span class="co">#     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},</span>
+<span class="co">#     journal = {The R Journal},</span>
+<span class="co">#     volume = {9},</span>
+<span class="co">#     number = {1},</span>
+<span class="co">#     pages = {385--392},</span>
+<span class="co">#     year = {2017},</span>
+<span class="co">#     doi = {10.32614/RJ-2017-019},</span>
+<span class="co">#     url = {https://doi.org/10.32614/RJ-2017-019},</span>
+<span class="co">#     note = {Version 3.7.8},</span>
+<span class="co">#   }</span>
+</code></pre>
+
     </div>
     <div class="ref-section section level2" id="section-see-also">
     <h2 class="hasAnchor" id="see-also"><a class="anchor" href="#see-also" aria-hidden="true"></a>See also</h2>
 
-    <div class="dont-index"><p><code><a href="search_eurostat.html">search_eurostat</a></code>, <code><a href="label_eurostat.html">label_eurostat</a></code></p></div>
+    <div class="dont-index"><p><code><a href="search_eurostat.html">search_eurostat()</a></code>, <code><a href="label_eurostat.html">label_eurostat()</a></code></p></div>
     </div>
     <div class="ref-section section level2" id="section-author">
     <h2 class="hasAnchor" id="author"><a class="anchor" href="#author" aria-hidden="true"></a>Author</h2>
@@ -190,25 +216,40 @@ in parenthesis.</p>
     </div>
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples" aria-hidden="true"></a>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span> </span>
+    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, time_format <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, update_cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/files2.html">dir.create</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, </span>
-<span class="r-in">                  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-in"></span>
+<span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>,</span>
+<span class="r-in">  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in get_eurostat("nama_10_lp_ulc", cache_dir = file.path(tempdir(),     "r_cache"))</span> The folder C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/r_cache does not exist</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html">options</a></span><span class="op">(</span>eurostat_cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"></span>
+<span class="r-in"><span class="fu"><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache2"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-err co"><span class="r-pr">#&gt;</span> <span class="error">Error in set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))</span> no se pudo encontrar la función "set_eurostat_cache_dir"</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  C:\Users\diego\AppData\Local\Temp\Rtmpkz4IFn/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"avia_gonc"</span>, select_time <span class="op">=</span> <span class="st">"Y"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
-<span class="r-in"></span>
-<span class="r-in"><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_gdp"</span>, </span>
-<span class="r-in">                     filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span>geo <span class="op">=</span> <span class="st">"FI"</span>, </span>
-<span class="r-in">                                    na_item <span class="op">=</span> <span class="st">"B1GQ"</span>, </span>
-<span class="r-in">                                    unit <span class="op">=</span> <span class="st">"CLV_I10"</span><span class="op">)</span><span class="op">)</span></span>
+<span class="r-in"><span class="co"># }</span></span>
+<span class="r-in"><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span>
+<span class="r-in"><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_gdp"</span>,</span>
+<span class="r-in">  filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html">list</a></span><span class="op">(</span></span>
+<span class="r-in">    geo <span class="op">=</span> <span class="st">"FI"</span>,</span>
+<span class="r-in">    na_item <span class="op">=</span> <span class="st">"B1GQ"</span>,</span>
+<span class="r-in">    unit <span class="op">=</span> <span class="st">"CLV_I10"</span></span>
+<span class="r-in">  <span class="op">)</span></span>
+<span class="r-in"><span class="op">)</span></span>
 <span class="r-in"><span class="op">}</span></span>
 </code></pre></div>
   </div>

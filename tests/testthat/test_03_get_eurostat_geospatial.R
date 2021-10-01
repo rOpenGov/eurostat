@@ -2,6 +2,7 @@ test_that("get_eurostat_geospatial wrong input arguments for output_format = \"s
   skip_if_not_installed(pkg = "sf")
   library(sf)
   skip_on_cran()
+  skip_if_offline()
   # Testing argument 'output_class'
   expect_error(get_eurostat_geospatial(output_class = 0))
   expect_error(get_eurostat_geospatial(output_class = "foo"))
@@ -44,7 +45,6 @@ test_that("get_eurostat_geospatial wrong input arguments for output_format = \"s
 
   # Invalid combinations
   expect_error(get_eurostat_geospatial(resolution = 60, year = 2003))
-
 })
 
 
@@ -52,12 +52,13 @@ test_that("get_eurostat_geospatial wrong input arguments for output_format = \"s
 test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   skip_if_not_installed(pkg = "sf")
   skip_on_cran()
-  #skip_on_ci()    
+  skip_if_offline()
+  # skip_on_ci()
 
   # Custom function expecting that:
   # we have a warning, then a message, and the final object is of class "sf"
   expect_ismw <- function(x, cls = "sf") {
-      expect_s3_class(expect_message(expect_warning(x)), cls)
+    expect_s3_class(expect_message(expect_warning(x)), cls)
   }
 
   # Testing nuts_level first, such that we can stick to one nuts_level later on ...
@@ -75,17 +76,17 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, year = "2013"))
 
   # Testing resolution
-  expect_ismw(get_eurostat_geospatial("sf", resolution = 1,    nuts_level = 3, year = 2013))
+  expect_ismw(get_eurostat_geospatial("sf", resolution = 1, nuts_level = 3, year = 2013))
   expect_ismw(get_eurostat_geospatial("sf", resolution = "01", nuts_level = 3, year = 2013))
-  expect_ismw(get_eurostat_geospatial("sf", resolution = "1",  nuts_level = 3, year = 2013))
+  expect_ismw(get_eurostat_geospatial("sf", resolution = "1", nuts_level = 3, year = 2013))
 
   # Testing cache
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = TRUE))
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = FALSE))
 
   # Testing update_cache
-  expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = TRUE,  update_cache = TRUE))
-  expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = TRUE,  update_cache = FALSE))
+  expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = TRUE, update_cache = TRUE))
+  expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = TRUE, update_cache = FALSE))
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = FALSE, update_cache = TRUE))
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, cache = FALSE, update_cache = FALSE))
 
@@ -103,38 +104,37 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   # options(warn) is set to < 0.
   expect_ismw(get_eurostat_geospatial("sf", nuts_level = 1, make_valid = FALSE))
   expect_s3_class(get_eurostat_geospatial("sf", nuts_level = 1, make_valid = TRUE), "sf")
-
 })
 
 # Tests explicitly for output_class = "sf"; first unnamed argument
 test_that("get_eurostat_geospatial tests to cover internals", {
   skip_if_not_installed(pkg = "sf")
   skip_on_cran()
+  skip_if_offline()
 
   # Custom function expecting that:
   # we have a warning, then a message, and the final object is of class "sf"
   expect_ismw <- function(x, cls = "sf") {
     x1 <- expect_message(expect_warning(x))
-    
-    if(typeof(x1) == "S3") expect_s3_class(x1, cls)
-    if(typeof(x1) == "S4") expect_s4_class(x1, cls)
+
+    if (typeof(x1) == "S3") expect_s3_class(x1, cls)
+    if (typeof(x1) == "S4") expect_s4_class(x1, cls)
   }
   # Special case where resolution == 60 && year == 2016 && crs == 4326.
   # Testing for correct return object class.
   expect_s3_class(get_eurostat_geospatial("sf", resolution = 60, year = 2016, crs = 4326, make_valid = TRUE), "sf")
-  expect_ismw(get_eurostat_geospatial("df",   resolution = 60, year = 2016, crs = 4326, make_valid = TRUE), cls = "data.frame")
+  expect_ismw(get_eurostat_geospatial("df", resolution = 60, year = 2016, crs = 4326, make_valid = TRUE), cls = "data.frame")
   expect_ismw(get_eurostat_geospatial("spdf", resolution = 60, year = 2016, crs = 4326, make_valid = TRUE), cls = "SpatialPolygonsDataFrame")
 
   # General case (not resolution == 60 && year == 2016 && crs == 4326.
   # Testing for correct return object class.
   expect_s3_class(get_eurostat_geospatial("sf", resolution = 20, year = 2013, make_valid = TRUE), "sf")
-  expect_ismw(get_eurostat_geospatial("df",   resolution = 20, year = 2013, make_valid = TRUE), cls = "data.frame")
+  expect_ismw(get_eurostat_geospatial("df", resolution = 20, year = 2013, make_valid = TRUE), cls = "data.frame")
   expect_ismw(get_eurostat_geospatial("spdf", resolution = 20, year = 2013, make_valid = TRUE), cls = "SpatialPolygonsDataFrame")
 
   # Setting cache to false; everything else default
   expect_ismw(get_eurostat_geospatial("sf", cache = FALSE))
   expect_s3_class(get_eurostat_geospatial("sf", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), "sf")
-  expect_ismw(get_eurostat_geospatial("df",   resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "data.frame")
+  expect_ismw(get_eurostat_geospatial("df", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "data.frame")
   expect_ismw(get_eurostat_geospatial("spdf", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "SpatialPolygonsDataFrame")
-
 })

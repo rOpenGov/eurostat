@@ -21,12 +21,16 @@ Change to FALSE if more complex regex matching is needed.}
 }
 \value{
 A tibble with eight columns
-   \itemize{
- 	\item{title}{The name of dataset of theme}
-\item{code}{The codename of dataset of theme, will be used by the get_eurostat and get_eurostat_raw functions.}
-\item{type}{Is it a dataset, folder or table.}
-\item{last.update.of.data, last.table.structure.change, data.start, data.end}{Dates.}
-   }
+\itemize{
+\item \strong{title}: The name of dataset of theme
+\itemize{
+\item \strong{code}: The codename of dataset of theme, will be used by the
+\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions.
+\item \strong{type}: Is it a dataset, folder or table.
+\item \strong{last.update.of.data, last.table.structure.change, data.start,
+data.end}: Dates.
+}
+}
 }
 \description{
 Lists names of dataset from eurostat with the particular
@@ -44,22 +48,47 @@ education of teaching.
 }}
 
 \examples{
-\dontrun{
-  tmp <- search_eurostat("education")
-  head(tmp)
-  # Use "fixed = TRUE" when pattern has characters that would need escaping.
-  # Here, parentheses would normally need to be escaped in regex
-  tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+tmp <- search_eurostat("education")
+head(tmp)
+# Use "fixed = TRUE" when pattern has characters that would need escaping.
+# Here, parentheses would normally need to be escaped in regex
+tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
 }
+\dontshow{\}) # examplesIf}
 }
 \references{
-See citation("eurostat")
+See \code{citation("eurostat")}:\preformatted{# 
+# Kindly cite the eurostat R package as follows:
+# 
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Article\{,
+#     title = \{Retrieval and Analysis of Eurostat Open Data with the
+#            eurostat Package\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+#     journal = \{The R Journal\},
+#     volume = \{9\},
+#     number = \{1\},
+#     pages = \{385--392\},
+#     year = \{2017\},
+#     doi = \{10.32614/RJ-2017-019\},
+#     url = \{https://doi.org/10.32614/RJ-2017-019\},
+#     note = \{Version 3.7.8\},
+#   \}
+}
 }
 \seealso{
-\code{\link{get_eurostat}}, \code{\link{get_eurostat_toc}}
+\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=get_eurostat_toc]{get_eurostat_toc()}}
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \email{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
 }
 \keyword{database}
 \keyword{utilities}

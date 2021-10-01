@@ -41,3 +41,4 @@ docs
 ^codecov\.yml$
 ^pkgdown$
 ^\._pkgdown\.yml$
+^vignettes/articles$

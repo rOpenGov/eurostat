@@ -15,7 +15,7 @@ deleted?}
 }
 \description{
 Delete all .rds files from the eurostat cache directory.
-             See \code{\link{get_eurostat}} for more on cache.
+See \code{\link[=get_eurostat]{get_eurostat()}} for more on cache.
 }
 \examples{
 \dontrun{
@@ -28,6 +28,6 @@ Other cache utilities:
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and
-  Diego Hernangómez
+Diego Hernangómez
 }
 \concept{cache utilities}

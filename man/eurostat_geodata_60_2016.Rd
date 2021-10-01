@@ -3,18 +3,19 @@
 \docType{data}
 \name{eurostat_geodata_60_2016}
 \alias{eurostat_geodata_60_2016}
-\title{Geospatial data of Europe from Gisco in 1:60 million scale from year 2016}
+\title{Geospatial data of Europe from Gisco in 1:60 million scale from
+year 2016}
 \format{
 sf
-\describe{
-  \item{id}{Country code in the Eurostat database}
-  \item{CNTRY_CODE}{Country code}
-  \item{NUTS_NAME}{NUTS name in local language}
-  \item{LEVL_CODE}{NUTS code}
-  \item{FID}{Country code}
-  \item{NUTS_ID}{NUTS code}
-  \item{geometry}{geospatial information}
-  \item{geo}{NUTS code}
+\itemize{
+\item \strong{id}: Country code in the Eurostat database.
+\item \strong{CNTRY_CODE}: Country code.
+\item \strong{NUTS_NAME}: NUTS name in local language.
+\item \strong{LEVL_CODE}: NUTS code.
+\item \strong{FID}: Country code.
+\item \strong{NUTS_ID}: NUTS code.
+\item \strong{geometry}: geospatial information.
+\item \strong{geo}: NUTS code.
 }
 }
 \source{
@@ -24,6 +25,16 @@ sf
 eurostat_geodata_60_2016
 }
 \description{
-Geospatial data of Europe from Gisco in 1:60 million scale from year 2016
+Geospatial data of Europe from Gisco in 1:60 million scale
+from year 2016
 }
+\seealso{
+Other datasets: 
+\code{\link{tgs00026}}
+
+Other geospatial: 
+\code{\link{get_eurostat_geospatial}()}
+}
+\concept{datasets}
+\concept{geospatial}
 \keyword{datasets}

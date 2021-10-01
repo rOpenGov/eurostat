@@ -41,7 +41,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.7</button>
+    <button type="button" id="version-badge" class="badge badge-default d-none d-lg-block" data-toggle="tooltip" data-placement="bottom" title="" data-original-title="">3.7.8</button>
 
     <div id="navbar" class="collapse navbar-collapse">
       <ul class="navbar-nav mr-auto ml-3">
@@ -51,13 +51,13 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
+    <a class="dropdown-item" href="../articles/articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="../articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="../articles/articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="../articles/vignette.html">Vignette for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="../articles/website/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="../articles/website/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/website/publications.html">Publications using the eurostat R package</a>
   </div>
 </li>
       </ul>
@@ -67,7 +67,7 @@
 
       <ul class="navbar-nav ml-1">
 <li class="nav-item">
-  <a class="external-link nav-link" href="https://github.com/ropengov/eurostat/" aria-label="github">
+  <a class="external-link nav-link" href="https://github.com/rOpenGov/eurostat/" aria-label="github">
     <span class="fab fa fab fa-github fa-lg"></span>
      
   </a>
@@ -89,72 +89,12 @@
 </colgroup>
 <tbody><tr>
 <th colspan="2">
-          <h2 id="section-all-functions" class="hasAnchor">
-<a href="#section-all-functions" class="anchor" aria-hidden="true"></a>All functions</h2>
+          <h2 id="section-get-data-from-eurostat" class="hasAnchor">
+<a href="#section-get-data-from-eurostat" class="anchor" aria-hidden="true"></a>Get data from Eurostat</h2>
           <p class="section-desc"></p>
         </th>
       </tr></tbody>
 <tbody>
-<tr>
-<td>
-          <p><code><a href="add_nuts_level.html">add_nuts_level()</a></code> </p>
-        </td>
-        <td><p>Add the statistical aggregation level to data frame</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="check_access_to_data.html">check_access_to_data()</a></code> </p>
-        </td>
-        <td><p>Check access to ec.europe.eu</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="clean_eurostat_cache.html">clean_eurostat_cache()</a></code> </p>
-        </td>
-        <td><p>Clean Eurostat Cache</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="cut_to_classes.html">cut_to_classes()</a></code> </p>
-        </td>
-        <td><p>Cuts the Values Column into Classes and Polishes the Labels</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="dic_order.html">dic_order()</a></code> </p>
-        </td>
-        <td><p>Order of Variable Levels from Eurostat Dictionary.</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="eurostat-package.html">eurostat-package</a></code> </p>
-        </td>
-        <td><p>R Tools for Eurostat open data</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="eurostat_geodata_60_2016.html">eurostat_geodata_60_2016</a></code> </p>
-        </td>
-        <td><p>Geospatial data of Europe from Gisco in 1:60 million scale from year 2016</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="eurotime2date.html">eurotime2date()</a></code> </p>
-        </td>
-        <td><p>Date Conversion from Eurostat Time Format</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="eurotime2num.html">eurotime2num()</a></code> </p>
-        </td>
-        <td><p>Conversion of Eurostat Time Format to Numeric</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="eu_countries.html">eu_countries</a></code> <code><a href="eu_countries.html">ea_countries</a></code> <code><a href="eu_countries.html">efta_countries</a></code> <code><a href="eu_countries.html">eu_candidate_countries</a></code> </p>
-        </td>
-        <td><p>Countries and Country Codes</p></td>
-      </tr>
 <tr>
 <td>
           <p><code><a href="get_bibentry.html">get_bibentry()</a></code> </p>
@@ -199,15 +139,75 @@
       </tr>
 <tr>
 <td>
-          <p><code><a href="harmonize_country_code.html">harmonize_country_code()</a></code> </p>
+          <p><code><a href="search_eurostat.html">search_eurostat()</a></code> <code><a href="search_eurostat.html">grepEurostatTOC()</a></code> </p>
         </td>
-        <td><p>Harmonize Country Code</p></td>
+        <td><p>Grep Datasets Titles from Eurostat</p></td>
+      </tr>
+</tbody>
+<tbody><tr>
+<th colspan="2">
+          <h2 id="section-access-and-cache-management" class="hasAnchor">
+<a href="#section-access-and-cache-management" class="anchor" aria-hidden="true"></a>Access and Cache management</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody>
+<tbody>
+<tr>
+<td>
+          <p><code><a href="clean_eurostat_cache.html">clean_eurostat_cache()</a></code> </p>
+        </td>
+        <td><p>Clean Eurostat Cache</p></td>
       </tr>
 <tr>
 <td>
-          <p><code><a href="harmonize_geo_code.html">harmonize_geo_code()</a></code> </p>
+          <p><code><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir()</a></code> </p>
         </td>
-        <td><p>Harmonize NUTS region codes that changed with the <code>NUTS2016</code> definition</p></td>
+        <td><p>Set Eurostat Cache</p></td>
+      </tr>
+<tr>
+<td>
+          <p><code><a href="check_access_to_data.html">check_access_to_data()</a></code> </p>
+        </td>
+        <td><p>Check access to ec.europe.eu</p></td>
+      </tr>
+</tbody>
+<tbody><tr>
+<th colspan="2">
+          <h2 id="section-additional-functions" class="hasAnchor">
+<a href="#section-additional-functions" class="anchor" aria-hidden="true"></a>Additional functions</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody>
+<tbody>
+<tr>
+<td>
+          <p><code><a href="cut_to_classes.html">cut_to_classes()</a></code> </p>
+        </td>
+        <td><p>Cuts the Values Column into Classes and Polishes the Labels</p></td>
+      </tr>
+<tr>
+<td>
+          <p><code><a href="dic_order.html">dic_order()</a></code> </p>
+        </td>
+        <td><p>Order of Variable Levels from Eurostat Dictionary.</p></td>
+      </tr>
+<tr>
+<td>
+          <p><code><a href="eurotime2date.html">eurotime2date()</a></code> </p>
+        </td>
+        <td><p>Date Conversion from Eurostat Time Format</p></td>
+      </tr>
+<tr>
+<td>
+          <p><code><a href="eurotime2num.html">eurotime2num()</a></code> </p>
+        </td>
+        <td><p>Conversion of Eurostat Time Format to Numeric</p></td>
+      </tr>
+<tr>
+<td>
+          <p><code><a href="harmonize_country_code.html">harmonize_country_code()</a></code> </p>
+        </td>
+        <td><p>Harmonize Country Code</p></td>
       </tr>
 <tr>
 <td>
@@ -215,23 +215,27 @@
         </td>
         <td><p>Get Eurostat Codes</p></td>
       </tr>
+</tbody>
+<tbody><tr>
+<th colspan="2">
+          <h2 id="section-datasets" class="hasAnchor">
+<a href="#section-datasets" class="anchor" aria-hidden="true"></a>Datasets</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody>
+<tbody>
 <tr>
 <td>
-          <p><code><a href="recode_to_nuts_2013.html">recode_to_nuts_2013()</a></code> </p>
+          <p><code><a href="eurostat_geodata_60_2016.html">eurostat_geodata_60_2016</a></code> </p>
         </td>
-        <td><p>Recode geo labels and rename regions from NUTS2016 to NUTS2013</p></td>
+        <td><p>Geospatial data of Europe from Gisco in 1:60 million scale from
+year 2016</p></td>
       </tr>
 <tr>
 <td>
-          <p><code><a href="recode_to_nuts_2016.html">recode_to_nuts_2016()</a></code> </p>
+          <p><code><a href="eu_countries.html">eu_countries</a></code> <code><a href="eu_countries.html">ea_countries</a></code> <code><a href="eu_countries.html">efta_countries</a></code> <code><a href="eu_countries.html">eu_candidate_countries</a></code> </p>
         </td>
-        <td><p>Recode geo labels and rename regions from NUTS2013 to NUTS2016</p></td>
-      </tr>
-<tr>
-<td>
-          <p><code><a href="search_eurostat.html">search_eurostat()</a></code> <code><a href="search_eurostat.html">grepEurostatTOC()</a></code> </p>
-        </td>
-        <td><p>Grep Datasets Titles from Eurostat</p></td>
+        <td><p>Countries and Country Codes</p></td>
       </tr>
 <tr>
 <td>
@@ -240,6 +244,19 @@
         <td><p>Auxiliary Data</p></td>
       </tr>
 </tbody>
+<tbody><tr>
+<th colspan="2">
+          <h2 id="section-about-the-package" class="hasAnchor">
+<a href="#section-about-the-package" class="anchor" aria-hidden="true"></a>About the package</h2>
+          <p class="section-desc"></p>
+        </th>
+      </tr></tbody>
+<tbody><tr>
+<td>
+          <p><code><a href="eurostat-package.html">eurostat-package</a></code> </p>
+        </td>
+        <td><p>R Tools for Eurostat open data</p></td>
+      </tr></tbody>
 </table>
 </div>
 

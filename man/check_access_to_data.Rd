@@ -13,11 +13,11 @@ a logical.
 Check if R has access to resources at http://ec.europa.eu
 }
 \examples{
- \dontrun{
-   check_access_to_data()
- }
- 
+\donttest{
+check_access_to_data()
+}
+
 }
 \author{
-Markus Kainu \email{markus.kainu@kapsi.fi}
+Markus Kainu \href{mailto:markus.kainu@kapsi.fi}{markus.kainu@kapsi.fi}
 }

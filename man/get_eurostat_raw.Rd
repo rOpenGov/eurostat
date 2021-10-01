@@ -11,31 +11,55 @@ get_eurostat_raw(id)
 contents of eurostat datasets for more details.}
 }
 \value{
-A dataset in tibble format. First column contains comma 
-	  separated codes of cases. Other columns usually corresponds to 
-  years and column names are years with preceding X. Data is in 
-  character format as it contains values together with eurostat 
-  flags for data.
+A dataset in tibble format. First column contains comma
+separated codes of cases. Other columns usually corresponds to
+years and column names are years with preceding X. Data is in
+character format as it contains values together with eurostat
+flags for data.
 }
 \description{
 Download data from the eurostat database.
 }
 \details{
 Data is downloaded from
- \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing} and transformed into tabular format.
+\url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
+and transformed into tabular format.
 }
 \examples{
-  \dontrun{
-    tmp <- eurostat:::get_eurostat_raw("educ_iste")
-    head(tmp)
-  }
-  
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+eurostat:::get_eurostat_raw("educ_iste")
+}
+\dontshow{\}) # examplesIf}
 }
 \references{
-see citation("eurostat")
+See \code{citation("eurostat")}:\preformatted{# 
+# Kindly cite the eurostat R package as follows:
+# 
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Article\{,
+#     title = \{Retrieval and Analysis of Eurostat Open Data with the
+#            eurostat Package\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+#     journal = \{The R Journal\},
+#     volume = \{9\},
+#     number = \{1\},
+#     pages = \{385--392\},
+#     year = \{2017\},
+#     doi = \{10.32614/RJ-2017-019\},
+#     url = \{https://doi.org/10.32614/RJ-2017-019\},
+#     note = \{Version 3.7.8\},
+#   \}
+}
 }
 \seealso{
-\code{\link{get_eurostat}}.
+\code{\link[=get_eurostat]{get_eurostat()}}.
 }
 \author{
 Przemyslaw Biecek, Leo Lahti and Janne Huovari
