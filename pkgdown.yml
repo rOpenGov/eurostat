@@ -9,7 +9,7 @@ articles:
   maps: articles/maps.html
   publications: articles/publications.html
   vignette: vignette.html
-last_built: 2021-10-01T13:23Z
+last_built: 2021-10-01T14:47Z
 urls:
   reference: https://ropengov.github.io/eurostat/reference
   article: https://ropengov.github.io/eurostat/articles
