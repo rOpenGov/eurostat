@@ -54,3 +54,11 @@ jobs:
           git commit -m 'Tidy code' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
+      - name: Trigger pkgdown workflow
+        if: success()
+        uses: peter-evans/repository-dispatch@v1
+        with:
+          token: ${{ secrets.REPO_GHA_PAT }}
+          repository: ${{ github.repository }}
+          event-type: trigger-pkgdown-workflow
+          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'

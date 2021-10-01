@@ -3,18 +3,18 @@
 #' @details A character or a factor vector of codes returns a corresponding
 #'    vector of definitions. [label_eurostat()] labels also data_frames from
 #'    [get_eurostat()]. For vectors a dictionary name have to be
-#'    supplied. For data_frames dictonary names are taken from column names.
+#'    supplied. For data_frames dictionary names are taken from column names.
 #'    "time" and "values" columns are returned as they were, so you can supply
 #'    data_frame from [get_eurostat()] and get data_frame with
 #'    definitions instead of codes.
 #'
-#'    Some Eurostat dictionaries includes dublicated labels. By default
-#'    dublicated labels cause an error, but they can be fixed automatically
+#'    Some Eurostat dictionaries includes duplicated labels. By default
+#'    duplicated labels cause an error, but they can be fixed automatically
 #'    with `fix_duplicated = TRUE`.
 #'
 #' @param x A character or a factor vector or a data_frame.
 #' @param dic A string (vector) naming eurostat dictionary or dictionaries.
-#'    If `NULL` (default) dictionry names taken from column names of
+#'    If `NULL` (default) dictionary names taken from column names of
 #'    the data_frame.
 #' @param code For data_frames names of the column for which also code columns
 #'     should be retained. The suffix "_code" is added to code column names.
@@ -184,7 +184,7 @@ Please check your connection and/or review your proxy settings")
                 "Labels for ",
                 dic,
                 " includes duplicated labels in the Eurostat dictionary. ",
-                "Codes have been added as a prefix for dublicated.\n",
+                "Codes have been added as a prefix for duplicated.\n",
                 "Modified labels are: ",
                 paste0(modif_dup_labels, collapse = ", ")
               )

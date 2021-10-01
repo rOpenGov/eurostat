@@ -79,7 +79,7 @@ add_nuts_level <- function(dat, geo_labels = "geo") {
 #'  definition
 #' @description Eurostat mixes `NUTS2013` and `NUTS2016` geographic
 #' label codes in the `'geo'` column, which creates time-wise comparativity
-#' issues. This deprecated function checke if you data is affected by this
+#' issues. This deprecated function checked if you data is affected by this
 #' problem and gives information on what to do.
 #'
 #' This function is deprecated, and a more general function was moved to

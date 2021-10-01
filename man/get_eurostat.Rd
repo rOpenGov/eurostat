@@ -24,10 +24,10 @@ get_eurostat(
 See \code{\link[=search_eurostat]{search_eurostat()}} or details for how to get code.}
 
 \item{time_format}{a string giving a type of the conversion of the time
-column from the eurostat format. A "date" (default) convers to
+column from the eurostat format. A "date" (default) converts to
 a \code{\link[=Date]{Date()}} with a first date of the period.
-A "date_last" convers to a \code{\link[=Date]{Date()}} with
-a last date of the period. A "num" convers to a numeric and "raw"
+A "date_last" converts to a \code{\link[=Date]{Date()}} with
+a last date of the period. A "num" converts to a numeric and "raw"
 does not do conversion. See \code{\link[=eurotime2date]{eurotime2date()}} and
 \code{\link[=eurotime2num]{eurotime2num()}}.}
 
@@ -41,7 +41,7 @@ limitations per query via API from for
 
 \item{type}{A type of variables, "code" (default) or "label".}
 
-\item{select_time}{a character symbol for a time frequence or NULL,
+\item{select_time}{a character symbol for a time frequency or NULL,
 which is used by default as most datasets have just one time
 frequency. For datasets with multiple time
 frequencies, select the desired time format with:
@@ -108,7 +108,7 @@ used.
 The bulk download facility is the fastest method to download whole datasets.
 It is also often the only way as the JSON API has limitation of maximum
 50 sub-indicators at time and whole datasets usually exceeds that. Also,
-it seems that multi frequency datasets can only be retrived via
+it seems that multi frequency datasets can only be retrieved via
 bulk download facility and the \code{select_time} is not available for
 JSON API method.
 
@@ -160,18 +160,12 @@ dd <- get_eurostat("nama_10_gdp",
 }
 \references{
 See \code{citation("eurostat")}:\preformatted{# 
-# Kindly cite the eurostat R package as
-# follows:
+# Kindly cite the eurostat R package as follows:
 # 
-#   (C) Leo Lahti, Janne Huovari, Markus
-#   Kainu, Przemyslaw Biecek. Retrieval and
-#   analysis of Eurostat open data with the
-#   eurostat package. R Journal 9(1):385-392,
-#   2017. Version 3.7.9 doi:
-#   10.32614/RJ-2017-019 Package URL:
-#   http://ropengov.github.io/eurostat Article
-#   URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.9 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 # 
 # A BibTeX entry for LaTeX users is
 # 

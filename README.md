@@ -100,7 +100,7 @@ knitr::kable(head(passengers))
 | Air passenger transport between reporting countries                | avia\_paocc     | dataset | 01.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
 
 See the
-[Tutorial](https://ropengov.github.io/eurostat//articles/website/eurostat_tutorial.html)
+[Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
 and other resources at the [package
 homepage](https://ropengov.github.io/eurostat//) for more information
 and examples.

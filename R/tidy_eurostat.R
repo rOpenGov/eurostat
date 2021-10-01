@@ -4,13 +4,13 @@
 #' @param dat a data_frame from [get_eurostat_raw()].
 #' @param time_format a string giving a type of the conversion of the
 #'                    time column from the eurostat format.
-#'                    A "date" (default) convers to a [Date()]
+#'                    A "date" (default) converts to a [Date()]
 #'                    with a first date of the period. A "date_last"
-#'                    convers to a [Date()] with
-#'         a last date of the period. A "num" convers to a numeric and "raw"
+#'                    converts to a [Date()] with
+#'         a last date of the period. A "num" converts to a numeric and "raw"
 #'         does not do conversion. See [eurotime2date()] and
 #'         [eurotime2num()].
-#' @param select_time a character symbol for a time frequence or NULL
+#' @param select_time a character symbol for a time frequency or NULL
 #'  (default).
 #' @param stringsAsFactors if `TRUE` (the default) variables are
 #'         converted to factors in original Eurostat order. If `FALSE`

@@ -122,7 +122,7 @@ if (!is.na(id)) evaluate <- TRUE else evaluate <- FALSE
 
 
 Get the whole corresponding table. As the table is annual data, it is more
-convient to use a numeric time variable than use the default date format:
+convenient to use a numeric time variable than use the default date format:
 
 ```{r get_eurostat, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
 dat <- get_eurostat(id, time_format = "num")
@@ -139,7 +139,7 @@ kable(head(dat))
 
 Or you can get only a part of the dataset by defining `filters` argument. It
 should be named list, where names corresponds to variable names (lower case) and
-values are vectors of codes corresponding desidered series (upper case). For
+values are vectors of codes corresponding desired series (upper case). For
 time variable, in addition to a `time`, also a `sinceTimePeriod` 
 and a `lastTimePeriod` can be used.
 

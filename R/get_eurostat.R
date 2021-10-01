@@ -10,14 +10,14 @@
 #'        limitations per query via API from for
 #'        [get_eurostat_json()].
 #' @param time_format a string giving a type of the conversion of the time
-#'        column from the eurostat format. A "date" (default) convers to
+#'        column from the eurostat format. A "date" (default) converts to
 #'        a [Date()] with a first date of the period.
-#'        A "date_last" convers to a [Date()] with
-#'         a last date of the period. A "num" convers to a numeric and "raw"
+#'        A "date_last" converts to a [Date()] with
+#'         a last date of the period. A "num" converts to a numeric and "raw"
 #'         does not do conversion. See [eurotime2date()] and
 #'         [eurotime2num()].
 #' @param type A type of variables, "code" (default) or "label".
-#' @param select_time a character symbol for a time frequence or NULL,
+#' @param select_time a character symbol for a time frequency or NULL,
 #'        which is used by default as most datasets have just one time
 #'        frequency. For datasets with multiple time
 #'        frequencies, select the desired time format with:
@@ -65,7 +65,7 @@
 #' The bulk download facility is the fastest method to download whole datasets.
 #' It is also often the only way as the JSON API has limitation of maximum
 #' 50 sub-indicators at time and whole datasets usually exceeds that. Also,
-#' it seems that multi frequency datasets can only be retrived via
+#' it seems that multi frequency datasets can only be retrieved via
 #' bulk download facility and the `select_time` is not available for
 #' JSON API method.
 #'

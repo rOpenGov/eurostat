@@ -33,18 +33,12 @@ head(tmp)
 }
 \references{
 See \code{citation("eurostat")}:\preformatted{# 
-# Kindly cite the eurostat R package as
-# follows:
+# Kindly cite the eurostat R package as follows:
 # 
-#   (C) Leo Lahti, Janne Huovari, Markus
-#   Kainu, Przemyslaw Biecek. Retrieval and
-#   analysis of Eurostat open data with the
-#   eurostat package. R Journal 9(1):385-392,
-#   2017. Version 3.7.9 doi:
-#   10.32614/RJ-2017-019 Package URL:
-#   http://ropengov.github.io/eurostat Article
-#   URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.9 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
 # 
 # A BibTeX entry for LaTeX users is
 # 

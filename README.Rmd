@@ -88,7 +88,7 @@ passengers <- search_eurostat("passenger transport")
 knitr::kable(head(passengers))
 ```
 
-See the [Tutorial](https://ropengov.github.io/eurostat//articles/website/eurostat_tutorial.html) and other resources at the [package homepage](https://ropengov.github.io/eurostat//) for more information and examples.
+See the [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html) and other resources at the [package homepage](https://ropengov.github.io/eurostat//) for more information and examples.
 
 ### Recommended packages
 

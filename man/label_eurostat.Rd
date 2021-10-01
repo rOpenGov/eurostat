@@ -26,7 +26,7 @@ label_eurostat_tables(x, lang = "en")
 \item{x}{A character or a factor vector or a data_frame.}
 
 \item{dic}{A string (vector) naming eurostat dictionary or dictionaries.
-If \code{NULL} (default) dictionry names taken from column names of
+If \code{NULL} (default) dictionary names taken from column names of
 the data_frame.}
 
 \item{code}{For data_frames names of the column for which also code columns
@@ -69,13 +69,13 @@ Get definitions for Eurostat codes from Eurostat dictionaries.
 A character or a factor vector of codes returns a corresponding
 vector of definitions. \code{\link[=label_eurostat]{label_eurostat()}} labels also data_frames from
 \code{\link[=get_eurostat]{get_eurostat()}}. For vectors a dictionary name have to be
-supplied. For data_frames dictonary names are taken from column names.
+supplied. For data_frames dictionary names are taken from column names.
 "time" and "values" columns are returned as they were, so you can supply
 data_frame from \code{\link[=get_eurostat]{get_eurostat()}} and get data_frame with
 definitions instead of codes.
 
-Some Eurostat dictionaries includes dublicated labels. By default
-dublicated labels cause an error, but they can be fixed automatically
+Some Eurostat dictionaries includes duplicated labels. By default
+duplicated labels cause an error, but they can be fixed automatically
 with \code{fix_duplicated = TRUE}.
 }
 \section{Functions}{
