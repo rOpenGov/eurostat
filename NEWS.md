@@ -6,11 +6,11 @@
 
 * Package cache management updated: `options()` command is no longer needed and the cache dir can be modified persistently with a custom function (issue #223, PR #228 by @dieghernan)
 
-# 3.7.7 (2020-06-24)
+# eurostat 3.7.7 (2020-06-24)
 
 * Maps vignette fixed
 
-## 3.7.6 (2021-05-20)
+# eurostat 3.7.6 (2021-05-20)
 
 * Deprecated `add_nuts_level()`, `harmonize_geo_code()`, `recode_to_nuts_2016()` and `recode_to_nuts_2013()`; these functions were moved to the new package regions. The problem of sub-national geo codes is explained in the new vignette "Mapping Regional Data, Mapping Metadata Problems", which replaces the "Regional data  examples for the eurostat R package" vignette. This is a shared vignette, but the new regions package has more articles on how to work with sub-national data. (issues #218 and #219, PR #220 by @antaldaniel)
 
