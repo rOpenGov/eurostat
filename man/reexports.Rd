@@ -93,6 +93,25 @@ my_reg_data <- data.frame(
 validate_geo_code(my_reg_data$geo)
 }
 }
+\seealso{
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()}
+}
 \concept{regions functions}
 \keyword{internal}
 \description{

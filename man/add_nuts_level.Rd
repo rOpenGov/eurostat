@@ -23,7 +23,7 @@ it is useful to filter out national level data from NUTS2 level regional
 data, for example.
 
 This function will be deprecated. Use the more comprehensive
-\verb{regions::[validate_nuts_regions][regions::validate_nuts_regions]} instead.
+\verb{[regions::validate_nuts_regions()]} instead.
 }
 \details{
 DEPRECATED FUNCTIONS FOR BACKWARD COMPATIBILITY
@@ -39,6 +39,17 @@ FUNCTIONS GIVE WARNING AND CALL APPROPRIATE regions FUNCTIONS
   add_nuts_level(dat)
 }
 }
+\seealso{
+\code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
+
+Other regions functions: 
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()},
+\code{\link{reexports}}
+}
 \author{
 Daniel Antal
 }
+\concept{regions functions}
+\keyword{internal}

@@ -8,7 +8,7 @@
 #' data, for example.
 #'
 #' This function will be deprecated. Use the more comprehensive
-#' `regions::[validate_nuts_regions][regions::validate_nuts_regions]` instead.
+#' `[regions::validate_nuts_regions()]` instead.
 #'
 #' @param dat A data frame or tibble returned by [get_eurostat()].
 #' @param geo_labels A geographical label, defaults to `geo`.
@@ -16,6 +16,9 @@
 #' @return a new numeric variable nuts_level with the numeric value of
 #' NUTS level 0 (country), 1 (greater region),
 #' 2 (region), 3 (small region).
+#' @keywords internal
+#' @family regions functions
+#' @seealso [regions::validate_nuts_regions()]
 #' @examples
 #' {
 #'   dat <- data.frame(
@@ -83,17 +86,16 @@ add_nuts_level <- function(dat, geo_labels = "geo") {
 #' [regions::validate_nuts_regions()].
 #'
 #' @param dat A Eurostat data frame downloaded with [get_eurostat()]
-#' @export
 #' @author Daniel Antal
 #' @return An augmented data frame that explains potential problems and
 #' possible solutions.
 #' @importFrom regions validate_nuts_regions
 #' @examples
-#' \dontrun{
 #' dat <- eurostat::tgs00026
 #' regions::validate_nuts_regions(dat)
-#' }
-#'
+#' @family regions functions
+#' @keywords internal
+#' @seealso [regions::validate_nuts_regions()]
 #' @export
 
 harmonize_geo_code <- function(dat) {
@@ -108,7 +110,7 @@ harmonize_geo_code <- function(dat) {
 #' in the `'geo'` column, which creates time-wise comparativity issues.
 #'
 #' This function is deprecated, and a more general function was moved to
-#' `regions::[recode_nuts][regions::recode_nuts]`.
+#' `[regions::recode_nuts()]`.
 #'
 #' @param dat A Eurostat data frame downloaded with
 #' [get_eurostat()].
@@ -139,6 +141,9 @@ harmonize_geo_code <- function(dat) {
 #'
 #' recode_to_nuts_2016(test_regional_codes)
 #' @importFrom regions recode_nuts
+#' @family regions functions
+#' @seealso [regions::recode_nuts()]
+#' @keywords internal
 #' @export
 
 recode_to_nuts_2016 <- function(dat) {
@@ -154,7 +159,7 @@ recode_to_nuts_2016 <- function(dat) {
 #' in the `'geo'` column, which creates time-wise comparativity issues.
 #'
 #' This function is deprecated, and a more general function was moved to
-#' `regions::[recode_nuts][regions::recode_nuts]`.
+#' `[regions::recode_nuts()]`.
 #'
 #' @param dat A Eurostat data frame downloaded with
 #' [get_eurostat()].
@@ -185,6 +190,9 @@ recode_to_nuts_2016 <- function(dat) {
 #'
 #' recode_to_nuts_2013(test_regional_codes)
 #' @importFrom regions recode_nuts
+#' @family regions functions
+#' @seealso [regions::recode_nuts()]
+#' @keywords internal
 #' @export
 
 recode_to_nuts_2013 <- function(dat) {

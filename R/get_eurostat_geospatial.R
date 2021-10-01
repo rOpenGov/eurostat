@@ -44,6 +44,7 @@
 #' only valid (multi-)polygons are returned, example included below.
 #' @author Markus Kainu <markuskainu@gmail.com>
 #' @return a sf, data_frame or SpatialPolygonDataFrame.
+#' @family geospatial
 #' @examples
 #' \donttest{
 #' sf <- get_eurostat_geospatial(

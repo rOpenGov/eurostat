@@ -8,8 +8,9 @@
 #' @export
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @return a vector.
-#' @examples
-#' \dontrun{
+#' @family helpers
+#' @examplesIf check_access_to_data()
+#' \donttest{
 #' lp <- get_eurostat("nama_10_lp_ulc")
 #' lp$geo <- harmonize_country_code(lp$geo)
 #' }

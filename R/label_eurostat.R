@@ -1,7 +1,7 @@
 #' @title Get Eurostat Codes
 #' @description Get definitions for Eurostat codes from Eurostat dictionaries.
 #' @details A character or a factor vector of codes returns a corresponding
-#'    vector of definitions. `label_eurostat` labels also data_frames from
+#'    vector of definitions. [label_eurostat()] labels also data_frames from
 #'    [get_eurostat()]. For vectors a dictionary name have to be
 #'    supplied. For data_frames dictonary names are taken from column names.
 #'    "time" and "values" columns are returned as they were, so you can supply
@@ -40,6 +40,8 @@
 #'     duplicated label values. If FALSE (default) error is given if
 #'     labeling produce duplicates.
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
+#' @family helpers
+#' @seealso [countrycode::countrycode()]
 #' @return a vector or a data_frame.
 #' @examples
 #' \dontrun{

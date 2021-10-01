@@ -1,6 +1,6 @@
 test_that("Bibentry gives correct results", {
   skip_on_cran()
-  skip_on_ci()
+  skip_if_offline()
   expect_equal(
     class(get_bibentry(
       code = c("sts_inpr_a", "nama_10_gdp"),

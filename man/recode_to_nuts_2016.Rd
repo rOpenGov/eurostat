@@ -26,7 +26,7 @@ Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
 in the \code{'geo'} column, which creates time-wise comparativity issues.
 
 This function is deprecated, and a more general function was moved to
-\verb{regions::[recode_nuts][regions::recode_nuts]}.
+\verb{[regions::recode_nuts()]}.
 }
 \examples{
 test_regional_codes <- data.frame(
@@ -45,6 +45,17 @@ test_regional_codes <- data.frame(
 
 recode_to_nuts_2016(test_regional_codes)
 }
+\seealso{
+\code{\link[regions:recode_nuts]{regions::recode_nuts()}}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{reexports}}
+}
 \author{
 Daniel Antal
 }
+\concept{regions functions}
+\keyword{internal}

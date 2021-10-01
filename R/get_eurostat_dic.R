@@ -10,14 +10,21 @@
 #' @export
 #' @seealso [label_eurostat()], [get_eurostat()],
 #'          [search_eurostat()].
-#' @references See citation("eurostat").
+#' @references
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
+#'
 #' @author Przemyslaw Biecek and Leo Lahti <leo.lahti@@iki.fi>. Thanks to
 #' Wietse Dol for contributions.
-#' @examples
-#' \dontrun{
-#' tmp <- get_eurostat_dic("crop_pro")
-#' head(tmp)
-#' tmp <- get_eurostat_dic("crop_pro", lang = "fr")
+#' @examplesIf check_access_to_data()
+#' \donttest{
+#' get_eurostat_dic("crop_pro")
+#'
+#' # Try another language
+#' get_eurostat_dic("crop_pro", lang = "fr")
 #' }
 #'
 #' @importFrom readr read_tsv cols col_character

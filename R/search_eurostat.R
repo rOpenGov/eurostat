@@ -22,10 +22,16 @@
 #'
 #' @export
 #' @seealso [get_eurostat()], [get_eurostat_toc()]
-#' @references See citation("eurostat")
+#' @references
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
+#'
 #' @author Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
-#' @examples
-#' \dontrun{
+#' @examplesIf check_access_to_data()
+#' \donttest{
 #' tmp <- search_eurostat("education")
 #' head(tmp)
 #' # Use "fixed = TRUE" when pattern has characters that would need escaping.

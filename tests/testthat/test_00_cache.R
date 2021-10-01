@@ -1,4 +1,6 @@
 test_that("Save user cache for test", {
+  skip_on_cran()
+  skip_if_offline()
 
   # Get current cache dir
   Sys.setenv("TEST_EUROSTAT_CURRENT_CACHE" = eur_helper_detect_cache_dir())
@@ -14,6 +16,7 @@ test_that("Save user cache for test", {
 
 test_that("Cache is ok if cache dir does not exist", {
   skip_on_cran()
+  skip_if_offline()
   k <- get_eurostat("nama_10_lp_ulc")
 
   expect_true(inherits(k, "data.frame"))
@@ -21,6 +24,7 @@ test_that("Cache is ok if cache dir does not exist", {
 
 test_that("Cache works", {
   skip_on_cran()
+  skip_if_offline()
 
   t_dir <- file.path(tempdir(), "reurostat")
   k <- get_eurostat("nama_10_lp_ulc", cache_dir = t_dir)

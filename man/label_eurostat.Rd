@@ -67,7 +67,7 @@ Get definitions for Eurostat codes from Eurostat dictionaries.
 }
 \details{
 A character or a factor vector of codes returns a corresponding
-vector of definitions. \code{label_eurostat} labels also data_frames from
+vector of definitions. \code{\link[=label_eurostat]{label_eurostat()}} labels also data_frames from
 \code{\link[=get_eurostat]{get_eurostat()}}. For vectors a dictionary name have to be
 supplied. For data_frames dictonary names are taken from column names.
 "time" and "values" columns are returned as they were, so you can supply
@@ -107,6 +107,17 @@ label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi"
 }
 
 }
+\seealso{
+\code{\link[countrycode:countrycode]{countrycode::countrycode()}}
+
+Other helpers: 
+\code{\link{cut_to_classes}()},
+\code{\link{dic_order}()},
+\code{\link{eurotime2date}()},
+\code{\link{eurotime2num}()},
+\code{\link{harmonize_country_code}()}
+}
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }
+\concept{helpers}

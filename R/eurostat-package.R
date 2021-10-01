@@ -19,11 +19,15 @@
 #'
 #' @author Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek
 #' @references
-#' See citation("eurostat")
-#' <https://ropengov.github.io/eurostat/>
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
 #' @examples library(eurostat)
 #' @section regions functions:
 #' For working with sub-national statistics the basic functions of the
 #' regions package are imported <https://regions.dataobservatory.eu/>.
 #' @keywords package
+#' @seealso `help("regions")`, <https://regions.dataobservatory.eu/>
 NULL

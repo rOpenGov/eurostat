@@ -28,6 +28,15 @@ The function \code{\link[=dic_order]{dic_order()}} get the ordering from Eurosta
 dictionaries. The function \code{\link[=label_eurostat]{label_eurostat()}} can also order factor levels
 of labels with argument \code{eu_order = TRUE}.
 }
+\seealso{
+Other helpers: 
+\code{\link{cut_to_classes}()},
+\code{\link{eurotime2date}()},
+\code{\link{eurotime2num}()},
+\code{\link{harmonize_country_code}()},
+\code{\link{label_eurostat}()}
+}
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 }
+\concept{helpers}

@@ -76,7 +76,11 @@ Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
 
-\item{...}{further argument for \code{\link[=get_eurostat_json]{get_eurostat_json()}}.}
+\item{...}{
+  Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
+  \describe{
+    \item{\code{lang}}{A language used for metadata (en/fr/de).}
+  }}
 }
 \value{
 a tibble. One column for each dimension in the data,
@@ -125,11 +129,12 @@ database gives codes in the Data Navigation Tree after every dataset
 in parenthesis.
 }
 \examples{
-\dontrun{
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
-dir.create(file.path(tempdir(), "r_cache"))
+
 k <- get_eurostat("nama_10_lp_ulc",
   cache_dir = file.path(tempdir(), "r_cache")
 )
@@ -141,7 +146,8 @@ set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
-
+}
+\dontrun{
 dd <- get_eurostat("nama_10_gdp",
   filters = list(
     geo = "FI",
@@ -150,9 +156,33 @@ dd <- get_eurostat("nama_10_gdp",
   )
 )
 }
+\dontshow{\}) # examplesIf}
 }
 \references{
-See citation("eurostat").
+See \code{citation("eurostat")}:\preformatted{# 
+# Kindly cite the eurostat R package as follows:
+# 
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Article\{,
+#     title = \{Retrieval and Analysis of Eurostat Open Data with the
+#            eurostat Package\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+#     journal = \{The R Journal\},
+#     volume = \{9\},
+#     number = \{1\},
+#     pages = \{385--392\},
+#     year = \{2017\},
+#     doi = \{10.32614/RJ-2017-019\},
+#     url = \{https://doi.org/10.32614/RJ-2017-019\},
+#     note = \{Version 3.7.8\},
+#   \}
+}
 }
 \seealso{
 \code{\link[=search_eurostat]{search_eurostat()}}, \code{\link[=label_eurostat]{label_eurostat()}}

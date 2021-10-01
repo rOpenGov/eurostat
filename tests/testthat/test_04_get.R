@@ -1,11 +1,13 @@
 test_that("get_eurostat includes time and value", {
   skip_on_cran()
+  skip_if_offline()
   expect_true(all(c("time", "values") %in%
     names(get_eurostat("road_eqr_trams"))))
 })
 
 test_that("get_eurostat works with multi-frequency", {
   skip_on_cran()
+  skip_if_offline()
   expect_error(get_eurostat("avia_gonc", cache = FALSE))
   expect_match(as.character(unique(get_eurostat("avia_gonc",
     select_time = "Y",
@@ -15,7 +17,7 @@ test_that("get_eurostat works with multi-frequency", {
 
 test_that("get_eurostat return right classes", {
   skip_on_cran()
-  skip_on_ci()
+  skip_if_offline()
   expect_true(all(c("character", "numeric") %in%
     sapply(get_eurostat("road_eqr_trams"), class)))
   expect_true(all(c("character", "numeric") %in%
@@ -44,5 +46,6 @@ test_that("get_eurostat return right classes", {
 
 test_that("get_eurostat get non-normal variable order", {
   skip_on_cran()
+  skip_if_offline()
   expect_gt(nrow(get_eurostat("cens_01rdhh")), 0)
 })

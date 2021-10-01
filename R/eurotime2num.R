@@ -6,15 +6,13 @@
 #' @param x a charter string with time information in Eurostat time format.
 #' @return see [as.numeric()].
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
-#' @examples \dontrun{
+#' @family helpers
+#' @examplesIf check_access_to_data()
+#' \donttest{
 #' na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 #' na_q$time <- eurotime2num(x = na_q$time)
 #'
-#' un <- get_eurostat("une_rt_m", time_format = "raw")
-#' un$time <- eurotime2num(x = un$time)
-#'
-#' na_a <- get_eurostat("nama_10_pc", time_format = "raw")
-#' na_a$time <- eurotime2num(x = na_a$time)
+#' na_q$time
 #' }
 #'
 #' @export

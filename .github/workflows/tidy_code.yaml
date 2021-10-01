@@ -37,6 +37,8 @@ jobs:
       - name: Tidy code
         run: |
           usethis::use_tidy_description()
+          tools::resaveRdaFiles("data")
+          tools::resaveRdaFiles("R")
           styler::style_pkg(filetype = c("R", "Rmd"))
           urlchecker::url_update()
           devtools::build_readme()

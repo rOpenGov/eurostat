@@ -13,7 +13,7 @@ a logical.
 Check if R has access to resources at http://ec.europa.eu
 }
 \examples{
-\dontrun{
+\donttest{
 check_access_to_data()
 }
 

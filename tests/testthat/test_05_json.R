@@ -1,6 +1,6 @@
 test_that("Get json data", {
   skip_on_cran()
-  skip_on_ci()
+  skip_if_offline()
   expect_named(get_eurostat_json("nama_10_gdp", filters = list(
     geo = "FI",
     na_item = "B1GQ",

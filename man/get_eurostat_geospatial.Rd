@@ -134,6 +134,11 @@ print(head(res))
 }
 
 }
+\seealso{
+Other geospatial: 
+\code{\link{eurostat_geodata_60_2016}}
+}
 \author{
 Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}
 }
+\concept{geospatial}

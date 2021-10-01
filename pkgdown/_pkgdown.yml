@@ -1,3 +1,18 @@
 url: https://ropengov.github.io/eurostat/
 template:
   package: rogtemplate
+reference:
+- title: Get data from Eurostat
+  contents:
+  - starts_with("get_")
+  - starts_with("search_")
+- title: Access and Cache management
+  contents:
+  - has_concept("cache utilities")
+  - check_access_to_data
+- title: Additional functions
+  contents: has_concept("helpers")
+- title: Datasets
+  contents: has_keyword("datasets")
+- title: About the package
+  contents: eurostat

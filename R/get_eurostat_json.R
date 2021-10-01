@@ -34,26 +34,31 @@
 #' @param ... Other arguments passed on to [httr::GET()]. For example
 #'   a proxy parameters, see details.
 #'   .
-#'
+#' @inheritDotParams httr::GET
 #' @return A dataset as a data_frame.
 #' @export
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
-#' @references See citation("eurostat").
+#' @references
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
+#'
 #' @examples
+#' # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
 #' \dontrun{
 #' tmp <- get_eurostat_json("cdh_e_fos")
-#' # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
 #' yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(
 #'   geo = c("EU28", "FI"),
 #'   unit = "EUR_HAB",
 #'   indic_na = "B1GM"
 #' ))
 #' }
-#'
 #' @import httr
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
-#'
+#' @seealso [httr::GET()]
 #' @keywords utilities database
 get_eurostat_json <- function(id, filters = NULL,
                               type = c("code", "label", "both"),

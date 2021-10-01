@@ -3,7 +3,7 @@
 #' @author Markus Kainu <markus.kainu@@kapsi.fi>
 #' @return a logical.
 #' @examples
-#' \dontrun{
+#' \donttest{
 #' check_access_to_data()
 #' }
 #'

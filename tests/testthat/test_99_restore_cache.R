@@ -1,5 +1,6 @@
 test_that("Restore user cache dir after testing", {
   skip_on_cran()
+  skip_if_offline()
 
   # Clear test cache
   cat("Test cache was ", eur_helper_detect_cache_dir(), "\n")

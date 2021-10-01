@@ -3,24 +3,25 @@
 #' convert Eurostat time values to objects of class [Date()]
 #' representing calendar dates.
 #' @param x a charter string with time information in Eurostat time format.
-#' @param last a logical. If `FALsE` (default) the date  is
+#' @param last a logical. If `FALSE` (default) the date  is
 #'        the first date of the period (month, quarter or year). If `TRUE`
 #'        the date is the last date of the period.
-#' @references See citation("eurostat").
+#' @references
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
+#'
 #' @return an object of class [Date()].
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
-#' @examples \dontrun{
+#' @family helpers
+#' @seealso [lubridate::ymd()]
+#' @examplesIf check_access_to_data()
+#' \donttest{
 #' na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 #' na_q$time <- eurotime2date(x = na_q$time)
-#'
-#' un <- get_eurostat("une_rt_m", time_format = "raw")
-#' un$time <- eurotime2date(x = un$time)
-#'
-#' na_a <- get_eurostat("nama_10_pc", time_format = "raw")
-#' na_a$time <- eurotime2date(x = na_a$time)
-#'
-#' eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
-#' eur_d$time <- eurotime2date(x = eur_d$time)
+#' na_q$time
 #' }
 #'
 #' @importFrom lubridate ymd

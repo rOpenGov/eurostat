@@ -10,8 +10,7 @@
 #' or `'Bibtex'` (not case sensitive.)
 #' @author Daniel Antal, Przemyslaw Biecek
 #' @return a bibentry, Bibtex or Biblatex object.
-#' @examples
-#' \dontrun{
+#' @examplesIf check_access_to_data()
 #' my_bibliography <- get_bibentry(
 #'   code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
 #'   keywords = list(
@@ -20,10 +19,7 @@
 #'   ),
 #'   format = "Biblatex"
 #' )
-#'
-#' # readLines ( my_bibliograhy, "eurostat_data.bib")
-#' }
-#'
+#' my_bibliography
 #' @importFrom lubridate dmy year month day
 #' @importFrom utils toBibtex
 #' @importFrom RefManageR BibEntry toBiblatex

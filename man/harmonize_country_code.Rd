@@ -20,12 +20,22 @@ United Kingdom. This function turns country codes into to ISO
 3166-1 alpha-2.
 }
 \examples{
-\dontrun{
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 lp <- get_eurostat("nama_10_lp_ulc")
 lp$geo <- harmonize_country_code(lp$geo)
 }
-
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+Other helpers: 
+\code{\link{cut_to_classes}()},
+\code{\link{dic_order}()},
+\code{\link{eurotime2date}()},
+\code{\link{eurotime2num}()},
+\code{\link{label_eurostat}()}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }
+\concept{helpers}

@@ -9,7 +9,7 @@ eurotime2date(x, last = FALSE)
 \arguments{
 \item{x}{a charter string with time information in Eurostat time format.}
 
-\item{last}{a logical. If \code{FALsE} (default) the date  is
+\item{last}{a logical. If \code{FALSE} (default) the date  is
 the first date of the period (month, quarter or year). If \code{TRUE}
 the date is the last date of the period.}
 }
@@ -22,24 +22,51 @@ convert Eurostat time values to objects of class \code{\link[=Date]{Date()}}
 representing calendar dates.
 }
 \examples{
-\dontrun{
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 na_q$time <- eurotime2date(x = na_q$time)
-
-un <- get_eurostat("une_rt_m", time_format = "raw")
-un$time <- eurotime2date(x = un$time)
-
-na_a <- get_eurostat("nama_10_pc", time_format = "raw")
-na_a$time <- eurotime2date(x = na_a$time)
-
-eur_d <- get_eurostat("ert_bil_eur_d", time_format = "raw")
-eur_d$time <- eurotime2date(x = eur_d$time)
+na_q$time
 }
-
+\dontshow{\}) # examplesIf}
 }
 \references{
-See citation("eurostat").
+See \code{citation("eurostat")}:\preformatted{# 
+# Kindly cite the eurostat R package as follows:
+# 
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Article\{,
+#     title = \{Retrieval and Analysis of Eurostat Open Data with the
+#            eurostat Package\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+#     journal = \{The R Journal\},
+#     volume = \{9\},
+#     number = \{1\},
+#     pages = \{385--392\},
+#     year = \{2017\},
+#     doi = \{10.32614/RJ-2017-019\},
+#     url = \{https://doi.org/10.32614/RJ-2017-019\},
+#     note = \{Version 3.7.8\},
+#   \}
+}
+}
+\seealso{
+\code{\link[lubridate:ymd]{lubridate::ymd()}}
+
+Other helpers: 
+\code{\link{cut_to_classes}()},
+\code{\link{dic_order}()},
+\code{\link{eurotime2num}()},
+\code{\link{harmonize_country_code}()},
+\code{\link{label_eurostat}()}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }
+\concept{helpers}

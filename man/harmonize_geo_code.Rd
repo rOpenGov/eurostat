@@ -24,12 +24,20 @@ This function is deprecated, and a more general function was moved to
 \code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}.
 }
 \examples{
-\dontrun{
 dat <- eurostat::tgs00026
 regions::validate_nuts_regions(dat)
 }
+\seealso{
+\code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
 
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()},
+\code{\link{reexports}}
 }
 \author{
 Daniel Antal
 }
+\concept{regions functions}
+\keyword{internal}

@@ -1,20 +1,18 @@
 #' @title Cuts the Values Column into Classes and Polishes the Labels
 #' @description Categorises a numeric vector into automatic or manually defined
-#' categories and polishes the labels ready for used in mapping with
-#' `merge_with_geodata` function and ggplot2.
+#' categories and polishes the labels ready for used in mapping with `ggplot2`.
 #' @param x A numeric vector, eg. `values` variable in data returned by
-#'   `get_eurostat`
+#'   [get_eurostat()].
 #' @param n A numeric. number of classes/categories
-#' @param style Chosen style: one of "fixed", "sd", "equal", "pretty",
-#'   "quantile", "kmeans", "hclust", "bclust", "fisher", or "jenks"
 #' @param manual Logical. If manual breaks are being used
 #' @param manual_breaks Numeric vector with manual threshold values
 #' @param decimals Number of decimals to include with labels
 #' @param nodata_label String. Text label for NA category.
+#' @inheritParams classInt::classIntervals
 #' @author Markus Kainu <markuskainu@@gmail.com>
 #' @return a factor.
-#' @examples
-#' \dontrun{
+#' @examplesIf check_access_to_data()
+#' \donttest{
 #' # lp <- get_eurostat("nama_aux_lp")
 #' lp <- get_eurostat("nama_10_lp_ulc")
 #' lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
@@ -22,7 +20,8 @@
 #'
 #' @importFrom classInt classIntervals
 #' @importFrom stringr str_replace_all
-#'
+#' @seealso [classInt::classIntervals()]
+#' @family helpers
 #' @export
 cut_to_classes <- function(x, n = 5, style = "equal", manual = FALSE,
                            manual_breaks = NULL, decimals = 0,

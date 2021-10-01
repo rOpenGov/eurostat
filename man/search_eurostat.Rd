@@ -48,16 +48,41 @@ education of teaching.
 }}
 
 \examples{
-\dontrun{
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
 tmp <- search_eurostat("education")
 head(tmp)
 # Use "fixed = TRUE" when pattern has characters that would need escaping.
 # Here, parentheses would normally need to be escaped in regex
 tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
 }
+\dontshow{\}) # examplesIf}
 }
 \references{
-See citation("eurostat")
+See \code{citation("eurostat")}:\preformatted{# 
+# Kindly cite the eurostat R package as follows:
+# 
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. Retrieval and analysis of
+#   Eurostat open data with the eurostat package. R Journal 9(1):385-392, 2017. Version
+#   3.7.8 doi: 10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat Article
+#   URL: https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Article\{,
+#     title = \{Retrieval and Analysis of Eurostat Open Data with the
+#            eurostat Package\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+#     journal = \{The R Journal\},
+#     volume = \{9\},
+#     number = \{1\},
+#     pages = \{385--392\},
+#     year = \{2017\},
+#     doi = \{10.32614/RJ-2017-019\},
+#     url = \{https://doi.org/10.32614/RJ-2017-019\},
+#     note = \{Version 3.7.8\},
+#   \}
+}
 }
 \seealso{
 \code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=get_eurostat_toc]{get_eurostat_toc()}}

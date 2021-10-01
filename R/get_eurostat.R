@@ -45,9 +45,15 @@
 #'        Also possible non-real zero "0n" is indicated in flags column.
 #'        Flags are not available for eurostat API, so `keepFlags`
 #'        can not be used with a `filters`.
-#' @param ... further argument for [get_eurostat_json()].
+#' @inheritDotParams get_eurostat_json
 #' @export
-#' @references See citation("eurostat").
+#' @references
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
+#'
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 #' @details Data sets are downloaded from
 #' [the Eurostat bulk download facility](https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing) or from The Eurostat Web Services
@@ -89,12 +95,12 @@
 #'         bulk download facility can be completed for example with
 #'         [tidyr::complete()].
 #' @seealso [search_eurostat()], [label_eurostat()]
-#' @examples
-#' \dontrun{
+#' @examplesIf check_access_to_data()
+#' \donttest{
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 #' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
-#' dir.create(file.path(tempdir(), "r_cache"))
+#'
 #' k <- get_eurostat("nama_10_lp_ulc",
 #'   cache_dir = file.path(tempdir(), "r_cache")
 #' )
@@ -106,7 +112,8 @@
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
-#'
+#' }
+#' \dontrun{
 #' dd <- get_eurostat("nama_10_gdp",
 #'   filters = list(
 #'     geo = "FI",
@@ -115,6 +122,7 @@
 #'   )
 #' )
 #' }
+#'
 get_eurostat <- function(id, time_format = "date", filters = "none",
                          type = "code",
                          select_time = NULL,

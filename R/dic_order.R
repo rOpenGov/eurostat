@@ -15,6 +15,7 @@
 #' @return A numeric vector of orders.
 #'
 #' @importFrom tibble is_tibble
+#' @family helpers
 #'
 #' @export
 dic_order <- function(x, dic, type) {

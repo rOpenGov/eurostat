@@ -9,13 +9,19 @@
 #' 	  flags for data.
 #' @seealso [get_eurostat()].
 #' @details Data is downloaded from
-#'  <https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing> and transformed into tabular format.
-#' @references see citation("eurostat")
+#'  <https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing>
+#'  and transformed into tabular format.
+#' @references
+#' See `citation("eurostat")`:
+#'
+#' ```{r, echo=FALSE, comment="#" }
+#' citation("eurostat")
+#' ```
+#'
 #' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari
-#' @examples
-#' \dontrun{
-#' tmp <- eurostat:::get_eurostat_raw("educ_iste")
-#' head(tmp)
+#' @examplesIf check_access_to_data()
+#' \donttest{
+#' eurostat:::get_eurostat_raw("educ_iste")
 #' }
 #'
 #' @importFrom readr read_tsv cols col_character

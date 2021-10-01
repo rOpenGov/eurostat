@@ -28,4 +28,13 @@ eurostat_geodata_60_2016
 Geospatial data of Europe from Gisco in 1:60 million scale
 from year 2016
 }
+\seealso{
+Other datasets: 
+\code{\link{tgs00026}}
+
+Other geospatial: 
+\code{\link{get_eurostat_geospatial}()}
+}
+\concept{datasets}
+\concept{geospatial}
 \keyword{datasets}
