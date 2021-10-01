@@ -28,9 +28,14 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@v1
         with:
+          cache-version: 2
           extra-packages: |
             magick
             ropengov/rogtemplate
+            Cairo,
+            ggplot2,
+            tmap,
+            RColorBrewer
 
           needs: website
 

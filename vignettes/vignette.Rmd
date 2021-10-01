@@ -5,7 +5,6 @@ output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Vignette for the eurostat R package}
     %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteDepends{Cairo}
     %\VignetteEncoding{UTF-8}
     \usepackage[utf8]{inputenc}
 editor_options:
