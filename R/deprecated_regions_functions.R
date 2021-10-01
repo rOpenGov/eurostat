@@ -20,17 +20,14 @@
 #' @family regions functions
 #' @seealso [regions::validate_nuts_regions()]
 #' @examples
-#' {
-#'   dat <- data.frame(
-#'     geo    = c("FR", "IE04", "DEB1C"),
-#'     values = c(1000, 23, 12)
-#'   )
 #'
-#'   add_nuts_level(dat)
-#' }
+#' dat <- data.frame(
+#'   geo    = c("FR", "IE04", "DEB1C"),
+#'   values = c(1000, 23, 12)
+#' )
+#'
+#' add_nuts_level(dat)
 #' @importFrom dplyr mutate case_when
-#' @importFrom rlang .data
-#' @importFrom magrittr %>%
 #'
 #' @export
 
@@ -58,14 +55,13 @@ add_nuts_level <- function(dat, geo_labels = "geo") {
       )
     }
 
-    dat <- dat %>%
-      dplyr::mutate(nuts_level = dplyr::case_when(
-        nchar(as.character(.data$geo)) == 2 ~ 0,
-        nchar(as.character(.data$geo)) == 3 ~ 1,
-        nchar(as.character(.data$geo)) == 4 ~ 2,
-        nchar(as.character(.data$geo)) == 5 ~ 3,
-        TRUE ~ NA_real_
-      ))
+    dat <- regions::validate_nuts_regions(dat)
+    dat$nuts_level <- unlist(lapply(dat$typology, switch,
+      country = 0,
+      nuts_level_1 = 1,
+      nuts_level_2 = 2,
+      nuts_level_3 = 3
+    ))
   }
 
   if (input == "label") {

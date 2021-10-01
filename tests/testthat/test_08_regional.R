@@ -1,6 +1,3 @@
-library(dplyr)
-library(magrittr)
-
 test_regional_codes <- data.frame(
   geo = c("FRB", "FRE", "UKN02", "IE022", "FR243", "FRB03"),
   time = c(rep(as.Date("2014-01-01"), 5), as.Date("2015-01-01")),
