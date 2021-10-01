@@ -14,7 +14,7 @@ Brief summary of the eurostat package
    \strong{Package} \tab eurostat \cr
    \strong{Type} \tab Package \cr
    \strong{Version} \tab 3.7.9 \cr
-   \strong{Date} \tab `2014-2021 \cr
+   \strong{Date} \tab 2014-2021 \cr
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr
 }
