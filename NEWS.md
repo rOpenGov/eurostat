@@ -1,33 +1,29 @@
-# eurostat 3.7.7-3.7.9 (2020-06-24 - 2020-10-01)
-
-## 3.7.9
+# eurostat 3.7.9 (2020-10-01)
 
 * Function documentation migrated from old `\code{}`, `\link{}` syntax to markdown (issue #230, PR #231 by @dieghernan)
 
-## 3.7.8
+# eurostat 3.7.8 (2020-09-30)
 
 * Package cache management updated: `options()` command is no longer needed and the cache dir can be modified persistently with a custom function (issue #223, PR #228 by @dieghernan)
 
-## 3.7.7
+# 3.7.7 (2020-06-24)
 
 * Maps vignette fixed
 
-# eurostat 3.7.6 (2021-05-12)
+## 3.7.6 (2021-05-20)
 
 * Deprecated `add_nuts_level()`, `harmonize_geo_code()`, `recode_to_nuts_2016()` and `recode_to_nuts_2013()`; these functions were moved to the new package regions. The problem of sub-national geo codes is explained in the new vignette "Mapping Regional Data, Mapping Metadata Problems", which replaces the "Regional data  examples for the eurostat R package" vignette. This is a shared vignette, but the new regions package has more articles on how to work with sub-national data. (issues #218 and #219, PR #220 by @antaldaniel)
 
-# eurostat 3.7.2-3.7.5 (2021-05-09 - 2020-05-12)
-
-## 3.7.5
+# eurostat 3.7.5 (2020-05-12)
 
 * Moved sf from Imports to Suggests and made `get_eurostat_geospatial()` return a message if sf is not installed. This is to increase compatibility of eurostat-package on systems that have trouble installing sf (issue #213)
-* Wrapped some problem causing examples to `\dontrun{}`
+* Wrapped some problem causing examples to `\dontrun{}` for a quick CRAN release
 
-## 3.7.3
+# eurostat 3.7.3
 
 * Removed outdated dependencies (mapproj, plotrix, rsdmx)
 
-## 3.7.2
+# eurostat 3.7.2
 
 * Non-intersecting sf-geometries in get_eurostat_geospatial (PR #202 by @retostauffer)
 
