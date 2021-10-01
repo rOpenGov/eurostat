@@ -47,6 +47,7 @@ jobs:
 
       - uses: r-lib/actions/setup-r-dependencies@master
         with:
+          cache-version: 2
           extra-packages: rcmdcheck
 
       - uses: r-lib/actions/check-r-package@master

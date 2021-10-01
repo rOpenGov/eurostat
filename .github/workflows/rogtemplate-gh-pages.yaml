@@ -35,7 +35,8 @@ jobs:
             Cairo,
             ggplot2,
             tmap,
-            RColorBrewer
+            RColorBrewer,
+            rvest
 
           needs: website
 
