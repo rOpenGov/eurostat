@@ -87,7 +87,7 @@
       <h1 class="display-4" data-toc-skip>Mapping Regional Data, Mapping Metadata Problems</h1>
                         <h4 data-toc-skip class="author">Daniel Antal, CFA</h4>
             
-            <h4 data-toc-skip class="date">2021-10-01</h4>
+            <h4 data-toc-skip class="date">2021-10-02</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/articles/mapping.Rmd" class="external-link"><code>vignettes/articles/mapping.Rmd</code></a></small>
       <div class="d-none name"><code>mapping.Rmd</code></div>
@@ -186,31 +186,31 @@
 <code class="sourceCode R"><span class="va">validation_summary_2016</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="st">"2009"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 7 × 6</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 6</span></span>
 <span class="co">#&gt;   time  typology            observations values_missing values_present valid_present</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;                      &lt;int&gt;          &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 2009  country                       28              1             27         0.964</span>
-<span class="co">#&gt; 2 2009  non_eu_country                 7              2              5         0.714</span>
-<span class="co">#&gt; 3 2009  non_eu_nuts_level_1            7              4              3         0.429</span>
-<span class="co">#&gt; 4 2009  non_eu_nuts_level_2           10              5              5         0.5  </span>
-<span class="co">#&gt; 5 2009  nuts_level_1                 105             14             91         0.867</span>
-<span class="co">#&gt; 6 2009  nuts_level_2                 265             49            216         0.815</span>
-<span class="co">#&gt; 7 2009  &lt;NA&gt;                          56              3             53         0.946</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2009  country                       28              1             27         0.964</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2009  non_eu_country                 7              2              5         0.714</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2009  non_eu_nuts_level_1            7              4              3         0.429</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2009  non_eu_nuts_level_2           10              5              5         0.5  </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2009  nuts_level_1                 105             14             91         0.867</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2009  nuts_level_2                 265             49            216         0.815</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 2009  <span style="color: #BB0000;">NA</span>                            56              3             53         0.946</span></code></pre></div>
 <p>The situation is not better in 2018:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">validation_summary_2016</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
   <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="st">"2018"</span><span class="op">)</span>
-<span class="co">#&gt; # A tibble: 7 × 6</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 6</span></span>
 <span class="co">#&gt;   time  typology            observations values_missing values_present valid_present</span>
-<span class="co">#&gt;   &lt;chr&gt; &lt;chr&gt;                      &lt;int&gt;          &lt;int&gt;          &lt;int&gt;         &lt;dbl&gt;</span>
-<span class="co">#&gt; 1 2018  country                       28              0             28         1    </span>
-<span class="co">#&gt; 2 2018  non_eu_country                 7              1              6         0.857</span>
-<span class="co">#&gt; 3 2018  non_eu_nuts_level_1            7              1              6         0.857</span>
-<span class="co">#&gt; 4 2018  non_eu_nuts_level_2           10              0             10         1    </span>
-<span class="co">#&gt; 5 2018  nuts_level_1                 105             45             60         0.571</span>
-<span class="co">#&gt; 6 2018  nuts_level_2                 265            113            152         0.574</span>
-<span class="co">#&gt; 7 2018  &lt;NA&gt;                          56             45             11         0.196</span></code></pre></div>
+<span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2018  country                       28              0             28         1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2018  non_eu_country                 7              1              6         0.857</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2018  non_eu_nuts_level_1            7              1              6         0.857</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2018  non_eu_nuts_level_2           10              0             10         1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2018  nuts_level_1                 105             45             60         0.571</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2018  nuts_level_2                 265            113            152         0.574</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 2018  <span style="color: #BB0000;">NA</span>                            56             45             11         0.196</span></code></pre></div>
 <p>The dataset is plagued with data that has no place in the <code>NUTS2016</code> boundary definition, and therefore on a <code>NUTS2016</code> map!</p>
 <p>What are the non-conforming bits?</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -273,22 +273,22 @@
 <p>Let us take a look at the problems identified by <code><a href="https://regions.dataobservatory.eu/reference/recode_nuts.html" class="external-link">regions::recode_nuts()</a></code>:</p>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoding_summary</span>
-<span class="co">#&gt; # A tibble: 12 × 5</span>
-<span class="co">#&gt; # Groups:   typology_change [6]</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 12 × 5</span></span>
+<span class="co">#&gt; <span style="color: #949494;"># Groups:   typology_change [6]</span></span>
 <span class="co">#&gt;    typology_change        time  values_missing values_present   pct</span>
-<span class="co">#&gt;    &lt;chr&gt;                  &lt;chr&gt;          &lt;int&gt;          &lt;int&gt; &lt;dbl&gt;</span>
-<span class="co">#&gt;  1 Not found in NUTS      2009               1             11 0.917</span>
-<span class="co">#&gt;  2 Not found in NUTS      2018               1             11 0.917</span>
-<span class="co">#&gt;  3 Recoded                2009              12             42 0.778</span>
-<span class="co">#&gt;  4 Recoded                2018              32             22 0.407</span>
-<span class="co">#&gt;  5 unchanged              2009              64            334 0.839</span>
-<span class="co">#&gt;  6 unchanged              2018             158            240 0.603</span>
-<span class="co">#&gt;  7 Used in NUTS 1999-2013 2009               1              7 0.875</span>
-<span class="co">#&gt;  8 Used in NUTS 1999-2013 2018               8              0 0    </span>
-<span class="co">#&gt;  9 Used in NUTS 2006-2013 2009               0              5 1    </span>
-<span class="co">#&gt; 10 Used in NUTS 2006-2013 2018               5              0 0    </span>
-<span class="co">#&gt; 11 Used in NUTS 2021-2021 2009               0              1 1    </span>
-<span class="co">#&gt; 12 Used in NUTS 2021-2021 2018               1              0 0</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span> <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> Not found in NUTS      2009               1             11 0.917</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> Not found in NUTS      2018               1             11 0.917</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> Recoded                2009              12             42 0.778</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> Recoded                2018              32             22 0.407</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> unchanged              2009              64            334 0.839</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> unchanged              2018             158            240 0.603</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> Used in NUTS 1999-2013 2009               1              7 0.875</span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> Used in NUTS 1999-2013 2018               8              0 0    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> Used in NUTS 2006-2013 2009               0              5 1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> Used in NUTS 2006-2013 2018               5              0 0    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">11</span> Used in NUTS 2021-2021 2009               0              1 1    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">12</span> Used in NUTS 2021-2021 2018               1              0 0</span></code></pre></div>
 <ul>
 <li><p>We were able to recode quite a few data points to the <code>NUTS2016</code> definition for the time of observation 2009 as well as 2018. Sometimes we are recoding rows that have missing values, which does not help that much: we know where the data should be, but it is missing anyway. But particularly for the year 2009 we can save plenty of data by recorded the obsolete coding.</p></li>
 <li><p>We identify further problems. We have coding the that was used in various time periods, but there is no clear recoding possibility, because the regions boundaries have changed. To have the history of the data, we would need to recalculate them, say, by adding up the R&amp;D personnel from each settlement in the new regional boundary.</p></li>
@@ -309,20 +309,20 @@
     <span class="co"># joined the NUTS system later</span>
     <span class="va">.data</span><span class="op">$</span><span class="va">geo</span> <span class="op">!=</span> <span class="va">.data</span><span class="op">$</span><span class="va">code_2016</span>
   <span class="op">)</span>
-<span class="co">#&gt; # A tibble: 27 × 2</span>
+<span class="co">#&gt; <span style="color: #949494;"># A tibble: 27 × 2</span></span>
 <span class="co">#&gt;    geo   code_2016</span>
-<span class="co">#&gt;    &lt;chr&gt; &lt;chr&gt;    </span>
-<span class="co">#&gt;  1 FR21  FRF2     </span>
-<span class="co">#&gt;  2 FR22  FRE2     </span>
-<span class="co">#&gt;  3 FR23  FRD2     </span>
-<span class="co">#&gt;  4 FR24  FRB0     </span>
-<span class="co">#&gt;  5 FR25  FRD1     </span>
-<span class="co">#&gt;  6 FR26  FRC1     </span>
-<span class="co">#&gt;  7 FR3   FRE1     </span>
-<span class="co">#&gt;  8 FR30  FRE1     </span>
-<span class="co">#&gt;  9 FR41  FRF3     </span>
-<span class="co">#&gt; 10 FR42  FRF1     </span>
-<span class="co">#&gt; # … with 17 more rows</span></code></pre></div>
+<span class="co">#&gt;    <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>    </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 1</span> FR21  FRF2     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 2</span> FR22  FRE2     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 3</span> FR23  FRD2     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 4</span> FR24  FRB0     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 5</span> FR25  FRD1     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 6</span> FR26  FRC1     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 7</span> FR3   FRE1     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> FR30  FRE1     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> FR41  FRF3     </span>
+<span class="co">#&gt; <span style="color: #BCBCBC;">10</span> FR42  FRF1     </span>
+<span class="co">#&gt; <span style="color: #949494;"># … with 17 more rows</span></span></code></pre></div>
 <p>So, let us do the trick: change the <code>geo</code> variable to <code>code_2016</code>, which is, whenever there is an equivalent <code>geo</code> code in the <code>NUTS2016</code> definition, the data that you should have. Your original geo variable contains codes that were used, for example, in the <code>NUTS2010</code> or <code>NUTS2013</code> boundary definitions.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="va">recoded_with_map</span> <span class="op">&lt;-</span> <span class="va">map_nuts_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span>
@@ -485,26 +485,32 @@
 <span class="co">#&gt; [1] ggplot2_3.3.5  dplyr_1.0.7    eurostat_3.7.9 regions_0.1.8 </span>
 <span class="co">#&gt; </span>
 <span class="co">#&gt; loaded via a namespace (and not attached):</span>
-<span class="co">#&gt;  [1] Rcpp_1.0.7         lubridate_1.7.10   here_1.0.1         countrycode_1.3.0 </span>
-<span class="co">#&gt;  [5] tidyr_1.1.4        class_7.3-19       assertthat_0.2.1   rprojroot_2.0.2   </span>
-<span class="co">#&gt;  [9] digest_0.6.28      utf8_1.2.2         R6_2.5.1           cellranger_1.1.0  </span>
-<span class="co">#&gt; [13] plyr_1.8.6         backports_1.2.1    evaluate_0.14      e1071_1.7-9       </span>
-<span class="co">#&gt; [17] highr_0.9          httr_1.4.2         pillar_1.6.3       rlang_0.4.11      </span>
-<span class="co">#&gt; [21] curl_4.3.2         readxl_1.3.1       jquerylib_0.1.4    rmarkdown_2.11    </span>
-<span class="co">#&gt; [25] pkgdown_1.6.1.9001 textshaping_0.3.5  desc_1.4.0         RefManageR_1.3.0  </span>
-<span class="co">#&gt; [29] readr_2.0.2        stringr_1.4.0      munsell_0.5.0      proxy_0.4-26      </span>
-<span class="co">#&gt; [33] broom_0.7.9        compiler_4.1.1     xfun_0.26          pkgconfig_2.0.3   </span>
-<span class="co">#&gt; [37] systemfonts_1.0.2  htmltools_0.5.2    tidyselect_1.1.1   tibble_3.1.5      </span>
-<span class="co">#&gt; [41] fansi_0.5.0        sf_1.0-2           withr_2.4.2        crayon_1.4.1      </span>
-<span class="co">#&gt; [45] tzdb_0.1.2         wk_0.5.0           grid_4.1.1         DBI_1.1.1         </span>
-<span class="co">#&gt; [49] jsonlite_1.7.2     gtable_0.3.0       lifecycle_1.0.1    magrittr_2.0.1    </span>
-<span class="co">#&gt; [53] units_0.7-2        scales_1.1.1       KernSmooth_2.23-20 cli_3.0.1         </span>
-<span class="co">#&gt; [57] stringi_1.7.4      cachem_1.0.6       farver_2.1.0       fs_1.5.0          </span>
-<span class="co">#&gt; [61] xml2_1.3.2         bslib_0.3.0        ellipsis_0.3.2     ragg_1.1.3        </span>
-<span class="co">#&gt; [65] generics_0.1.0     vctrs_0.3.8        s2_1.0.7           tools_4.1.1       </span>
-<span class="co">#&gt; [69] glue_1.4.2         purrr_0.3.4        hms_1.1.1          fastmap_1.1.0     </span>
-<span class="co">#&gt; [73] yaml_2.2.1         colorspace_2.0-2   classInt_0.4-3     memoise_2.0.0     </span>
-<span class="co">#&gt; [77] knitr_1.36         sass_0.4.0</span></code></pre></div>
+<span class="co">#&gt;  [1] Rcpp_1.0.7               lubridate_1.7.10         here_1.0.1              </span>
+<span class="co">#&gt;  [4] countrycode_1.3.0        tidyr_1.1.4              class_7.3-19            </span>
+<span class="co">#&gt;  [7] assertthat_0.2.1         rprojroot_2.0.2          digest_0.6.28           </span>
+<span class="co">#&gt; [10] utf8_1.2.2               R6_2.5.1                 cellranger_1.1.0        </span>
+<span class="co">#&gt; [13] plyr_1.8.6               backports_1.2.1          evaluate_0.14           </span>
+<span class="co">#&gt; [16] e1071_1.7-9              highr_0.9                httr_1.4.2              </span>
+<span class="co">#&gt; [19] pillar_1.6.3             rlang_0.4.11             curl_4.3.2              </span>
+<span class="co">#&gt; [22] readxl_1.3.1             jquerylib_0.1.4          rmarkdown_2.11          </span>
+<span class="co">#&gt; [25] pkgdown_1.9000.9000.9000 textshaping_0.3.5        desc_1.4.0              </span>
+<span class="co">#&gt; [28] RefManageR_1.3.0         readr_2.0.2              stringr_1.4.0           </span>
+<span class="co">#&gt; [31] munsell_0.5.0            proxy_0.4-26             broom_0.7.9             </span>
+<span class="co">#&gt; [34] compiler_4.1.1           xfun_0.26                pkgconfig_2.0.3         </span>
+<span class="co">#&gt; [37] systemfonts_1.0.2        htmltools_0.5.2          tidyselect_1.1.1        </span>
+<span class="co">#&gt; [40] tibble_3.1.5             fansi_0.5.0              sf_1.0-2                </span>
+<span class="co">#&gt; [43] withr_2.4.2              crayon_1.4.1             tzdb_0.1.2              </span>
+<span class="co">#&gt; [46] wk_0.5.0                 grid_4.1.1               DBI_1.1.1               </span>
+<span class="co">#&gt; [49] jsonlite_1.7.2           gtable_0.3.0             lifecycle_1.0.1         </span>
+<span class="co">#&gt; [52] magrittr_2.0.1           units_0.7-2              scales_1.1.1            </span>
+<span class="co">#&gt; [55] KernSmooth_2.23-20       cli_3.0.1                stringi_1.7.4           </span>
+<span class="co">#&gt; [58] cachem_1.0.6             farver_2.1.0             fs_1.5.0                </span>
+<span class="co">#&gt; [61] xml2_1.3.2               bslib_0.3.0              ellipsis_0.3.2          </span>
+<span class="co">#&gt; [64] ragg_1.1.3               generics_0.1.0           vctrs_0.3.8             </span>
+<span class="co">#&gt; [67] s2_1.0.7                 tools_4.1.1              glue_1.4.2              </span>
+<span class="co">#&gt; [70] purrr_0.3.4              hms_1.1.1                fastmap_1.1.0           </span>
+<span class="co">#&gt; [73] yaml_2.2.1               colorspace_2.0-2         classInt_0.4-3          </span>
+<span class="co">#&gt; [76] memoise_2.0.0            knitr_1.36               sass_0.4.0</span></code></pre></div>
 </div>
   </div>
  <div class="col-md-3 d-none d-md-block" id="pkgdown-sidebar">
@@ -526,7 +532,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.6.1.9001.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link external-link">pkgdown</a> 1.9000.9000.9000.</p>
 </div>
 
       </footer>
