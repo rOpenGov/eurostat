@@ -39,31 +39,20 @@ Imports:
     httr,
     jsonlite,
     lubridate,
-    magrittr,
     rappdirs,
-    RColorBrewer,
     readr,
     RefManageR,
     regions,
-    rlang,
     stringi,
     stringr,
     tibble,
     tidyr
 Suggests:
-    Cairo,
-    covr,
-    ggplot2,
-    here,
     knitr,
-    markdown,
     rmarkdown,
-    roxygen2,
-    rvest,
     sf,
-    testthat (>= 3.0.0),
-    tmap,
-    usethis
+    sp,
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

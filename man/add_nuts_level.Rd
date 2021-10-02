@@ -30,14 +30,13 @@ DEPRECATED FUNCTIONS FOR BACKWARD COMPATIBILITY
 FUNCTIONS GIVE WARNING AND CALL APPROPRIATE regions FUNCTIONS
 }
 \examples{
-{
-  dat <- data.frame(
-    geo    = c("FR", "IE04", "DEB1C"),
-    values = c(1000, 23, 12)
-  )
 
-  add_nuts_level(dat)
-}
+dat <- data.frame(
+  geo    = c("FR", "IE04", "DEB1C"),
+  values = c(1000, 23, 12)
+)
+
+add_nuts_level(dat)
 }
 \seealso{
 \code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
