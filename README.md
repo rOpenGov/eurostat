@@ -96,8 +96,8 @@ knitr::kable(head(passengers))
 | Air passenger transport                                            | enps\_avia\_pa  | dataset | 16.04.2021          | NA                          | 2005       | 2020     | NA     |
 | Volume of passenger transport relative to GDP                      | tran\_hv\_pstra | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
 | Modal split of passenger transport                                 | tran\_hv\_psmod | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
-| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 01.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
-| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 01.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
+| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 04.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
+| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 04.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
 | Air passenger transport between reporting countries                | avia\_paocc     | dataset | 01.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
 
 See the

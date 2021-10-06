@@ -118,7 +118,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
     message("'sf' package is required for geospatial functionalities")
     return(invisible())
   }
-  
+
   if (output_class == "spdf" && !requireNamespace("sp")) {
     message("'sp' package is required for spdf output")
     return(invisible())
