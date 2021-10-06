@@ -11,8 +11,10 @@ test_that("Restore user cache dir after testing", {
 
   expect_false(curret_env == user_dir)
 
-  newcache <- expect_message(set_eurostat_cache_dir(user_dir))
-
+  expect_message(expect_message(
+    set_eurostat_cache_dir(user_dir)
+  ))
+  newcache <- suppressMessages(set_eurostat_cache_dir(user_dir))
   expect_equal(newcache, user_dir)
   expect_equal(user_dir, Sys.getenv("EUROSTAT_CACHE_DIR"))
 
