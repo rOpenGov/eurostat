@@ -60,7 +60,16 @@ test_that("get_eurostat_geospatial warnings for output_format = \"sf\"", {
   # Custom function expecting that:
   # we have a warning, then a message, and the final object is of class "sf"
   expect_ismw <- function(x, cls = "sf") {
-    expect_s3_class(expect_message(expect_warning(x)), cls)
+    expect_message(expect_warning(x))
+
+    x2 <- suppressMessages(
+      suppressWarnings(x)
+    )
+
+    expect_s3_class(
+      x,
+      cls
+    )
   }
 
   # Testing nuts_level first, such that we can stick to one nuts_level later on ...
@@ -118,8 +127,11 @@ test_that("get_eurostat_geospatial tests to cover internals", {
   # Custom function expecting that:
   # we have a warning, then a message, and the final object is of class "sf"
   expect_ismw <- function(x, cls = "sf") {
-    x1 <- expect_message(expect_warning(x))
+    expect_message(expect_warning(x))
 
+    x1 <- suppressMessages(
+      suppressWarnings(x)
+    )
     if (typeof(x1) == "S3") expect_s3_class(x1, cls)
     if (typeof(x1) == "S4") expect_s4_class(x1, cls)
   }
