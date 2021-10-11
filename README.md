@@ -10,7 +10,7 @@ status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](h
 version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.org/package=eurostat)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
 [![DOI](https://img.shields.io/badge/DOI-10.32614/RJ--2017--019-blue)](https://doi.org/10.32614/RJ-2017-019)
-[![codecov](https://codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://codecov.io/gh/rOpenGov/eurostat)
+[![codecov](https://app.codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://app.codecov.io/gh/rOpenGov/eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
@@ -97,7 +97,7 @@ knitr::kable(head(passengers))
 | Volume of passenger transport relative to GDP                      | tran\_hv\_pstra | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
 | Modal split of passenger transport                                 | tran\_hv\_psmod | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
 | Air passenger transport by reporting country                       | avia\_paoc      | dataset | 04.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
-| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 04.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
+| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 07.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
 | Air passenger transport between reporting countries                | avia\_paocc     | dataset | 01.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
 
 See the
