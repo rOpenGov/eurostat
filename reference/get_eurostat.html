@@ -212,28 +212,28 @@ in parenthesis.</p>
     <h2>Examples</h2>
     <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file /tmp/RtmpSzsVrq/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmpSzsVrq/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file /tmp/RtmpwdDxPk/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmpwdDxPk/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, time_format <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpSzsVrq/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpwdDxPk/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, update_cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpSzsVrq/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpwdDxPk/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>,</span>
 <span class="r-in">  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpSzsVrq/r_cache/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpwdDxPk/r_cache/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpSzsVrq/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpwdDxPk/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache2"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> eurostat cache dir is: /tmp/RtmpSzsVrq/r_cache2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> eurostat cache dir is: /tmp/RtmpwdDxPk/r_cache2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> To install your cache_dir path for use in future sessions,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> run this function with `install = TRUE`.</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpSzsVrq/r_cache2/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpwdDxPk/r_cache2/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"avia_gonc"</span>, select_time <span class="op">=</span> <span class="st">"Y"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># }</span></span>
