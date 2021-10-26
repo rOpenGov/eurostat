@@ -142,3 +142,9 @@ footer a:focus {
     background-color: #ff6600;
     border-color: #ff6600;
 }
+
+/* Temporal fix on toc */
+
+#toc {
+    overflow-y: hidden;
+}
