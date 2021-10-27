@@ -66,6 +66,7 @@ footer {
   margin-right: -50vw;
   background-color: #343a40 !important;
   color: white;
+  margin-bottom: 0;
 }
 
 .rog-logo {
@@ -147,4 +148,11 @@ footer a:focus {
 
 #toc {
     overflow-y: hidden;
+}
+
+
+/* Navbar */
+.navbar-dark.bg-dark {
+  background-color: #343a40 !important;
+
 }

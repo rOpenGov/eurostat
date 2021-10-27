@@ -15,7 +15,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../../apple-touch-icon-60x60.png">
 <script src="../../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../../deps/_Roboto%20Mono-0.4.0/font.css" rel="stylesheet">
+<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../../pkgdown.js"></script><meta property="og:title" content="Tutorial for the eurostat R package">
 <meta property="og:description" content="eurostat">
@@ -85,7 +86,7 @@
     <div class="page-header">
       <img src="../../logo.png" class="logo" alt=""><h1 data-toc-skip>Tutorial for the eurostat R package</h1>
             
-            <h4 data-toc-skip class="date">2021-10-26</h4>
+            <h4 data-toc-skip class="date">2021-10-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/articles/eurostat_tutorial.Rmd" class="external-link"><code>vignettes/articles/eurostat_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>eurostat_tutorial.Rmd</code></div>
@@ -1013,7 +1014,7 @@ tgs00026                Auxiliary Data</code></pre>
 ##  [4] countrycode_1.3.0        class_7.3-19             assertthat_0.2.1        
 ##  [7] rprojroot_2.0.2          digest_0.6.28            utf8_1.2.2              
 ## [10] R6_2.5.1                 cellranger_1.1.0         plyr_1.8.6              
-## [13] backports_1.2.1          evaluate_0.14            e1071_1.7-9             
+## [13] backports_1.3.0          evaluate_0.14            e1071_1.7-9             
 ## [16] highr_0.9                httr_1.4.2               pillar_1.6.4            
 ## [19] rlang_0.4.12             curl_4.3.2               readxl_1.3.1            
 ## [22] jquerylib_0.1.4          rmarkdown_2.11           pkgdown_1.9000.9000.9000
@@ -1023,7 +1024,7 @@ tgs00026                Auxiliary Data</code></pre>
 ## [34] xfun_0.27                pkgconfig_2.0.3          systemfonts_1.0.3       
 ## [37] htmltools_0.5.2          tidyselect_1.1.1         tibble_3.1.5            
 ## [40] regions_0.1.8            fansi_0.5.0              crayon_1.4.1            
-## [43] dplyr_1.0.7              tzdb_0.1.2               jsonlite_1.7.2          
+## [43] dplyr_1.0.7              tzdb_0.2.0               jsonlite_1.7.2          
 ## [46] lifecycle_1.0.1          magrittr_2.0.1           KernSmooth_2.23-20      
 ## [49] cli_3.0.1                stringi_1.7.5            vroom_1.5.5             
 ## [52] cachem_1.0.6             fs_1.5.0                 xml2_1.3.2              
