@@ -4,7 +4,7 @@ Title: Tools for Eurostat Open Data
 Version: 3.7.10
 Date: 2022-02-08
 Authors@R: c(
-    person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
+    person("Leo", "Lahti", "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
     person("Janne", "Huovari", role = "aut"),
     person("Markus", "Kainu", role = "aut"),
