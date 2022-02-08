@@ -7,31 +7,33 @@ representing calendar dates."><meta property="og:image" content="https://ropengo
 <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=B612+Mono&amp;display=swap" rel="stylesheet"><!-- rogtemplate style sheet --><link href="../BS5/rogtemplate.css" rel="stylesheet"></head><body>
-    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.9</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="active nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="../articles/articles/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="../articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="../articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="../articles/articles/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="../articles/articles/publications.html">Publications using the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="../articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="../articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="../articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="../articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="../articles/vignette.html">Vignette for the eurostat R package</a>
   </div>
 </li>
@@ -39,7 +41,7 @@ representing calendar dates."><meta property="og:image" content="https://ropengo
   <a class="nav-link" href="../news/index.html">Changelog</a>
 </li>
       </ul><form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Search" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search..." autocomplete="off"></form>
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="../search.json" id="search-input" placeholder="Search for" autocomplete="off"></form>
 
       <ul class="navbar-nav"><li class="nav-item">
   <a class="external-link nav-link" href="https://github.com/rOpenGov/eurostat/" aria-label="github">
@@ -48,13 +50,14 @@ representing calendar dates."><meta property="og:image" content="https://ropengo
   </a>
 </li>
       </ul></div>
+
+    
   </div>
-</nav><div class="container template-reference-topic" id="container">
+</nav><div class="container template-reference-topic">
 <div class="row">
-  <div class="col-md-9 contents">
-    <div class="page-header">
+  <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Date Conversion from Eurostat Time Format</h1>
-      <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/R/eurotime2date.R" class="external-link"><code>R/eurotime2date.R</code></a></small>
+      <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/R/eurotime2date.R" class="external-link"><code>R/eurotime2date.R</code></a></small>
       <div class="d-none name"><code>eurotime2date.Rd</code></div>
     </div>
 
@@ -64,17 +67,17 @@ convert Eurostat time values to objects of class <code><a href="https://rdrr.io/
 representing calendar dates.</p>
     </div>
 
-    <div class="ref-usage section level2 sourceCode">
-    <pre class="sourceCode r"><code><span class="fu">eurotime2date</span><span class="op">(</span><span class="va">x</span>, last <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre>
+    <div class="section level2">
+    <h2 id="ref-usage">Usage<a class="anchor" aria-label="anchor" href="#ref-usage"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="fu">eurotime2date</span><span class="op">(</span><span class="va">x</span>, last <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></code></pre></div>
     </div>
 
-    <div id="ref-sections">
     <div class="section level2">
     <h2 id="arguments">Arguments<a class="anchor" aria-label="anchor" href="#arguments"></a></h2>
-    
-
-<dl><dt>x</dt><dd><p>a charter string with time information in Eurostat time format.</p></dd>
-</dl><dl><dt>last</dt><dd><p>a logical. If <code>FALSE</code> (default) the date  is
+    <dl><dt>x</dt>
+<dd><p>a charter string with time information in Eurostat time format.</p></dd>
+<dt>last</dt>
+<dd><p>a logical. If <code>FALSE</code> (default) the date  is
 the first date of the period (month, quarter or year). If <code>TRUE</code>
 the date is the last date of the period.</p></dd>
 </dl></div>
@@ -84,7 +87,7 @@ the date is the last date of the period.</p></dd>
     </div>
     <div class="section level2">
     <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a></h2>
-    <p>See <code>citation("eurostat")</code>:</p><pre><code><span class="co"># </span>
+    <p>See <code>citation("eurostat")</code>:</p><div class="sourceCode"><pre><code><span class="co"># </span>
 <span class="co"># Kindly cite the eurostat R package as follows:</span>
 <span class="co"># </span>
 <span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</span>
@@ -108,7 +111,7 @@ the date is the last date of the period.</p></dd>
 <span class="co">#     doi = {10.32614/RJ-2017-019},</span>
 <span class="co">#     url = {https://doi.org/10.32614/RJ-2017-019},</span>
 <span class="co">#     note = {Version 3.7.9},</span>
-<span class="co">#   }</span></code></pre>
+<span class="co">#   }</span></code></pre></div>
 
     </div>
     <div class="section level2">
@@ -125,57 +128,53 @@ the date is the last date of the period.</p></dd>
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
     <p>Janne Huovari <a href="mailto:janne.huovari@ptt.fi">janne.huovari@ptt.fi</a></p>
     </div>
-    </div>
 
-    <div id="examples">
-    <h2>Examples</h2>
-    <div class="ref-examples sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
+    <div class="section level2">
+    <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">na_q</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"namq_10_pc"</span>, time_format <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table namq_10_pc cached at /tmp/RtmpmNYHhF/eurostat/namq_10_pc_raw_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table namq_10_pc cached at /tmp/RtmpPppeMS/eurostat/namq_10_pc_raw_code_FF.rds</span>
 <span class="r-in"><span class="va">na_q</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu">eurotime2date</span><span class="op">(</span>x <span class="op">=</span> <span class="va">na_q</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">na_q</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "2021-04-01" "2021-01-01" "2020-10-01" "2020-07-01" "2020-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   [6] "2020-01-01" "2019-10-01" "2019-07-01" "2019-04-01" "2019-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [11] "2018-10-01" "2018-07-01" "2018-04-01" "2018-01-01" "2017-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] "2017-07-01" "2017-04-01" "2017-01-01" "2016-10-01" "2016-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] "2016-04-01" "2016-01-01" "2015-10-01" "2015-07-01" "2015-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [26] "2015-01-01" "2014-10-01" "2014-07-01" "2014-04-01" "2014-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] "2013-10-01" "2013-07-01" "2013-04-01" "2013-01-01" "2012-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] "2012-07-01" "2012-04-01" "2012-01-01" "2011-10-01" "2011-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] "2011-04-01" "2011-01-01" "2010-10-01" "2010-07-01" "2010-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "2010-01-01" "2009-10-01" "2009-07-01" "2009-04-01" "2009-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] "2008-10-01" "2008-07-01" "2008-04-01" "2008-01-01" "2007-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [56] "2007-07-01" "2007-04-01" "2007-01-01" "2006-10-01" "2006-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] "2006-04-01" "2006-01-01" "2005-10-01" "2005-07-01" "2005-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] "2005-01-01" "2004-10-01" "2004-07-01" "2004-04-01" "2004-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] "2003-10-01" "2003-07-01" "2003-04-01" "2003-01-01" "2002-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] "2002-07-01" "2002-04-01" "2002-01-01" "2001-10-01" "2001-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] "2001-04-01" "2001-01-01" "2000-10-01" "2000-07-01" "2000-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [86] "2000-01-01" "1999-10-01" "1999-07-01" "1999-04-01" "1999-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "1998-10-01" "1998-07-01" "1998-04-01" "1998-01-01" "1997-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] "1997-07-01" "1997-04-01" "1997-01-01" "1996-10-01" "1996-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [101] "1996-04-01" "1996-01-01" "1995-10-01" "1995-07-01" "1995-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [106] "1995-01-01" "1994-10-01" "1994-07-01" "1994-04-01" "1994-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [111] "1993-10-01" "1993-07-01" "1993-04-01" "1993-01-01" "1992-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [116] "1992-07-01" "1992-04-01" "1992-01-01" "1991-10-01" "1991-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [121] "1991-04-01" "1991-01-01" "1990-10-01" "1990-07-01" "1990-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [126] "1990-01-01" "1989-10-01" "1989-07-01" "1989-04-01" "1989-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [131] "1988-10-01" "1988-07-01" "1988-04-01" "1988-01-01" "1987-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "1987-07-01" "1987-04-01" "1987-01-01" "1986-10-01" "1986-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [141] "1986-04-01" "1986-01-01" "1985-10-01" "1985-07-01" "1985-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [146] "1985-01-01" "1984-10-01" "1984-07-01" "1984-04-01" "1984-01-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [151] "1983-10-01" "1983-07-01" "1983-04-01" "1983-01-01" "1982-10-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [156] "1982-07-01" "1982-04-01" "1982-01-01" "1981-10-01" "1981-07-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [161] "1981-04-01" "1981-01-01" "1980-10-01" "1980-07-01" "1980-04-01"</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> [166] "1980-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "2021-10-01" "2021-07-01" "2021-04-01" "2021-01-01" "2020-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>   [6] "2020-07-01" "2020-04-01" "2020-01-01" "2019-10-01" "2019-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [11] "2019-04-01" "2019-01-01" "2018-10-01" "2018-07-01" "2018-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [16] "2018-01-01" "2017-10-01" "2017-07-01" "2017-04-01" "2017-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [21] "2016-10-01" "2016-07-01" "2016-04-01" "2016-01-01" "2015-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [26] "2015-07-01" "2015-04-01" "2015-01-01" "2014-10-01" "2014-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [31] "2014-04-01" "2014-01-01" "2013-10-01" "2013-07-01" "2013-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [36] "2013-01-01" "2012-10-01" "2012-07-01" "2012-04-01" "2012-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [41] "2011-10-01" "2011-07-01" "2011-04-01" "2011-01-01" "2010-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [46] "2010-07-01" "2010-04-01" "2010-01-01" "2009-10-01" "2009-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [51] "2009-04-01" "2009-01-01" "2008-10-01" "2008-07-01" "2008-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [56] "2008-01-01" "2007-10-01" "2007-07-01" "2007-04-01" "2007-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [61] "2006-10-01" "2006-07-01" "2006-04-01" "2006-01-01" "2005-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [66] "2005-07-01" "2005-04-01" "2005-01-01" "2004-10-01" "2004-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [71] "2004-04-01" "2004-01-01" "2003-10-01" "2003-07-01" "2003-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [76] "2003-01-01" "2002-10-01" "2002-07-01" "2002-04-01" "2002-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [81] "2001-10-01" "2001-07-01" "2001-04-01" "2001-01-01" "2000-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [86] "2000-07-01" "2000-04-01" "2000-01-01" "1999-10-01" "1999-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [91] "1999-04-01" "1999-01-01" "1998-10-01" "1998-07-01" "1998-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>  [96] "1998-01-01" "1997-10-01" "1997-07-01" "1997-04-01" "1997-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [101] "1996-10-01" "1996-07-01" "1996-04-01" "1996-01-01" "1995-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [106] "1995-07-01" "1995-04-01" "1995-01-01" "1994-10-01" "1994-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [111] "1994-04-01" "1994-01-01" "1993-10-01" "1993-07-01" "1993-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [116] "1993-01-01" "1992-10-01" "1992-07-01" "1992-04-01" "1992-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [121] "1991-10-01" "1991-07-01" "1991-04-01" "1991-01-01" "1990-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [126] "1990-07-01" "1990-04-01" "1990-01-01" "1989-10-01" "1989-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [131] "1989-04-01" "1989-01-01" "1988-10-01" "1988-07-01" "1988-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [136] "1988-01-01" "1987-10-01" "1987-07-01" "1987-04-01" "1987-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [141] "1986-10-01" "1986-07-01" "1986-04-01" "1986-01-01" "1985-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [146] "1985-07-01" "1985-04-01" "1985-01-01" "1984-10-01" "1984-07-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [151] "1984-04-01" "1984-01-01" "1983-10-01" "1983-07-01" "1983-04-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [156] "1983-01-01" "1982-10-01" "1982-07-01" "1982-04-01" "1982-01-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [161] "1981-10-01" "1981-07-01" "1981-04-01" "1981-01-01" "1980-10-01"</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [166] "1980-07-01" "1980-04-01" "1980-01-01"</span>
 <span class="r-in"><span class="co"># }</span></span>
 </code></pre></div>
     </div>
-  </div>
-  <div class="col-md-3" id="pkgdown-sidebar">
-    <nav id="toc"><h2 data-toc-skip>Contents</h2>
-    </nav></div>
-</div>
+  </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">
@@ -183,7 +182,7 @@ the date is the last date of the period.</p></dd>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+  <p></p><p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer></div>

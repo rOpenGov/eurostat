@@ -37,19 +37,21 @@
 <!-- rogtemplate style sheet --><link href="BS5/rogtemplate.css" rel="stylesheet">
 </head>
 <body>
-    <a href="#container" class="visually-hidden-focusable">Skip to content</a>
+    <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
     
 
     <nav class="navbar fixed-top navbar-dark navbar-expand-lg bg-dark"><div class="container">
+    
     <a class="navbar-brand me-2" href="index.html">eurostat</a>
 
     <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.9</small>
 
+    
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div id="navbar" class="collapse navbar-collapse ms-2">
+    <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
@@ -57,12 +59,12 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/articles/blogposts.html">Blog posts</a>
-    <a class="dropdown-item" href="articles/articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
-    <a class="dropdown-item" href="articles/articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
-    <a class="dropdown-item" href="articles/articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
-    <a class="dropdown-item" href="articles/articles/maps.html">Map examples for the eurostat R package</a>
-    <a class="dropdown-item" href="articles/articles/publications.html">Publications using the eurostat R package</a>
+    <a class="dropdown-item" href="articles/blogposts.html">Blog posts</a>
+    <a class="dropdown-item" href="articles/cheatsheet.html">Cheat sheet: eurostat R package</a>
+    <a class="dropdown-item" href="articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a>
+    <a class="dropdown-item" href="articles/mapping.html">Mapping Regional Data, Mapping Metadata Problems</a>
+    <a class="dropdown-item" href="articles/maps.html">Map examples for the eurostat R package</a>
+    <a class="dropdown-item" href="articles/publications.html">Publications using the eurostat R package</a>
     <a class="dropdown-item" href="articles/vignette.html">Vignette for the eurostat R package</a>
   </div>
 </li>
@@ -71,7 +73,7 @@
 </li>
       </ul>
 <form class="form-inline my-2 my-lg-0" role="search">
-        <input type="search" class="form-control me-sm-2" aria-label="Search" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search..." autocomplete="off">
+        <input type="search" class="form-control me-sm-2" aria-label="Toggle navigation" name="search-input" data-search-index="search.json" id="search-input" placeholder="Search for" autocomplete="off">
 </form>
 
       <ul class="navbar-nav">
@@ -83,12 +85,12 @@
 </li>
       </ul>
 </div>
+
+    
   </div>
-</nav><div class="container template-home" id="container">
+</nav><div class="container template-home">
 <div class="row">
-  <div class="contents col-md-9">
-
-
+  <main id="main" class="col-md-9">
 <p><a href="https://github.com/ropengov/eurostat/watchers" class="external-link"><img src="https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social" alt="Watch on GitHub"></a> <a href="https://github.com/ropengov/eurostat/stargazers" class="external-link"><img src="https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social" alt="Star on GitHub"></a> <a href="https://twitter.com/intent/follow?screen_name=ropengov" class="external-link"><img src="https://img.shields.io/twitter/follow/ropengov.svg?style=social" alt="Follow"></a></p>
 <!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
 <!--[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
@@ -117,7 +119,7 @@
 <p>Alternatively, install development version from GitHub:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Install from GitHub</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va">devtools</span><span class="op">)</span>
+<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
 <span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropengov/eurostat"</span><span class="op">)</span></code></pre></div>
 <p>Development version can be also installed using the <a href="https://ropengov.r-universe.dev" class="external-link">r-universe</a>:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -254,18 +256,12 @@
 </div>
 </div>
 
-  </div>
-
-  <div class="col-md-3" id="pkgdown-sidebar">
-<div class="links">
+  </main><aside class="col-md-3"><div class="links">
 <h2 data-toc-skip>Links</h2>
 <ul class="list-unstyled">
-<li>Download from CRAN at <br><a href="https://cloud.r-project.org/package=eurostat" class="external-link">https://​cloud.r-project.org/​package=eurostat</a>
-</li>
-<li>Browse source code at <br><a href="https://github.com/rOpenGov/eurostat/" class="external-link">https://​github.com/​rOpenGov/​eurostat/​</a>
-</li>
-<li>Report a bug at <br><a href="https://github.com/rOpenGov/eurostat/issues" class="external-link">https://​github.com/​rOpenGov/​eurostat/​issues</a>
-</li>
+<li><a href="https://cloud.r-project.org/package=eurostat" class="external-link">View on CRAN</a></li>
+<li><a href="https://github.com/rOpenGov/eurostat/" class="external-link">Browse source code</a></li>
+<li><a href="https://github.com/rOpenGov/eurostat/issues" class="external-link">Report a bug</a></li>
 </ul>
 </div>
 
@@ -282,7 +278,7 @@
 <div class="citation">
 <h2 data-toc-skip>Citation</h2>
 <ul class="list-unstyled">
-<li><a href="authors.html">Citing eurostat</a></li>
+<li><a href="authors.html#citation">Citing eurostat</a></li>
 </ul>
 </div>
 
@@ -293,7 +289,7 @@
 <li>Janne Huovari <br><small class="roles"> Author </small>  </li>
 <li>Markus Kainu <br><small class="roles"> Author </small>  </li>
 <li>Przemyslaw Biecek <br><small class="roles"> Author </small>  </li>
-<li><a href="authors.html">More on authors...</a></li>
+<li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
 
@@ -313,7 +309,7 @@
 </ul>
 </div>
 
-  </div>
+  </aside>
 </div>
 
 
@@ -324,7 +320,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 1.9000.9000.9000.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.2.</p>
 </div>
 
     </footer>

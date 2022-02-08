@@ -1,15 +1,15 @@
 pandoc: 2.7.3
-pkgdown: 1.9000.9000.9000
-pkgdown_sha: 8e6bd42603f7d913a8b5ff703c77a522160804a7
+pkgdown: 2.0.2
+pkgdown_sha: ~
 articles:
-  blogposts: articles/blogposts.html
-  cheatsheet: articles/cheatsheet.html
-  eurostat_tutorial: articles/eurostat_tutorial.html
-  mapping: articles/mapping.html
-  maps: articles/maps.html
-  publications: articles/publications.html
+  blogposts: blogposts.html
+  cheatsheet: cheatsheet.html
+  eurostat_tutorial: eurostat_tutorial.html
+  mapping: mapping.html
+  maps: maps.html
+  publications: publications.html
   vignette: vignette.html
-last_built: 2021-10-27T15:45Z
+last_built: 2022-02-08T14:07Z
 urls:
   reference: https://ropengov.github.io/eurostat/reference
   article: https://ropengov.github.io/eurostat/articles

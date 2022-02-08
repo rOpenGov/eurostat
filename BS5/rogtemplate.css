@@ -16,9 +16,7 @@
 img[src$='#center'] {
   display: block;
   margin: 0.7rem auto;
-  /* you can replace the vertical '0.7rem' by
-                            whatever floats your boat, but keep the
-                            horizontal 'auto' for this to work */
+  /* you can replace the vertical '0.7rem' by whatever floats your boat, but keep the horizontal 'auto' for this to work */
   /* whatever else styles you fancy here */
 }
 
@@ -39,12 +37,13 @@ img[src$='#floatright'] {
 
 /*********************************/
 /*********************************/
-/*********    CUSTOM  ************/
 /******dieghernan.github.io ******/
 /*********************************/
 /*********************************/
 
+
 /* Mono fonts */
+
 .navbar-brand {
   font-family: 'B612 Mono', monospace;
   letter-spacing: 2px;
@@ -52,8 +51,8 @@ img[src$='#floatright'] {
 
 .navbar-brand {
   font-size: 1.5rem;
-
 }
+
 
 /* Position hack to get full width footer even though pkgdown puts it inside a container * See: https://css-tricks.com/full-width-containers-limited-width-parents/ */
 
@@ -85,50 +84,61 @@ footer a:focus {
   color: #ff6600;
 }
 
+footer .pkgdown-footer-right {
+  margin-right: auto;
+  padding-right: 1.25rem;
+}
+
+footer .pkgdown-footer-left {
+  margin-left: auto;
+  padding-left: 1.25rem;
+}
+
 @media screen and (max-width: 576px) {
-  footer .pkgdown-footer-right {
-    margin-right: 1rem;
-  }
+  footer .pkgdown-footer-right,
   footer .pkgdown-footer-left {
-    margin-left: 1rem;
+    margin-right: .75rem;
+    margin-left: .75rem;
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 
 @media (max-width:768px) and (min-width:576px) {
-  footer .pkgdown-footer-right {
-    margin-right: 2rem;
-  }
+  footer .pkgdown-footer-right,
   footer .pkgdown-footer-left {
-    margin-left: 2rem;
+    max-width: 270px;
   }
 }
 
 @media (max-width: 992px) and (min-width:768px) {
-  footer .pkgdown-footer-right {
-    margin-right: 4rem;
-  }
+  footer .pkgdown-footer-right,
   footer .pkgdown-footer-left {
-    margin-left: 4rem;
+    max-width: 360px;
   }
 }
 
-@media (max-width: 1400px) and (min-width:992px) {
-  footer .pkgdown-footer-right {
-    margin-right: 6rem;
-  }
+@media (max-width: 1200px) and (min-width:992px) {
+  footer .pkgdown-footer-right,
   footer .pkgdown-footer-left {
-    margin-left: 6rem;
+    max-width: 480px;
+  }
+}
+
+@media (max-width: 1400px) and (min-width:1200px) {
+  footer .pkgdown-footer-right,
+  footer .pkgdown-footer-left {
+    max-width: 570px;
   }
 }
 
 @media (min-width:1400px) {
-  footer .pkgdown-footer-right {
-    margin-right: 10rem;
-  }
+  footer .pkgdown-footer-right,
   footer .pkgdown-footer-left {
-    margin-left: 10rem;
+    max-width: 660px;
   }
 }
+
 
 /* Clipboard button */
 
@@ -138,21 +148,16 @@ footer a:focus {
   border-color: #343a40;
 }
 
-.btn-copy-ex:hover, .btn-copy-ex:focus {
-    color: white;
-    background-color: #ff6600;
-    border-color: #ff6600;
-}
-
-/* Temporal fix on toc */
-
-#toc {
-    overflow-y: hidden;
+.btn-copy-ex:hover,
+.btn-copy-ex:focus {
+  color: white;
+  background-color: #ff6600;
+  border-color: #ff6600;
 }
 
 
 /* Navbar */
+
 .navbar-dark.bg-dark {
   background-color: #343a40 !important;
-
 }
