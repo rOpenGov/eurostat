@@ -96,15 +96,15 @@ knitr::kable(head(passengers))
 | Air passenger transport                                            | enps\_avia\_pa  | dataset | 16.04.2021          | NA                          | 2005       | 2020     | NA     |
 | Volume of passenger transport relative to GDP                      | tran\_hv\_pstra | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
 | Modal split of passenger transport                                 | tran\_hv\_psmod | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
-| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 04.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
-| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 07.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
-| Air passenger transport between reporting countries                | avia\_paocc     | dataset | 01.10.2021          | 01.10.2021                  | 1993       | 2021Q2   | NA     |
+| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 02.02.2022          | 17.01.2022                  | 1993       | 2021Q3   | NA     |
+| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 01.02.2022          | 01.02.2022                  | 1993       | 2021Q4   | NA     |
+| Air passenger transport between reporting countries                | avia\_paocc     | dataset | 02.02.2022          | 17.01.2022                  | 1993       | 2021Q3   | NA     |
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
 and other resources at the [package
-homepage](https://ropengov.github.io/eurostat//) for more information
-and examples.
+homepage](https://ropengov.github.io/eurostat/) for more information and
+examples.
 
 ### Recommended packages
 
@@ -125,12 +125,12 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo
+**Kindly cite this package** as follows: [Leo
 Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R
 Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.9. DOI:
+R package version 3.7.10. DOI:
 [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL:
 <https://ropengov.github.io/eurostat/>
 
@@ -143,6 +143,13 @@ portal\! This project is part of [rOpenGov](http://ropengov.org).
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
+
+When using data retrieved from Eurostat database in your work, please
+indicate that the data source is Eurostat. If your re-use involves some
+kind of modification to data or text, please state this clearly to the
+end user. See Eurostat policy on [copyright and free re-use of
+data](https://ec.europa.eu/eurostat/about/policies/copyright) for more
+detailed information and certain exceptions.
 
 <!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
 
