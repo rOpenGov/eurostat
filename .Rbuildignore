@@ -9,7 +9,6 @@ index.*
 docs
 
 # Vignette
-#./vignettes/website
 ./vignettes/*.Rmd
 #./vignettes/fig
 #./vignettes/fig/

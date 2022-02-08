@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 3.7.9
-Date: 2021-10-01
+Version: 3.7.10
+Date: 2022-02-08
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -48,11 +48,13 @@ Imports:
     tibble,
     tidyr
 Suggests:
+    RColorBrewer,
     knitr,
     rmarkdown,
     sf,
     sp,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    remotes
 VignetteBuilder: 
     knitr
 Config/testthat/edition: 3

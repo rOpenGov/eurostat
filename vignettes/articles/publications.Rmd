@@ -1,17 +1,19 @@
 ---
 title: "Publications using the eurostat R package"
-date: "`r Sys.Date()`"
-output:
-  rmarkdown::html_vignette:
-    toc: true
+date: "2022-02-07"
+output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Publications using the eurostat R package}
     %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteDepends{Cairo}
     %\VignetteEncoding{UTF-8}
-    \usepackage[utf8]{inputenc}    
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
 You can send us a note via the [issue tracker](https://github.com/rOpenGov/eurostat/issues) if you like to add a publication using the eurostat R package on this list:
 
@@ -24,4 +26,3 @@ package. R Journal 2017.
 External publications using the eurostat package:
 
  * Kenett RDS, Shmueli G. Information Quality: The Potential of Data and Analytics to Generate Knowledge. John Wiley & Sons, 2016.
-

@@ -87,7 +87,7 @@ knitr::kable(head(passengers))
 ```
 
 
-See the [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html) and other resources at the [package homepage](https://ropengov.github.io/eurostat//) for more information and examples.
+See the [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html) and other resources at the [package homepage](https://ropengov.github.io/eurostat/) for more information and examples.
 
 ### Recommended packages
 
@@ -105,16 +105,15 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. DOI: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL: [https://ropengov.github.io/eurostat/](https://ropengov.github.io/eurostat/)
+**Kindly cite this package** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. DOI: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL: [https://ropengov.github.io/eurostat/](https://ropengov.github.io/eurostat/)
 
 We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.org).
-
-
 
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
 
+When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on [copyright and free re-use of data](https://ec.europa.eu/eurostat/about/policies/copyright) for more detailed information and certain exceptions.
 
 [chat-badge]: https://img.shields.io/badge/chat-on%20gitter-46BC99.svg?style=flat-square
 [chat]: https://gitter.im/ropengov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
