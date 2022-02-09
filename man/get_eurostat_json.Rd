@@ -32,9 +32,22 @@ codes as names.}
 to factors in original Eurostat order. If \code{FALSE} they are returned as
 a character.}
 
-\item{...}{Other arguments passed on to \code{\link[httr]{GET}}. For example
-a proxy parameters, see details.
-.}
+\item{...}{
+  Arguments passed on to \code{\link[httr:GET]{httr::GET}}
+  \describe{
+    \item{\code{url}}{the url of the page to retrieve}
+    \item{\code{config}}{Additional configuration settings such as http
+authentication (\code{\link[httr:authenticate]{authenticate()}}), additional headers
+(\code{\link[httr:add_headers]{add_headers()}}), cookies (\code{\link[httr:set_cookies]{set_cookies()}}) etc.
+See \code{\link[httr:config]{config()}} for full details and list of helpers.}
+    \item{\code{handle}}{The handle to use with this request. If not
+supplied, will be retrieved and reused from the \code{\link[httr:handle_pool]{handle_pool()}}
+based on the scheme, hostname and port of the url. By default \pkg{httr}
+requests to the same scheme/host/port combo. This substantially reduces
+connection time, and ensures that cookies are maintained over multiple
+requests to the same host. See \code{\link[httr:handle_pool]{handle_pool()}} for more
+details.}
+  }}
 }
 \value{
 A dataset as a data_frame.
@@ -44,34 +57,61 @@ Retrieve data from Eurostat API in JSON format.
 }
 \details{
 Data to retrieve from
-  \href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The
-  Eurostat Web Services} can be specified with filters. Normally, it is
-  better to use JSON query through \code{\link{get_eurostat}}, than to use
-  \code{\link{get_eurostat_json}} directly.
-  
-  Queries are limited to 50 sub-indicators at a time. A time can be
-  filtered with fixed "time" filter or with "sinceTimePeriod" and
-  "lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
-  observations from 2000 to a last available. A \code{lastTimePeriod = 10}
-  returns a 10 last observations.
- 
-  To use a proxy to connect, a \code{\link[httr]{use_proxy}} can be
-  passed to \code{\link[httr]{GET}}. For example 
-  \code{get_eurostat_json(id, filters, 
-  config = httr::use_proxy(url, port, username, password))}.
+\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services} can be specified with filters. Normally, it is
+better to use JSON query through \code{\link[=get_eurostat]{get_eurostat()}}, than to use
+\code{\link[=get_eurostat_json]{get_eurostat_json()}} directly.
+
+Queries are limited to 50 sub-indicators at a time. A time can be
+filtered with fixed "time" filter or with "sinceTimePeriod" and
+"lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
+observations from 2000 to a last available. A \code{lastTimePeriod = 10}
+returns a 10 last observations.
+
+To use a proxy to connect, a \code{\link[httr:use_proxy]{httr::use_proxy()}} can be
+passed to \code{\link[httr:GET]{httr::GET()}}. For example
+\code{get_eurostat_json(id, filters, config = httr::use_proxy(url, port, username, password))}.
 }
 \examples{
+# nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
 \dontrun{
-   tmp <- get_eurostat_json("cdh_e_fos")
-   # nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
-   yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(geo=c("EU28", "FI"),
-                                                        unit="EUR_HAB",
-                                                        indic_na="B1GM"))
+tmp <- get_eurostat_json("cdh_e_fos")
+yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(
+  geo = c("EU28", "FI"),
+  unit = "EUR_HAB",
+  indic_na = "B1GM"
+))
 }
-
 }
 \references{
-See citation("eurostat").
+See \code{citation("eurostat")}:\preformatted{# 
+# Kindly cite the eurostat R package as follows:
+# 
+#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
+#   Retrieval and analysis of Eurostat open data with the eurostat
+#   package. R Journal 9(1):385-392, 2017. Version 3.7.9 doi:
+#   10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat
+#   Article URL:
+#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Article\{,
+#     title = \{Retrieval and Analysis of Eurostat Open Data with the
+#            eurostat Package\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+#     journal = \{The R Journal\},
+#     volume = \{9\},
+#     number = \{1\},
+#     pages = \{385--392\},
+#     year = \{2017\},
+#     doi = \{10.32614/RJ-2017-019\},
+#     url = \{https://doi.org/10.32614/RJ-2017-019\},
+#     note = \{Version 3.7.9\},
+#   \}
+}
+}
+\seealso{
+\code{\link[httr:GET]{httr::GET()}}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu

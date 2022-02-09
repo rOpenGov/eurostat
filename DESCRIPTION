@@ -1,58 +1,62 @@
-Package: eurostat
 Type: Package
+Package: eurostat
 Title: Tools for Eurostat Open Data
-Date: 2021-06-24
-Version: 3.7.7
-Encoding: UTF-8
-Authors@R: 
-    c(person(given = "Leo",
-             family = "Lahti",
-             role = c("aut", "cre"),
-             email = "leo.lahti@iki.fi",
-             comment = c(ORCID = "0000-0001-5537-637X")),
-      person(given = "Janne",
-             family = "Huovari",
-             role = "aut"),
-      person(given = "Markus",
-             family = "Kainu",
-             role = "aut"),
-      person(given = "Przemyslaw",
-             family = "Biecek",
-             role = "aut"),
-      person(given = "Daniel",
-             family = "Antal",
-             role = "ctb"),
-      person(given = "Diego",
-             family = "Hernangomez",
-             role = "ctb"),
-      person(given = "Joona",
-             family = "Lehtomaki",
-             role = "ctb"),
-      person(given = "Francois",
-             family = "Briatte",
-             role = "ctb"),
-      person(given = "Reto",
-             family = "Stauffer",
-             role = "ctb"),
-      person(given = "Paul",
-             family = "Rougieux",
-             role = "ctb"),
-      person(given = "Anna",
-             family = "Vasylytsya",
-             role = "ctb"),
-      person(given = "Oliver",
-             family = "Reiter",
-             role = "ctb"),
-      person(given = "Pyry",
-             family = "Kantanen",
-             role = "ctb"))
-MailingList: rOpenGov <ropengov-forum@googlegroups.com>
+Version: 3.7.10
+Date: 2022-02-08
+Authors@R: c(
+    person(given = "Leo", 
+           family = "Lahti", 
+           role = c("aut", "cre"),
+           email = "leo.lahti@iki.fi",
+           comment = c(ORCID = "0000-0001-5537-637X")),
+    person(given = "Janne", 
+           family = "Huovari", 
+           role = "aut"),
+    person(given = "Markus", 
+           family = "Kainu", 
+           role = "aut"),
+    person(given = "Przemyslaw", 
+           family = "Biecek", 
+           role = "aut"),
+    person(given = "Daniel", 
+           family = "Antal", 
+           role = "ctb"),
+    person(given = "Diego", 
+           family = "Hernangomez", 
+           role = "ctb",
+           comment = c(ORCID = "0000-0001-8457-4658")),
+    person(given = "Joona", 
+           family = "Lehtomaki", 
+           role = "ctb"),
+    person(given = "Francois", 
+           family = "Briatte", 
+           role = "ctb"),
+    person(given = "Reto", 
+           family =  "Stauffer", 
+           role = "ctb"),
+    person(given = "Paul", 
+           family =  "Rougieux", 
+           role = "ctb"),
+    person(given = "Anna", 
+           family =  "Vasylytsya", 
+           role = "ctb"),
+    person(given = "Oliver", 
+           family =  "Reiter", 
+           role = "ctb"),
+    person(given = "Pyry", 
+           family =  "Kantanen", 
+           role = "ctb",
+           comment = c(ORCID = "0000-0003-2853-2765"))
+  )
 Description: Tools to download data from the Eurostat database
-    <https://ec.europa.eu/eurostat> together with search and
-    manipulation utilities.
+    <https://ec.europa.eu/eurostat> together with search and manipulation
+    utilities.
 License: BSD_2_clause + file LICENSE
+URL: https://ropengov.github.io/eurostat/,
+    https://github.com/rOpenGov/eurostat
+BugReports: https://github.com/rOpenGov/eurostat/issues
 Depends:
-    methods,	
+    methods,
     R (>= 3.1.0)
 Imports:
     broom,
@@ -61,36 +65,34 @@ Imports:
     curl,
     dplyr,
     httr,
-    magrittr,
     jsonlite,
     lubridate,
-    RColorBrewer,
+    rappdirs,
     readr,
     RefManageR,
+    regions,
     stringi,
     stringr,
     tibble,
-    tidyr,
-    regions,
-    rlang
+    tidyr
 Suggests:
-    covr,
-    Cairo,
-    ggplot2,
+    RColorBrewer,
     knitr,
-    markdown,
     rmarkdown,
-    roxygen2,
-    rvest,
-    testthat,
-    tmap,
-    usethis,
     sf,
-    here
+    sp,
+    testthat (>= 3.0.0),
+    remotes
+VignetteBuilder: 
+    knitr
+Config/testthat/edition: 3
+Config/testthat/parallel: false
+Encoding: UTF-8
 LazyData: true
-URL: http://ropengov.github.io/eurostat, https://ropengov.github.io/eurostat/
-BugReports: https://github.com/ropengov/eurostat/issues
-VignetteBuilder: knitr
+MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 NeedsCompilation: no
 Repository: CRAN
-RoxygenNote: 7.1.1
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.1.2
+X-schema.org-isPartOf: http://ropengov.org/
+X-schema.org-keywords: ropengov

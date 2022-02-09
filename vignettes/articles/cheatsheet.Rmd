@@ -1,0 +1,20 @@
+---
+title: "Cheat sheet: eurostat R package"
+date: "2022-02-07"
+output: rmarkdown::html_vignette
+vignette: >
+    %\VignetteIndexEntry{Cheat sheet: eurostat R package}
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+ * [eurostat R package: cheat sheet (RStudio release version)](https://github.com/rstudio/cheatsheets/blob/main/eurostat.pdf)
+
+ * [eurostat R package: cheat sheet (rOpenGov development version)](https://github.com/rOpenGov/eurostat/blob/master/inst/extras/cheatsheet/eurostat_cheatsheet.pdf)

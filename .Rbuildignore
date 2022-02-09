@@ -9,7 +9,6 @@ index.*
 docs
 
 # Vignette
-#./vignettes/website
 ./vignettes/*.Rmd
 #./vignettes/fig
 #./vignettes/fig/
@@ -40,3 +39,5 @@ docs
 ^\.github$
 ^codecov\.yml$
 ^pkgdown$
+^\._pkgdown\.yml$
+^vignettes/articles$

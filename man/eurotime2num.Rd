@@ -10,29 +10,35 @@ eurotime2num(x)
 \item{x}{a charter string with time information in Eurostat time format.}
 }
 \value{
-see \code{\link{as.numeric}}.
+see \code{\link[=as.numeric]{as.numeric()}}.
 }
 \description{
 A conversion of a Eurostat time format to numeric.
 }
 \details{
-Bi-annual, quarterly and monthly data is presented as fraction of 
-         the year in beginning of the period. Conversion of daily data is not 
-         supported.
+Bi-annual, quarterly and monthly data is presented as fraction of
+the year in beginning of the period. Conversion of daily data is not
+supported.
 }
 \examples{
-\dontrun{
-   na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-   na_q$time <- eurotime2num(x = na_q$time)
-   
-   un <- get_eurostat("une_rt_m", time_format = "raw")
-   un$time <- eurotime2num(x = un$time)
-   
-   na_a <- get_eurostat("nama_10_pc", time_format = "raw")
-   na_a$time <- eurotime2num(x = na_a$time)
-   }
-   
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\donttest{
+na_q <- get_eurostat("namq_10_pc", time_format = "raw")
+na_q$time <- eurotime2num(x = na_q$time)
+
+unique(na_q$time)
+}
+\dontshow{\}) # examplesIf}
+}
+\seealso{
+Other helpers: 
+\code{\link{cut_to_classes}()},
+\code{\link{dic_order}()},
+\code{\link{eurotime2date}()},
+\code{\link{harmonize_country_code}()},
+\code{\link{label_eurostat}()}
 }
 \author{
-Janne Huovari \email{janne.huovari@ptt.fi}
+Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
 }
+\concept{helpers}

@@ -3,25 +3,26 @@ title: "Vignette for the eurostat R package"
 date: "`r Sys.Date()`"
 output: rmarkdown::html_vignette
 vignette: >
-    %\VignetteIndexEntry{Vignette for the eurostat R package}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteDepends{Cairo}
-    %\VignetteEncoding{UTF-8}
-    \usepackage[utf8]{inputenc}
-editor_options:
-    chunk_output_type: console
+  %\VignetteIndexEntry{Vignette for the eurostat R package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
 ---
 
-# R Tools for Eurostat Open Data
-
-This [rOpenGov](http://ropengov.github.io) R package provides tools to access [Eurostat database](https://ec.europa.eu/eurostat/data/database), which you can also browse on-line for the data sets and documentation. For contact information and source code, see the [package website](http://ropengov.github.io/eurostat/).
+```{r, include = FALSE}
+NOT_CRAN <- identical(tolower(Sys.getenv("NOT_CRAN")), "true")
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  purl = NOT_CRAN,
+  eval = NOT_CRAN
+)
+```
 
 ```{r setup, include=FALSE}
 # Global options
 library(knitr)
 # opts_chunk$set(fig.path="fig/")
 ```
-
 
 # Installation
 
@@ -35,13 +36,14 @@ install.packages("eurostat")
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 ```{r install2, eval=FALSE}
-library(devtools)
-install_github("ropengov/eurostat")
+library(remotes)
+remotes::install_github("ropengov/eurostat")
 ```
+
+Load the package:
 
 ```{r, echo=FALSE}
 library(eurostat)
 ```
 
-For examples on how to use the package, see the [online tutorial](http://ropengov.github.io/eurostat/) (Articles section of the homepage).
-
+For more detailed examples on how to use the package, see the [online tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html).

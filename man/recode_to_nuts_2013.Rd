@@ -7,42 +7,55 @@
 recode_to_nuts_2013(dat)
 }
 \arguments{
-\item{dat}{A Eurostat data frame downloaded with 
-\code{\link{get_eurostat}}.}
+\item{dat}{A Eurostat data frame downloaded with
+\code{\link[=get_eurostat]{get_eurostat()}}.}
 }
 \value{
-An augmented and potentially relabelled data frame which 
-contains all formerly \code{'NUTS2013'} definition geo labels in the 
-\code{'NUTS2016'} vocabulary when only the code changed, but the 
+An augmented and potentially relabelled data frame which
+contains all formerly \code{'NUTS2013'} definition geo labels in the
+\code{'NUTS2016'} vocabulary when only the code changed, but the
 boundary did not. It also contains some information on other geo labels
-that cannot be brought to the current \code{'NUTS2013'} definition. 
+that cannot be brought to the current \code{'NUTS2013'} definition.
 Furthermore, when the official name of the region changed, it will use
 the new name (if the otherwise the region boundary did not change.)
 If not called before, the function will use the helper function
-\code{\link{harmonize_geo_code}}
+\code{\link[=harmonize_geo_code]{harmonize_geo_code()}}
 }
 \description{
 Eurostat mixes NUTS2013 and NUTS2016 geographic label codes
 in the \code{'geo'} column, which creates time-wise comparativity issues.
 
-This function is deprecated, and a more general function was moved to 
-\code{regions::\link[regions]{recode_nuts}}.
+This function is deprecated, and a more general function was moved to
+\verb{[regions::recode_nuts()]}.
 }
 \examples{
-test_regional_codes <- data.frame ( 
+test_regional_codes <- data.frame(
   geo = c("FRB", "FRE", "UKN02", "IE022", "FR243", "FRB03"),
-  time = c(rep(as.Date ("2014-01-01"), 5), as.Date("2015-01-01")), 
-  values = c(1:6), 
-  control = c("Changed from NUTS2 to NUTS1", 
-              "New region NUTS2016 only", 
-              "Discontinued region NUTS2013", 
-              "Boundary shift NUTS2013", 
-              "Recoded in NUTS2013", 
-              "Recoded in NUTS2016"
-  )) 
- 
+  time = c(rep(as.Date("2014-01-01"), 5), as.Date("2015-01-01")),
+  values = c(1:6),
+  control = c(
+    "Changed from NUTS2 to NUTS1",
+    "New region NUTS2016 only",
+    "Discontinued region NUTS2013",
+    "Boundary shift NUTS2013",
+    "Recoded in NUTS2013",
+    "Recoded in NUTS2016"
+  )
+)
+
 recode_to_nuts_2013(test_regional_codes)
+}
+\seealso{
+\code{\link[regions:recode_nuts]{regions::recode_nuts()}}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{harmonize_geo_code}()},
+\code{\link{recode_to_nuts_2016}()},
+\code{\link{reexports}}
 }
 \author{
 Daniel Antal
 }
+\concept{regions functions}
+\keyword{internal}

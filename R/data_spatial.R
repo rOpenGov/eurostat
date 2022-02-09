@@ -1,23 +1,25 @@
-#' @title Geospatial data of Europe from Gisco in 1:60 million scale from year 2016
-#' @description Geospatial data of Europe from Gisco in 1:60 million scale from year 2016 
+#' @title Geospatial data of Europe from Gisco in 1:60 million scale from
+#'   year 2016
+#' @description Geospatial data of Europe from Gisco in 1:60 million scale
+#'  from year 2016
+#' @family datasets
+#' @family geospatial
 #' @format sf
-#' \describe{
-#'   \item{id}{Country code in the Eurostat database}
-#'   \item{CNTRY_CODE}{Country code}
-#'   \item{NUTS_NAME}{NUTS name in local language}
-#'   \item{LEVL_CODE}{NUTS code}
-#'   \item{FID}{Country code}
-#'   \item{NUTS_ID}{NUTS code}
-#'   \item{geometry}{geospatial information}
-#'   \item{geo}{NUTS code}
-#' }
-#' @source \url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
-"eurostat_geodata_60_2016" 
+#'   * **id**: Country code in the Eurostat database.
+#'   * **CNTRY_CODE**: Country code.
+#'   * **NUTS_NAME**: NUTS name in local language.
+#'   * **LEVL_CODE**: NUTS code.
+#'   * **FID**: Country code.
+#'   * **NUTS_ID**: NUTS code.
+#'   * **geometry**: geospatial information.
+#'   * **geo**: NUTS code.
+#' @source <https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+"eurostat_geodata_60_2016"
 
 ## -- 2016
 # library(sf)
 # library(httr)
-# 
+#
 # resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4326_LEVL_0.geojson")
 # n0 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
 # resp <- GET("http://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_03M_2016_4326_LEVL_1.geojson")

@@ -5,11 +5,7 @@
 .Rdata
 .httr-oauth
 .DS_Store
-
-_pkgdown.yml
 inst/doc
-docs/docsearch.js
-docs/articles/2015-RJournal/response.txt
 *Rcheck*
 inst/extras/*
 application/*
@@ -30,7 +26,6 @@ vignettes/zipfile
 NUTS_2010.xls
 zipfile
 packrat/lib*/
-
 /revdep/.cache.rds
 doc
 Meta

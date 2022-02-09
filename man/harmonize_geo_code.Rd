@@ -2,33 +2,42 @@
 % Please edit documentation in R/deprecated_regions_functions.R
 \name{harmonize_geo_code}
 \alias{harmonize_geo_code}
-\title{Harmonize NUTS region codes that changed with the \code{NUTS2016} definition}
+\title{Harmonize NUTS region codes that changed with the \code{NUTS2016}
+definition}
 \usage{
 harmonize_geo_code(dat)
 }
 \arguments{
-\item{dat}{A Eurostat data frame downloaded with \code{\link{get_eurostat}}}
+\item{dat}{A Eurostat data frame downloaded with \code{\link[=get_eurostat]{get_eurostat()}}}
 }
 \value{
-An augmented data frame that explains potential problems and 
+An augmented data frame that explains potential problems and
 possible solutions.
 }
 \description{
 Eurostat mixes \code{NUTS2013} and \code{NUTS2016} geographic
-label codes in the \code{'geo'} column, which creates time-wise comparativity issues.
-This deprecated function checke if you data is affected by this problem and gives
-information on what to do.
+label codes in the \code{'geo'} column, which creates time-wise comparativity
+issues. This deprecated function checked if you data is affected by this
+problem and gives information on what to do.
 
-This function is deprecated, and a more general function was moved to 
-\code{regions::\link[regions]{validate_nuts_regions}}.
+This function is deprecated, and a more general function was moved to
+\code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}.
 }
 \examples{
- \dontrun{
-   dat <- eurostat::tgs00026
-   regions::validate_nuts_regions(dat)
- }
- 
+dat <- eurostat::tgs00026
+regions::validate_nuts_regions(dat)
+}
+\seealso{
+\code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
+
+Other regions functions: 
+\code{\link{add_nuts_level}()},
+\code{\link{recode_to_nuts_2013}()},
+\code{\link{recode_to_nuts_2016}()},
+\code{\link{reexports}}
 }
 \author{
 Daniel Antal
 }
+\concept{regions functions}
+\keyword{internal}

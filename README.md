@@ -3,13 +3,18 @@
 
 <!-- badges: start -->
 
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
 [![R build
 status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
+[![cran
+version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.org/package=eurostat)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
-[![codecov](https://codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://codecov.io/gh/rOpenGov/eurostat)
+[![DOI](https://img.shields.io/badge/DOI-10.32614/RJ--2017--019-blue)](https://doi.org/10.32614/RJ-2017-019)
+[![codecov](https://codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://app.codecov.io/gh/rOpenGov/eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![r-universe](https://ropengov.r-universe.dev/badges/eurostat)](https://ropengov.r-universe.dev/)
 
 [![Watch on
 GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/watchers)
@@ -39,7 +44,7 @@ GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)]
 
 <!-- badges: end -->
 
-# eurostat R package
+# eurostat R package <a href='https://ropengov.github.io/eurostat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
 
 R tools to access open data from
 [Eurostat](https://ec.europa.eu/eurostat). Data search, download,
@@ -51,12 +56,6 @@ Install stable version from CRAN:
 
 ``` r
 install.packages("eurostat")
-#> Installing package into '/Users/runner/work/_temp/Library'
-#> (as 'lib' is unspecified)
-#> also installing the dependencies 'sys', 'bit', 'prettyunits', 'proxy', 'utf8', 'askpass', 'bit64', 'withr', 'progress', 'wk', 'backports', 'ellipsis', 'generics', 'purrr', 'e1071', 'lifecycle', 'R6', 'tidyselect', 'vctrs', 'pillar', 'openssl', 'Rcpp', 'cli', 'clipr', 'crayon', 'hms', 'vroom', 'cpp11', 'tzdb', 'xml2', 'plyr', 'DBI', 's2', 'units', 'fansi', 'pkgconfig', 'broom', 'classInt', 'countrycode', 'curl', 'dplyr', 'httr', 'lubridate', 'RColorBrewer', 'readr', 'RefManageR', 'sf', 'tibble', 'tidyr'
-#> 
-#> The downloaded binary packages are in
-#>  /var/folders/24/8k48jl6d249_n_qfxwsl6xvm0000gn/T//RtmpAxhaCw/downloaded_packages
 ```
 
 Alternatively, install development version from GitHub:
@@ -65,6 +64,19 @@ Alternatively, install development version from GitHub:
 # Install from GitHub
 library(devtools)
 devtools::install_github("ropengov/eurostat")
+```
+
+Development version can be also installed using the
+[r-universe](https://ropengov.r-universe.dev):
+
+``` r
+# Enable this universe
+options(repos = c(
+  ropengov = "https://ropengov.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+
+install.packages("eurostat")
 ```
 
 The package provides several different ways to get datasets from
@@ -84,12 +96,12 @@ knitr::kable(head(passengers))
 | Air passenger transport                                            | enps\_avia\_pa  | dataset | 16.04.2021          | NA                          | 2005       | 2020     | NA     |
 | Volume of passenger transport relative to GDP                      | tran\_hv\_pstra | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
 | Modal split of passenger transport                                 | tran\_hv\_psmod | dataset | 07.07.2021          | 07.07.2021                  | 1990       | 2019     | NA     |
-| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 27.08.2021          | 27.08.2021                  | 1993       | 2021Q2   | NA     |
-| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 27.08.2021          | 27.08.2021                  | 1993       | 2021Q2   | NA     |
-| Air passenger transport between reporting countries                | avia\_paocc     | dataset | 27.08.2021          | 27.08.2021                  | 1993       | 2021Q2   | NA     |
+| Air passenger transport by reporting country                       | avia\_paoc      | dataset | 02.02.2022          | 17.01.2022                  | 1993       | 2021Q3   | NA     |
+| Air passenger transport by main airports in each reporting country | avia\_paoa      | dataset | 01.02.2022          | 01.02.2022                  | 1993       | 2021Q4   | NA     |
+| Air passenger transport between reporting countries                | avia\_paocc     | dataset | 02.02.2022          | 17.01.2022                  | 1993       | 2021Q3   | NA     |
 
 See the
-[Tutorial](https://ropengov.github.io/eurostat/articles/website/eurostat_tutorial.html)
+[Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
 and other resources at the [package
 homepage](https://ropengov.github.io/eurostat/) for more information and
 examples.
@@ -113,12 +125,14 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this work** as follows: [Leo
+**Kindly cite this package** as follows: [Leo
 Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R
 Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.5. URL: <https://ropengov.github.io/eurostat/>
+R package version 3.7.10. DOI:
+[10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL:
+<https://ropengov.github.io/eurostat/>
 
 We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),
@@ -129,6 +143,13 @@ portal\! This project is part of [rOpenGov](http://ropengov.org).
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
+
+When using data retrieved from Eurostat database in your work, please
+indicate that the data source is Eurostat. If your re-use involves some
+kind of modification to data or text, please state this clearly to the
+end user. See Eurostat policy on [copyright and free re-use of
+data](https://ec.europa.eu/eurostat/about/policies/copyright) for more
+detailed information and certain exceptions.
 
 <!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
 

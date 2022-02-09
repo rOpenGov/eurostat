@@ -4,19 +4,30 @@
 \alias{clean_eurostat_cache}
 \title{Clean Eurostat Cache}
 \usage{
-clean_eurostat_cache(cache_dir = NULL)
+clean_eurostat_cache(cache_dir = NULL, config = FALSE)
 }
 \arguments{
 \item{cache_dir}{A path to cache directory. If \code{NULL} (default)
 tries to clean default temporary cache directory.}
+
+\item{config}{Logical \code{TRUE/FALSE}. Should the cached path be
+deleted?}
 }
 \description{
 Delete all .rds files from the eurostat cache directory.
-             See \code{\link{get_eurostat}} for more on cache.
+See \code{\link[=get_eurostat]{get_eurostat()}} for more on cache.
 }
 \examples{
-clean_eurostat_cache() 
+\dontrun{
+clean_eurostat_cache()
+}
+}
+\seealso{
+Other cache utilities: 
+\code{\link{set_eurostat_cache_dir}()}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
+Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and
+Diego Hernangómez
 }
+\concept{cache utilities}

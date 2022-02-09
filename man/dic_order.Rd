@@ -9,9 +9,9 @@ dic_order(x, dic, type)
 \arguments{
 \item{x}{a variable (code or labelled) to get order for.}
 
-\item{dic}{a name of the dictionary. Correspond a variable name in the 
-data_frame from \code{\link{get_eurostat}}. Can be also data_frame from
-\code{\link{get_eurostat_dic}}.}
+\item{dic}{a name of the dictionary. Correspond a variable name in the
+data_frame from \code{\link[=get_eurostat]{get_eurostat()}}. Can be also data_frame from
+\code{\link[=get_eurostat_dic]{get_eurostat_dic()}}.}
 
 \item{type}{a type of the x. Could be \code{code} or \code{label}.}
 }
@@ -22,8 +22,21 @@ A numeric vector of orders.
 Orders the factor levels.
 }
 \details{
-Some variables, like classifications, have logical or conventional ordering. Eurostat data tables are nor neccessary ordered in this order. The function \code{dic_order} get the ordering from Eurostat classifications dictionaries. The function \code{\link{label_eurostat}} can also order factor levels of labels with argument \code{eu_order = TRUE}.
+Some variables, like classifications, have logical or conventional
+ordering. Eurostat data tables are nor necessary ordered in this order.
+The function \code{\link[=dic_order]{dic_order()}} get the ordering from Eurostat classifications
+dictionaries. The function \code{\link[=label_eurostat]{label_eurostat()}} can also order factor levels
+of labels with argument \code{eu_order = TRUE}.
+}
+\seealso{
+Other helpers: 
+\code{\link{cut_to_classes}()},
+\code{\link{eurotime2date}()},
+\code{\link{eurotime2num}()},
+\code{\link{harmonize_country_code}()},
+\code{\link{label_eurostat}()}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 }
+\concept{helpers}

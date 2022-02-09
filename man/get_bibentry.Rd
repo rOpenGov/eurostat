@@ -13,28 +13,29 @@ character or factor.}
 \item{keywords}{A list of keywords to be added to the entries. Defaults
 to \code{NULL}.}
 
-\item{format}{Default is \code{'Biblatex'}, alternatives are \code{'bibentry'} 
+\item{format}{Default is \code{'Biblatex'}, alternatives are \code{'bibentry'}
 or \code{'Bibtex'} (not case sensitive.)}
 }
 \value{
 a bibentry, Bibtex or Biblatex object.
 }
 \description{
-Creates a bibliography from selected Eurostat data files, 
+Creates a bibliography from selected Eurostat data files,
 including last Eurostat update, URL access data, and optional keywords
 set by the user.
 }
 \examples{
- \dontrun{
-   my_bibliography <- get_bibentry (
-        code = c("tran_hv_frtra", "t2020_rk310","tec00001") ,
-        keywords = list ( c("railways", "freight", "transport"),
-                          c("railways", "passengers", "modal split") ),
-        format = "Biblatex" )
-        
-   # readLines ( my_bibliograhy, "eurostat_data.bib")
- }
- 
+\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+my_bibliography <- get_bibentry(
+  code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
+  keywords = list(
+    c("railways", "freight", "transport"),
+    c("railways", "passengers", "modal split")
+  ),
+  format = "Biblatex"
+)
+my_bibliography
+\dontshow{\}) # examplesIf}
 }
 \author{
 Daniel Antal, Przemyslaw Biecek
