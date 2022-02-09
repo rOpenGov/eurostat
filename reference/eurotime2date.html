@@ -92,16 +92,14 @@ the date is the last date of the period.</p></dd>
 <span class="co"># </span>
 <span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</span>
 <span class="co">#   Retrieval and analysis of Eurostat open data with the eurostat</span>
-<span class="co">#   package. R Journal 9(1):385-392, 2017. Version 3.7.9 doi:</span>
-<span class="co">#   10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat</span>
-<span class="co">#   Article URL:</span>
+<span class="co">#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019</span>
+<span class="co">#   Package URL: http://ropengov.github.io/eurostat Article URL:</span>
 <span class="co">#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
 <span class="co"># </span>
 <span class="co"># A BibTeX entry for LaTeX users is</span>
 <span class="co"># </span>
 <span class="co">#   @Article{,</span>
-<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the</span>
-<span class="co">#            eurostat Package},</span>
+<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},</span>
 <span class="co">#     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},</span>
 <span class="co">#     journal = {The R Journal},</span>
 <span class="co">#     volume = {9},</span>
@@ -110,7 +108,6 @@ the date is the last date of the period.</p></dd>
 <span class="co">#     year = {2017},</span>
 <span class="co">#     doi = {10.32614/RJ-2017-019},</span>
 <span class="co">#     url = {https://doi.org/10.32614/RJ-2017-019},</span>
-<span class="co">#     note = {Version 3.7.9},</span>
 <span class="co">#   }</span></code></pre></div>
 
     </div>
@@ -133,7 +130,7 @@ the date is the last date of the period.</p></dd>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">na_q</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"namq_10_pc"</span>, time_format <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table namq_10_pc cached at /tmp/RtmpfPSAIt/eurostat/namq_10_pc_raw_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table namq_10_pc cached at /tmp/RtmpUZO38h/eurostat/namq_10_pc_raw_code_FF.rds</span>
 <span class="r-in"><span class="va">na_q</span><span class="op">$</span><span class="va">time</span> <span class="op">&lt;-</span> <span class="fu">eurotime2date</span><span class="op">(</span>x <span class="op">=</span> <span class="va">na_q</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">na_q</span><span class="op">$</span><span class="va">time</span><span class="op">)</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "2021-10-01" "2021-07-01" "2021-04-01" "2021-01-01" "2020-10-01"</span>

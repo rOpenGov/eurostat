@@ -192,16 +192,14 @@ in parenthesis.</p>
 <span class="co"># </span>
 <span class="co">#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</span>
 <span class="co">#   Retrieval and analysis of Eurostat open data with the eurostat</span>
-<span class="co">#   package. R Journal 9(1):385-392, 2017. Version 3.7.9 doi:</span>
-<span class="co">#   10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat</span>
-<span class="co">#   Article URL:</span>
+<span class="co">#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019</span>
+<span class="co">#   Package URL: http://ropengov.github.io/eurostat Article URL:</span>
 <span class="co">#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
 <span class="co"># </span>
 <span class="co"># A BibTeX entry for LaTeX users is</span>
 <span class="co"># </span>
 <span class="co">#   @Article{,</span>
-<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the</span>
-<span class="co">#            eurostat Package},</span>
+<span class="co">#     title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},</span>
 <span class="co">#     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},</span>
 <span class="co">#     journal = {The R Journal},</span>
 <span class="co">#     volume = {9},</span>
@@ -210,7 +208,6 @@ in parenthesis.</p>
 <span class="co">#     year = {2017},</span>
 <span class="co">#     doi = {10.32614/RJ-2017-019},</span>
 <span class="co">#     url = {https://doi.org/10.32614/RJ-2017-019},</span>
-<span class="co">#     note = {Version 3.7.9},</span>
 <span class="co">#   }</span></code></pre></div>
 
     </div>
@@ -227,28 +224,28 @@ in parenthesis.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span class="co"># \donttest{</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file /tmp/RtmpfPSAIt/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmpfPSAIt/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Reading cache file /tmp/RtmpUZO38h/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmpUZO38h/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, time_format <span class="op">=</span> <span class="st">"num"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpfPSAIt/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpUZO38h/eurostat/nama_10_lp_ulc_num_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, update_cache <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpfPSAIt/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpUZO38h/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>,</span>
 <span class="r-in">  cache_dir <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache"</span><span class="op">)</span></span>
 <span class="r-in"><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpfPSAIt/r_cache/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpUZO38h/r_cache/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">TRUE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpfPSAIt/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpUZO38h/eurostat/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>eurostat_update <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"></span>
 <span class="r-in"><span class="fu"><a href="set_eurostat_cache_dir.html">set_eurostat_cache_dir</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/file.path.html" class="external-link">file.path</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/tempfile.html" class="external-link">tempdir</a></span><span class="op">(</span><span class="op">)</span>, <span class="st">"r_cache2"</span><span class="op">)</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> eurostat cache dir is: /tmp/RtmpfPSAIt/r_cache2</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> eurostat cache dir is: /tmp/RtmpUZO38h/r_cache2</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> To install your cache_dir path for use in future sessions,</span>
 <span class="r-msg co"><span class="r-pr">#&gt;</span> run this function with `install = TRUE`.</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpfPSAIt/r_cache2/nama_10_lp_ulc_date_code_FF.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpUZO38h/r_cache2/nama_10_lp_ulc_date_code_FF.rds</span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="va">k</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat</span><span class="op">(</span><span class="st">"avia_gonc"</span>, select_time <span class="op">=</span> <span class="st">"Y"</span>, cache <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span>
 <span class="r-in"><span class="co"># }</span></span>
