@@ -13,9 +13,9 @@ library(rmarkdown)
 render(input = "../../README.Rmd", output_format = "md_document")
 
 # build the ../../docs directory as a pkg website
-library(pkgdown)
-setwd("../../")
-build_site()
+#library(pkgdown)
+#setwd("../../")
+#build_site()
 # devtools::build_vignettes()
 
 
@@ -24,6 +24,7 @@ build_site()
 # release() # Submit to CRAN
 # devtools::check_win_devel("../../") # Windows check
 # submit_cran() # Submit to CRAN without all release() questions
+# use_cran_comments()
 
 # Utilities:
 #

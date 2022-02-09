@@ -1,3 +1,7 @@
+# eurostat 3.7.10 (2022-02-09)
+
+* Fixed URL issues in tests and examples
+
 # eurostat 3.7.9 (2020-10-01)
 
 * Function documentation migrated from old `\code{}`, `\link{}` syntax to markdown (issue #230, PR #231 by @dieghernan)

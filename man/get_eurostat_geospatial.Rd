@@ -74,7 +74,7 @@ The source provides feature collections as line strings (GeoJSON format),
 not as (multi-)polygons which, in some cases, yields invalid
 self-intersecting (multi-)polygon geometries (for some years/resolutions).
 This can cause problems, e.g., when using these geometries as input argument
-to \code{\link[sf:interpolate_aw]{sf::st_interpolate_aw()}}. \code{make_valid = TRUE} makes sure that
+to \code{\link[sf:st_interpolate_aw]{sf::st_interpolate_aw()}}. \code{make_valid = TRUE} makes sure that
 only valid (multi-)polygons are returned, example included below.
 }
 \examples{

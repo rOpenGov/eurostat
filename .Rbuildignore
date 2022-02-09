@@ -41,3 +41,4 @@ docs
 ^pkgdown$
 ^\._pkgdown\.yml$
 ^vignettes/articles$
+^CRAN-SUBMISSION$
