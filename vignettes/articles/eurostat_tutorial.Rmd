@@ -11,7 +11,7 @@ vignette: >
     \usepackage[utf8]{inputenc}
     %\VignetteEngine{knitr::rmarkdown}
 editor_options:
-    chunk_output_type: console
+    chunk_output_type: inline
 ---
 
 # R Tools for Eurostat Open Data
@@ -35,8 +35,8 @@ install.packages("eurostat")
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 ```{r install2, eval=FALSE}
-library(devtools)
-install_github("ropengov/eurostat")
+library(remotes)
+remotes::install_github("ropengov/eurostat")
 ```
 
 ```{r, echo=FALSE}
@@ -62,18 +62,18 @@ Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets
 ```{r get_eurostat_toc, warning=FALSE, message=FALSE, eval = evaluate}
 # Load the package
 library(eurostat)
-library(rvest)
+# library(rvest)
 
 # Get Eurostat data listing
 toc <- get_eurostat_toc()
 
 # Check the first items
 library(knitr)
-kable(head(toc))
+kable(tail(toc))
 ```
 
 Some of the data sets (e.g. in the 'comext' type) are not accessible
-through the standard interface. See the get\_eurostat function documentation for more details.
+through the standard interface. See the `get_eurostat()` function documentation for more details.
 
 With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
 

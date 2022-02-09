@@ -1,19 +1,21 @@
 ---
 title: "Blog posts"
-date: "`r Sys.Date()`"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
+date: "2022-02-07"
+output: rmarkdown::html_vignette
 vignette: >
     %\VignetteIndexEntry{Blog posts}
     %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteDepends{Cairo}
     %\VignetteEncoding{UTF-8}
-    \usepackage[utf8]{inputenc}    
 ---
 
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
 
- * [Package release](https://rpubs.com/muuankarski/27120)
+Here are some blog posts where eurostat package has been featured. If you have used eurostat package in your workflow and you would like to be included on this list, please let us know!
+
+ * [Package release](https://rpubs.com/muuankarski/27119)
  * [Interactive widgets](https://www.mytinyshinys.com/2017/07/11/eurostat/) by Andrew Clark
- * [Case studies](http://ropengov.github.io/r/2015/05/01/eurostat-package-examples/)
- 
