@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.9</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.10</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -92,7 +92,7 @@
   <main id="main"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Tutorial for the eurostat R package</h1>
             
-            <h4 data-toc-skip class="date">2022-02-08</h4>
+            <h4 data-toc-skip class="date">2022-02-09</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/vignettes/articles/eurostat_tutorial.Rmd" class="external-link"><code>vignettes/articles/eurostat_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>eurostat_tutorial.Rmd</code></div>
@@ -113,8 +113,8 @@
 <code class="sourceCode R"><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></code></pre></div>
 <p>Development version <a href="https://github.com/rOpenGov/eurostat" class="external-link">(Github)</a>:</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span>
-<span class="fu">install_github</span><span class="op">(</span><span class="st">"ropengov/eurostat"</span><span class="op">)</span></code></pre></div>
+<code class="sourceCode R"><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://remotes.r-lib.org" class="external-link">remotes</a></span><span class="op">)</span>
+<span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropengov/eurostat"</span><span class="op">)</span></code></pre></div>
 <p>Overall, the eurostat package includes the following functions:</p>
 <pre><code>check_access_to_data    Check access to ec.europe.eu
 clean_eurostat_cache    Clean Eurostat Cache
@@ -155,24 +155,24 @@ tgs00026                Auxiliary Data</code></pre>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># Load the package</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span>
-<span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://rvest.tidyverse.org/" class="external-link">rvest</a></span><span class="op">)</span>
+<span class="co"># library(rvest)</span>
 
 <span class="co"># Get Eurostat data listing</span>
 <span class="va">toc</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eurostat_toc.html">get_eurostat_toc</a></span><span class="op">(</span><span class="op">)</span>
 
 <span class="co"># Check the first items</span>
 <span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://yihui.org/knitr/" class="external-link">knitr</a></span><span class="op">)</span>
-<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">toc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
+<span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">tail</a></span><span class="op">(</span><span class="va">toc</span><span class="op">)</span><span class="op">)</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="38%">
+<col width="54%">
 <col width="6%">
+<col width="3%">
+<col width="9%">
+<col width="12%">
 <col width="5%">
-<col width="13%">
-<col width="18%">
-<col width="7%">
-<col width="6%">
 <col width="4%">
+<col width="3%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">title</th>
@@ -186,8 +186,8 @@ tgs00026                Auxiliary Data</code></pre>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Database by themes</td>
-<td align="left">data</td>
+<td align="left">Participation in education and training - ICT usage and e-commerce in enterprises</td>
+<td align="left">sks_devict</td>
 <td align="left">folder</td>
 <td align="left">NA</td>
 <td align="left">NA</td>
@@ -196,58 +196,58 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">General and regional statistics</td>
-<td align="left">general</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">European and national indicators for short-term analysis</td>
-<td align="left">euroind</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Business and consumer surveys (source: DG ECFIN)</td>
-<td align="left">ei_bcs</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="odd">
-<td align="left">Consumer surveys (source: DG ECFIN)</td>
-<td align="left">ei_bcs_cs</td>
-<td align="left">folder</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-<td align="left">NA</td>
-</tr>
-<tr class="even">
-<td align="left">Consumers - monthly data</td>
-<td align="left">ei_bsco_m</td>
+<td align="left">Enterprises that provided training to develop/upgrade ICT skills of their personnel</td>
+<td align="left">isoc_ske_ittn2</td>
 <td align="left">dataset</td>
-<td align="left">02.02.2022</td>
 <td align="left">28.01.2022</td>
-<td align="left">1980M01</td>
-<td align="left">2022M01</td>
+<td align="left">09.12.2021</td>
+<td align="left">2012</td>
+<td align="left">2020</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Participation in education and training - continuing vocational training in enterprises</td>
+<td align="left">sks_devcvt</td>
+<td align="left">folder</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Enterprises providing training by type of training and size class - % of all enterprises</td>
+<td align="left">trng_cvt_01s</td>
+<td align="left">dataset</td>
+<td align="left">26.02.2019</td>
+<td align="left">08.02.2021</td>
+<td align="left">2005</td>
+<td align="left">2015</td>
+<td align="left">NA</td>
+</tr>
+<tr class="odd">
+<td align="left">Participants in CVT courses by sex and size class - % of persons employed in all enterprises</td>
+<td align="left">trng_cvt_12s</td>
+<td align="left">dataset</td>
+<td align="left">26.02.2019</td>
+<td align="left">08.02.2021</td>
+<td align="left">2005</td>
+<td align="left">2015</td>
+<td align="left">NA</td>
+</tr>
+<tr class="even">
+<td align="left">Main skills targeted by CVT courses by type of skill and NACE Rev. 2 activity - % of enterprises providing CVT courses</td>
+<td align="left">trng_cvt_29n2</td>
+<td align="left">dataset</td>
+<td align="left">26.02.2019</td>
+<td align="left">08.02.2021</td>
+<td align="left">2010</td>
+<td align="left">2015</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
 </table>
-<p>Some of the data sets (e.g. in the ‘comext’ type) are not accessible through the standard interface. See the get_eurostat function documentation for more details.</p>
+<p>Some of the data sets (e.g. in the ‘comext’ type) are not accessible through the standard interface. See the <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> function documentation for more details.</p>
 <p>With <code><a href="../reference/search_eurostat.html">search_eurostat()</a></code> you can search the table of contents for particular patterns, e.g. all datasets related to <em>passenger transport</em>. The kable function to produces nice markdown output. Note that with the <code>type</code> argument of this function you could restrict the search to for instance datasets or tables.</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span class="co"># info about passengers</span>
@@ -962,16 +962,14 @@ tgs00026                Auxiliary Data</code></pre>
 <span class="co">## </span>
 <span class="co">##   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</span>
 <span class="co">##   Retrieval and analysis of Eurostat open data with the eurostat</span>
-<span class="co">##   package. R Journal 9(1):385-392, 2017. Version 3.7.9 doi:</span>
-<span class="co">##   10.32614/RJ-2017-019 Package URL: http://ropengov.github.io/eurostat</span>
-<span class="co">##   Article URL:</span>
+<span class="co">##   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019</span>
+<span class="co">##   Package URL: http://ropengov.github.io/eurostat Article URL:</span>
 <span class="co">##   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html</span>
 <span class="co">## </span>
 <span class="co">## A BibTeX entry for LaTeX users is</span>
 <span class="co">## </span>
 <span class="co">##   @Article{,</span>
-<span class="co">##     title = {Retrieval and Analysis of Eurostat Open Data with the</span>
-<span class="co">##            eurostat Package},</span>
+<span class="co">##     title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},</span>
 <span class="co">##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},</span>
 <span class="co">##     journal = {The R Journal},</span>
 <span class="co">##     volume = {9},</span>
@@ -980,7 +978,6 @@ tgs00026                Auxiliary Data</code></pre>
 <span class="co">##     year = {2017},</span>
 <span class="co">##     doi = {10.32614/RJ-2017-019},</span>
 <span class="co">##     url = {https://doi.org/10.32614/RJ-2017-019},</span>
-<span class="co">##     note = {Version 3.7.9},</span>
 <span class="co">##   }</span></code></pre>
 </div>
 <div class="section level4">
@@ -1013,7 +1010,7 @@ tgs00026                Auxiliary Data</code></pre>
 <span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span>
 <span class="co">## </span>
 <span class="co">## other attached packages:</span>
-<span class="co">## [1] tidyr_1.2.0    rvest_1.0.2    eurostat_3.7.9 knitr_1.37    </span>
+<span class="co">## [1] tidyr_1.2.0     eurostat_3.7.10 knitr_1.37     </span>
 <span class="co">## </span>
 <span class="co">## loaded via a namespace (and not attached):</span>
 <span class="co">##  [1] Rcpp_1.0.8         lubridate_1.8.0    here_1.0.1         countrycode_1.3.1 </span>
@@ -1028,7 +1025,7 @@ tgs00026                Auxiliary Data</code></pre>
 <span class="co">## [37] htmltools_0.5.2    tidyselect_1.1.1   tibble_3.1.6       regions_0.1.8     </span>
 <span class="co">## [41] fansi_1.0.2        crayon_1.4.2       dplyr_1.0.8        tzdb_0.2.0        </span>
 <span class="co">## [45] jsonlite_1.7.3     lifecycle_1.0.1    magrittr_2.0.2     KernSmooth_2.23-20</span>
-<span class="co">## [49] vroom_1.5.7        cli_3.1.1          stringi_1.7.6      cachem_1.0.6      </span>
+<span class="co">## [49] cli_3.1.1          stringi_1.7.6      vroom_1.5.7        cachem_1.0.6      </span>
 <span class="co">## [53] fs_1.5.2           xml2_1.3.3         bslib_0.3.1        ellipsis_0.3.2    </span>
 <span class="co">## [57] ragg_1.2.1         generics_0.1.2     vctrs_0.3.8        tools_4.1.2       </span>
 <span class="co">## [61] bit64_4.0.5        glue_1.6.1         purrr_0.3.4        hms_1.1.1         </span>
