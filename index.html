@@ -114,26 +114,26 @@
 <h3 id="installation-and-use">Installation and use<a class="anchor" aria-label="anchor" href="#installation-and-use"></a>
 </h3>
 <p>Install stable version from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1"></a><span class="kw">install.packages</span>(<span class="st">"eurostat"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"eurostat"</span>)</span></code></pre></div>
 <p>Alternatively, install development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a><span class="co"># Install from GitHub</span></span>
-<span id="cb2-2"><a href="#cb2-2"></a><span class="kw">library</span>(devtools)</span>
-<span id="cb2-3"><a href="#cb2-3"></a>devtools<span class="op">::</span><span class="kw">install_github</span>(<span class="st">"ropengov/eurostat"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ropengov/eurostat"</span>)</span></code></pre></div>
 <p>Development version can be also installed using the <a href="https://ropengov.r-universe.dev" class="external-link">r-universe</a>:</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1"></a><span class="co"># Enable this universe</span></span>
-<span id="cb3-2"><a href="#cb3-2"></a><span class="kw">options</span>(<span class="dt">repos =</span> <span class="kw">c</span>(</span>
-<span id="cb3-3"><a href="#cb3-3"></a>  <span class="dt">ropengov =</span> <span class="st">"https://ropengov.r-universe.dev"</span>,</span>
-<span id="cb3-4"><a href="#cb3-4"></a>  <span class="dt">CRAN =</span> <span class="st">"https://cloud.r-project.org"</span></span>
-<span id="cb3-5"><a href="#cb3-5"></a>))</span>
-<span id="cb3-6"><a href="#cb3-6"></a></span>
-<span id="cb3-7"><a href="#cb3-7"></a><span class="kw">install.packages</span>(<span class="st">"eurostat"</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable this universe</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ropengov =</span> <span class="st">"https://ropengov.r-universe.dev"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">CRAN =</span> <span class="st">"https://cloud.r-project.org"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"eurostat"</span>)</span></code></pre></div>
 <p>The package provides several different ways to get datasets from Eurostat. Searching for data is one way, if you know what to look for.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a><span class="co"># Load the package</span></span>
-<span id="cb4-2"><a href="#cb4-2"></a><span class="kw">library</span>(eurostat)</span>
-<span id="cb4-3"><a href="#cb4-3"></a></span>
-<span id="cb4-4"><a href="#cb4-4"></a><span class="co"># Perform a simple search and print a table</span></span>
-<span id="cb4-5"><a href="#cb4-5"></a>passengers &lt;-<span class="st"> </span><span class="kw">search_eurostat</span>(<span class="st">"passenger transport"</span>)</span>
-<span id="cb4-6"><a href="#cb4-6"></a>knitr<span class="op">::</span><span class="kw">kable</span>(<span class="kw">head</span>(passengers))</span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eurostat)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a simple search and print a table</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>passengers <span class="ot">&lt;-</span> <span class="fu">search_eurostat</span>(<span class="st">"passenger transport"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(passengers))</span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
 <col style="width: 40%">
