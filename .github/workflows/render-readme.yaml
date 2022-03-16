@@ -44,7 +44,7 @@ jobs:
         if: success()
         uses: peter-evans/repository-dispatch@v1
         with:
-          token: ${{ secrets.REPO_GHA_PAT }}
+          token: ${{ secrets.ROPENGOV_WORKFLOWS_PAT }}
           repository: ${{ github.repository }}
           event-type: trigger-pkgdown-workflow
           client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
