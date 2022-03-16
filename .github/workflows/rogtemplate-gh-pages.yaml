@@ -36,6 +36,7 @@ jobs:
             ropengov/rogtemplate
             any::magick
             any::tmap
+            any::Cairo
 
       - name: Build logo if not present and prepare template
         run: |
