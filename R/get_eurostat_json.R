@@ -147,7 +147,7 @@ get_eurostat_json <- function(id, filters = NULL,
     )
 
     # dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value) # v1.1
-    dat <- quickdf(variables[rev(names(variables))])
+    dat <- as.data.frame(variables[rev(names(variables))])
     vals <- unlist(jdat$value, use.names = FALSE)
     dat$values <- rep(NA, nrow(dat))
     inds <- 1 + as.numeric(names(jdat$value)) # 0-indexed
