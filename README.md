@@ -1,7 +1,7 @@
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <!-- badges: start -->
 
-[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
 [![R build
 status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
 [![cran
@@ -197,7 +197,7 @@ We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),
 including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver
 Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data
-portal! This project is part of [rOpenGov](http://ropengov.org).
+portal! This project is part of [rOpenGov](https://ropengov.org).
 
 ### Disclaimer
 
