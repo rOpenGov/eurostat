@@ -13,7 +13,7 @@ knitr::opts_chunk$set(
 ```
 
 <!-- badges: start -->
-[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
+[![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](http://ropengov.org/)
 [![R build status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
 [![cran version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.org/package=eurostat)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
@@ -107,7 +107,7 @@ Contributions are very welcome:
 
 **Kindly cite this package** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. DOI: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL: [https://ropengov.github.io/eurostat/](https://ropengov.github.io/eurostat/)
 
-We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](https://ropengov.org).
+We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](http://ropengov.org).
 
 ### Disclaimer
 
