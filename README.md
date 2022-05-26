@@ -100,8 +100,8 @@ Eurostat. Searching for data is one way, if you know what to look for.
 <td style="text-align: left;">Air passenger transport</td>
 <td style="text-align: left;">enps_avia_pa</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">16.04.2021</td>
-<td style="text-align: left;">NA</td>
+<td style="text-align: left;">10.02.2022</td>
+<td style="text-align: left;">10.02.2022</td>
 <td style="text-align: left;">2005</td>
 <td style="text-align: left;">2020</td>
 <td style="text-align: left;">NA</td>
@@ -130,30 +130,30 @@ Eurostat. Searching for data is one way, if you know what to look for.
 <td style="text-align: left;">Air passenger transport by reporting country</td>
 <td style="text-align: left;">avia_paoc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">02.02.2022</td>
-<td style="text-align: left;">17.01.2022</td>
+<td style="text-align: left;">18.05.2022</td>
+<td style="text-align: left;">18.05.2022</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2021Q3</td>
+<td style="text-align: left;">2022Q1</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Air passenger transport by main airports in each reporting country</td>
 <td style="text-align: left;">avia_paoa</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">01.02.2022</td>
-<td style="text-align: left;">01.02.2022</td>
+<td style="text-align: left;">18.05.2022</td>
+<td style="text-align: left;">18.05.2022</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2021Q4</td>
+<td style="text-align: left;">2022Q1</td>
 <td style="text-align: left;">NA</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Air passenger transport between reporting countries</td>
 <td style="text-align: left;">avia_paocc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">02.02.2022</td>
-<td style="text-align: left;">17.01.2022</td>
+<td style="text-align: left;">18.05.2022</td>
+<td style="text-align: left;">18.05.2022</td>
 <td style="text-align: left;">1993</td>
-<td style="text-align: left;">2021Q3</td>
+<td style="text-align: left;">2021Q4</td>
 <td style="text-align: left;">NA</td>
 </tr>
 </tbody>
@@ -189,7 +189,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.10. DOI:
+R package version 3.7.11. DOI:
 [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL:
 <https://ropengov.github.io/eurostat/>
 

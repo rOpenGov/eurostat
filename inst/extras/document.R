@@ -46,8 +46,8 @@ render(input = "../../README.Rmd", output_format = "md_document")
 # library(knitr)
 # knit("../../vignettes/eurostat_tutorial.Rmd", "../../vignettes/eurostat_tutorial.md")
 # or run main.R in vignettes
-setwd("vignettes/")
-source("main.R")
+#setwd("vignettes/")
+#source("main.R")
 # system("cp vignette.html ../inst/doc/")
 # tools::compactPDF("./", gs_quality = "ebook")
 
