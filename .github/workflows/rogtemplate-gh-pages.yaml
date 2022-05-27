@@ -37,6 +37,8 @@ jobs:
             any::magick
             any::tmap
             any::Cairo
+            any::rcmdcheck
+            any::XML
 
       - name: Build logo if not present and prepare template
         run: |

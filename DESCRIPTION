@@ -74,8 +74,7 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr,
-    XML
+    tidyr
 Suggests:
     RColorBrewer,
     knitr,
