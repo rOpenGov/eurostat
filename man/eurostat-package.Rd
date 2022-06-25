@@ -32,7 +32,9 @@ regions package are imported \url{https://regions.dataobservatory.eu/}.
 library(eurostat)
 }
 \references{
-See \code{citation("eurostat")}:\preformatted{# 
+See \code{citation("eurostat")}:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
 # Kindly cite the eurostat R package as follows:
 # 
 #   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
@@ -54,7 +56,7 @@ See \code{citation("eurostat")}:\preformatted{#
 #     doi = \{10.32614/RJ-2017-019\},
 #     url = \{https://doi.org/10.32614/RJ-2017-019\},
 #   \}
-}
+}\if{html}{\out{</div>}}
 }
 \seealso{
 \code{help("regions")}, \url{https://regions.dataobservatory.eu/}

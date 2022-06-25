@@ -34,7 +34,9 @@ get_eurostat_dic("crop_pro", lang = "fr")
 \dontshow{\}) # examplesIf}
 }
 \references{
-See \code{citation("eurostat")}:\preformatted{# 
+See \code{citation("eurostat")}:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
 # Kindly cite the eurostat R package as follows:
 # 
 #   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
@@ -56,7 +58,7 @@ See \code{citation("eurostat")}:\preformatted{#
 #     doi = \{10.32614/RJ-2017-019\},
 #     url = \{https://doi.org/10.32614/RJ-2017-019\},
 #   \}
-}
+}\if{html}{\out{</div>}}
 }
 \seealso{
 \code{\link[=label_eurostat]{label_eurostat()}}, \code{\link[=get_eurostat]{get_eurostat()}},
