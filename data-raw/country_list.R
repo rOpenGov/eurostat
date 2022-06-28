@@ -2,6 +2,7 @@
 
 library(rvest)
 library(dplyr)
+library(devtools)
 load_all()
 
 country_html <- read_html("http://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order")
@@ -9,15 +10,23 @@ c_tables <- country_html %>%
   html_table()
 
 # Country data.tables with code and name
+# Codes, names and protocol order of European Union (EU) Member States
 eu_countries <- c_tables[[2]] %>%
   select(code = Code, name = English) %>%
   mutate(label = eurostat::label_eurostat(code, dic = "geo"))
 
+# Codes and names of EFTA countries
 efta_countries <- c_tables[[3]] %>%
   select(code = Code, name = English) %>%
   mutate(label = eurostat::label_eurostat(code, dic = "geo"))
 
-eu_candidate_countries <- c_tables[[4]] %>%
+# United Kingdom
+united_kingdom <- c_tables[[4]] %>%
+  select(code = Code, name = English) %>%
+  mutate(label = eurostat::label_eurostat(code, dic = "geo"))
+
+# Codes and names of candidate countries
+eu_candidate_countries <- c_tables[[5]] %>%
   select(code = Code, name = English) %>%
   mutate(label = eurostat::label_eurostat(code, dic = "geo"))
 

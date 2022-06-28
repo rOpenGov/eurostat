@@ -260,7 +260,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
             stop(paste("The requested url cannot be found within
           the get_eurostat_geospatial function:", url))
           } else {
-            nuts0 <- sf::st_read(httr::content(resp, as = "text"),
+            nuts0 <- sf::st_read(httr::content(resp, as = "text", encoding = "UTF-8"),
               stringsAsFactors = FALSE, quiet = TRUE
             )
           }
@@ -271,7 +271,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
           } else {
-            nuts1 <- sf::st_read(httr::content(resp, as = "text"),
+            nuts1 <- sf::st_read(httr::content(resp, as = "text", encoding = "UTF-8"),
               stringsAsFactors = FALSE, quiet = TRUE
             )
           }
@@ -281,7 +281,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
           } else {
-            nuts2 <- sf::st_read(httr::content(resp, as = "text"),
+            nuts2 <- sf::st_read(httr::content(resp, as = "text", encoding = "UTF-8"),
               stringsAsFactors = FALSE, quiet = TRUE
             )
           }
@@ -291,7 +291,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
           } else {
-            nuts3 <- sf::st_read(httr::content(resp, as = "text"),
+            nuts3 <- sf::st_read(httr::content(resp, as = "text", encoding = "UTF-8"),
               stringsAsFactors = FALSE, quiet = TRUE
             )
           }

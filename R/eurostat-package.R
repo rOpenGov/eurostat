@@ -5,7 +5,7 @@
 #' | **Package**  | eurostat |
 #' | **Type**     | Package  |
 #' | **Version**  | `r packageVersion("eurostat")` |
-#' | **Date**     | 2014-2021     |
+#' | **Date**     | 2014-2022     |
 #' | **License**  | `r as.character(utils::packageDescription("eurostat")["License"])`|
 #' | **LazyLoad** | yes      |
 #'

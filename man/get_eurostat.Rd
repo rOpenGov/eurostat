@@ -95,7 +95,7 @@ bulk download facility can be completed for example with
 \code{\link[tidyr:complete]{tidyr::complete()}}.
 }
 \description{
-Download data sets from Eurostat \url{https://ec.europa.eu/eurostat/}.
+Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 }
 \details{
 Data sets are downloaded from

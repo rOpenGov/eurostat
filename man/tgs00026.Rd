@@ -14,7 +14,9 @@ tgs00026
 Auxiliary Data Sets
 }
 \details{
+Disposable income of private households by NUTS 2 regions
 Retrieved with: \code{tgs00026 <- get_eurostat("tgs00026", time_format = "raw") }
+Data retrieval date: 2022-06-27
 }
 \seealso{
 Other datasets: 

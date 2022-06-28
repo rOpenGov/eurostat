@@ -2,6 +2,7 @@
 #'   year 2016
 #' @description Geospatial data of Europe from Gisco in 1:60 million scale
 #'  from year 2016
+#' @details Dataset updated: 2022-06-28.
 #' @family datasets
 #' @family geospatial
 #' @format sf
@@ -30,7 +31,7 @@
 # n3 <- st_read(content(resp, as="text"), stringsAsFactors = FALSE, quiet = TRUE)
 # eurostat_geodata_60_2016 <- rbind(n0,n1,n2,n3)
 # eurostat_geodata_60_2016$geo <- eurostat_geodata_60_2016$NUTS_ID
-# save(eurostat_geodata_60_2016, file = "./data/eurostat_geodata_60_2016.rda")
+# save(eurostat_geodata_60_2016, file = "./data/eurostat_geodata_60_2016.rda", compress = "xz")
 
 
 ## -- 2013
