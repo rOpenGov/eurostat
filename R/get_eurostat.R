@@ -55,6 +55,11 @@
 #' ```{r, echo=FALSE, comment="#" }
 #' citation("eurostat")
 #' ```
+#' 
+#' When citing data, please indicate that the data source is Eurostat. If the
+#' re-use of data involves modification to the data or text, state this clearly.
+#' For more detailed information and exceptions regarding commercial use,
+#' see [Eurostat policy on copyright and free re-use of data](https://ec.europa.eu/eurostat/web/main/about/policies/copyright).
 #'
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 #' @details Data sets are downloaded from
@@ -86,16 +91,16 @@
 #' <https://ec.europa.eu/eurostat/data/database>. The Eurostat
 #' database gives codes in the Data Navigation Tree after every dataset
 #' in parenthesis.
-#' @return a tibble. One column for each dimension in the data,
-#'         the time column for a time dimension and
-#'         the values column for numerical values.
-#'         Eurostat data does not include all missing values and a treatment of
-#'         missing values depend on source. In bulk download
-#'         facility missing values are dropped if all dimensions are missing
-#'         on particular time. In JSON API missing values are dropped
-#'         only if all dimensions are missing on all times. The data from
-#'         bulk download facility can be completed for example with
-#'         [tidyr::complete()].
+#' @return 
+#' a tibble. 
+#' 
+#' One column for each dimension in the data, the time column for a time 
+#' dimension and the values column for numerical values. Eurostat data does 
+#' not include all missing values and a treatment of missing values depend 
+#' on source. In bulk download facility missing values are dropped if all 
+#' dimensions are missing on particular time. In JSON API missing values are 
+#' dropped only if all dimensions are missing on all times. The data from
+#' bulk download facility can be completed for example with [tidyr::complete()].
 #' @seealso [search_eurostat()], [label_eurostat()]
 #' @examplesIf check_access_to_data()
 #' \donttest{

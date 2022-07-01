@@ -1,6 +1,8 @@
-# eurostat 3.7.11.9000 (2022-06-28)
+# eurostat 3.7.12 (2022-06-28)
 
 * Updated included dataset `eurostat_geodata_60_2016` to fix the issue of old-style crs object (#237)
+* Added information about different variables in `eurostat_geodata_60_2016` so that the dataset is more understandable and usable for testing purposes. Added the same information to `get_eurostat_geospatial()` documentation as well.
+* Added the GISCO copyright disclaimer to `eurostat_geodata_60_2016` and `get_eurostat_geospatial()` documentation.
 * Get rid of unnecessary "No encoding supplied: defaulting to UTF-8." messages in `get_eurostat_geospatial()` by setting content encoding to UTF-8 when `httr::content()` function is called
 
 # eurostat 3.7.10 (2022-02-09)

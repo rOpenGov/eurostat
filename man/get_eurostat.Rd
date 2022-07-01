@@ -83,16 +83,15 @@ can not be used with a \code{filters}.}
   }}
 }
 \value{
-a tibble. One column for each dimension in the data,
-the time column for a time dimension and
-the values column for numerical values.
-Eurostat data does not include all missing values and a treatment of
-missing values depend on source. In bulk download
-facility missing values are dropped if all dimensions are missing
-on particular time. In JSON API missing values are dropped
-only if all dimensions are missing on all times. The data from
-bulk download facility can be completed for example with
-\code{\link[tidyr:complete]{tidyr::complete()}}.
+a tibble.
+
+One column for each dimension in the data, the time column for a time
+dimension and the values column for numerical values. Eurostat data does
+not include all missing values and a treatment of missing values depend
+on source. In bulk download facility missing values are dropped if all
+dimensions are missing on particular time. In JSON API missing values are
+dropped only if all dimensions are missing on all times. The data from
+bulk download facility can be completed for example with \code{\link[tidyr:complete]{tidyr::complete()}}.
 }
 \description{
 Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
@@ -184,6 +183,11 @@ See \code{citation("eurostat")}:
 #     url = \{https://doi.org/10.32614/RJ-2017-019\},
 #   \}
 }\if{html}{\out{</div>}}
+
+When citing data, please indicate that the data source is Eurostat. If the
+re-use of data involves modification to the data or text, state this clearly.
+For more detailed information and exceptions regarding commercial use,
+see \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{Eurostat policy on copyright and free re-use of data}.
 }
 \seealso{
 \code{\link[=search_eurostat]{search_eurostat()}}, \code{\link[=label_eurostat]{label_eurostat()}}
