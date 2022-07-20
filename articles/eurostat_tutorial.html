@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto%20Mono-0.4.1/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto_Mono-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial for the eurostat R package">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.11</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.12</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -93,7 +93,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Tutorial for the eurostat R package</h1>
             
-            <h4 data-toc-skip class="date">2022-06-25</h4>
+            <h4 data-toc-skip class="date">2022-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/vignettes/articles/eurostat_tutorial.Rmd" class="external-link"><code>vignettes/articles/eurostat_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>eurostat_tutorial.Rmd</code></div>
@@ -126,7 +126,7 @@ dic_order               Order of Variable Levels from Eurostat
 eu_countries            Countries and Country Codes
 eurostat-package        R Tools for Eurostat open data
 eurostat_geodata_60_2016
-                        Geospatial data of Europe from Gisco in 1:60
+                        Geospatial data of Europe from GISCO in 1:60
                         million scale from year 2016
 eurotime2date           Date Conversion from Eurostat Time Format
 eurotime2num            Conversion of Eurostat Time Format to Numeric
@@ -190,7 +190,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Persons living in households with very low work intensity by age and sex (population aged 0 to 64 years)</td>
 <td align="left">ilc_lvhl11n</td>
 <td align="left">dataset</td>
-<td align="left">20.06.2022</td>
+<td align="left">14.07.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2015</td>
 <td align="left">2021</td>
@@ -200,7 +200,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">People living in households with very low work intensity by broad group of country of birth (population aged 18 to 64 years)</td>
 <td align="left">ilc_lvhl16n</td>
 <td align="left">dataset</td>
-<td align="left">20.06.2022</td>
+<td align="left">14.07.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2015</td>
 <td align="left">2021</td>
@@ -210,7 +210,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">In-work at-risk-of-poverty rate by age and sex - EU-SILC survey</td>
 <td align="left">ilc_iw01</td>
 <td align="left">dataset</td>
-<td align="left">20.06.2022</td>
+<td align="left">14.07.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2003</td>
 <td align="left">2021</td>
@@ -230,7 +230,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Overcrowding rate by age, sex and poverty status - total population - EU-SILC survey</td>
 <td align="left">ilc_lvho05a</td>
 <td align="left">dataset</td>
-<td align="left">20.06.2022</td>
+<td align="left">14.07.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2003</td>
 <td align="left">2021</td>
@@ -240,7 +240,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Housing cost overburden rate by age, sex and poverty status - EU-SILC survey</td>
 <td align="left">ilc_lvho07a</td>
 <td align="left">dataset</td>
-<td align="left">20.06.2022</td>
+<td align="left">14.07.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2003</td>
 <td align="left">2021</td>
@@ -289,28 +289,28 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Volume of passenger transport relative to GDP</td>
 <td align="left">tran_hv_pstra</td>
 <td align="left">dataset</td>
-<td align="left">07.07.2021</td>
-<td align="left">07.07.2021</td>
+<td align="left">13.07.2022</td>
+<td align="left">13.07.2022</td>
 <td align="left">1990</td>
-<td align="left">2019</td>
+<td align="left">2020</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
 <td align="left">Modal split of passenger transport</td>
 <td align="left">tran_hv_psmod</td>
 <td align="left">dataset</td>
-<td align="left">07.07.2021</td>
-<td align="left">07.07.2021</td>
+<td align="left">13.07.2022</td>
+<td align="left">13.07.2022</td>
 <td align="left">1990</td>
-<td align="left">2019</td>
+<td align="left">2020</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Air passenger transport by reporting country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">07.06.2022</td>
-<td align="left">07.06.2022</td>
+<td align="left">30.06.2022</td>
+<td align="left">30.06.2022</td>
 <td align="left">1993</td>
 <td align="left">2022Q1</td>
 <td align="left">NA</td>
@@ -319,8 +319,8 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport by main airports in each reporting country</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">07.06.2022</td>
-<td align="left">07.06.2022</td>
+<td align="left">30.06.2022</td>
+<td align="left">30.06.2022</td>
 <td align="left">1993</td>
 <td align="left">2022Q1</td>
 <td align="left">NA</td>
@@ -329,8 +329,8 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Air passenger transport between reporting countries</td>
 <td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">07.06.2022</td>
-<td align="left">07.06.2022</td>
+<td align="left">30.06.2022</td>
+<td align="left">30.06.2022</td>
 <td align="left">1993</td>
 <td align="left">2022Q1</td>
 <td align="left">NA</td>
@@ -360,12 +360,12 @@ tgs00026                Auxiliary Data</code></pre>
 <p>Investigate the structure of the downloaded data set:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## tibble [2,919 × 5] (S3: tbl_df/tbl/data.frame)</span></span>
-<span><span class="co">##  $ unit   : chr [1:2919] "PC" "PC" "PC" "PC" ...</span></span>
-<span><span class="co">##  $ vehicle: chr [1:2919] "BUS_TOT" "BUS_TOT" "BUS_TOT" "BUS_TOT" ...</span></span>
-<span><span class="co">##  $ geo    : chr [1:2919] "AT" "BE" "CH" "DE" ...</span></span>
-<span><span class="co">##  $ time   : num [1:2919] 1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...</span></span>
-<span><span class="co">##  $ values : num [1:2919] 8.2 10.6 3.7 9.1 11.3 32.4 14.9 13.5 6 24.8 ...</span></span></code></pre>
+<pre><code><span><span class="co">## tibble [3,014 × 5] (S3: tbl_df/tbl/data.frame)</span></span>
+<span><span class="co">##  $ unit   : chr [1:3014] "PC" "PC" "PC" "PC" ...</span></span>
+<span><span class="co">##  $ vehicle: chr [1:3014] "BUS_TOT" "BUS_TOT" "BUS_TOT" "BUS_TOT" ...</span></span>
+<span><span class="co">##  $ geo    : chr [1:3014] "AT" "BE" "CH" "DE" ...</span></span>
+<span><span class="co">##  $ time   : num [1:3014] 1990 1990 1990 1990 1990 1990 1990 1990 1990 1990 ...</span></span>
+<span><span class="co">##  $ values : num [1:3014] 11 10.6 3.7 9.1 11.3 32.4 14.9 13.5 6 24.8 ...</span></span></code></pre>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -382,7 +382,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">BUS_TOT</td>
 <td align="left">AT</td>
 <td align="right">1990</td>
-<td align="right">8.2</td>
+<td align="right">11.0</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
@@ -438,43 +438,43 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">EU28</td>
-<td align="right">2019</td>
-<td align="right">8.5</td>
+<td align="right">2020</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">BUS_TOT</td>
 <td align="left">FI</td>
-<td align="right">2019</td>
-<td align="right">9.9</td>
+<td align="right">2020</td>
+<td align="right">9.2</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="left">CAR</td>
 <td align="left">EU28</td>
-<td align="right">2019</td>
-<td align="right">83.4</td>
+<td align="right">2020</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">CAR</td>
 <td align="left">FI</td>
-<td align="right">2019</td>
-<td align="right">83.9</td>
+<td align="right">2020</td>
+<td align="right">87.0</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="left">TRN</td>
 <td align="left">EU28</td>
-<td align="right">2019</td>
-<td align="right">8.1</td>
+<td align="right">2020</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="left">TRN</td>
 <td align="left">FI</td>
-<td align="right">2019</td>
-<td align="right">6.2</td>
+<td align="right">2020</td>
+<td align="right">3.8</td>
 </tr>
 </tbody>
 </table>
@@ -511,43 +511,43 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">European Union - 28 countries (2013-2020)</td>
-<td align="right">2019</td>
-<td align="right">8.5</td>
+<td align="right">2020</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Finland</td>
-<td align="right">2019</td>
-<td align="right">9.9</td>
+<td align="right">2020</td>
+<td align="right">9.2</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="left">Passenger cars</td>
 <td align="left">European Union - 28 countries (2013-2020)</td>
-<td align="right">2019</td>
-<td align="right">83.4</td>
+<td align="right">2020</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Passenger cars</td>
 <td align="left">Finland</td>
-<td align="right">2019</td>
-<td align="right">83.9</td>
+<td align="right">2020</td>
+<td align="right">87.0</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="left">Trains</td>
 <td align="left">European Union - 28 countries (2013-2020)</td>
-<td align="right">2019</td>
-<td align="right">8.1</td>
+<td align="right">2020</td>
+<td align="right">NA</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="left">Trains</td>
 <td align="left">Finland</td>
-<td align="right">2019</td>
-<td align="right">6.2</td>
+<td align="right">2020</td>
+<td align="right">3.8</td>
 </tr>
 </tbody>
 </table>
@@ -576,7 +576,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Austria</td>
 <td align="right">1990</td>
-<td align="right">8.2</td>
+<td align="right">11.0</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
@@ -704,72 +704,72 @@ tgs00026                Auxiliary Data</code></pre>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2000</td>
-<td align="right">10.4</td>
-<td align="right">82.5</td>
-<td align="right">7.1</td>
+<td align="right">9.9</td>
+<td align="right">82.9</td>
+<td align="right">7.2</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2001</td>
-<td align="right">10.2</td>
-<td align="right">82.8</td>
-<td align="right">7.0</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2002</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.8</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2003</td>
-<td align="right">9.8</td>
-<td align="right">83.6</td>
-<td align="right">6.6</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2004</td>
-<td align="right">9.7</td>
-<td align="right">83.5</td>
-<td align="right">6.7</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2005</td>
-<td align="right">9.8</td>
-<td align="right">83.4</td>
-<td align="right">6.9</td>
-</tr>
-<tr class="odd">
-<td align="left">PC</td>
-<td align="right">2006</td>
-<td align="right">9.6</td>
-<td align="right">83.4</td>
-<td align="right">7.0</td>
-</tr>
-<tr class="even">
-<td align="left">PC</td>
-<td align="right">2007</td>
 <td align="right">9.8</td>
 <td align="right">83.1</td>
 <td align="right">7.1</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
-<td align="right">2008</td>
+<td align="right">2002</td>
+<td align="right">9.6</td>
+<td align="right">83.6</td>
+<td align="right">6.8</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="right">2003</td>
+<td align="right">9.5</td>
+<td align="right">83.9</td>
+<td align="right">6.7</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="right">2004</td>
+<td align="right">9.9</td>
+<td align="right">83.4</td>
+<td align="right">6.8</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="right">2005</td>
 <td align="right">9.8</td>
-<td align="right">82.9</td>
-<td align="right">7.4</td>
+<td align="right">83.3</td>
+<td align="right">6.8</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="right">2006</td>
+<td align="right">9.2</td>
+<td align="right">83.7</td>
+<td align="right">7.0</td>
+</tr>
+<tr class="even">
+<td align="left">PC</td>
+<td align="right">2007</td>
+<td align="right">9.4</td>
+<td align="right">83.4</td>
+<td align="right">7.2</td>
+</tr>
+<tr class="odd">
+<td align="left">PC</td>
+<td align="right">2008</td>
+<td align="right">9.3</td>
+<td align="right">83.4</td>
+<td align="right">7.3</td>
 </tr>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2009</td>
-<td align="right">9.2</td>
-<td align="right">83.7</td>
-<td align="right">7.1</td>
+<td align="right">9.0</td>
+<td align="right">84.0</td>
+<td align="right">7.0</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
@@ -781,16 +781,16 @@ tgs00026                Auxiliary Data</code></pre>
 <tr class="even">
 <td align="left">PC</td>
 <td align="right">2011</td>
-<td align="right">9.4</td>
-<td align="right">83.2</td>
+<td align="right">9.6</td>
+<td align="right">83.0</td>
 <td align="right">7.4</td>
 </tr>
 <tr class="odd">
 <td align="left">PC</td>
 <td align="right">2012</td>
-<td align="right">9.4</td>
-<td align="right">82.9</td>
-<td align="right">7.7</td>
+<td align="right">9.7</td>
+<td align="right">82.7</td>
+<td align="right">7.6</td>
 </tr>
 </tbody>
 </table>
@@ -820,15 +820,15 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="right">9.8</td>
 <td align="right">6.3</td>
 <td align="right">5.1</td>
-<td align="right">6.9</td>
+<td align="right">7.5</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="right">2001</td>
-<td align="right">9.8</td>
+<td align="right">9.7</td>
 <td align="right">6.4</td>
 <td align="right">4.8</td>
-<td align="right">7.3</td>
+<td align="right">7.9</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -836,15 +836,15 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="right">9.7</td>
 <td align="right">6.5</td>
 <td align="right">4.8</td>
-<td align="right">7.2</td>
+<td align="right">7.8</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="right">2003</td>
-<td align="right">9.6</td>
+<td align="right">9.5</td>
 <td align="right">6.5</td>
 <td align="right">4.7</td>
-<td align="right">7.1</td>
+<td align="right">7.7</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
@@ -852,29 +852,29 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="right">9.5</td>
 <td align="right">7.1</td>
 <td align="right">4.7</td>
-<td align="right">6.9</td>
+<td align="right">7.5</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="right">2005</td>
 <td align="right">9.8</td>
-<td align="right">6.6</td>
+<td align="right">6.3</td>
 <td align="right">4.8</td>
-<td align="right">7.1</td>
+<td align="right">7.7</td>
 </tr>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="right">2006</td>
 <td align="right">10.0</td>
-<td align="right">6.9</td>
+<td align="right">6.6</td>
 <td align="right">4.8</td>
-<td align="right">7.7</td>
+<td align="right">8.3</td>
 </tr>
 <tr class="even">
 <td align="left">Percentage</td>
 <td align="right">2007</td>
 <td align="right">10.1</td>
-<td align="right">7.1</td>
+<td align="right">6.6</td>
 <td align="right">5.0</td>
 <td align="right">8.0</td>
 </tr>
@@ -882,7 +882,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Percentage</td>
 <td align="right">2008</td>
 <td align="right">11.1</td>
-<td align="right">7.5</td>
+<td align="right">7.2</td>
 <td align="right">5.4</td>
 <td align="right">8.7</td>
 </tr>
@@ -890,7 +890,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Percentage</td>
 <td align="right">2009</td>
 <td align="right">11.2</td>
-<td align="right">7.5</td>
+<td align="right">7.3</td>
 <td align="right">5.1</td>
 <td align="right">8.8</td>
 </tr>
@@ -898,7 +898,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Percentage</td>
 <td align="right">2010</td>
 <td align="right">11.1</td>
-<td align="right">7.6</td>
+<td align="right">7.5</td>
 <td align="right">5.2</td>
 <td align="right">8.7</td>
 </tr>
@@ -913,8 +913,8 @@ tgs00026                Auxiliary Data</code></pre>
 <tr class="odd">
 <td align="left">Percentage</td>
 <td align="right">2012</td>
-<td align="right">11.9</td>
-<td align="right">7.8</td>
+<td align="right">11.8</td>
+<td align="right">7.5</td>
 <td align="right">5.3</td>
 <td align="right">9.1</td>
 </tr>
@@ -1011,27 +1011,27 @@ tgs00026                Auxiliary Data</code></pre>
 <span><span class="co">## [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## other attached packages:</span></span>
-<span><span class="co">## [1] tidyr_1.2.0     eurostat_3.7.11 knitr_1.39     </span></span>
+<span><span class="co">## [1] tidyr_1.2.0     eurostat_3.7.12 knitr_1.39     </span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## loaded via a namespace (and not attached):</span></span>
-<span><span class="co">##  [1] Rcpp_1.0.8.3       lubridate_1.8.0    here_1.0.1         countrycode_1.4.0 </span></span>
+<span><span class="co">##  [1] Rcpp_1.0.9         lubridate_1.8.0    here_1.0.1         countrycode_1.4.0 </span></span>
 <span><span class="co">##  [5] class_7.3-20       assertthat_0.2.1   rprojroot_2.0.3    digest_0.6.29     </span></span>
 <span><span class="co">##  [9] utf8_1.2.2         R6_2.5.1           cellranger_1.1.0   plyr_1.8.7        </span></span>
 <span><span class="co">## [13] backports_1.4.1    evaluate_0.15      e1071_1.7-11       highr_0.9         </span></span>
-<span><span class="co">## [17] httr_1.4.3         pillar_1.7.0       rlang_1.0.2        curl_4.3.2        </span></span>
-<span><span class="co">## [21] readxl_1.4.0       jquerylib_0.1.4    rmarkdown_2.14     pkgdown_2.0.5     </span></span>
+<span><span class="co">## [17] httr_1.4.3         pillar_1.8.0       rlang_1.0.4        curl_4.3.2        </span></span>
+<span><span class="co">## [21] readxl_1.4.0       jquerylib_0.1.4    rmarkdown_2.14     pkgdown_2.0.6     </span></span>
 <span><span class="co">## [25] textshaping_0.3.6  desc_1.4.1         RefManageR_1.3.0   readr_2.1.2       </span></span>
-<span><span class="co">## [29] stringr_1.4.0      bit_4.0.4          proxy_0.4-27       broom_0.8.0       </span></span>
+<span><span class="co">## [29] stringr_1.4.0      bit_4.0.4          proxy_0.4-27       broom_1.0.0       </span></span>
 <span><span class="co">## [33] compiler_4.2.0     xfun_0.31          pkgconfig_2.0.3    systemfonts_1.0.4 </span></span>
-<span><span class="co">## [37] htmltools_0.5.2    tidyselect_1.1.2   tibble_3.1.7       regions_0.1.8     </span></span>
+<span><span class="co">## [37] htmltools_0.5.3    tidyselect_1.1.2   tibble_3.1.7       regions_0.1.8     </span></span>
 <span><span class="co">## [41] fansi_1.0.3        crayon_1.5.1       dplyr_1.0.9        tzdb_0.3.0        </span></span>
 <span><span class="co">## [45] jsonlite_1.8.0     lifecycle_1.0.1    magrittr_2.0.3     KernSmooth_2.23-20</span></span>
-<span><span class="co">## [49] vroom_1.5.7        cli_3.3.0          stringi_1.7.6      cachem_1.0.6      </span></span>
-<span><span class="co">## [53] fs_1.5.2           xml2_1.3.3         bslib_0.3.1        ellipsis_0.3.2    </span></span>
-<span><span class="co">## [57] ragg_1.2.2         generics_0.1.2     vctrs_0.4.1        tools_4.2.0       </span></span>
+<span><span class="co">## [49] cli_3.3.0          stringi_1.7.8      vroom_1.5.7        cachem_1.0.6      </span></span>
+<span><span class="co">## [53] fs_1.5.2           xml2_1.3.3         bslib_0.4.0        ellipsis_0.3.2    </span></span>
+<span><span class="co">## [57] ragg_1.2.2         generics_0.1.3     vctrs_0.4.1        tools_4.2.0       </span></span>
 <span><span class="co">## [61] bit64_4.0.5        glue_1.6.2         purrr_0.3.4        hms_1.1.1         </span></span>
 <span><span class="co">## [65] parallel_4.2.0     fastmap_1.1.0      yaml_2.3.5         classInt_0.4-7    </span></span>
-<span><span class="co">## [69] memoise_2.0.1      sass_0.4.1</span></span></code></pre>
+<span><span class="co">## [69] memoise_2.0.1      sass_0.4.2</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -1046,7 +1046,7 @@ tgs00026                Auxiliary Data</code></pre>
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>

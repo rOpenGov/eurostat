@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.1.0/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.1.0/bootstrap.bundle.min.js"></script><link href="../deps/_Roboto%20Mono-0.4.1/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.1.3/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.1.3/bootstrap.bundle.min.js"></script><link href="../deps/Roboto_Mono-0.4.2/font.css" rel="stylesheet">
 <!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.rawgit.com/afeld/bootstrap-toc/v1.0.1/dist/bootstrap-toc.min.js"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Mapping Regional Data, Mapping Metadata Problems">
@@ -40,7 +40,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.11</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.12</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -94,7 +94,7 @@
       <img src="../logo.png" class="logo" alt=""><h1>Mapping Regional Data, Mapping Metadata Problems</h1>
                         <h4 data-toc-skip class="author">Daniel Antal, CFA</h4>
             
-            <h4 data-toc-skip class="date">2022-06-25</h4>
+            <h4 data-toc-skip class="date">2022-07-20</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/vignettes/articles/mapping.Rmd" class="external-link"><code>vignettes/articles/mapping.Rmd</code></a></small>
       <div class="d-none name"><code>mapping.Rmd</code></div>
@@ -140,7 +140,6 @@
 <span>  year <span class="op">=</span> <span class="fl">2016</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt; Loading required namespace: sf</span></span>
-<span><span class="co">#&gt; old-style crs object detected; please recreate object with a recent sf::st_crs()</span></span>
 <span><span class="co">#&gt; sf at resolution 1:60 read from local file</span></span>
 <span><span class="co">#&gt; Warning in eurostat::get_eurostat_geospatial(resolution = "60", nuts_level =</span></span>
 <span><span class="co">#&gt; "2", : Default of 'make_valid' for 'output_class="sf"' will be changed in the</span></span>
@@ -193,30 +192,32 @@
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="st">"2009"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 6</span></span></span>
-<span><span class="co">#&gt;   time  typology        observations values_missing values_present valid_present</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2009  country                   28              1             27         0.964</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2009  non_eu_country             7              2              5         0.714</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2009  non_eu_nuts_le…            7              4              3         0.429</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2009  non_eu_nuts_le…           10              5              5         0.5  </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2009  nuts_level_1             105             14             91         0.867</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2009  nuts_level_2             265             49            216         0.815</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 2009  <span style="color: #BB0000;">NA</span>                        56              3             53         0.946</span></span></code></pre></div>
+<span><span class="co">#&gt;   time  typology            observations values_missing values_present valid_p…¹</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2009  country                       28              1             27     0.964</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2009  non_eu_country                 7              2              5     0.714</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2009  non_eu_nuts_level_1            7              4              3     0.429</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2009  non_eu_nuts_level_2           10              5              5     0.5  </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2009  nuts_level_1                 105             14             91     0.867</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2009  nuts_level_2                 265             49            216     0.815</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 2009  <span style="color: #BB0000;">NA</span>                            56              3             53     0.946</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable name ¹​valid_present</span></span></span></code></pre></div>
 <p>The situation is not better in 2018:</p>
 <div class="sourceCode" id="cb11"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">validation_summary_2016</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/group_by.html" class="external-link">ungroup</a></span><span class="op">(</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">.data</span><span class="op">$</span><span class="va">time</span> <span class="op">==</span> <span class="st">"2018"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 7 × 6</span></span></span>
-<span><span class="co">#&gt;   time  typology        observations values_missing values_present valid_present</span></span>
-<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                  <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>         <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2018  country                   28              0             28         1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2018  non_eu_country             7              1              6         0.857</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2018  non_eu_nuts_le…            7              1              6         0.857</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2018  non_eu_nuts_le…           10              0             10         1    </span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2018  nuts_level_1             105             45             60         0.571</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2018  nuts_level_2             265            113            152         0.574</span></span>
-<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 2018  <span style="color: #BB0000;">NA</span>                        56             45             11         0.196</span></span></code></pre></div>
+<span><span class="co">#&gt;   time  typology            observations values_missing values_present valid_p…¹</span></span>
+<span><span class="co">#&gt;   <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span> <span style="color: #949494; font-style: italic;">&lt;chr&gt;</span>                      <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>          <span style="color: #949494; font-style: italic;">&lt;int&gt;</span>     <span style="color: #949494; font-style: italic;">&lt;dbl&gt;</span></span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">1</span> 2018  country                       28              0             28     1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">2</span> 2018  non_eu_country                 7              1              6     0.857</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">3</span> 2018  non_eu_nuts_level_1            7              1              6     0.857</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">4</span> 2018  non_eu_nuts_level_2           10              0             10     1    </span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">5</span> 2018  nuts_level_1                 105             45             60     0.571</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">6</span> 2018  nuts_level_2                 265            113            152     0.574</span></span>
+<span><span class="co">#&gt; <span style="color: #BCBCBC;">7</span> 2018  <span style="color: #BB0000;">NA</span>                            56             45             11     0.196</span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with abbreviated variable name ¹​valid_present</span></span></span></code></pre></div>
 <p>The dataset is plagued with data that has no place in the <code>NUTS2016</code> boundary definition, and therefore on a <code>NUTS2016</code> map!</p>
 <p>What are the non-conforming bits?</p>
 <div class="sourceCode" id="cb12"><pre class="downlit sourceCode r">
@@ -328,7 +329,8 @@
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 8</span> FR30  FRE1     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;"> 9</span> FR41  FRF3     </span></span>
 <span><span class="co">#&gt; <span style="color: #BCBCBC;">10</span> FR42  FRF1     </span></span>
-<span><span class="co">#&gt; <span style="color: #949494;"># … with 17 more rows</span></span></span></code></pre></div>
+<span><span class="co">#&gt; <span style="color: #949494;"># … with 17 more rows</span></span></span>
+<span><span class="co">#&gt; <span style="color: #949494;"># ℹ Use `print(n = ...)` to see more rows</span></span></span></code></pre></div>
 <p>So, let us do the trick: change the <code>geo</code> variable to <code>code_2016</code>, which is, whenever there is an equivalent <code>geo</code> code in the <code>NUTS2016</code> definition, the data that you should have. Your original geo variable contains codes that were used, for example, in the <code>NUTS2010</code> or <code>NUTS2013</code> boundary definitions.</p>
 <div class="sourceCode" id="cb17"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">recoded_with_map</span> <span class="op">&lt;-</span> <span class="va">map_nuts_2</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
@@ -485,29 +487,29 @@
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] ggplot2_3.3.6   dplyr_1.0.9     eurostat_3.7.11 regions_0.1.8  </span></span>
+<span><span class="co">#&gt; [1] ggplot2_3.3.6   dplyr_1.0.9     eurostat_3.7.12 regions_0.1.8  </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] Rcpp_1.0.8.3       lubridate_1.8.0    here_1.0.1         countrycode_1.4.0 </span></span>
+<span><span class="co">#&gt;  [1] Rcpp_1.0.9         lubridate_1.8.0    here_1.0.1         countrycode_1.4.0 </span></span>
 <span><span class="co">#&gt;  [5] tidyr_1.2.0        class_7.3-20       assertthat_0.2.1   rprojroot_2.0.3   </span></span>
 <span><span class="co">#&gt;  [9] digest_0.6.29      utf8_1.2.2         R6_2.5.1           cellranger_1.1.0  </span></span>
 <span><span class="co">#&gt; [13] plyr_1.8.7         backports_1.4.1    evaluate_0.15      e1071_1.7-11      </span></span>
-<span><span class="co">#&gt; [17] highr_0.9          httr_1.4.3         pillar_1.7.0       rlang_1.0.2       </span></span>
+<span><span class="co">#&gt; [17] highr_0.9          httr_1.4.3         pillar_1.8.0       rlang_1.0.4       </span></span>
 <span><span class="co">#&gt; [21] curl_4.3.2         readxl_1.4.0       jquerylib_0.1.4    rmarkdown_2.14    </span></span>
-<span><span class="co">#&gt; [25] pkgdown_2.0.5      textshaping_0.3.6  desc_1.4.1         RefManageR_1.3.0  </span></span>
+<span><span class="co">#&gt; [25] pkgdown_2.0.6      textshaping_0.3.6  desc_1.4.1         RefManageR_1.3.0  </span></span>
 <span><span class="co">#&gt; [29] readr_2.1.2        stringr_1.4.0      munsell_0.5.0      proxy_0.4-27      </span></span>
-<span><span class="co">#&gt; [33] broom_0.8.0        compiler_4.2.0     xfun_0.31          pkgconfig_2.0.3   </span></span>
-<span><span class="co">#&gt; [37] systemfonts_1.0.4  htmltools_0.5.2    tidyselect_1.1.2   tibble_3.1.7      </span></span>
-<span><span class="co">#&gt; [41] fansi_1.0.3        sf_1.0-7           withr_2.5.0        crayon_1.5.1      </span></span>
+<span><span class="co">#&gt; [33] broom_1.0.0        compiler_4.2.0     xfun_0.31          pkgconfig_2.0.3   </span></span>
+<span><span class="co">#&gt; [37] systemfonts_1.0.4  htmltools_0.5.3    tidyselect_1.1.2   tibble_3.1.7      </span></span>
+<span><span class="co">#&gt; [41] fansi_1.0.3        crayon_1.5.1       sf_1.0-8           withr_2.5.0       </span></span>
 <span><span class="co">#&gt; [45] tzdb_0.3.0         wk_0.6.0           grid_4.2.0         DBI_1.1.3         </span></span>
 <span><span class="co">#&gt; [49] gtable_0.3.0       jsonlite_1.8.0     lifecycle_1.0.1    magrittr_2.0.3    </span></span>
 <span><span class="co">#&gt; [53] units_0.8-0        scales_1.2.0       KernSmooth_2.23-20 cli_3.3.0         </span></span>
-<span><span class="co">#&gt; [57] stringi_1.7.6      cachem_1.0.6       farver_2.1.0       fs_1.5.2          </span></span>
-<span><span class="co">#&gt; [61] xml2_1.3.3         bslib_0.3.1        ellipsis_0.3.2     ragg_1.2.2        </span></span>
-<span><span class="co">#&gt; [65] generics_0.1.2     vctrs_0.4.1        s2_1.0.7           tools_4.2.0       </span></span>
+<span><span class="co">#&gt; [57] stringi_1.7.8      cachem_1.0.6       farver_2.1.1       fs_1.5.2          </span></span>
+<span><span class="co">#&gt; [61] xml2_1.3.3         bslib_0.4.0        ellipsis_0.3.2     ragg_1.2.2        </span></span>
+<span><span class="co">#&gt; [65] generics_0.1.3     vctrs_0.4.1        s2_1.1.0           tools_4.2.0       </span></span>
 <span><span class="co">#&gt; [69] glue_1.6.2         purrr_0.3.4        hms_1.1.1          fastmap_1.1.0     </span></span>
 <span><span class="co">#&gt; [73] yaml_2.3.5         colorspace_2.0-3   classInt_0.4-7     memoise_2.0.1     </span></span>
-<span><span class="co">#&gt; [77] knitr_1.39         sass_0.4.1</span></span></code></pre></div>
+<span><span class="co">#&gt; [77] knitr_1.39         sass_0.4.2</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
     </nav></aside>
@@ -522,7 +524,7 @@
 
 <div class="pkgdown-footer-right">
   <p></p>
-<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.5.</p>
+<p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.0.6.</p>
 </div>
 
     </footer>
