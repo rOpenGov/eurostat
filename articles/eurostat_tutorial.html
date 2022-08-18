@@ -93,7 +93,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Tutorial for the eurostat R package</h1>
             
-            <h4 data-toc-skip class="date">2022-07-20</h4>
+            <h4 data-toc-skip class="date">2022-08-18</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/vignettes/articles/eurostat_tutorial.Rmd" class="external-link"><code>vignettes/articles/eurostat_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>eurostat_tutorial.Rmd</code></div>
@@ -190,7 +190,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Persons living in households with very low work intensity by age and sex (population aged 0 to 64 years)</td>
 <td align="left">ilc_lvhl11n</td>
 <td align="left">dataset</td>
-<td align="left">14.07.2022</td>
+<td align="left">11.08.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2015</td>
 <td align="left">2021</td>
@@ -200,7 +200,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">People living in households with very low work intensity by broad group of country of birth (population aged 18 to 64 years)</td>
 <td align="left">ilc_lvhl16n</td>
 <td align="left">dataset</td>
-<td align="left">14.07.2022</td>
+<td align="left">11.08.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2015</td>
 <td align="left">2021</td>
@@ -210,7 +210,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">In-work at-risk-of-poverty rate by age and sex - EU-SILC survey</td>
 <td align="left">ilc_iw01</td>
 <td align="left">dataset</td>
-<td align="left">14.07.2022</td>
+<td align="left">11.08.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2003</td>
 <td align="left">2021</td>
@@ -220,7 +220,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Severe housing deprivation rate by age, sex and poverty status - EU-SILC survey</td>
 <td align="left">ilc_mdho06a</td>
 <td align="left">dataset</td>
-<td align="left">13.05.2022</td>
+<td align="left">11.08.2022</td>
 <td align="left">19.05.2021</td>
 <td align="left">2003</td>
 <td align="left">2020</td>
@@ -230,7 +230,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Overcrowding rate by age, sex and poverty status - total population - EU-SILC survey</td>
 <td align="left">ilc_lvho05a</td>
 <td align="left">dataset</td>
-<td align="left">14.07.2022</td>
+<td align="left">11.08.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2003</td>
 <td align="left">2021</td>
@@ -240,7 +240,7 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">Housing cost overburden rate by age, sex and poverty status - EU-SILC survey</td>
 <td align="left">ilc_lvho07a</td>
 <td align="left">dataset</td>
-<td align="left">14.07.2022</td>
+<td align="left">11.08.2022</td>
 <td align="left">08.06.2022</td>
 <td align="left">2003</td>
 <td align="left">2021</td>
@@ -253,16 +253,16 @@ tgs00026                Auxiliary Data</code></pre>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># info about passengers</span></span>
 <span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="fu"><a href="../reference/search_eurostat.html">search_eurostat</a></span><span class="op">(</span><span class="st">"passenger transport"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
-<table style="width:100%;" class="table">
+<table class="table">
 <colgroup>
-<col width="40%">
-<col width="8%">
+<col width="48%">
+<col width="7%">
 <col width="4%">
-<col width="12%">
-<col width="17%">
-<col width="6%">
+<col width="10%">
+<col width="14%">
 <col width="5%">
 <col width="4%">
+<col width="3%">
 </colgroup>
 <thead><tr class="header">
 <th align="left">title</th>
@@ -306,33 +306,33 @@ tgs00026                Auxiliary Data</code></pre>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport by reporting country</td>
-<td align="left">avia_paoc</td>
+<td align="left">Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries</td>
+<td align="left">mar_tp_pa</td>
 <td align="left">dataset</td>
-<td align="left">30.06.2022</td>
-<td align="left">30.06.2022</td>
-<td align="left">1993</td>
-<td align="left">2022Q1</td>
+<td align="left">04.08.2022</td>
+<td align="left">NA</td>
+<td align="left">2005</td>
+<td align="left">2020</td>
 <td align="left">NA</td>
 </tr>
 <tr class="odd">
-<td align="left">Air passenger transport by main airports in each reporting country</td>
-<td align="left">avia_paoa</td>
+<td align="left">Air passenger transport by reporting country</td>
+<td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">30.06.2022</td>
-<td align="left">30.06.2022</td>
+<td align="left">20.07.2022</td>
+<td align="left">20.07.2022</td>
 <td align="left">1993</td>
-<td align="left">2022Q1</td>
+<td align="left">2022Q2</td>
 <td align="left">NA</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport between reporting countries</td>
-<td align="left">avia_paocc</td>
+<td align="left">Air passenger transport by main airports in each reporting country</td>
+<td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">30.06.2022</td>
-<td align="left">30.06.2022</td>
+<td align="left">21.07.2022</td>
+<td align="left">20.07.2022</td>
 <td align="left">1993</td>
-<td align="left">2022Q1</td>
+<td align="left">2022Q2</td>
 <td align="left">NA</td>
 </tr>
 </tbody>
@@ -993,7 +993,7 @@ tgs00026                Auxiliary Data</code></pre>
 <p>This tutorial was created with</p>
 <div class="sourceCode" id="cb25"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## R version 4.2.0 (2022-04-22)</span></span>
+<pre><code><span><span class="co">## R version 4.2.1 (2022-06-23)</span></span>
 <span><span class="co">## Platform: x86_64-pc-linux-gnu (64-bit)</span></span>
 <span><span class="co">## Running under: Ubuntu 20.04.4 LTS</span></span>
 <span><span class="co">## </span></span>
@@ -1017,20 +1017,20 @@ tgs00026                Auxiliary Data</code></pre>
 <span><span class="co">##  [1] Rcpp_1.0.9         lubridate_1.8.0    here_1.0.1         countrycode_1.4.0 </span></span>
 <span><span class="co">##  [5] class_7.3-20       assertthat_0.2.1   rprojroot_2.0.3    digest_0.6.29     </span></span>
 <span><span class="co">##  [9] utf8_1.2.2         R6_2.5.1           cellranger_1.1.0   plyr_1.8.7        </span></span>
-<span><span class="co">## [13] backports_1.4.1    evaluate_0.15      e1071_1.7-11       highr_0.9         </span></span>
+<span><span class="co">## [13] backports_1.4.1    evaluate_0.16      e1071_1.7-11       highr_0.9         </span></span>
 <span><span class="co">## [17] httr_1.4.3         pillar_1.8.0       rlang_1.0.4        curl_4.3.2        </span></span>
-<span><span class="co">## [21] readxl_1.4.0       jquerylib_0.1.4    rmarkdown_2.14     pkgdown_2.0.6     </span></span>
+<span><span class="co">## [21] readxl_1.4.1       jquerylib_0.1.4    rmarkdown_2.14     pkgdown_2.0.6     </span></span>
 <span><span class="co">## [25] textshaping_0.3.6  desc_1.4.1         RefManageR_1.3.0   readr_2.1.2       </span></span>
 <span><span class="co">## [29] stringr_1.4.0      bit_4.0.4          proxy_0.4-27       broom_1.0.0       </span></span>
-<span><span class="co">## [33] compiler_4.2.0     xfun_0.31          pkgconfig_2.0.3    systemfonts_1.0.4 </span></span>
-<span><span class="co">## [37] htmltools_0.5.3    tidyselect_1.1.2   tibble_3.1.7       regions_0.1.8     </span></span>
+<span><span class="co">## [33] compiler_4.2.1     xfun_0.32          pkgconfig_2.0.3    systemfonts_1.0.4 </span></span>
+<span><span class="co">## [37] htmltools_0.5.3    tidyselect_1.1.2   tibble_3.1.8       regions_0.1.8     </span></span>
 <span><span class="co">## [41] fansi_1.0.3        crayon_1.5.1       dplyr_1.0.9        tzdb_0.3.0        </span></span>
 <span><span class="co">## [45] jsonlite_1.8.0     lifecycle_1.0.1    magrittr_2.0.3     KernSmooth_2.23-20</span></span>
 <span><span class="co">## [49] cli_3.3.0          stringi_1.7.8      vroom_1.5.7        cachem_1.0.6      </span></span>
 <span><span class="co">## [53] fs_1.5.2           xml2_1.3.3         bslib_0.4.0        ellipsis_0.3.2    </span></span>
-<span><span class="co">## [57] ragg_1.2.2         generics_0.1.3     vctrs_0.4.1        tools_4.2.0       </span></span>
+<span><span class="co">## [57] ragg_1.2.2         generics_0.1.3     vctrs_0.4.1        tools_4.2.1       </span></span>
 <span><span class="co">## [61] bit64_4.0.5        glue_1.6.2         purrr_0.3.4        hms_1.1.1         </span></span>
-<span><span class="co">## [65] parallel_4.2.0     fastmap_1.1.0      yaml_2.3.5         classInt_0.4-7    </span></span>
+<span><span class="co">## [65] parallel_4.2.1     fastmap_1.1.0      yaml_2.3.5         classInt_0.4-7    </span></span>
 <span><span class="co">## [69] memoise_2.0.1      sass_0.4.2</span></span></code></pre>
 </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
