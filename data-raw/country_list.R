@@ -37,7 +37,7 @@ ea_countries <- ea_country_html %>%
   html_table(fill = TRUE) %>%
   unlist() %>%
   {
-    data_frame(name = grep("^[[:alpha:]]", ., value = TRUE))
+    tibble(name = grep("^[[:alpha:]]", ., value = TRUE))
   } %>%
   inner_join(eu_countries, .) %>% # Get eu order and codes
   mutate(label = eurostat::label_eurostat(code, dic = "geo"))
