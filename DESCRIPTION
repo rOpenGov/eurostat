@@ -1,7 +1,7 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 3.7.12
+Version: 3.7.13
 Date: 2022-06-28
 Authors@R: c(
     person(given = "Leo", 
@@ -98,6 +98,6 @@ MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.0
+RoxygenNote: 7.2.3
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
