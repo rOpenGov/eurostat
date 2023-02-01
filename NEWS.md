@@ -1,6 +1,6 @@
 # eurostat 3.7.13 (2023-02-01)
 
-* Updated `get_eurostat_json` to migrate from JSON web service to API Statistics (addressed in issues #250, #251). Removed parameters *lang* and *type*; *lang* is now part of the **filters** parameter and . See Eurostat - Data browser online help website for more information: https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics
+* Updated `get_eurostat_json` to migrate from JSON web service to API Statistics (addressed in issues #250, #251). See Eurostat - Data browser online help website for more information: https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics
 * Minor fixes in `get_bibentry` and `get_eurostat_geospatial`
 
 # eurostat 3.7.12 (2022-06-28)
