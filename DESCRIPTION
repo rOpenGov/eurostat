@@ -79,7 +79,7 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr
+    tidyr (>= 1.0.0)
 Suggests:
     RColorBrewer,
     knitr,

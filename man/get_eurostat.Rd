@@ -79,7 +79,8 @@ can not be used with a \code{filters}.}
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
   \describe{
-    \item{\code{lang}}{A language used for metadata (en/fr/de).}
+    \item{\code{lang}}{A language used for metadata. Default is \code{EN}, other options are
+\code{FR} and \code{DE}.}
   }}
 }
 \value{

@@ -150,7 +150,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
     }
 
     # No cache for json
-    if (is.null(filters) || filters != "none") {
+    if (is.null(filters) || identical(filters, "none")) {
       cache <- FALSE
     }
 
@@ -179,7 +179,7 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
     if (!cache || update_cache || !file.exists(cache_file)) {
       if (is.null(filters) || is.list(filters)) {
 
-        # API Download
+        # JSON API Download
         y <- get_eurostat_json(id, filters,
           type = type,
           stringsAsFactors = stringsAsFactors, ...

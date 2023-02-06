@@ -20,18 +20,18 @@ contents of eurostat datasets for more details.}
 \item{filters}{A named list of filters. Names of list objects are Eurostat
 variable codes and values are vectors of observation codes. If \code{NULL}
 (default) the whole dataset is returned. See details for more on filters
-and limitations per query. **Please note that before eurostat 3.7.13 lang
-was a separate parameter, but from 3.7.13 onwards it is one of the filters.}
+and limitations per query.}
 
-\item{type}{A type of variables, "code" (default), "label" or "both". The
-"both" will return a data_frame with named vectors, labels as values and
-codes as names.}
+\item{type}{A type of variables, "\code{code}" (default), "\code{label}" or "\code{both}".
+The parameter "\code{both}" will return a data_frame with named vectors,
+labels as values and codes as names.}
 
-\item{lang}{A language used for metadata (en/fr/de).}
+\item{lang}{A language used for metadata. Default is \code{EN}, other options are
+\code{FR} and \code{DE}.}
 
-\item{stringsAsFactors}{if \code{TRUE} (the default) variables are converted
-to factors in original Eurostat order. If \code{FALSE} they are returned as
-a character.}
+\item{stringsAsFactors}{if \code{FALSE} (the default) the variables are
+returned as characters. If \code{TRUE} the variables are converted to
+factors in original Eurostat order.}
 
 \item{...}{
   Arguments passed on to \code{\link[httr:GET]{httr::GET}}
@@ -51,7 +51,7 @@ details.}
   }}
 }
 \value{
-A dataset as a data_frame.
+A dataset as an object of \code{data.frame} class.
 }
 \description{
 Retrieve data from Eurostat API in JSON format.
@@ -74,13 +74,23 @@ passed to \code{\link[httr:GET]{httr::GET()}}. For example
 \code{get_eurostat_json(id, filters, config = httr::use_proxy(url, port, username, password))}.
 }
 \examples{
-# nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.
 \dontrun{
-tmp <- get_eurostat_json("cdh_e_fos")
-yy <- get_eurostat_json(id = "nama_gdp_c", filters = list(
-  geo = c("EU28", "FI"),
-  unit = "EUR_HAB",
-  indic_na = "B1GM"
+# Generally speaking these queries would be done through get_eurostat
+tmp <- get_eurostat_json("nama_10_gdp")
+yy <- get_eurostat_json("nama_10_gdp", filters = list(
+  geo = c("FI", "SE", "EU28"),
+  time = c(2015:2023),
+  lang = "FR",
+  na_item = "B1GQ",
+  unit = "CLV_I10"
+))
+  
+# An example from get_eurostat
+dd <- get_eurostat("nama_10_gdp",
+  filters = list(
+  geo = "FI",
+  na_item = "B1GQ",
+  unit = "CLV_I10"
 ))
 }
 }
@@ -113,6 +123,13 @@ See \code{citation("eurostat")}:
 }
 \seealso{
 \code{\link[httr:GET]{httr::GET()}}
+
+Eurostat Data Browser online help: API Statistics - data query:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
+
+Eurostat Data Browser online help: migrating from JSON web service to API
+Statistics:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen

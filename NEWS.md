@@ -1,6 +1,6 @@
 # eurostat 3.7.13 (2023-02-01)
 
-* Updated `get_eurostat_json` to migrate from JSON web service to API Statistics (addressed in issues #243, #251). See Eurostat - Data browser online help website for more information: https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics
+* Updated `get_eurostat_json` to migrate from JSON web service to API Statistics (addressed in issues #243, #251). Please note that the output from JSON API is now slightly different than before: the datasets now contain a freq column to indicate the frequency with which data has been collected, for example annually "A", monthly "M" or quarterly "Q". See Eurostat - Data browser online help website for more information: https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics
 * Minor fixes in `get_bibentry` and `get_eurostat_geospatial`
 
 # eurostat 3.7.12 (2022-06-28)
