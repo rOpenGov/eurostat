@@ -84,24 +84,24 @@ contents of eurostat datasets for more details.</p></dd>
 <dd><p>A named list of filters. Names of list objects are Eurostat
 variable codes and values are vectors of observation codes. If <code>NULL</code>
 (default) the whole dataset is returned. See details for more on filters
-and limitations per query. **Please note that before eurostat 3.7.13 lang
-was a separate parameter, but from 3.7.13 onwards it is one of the filters.</p></dd>
+and limitations per query.</p></dd>
 
 
 <dt>type</dt>
-<dd><p>A type of variables, "code" (default), "label" or "both". The
-"both" will return a data_frame with named vectors, labels as values and
-codes as names.</p></dd>
+<dd><p>A type of variables, "<code>code</code>" (default), "<code>label</code>" or "<code>both</code>".
+The parameter "<code>both</code>" will return a data_frame with named vectors,
+labels as values and codes as names.</p></dd>
 
 
 <dt>lang</dt>
-<dd><p>A language used for metadata (en/fr/de).</p></dd>
+<dd><p>A language used for metadata. Default is <code>EN</code>, other options are
+<code>FR</code> and <code>DE</code>.</p></dd>
 
 
 <dt>stringsAsFactors</dt>
-<dd><p>if <code>TRUE</code> (the default) variables are converted
-to factors in original Eurostat order. If <code>FALSE</code> they are returned as
-a character.</p></dd>
+<dd><p>if <code>FALSE</code> (the default) the variables are
+returned as characters. If <code>TRUE</code> the variables are converted to
+factors in original Eurostat order.</p></dd>
 
 
 <dt>...</dt>
@@ -131,7 +131,7 @@ details.</p></dd>
     <h2 id="value">Value<a class="anchor" aria-label="anchor" href="#value"></a></h2>
     
 
-<p>A dataset as a data_frame.</p>
+<p>A dataset as an object of <code>data.frame</code> class.</p>
     </div>
     <div class="section level2">
     <h2 id="details">Details<a class="anchor" aria-label="anchor" href="#details"></a></h2>
@@ -177,7 +177,12 @@ passed to <code><a href="https://httr.r-lib.org/reference/GET.html" class="exter
     </div>
     <div class="section level2">
     <h2 id="see-also">See also<a class="anchor" aria-label="anchor" href="#see-also"></a></h2>
-    <div class="dont-index"><p><code><a href="https://httr.r-lib.org/reference/GET.html" class="external-link">httr::GET()</a></code></p></div>
+    <div class="dont-index"><p><code><a href="https://httr.r-lib.org/reference/GET.html" class="external-link">httr::GET()</a></code></p>
+<p>Eurostat Data Browser online help: API Statistics - data query:
+<a href="https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query" class="external-link">https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query</a></p>
+<p>Eurostat Data Browser online help: migrating from JSON web service to API
+Statistics:
+<a href="https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics" class="external-link">https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics</a></p></div>
     </div>
     <div class="section level2">
     <h2 id="author">Author<a class="anchor" aria-label="anchor" href="#author"></a></h2>
@@ -186,13 +191,23 @@ passed to <code><a href="https://httr.r-lib.org/reference/GET.html" class="exter
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># nama_gdp_c has been discontinued since 2/2018 and this example has ceased working.</span></span></span>
-<span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
-<span class="r-in"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span><span class="st">"cdh_e_fos"</span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">yy</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span>id <span class="op">=</span> <span class="st">"nama_gdp_c"</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>  geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"EU28"</span>, <span class="st">"FI"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  unit <span class="op">=</span> <span class="st">"EUR_HAB"</span>,</span></span>
-<span class="r-in"><span>  indic_na <span class="op">=</span> <span class="st">"B1GM"</span></span></span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span><span class="co"># Generally speaking these queries would be done through get_eurostat</span></span></span>
+<span class="r-in"><span><span class="va">tmp</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span><span class="st">"nama_10_gdp"</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="va">yy</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_json</span><span class="op">(</span><span class="st">"nama_10_gdp"</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  geo <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"FI"</span>, <span class="st">"SE"</span>, <span class="st">"EU28"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  time <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">2015</span><span class="op">:</span><span class="fl">2023</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>  lang <span class="op">=</span> <span class="st">"FR"</span>,</span></span>
+<span class="r-in"><span>  na_item <span class="op">=</span> <span class="st">"B1GQ"</span>,</span></span>
+<span class="r-in"><span>  unit <span class="op">=</span> <span class="st">"CLV_I10"</span></span></span>
+<span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
+<span class="r-in"><span>  </span></span>
+<span class="r-in"><span><span class="co"># An example from get_eurostat</span></span></span>
+<span class="r-in"><span><span class="va">dd</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"nama_10_gdp"</span>,</span></span>
+<span class="r-in"><span>  filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>  geo <span class="op">=</span> <span class="st">"FI"</span>,</span></span>
+<span class="r-in"><span>  na_item <span class="op">=</span> <span class="st">"B1GQ"</span>,</span></span>
+<span class="r-in"><span>  unit <span class="op">=</span> <span class="st">"CLV_I10"</span></span></span>
 <span class="r-in"><span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
