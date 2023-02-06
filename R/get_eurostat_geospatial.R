@@ -184,7 +184,7 @@
 #'
 #' @importFrom utils data
 #' @importFrom broom tidy
-#' @importFrom httr http_error content
+#' @importFrom httr http_error content RETRY
 #' @importFrom methods as
 #' @importFrom dplyr left_join
 #'
@@ -337,7 +337,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
 
         if (nuts_level %in% c("0", "all")) {
           url <- paste0(burl, resolution, "M_", year, "_", crs, "_LEVL_0.geojson")
-          resp <- RETRY("GET", url, terminate_on = c(404))
+          resp <- httr::RETRY("GET", url, terminate_on = c(404))
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within
           the get_eurostat_geospatial function:", url))
@@ -349,7 +349,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
         }
         if (nuts_level %in% c("1", "all")) {
           url <- paste0(burl, resolution, "M_", year, "_", crs, "_LEVL_1.geojson")
-          resp <- RETRY("GET", url, terminate_on = c(404))
+          resp <- httr::RETRY("GET", url, terminate_on = c(404))
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
           } else {
@@ -359,7 +359,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
           }
         }
         if (nuts_level %in% c("2", "all")) {
-          resp <- RETRY("GET", paste0(burl, resolution, "M_", year, "_", crs, "_LEVL_2.geojson"), terminate_on = c(404))
+          resp <- httr::RETRY("GET", paste0(burl, resolution, "M_", year, "_", crs, "_LEVL_2.geojson"), terminate_on = c(404))
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
           } else {
@@ -369,7 +369,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
           }
         }
         if (nuts_level %in% c("3", "all")) {
-          resp <- RETRY("GET", paste0(burl, resolution, "M_", year, "_", crs, "_LEVL_3.geojson"), terminate_on = c(404))
+          resp <- httr::RETRY("GET", paste0(burl, resolution, "M_", year, "_", crs, "_LEVL_3.geojson"), terminate_on = c(404))
           if (httr::http_error(resp)) {
             stop(paste("The requested url cannot be found within the get_eurostat_geospatial function:", url))
           } else {

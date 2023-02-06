@@ -33,7 +33,7 @@ get_bibentry <- function(code,
   if (!any(class(code) %in% c("character", "factor"))) {
     stop("The code(s) must be added as character vector")
   }
-  if (!is.null(keywords) & !class(keywords) == "list") {
+  if (!is.null(keywords) & !inherits(keywords, "list")) {
     stop("If keyword(s) are added, they must be added as a list.")
   }
 

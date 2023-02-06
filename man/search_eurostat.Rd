@@ -44,9 +44,9 @@ education of teaching.
 }
 \section{Functions}{
 \itemize{
-\item \code{grepEurostatTOC}: Old deprecated version
-}}
+\item \code{grepEurostatTOC()}: Old deprecated version
 
+}}
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{

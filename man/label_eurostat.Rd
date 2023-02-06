@@ -80,12 +80,12 @@ with \code{fix_duplicated = TRUE}.
 }
 \section{Functions}{
 \itemize{
-\item \code{label_eurostat_vars}: Get definitions for variable (column) names. For
+\item \code{label_eurostat_vars()}: Get definitions for variable (column) names. For
 objects other than characters or factors definitions are get for names.
 
-\item \code{label_eurostat_tables}: Get definitions for table names
-}}
+\item \code{label_eurostat_tables()}: Get definitions for table names
 
+}}
 \examples{
 \dontrun{
 lp <- get_eurostat("nama_10_lp_ulc")

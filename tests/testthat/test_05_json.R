@@ -6,7 +6,7 @@ test_that("Get json data", {
     na_item = "B1GQ",
     unit = "CLV_I10"
   )),
-  c("geo", "unit", "na_item", "time", "values"),
+  c("geo", "unit", "na_item", "time", "values", "freq"),
   ignore.order = TRUE
   )
 })

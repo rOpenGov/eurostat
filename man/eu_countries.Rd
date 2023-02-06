@@ -15,11 +15,11 @@ A data_frame:
 \item \strong{label}: Country name in the Eurostat database.
 }
 
-An object of class \code{data.frame} with 19 rows and 3 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 19 rows and 3 columns.
 
-An object of class \code{data.frame} with 4 rows and 3 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 4 rows and 3 columns.
 
-An object of class \code{data.frame} with 5 rows and 3 columns.
+An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7 rows and 3 columns.
 }
 \source{
 \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},

@@ -7,8 +7,8 @@
 get_eurostat_json(
   id,
   filters = NULL,
-  type = c("code", "label", "both"),
-  lang = c("en", "fr", "de"),
+  type = "code",
+  lang = "EN",
   stringsAsFactors = FALSE,
   ...
 )
@@ -20,7 +20,8 @@ contents of eurostat datasets for more details.}
 \item{filters}{A named list of filters. Names of list objects are Eurostat
 variable codes and values are vectors of observation codes. If \code{NULL}
 (default) the whole dataset is returned. See details for more on filters
-and limitations per query.}
+and limitations per query. **Please note that before eurostat 3.7.13 lang
+was a separate parameter, but from 3.7.13 onwards it is one of the filters.}
 
 \item{type}{A type of variables, "code" (default), "label" or "both". The
 "both" will return a data_frame with named vectors, labels as values and
@@ -57,7 +58,8 @@ Retrieve data from Eurostat API in JSON format.
 }
 \details{
 Data to retrieve from
-\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services} can be specified with filters. Normally, it is
+\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services}
+can be specified with filters. Normally, it is
 better to use JSON query through \code{\link[=get_eurostat]{get_eurostat()}}, than to use
 \code{\link[=get_eurostat_json]{get_eurostat_json()}} directly.
 
@@ -113,7 +115,7 @@ See \code{citation("eurostat")}:
 \code{\link[httr:GET]{httr::GET()}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
+Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
 }
 \keyword{database}
 \keyword{utilities}
