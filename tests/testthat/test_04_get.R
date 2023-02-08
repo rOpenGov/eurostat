@@ -15,6 +15,19 @@ test_that("get_eurostat works with multi-frequency", {
   )$time)), "-01-01")
 })
 
+test_that("get_eurostat from new dissemination API works correctly with multi-frequency", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_message(get_eurostat("avia_gonc", 
+                              cache = FALSE, 
+                              legacy_bulk_download = FALSE)
+                 )
+  expect_match(as.character(unique(get_eurostat("avia_gonc",
+                                                select_time = NULL,
+                                                cache = FALSE,
+                                                legacy_bulk_download = FALSE)$TIME_PERIOD)), "-01-01")
+})
+
 test_that("get_eurostat return right classes", {
   skip_on_cran()
   skip_if_offline()
