@@ -38,6 +38,7 @@ Other helpers:
 \code{\link{eurotime2date}()},
 \code{\link{eurotime2num2}()},
 \code{\link{harmonize_country_code}()},
+\code{\link{label_eurostat2}()},
 \code{\link{label_eurostat}()}
 }
 \author{

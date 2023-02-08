@@ -258,8 +258,10 @@ get_eurostat <- function(id,
         
         if (type == "code") {
           y <- y
-        } else if (type == "label") {
+        } else if (type == "label" && legacy_bulk_download == TRUE) {
           y <- label_eurostat(y)
+        } else if (type == "label" && legacy_bulk_download == FALSE){
+          y <- label_eurostat2(y)
         } else if (type == "both") {
           stop("type = \"both\" can be only used with JSON API. Set filters argument")
         } else {
