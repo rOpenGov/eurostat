@@ -113,7 +113,9 @@ label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi"
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
+\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
+\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
 \code{\link{harmonize_country_code}()}
 }

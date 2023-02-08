@@ -16,6 +16,7 @@ get_eurostat(
   compress_file = TRUE,
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
+  legacy_bulk_download = TRUE,
   ...
 )
 }
@@ -44,10 +45,10 @@ limitations per query via API from for
 \item{select_time}{a character symbol for a time frequency or NULL,
 which is used by default as most datasets have just one time
 frequency. For datasets with multiple time
-frequencies, select the desired time format with:
-Y = annual, S = semi-annual, Q = quarterly, M = monthly.
-For all frequencies in same data frame \code{time_format = "raw"}
-should be used.}
+frequencies, select one or more of the desired frequencies with:
+"Y" (or "A") = annual, "S" = semi-annual / semester, "Q" = quarterly,
+"M" = monthly, "W" = weekly. For all frequencies in same data
+frame \code{time_format = "raw"} should be used.}
 
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects
 only queries from the bulk download facility.}
@@ -55,7 +56,8 @@ only queries from the bulk download facility.}
 \item{update_cache}{a logical whether to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
-\item{cache_dir}{a path to a cache directory. The directory must exist.
+\item{cache_dir}{a
+path to a cache directory. The directory must exist.
 The \code{NULL} (default) uses and creates
 'eurostat' directory in the temporary directory from
 \code{\link[=tempdir]{tempdir()}}. The directory can also be set with
@@ -64,9 +66,9 @@ The \code{NULL} (default) uses and creates
 \item{compress_file}{a logical whether to compress the
 RDS-file in caching. Default is \code{TRUE}.}
 
-\item{stringsAsFactors}{if \code{TRUE} (the default) variables are
-converted to factors in original Eurostat order. If \code{FALSE}
-they are returned as a character.}
+\item{stringsAsFactors}{if \code{FALSE} (the default) the variables are
+returned as characters. If \code{TRUE} the variables are converted to
+factors in original Eurostat order.}
 
 \item{keepFlags}{a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
@@ -75,6 +77,13 @@ can be removed. Default is \code{FALSE}. For flag values see:
 Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
+
+\item{legacy_bulk_download}{a logical, whether to use the new dissemination API to
+download TSV files instead of the old Bulk Download facilities.
+Default is \code{TRUE}. This is a temporary parameter that will be deleted
+after the old Bulk Download facilities will are decommissioned. Please
+use caution if you intend to build any automated scripts that use this
+parameter.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
@@ -154,6 +163,13 @@ dd <- get_eurostat("nama_10_gdp",
     na_item = "B1GQ",
     unit = "CLV_I10"
   )
+)
+
+# A dataset with multiple time series in one
+dd2 <- get_eurostat("AVIA_GOR_ME",
+  select_time = c("A", "M", "Q"),
+  time_format = "date_last",
+  legacy_bulk_download = FALSE
 )
 }
 \dontshow{\}) # examplesIf}

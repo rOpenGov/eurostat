@@ -44,7 +44,8 @@ tidy_eurostat <- function(dat, time_format = "date", select_time = NULL,
   dat <- tidyr::separate(dat,
     col = colnames(dat)[1],
     into = cnames1,
-    sep = ",", convert = FALSE
+    sep = ",", 
+    convert = FALSE
   )
 
   # Get variable from column names

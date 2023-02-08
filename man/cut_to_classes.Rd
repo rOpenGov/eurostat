@@ -51,7 +51,9 @@ lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
 
 Other helpers: 
 \code{\link{dic_order}()},
+\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
+\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
 \code{\link{harmonize_country_code}()},
 \code{\link{label_eurostat}()}

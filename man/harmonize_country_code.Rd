@@ -31,7 +31,9 @@ lp$geo <- harmonize_country_code(lp$geo)
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
+\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
+\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
 \code{\link{label_eurostat}()}
 }
