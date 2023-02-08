@@ -156,11 +156,6 @@ eurotime2date2 <- function(x, last = FALSE) {
   } else if (tcode == "-") {
     period <- gsub("M", "", subyear)
     day <- gsub("D", "", days)
-  # for year intervals
-  } else if (tcode == "_") {
-    warning("Time format is a year interval. No date conversion was made.")
-    return(x)
-    # for unkown
   } else {
     warning(
       "Unknown time code, ", tcode, ". No date conversion was made.\n
