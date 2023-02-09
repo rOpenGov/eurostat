@@ -1,3 +1,5 @@
+^renv$
+^renv\.lock$
 ^CRAN-RELEASE$
 # Extra material related but not to be included in the package
 inst/extras
