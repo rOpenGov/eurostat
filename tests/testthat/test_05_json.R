@@ -10,4 +10,7 @@ test_that("Get json data", {
     c("geo", "unit", "na_item", "time", "values", "freq"),
     ignore.order = TRUE
   )
+  
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })

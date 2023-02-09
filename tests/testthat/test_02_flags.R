@@ -38,4 +38,7 @@ test_that("flag content2", {
   
   expect_true(all(c("b", "e") %in%
                     unique(flag_dat$flags)))
+  
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })

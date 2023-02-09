@@ -25,14 +25,17 @@ test_that("get_eurostat (dissemination API) includes TIME_PERIOD and value", {
                                        stringsAsFactors = TRUE,
                                        select_time = "Y",
                                        legacy_bulk_download = FALSE))))
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })
 
 test_that("get_eurostat (bulk download) produces an error with multiple select_time", {
   skip_on_cran()
   skip_if_offline()
   expect_error(get_eurostat(id = "avia_gonc",
-                              select_time = c("A", "M", "Q"),
-                              legacy_bulk_download = TRUE))
+                            select_time = c("A", "M", "Q"),
+                            time_format = "date_last",
+                            legacy_bulk_download = TRUE))
 })
 
 test_that("get_eurostat (dissemination API) produces a message with multiple select_time", {
@@ -59,6 +62,8 @@ test_that("get_eurostat (bulk download) works correctly with multi-frequency", {
     select_time = "Y",
     cache = FALSE
   )$time)), "-01-01")
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })
 
 test_that("get_eurostat (dissemination API) works correctly with multi-frequency", {
@@ -66,7 +71,7 @@ test_that("get_eurostat (dissemination API) works correctly with multi-frequency
   skip_if_offline()
   expect_message(get_eurostat("avia_gonc", 
                               cache = FALSE,
-                              time_format = "num",
+                              time_format = "date_last",
                               legacy_bulk_download = FALSE)
                  )
   expect_match(as.character(unique(get_eurostat("avia_gonc",
@@ -102,43 +107,31 @@ test_that("eurostat2num (bulk download) works correctly", {
                                       time_format = "num", 
                                       legacy_bulk_download = TRUE)$time)
   )
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })
 
 test_that("eurostat2num2 (dissemination API) works correctly", {
   skip_on_cran()
   skip_if_offline()
-  expect_true(is.numeric(get_eurostat("earn_mw_cur", 
-                                      time_format = "num", 
-                                      legacy_bulk_download = FALSE)$TIME_PERIOD)
-              )
+  expect_true(
+    is.numeric(
+      get_eurostat(id = "earn_mw_cur", 
+                   time_format = "num", 
+                   legacy_bulk_download = FALSE)$TIME_PERIOD
+      )
+    )
 })
 
 test_that("weekly dataset download (dissemination API) works correctly", {
   skip_on_cran()
   skip_if_offline()
-  expect_match(get_eurostat("lfsi_abs_w", 
-                            select_time = c("W"), 
-                            time_format = "date", 
-                            legacy_bulk_download = FALSE)$freq[1], "W")
+  expect_match(
+    get_eurostat(id = "lfsi_abs_w", 
+                 select_time = c("W"), 
+                 time_format = "date", 
+                 legacy_bulk_download = FALSE)$freq[1], "W")
 })
-
-# The following test produced an error on R-Studio R CMD check:
-# Error: 'length(x) = 3 > 1' in coercion to 'logical(1)'
-# Backtrace: 1. eurostat::get_eurostat(...) test_get.R:29:2
-# Probably has something to do with usage of || (scalar comparison)
-# in functions instead of using | (vector comparison), will look into it
-# test_that("get_eurostat handles daily data", {
-#  skip_on_cran()
-#  skip_on_ci()
-#  dat1 <- get_eurostat("ert_bil_eur_d",
-#                       filters = list(currency = "ARS",
-#                                      statinfo ="AVG",
-#                                      time = c("2017M03D09", "2017M03D10")),
-#                       time_format = "date", cache = FALSE)
-#  time <- as.numeric(difftime(dat1$time[2], dat1$time[1], units = "days"))
-#  expect_identical(time, 1)
-# })
-
 
 test_that("get_eurostat get non-normal variable order", {
   skip_on_cran()
