@@ -63,11 +63,6 @@ eurotime2num <- function(x) {
 #' Bi-annual (semester), quarterly, monthly and weekly data can be presented as 
 #' a fraction of the year in beginning of the period. Conversion of daily data 
 #' is not supported.
-#' 
-#' The algorithm assumes that there are 53 weeks in a year. In rare cases there
-#' may be 54 weeks in a year, which results in the fraction being 1, effectively
-#' turning 2000 week 54 into 2001.00. Normally week 54 as a fraction would be 
-#' 2000.98. Use caution when converting weeks into fractions of a year!
 #' @param x a charter string with time information in Eurostat time format.
 #' @return see [as.numeric()].
 #' @author Janne Huovari <janne.huovari@@ptt.fi>, Pyry Kantanen
@@ -92,21 +87,23 @@ eurotime2num2 <- function(x) {
     tcode <- "D"
   } else {
     # Possible tcodes: S, Q, 0 or 1 (months), W
-    tcode <- substr(times[1], 6, 6) # type of time data
-    if (tcode == "") tcode <- "Y"
+    # tcode: type of time data
+    tcode <- substr(times[1], 6, 6)
+    # if tcode is empty, the data is probably annual
+    if (tcode == "0" || tcode == "1") {
+      tcode <- "M"
+    } else if (tcode == "") {
+      tcode <- "A"
+    }
   }
   
   
   # check input type
-  if (!(tcode %in% c("Y", "S", "Q", "0", "1", "W", "D"))) {
+  if (!(tcode %in% c("A", "S", "Q", "M", "W", "D"))) {
     
     # for daily
     if (tcode == "D") {
       warning("Time format is daily data. No numeric conversion was made.")
-      # for year intervals
-    } else if (tcode == "_") {
-      warning("Time format is a year interval. No numeric conversion was made.")
-      # for unkown
     } else {
       warning("Unknown time code, ", tcode, ". No numeric conversion was made.\n
               Please fill bug report at https://github.com/rOpenGov/eurostat/issues.")
@@ -114,23 +111,16 @@ eurotime2num2 <- function(x) {
     
     return(x)
   }
-  
-  if (tcode == "W" && any(subyear == "54")) {
-    message("Your dataset contains weekly spanning 54 weeks in at least one
-year in your dataset. Please note that week 54 will not result in a numeric
-such as '2000.98' but '2001.00'. We recommend that you use another time_format
-parameter.")
-  }
-  
+
   year <- substr(times, 1, 4)
   subyear <- substr(times, 6, 8)
   # The only characters that can be present are S, Q and W
   subyear <- gsub("[SQW]", "", subyear)
+
   subyear[subyear == ""] <- 1
-  
-  
+
   levels(x) <- as.numeric(year) +
-    (as.numeric(subyear) - 1) * 1 / c(Y = 1, S = 2, Q = 4, "0" = 12, "1" = 12, W = 53)[tcode]
+    (as.numeric(subyear) - 1) * 1 / c(A = 1, S = 2, Q = 4, M = 12, W = 53)[tcode]
   y <- as.numeric(as.character(x))
   y
 }

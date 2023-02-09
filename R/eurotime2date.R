@@ -116,8 +116,19 @@ eurotime2date <- function(x, last = FALSE) {
 #' na_q$time <- eurotime2date(x = na_q$time)
 #' unique(na_q$time)
 #' }
+#' 
+#' \dontrun{
+#' # Test for weekly data
+#' get_eurostat(
+#'   id = "lfsi_abs_w", 
+#'   select_time = c("W"), 
+#'   time_format = "date", 
+#'   legacy_bulk_download = FALSE
+#'   )
+#' }
 #'
 #' @importFrom lubridate ymd
+#' @importFrom ISOweek ISOweek2date
 #'
 #' @export
 eurotime2date2 <- function(x, last = FALSE) {
@@ -152,6 +163,10 @@ eurotime2date2 <- function(x, last = FALSE) {
   # for montly
   } else if (tcode == "0" || tcode == "1") {
     period <- gsub("M", "", subyear)
+  # for weekly
+  } else if (tcode == "W") {
+    # We need period to be of format "WNN", e.g. W01 for 1st week of the year
+    period <- subyear
   # for daily
   } else if (tcode == "-") {
     period <- gsub("M", "", subyear)
@@ -168,7 +183,15 @@ eurotime2date2 <- function(x, last = FALSE) {
   levels(x) <- paste0(year, "-", period, "-", day)
   
   # The date as the last date of the period
-  if (last == TRUE) {
+  if (tcode == "W") {
+    # we will be using range 1-7 here, not 01-07
+    day <- ifelse(last == TRUE, 7, 1)
+    levels(x) <- paste0(year, "-", period, "-", day)
+    x <- ISOweek::ISOweek2date(x)
+    return(x)
+  }
+  # For times other than weeks
+  if (last == TRUE && tcode != "W") {
     shift <- c("Y" = 367, "S" = 186, "Q" = 96, "0" = 32, "1" = 32, "D" = 0)[tcode]
     levels(x) <- lubridate::ymd(
       cut(lubridate::ymd(levels(x)) + shift, "month")

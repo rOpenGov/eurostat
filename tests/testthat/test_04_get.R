@@ -65,7 +65,8 @@ test_that("get_eurostat (dissemination API) works correctly with multi-frequency
   skip_on_cran()
   skip_if_offline()
   expect_message(get_eurostat("avia_gonc", 
-                              cache = FALSE, 
+                              cache = FALSE,
+                              time_format = "num",
                               legacy_bulk_download = FALSE)
                  )
   expect_match(as.character(unique(get_eurostat("avia_gonc",
@@ -90,7 +91,35 @@ test_that("get_eurostat return right classes", {
 test_that("bi-annual data contains freq S", {
   skip_on_cran()
   skip_if_offline()
-  expect_true("S" %in% get_eurostat("earn_mw_cur", legacy_bulk_download = FALSE)$freq)
+  expect_true("S" %in% get_eurostat("earn_mw_cur", 
+                                    legacy_bulk_download = FALSE)$freq)
+})
+
+test_that("eurostat2num (bulk download) works correctly", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_true(is.numeric(get_eurostat("earn_mw_cur", 
+                                      time_format = "num", 
+                                      legacy_bulk_download = TRUE)$time)
+  )
+})
+
+test_that("eurostat2num2 (dissemination API) works correctly", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_true(is.numeric(get_eurostat("earn_mw_cur", 
+                                      time_format = "num", 
+                                      legacy_bulk_download = FALSE)$TIME_PERIOD)
+              )
+})
+
+test_that("weekly dataset download (dissemination API) works correctly", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_match(get_eurostat("lfsi_abs_w", 
+                            select_time = c("W"), 
+                            time_format = "date", 
+                            legacy_bulk_download = FALSE)$freq[1], "W")
 })
 
 # The following test produced an error on R-Studio R CMD check:

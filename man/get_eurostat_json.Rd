@@ -84,6 +84,15 @@ yy <- get_eurostat_json("nama_10_gdp", filters = list(
   na_item = "B1GQ",
   unit = "CLV_I10"
 ))
+
+# Same query with new TIME_PERIOD filter
+yy <- get_eurostat_json("nama_10_gdp", filters = list(
+  geo = c("FI", "SE", "EU28"),
+  TIME_PERIOD = c(2015:2023),
+  lang = "FR",
+  na_item = "B1GQ",
+  unit = "CLV_I10"
+))
   
 # An example from get_eurostat
 dd <- get_eurostat("nama_10_gdp",

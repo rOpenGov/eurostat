@@ -32,6 +32,16 @@ na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 na_q$time <- eurotime2date(x = na_q$time)
 unique(na_q$time)
 }
+
+\dontrun{
+# Test for weeks
+get_eurostat(
+  id = "lfsi_abs_w", 
+  select_time = c("W"), 
+  time_format = "date", 
+  legacy_bulk_download = FALSE
+  )
+}
 \dontshow{\}) # examplesIf}
 }
 \references{

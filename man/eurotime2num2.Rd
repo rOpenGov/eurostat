@@ -19,11 +19,6 @@ A conversion of a Eurostat time format to numeric.
 Bi-annual (semester), quarterly, monthly and weekly data can be presented as
 a fraction of the year in beginning of the period. Conversion of daily data
 is not supported.
-
-The algorithm assumes that there are 53 weeks in a year. In rare cases there
-may be 54 weeks in a year, which results in the fraction being 1, effectively
-turning 2000 week 54 into 2001.00. Normally week 54 as a fraction would be
-2000.98. Use caution when converting weeks into fractions of a year!
 }
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
