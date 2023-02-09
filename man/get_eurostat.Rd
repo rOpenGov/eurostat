@@ -109,7 +109,7 @@ Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 \details{
 Data sets are downloaded from
 \href{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services
-\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{JSON API}.
+\href{https://ec.europa.eu/eurostat/web/main/data/web-services}{JSON API}.
 If only the table \code{id} is given, the whole table is downloaded from the
 bulk download facility. If also \code{filters} are defined the JSON API is
 used.

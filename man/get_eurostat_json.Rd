@@ -58,7 +58,7 @@ Retrieve data from Eurostat API in JSON format.
 }
 \details{
 Data to retrieve from
-\href{https://ec.europa.eu/eurostat/web/json-and-unicode-web-services}{The Eurostat Web Services}
+\href{https://ec.europa.eu/eurostat/web/main/data/web-services}{The Eurostat Web Services}
 can be specified with filters. Normally, it is
 better to use JSON query through \code{\link[=get_eurostat]{get_eurostat()}}, than to use
 \code{\link[=get_eurostat_json]{get_eurostat_json()}} directly.
@@ -85,13 +85,13 @@ yy <- get_eurostat_json("nama_10_gdp", filters = list(
   unit = "CLV_I10"
 ))
 
-# Same query with new TIME_PERIOD filter
-yy <- get_eurostat_json("nama_10_gdp", filters = list(
-  geo = c("FI", "SE", "EU28"),
-  TIME_PERIOD = c(2015:2023),
-  lang = "FR",
-  na_item = "B1GQ",
-  unit = "CLV_I10"
+# TIME_PERIOD filter works also with the new JSON API
+yy2 <- get_eurostat_json("nama_10_gdp", filters = list(
+   geo = c("FI", "SE", "EU28"),
+   TIME_PERIOD = c(2015:2023),
+   lang = "FR",
+   na_item = "B1GQ",
+   unit = "CLV_I10"
 ))
   
 # An example from get_eurostat

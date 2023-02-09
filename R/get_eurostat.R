@@ -82,7 +82,7 @@
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 #' @details Data sets are downloaded from
 #' [the Eurostat bulk download facility](https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing) or from The Eurostat Web Services
-#' [JSON API](https://ec.europa.eu/eurostat/web/json-and-unicode-web-services).
+#' [JSON API](https://ec.europa.eu/eurostat/web/main/data/web-services).
 #' If only the table `id` is given, the whole table is downloaded from the
 #' bulk download facility. If also `filters` are defined the JSON API is
 #' used.
