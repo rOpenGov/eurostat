@@ -152,4 +152,7 @@ test_that("get_eurostat_geospatial tests to cover internals", {
   expect_s3_class(get_eurostat_geospatial("sf", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), "sf")
   expect_ismw(get_eurostat_geospatial("df", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "data.frame")
   expect_ismw(get_eurostat_geospatial("spdf", resolution = 20, year = 2013, make_valid = TRUE, update_cache = TRUE), cls = "SpatialPolygonsDataFrame")
+  
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })

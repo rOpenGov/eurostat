@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 3.7.13
-Date: 2022-06-28
+Version: 3.7.14
+Date: 2023-02-09
 Authors@R: c(
     person(given = "Leo", 
            family = "Lahti", 
@@ -79,7 +79,8 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr (>= 1.0.0)
+    tidyr (>= 1.0.0),
+    ISOweek
 Suggests:
     RColorBrewer,
     knitr,

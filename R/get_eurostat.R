@@ -1,52 +1,70 @@
-#' Read Eurostat Data
+#' @title Read Eurostat Data
 #' 
+#' @description 
 #' Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 #'
-#' @param id A code name for the dataset of interest.
-#'        See [search_eurostat()] or details for how to get code.
+#' @param id 
+#' A code name for the dataset of interest.
+#' See [search_eurostat()] or details for how to get code.
 #' @param filters a "none" (default) to get a whole dataset or a named list of
-#'        filters to get just part of the table. Names of list objects are
-#'        Eurostat variable codes and values are vectors of observation codes.
-#'        If `NULL` the whole
-#'        dataset is returned via API. More on details. See more on filters and
-#'        limitations per query via API from for
-#'        [get_eurostat_json()].
-#' @param time_format a string giving a type of the conversion of the time
-#'        column from the eurostat format. A "date" (default) converts to
-#'        a [Date()] with a first date of the period.
-#'        A "date_last" converts to a [Date()] with
-#'         a last date of the period. A "num" converts to a numeric and "raw"
-#'         does not do conversion. See [eurotime2date()] and
-#'         [eurotime2num()].
-#' @param type A type of variables, "code" (default) or "label".
-#' @param select_time a character symbol for a time frequency or NULL,
-#'        which is used by default as most datasets have just one time
-#'        frequency. For datasets with multiple time
-#'        frequencies, select the desired time format with:
-#'    	  Y = annual, S = semi-annual, Q = quarterly, M = monthly.
-#'        For all frequencies in same data frame `time_format = "raw"`
-#'        should be used.
-#' @param cache a logical whether to do caching. Default is `TRUE`. Affects
-#'        only queries from the bulk download facility.
-#' @param update_cache a logical whether to update cache. Can be set also with
-#'        options(eurostat_update = TRUE)
-#' @param cache_dir a path to a cache directory. The directory must exist.
-#'        The `NULL` (default) uses and creates
-#'        'eurostat' directory in the temporary directory from
-#'        [tempdir()]. The directory can also be set with
-#'        [set_eurostat_cache_dir()].
-#' @param compress_file a logical whether to compress the
-#'        RDS-file in caching. Default is `TRUE`.
-#' @param stringsAsFactors if `TRUE` (the default) variables are
-#'        converted to factors in original Eurostat order. If `FALSE`
-#'        they are returned as a character.
-#' @param keepFlags a logical whether the flags (e.g. "confidential",
-#'        "provisional") should be kept in a separate column or if they
-#'        can be removed. Default is `FALSE`. For flag values see:
-#'        <https://ec.europa.eu/eurostat/data/database/information>.
-#'        Also possible non-real zero "0n" is indicated in flags column.
-#'        Flags are not available for eurostat API, so `keepFlags`
-#'        can not be used with a `filters`.
+#' filters to get just part of the table. Names of list objects are
+#' Eurostat variable codes and values are vectors of observation codes.
+#' If `NULL` the whole
+#' dataset is returned via API. More on details. See more on filters and
+#' limitations per query via API from for
+#' [get_eurostat_json()].
+#' @param time_format 
+#' a string giving a type of the conversion of the time
+#' column from the eurostat format. A "date" (default) converts to
+#' a [Date()] with a first date of the period.
+#' A "date_last" converts to a [Date()] with
+#' a last date of the period. A "num" converts to a numeric and "raw"
+#' does not do conversion. See [eurotime2date()] and
+#' [eurotime2num()].
+#' @param type 
+#' A type of variables, "code" (default) or "label".
+#' @param select_time 
+#' a character symbol for a time frequency or NULL,
+#' which is used by default as most datasets have just one time
+#' frequency. For datasets with multiple time
+#' frequencies, select one or more of the desired frequencies with:
+#' "Y" (or "A") = annual, "S" = semi-annual / semester, "Q" = quarterly, 
+#' "M" = monthly, "W" = weekly. For all frequencies in same data 
+#' frame `time_format = "raw"` should be used.
+#' @param cache 
+#' a logical whether to do caching. Default is `TRUE`. Affects
+#' only queries from the bulk download facility.
+#' @param update_cache 
+#' a logical whether to update cache. Can be set also with
+#' options(eurostat_update = TRUE)
+#' @param cache_dir a
+#' path to a cache directory. The directory must exist.
+#' The `NULL` (default) uses and creates
+#' 'eurostat' directory in the temporary directory from
+#' [tempdir()]. The directory can also be set with
+#' [set_eurostat_cache_dir()].
+#' @param compress_file 
+#' a logical whether to compress the
+#' RDS-file in caching. Default is `TRUE`.
+#' @param stringsAsFactors 
+#' if `FALSE` (the default) the variables are
+#' returned as characters. If `TRUE` the variables are converted to 
+#' factors in original Eurostat order.
+#' @param keepFlags 
+#' a logical whether the flags (e.g. "confidential",
+#' "provisional") should be kept in a separate column or if they
+#' can be removed. Default is `FALSE`. For flag values see:
+#' <https://ec.europa.eu/eurostat/data/database/information>.
+#' Also possible non-real zero "0n" is indicated in flags column.
+#' Flags are not available for eurostat API, so `keepFlags`
+#' can not be used with a `filters`.
+#' @param legacy_bulk_download 
+#' a logical, whether to use the new dissemination API to
+#' download TSV files instead of the old Bulk Download facilities.
+#' Default is `TRUE`. This is a temporary parameter that will be deleted 
+#' after the old Bulk Download facilities will are decommissioned. Please
+#' use caution if you intend to build any automated scripts that use this
+#' parameter.
 #' @inheritDotParams get_eurostat_json
 #' @export
 #' @references
@@ -64,7 +82,7 @@
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
 #' @details Data sets are downloaded from
 #' [the Eurostat bulk download facility](https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing) or from The Eurostat Web Services
-#' [JSON API](https://ec.europa.eu/eurostat/web/json-and-unicode-web-services).
+#' [JSON API](https://ec.europa.eu/eurostat/web/main/data/web-services).
 #' If only the table `id` is given, the whole table is downloaded from the
 #' bulk download facility. If also `filters` are defined the JSON API is
 #' used.
@@ -128,16 +146,29 @@
 #'     unit = "CLV_I10"
 #'   )
 #' )
+#' 
+#' # A dataset with multiple time series in one
+#' dd2 <- get_eurostat("AVIA_GOR_ME",
+#'   select_time = c("A", "M", "Q"),
+#'   time_format = "date_last",
+#'   legacy_bulk_download = FALSE
+#' )
 #' }
 #'
-get_eurostat <- function(id, time_format = "date", filters = "none",
+get_eurostat <- function(id, 
+                         time_format = "date", 
+                         filters = "none",
                          type = "code",
                          select_time = NULL,
-                         cache = TRUE, update_cache = FALSE, cache_dir = NULL,
+                         cache = TRUE, 
+                         update_cache = FALSE, 
+                         cache_dir = NULL,
                          compress_file = TRUE,
                          stringsAsFactors = FALSE,
-                         keepFlags = FALSE, ...) {
-
+                         keepFlags = FALSE,
+                         legacy_bulk_download = TRUE,
+                         ...) {
+  
   # Check if you have access to ec.europe.eu.
   if (!check_access_to_data()) {
     message("You have no access to ec.europe.eu.
@@ -148,20 +179,20 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
       warning("The keepFlags argument of the get_eurostat function
                can be used only without filters. No Flags returned.")
     }
-
+    
     # No cache for json
     if (is.null(filters) || identical(filters, "none")) {
       cache <- FALSE
     }
-
+    
     if (cache) {
-
+      
       # check option for update
       update_cache <- update_cache | getOption("eurostat_update", FALSE)
-
+      
       # get cache directory
       cache_dir <- eur_helper_cachedir(cache_dir)
-
+      
       # cache filename
       cache_file <- file.path(
         cache_dir,
@@ -174,33 +205,63 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
         )
       )
     }
-
+    
     # if cache = FALSE or update or new: dowload else read from cache
     if (!cache || update_cache || !file.exists(cache_file)) {
       if (is.null(filters) || is.list(filters)) {
-
+        
         # JSON API Download
         y <- get_eurostat_json(id, filters,
-          type = type,
-          stringsAsFactors = stringsAsFactors, ...
+                               type = type,
+                               stringsAsFactors = stringsAsFactors, ...
         )
         y$time <- convert_time_col(factor(y$time), time_format = time_format)
-
+        
         # Bulk download
       } else if (filters == "none") {
-        y_raw <- try(get_eurostat_raw(id))
-        if ("try-error" %in% class(y_raw)) {
-          stop(paste("get_eurostat_raw fails with the id", id))
+        
+        if (legacy_bulk_download == TRUE) {
+          # Download from old bulk download facilities 
+          # with old get_eurostat_raw function
+          # This if-else construct is temporary until the old Bulk Download is
+          # removed from use by Eurostat
+          y_raw <- try(get_eurostat_raw(id))
+          
+          if ("try-error" %in% class(y_raw)) {
+            stop(paste("get_eurostat_raw fails with the id", id, "\n"))
+          }
+          
+          # If download from old bulk download facilities was successful
+          # Then tidy the dataset with old tidy_eurostat function
+          y <- tidy_eurostat(y_raw, 
+                             time_format, 
+                             select_time,
+                             stringsAsFactors = stringsAsFactors,
+                             keepFlags = keepFlags
+          )
+        } else {
+          message("Trying to download from the new dissemination API... \n")
+          # Download from new dissemination API in TSV file format
+          y_raw <- try(get_eurostat_raw2(id))
+          if ("try-error" %in% class(y_raw)) {
+            stop(paste("get_eurostat_raw fails with the id", id))
+          }
+          # If download from new dissemination API is successful
+          # Then tidy the dataset with the new tidy_eurostat2 function
+          y <- tidy_eurostat2(y_raw, 
+                              time_format, 
+                              select_time,
+                              stringsAsFactors = stringsAsFactors,
+                              keepFlags = keepFlags
+          )
         }
-
-        y <- tidy_eurostat(y_raw, time_format, select_time,
-          stringsAsFactors = stringsAsFactors,
-          keepFlags = keepFlags
-        )
+        
         if (type == "code") {
           y <- y
-        } else if (type == "label") {
+        } else if (type == "label" && legacy_bulk_download == TRUE) {
           y <- label_eurostat(y)
+        } else if (type == "label" && legacy_bulk_download == FALSE){
+          y <- label_eurostat2(y)
         } else if (type == "both") {
           stop("type = \"both\" can be only used with JSON API. Set filters argument")
         } else {
@@ -213,13 +274,14 @@ get_eurostat <- function(id, time_format = "date", filters = "none",
       y <- readRDS(cache_file)
       message(paste("Table ", id, " read from cache file: ", cf))
     }
-
+    
     # if update or new: save
     if (cache && (update_cache || !file.exists(cache_file))) {
       saveRDS(y, file = cache_file, compress = compress_file)
       message("Table ", id, " cached at ", path.expand(cache_file))
     }
-
+    
     y
   }
 }
+

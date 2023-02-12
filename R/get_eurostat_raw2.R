@@ -1,5 +1,6 @@
-#' @title Download Data from Eurostat Database
-#' @description Download data from the eurostat database.
+#' @title Download Data from Eurostat Dissemination API
+#' @description Download data from the eurostat database through the new
+#' dissemination API.
 #' @param id A code name for the dataset of interested. See the table of
 #'  contents of eurostat datasets for more details.
 #' @return A dataset in tibble format. First column contains comma
@@ -18,7 +19,7 @@
 #' citation("eurostat")
 #' ```
 #'
-#' @author Przemyslaw Biecek, Leo Lahti and Janne Huovari
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen
 #' @examplesIf check_access_to_data()
 #' \donttest{
 #' eurostat:::get_eurostat_raw("educ_iste")
@@ -28,13 +29,14 @@
 #' @importFrom utils download.file
 #'
 #' @keywords utilities database
-get_eurostat_raw <- function(id) {
+get_eurostat_raw2 <- function(id) {
   base <- getOption("eurostat_url")
 
   url <- paste0(
     base,
-    "estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=data%2F",
-    id, ".tsv.gz"
+    "api/dissemination/sdmx/2.1/data/",
+    id, 
+    "?format=TSV&compressed=true"
   )
 
   tfile <- tempfile()

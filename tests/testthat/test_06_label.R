@@ -38,6 +38,9 @@ test_that("Countrycodes are labelled for factors", {
     )),
     c("Finland", "Germany", "EU28")
   )
+  
+  # sleep for a while to let the API rest
+  Sys.sleep(5)
 })
 
 test_that("Countrycodes return NA for countrycode_nomatch = NA", {
