@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.13</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.14</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -56,6 +56,17 @@
       <small>Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.7.14" id="eurostat-3714-2023-02-08">eurostat 3.7.14 (2023-02-08)<a class="anchor" aria-label="anchor" href="#eurostat-3714-2023-02-08"></a></h2>
+<ul><li>Updated <code>get_eurostat</code> and its assorted functions to download data from the new dissemination API (related to issues <a href="https://github.com/rOpenGov/eurostat/issues/251" class="external-link">#251</a>, <a href="https://github.com/rOpenGov/eurostat/issues/243" class="external-link">#243</a>). See Eurostat web page Transition - from Eurostat Bulk Download to API for a list of differences between old and new data sources: <a href="https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API" class="external-link uri">https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API</a>
+</li>
+<li>Added new temporary functions for downloading and handling data from the new dissemination API: <code>get_eurostat_raw2</code>, <code>tidy_eurostat2</code>, <code>convert_time_col2</code>, <code>eurotime2date2</code>, <code>eurotime2num2</code> and <code>label_eurostat2</code>. When the old bulk download facilities are decommissioned, these functions will replace the old functions with old naming schemes, without the 2’s.</li>
+<li>
+<code>tidy_eurostat2</code> function is now able to handle multiple time frequencies in one call: For example, you can download annual, quarterly, and monthly data simply by using a vector c(“A”, “Q”, “M”) in select_time instead of using these singular frequencies in separate calls. The function will also return multiple time series in one dataset if select_time is NULL (as it is by default). If the dataset contains multiple time series and these are explicitly downloaded / no select_time parameter is given, a message will be printed.</li>
+<li>
+<code>eurotime2num</code> can now handle monthly and weekly data as well.</li>
+<li>Added a new parameter to <code>get_eurostat</code> function: legacy_bulk_download (default = TRUE). By setting this parameter to FALSE the user can download data from the new dissemination API. If you want to test the new API before it becomes the only way to download the data (and we very much encourage you to do so), set this parameter to FALSE.</li>
+</ul></div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="3.7.13" id="eurostat-3713-2023-02-01">eurostat 3.7.13 (2023-02-01)<a class="anchor" aria-label="anchor" href="#eurostat-3713-2023-02-01"></a></h2>
 <ul><li>Updated <code>get_eurostat_json</code> to migrate from JSON web service to API Statistics (addressed in issues <a href="https://github.com/rOpenGov/eurostat/issues/243" class="external-link">#243</a>, <a href="https://github.com/rOpenGov/eurostat/issues/251" class="external-link">#251</a>). Please note that the output from JSON API is now slightly different than before: the datasets now contain a freq column to indicate the frequency with which data has been collected, for example annually “A”, monthly “M” or quarterly “Q”. See Eurostat - Data browser online help website for more information: <a href="https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics" class="external-link uri">https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics</a>

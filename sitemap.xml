@@ -52,6 +52,9 @@
     <loc>https://ropengov.github.io/eurostat/reference/convert_time_col.html</loc>
   </url>
   <url>
+    <loc>https://ropengov.github.io/eurostat/reference/convert_time_col2.html</loc>
+  </url>
+  <url>
     <loc>https://ropengov.github.io/eurostat/reference/cut_to_classes.html</loc>
   </url>
   <url>
@@ -70,7 +73,13 @@
     <loc>https://ropengov.github.io/eurostat/reference/eurotime2date.html</loc>
   </url>
   <url>
+    <loc>https://ropengov.github.io/eurostat/reference/eurotime2date2.html</loc>
+  </url>
+  <url>
     <loc>https://ropengov.github.io/eurostat/reference/eurotime2num.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/eurotime2num2.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_bibentry.html</loc>
@@ -91,6 +100,9 @@
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_raw.html</loc>
   </url>
   <url>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_raw2.html</loc>
+  </url>
+  <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_toc.html</loc>
   </url>
   <url>
@@ -104,6 +116,9 @@
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/label_eurostat.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/label_eurostat2.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/recode_to_nuts_2013.html</loc>
@@ -128,5 +143,8 @@
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat2.html</loc>
   </url>
 </urlset>
