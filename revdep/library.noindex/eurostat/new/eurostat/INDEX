@@ -1,0 +1,34 @@
+check_access_to_data    Check access to ec.europe.eu
+clean_eurostat_cache    Clean Eurostat Cache
+cut_to_classes          Cuts the Values Column into Classes and
+                        Polishes the Labels
+dic_order               Order of Variable Levels from Eurostat
+                        Dictionary.
+eu_countries            Countries and Country Codes
+eurostat-package        R Tools for Eurostat open data
+eurostat_geodata_60_2016
+                        Geospatial data of Europe from GISCO in 1:60
+                        million scale from year 2016
+eurotime2date           Date Conversion from Eurostat Time Format
+eurotime2date2          Date Conversion from New Eurostat Time Format
+eurotime2num            Conversion of Eurostat Time Format to Numeric
+eurotime2num2           Conversion of Eurostat Time Format to Numeric
+get_bibentry            Create A Data Bibliography
+get_eurostat            Read Eurostat Data
+get_eurostat_dic        Download Eurostat Dictionary
+get_eurostat_geospatial
+                        Download Geospatial Data from GISCO
+get_eurostat_json       Get Data from Eurostat API in JSON
+get_eurostat_raw        Download Data from Eurostat Database
+get_eurostat_raw2       Download Data from Eurostat Dissemination API
+get_eurostat_toc        Download Table of Contents of Eurostat Data
+                        Sets
+harmonize_country_code
+                        Harmonize Country Code
+label_eurostat          Get Eurostat Codes
+label_eurostat2         Get Eurostat Codes for data downloaded from new
+                        dissemination API
+search_eurostat         Grep Datasets Titles from Eurostat
+set_eurostat_cache_dir
+                        Set Eurostat Cache
+tgs00026                Auxiliary Data
