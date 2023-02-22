@@ -1,10 +1,16 @@
-# eurostat 3.7.14 (2023-02-08)
+# eurostat 3.7.14 (2023-02-22)
+
+## Major updates
 
 * Updated `get_eurostat` and its assorted functions to download data from the new dissemination API (related to issues #251, #243). See Eurostat web page Transition - from Eurostat Bulk Download to API for a list of differences between old and new data sources: https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API
-* Added new temporary functions for downloading and handling data from the new dissemination API: `get_eurostat_raw2`, `tidy_eurostat2`, `convert_time_col2`, `eurotime2date2`, `eurotime2num2` and `label_eurostat2`. When the old bulk download facilities are decommissioned, these functions will replace the old functions with old naming schemes, without the 2's.
+* Added new temporary functions for downloading and handling data from the new dissemination API: `get_eurostat_raw2`, `tidy_eurostat2`, `convert_time_col2`, `eurotime2date2`, `eurotime2num2` and `label_eurostat2`. When the old bulk download facilities are decommissioned, these functions will replace the old functions with old naming schemes (without the 2s at the end).
 * `tidy_eurostat2` function is now able to handle multiple time frequencies in one call: For example, you can download annual, quarterly, and monthly data simply by using a vector c("A", "Q", "M") in select_time instead of using these singular frequencies in separate calls. The function will also return multiple time series in one dataset if select_time is NULL (as it is by default). If the dataset contains multiple time series and these are explicitly downloaded / no select_time parameter is given, a message will be printed.
 * `eurotime2num` can now handle monthly and weekly data as well.
 * Added a new parameter to `get_eurostat` function: legacy_bulk_download (default = TRUE). By setting this parameter to FALSE the user can download data from the new dissemination API. If you want to test the new API before it becomes the only way to download the data (and we very much encourage you to do so), set this parameter to FALSE.
+
+## Minor updates
+
+* Removed render-rmarkdown.yaml workflow used for rendering README.md file. README.md must be generated locally from now on.
 
 # eurostat 3.7.13 (2023-02-01)
 
