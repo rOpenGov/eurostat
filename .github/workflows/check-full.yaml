@@ -5,8 +5,7 @@ on:
   schedule:
     - cron:  '0 0 * * 0'
 
-name: R-CMD-check
-
+name: R-CMD-check (full)
 jobs:
   R-CMD-check:
     runs-on: ${{ matrix.config.os }}

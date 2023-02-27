@@ -17,12 +17,24 @@ knitr::opts_chunk$set(
 
 You can send us a note via the [issue tracker](https://github.com/rOpenGov/eurostat/issues) if you like to add a publication using the eurostat R package on this list:
 
- * Retrieval and analysis of Eurostat open data with the eurostat
-package. R Journal 2017.
-([manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html);
-[source code](https://github.com/rOpenGov/eurostat/tree/master/inst/extras/2017_RJournal_manuscript)). 
-
+-   Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 2017. ([manuscript](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html); [source code](https://github.com/rOpenGov/eurostat/tree/master/inst/extras/2017_RJournal_manuscript)).
 
 External publications using the eurostat package:
 
- * Kenett RDS, Shmueli G. Information Quality: The Potential of Data and Analytics to Generate Knowledge. John Wiley & Sons, 2016.
+-   Jungnickel, T., von Ute, J., Engeli, S. & Albrecht, U-V. (2022). Exploring the weight bias of professionals working in the field of obesity with a mobile IAT: a pilot study. *Therapeutic Advances in Endocrinology and Metabolism*, 13. <https://doi.org/10.1177/20420188221098881>
+
+-   Balogh, A., Harman, A. & Kreuter, F. (2022). Real-time analysis of predictors of COVID-19 infection spread in the countries of the European Union: User's Manual to the Covid-Predictor-Tracker. URL: <https://corona.stat.uni-muenchen.de/covid_FI/>
+
+-   Fusco, E., Maggi, B. & Rizzuto, L. (2022). Alternative indicators for the evaluation of renewables in Europe: An efficiency approach. *Renewable Energy*, 190, 48-65. <https://doi.org/10.1016/j.renene.2022.03.007>
+
+-   Hashim, D., Carioli, G., Malvezzi, M., Bertuccio, P., Waxman, S., Negri, E., La Vecchia, C., & Boffetta, P. (2020). Cancer mortality in the oldest old: a global overview. *Aging*, 12(17), 16744--16758. <https://doi.org/10.18632/aging.103503>
+
+-   Patias, N. (2020). Exploring long-term youth unemployment in Europe using sequence analysis: A reproducible notebook approach. *REGION*, 6(3), 53-69. <https://doi.org/10.18335/region.v6i3.277>
+
+-   Belmonte, M., McMahon, S., Scipioni, M. & Tintori, G. (2019). What relationship is there between irregular and regular migration? An exploratory study of EU residence permits, asylum applications, and orders to leave. JRC, Ispra, JRC116674.
+
+-   Galjak, M. (2018). East-West Demographic Divide in the EU: A Regional Overview. Stanovništvo, 56(2), 1-21. <https://doi.org/10.2298/STNV181003004G>
+
+-   Sehor, T. (2018). Terorismus a migrace. Diplomová práce. Brno: Masarykova Univerzita, Ekonomicko-správní fakulta.
+
+-   Kenett, R. S., & Shmueli, G. (2016). Information quality: The potential of data and analytics to generate knowledge. John Wiley & Sons.
