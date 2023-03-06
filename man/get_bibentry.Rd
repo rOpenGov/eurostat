@@ -26,15 +26,17 @@ set by the user.
 }
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-my_bibliography <- get_bibentry(
-  code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
-  keywords = list(
-    c("railways", "freight", "transport"),
-    c("railways", "passengers", "modal split")
-  ),
-  format = "Biblatex"
-)
-my_bibliography
+\dontrun{
+  my_bibliography <- get_bibentry(
+    code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
+    keywords = list(
+      c("railways", "freight", "transport"),
+      c("railways", "passengers", "modal split")
+    ),
+    format = "Biblatex"
+  )
+  my_bibliography
+}
 \dontshow{\}) # examplesIf}
 }
 \author{
