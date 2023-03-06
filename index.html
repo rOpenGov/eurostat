@@ -44,7 +44,7 @@
     
     <a class="navbar-brand me-2" href="index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.15</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -114,111 +114,219 @@
 <h3 id="installation-and-use">Installation and use<a class="anchor" aria-label="anchor" href="#installation-and-use"></a>
 </h3>
 <p>Install stable version from CRAN:</p>
-<div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"eurostat"</span>)</span></code></pre></div>
 <p>Alternatively, install development version from GitHub:</p>
-<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Install from GitHub</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://devtools.r-lib.org/" class="external-link">devtools</a></span><span class="op">)</span></span>
-<span><span class="fu">devtools</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropengov/eurostat"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Install from GitHub</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(devtools)</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>devtools<span class="sc">::</span><span class="fu">install_github</span>(<span class="st">"ropengov/eurostat"</span>)</span></code></pre></div>
 <p>Development version can be also installed using the <a href="https://ropengov.r-universe.dev" class="external-link">r-universe</a>:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Enable this universe</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/options.html" class="external-link">options</a></span><span class="op">(</span>repos <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span></span>
-<span>  ropengov <span class="op">=</span> <span class="st">"https://ropengov.r-universe.dev"</span>,</span>
-<span>  CRAN <span class="op">=</span> <span class="st">"https://cloud.r-project.org"</span></span>
-<span><span class="op">)</span><span class="op">)</span></span>
-<span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"eurostat"</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Enable this universe</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">options</span>(<span class="at">repos =</span> <span class="fu">c</span>(</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">ropengov =</span> <span class="st">"https://ropengov.r-universe.dev"</span>,</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">CRAN =</span> <span class="st">"https://cloud.r-project.org"</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"eurostat"</span>)</span></code></pre></div>
 <p>The package provides several different ways to get datasets from Eurostat. Searching for data is one way, if you know what to look for.</p>
-<div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># Load the package</span></span>
-<span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ropengov.github.io/eurostat/">eurostat</a></span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># Perform a simple search and print a table</span></span>
-<span><span class="va">passengers</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/search_eurostat.html">search_eurostat</a></span><span class="op">(</span><span class="st">"passenger transport"</span><span class="op">)</span></span>
-<span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">passengers</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Load the package</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(eurostat)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Perform a simple search and print a table</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>passengers <span class="ot">&lt;-</span> <span class="fu">search_eurostat</span>(<span class="st">"passenger transport"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>knitr<span class="sc">::</span><span class="fu">kable</span>(<span class="fu">head</span>(passengers))</span></code></pre></div>
 <table class="table">
 <colgroup>
-<col width="46%">
-<col width="8%">
-<col width="4%">
-<col width="10%">
-<col width="14%">
-<col width="5%">
-<col width="4%">
-<col width="3%">
+<col style="width: 48%">
+<col style="width: 8%">
+<col style="width: 4%">
+<col style="width: 10%">
+<col style="width: 14%">
+<col style="width: 5%">
+<col style="width: 4%">
+<col style="width: 3%">
 </colgroup>
 <thead><tr class="header">
-<th align="left">title</th>
-<th align="left">code</th>
-<th align="left">type</th>
-<th align="left">last update of data</th>
-<th align="left">last table structure change</th>
-<th align="left">data start</th>
-<th align="left">data end</th>
-<th align="left">values</th>
+<th style="text-align: left;">
+title
+</th>
+<th style="text-align: left;">
+code
+</th>
+<th style="text-align: left;">
+type
+</th>
+<th style="text-align: left;">
+last update of data
+</th>
+<th style="text-align: left;">
+last table structure change
+</th>
+<th style="text-align: left;">
+data start
+</th>
+<th style="text-align: left;">
+data end
+</th>
+<th style="text-align: left;">
+values
+</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Air passenger transport</td>
-<td align="left">enps_avia_pa</td>
-<td align="left">dataset</td>
-<td align="left">10.02.2022</td>
-<td align="left">10.02.2022</td>
-<td align="left">2005</td>
-<td align="left">2020</td>
-<td align="left">NA</td>
+<td style="text-align: left;">
+Air passenger transport
+</td>
+<td style="text-align: left;">
+enps_avia_pa
+</td>
+<td style="text-align: left;">
+dataset
+</td>
+<td style="text-align: left;">
+10.02.2022
+</td>
+<td style="text-align: left;">
+10.02.2022
+</td>
+<td style="text-align: left;">
+2005
+</td>
+<td style="text-align: left;">
+2020
+</td>
+<td style="text-align: left;">
+NA
+</td>
 </tr>
 <tr class="even">
-<td align="left">Modal split of air, sea and inland passenger transport</td>
-<td align="left">tran_hv_ms_psmod</td>
-<td align="left">dataset</td>
-<td align="left">31.01.2023</td>
-<td align="left">NA</td>
-<td align="left">2008</td>
-<td align="left">2020</td>
-<td align="left">NA</td>
+<td style="text-align: left;">
+Modal split of air, sea and inland passenger transport
+</td>
+<td style="text-align: left;">
+tran_hv_ms_psmod
+</td>
+<td style="text-align: left;">
+dataset
+</td>
+<td style="text-align: left;">
+31.01.2023
+</td>
+<td style="text-align: left;">
+NA
+</td>
+<td style="text-align: left;">
+2008
+</td>
+<td style="text-align: left;">
+2020
+</td>
+<td style="text-align: left;">
+NA
+</td>
 </tr>
 <tr class="odd">
-<td align="left">Modal split of inland passenger transport</td>
-<td align="left">tran_hv_psmod</td>
-<td align="left">dataset</td>
-<td align="left">13.07.2022</td>
-<td align="left">13.07.2022</td>
-<td align="left">1990</td>
-<td align="left">2020</td>
-<td align="left">NA</td>
+<td style="text-align: left;">
+Modal split of inland passenger transport
+</td>
+<td style="text-align: left;">
+tran_hv_psmod
+</td>
+<td style="text-align: left;">
+dataset
+</td>
+<td style="text-align: left;">
+13.07.2022
+</td>
+<td style="text-align: left;">
+13.07.2022
+</td>
+<td style="text-align: left;">
+1990
+</td>
+<td style="text-align: left;">
+2020
+</td>
+<td style="text-align: left;">
+NA
+</td>
 </tr>
 <tr class="even">
-<td align="left">Volume of passenger transport relative to GDP</td>
-<td align="left">tran_hv_pstra</td>
-<td align="left">dataset</td>
-<td align="left">13.07.2022</td>
-<td align="left">13.07.2022</td>
-<td align="left">1990</td>
-<td align="left">2020</td>
-<td align="left">NA</td>
+<td style="text-align: left;">
+Volume of passenger transport relative to GDP
+</td>
+<td style="text-align: left;">
+tran_hv_pstra
+</td>
+<td style="text-align: left;">
+dataset
+</td>
+<td style="text-align: left;">
+13.07.2022
+</td>
+<td style="text-align: left;">
+13.07.2022
+</td>
+<td style="text-align: left;">
+1990
+</td>
+<td style="text-align: left;">
+2020
+</td>
+<td style="text-align: left;">
+NA
+</td>
 </tr>
 <tr class="odd">
-<td align="left">Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries</td>
-<td align="left">mar_tp_pa</td>
-<td align="left">dataset</td>
-<td align="left">21.02.2023</td>
-<td align="left">21.02.2023</td>
-<td align="left">2005</td>
-<td align="left">2021</td>
-<td align="left">NA</td>
+<td style="text-align: left;">
+Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries
+</td>
+<td style="text-align: left;">
+mar_tp_pa
+</td>
+<td style="text-align: left;">
+dataset
+</td>
+<td style="text-align: left;">
+21.02.2023
+</td>
+<td style="text-align: left;">
+21.02.2023
+</td>
+<td style="text-align: left;">
+2005
+</td>
+<td style="text-align: left;">
+2021
+</td>
+<td style="text-align: left;">
+NA
+</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport by reporting country</td>
-<td align="left">avia_paoc</td>
-<td align="left">dataset</td>
-<td align="left">13.02.2023</td>
-<td align="left">13.02.2023</td>
-<td align="left">1993</td>
-<td align="left">2022Q4</td>
-<td align="left">NA</td>
+<td style="text-align: left;">
+Air passenger transport by reporting country
+</td>
+<td style="text-align: left;">
+avia_paoc
+</td>
+<td style="text-align: left;">
+dataset
+</td>
+<td style="text-align: left;">
+13.02.2023
+</td>
+<td style="text-align: left;">
+13.02.2023
+</td>
+<td style="text-align: left;">
+1993
+</td>
+<td style="text-align: left;">
+2022Q4
+</td>
+<td style="text-align: left;">
+NA
+</td>
 </tr>
 </tbody>
 </table>
@@ -244,7 +352,7 @@
 <div class="section level3">
 <h3 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h3>
-<p><strong>Kindly cite this package</strong> as follows: <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>, Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/index.html" class="external-link">R Journal 9(1):385-392, 2017</a>. R package version 3.7.15. DOI: <a href="https://doi.org/10.32614/RJ-2017-019" class="external-link">10.32614/RJ-2017-019</a>. URL: <a href="https://ropengov.github.io/eurostat/" class="uri">https://ropengov.github.io/eurostat/</a></p>
+<p><strong>Kindly cite this package</strong> as follows: <a href="https://github.com/antagomir" class="external-link">Leo Lahti</a>, Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/index.html" class="external-link">R Journal 9(1):385-392, 2017</a>. R package version 3.8.2. DOI: <a href="https://doi.org/10.32614/RJ-2017-019" class="external-link">10.32614/RJ-2017-019</a>. URL: <a href="https://ropengov.github.io/eurostat/" class="uri">https://ropengov.github.io/eurostat/</a></p>
 <p>We are grateful to all <a href="https://github.com/ropengov/eurostat/graphs/contributors" class="external-link">contributors</a>, including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the <a href="https://ec.europa.eu/eurostat/" class="external-link">Eurostat</a> open data portal! This project is part of <a href="https://ropengov.org" class="external-link">rOpenGov</a>.</p>
 </div>
 <div class="section level3">
