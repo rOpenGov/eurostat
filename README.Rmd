@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![codecov](https://codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://app.codecov.io/gh/rOpenGov/eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
-[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://app.gitter.im/#/room/#rOpenGov_eurostat:gitter.im?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![r-universe](https://ropengov.r-universe.dev/badges/eurostat)](https://ropengov.r-universe.dev/)
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
@@ -101,7 +101,7 @@ Contributions are very welcome:
   * [Use issue tracker](https://github.com/ropengov/eurostat/issues) for feedback and bug reports.
   * [Send pull requests](https://github.com/ropengov/eurostat/)
   * [Star us on the Github page](https://github.com/ropengov/eurostat/)
-  * [Join the discussion in Gitter](https://gitter.im/rOpenGov/eurostat)
+  * [Join the discussion in Gitter](https://app.gitter.im/#/room/#rOpenGov_eurostat:gitter.im)
 
 ### Acknowledgements
 
