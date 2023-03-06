@@ -12,7 +12,7 @@ version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.o
 [![codecov](https://codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://app.codecov.io/gh/rOpenGov/eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
-[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://app.gitter.im/#/room/#rOpenGov_eurostat:gitter.im?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![r-universe](https://ropengov.r-universe.dev/badges/eurostat)](https://ropengov.r-universe.dev/)
 
 [![Watch on
@@ -86,8 +86,8 @@ knitr::kable(head(passengers))
 | Modal split of air, sea and inland passenger transport                                       | tran_hv_ms_psmod | dataset | 31.01.2023          | NA                          | 2008       | 2020     | NA     |
 | Modal split of inland passenger transport                                                    | tran_hv_psmod    | dataset | 13.07.2022          | 13.07.2022                  | 1990       | 2020     | NA     |
 | Volume of passenger transport relative to GDP                                                | tran_hv_pstra    | dataset | 13.07.2022          | 13.07.2022                  | 1990       | 2020     | NA     |
-| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 04.08.2022          | NA                          | 2005       | 2020     | NA     |
-| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 03.01.2023          | 05.12.2022                  | 1993       | 2022Q3   | NA     |
+| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 21.02.2023          | 21.02.2023                  | 2005       | 2021     | NA     |
+| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 13.02.2023          | 13.02.2023                  | 1993       | 2022Q4   | NA     |
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
@@ -110,7 +110,8 @@ Contributions are very welcome:
   feedback and bug reports.
 - [Send pull requests](https://github.com/ropengov/eurostat/)
 - [Star us on the Github page](https://github.com/ropengov/eurostat/)
-- [Join the discussion in Gitter](https://gitter.im/rOpenGov/eurostat)
+- [Join the discussion in
+  Gitter](https://app.gitter.im/#/room/#rOpenGov_eurostat:gitter.im)
 
 ### Acknowledgements
 
@@ -119,7 +120,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.14. DOI:
+R package version 3.7.15. DOI:
 [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL:
 <https://ropengov.github.io/eurostat/>
 
@@ -139,6 +140,3 @@ kind of modification to data or text, please state this clearly to the
 end user. See Eurostat policy on [copyright and free re-use of
 data](https://ec.europa.eu/eurostat/about/policies/copyright) for more
 detailed information and certain exceptions.
-
-<!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
-<!--[build]: https://travis-ci.org/ropengov/eurostat-->

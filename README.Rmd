@@ -21,7 +21,7 @@ knitr::opts_chunk$set(
 [![codecov](https://codecov.io/gh/rOpenGov/eurostat/branch/master/graph/badge.svg?token=Wp2VVvpWQA)](https://app.codecov.io/gh/rOpenGov/eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/grand-total/eurostat)](https://cran.r-project.org/package=eurostat)
 [![Downloads](http://cranlogs.r-pkg.org/badges/eurostat)](https://cran.r-project.org/package=eurostat)
-[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://gitter.im/rOpenGov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
+[![Gitter](https://badges.gitter.im/rOpenGov/eurostat.svg)](https://app.gitter.im/#/room/#rOpenGov_eurostat:gitter.im?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge)
 [![r-universe](https://ropengov.r-universe.dev/badges/eurostat)](https://ropengov.r-universe.dev/)
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
@@ -101,7 +101,7 @@ Contributions are very welcome:
   * [Use issue tracker](https://github.com/ropengov/eurostat/issues) for feedback and bug reports.
   * [Send pull requests](https://github.com/ropengov/eurostat/)
   * [Star us on the Github page](https://github.com/ropengov/eurostat/)
-  * [Join the discussion in Gitter](https://gitter.im/rOpenGov/eurostat)
+  * [Join the discussion in Gitter](https://app.gitter.im/#/room/#rOpenGov_eurostat:gitter.im)
 
 ### Acknowledgements
 
@@ -115,29 +115,12 @@ This package is in no way officially related to or endorsed by Eurostat.
 
 When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on [copyright and free re-use of data](https://ec.europa.eu/eurostat/about/policies/copyright) for more detailed information and certain exceptions.
 
-[chat-badge]: https://img.shields.io/badge/chat-on%20gitter-46BC99.svg?style=flat-square
-[chat]: https://gitter.im/ropengov/eurostat?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
-<!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
-<!--[build]: https://travis-ci.org/ropengov/eurostat-->
-[version-badge]: https://img.shields.io/npm/v/eurostat.svg?style=flat-square
-[package]: https://www.npmjs.com/package/eurostat
 [license-badge]: https://img.shields.io/npm/l/eurostat.svg?style=flat-square
 [license]: https://github.com/ropengov/eurostat/blob/master/LICENSE
-[prs-badge]: https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square
-[prs]: http://makeapullrequest.com
-[donate-badge]: https://img.shields.io/badge/$-support-green.svg?style=flat-square
-[donate]: http://kcd.im/donate
-[coc-badge]: https://img.shields.io/badge/code%20of-conduct-ff69b4.svg?style=flat-square
-[coc]: https://github.com/ropengov/eurostat/blob/master/other/CODE_OF_CONDUCT.md
-[implementations-badge]: https://img.shields.io/badge/%F0%9F%92%A1-implementations-8C8E93.svg?style=flat-square
-[implementations]: https://github.com/ropengov/eurostat/blob/master/other/IMPLEMENTATIONS.md
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social
 [github-watch]: https://github.com/ropengov/eurostat/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social
 [github-star]: https://github.com/ropengov/eurostat/stargazers
 
-[twitter]: https://twitter.com/intent/tweet?text=Check%20out%20eurostat!%20%E2%9C%A8%20Recognize%20all%20contributors,%20not%20just%20the%20ones%20who%20commit%20code%20%E2%9C%A8%20https://github.com/ropengov/eurostat/%20%F0%9F%A4%97
-[twitter-badge]: https://img.shields.io/twitter/url/https/github.com/ropengov/eurostat.svg?style=social
-[emojis]: https://github.com/ropengov/eurostat/#emoji-key
 [eurostat]: https://github.com/ropengov/eurostat/
