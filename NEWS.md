@@ -1,3 +1,9 @@
+# eurostat 3.7.15 (2023-03-06)
+
+## Minor updates
+
+* use `curl::curl_download` on Windows platforms instead of `utils::download.file` as the latter causes the following error: "error reading from the connection [...] invalid or incomplete compressed data". This affects only files downloaded from the new API.
+
 # eurostat 3.7.14 (2023-02-22)
 
 ## Major updates
