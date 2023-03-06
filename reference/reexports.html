@@ -24,7 +24,7 @@ recode_nuts, validate_geo_code, validate_nuts_regions
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.14</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.15</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -173,12 +173,12 @@ still contain <code>2013</code> and sometimes earlier metadata.</p>
 <span class="r-in"><span><span class="fu"><a href="https://regions.dataobservatory.eu/reference/recode_nuts.html" class="external-link">recode_nuts</a></span><span class="op">(</span><span class="va">foo</span>, nuts_year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="op">}</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>     geo   values     typology                           typology_change</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    FR 88.57600      country                                 unchanged</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  UKI3 61.98406 nuts_level_2                                 unchanged</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3   DED 37.99745 nuts_level_1                                 unchanged</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4   FRK 33.05526 nuts_level_1 Recoded from FRK [used in NUTS 2016-2021]</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5  HU12 59.59308 nuts_level_2                    Used in NUTS 2016-2021</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6 DEE32 49.07848 nuts_level_3                    Used in NUTS 1999-2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    FR 66.84542      country                                 unchanged</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  UKI3 75.39345 nuts_level_2                                 unchanged</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3   DED 66.61564 nuts_level_1                                 unchanged</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4   FRK 51.48018 nuts_level_1 Recoded from FRK [used in NUTS 2016-2021]</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5  HU12 65.31130 nuts_level_2                    Used in NUTS 2016-2021</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6 DEE32 62.01905 nuts_level_3                    Used in NUTS 1999-2003</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   code_2013</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 1        FR</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> 2      UKI3</span>
@@ -197,43 +197,43 @@ still contain <code>2013</code> and sometimes earlier metadata.</p>
 <span class="r-in"><span><span class="op">)</span></span></span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://regions.dataobservatory.eu/reference/validate_nuts_regions.html" class="external-link">validate_nuts_regions</a></span><span class="op">(</span><span class="va">my_reg_data</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      geo      values         typology valid_2016</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BE1 0.201551972     nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  HU102 0.371337639             &lt;NA&gt;      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    FR1 0.072018990     nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    DED 0.006241746     nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    FR7 0.252428614 iso-3166-alpha-3      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TR 0.377554557          country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   DED2 0.910058009     nuts_level_2       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EL 0.038835477          country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     XK 0.241140587          country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    GB 0.617967327          country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      geo     values         typology valid_2016</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BE1 0.28467434     nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  HU102 0.85011272             &lt;NA&gt;      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    FR1 0.69219826     nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    DED 0.69185780     nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    FR7 0.44784648 iso-3166-alpha-3      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TR 0.30348133          country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   DED2 0.57820472     nuts_level_2       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EL 0.05115787          country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     XK 0.82971214          country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    GB 0.42631939          country       TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://regions.dataobservatory.eu/reference/validate_nuts_regions.html" class="external-link">validate_nuts_regions</a></span><span class="op">(</span><span class="va">my_reg_data</span>, nuts_year <span class="op">=</span> <span class="fl">2013</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      geo      values     typology valid_2013</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BE1 0.201551972 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  HU102 0.371337639 nuts_level_3       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    FR1 0.072018990 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    DED 0.006241746 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    FR7 0.252428614 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TR 0.377554557      country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   DED2 0.910058009 nuts_level_2       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EL 0.038835477      country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     XK 0.241140587      country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    GB 0.617967327      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      geo     values     typology valid_2013</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BE1 0.28467434 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  HU102 0.85011272 nuts_level_3       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    FR1 0.69219826 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    DED 0.69185780 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    FR7 0.44784648 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TR 0.30348133      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   DED2 0.57820472 nuts_level_2       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EL 0.05115787      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     XK 0.82971214      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    GB 0.42631939      country       TRUE</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://regions.dataobservatory.eu/reference/validate_nuts_regions.html" class="external-link">validate_nuts_regions</a></span><span class="op">(</span><span class="va">my_reg_data</span>, nuts_year <span class="op">=</span> <span class="fl">2003</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>      geo      values     typology valid_2003</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BE1 0.201551972 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 2  HU102 0.371337639         &lt;NA&gt;      FALSE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 3    FR1 0.072018990 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 4    DED 0.006241746 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 5    FR7 0.252428614 nuts_level_1       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TR 0.377554557      country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 7   DED2 0.910058009 nuts_level_2       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EL 0.038835477      country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 9     XK 0.241140587      country       TRUE</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> 10    GB 0.617967327      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span>      geo     values     typology valid_2003</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 1    BE1 0.28467434 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 2  HU102 0.85011272         &lt;NA&gt;      FALSE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 3    FR1 0.69219826 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 4    DED 0.69185780 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 5    FR7 0.44784648 nuts_level_1       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 6     TR 0.30348133      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 7   DED2 0.57820472 nuts_level_2       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 8     EL 0.05115787      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 9     XK 0.82971214      country       TRUE</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> 10    GB 0.42631939      country       TRUE</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 <span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">my_reg_data</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span></span>

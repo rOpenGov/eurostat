@@ -14,7 +14,7 @@ set by the user."><meta property="og:image" content="https://ropengov.github.io/
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.14</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.7.15</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -102,36 +102,17 @@ or <code>'Bibtex'</code> (not case sensitive.)</p></dd>
 
     <div class="section level2">
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
-    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">my_bibliography</span> <span class="op">&lt;-</span> <span class="fu">get_bibentry</span><span class="op">(</span></span></span>
-<span class="r-in"><span>  code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tran_hv_frtra"</span>, <span class="st">"t2020_rk310"</span>, <span class="st">"tec00001"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>  keywords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"railways"</span>, <span class="st">"freight"</span>, <span class="st">"transport"</span><span class="op">)</span>,</span></span>
-<span class="r-in"><span>    <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"railways"</span>, <span class="st">"passengers"</span>, <span class="st">"modal split"</span><span class="op">)</span></span></span>
-<span class="r-in"><span>  <span class="op">)</span>,</span></span>
-<span class="r-in"><span>  format <span class="op">=</span> <span class="st">"Biblatex"</span></span></span>
-<span class="r-in"><span><span class="op">)</span></span></span>
-<span class="r-in"><span><span class="va">my_bibliography</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> @Misc{tran_hv_frtra_20-04-2022,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   title = {Volume of freight transport relative to GDP [tran_hv_frtra]},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   url = {https://ec.europa.eu/eurostat/web/products-datasets/-/tran_hv_frtra},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   language = {en},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   year = {20.04.2022},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   publisher = {Eurostat},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   author = {{Eurostat}},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   keywords = {railways, freight, transport},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   urldate = {2023-02-27},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> @Misc{tec00001_24-02-2023,</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   title = {Gross domestic product at market prices [t2020_rk310]},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   url = {https://ec.europa.eu/eurostat/web/products-datasets/-/t2020_rk310},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   language = {en},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   year = {24.02.2023},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   publisher = {Eurostat},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   author = {{Eurostat}},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   keywords = {railways, passengers, modal split},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span>   urldate = {2023-02-27},</span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> }</span>
+    <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="kw">if</span> <span class="op">(</span><span class="cn">FALSE</span><span class="op">)</span> <span class="op">{</span></span></span>
+<span class="r-in"><span>  <span class="va">my_bibliography</span> <span class="op">&lt;-</span> <span class="fu">get_bibentry</span><span class="op">(</span></span></span>
+<span class="r-in"><span>    code <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"tran_hv_frtra"</span>, <span class="st">"t2020_rk310"</span>, <span class="st">"tec00001"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>    keywords <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span></span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"railways"</span>, <span class="st">"freight"</span>, <span class="st">"transport"</span><span class="op">)</span>,</span></span>
+<span class="r-in"><span>      <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"railways"</span>, <span class="st">"passengers"</span>, <span class="st">"modal split"</span><span class="op">)</span></span></span>
+<span class="r-in"><span>    <span class="op">)</span>,</span></span>
+<span class="r-in"><span>    format <span class="op">=</span> <span class="st">"Biblatex"</span></span></span>
+<span class="r-in"><span>  <span class="op">)</span></span></span>
+<span class="r-in"><span>  <span class="va">my_bibliography</span></span></span>
+<span class="r-in"><span><span class="op">}</span></span></span>
 </code></pre></div>
     </div>
   </main><aside class="col-md-3"><nav id="toc"><h2>On this page</h2>
