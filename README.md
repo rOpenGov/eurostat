@@ -3,8 +3,9 @@
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
-[![R build
-status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
+[![R-CMD-check](https://github.com/rOpenGov/eurostat/actions/workflows/check-full.yaml/badge.svg)](https://github.com/rOpenGov/eurostat/actions/workflows/check-full.yaml)
+[![R-CMD-check
+(standard)](https://github.com/rOpenGov/eurostat/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/rOpenGov/eurostat/actions/workflows/check-standard.yaml)
 [![cran
 version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.org/package=eurostat)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
