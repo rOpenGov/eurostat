@@ -42,7 +42,11 @@ get_eurostat_raw2 <- function(id) {
   tfile <- tempfile()
   on.exit(unlink(tfile))
 
-  utils::download.file(url, tfile)
+  if (.Platform$OS.type == "windows") {
+    curl::curl_download(url = url, destfile = tfile)
+  } else {
+    utils::download.file(url, tfile)
+  }
 
   dat <- readr::read_tsv(gzfile(tfile),
     na = ":",

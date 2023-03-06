@@ -2,8 +2,9 @@
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
-[![R build
-status](https://github.com/rOpenGov/eurostat/workflows/R-CMD-check/badge.svg)](https://github.com/rOpenGov/eurostat/actions)
+[![R-CMD-check](https://github.com/rOpenGov/eurostat/actions/workflows/check-full.yaml/badge.svg)](https://github.com/rOpenGov/eurostat/actions/workflows/check-full.yaml)
+[![R-CMD-check
+(standard)](https://github.com/rOpenGov/eurostat/actions/workflows/check-standard.yaml/badge.svg)](https://github.com/rOpenGov/eurostat/actions/workflows/check-standard.yaml)
 [![cran
 version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.org/package=eurostat)
 [![lifecycle](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html#stable-1)
@@ -190,7 +191,7 @@ Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
 and Janne Huovari. Retrieval and analysis of Eurostat open data with the
 eurostat package. [R Journal 9(1):385-392,
 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.8.1. DOI:
+R package version 3.8.2. DOI:
 [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL:
 <https://ropengov.github.io/eurostat/>
 
@@ -210,6 +211,3 @@ kind of modification to data or text, please state this clearly to the
 end user. See Eurostat policy on [copyright and free re-use of
 data](https://ec.europa.eu/eurostat/about/policies/copyright) for more
 detailed information and certain exceptions.
-
-<!--[build-badge]: https://img.shields.io/travis/ropengov/eurostat.svg?style=flat-square-->
-<!--[build]: https://travis-ci.org/ropengov/eurostat-->

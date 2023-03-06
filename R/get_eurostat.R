@@ -121,7 +121,7 @@
 #' bulk download facility can be completed for example with [tidyr::complete()].
 #' @seealso [search_eurostat()], [label_eurostat()]
 #' @examplesIf check_access_to_data()
-#' \donttest{
+#' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 #' k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
@@ -137,8 +137,7 @@
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 #' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
-#' }
-#' \dontrun{
+#'
 #' dd <- get_eurostat("nama_10_gdp",
 #'   filters = list(
 #'     geo = "FI",

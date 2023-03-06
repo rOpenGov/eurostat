@@ -139,7 +139,7 @@ in parenthesis.
 }
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
-\donttest{
+\dontrun{
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
 k <- get_eurostat("nama_10_lp_ulc", update_cache = TRUE)
@@ -155,8 +155,7 @@ set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
 k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
-}
-\dontrun{
+
 dd <- get_eurostat("nama_10_gdp",
   filters = list(
     geo = "FI",

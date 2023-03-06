@@ -1,7 +1,7 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 3.8.1
+Version: 3.8.2
 Date: 2023-03-03
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
