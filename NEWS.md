@@ -1,4 +1,10 @@
-# eurostat 3.7.15 (2023-03-06)
+# eurostat 3.8.3 (2023-03-07)
+
+## Bug fixes
+
+* Fix date handling bug in the `get_eurostat_json()` and `eurotime2date()` functions (issue #251, reported by @lz1nwm). The `get_eurostat_json()` function uses the temporary `eurotime2date()` function for date handling until the old bulk download API is deprecated.
+
+# eurostat 3.8.2 (2023-03-06)
 
 ## Minor updates
 

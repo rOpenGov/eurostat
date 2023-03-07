@@ -214,7 +214,7 @@ get_eurostat <- function(id,
                                type = type,
                                stringsAsFactors = stringsAsFactors, ...
         )
-        y$time <- convert_time_col(factor(y$time), time_format = time_format)
+        y$time <- convert_time_col2(factor(y$time), time_format = time_format)
         
         # Bulk download
       } else if (filters == "none") {
