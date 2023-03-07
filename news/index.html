@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.2</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">3.8.3</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -57,9 +57,16 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="3.7.15" id="eurostat-3715-2023-03-06">eurostat 3.7.15 (2023-03-06)<a class="anchor" aria-label="anchor" href="#eurostat-3715-2023-03-06"></a></h2>
+<h2 class="pkg-version" data-toc-text="3.8.3" id="eurostat-383-2023-03-07">eurostat 3.8.3 (2023-03-07)<a class="anchor" aria-label="anchor" href="#eurostat-383-2023-03-07"></a></h2>
 <div class="section level3">
-<h3 id="minor-updates-3-7-15">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-3-7-15"></a></h3>
+<h3 id="bug-fixes-3-8-3">Bug fixes<a class="anchor" aria-label="anchor" href="#bug-fixes-3-8-3"></a></h3>
+<ul><li>Fix date handling bug in the <code><a href="../reference/get_eurostat_json.html">get_eurostat_json()</a></code> and <code><a href="../reference/eurotime2date.html">eurotime2date()</a></code> functions (issue <a href="https://github.com/rOpenGov/eurostat/issues/251" class="external-link">#251</a>, reported by <a href="https://github.com/lz1nwm" class="external-link">@lz1nwm</a>). The <code><a href="../reference/get_eurostat_json.html">get_eurostat_json()</a></code> function uses the temporary <code><a href="../reference/eurotime2date.html">eurotime2date()</a></code> function for date handling until the old bulk download API is deprecated.</li>
+</ul></div>
+</div>
+    <div class="section level2">
+<h2 class="pkg-version" data-toc-text="3.8.2" id="eurostat-382-2023-03-06">eurostat 3.8.2 (2023-03-06)<a class="anchor" aria-label="anchor" href="#eurostat-382-2023-03-06"></a></h2><p class="text-muted">CRAN release: 2023-03-06</p>
+<div class="section level3">
+<h3 id="minor-updates-3-8-2">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-3-8-2"></a></h3>
 <ul><li>use <code><a href="https://rdrr.io/pkg/curl/man/curl_download.html" class="external-link">curl::curl_download</a></code> on Windows platforms instead of <code><a href="https://rdrr.io/r/utils/download.file.html" class="external-link">utils::download.file</a></code> as the latter causes the following error: “error reading from the connection […] invalid or incomplete compressed data”. This affects only files downloaded from the new API.</li>
 </ul></div>
 </div>
