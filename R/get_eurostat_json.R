@@ -116,7 +116,9 @@ get_eurostat_json <- function(id,
     # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
     resp <- httr::RETRY("GET", url, terminate_on = c(404))
     if (httr::http_error(resp)) {
-      stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
+      stop(paste("The requested url cannot be found within the get_eurostat_json function:
+                  Client Error - 100 No results found 
+                  Description - The requested resource is not available.", url))
     }
 
     status <- httr::status_code(resp)
@@ -135,12 +137,25 @@ get_eurostat_json <- function(id,
       jdat <- jsonlite::fromJSON(url)
     } else if (status == 400) {
       stop(
-        "Failure to get data. Probably invalid dataset id. Status code: ",
+        "Failure to get data. Probably invalid dataset id. 
+        Client Errors - 100 No results found : The result from the query is empty.
+                      - 140 Syntax error : The query is invalid.
+                      - 150 Semantic error :
+                      Description - The request is syntactically correct 
+                      but fails a semantic validation, business rules.
+        Status code: ",
         status, msg
       )
     } else if (status == 500) {
-      stop("Failure to get data. Probably filters did not return any data
-         or data exceeded query size limitation. Status code: ", status, msg)
+      stop("Failure to get data. Probably filters did not return any data 
+      or data exceeded query size limitation.
+        Fault  Code - 
+        Server Errors - 500 Internal Server error   
+        Description - The webservice should return this error code when none of
+        the other error codes better describes the reason for the failure of 
+        the service to provide a meaningful response.Also used in case of 
+        request not respecting the xsd definition.
+        Status code: ", status, msg)
     } else if (status == 416) {
       stop(
         "Too many categories have been requested. Maximum is 50.",
