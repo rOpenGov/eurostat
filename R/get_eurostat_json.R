@@ -121,9 +121,7 @@ get_eurostat_json <- function(id,
     # resp <- try(httr::GET(url, ...))
     # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
     resp <- httr::RETRY("GET", url, terminate_on = c(404))
-    #print(httr::http_error(resp))
-    print(httr::headers(resp))
-    #print(httr::text_content(resp))
+    
     if (httr::http_error(resp)) {
       # stop(paste("The requested url cannot be found within the get_eurostat_json function:
       #             Client Error - 100 No results found 
