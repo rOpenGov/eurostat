@@ -107,12 +107,9 @@ get_eurostat_json <- function(id,
       Please check your connection and/or review your proxy settings")
   } else {
     msg <- ". Some datasets are not accessible via the eurostat
-          interface. You can try to search the data manually from the comext
-  	  database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk
-  	  download facility at
-  	  http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing
-  	  or annual Excel files
-  	  http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
+            interface. You can try to search the data manually from the comext
+  	    database athttps://ec.europa.eu/eurostat/comext/newxtweb/ or API data query at
+  	  https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query"
     # get response
     # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
     # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
@@ -122,19 +119,23 @@ get_eurostat_json <- function(id,
     # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
     resp <- httr::RETRY("GET", url, terminate_on = c(404))
     
+    status <- httr::status_code(resp)
+    id <- httr::content(resp)$error[[1]]$id
+    label_des <-httr::content(resp)$error[[1]]$label
+    
     if (httr::http_error(resp)) {
       # stop(paste("The requested url cannot be found within the get_eurostat_json function:
       #             Client Error - 100 No results found 
       #             Description - The requested resource is not available.", url))
     #   
-       stop(paste("Status : ",httr::content(resp)$error[[1]]$status,
-            ", error id : ",httr::content(resp)$error[[1]]$id,"No results found",
-            ", label : ", httr::content(resp)$error[[1]]$label),"\n",
+       paste("Status : ",status,
+            ", error id : ",id,"No results found",
+            ", label : ", label_des,"\n",
             msg)
      }
     }
 
-    status <- httr::status_code(resp)
+    #status <- httr::status_code(resp)
     
     # check status and get json
 
@@ -150,18 +151,17 @@ get_eurostat_json <- function(id,
       jdat <- jsonlite::fromJSON(url)
     } else if (status == 400) {
      
-      stop(paste(paste("Status : ",httr::content(resp)$error[[1]]$status,"Bad request",
-                       if(httr::content(resp)$error[[1]]$id ==100){paste(", error id : ",httr::content(resp)$error[[1]]$id , "No result found")}
-                       else if(httr::content(resp)$error[[1]]$id ==140){paste(", error id : ",httr::content(resp)$error[[1]]$id , "Syntax error")}
-                       else if(httr::content(resp)$error[[1]]$id ==150){paste(", error id : ",httr::content(resp)$error[[1]]$id , "Semantic error")},
-                       #", error id : ",httr::content(resp)$error[[1]]$id,
-                       ", label : ", httr::content(resp)$error[[1]]$label,"\n",
-                       msg)))
+      stop(paste("Status : ",status,"Bad request",
+                       if(id ==100){paste(", error id : ",id , "No result found")}
+                       else if(id ==140){paste(", error id : ",id , "Syntax error")}
+                       else if(id ==150){paste(", error id : ",id , "Semantic error")},
+                       ", label : ", label_des,"\n",
+                       msg))
     } else if (status == 500) {
       
-      stop(paste("Status : ",httr::content(resp)$error[[1]]$status,"Internal Server error",
-           ", error id : ",httr::content(resp)$error[[1]]$id," Internal Server error",
-           ", label : ", httr::content(resp)$error[[1]]$label),"\n",
+      stop(paste("Status : ",status,"Internal Server error",
+           ", error id : ",id," Internal Server error",
+           ", label : ", label_des),"\n",
            msg)
     } else if (status == 416) {
       stop(
@@ -170,7 +170,9 @@ get_eurostat_json <- function(id,
         msg
       )
     } else {
-      stop(paste("Failure to get data. Status code: ",msg))
+      stop(paste("Failure to get data. Status code: ",
+                 status,
+                 msg))
     }
     
 
