@@ -106,10 +106,7 @@ get_eurostat_json <- function(id,
     message("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
   } else {
-    msg <- ". Some datasets are not accessible via the eurostat
-            interface. You can try to search the data manually from the comext
-  	    database athttps://ec.europa.eu/eurostat/comext/newxtweb/ or API data query at
-  	  https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query"
+    msg <- " Some datasets are not accessible via the eurostat interface. You can try to search the data manually from the comext database at https://ec.europa.eu/eurostat/comext/newxtweb/ or explore data at https://ec.europa.eu/eurostat/web/main/data/database"
     # get response
     # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
     # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
