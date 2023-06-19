@@ -116,10 +116,15 @@ get_eurostat_json <- function(id,
     # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
     resp <- httr::RETRY("GET", url, terminate_on = c(404))
     
-    status <- httr::status_code(resp)
-    id <- httr::content(resp)$error[[1]]$id
-    label_des <-httr::content(resp)$error[[1]]$label
-    
+    #status <- httr::status_code(resp)
+    #id <- httr::content(resp)$error[[1]]$id
+    #label_des <-httr::content(resp)$error[[1]]$label
+    result <- httr::content(resp)$error
+    json_data_frame <- as.data.frame(result)
+    status <- json_data_frame$status
+    id <- json_data_frame$id
+    label <- json_data_frame$label
+    #print(json_data_frame)
     if (httr::http_error(resp)) {
       # stop(paste("The requested url cannot be found within the get_eurostat_json function:
       #             Client Error - 100 No results found 
@@ -127,7 +132,7 @@ get_eurostat_json <- function(id,
     #   
        paste("Status : ",status,
             ", error id : ",id,"No results found",
-            ", label : ", label_des,"\n",
+            ", label : ", label,"\n",
             msg)
      }
     }
@@ -148,17 +153,21 @@ get_eurostat_json <- function(id,
       jdat <- jsonlite::fromJSON(url)
     } else if (status == 400) {
      
-      stop(paste("Status : ",status,"Bad request",
-                       if(id ==100){paste(", error id : ",id , "No result found")}
-                       else if(id ==140){paste(", error id : ",id , "Syntax error")}
-                       else if(id ==150){paste(", error id : ",id , "Semantic error")},
-                       ", label : ", label_des,"\n",
-                       msg))
+      # stop(paste("Status : ",status,"Bad request",
+      #                  if(id ==100){paste(", error id : ",id , "No result found")}
+      #                  else if(id ==140){paste(", error id : ",id , "Syntax error")}
+      #                  else if(id ==150){paste(", error id : ",id , "Semantic error")},
+      #                  ", label : ", label,"\n",
+      #                  msg))
+      stop(paste("Status :",status,"Bad request",
+                 if(100 %in% id){paste(" errod id: ", id , "No result found")}
+                 else if(140 %in% id){paste("error id: ",id , "Syntax error",)}
+                 else if(150 %in% id){paste("errod id: ",id , "Semantic error")},label))
     } else if (status == 500) {
       
       stop(paste("Status : ",status,"Internal Server error",
            ", error id : ",id," Internal Server error",
-           ", label : ", label_des),"\n",
+           ", label : ", label),"\n",
            msg)
     } else if (status == 416) {
       stop(
@@ -168,7 +177,9 @@ get_eurostat_json <- function(id,
       )
     } else {
       stop(paste("Failure to get data. Status code: ",
-                 status,
+                 "Status : ",status,
+                 ", error id : ",id,"No results found",
+                 ", label : ", label,"\n",
                  msg))
     }
     
