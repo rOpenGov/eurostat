@@ -106,7 +106,7 @@ get_eurostat_json <- function(id,
     message("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
   } else {
-
+    msg <- " Some datasets are not accessible via the eurostat interface. You can try to search the data manually from the comext database at https://ec.europa.eu/eurostat/comext/newxtweb/ or explore data at https://ec.europa.eu/eurostat/web/main/data/database"
     # get response
     # url <- try(eurostat_json_url(id = id, filters = filters, lang = lang))
     # if (class(url) == "try-error") { stop(paste("The requested data set cannot be found with the following specifications to get_eurostat_json function: ", "id: ", id, "/ filters: ", filters, "/ lang: ", lang))  }
@@ -115,40 +115,74 @@ get_eurostat_json <- function(id,
     # resp <- try(httr::GET(url, ...))
     # if (class(resp) == "try-error") { stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))  }
     resp <- httr::RETRY("GET", url, terminate_on = c(404))
+    
+    #status <- httr::status_code(resp)
+    #id <- httr::content(resp)$error[[1]]$id
+    #label_des <-httr::content(resp)$error[[1]]$label
+    result <- httr::content(resp)$error
+    json_data_frame <- as.data.frame(result)
+    status <- json_data_frame$status
+    id <- json_data_frame$id
+    label <- json_data_frame$label
+    #print(json_data_frame)
     if (httr::http_error(resp)) {
-      stop(paste("The requested url cannot be found within the get_eurostat_json function:", url))
+      # stop(paste("The requested url cannot be found within the get_eurostat_json function:
+      #             Client Error - 100 No results found 
+      #             Description - The requested resource is not available.", url))
+    #   
+       paste("Status : ",status,
+            ", error id : ",id,"No results found",
+            ", label : ", label,"\n",
+            msg)
+     }
     }
 
-    status <- httr::status_code(resp)
-
+    #status <- httr::status_code(resp)
+    
     # check status and get json
 
-    msg <- ". Some datasets are not accessible via the eurostat
-          interface. You can try to search the data manually from the comext
-  	  database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk
-  	  download facility at
-  	  http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing
-  	  or annual Excel files
-  	  http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
+  #   msg <- ". Some datasets are not accessible via the eurostat
+  #         interface. You can try to search the data manually from the comext
+  # 	  database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk
+  # 	  download facility at
+  # 	  http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing
+  # 	  or annual Excel files
+  # 	  http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
 
     if (status == 200) {
       jdat <- jsonlite::fromJSON(url)
     } else if (status == 400) {
-      stop(
-        "Failure to get data. Probably invalid dataset id. Status code: ",
-        status, msg
-      )
+     
+      # stop(paste("Status : ",status,"Bad request",
+      #                  if(id ==100){paste(", error id : ",id , "No result found")}
+      #                  else if(id ==140){paste(", error id : ",id , "Syntax error")}
+      #                  else if(id ==150){paste(", error id : ",id , "Semantic error")},
+      #                  ", label : ", label,"\n",
+      #                  msg))
+      stop(paste("Status :",status,"Bad request",
+                 if(100 %in% id){paste(" errod id: ", id , "No result found")}
+                 else if(140 %in% id){paste("error id: ",id , "Syntax error",)}
+                 else if(150 %in% id){paste("errod id: ",id , "Semantic error")},label))
     } else if (status == 500) {
-      stop("Failure to get data. Probably filters did not return any data
-         or data exceeded query size limitation. Status code: ", status, msg)
+      
+      stop(paste("Status : ",status,"Internal Server error",
+           ", error id : ",id," Internal Server error",
+           ", label : ", label),"\n",
+           msg)
     } else if (status == 416) {
       stop(
         "Too many categories have been requested. Maximum is 50.",
-        status, msg
+        status, 
+        msg
       )
     } else {
-      stop("Failure to get data. Status code: ", status, msg)
+      stop(paste("Failure to get data. Status code: ",
+                 "Status : ",status,
+                 ", error id : ",id,"No results found",
+                 ", label : ", label,"\n",
+                 msg))
     }
+    
 
     # get json data
     # dims <- jdat[[1]]$dimension # Was called like this in API v1.1
@@ -188,7 +222,7 @@ get_eurostat_json <- function(id,
 
     tibble::as_tibble(dat)
   }
-}
+
 
 
 
