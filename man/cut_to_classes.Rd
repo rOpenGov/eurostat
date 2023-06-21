@@ -20,7 +20,7 @@ cut_to_classes(
 
 \item{n}{A numeric. number of classes/categories}
 
-\item{style}{chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih", "headtails", or "maximum"}
+\item{style}{chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih", "headtails", "maximum", or "box"}
 
 \item{manual}{Logical. If manual breaks are being used}
 

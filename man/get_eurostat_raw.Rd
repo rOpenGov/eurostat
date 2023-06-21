@@ -35,8 +35,7 @@ eurostat:::get_eurostat_raw("educ_iste")
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
-# Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
 #   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 #   Retrieval and analysis of Eurostat open data with the eurostat

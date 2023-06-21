@@ -13,7 +13,7 @@ Brief summary of the eurostat package
     \tab  \cr
    \strong{Package} \tab eurostat \cr
    \strong{Type} \tab Package \cr
-   \strong{Version} \tab 3.8.3 \cr
+   \strong{Version} \tab 4.0.0.9000 \cr
    \strong{Date} \tab 2014-2022 \cr
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr
@@ -34,8 +34,7 @@ library(eurostat)
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
-# Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
 #   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 #   Retrieval and analysis of Eurostat open data with the eurostat

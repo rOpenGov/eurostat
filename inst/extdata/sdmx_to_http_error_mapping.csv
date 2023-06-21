@@ -1,0 +1,11 @@
+﻿type;sdmx.faultcode;sdmx.faultstring;http.status_code;http.status_code.label;detail
+Client error;100;No results found;400;Bad request;The result from the query is empty
+Client error;100;No results found;404;Not found;The requested resource is not available
+Client error;140;Syntax error;400;Bad request;The query is invalid
+Client error;150;Semantic error;400;Bad request;The request is syntactically correct but fails a semantic validation or violates agreed business rules
+Client error;110;Unauthorized;401;Unauthorized;Authentication is needed but has failed or has not yet been provided
+Client error;130;Response too large due to client request;413;Request entity too large;The request results in a response that is larger than the client is willing or able to process
+Server error;500;Internal server error;500;Internal server error;The webservice returns this error code when none of the other error codes better describe the reason for the failure of the service to provide a meaningful response
+Server error;501;Not implemented;501;Not implemented;The webservice has not yet implemented one of the methods defined in the API
+Server error;503;Service unavailable;503;Service unavailable;The web service is temporarily unavailable because of maintenance or for some other similar reason
+Server error;510;Response size exceeds service limit;413;Request entity too large;The request results in a response that is larger than the server is willing or able to process

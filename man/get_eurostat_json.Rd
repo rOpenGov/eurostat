@@ -72,6 +72,19 @@ returns a 10 last observations.
 To use a proxy to connect, a \code{\link[httr:use_proxy]{httr::use_proxy()}} can be
 passed to \code{\link[httr:GET]{httr::GET()}}. For example
 \code{get_eurostat_json(id, filters, config = httr::use_proxy(url, port, username, password))}.
+
+When retrieving data from Eurostat JSON API the user may encounter errors.
+For end user convenience, we have provided a ready-made internal dataset
+\code{sdmx_http_errors} that contains descriptive labels and descriptions about
+the possible interpretation or cause of each error. These messages are
+returned if the API returns a status indicating a HTTP error
+(400 or greater).
+
+The Eurostat implementation seems to be based on SDMX 2.1, which is the
+reason we've used SDMX Standards guidelines as a supplementary source
+that we have included in the dataset. What this means in practice is that
+the dataset contains error codes and their mappings that are not mentioned
+in the Eurostat website. We hope you never encounter them.
 }
 \examples{
 \dontrun{
@@ -106,8 +119,7 @@ dd <- get_eurostat("nama_10_gdp",
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
-# Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
 #   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
 #   Retrieval and analysis of Eurostat open data with the eurostat
@@ -139,6 +151,9 @@ Eurostat Data Browser online help: API Statistics - data query:
 Eurostat Data Browser online help: migrating from JSON web service to API
 Statistics:
 \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+
+SDMX standards: Section 7: Guidelines for the use of web services, Version 2.1:
+\url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen

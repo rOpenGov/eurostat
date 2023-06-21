@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 3.8.3
-Date: 2023-03-07
+Version: 4.0.0.9000
+Date: 2023-06-20
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -39,7 +39,7 @@ Imports:
     countrycode,
     curl,
     dplyr,
-    httr,
+    httr (>= 1.4.0),
     jsonlite,
     lubridate,
     rappdirs,
