@@ -4,7 +4,7 @@
 \alias{label_eurostat}
 \alias{label_eurostat_vars}
 \alias{label_eurostat_tables}
-\title{Get Eurostat Codes}
+\title{Get Eurostat Codes for data downloaded from new dissemination API}
 \usage{
 label_eurostat(
   x,
@@ -122,12 +122,9 @@ label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi"
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
-\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
-\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat2}()}
+\code{\link{harmonize_country_code}()}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}

@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_raw.R
 \name{get_eurostat_raw}
 \alias{get_eurostat_raw}
-\title{Download Data from Eurostat Database}
+\title{Download Data from Eurostat Dissemination API}
 \usage{
 get_eurostat_raw(id)
 }
@@ -18,7 +18,8 @@ character format as it contains values together with eurostat
 flags for data.
 }
 \description{
-Download data from the eurostat database.
+Download data from the eurostat database through the new
+dissemination API.
 }
 \details{
 Data is downloaded from
@@ -62,7 +63,7 @@ See \code{citation("eurostat")}:
 \code{\link[=get_eurostat]{get_eurostat()}}.
 }
 \author{
-Przemyslaw Biecek, Leo Lahti and Janne Huovari
+Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen
 }
 \keyword{database}
 \keyword{utilities}

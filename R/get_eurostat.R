@@ -58,13 +58,6 @@
 #' Also possible non-real zero "0n" is indicated in flags column.
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
-#' @param legacy_bulk_download 
-#' a logical, whether to use the new dissemination API to
-#' download TSV files instead of the old Bulk Download facilities.
-#' Default is `TRUE`. This is a temporary parameter that will be deleted 
-#' after the old Bulk Download facilities will are decommissioned. Please
-#' use caution if you intend to build any automated scripts that use this
-#' parameter.
 #' @inheritDotParams get_eurostat_json
 #' @export
 #' @references
@@ -149,8 +142,7 @@
 #' # A dataset with multiple time series in one
 #' dd2 <- get_eurostat("AVIA_GOR_ME",
 #'   select_time = c("A", "M", "Q"),
-#'   time_format = "date_last",
-#'   legacy_bulk_download = FALSE
+#'   time_format = "date_last"
 #' )
 #' }
 #'
@@ -165,7 +157,6 @@ get_eurostat <- function(id,
                          compress_file = TRUE,
                          stringsAsFactors = FALSE,
                          keepFlags = FALSE,
-                         legacy_bulk_download = TRUE,
                          ...) {
   
   # Check if you have access to ec.europe.eu.
@@ -214,53 +205,30 @@ get_eurostat <- function(id,
                                type = type,
                                stringsAsFactors = stringsAsFactors, ...
         )
-        y$time <- convert_time_col2(factor(y$time), time_format = time_format)
+        y$time <- convert_time_col(factor(y$time), time_format = time_format)
         
         # Bulk download
       } else if (filters == "none") {
-        
-        if (legacy_bulk_download == TRUE) {
-          # Download from old bulk download facilities 
-          # with old get_eurostat_raw function
-          # This if-else construct is temporary until the old Bulk Download is
-          # removed from use by Eurostat
+
+          message("Trying to download from the new dissemination API... \n")
+          # Download from new dissemination API in TSV file format
           y_raw <- try(get_eurostat_raw(id))
-          
           if ("try-error" %in% class(y_raw)) {
-            stop(paste("get_eurostat_raw fails with the id", id, "\n"))
+            stop(paste("get_eurostat_raw fails with the id", id))
           }
-          
-          # If download from old bulk download facilities was successful
-          # Then tidy the dataset with old tidy_eurostat function
+          # If download from new dissemination API is successful
+          # Then tidy the dataset with tidy_eurostat function
           y <- tidy_eurostat(y_raw, 
                              time_format, 
                              select_time,
                              stringsAsFactors = stringsAsFactors,
                              keepFlags = keepFlags
           )
-        } else {
-          message("Trying to download from the new dissemination API... \n")
-          # Download from new dissemination API in TSV file format
-          y_raw <- try(get_eurostat_raw2(id))
-          if ("try-error" %in% class(y_raw)) {
-            stop(paste("get_eurostat_raw fails with the id", id))
-          }
-          # If download from new dissemination API is successful
-          # Then tidy the dataset with the new tidy_eurostat2 function
-          y <- tidy_eurostat2(y_raw, 
-                              time_format, 
-                              select_time,
-                              stringsAsFactors = stringsAsFactors,
-                              keepFlags = keepFlags
-          )
-        }
         
         if (type == "code") {
           y <- y
-        } else if (type == "label" && legacy_bulk_download == TRUE) {
+        } else if (type == "label"){
           y <- label_eurostat(y)
-        } else if (type == "label" && legacy_bulk_download == FALSE){
-          y <- label_eurostat2(y)
         } else if (type == "both") {
           stop("type = \"both\" can be only used with JSON API. Set filters argument")
         } else {

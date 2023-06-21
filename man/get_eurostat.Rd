@@ -16,7 +16,6 @@ get_eurostat(
   compress_file = TRUE,
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
-  legacy_bulk_download = TRUE,
   ...
 )
 }
@@ -77,13 +76,6 @@ can be removed. Default is \code{FALSE}. For flag values see:
 Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
-
-\item{legacy_bulk_download}{a logical, whether to use the new dissemination API to
-download TSV files instead of the old Bulk Download facilities.
-Default is \code{TRUE}. This is a temporary parameter that will be deleted
-after the old Bulk Download facilities will are decommissioned. Please
-use caution if you intend to build any automated scripts that use this
-parameter.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
@@ -167,8 +159,7 @@ dd <- get_eurostat("nama_10_gdp",
 # A dataset with multiple time series in one
 dd2 <- get_eurostat("AVIA_GOR_ME",
   select_time = c("A", "M", "Q"),
-  time_format = "date_last",
-  legacy_bulk_download = FALSE
+  time_format = "date_last"
 )
 }
 \dontshow{\}) # examplesIf}

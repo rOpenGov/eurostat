@@ -2,7 +2,7 @@
 % Please edit documentation in R/eurotime2date.R
 \name{eurotime2date}
 \alias{eurotime2date}
-\title{Date Conversion from Eurostat Time Format}
+\title{Date Conversion from New Eurostat Time Format}
 \usage{
 eurotime2date(x, last = FALSE)
 }
@@ -21,12 +21,25 @@ Date conversion from Eurostat time format. A function to
 convert Eurostat time values to objects of class \code{\link[=Date]{Date()}}
 representing calendar dates.
 }
+\details{
+Available patterns are YYYY (year), YYYY-SN (semester), YYYY-QN (quarter),
+YYYY-MM (month), YYYY-WNN (week) and YYYY-MM-DD (day).
+}
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-na_q$time <- eurotime2date(x = na_q$time)
-unique(na_q$time)
+na_q$TIME_PERIOD <- eurotime2date(x = na_q$TIME_PERIOD)
+unique(na_q$TIME_PERIOD)
+}
+
+\dontrun{
+# Test for weekly data
+get_eurostat(
+  id = "lfsi_abs_w", 
+  select_time = c("W"), 
+  time_format = "date"
+  )
 }
 \dontshow{\}) # examplesIf}
 }
@@ -62,11 +75,8 @@ See \code{citation("eurostat")}:
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
-\code{\link{eurotime2date2}()},
-\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
 \code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat2}()},
 \code{\link{label_eurostat}()}
 }
 \author{
