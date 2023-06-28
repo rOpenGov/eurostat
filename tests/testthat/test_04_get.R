@@ -50,11 +50,11 @@ test_that("get_eurostat (dissemination API) works correctly with multi-frequency
 test_that("get_eurostat return right classes", {
   skip_on_cran()
   skip_if_offline()
-  expect_true(all(c("character", "numeric") %in%
+  expect_true(all(c("character", "numeric", "Date") %in%
     sapply(get_eurostat("road_eqr_trams"), class)))
-  expect_true(all(c("character", "numeric") %in%
+  expect_true(all(c("character", "numeric", "Date") %in%
     sapply(
-      get_eurostat("road_eqr_trams"),
+      get_eurostat("road_eqr_trams", keepFlags = TRUE),
       class
     )))
 })

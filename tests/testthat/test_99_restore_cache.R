@@ -7,9 +7,9 @@ test_that("Restore user cache dir after testing", {
   expect_message(clean_eurostat_cache(config = FALSE))
 
   user_dir <- Sys.getenv("TEST_EUROSTAT_CURRENT_CACHE")
-  curret_env <- Sys.getenv("EUROSTAT_CACHE_DIR")
+  current_env <- Sys.getenv("EUROSTAT_CACHE_DIR")
 
-  expect_false(curret_env == user_dir)
+  expect_false(current_env == user_dir)
 
   expect_message(expect_message(
     set_eurostat_cache_dir(user_dir)
