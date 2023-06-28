@@ -39,6 +39,7 @@
 #'
 #' @importFrom lubridate ymd
 #' @importFrom ISOweek ISOweek2date
+#' @importFrom dplyr inner_join
 #'
 #' @export
 eurotime2date <- function(x, last = FALSE) {
@@ -89,17 +90,50 @@ eurotime2date <- function(x, last = FALSE) {
     )
     return(x)
   }
+
+  # The date as the last date of the period
+  if (tcode == "W") {
+    
+    # in some datasets week number can be larger than 53, e.g. 99
+    # ISOweek2date does not support such week numbers -> they are coerced
+    # to W01-1 or W01-7
+    if (any(substr(period, 2, 3) > 53)) {
+      warning(paste("Some TIME_PERIOD fields have invalid week values (> 53).", 
+                    "Coercing invalid fields to format YYYY-W01",
+                    "(the first week of the year). If you wish to handle",
+                    "weeks with invalid values manually please use",
+                    "parameter time_format = 'raw' in get_eurostat."))
+      invalid_w_numbers <- which(substr(period, 2, 3) > 53)
+      period[invalid_w_numbers] <- "W01"
+    }
+    
+    # Range is 1-7 here, not 01-07. 1 = Monday, 2 = Tuesday etc.
+    day <- ifelse(last == TRUE, 7, 1)
+    levels(x) <- paste0(year, "-", period, "-", day)
+    unique_dates <- unique(x)
+    column_names <- c("orig", "date")
+    d <- data.frame(matrix(nrow = length(unique_dates), ncol = length(column_names)))
+    colnames(d) <- column_names
+    d$orig <- unique_dates
+    d$date <- ISOweek::ISOweek2date(unique_dates)
+    
+    # NEW CODE: data.table
+    # d <- as.data.table(d)
+    # x <- as.data.table(x)
+    
+    x <- as.data.frame(x)
+    colnames(x) <- "orig"
+    
+    # NEW CODE: data.table
+    # y <- x[d, on = "orig"]$date
+    
+    y <- dplyr::inner_join(x, d, by = "orig")
+    y <- y$date
+    return(y)
+  }
   
   levels(x) <- paste0(year, "-", period, "-", day)
   
-  # The date as the last date of the period
-  if (tcode == "W") {
-    # we will be using range 1-7 here, not 01-07
-    day <- ifelse(last == TRUE, 7, 1)
-    levels(x) <- paste0(year, "-", period, "-", day)
-    x <- ISOweek::ISOweek2date(x)
-    return(x)
-  }
   # For times other than weeks
   if (last == TRUE && tcode != "W") {
     shift <- c("Y" = 367, "S" = 186, "Q" = 96, "0" = 32, "1" = 32, "D" = 0)[tcode]

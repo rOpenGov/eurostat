@@ -45,13 +45,29 @@ get_eurostat_raw <- function(id) {
   if (.Platform$OS.type == "windows") {
     curl::curl_download(url = url, destfile = tfile)
   } else {
+    # R Packages (2e): Restore state with base::on.exit()
+    # Use timeout = 90 for bigger datasets
+    op <- options(timeout = 90)
+    on.exit(options(op), add = TRUE)
     utils::download.file(url, tfile)
   }
 
+  # OLD CODE
   dat <- readr::read_tsv(gzfile(tfile),
     na = ":",
     col_types = readr::cols(.default = readr::col_character())
   )
+  
+  # NEW CODE: data.table
+  # dat <- data.table::fread(cmd = paste("gzip -dc", tfile), 
+  #                          na.strings = ":",
+  #                          colClasses = "character")
+  # The reason why data.table is not currently used is that readr::cols
+  # and readr::col_character() worked better with some datasets
+  # and because RAM usage was not that much lower with data.table
+  
+  # OLD CODE
+  dat <- tibble::as_tibble(dat)
 
 
   # check validity

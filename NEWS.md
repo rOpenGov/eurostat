@@ -1,3 +1,18 @@
+# eurostat 4.0.0.9002
+
+## Major updates
+
+* Remove legacy code related to downloading data from old bulk download facilities and temporary functions added in package version 3.7.14.
+
+## Minor updates 
+
+* Print more informative API error messages.
+
+## Bug fixes
+
+* Fix issue related to downloading quarterly data
+* Reduce RAM usage in `eurotime2date()` when handling big datasets containing weekly data and tens of millions of rows (dataset used for testing mentioned in issue #200).
+
 # eurostat 3.8.3 (2023-03-07)
 
 ## Bug fixes

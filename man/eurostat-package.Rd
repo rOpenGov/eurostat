@@ -13,7 +13,7 @@ Brief summary of the eurostat package
     \tab  \cr
    \strong{Package} \tab eurostat \cr
    \strong{Type} \tab Package \cr
-   \strong{Version} \tab 4.0.0.9001 \cr
+   \strong{Version} \tab 4.0.0.9002 \cr
    \strong{Date} \tab 2014-2023 \cr
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr

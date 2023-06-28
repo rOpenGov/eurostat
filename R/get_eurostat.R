@@ -210,7 +210,6 @@ get_eurostat <- function(id,
         # Bulk download
       } else if (filters == "none") {
 
-          message("Trying to download from the new dissemination API... \n")
           # Download from new dissemination API in TSV file format
           y_raw <- try(get_eurostat_raw(id))
           if ("try-error" %in% class(y_raw)) {

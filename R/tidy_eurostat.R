@@ -29,7 +29,7 @@
 #' @references See citation("eurostat").
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen
 #'
-#' @importFrom stringi stri_extract_first_regex
+#' @importFrom stringi stri_extract_first_regex stri_replace_all_regex stri_replace_all_fixed
 #' @importFrom tidyr separate pivot_longer
 #' @importFrom dplyr filter
 #' 
@@ -55,21 +55,37 @@ tidy_eurostat <- function(dat,
   cnames2 <- cnames[length(cnames)] # for colnames
 
   # Separe variables from first column
+  # OLD CODE
   dat <- tidyr::separate(dat,
     col = colnames(dat)[1],
     into = cnames1,
-    sep = ",", 
+    sep = ",",
     convert = FALSE
   )
+  
+  # NEW CODE: data.table
+  # defining dat as data.table object is necessary to use data.table functions
+  # dat <- data.table::as.data.table(dat)
 
   # Get variable from column names
+  # OLD CODE
   dat <- tidyr::pivot_longer(data = dat,
                               cols = -seq_along(cnames1),
                               names_to = cnames2,
                               values_to = "values")
+  
+  # NEW CODE: data.table
+  # dat <- data.table::melt(data = dat,
+  #                         measure.vars = setdiff(names(dat), cnames1),
+  #                         variable.name = cnames2,
+  #                         value.name = "values")
 
   # to save memory (and backward compatibility)
+  # OLD CODE
   dat <- dplyr::filter(dat, !is.na(values))
+
+  # NEW CODE: data.table
+  # dat <- na.omit(dat, "values")
 
   ## separate flags into separate column
   if (keepFlags == TRUE) {
@@ -82,14 +98,26 @@ tidy_eurostat <- function(dat,
   }
 
   # clean time and values
-  dat$TIME_PERIOD <- gsub("X", "", dat$TIME_PERIOD)
-  dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
-  
+  # OLD CODE
+  # dat$TIME_PERIOD <- gsub("X", "", dat$TIME_PERIOD, fixed = TRUE)
+  # dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
+  # NEW CODE: use stringi instead of gsub for faster execution
+  dat$TIME_PERIOD <- stringi::stri_replace_all_fixed(dat$TIME_PERIOD, "X", "")
+  dat$values <- as.numeric(stringi::stri_replace_all_regex(as.character(dat$values), "[^0-9.-]+", ""))
+
   # variable columns
   var_cols <- names(dat)[!(names(dat) %in% c("TIME_PERIOD", "values"))]
+  # selected_cols <- c(var_cols, "TIME_PERIOD", "values")
 
   # reorder to standard order
+  # OLD CODE
   dat <- dat[c(var_cols, "TIME_PERIOD", "values")]
+  
+  # NEW CODE: data.table
+  # either this way
+  # dat <- dat[, ..selected_cols]
+  # or this way
+  # data.table::setcolorder(dat, c(var_cols, "TIME_PERIOD", "values"))
 
   # columns from var_cols are converted into factors
   # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
@@ -131,7 +159,7 @@ tidy_eurostat <- function(dat,
       )
     }
   } else {
-    
+
     if (length(freqs) > 1 & time_format != "raw") {
       message(
         "Data includes several time frequencies. Select a single frequency \n",
@@ -157,6 +185,9 @@ tidy_eurostat <- function(dat,
                                           time_format = time_format)
   }
 
+  # NEW CODE: data.table
+  # This is needed if we still want to return tibbles at the end
+  # dat <- tibble::as_tibble(dat)
   dat
 }
 
