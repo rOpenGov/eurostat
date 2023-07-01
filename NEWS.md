@@ -4,10 +4,18 @@
 
 * Remove legacy code related to downloading data from old bulk download facilities and temporary functions added in package version 3.7.14.
 
+* `get_eurostat_geospatial()` now leverages on `giscoR::gisco_get_nuts()` for 
+downloading geospatial data:
+  * `"spdf"` output class soft-deprecated, it would return a `sf` object with a message.
+  * `make_valid` parameter soft-deprecated.
+  * Added `...` to the function so additional parametes can be passed to `giscoR::gisco_get_nuts()`.
+  * Dataset `eurostat_geodata_60_2016` updated.
+
 ## Minor updates 
 
 * Print more informative API error messages.
-
+* Removed `sp`, `sf`, `methods` and `broom` packages from dependencies. 
+* Added `giscoR` to Suggests.
 ## Bug fixes
 
 * Fix issue related to downloading quarterly data

@@ -6,6 +6,7 @@
 #'   * **name**: Country name in English.
 #'   * **label**: Country name in the Eurostat database.
 #'
+#' @family datasets
 #' @source <https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order>,
 #'   <https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area>
 "eu_countries"

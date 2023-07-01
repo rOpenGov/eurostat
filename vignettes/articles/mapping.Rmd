@@ -1,38 +1,53 @@
 ---
 title: "Mapping Regional Data, Mapping Metadata Problems"
-author: Daniel Antal, CFA
+author: Daniel Antal (CFA)
 date: "`r Sys.Date()`"
-output:
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-    %\VignetteIndexEntry{Mapping Regional Data, Mapping Metadata Problems}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteDepends{Cairo}
-    %\VignetteEncoding{UTF-8}
-    \usepackage[utf8]{inputenc}    
+output: 
+  html_document: 
+    toc: yes
+editor_options:
+  markdown:
+    wrap: 80
+    canonical: true
 ---
 
 ```{r, include = FALSE}
 knitr::opts_chunk$set(
   collapse = TRUE,
-  comment = "#>"
+  comment = "#>",
+  tidy = "styler",
+  dev = "ragg_png",
+  warning = FALSE,
+  dpi = 300,
+  out.width = "100%"
 )
-here::here()
 ```
 
-The [regions](https://regions.dataobservatory.eu/) package offers tools two work with regional statistics.  It is an offspring of the [eurostat](https://ropengov.github.io/eurostat/) package of [rOpenGov](https://ropengov.org/), which offers data search, download, manipulation and visualization for Eurostat's [European statistics](https://ec.europa.eu/eurostat). While you can use [regions](https://regions.dataobservatory.eu/) for any European regional statistics, and with a limited functionality, any regional statistics from other parts of the world, this article provides a combined use case for the two packages. 
+The [regions](https://regions.dataobservatory.eu/) package offers tools two work
+with regional statistics. It is an offspring of the
+[eurostat](https://ropengov.github.io/eurostat/) package of
+[rOpenGov](https://ropengov.org/), which offers data search, download,
+manipulation and visualization for Eurostat's [European
+statistics](https://ec.europa.eu/eurostat). While you can use
+[regions](https://regions.dataobservatory.eu/) for any European regional
+statistics, and with a limited functionality, any regional statistics from other
+parts of the world, this article provides a combined use case for the two
+packages.
 
-```{r setup, echo=FALSE, message=FALSE, warning=FALSE}
+```{r setup}
 library(regions)
 library(eurostat)
-library(dplyr, quietly = T)
+library(dplyr)
 ```
 
-Eurostat's main function for data access is [get_eurostat()](https://ropengov.github.io/eurostat/reference/get_eurostat.html), but in this case we will use the more specific [get_eurostat_json](https://ropengov.github.io/eurostat/reference/get_eurostat_json.html) to avoid downloading unnecessary aspects of this data product. Let us get a long-established regional dataset, the full-time equivalent (FTE) R&D workforce, in both sexes, in all sectors and all professional positions, and limit our data to two years only:
+Eurostat's main function for data access is `get_eurostat()`, but in this case
+we will use the more specific `get_eurostat_json()` to avoid downloading
+unnecessary aspects of this data product. Let us get a long-established regional
+dataset, the full-time equivalent (FTE) R&D workforce, in both sexes, in all
+sectors and all professional positions, and limit our data to two years only:
 
-```{r rd-workforce-get, eval=FALSE, message=FALSE}
-regional_rd_personnel <- eurostat::get_eurostat_json(
+```{r rd-workforce-get, eval=FALSE}
+regional_rd_personnel <- get_eurostat_json(
   id = "rd_p_persreg",
   filters = list(
     sex = "T",
@@ -43,60 +58,64 @@ regional_rd_personnel <- eurostat::get_eurostat_json(
 )
 
 regional_rd_personnel <- regional_rd_personnel %>%
-  filter(.data$time %in% c("2009", "2018"))
+  filter(time %in% c("2009", "2018"))
 ```
 
-We have saved this filtered datasets as `regional_rd_personnel` in the [regions](https://regions.dataobservatory.eu/) package.
+We have saved this filtered datasets as `regions::regional_rd_personnel` in the
+[regions](https://regions.dataobservatory.eu/) package.
 
 ```{r rd-presaved}
 data("regional_rd_personnel")
 ```
-
-```{r, include=FALSE}
-## make sure that regional_rd_personnel does not remain a promise
-regional_rd_personnel <- regional_rd_personnel
-```
-
 
 We have quiet a few missing cases:
 
 ```{r missing-cases}
 summary(is.na(regional_rd_personnel$values))
 ```
+
 But this is not the only problem with the dataset.
 
 ## Choropleth Map
 
-Let us try to place the data on a `ggplot2` map. 
+Let us try to place the data on a `ggplot2` map.
 
-```{r, echo=TRUE}
+```{r}
 library(ggplot2)
 ```
 
-Let us download a map with [get_eurostat_geospatial](https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html).  We will use the `NUTS2016`, i.e., `year = 2016`, which is the regional boundary definition set in 2016 and used in the period 2018-2020. This is the most used definition in 2021.
+Let us download a map with `get_eurostat_geospatial()`. We will use the
+`NUTS2016`, i.e., `year = 2016`, which is the regional boundary definition set
+in 2016 and used in the period 2018-2020. This is the most used definition in
+2021.
 
-```{r get-map, eval=TRUE}
-map_nuts_2 <- eurostat::get_eurostat_geospatial(
-  resolution = "60",
-  nuts_level = "2",
+```{r get-map}
+# Need to load sf for using dplyr methods with sf objects
+library(sf)
+
+map_nuts_2 <- get_eurostat_geospatial(
+  resolution = "60", nuts_level = "2",
   year = 2016
 )
 ```
 
-You should always join your data with the geometric information of the regions starting from left with the map:
+You should always join your data with the geometric information of the regions
+starting from left with the map:
 
-```{r, eval=TRUE}
+```{r}
 indicator_with_map <- map_nuts_2 %>%
   left_join(regional_rd_personnel, by = "geo")
 ```
 
-Huge parts of Europe are not covered, but the missing values are not randomly missing. France went under a regional reform; Turkey and Albania did not provide this data earlier. Ireland has no regional statistics available.
+Huge parts of Europe are not covered, but the missing values are not randomly
+missing. France went under a regional reform; Turkey and Albania did not provide
+this data earlier. Ireland has no regional statistics available.
 
-```{r, eval=TRUE, out.width='80%', fig.align='center'}
+```{r choro1}
 indicator_with_map %>%
   ggplot() +
   geom_sf(aes(fill = values),
-    color = "dim grey", size = .1
+    color = "dim grey", linewidth = .1
   ) +
   scale_fill_gradient(low = "#FAE000", high = "#00843A") +
   facet_wrap(facets = "time") +
@@ -109,42 +128,49 @@ indicator_with_map %>%
   ) +
   theme_light() +
   theme(legend.position = "none") +
-  coord_sf(xlim = c(-22, 48), ylim = c(34, 70))
-```
-```{r original-map, echo=FALSE, out.width='80%', fig.align='center', eval = FALSE}
-knitr::include_graphics(
-  here::here("vignettes", "fig", "indicator_with_map.png")
-)
+  coord_sf(
+    xlim = c(2377294, 7453440),
+    ylim = c(1313597, 5628510),
+    crs = 3035
+  )
 ```
 
 ## Missing Values and Seemingly Missing Values
 
-Some of these problems are real missing data problems, but some of them are coding problem. In other words, the data is there, but it is not conforming the boundaries that you have on the `NUTS2016` map. First we need to validate the geographical coding of the dataset. This is the task of [validate_nuts_regions()](https://regions.dataobservatory.eu/reference/validate_nuts_regions.html).
+Some of these problems are real missing data problems, but some of them are
+coding problem. In other words, the data is there, but it is not conforming the
+boundaries that you have on the `NUTS2016` map. First we need to validate the
+geographical coding of the dataset. This is the task of
+`regions::validate_nuts_regions()`.
 
 ```{r}
 validated_indicator <- regions::validate_nuts_regions(regional_rd_personnel)
 ```
 
-If we validate the dataset, we will see many interesting metadata observations. 
+If we validate the dataset, we will see many interesting metadata observations.
 
 ```{r validation-summary, message=FALSE}
 library(dplyr)
 validation_summary_2016 <- validated_indicator %>%
-  group_by(.data$time, .data$typology) %>%
+  group_by(time, typology) %>%
   summarize(
     observations = n(),
-    values_missing = sum(is.na(.data$values)),
-    values_present = sum(!is.na(.data$values)),
+    values_missing = sum(is.na(values)),
+    values_present = sum(!is.na(values)),
     valid_present = values_present / observations
   )
 ```
 
-Even though the dataset is called [R&D personnel and researchers by sector of performance, sex and NUTS 2 regions (rd_p_persreg)](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=rd_p_persreg&lang=en), in fact, it contains data on country and `NUTS1` levels. And it has data on non-EU countries that in 2009 were not part of the NUTS system.
+Even though the dataset is called [R&D personnel and researchers by sector of
+performance, sex and NUTS 2 regions
+(rd_p_persreg)](https://appsso.eurostat.ec.europa.eu/nui/show.do?dataset=rd_p_persreg&lang=en),
+in fact, it contains data on country and `NUTS1` levels. And it has data on
+non-EU countries that in 2009 were not part of the NUTS system.
 
 ```{r}
 validation_summary_2016 %>%
   ungroup() %>%
-  filter(.data$time == "2009")
+  filter(time == "2009")
 ```
 
 The situation is not better in 2018:
@@ -152,32 +178,40 @@ The situation is not better in 2018:
 ```{r}
 validation_summary_2016 %>%
   ungroup() %>%
-  filter(.data$time == "2018")
+  filter(time == "2018")
 ```
 
-The dataset is plagued with data that has no place in the `NUTS2016` boundary definition, and therefore on a `NUTS2016` map!
+The dataset is plagued with data that has no place in the `NUTS2016` boundary
+definition, and therefore on a `NUTS2016` map!
 
 What are the non-conforming bits?
 
 ```{r non-conforming-geo}
 validated_indicator %>%
-  filter(!.data$valid_2016) %>%
-  select(all_of("geo")) %>%
-  unlist() %>%
-  as.character()
+  filter(!valid_2016) %>%
+  pull(geo)
 ```
 
-* Plenty of French units.  France went under a regional administrative reform, and we have data about its past, but not in the current boundaries and coding.
-* To a lesser extent, we have the same problem with Poland and the UK.
-* We have comparative data from Asia on country level, which ended up in a regional dataset.
-* We have Norway, which is a member of the EEA, and from 2021 it is officially part of the NUTS2021 system. They were nice to provide their data consistently for the past.
-* We have aggregates like the entire EU or the eurozone.
+-   Plenty of French units. France went under a regional administrative reform,
+    and we have data about its past, but not in the current boundaries and
+    coding.
+-   To a lesser extent, we have the same problem with Poland and the UK.
+-   We have comparative data from Asia on country level, which ended up in a
+    regional dataset.
+-   We have Norway, which is a member of the EEA, and from 2021 it is officially
+    part of the NUTS2021 system. They were nice to provide their data
+    consistently for the past.
+-   We have aggregates like the entire EU or the eurozone.
 
 ## Recoding and Renaming
 
-The question is, can we save some of the French data? If the boundaries of regions changed, then we cannot: somebody must reaggregate the number of researchers who used to work in the newly defined region back then, before the reform.
+The question is, can we save some of the French data? If the boundaries of
+regions changed, then we cannot: somebody must reaggregate the number of
+researchers who used to work in the newly defined region back then, before the
+reform.
 
-But in some cases, the regional boundaries did not change, only the name and the code of the region, which is the task performed by [recode_nuts()](https://regions.dataobservatory.eu/reference/recode_nuts.html):
+But in some cases, the regional boundaries did not change, only the name and the
+code of the region, which is the task performed by `regions::recode_nuts()`:
 
 ```{r recoding}
 recoded_indicator <- regional_rd_personnel %>%
@@ -190,14 +224,14 @@ recoded_indicator <- regional_rd_personnel %>%
 ```{r recode-summary, message=FALSE}
 recoding_summary <- recoded_indicator %>%
   mutate(observations = nrow(.data)) %>%
-  mutate(typology_change = ifelse(grepl("Recoded", .data$typology_change),
+  mutate(typology_change = ifelse(grepl("Recoded", typology_change),
     yes = "Recoded",
-    no = .data$typology_change
+    no = typology_change
   )) %>%
-  group_by(.data$typology_change, .data$time) %>%
+  group_by(typology_change, time) %>%
   summarize(
-    values_missing = sum(is.na(.data$values)),
-    values_present = sum(!is.na(.data$values)),
+    values_missing = sum(is.na(values)),
+    values_present = sum(!is.na(values)),
     pct = values_present / (values_present + values_missing)
   )
 ```
@@ -207,73 +241,86 @@ Let us take a look at the problems identified by `regions::recode_nuts()`:
 ```{r}
 recoding_summary
 ```
-* We were able to recode quite a few data points to the `NUTS2016` definition for the time of observation 2009 as well as 2018. Sometimes we are recoding rows that have missing values, which does not help that much: we know where the data should be, but it is missing anyway. But particularly for the year 2009 we can save plenty of data by recorded the obsolete coding.
 
-* We identify further problems. We have coding the that was used in various time periods, but there is no clear recoding possibility, because the regions boundaries have changed. To have the history of the data, we would need to recalculate them, say, by adding up the R&D personnel from each settlement in the new regional boundary.
+-   We were able to recode quite a few data points to the `NUTS2016` definition
+    for the time of observation 2009 as well as 2018. Sometimes we are recoding
+    rows that have missing values, which does not help that much: we know where
+    the data should be, but it is missing anyway. But particularly for the year
+    2009 we can save plenty of data by recorded the obsolete coding.
 
-The following non-empty cases were present in the dataset, just not with the coding that we used in the 2018-2020 period (i.e., the `NUTS2016` coding.) We are able to save 27 observations just by fixing the regional codes!
+-   We identify further problems. We have coding the that was used in various
+    time periods, but there is no clear recoding possibility, because the
+    regions boundaries have changed. To have the history of the data, we would
+    need to recalculate them, say, by adding up the R&D personnel from each
+    settlement in the new regional boundary.
+
+The following non-empty cases were present in the dataset, just not with the
+coding that we used in the 2018-2020 period (i.e., the `NUTS2016` coding.) We
+are able to save 27 observations just by fixing the regional codes!
 
 ```{r geocode-changes}
 recoded_indicator %>%
-  filter(.data$typology == "nuts_level_2") %>%
-  filter(!is.na(.data$typology_change)) %>%
+  filter(typology == "nuts_level_2") %>%
+  filter(!is.na(typology_change)) %>%
   filter(
     # Keep only pairs where we actually save
     # non-missing observations
     !is.na(values)
   ) %>%
-  distinct(.data$geo, .data$code_2016) %>%
+  distinct(geo, code_2016) %>%
   filter(
     # We filter out cases of countries who
     # joined the NUTS system later
-    .data$geo != .data$code_2016
+    geo != code_2016
   )
 ```
-So, let us do the trick: change the `geo` variable to `code_2016`, which is, whenever there is an equivalent `geo` code in the `NUTS2016` definition, the data that you should have. Your original geo variable contains codes that were used, for example, in the `NUTS2010` or `NUTS2013` boundary definitions.
+
+So, let us do the trick: change the `geo` variable to `code_2016`, which is,
+whenever there is an equivalent `geo` code in the `NUTS2016` definition, the
+data that you should have. Your original `geo` variable contains codes that were
+used, for example, in the `NUTS2010` or `NUTS2013` boundary definitions.
 
 ```{r change-to-nuts2016, eval=TRUE}
 recoded_with_map <- map_nuts_2 %>%
   left_join(
     recoded_indicator %>%
-      mutate(geo = .data$code_2016),
+      mutate(geo = code_2016),
     by = "geo"
   )
 ```
 
 Let us make our work visible by creating three observation `type` variables:
 
-* `missing` which is not present in the dataset;
-* `before` which were correctly coded before our recoding;
-* `after` which became visible after recoding.
+-   `missing` which is not present in the dataset;
+-   `before` which were correctly coded before our recoding;
+-   `after` which became visible after recoding.
 
 ```{r}
 regional_rd_personnel_recoded <- recoded_indicator %>%
-  mutate(geo = .data$code_2016) %>%
-  rename(values_2016 = .data$values) %>%
-  select(-all_of(c("typology", "typology_change", "code_2016"))) %>%
+  mutate(geo = code_2016) %>%
+  rename(values_2016 = values) %>%
+  select(-typology, -typology_change, -code_2016) %>%
   full_join(
     regional_rd_personnel,
     by = c("prof_pos", "sex", "sectperf", "unit", "geo", "time")
   ) %>%
   mutate(type = case_when(
-    is.na(.data$values_2016) & is.na(.data$values) ~ "missing",
-    is.na(.data$values) ~ "after",
+    is.na(values_2016) & is.na(values) ~ "missing",
+    is.na(values) ~ "after",
     TRUE ~ "before"
   ))
 ```
 
 And let's place it now on the map:
 
-```{r, eval=TRUE, out.width='80%', fig.align='center'}
+```{r, choro2}
 map_nuts_2 %>%
   left_join(regional_rd_personnel_recoded, by = "geo") %>%
-  filter(
-    # remove completely missing cases
-    !is.na(.data$time)
-  ) %>%
+  # remove completely missing cases
+  filter(!is.na(time)) %>%
   ggplot() +
   geom_sf(aes(fill = type),
-    color = "dim grey", size = .1
+    color = "dim grey", linewidth = .1
   ) +
   scale_fill_manual(values = c("#FAE000", "#007CBB", "grey70")) +
   guides(fill = guide_legend(reverse = T, title = NULL)) +
@@ -287,20 +334,24 @@ map_nuts_2 %>%
   ) +
   theme_light() +
   theme(legend.position = c(.93, .7)) +
-  coord_sf(xlim = c(-22, 48), ylim = c(34, 70))
-```
-```{r recoded-map, echo=FALSE, out.width='80%', fig.align='center', eval=FALSE}
-knitr::include_graphics(
-  here::here("vignettes", "fig", "recoded_indicator_with_map.png")
-)
+  coord_sf(
+    xlim = c(2377294, 7453440),
+    ylim = c(1313597, 5628510),
+    crs = 3035
+  )
 ```
 
 ## Conclusion
 
-We did improve our dataset, and this improvement would not have worked with traditional imputation techniques very well. For example, replacing the missing French data with the median value of Europe would have created a huge bias in our dataset.
+We did improve our dataset, and this improvement would not have worked with
+traditional imputation techniques very well. For example, replacing the missing
+French data with the median value of Europe would have created a huge bias in
+our dataset.
 
-This example is a simplification. There are many territorial typologies in use in Europe and globally, but the main takeaway is clear: sub-national boundaries are changing very fast, and you must make sure that you join datasets, or data with a map with the same boundary definitions.
-
+This example is a simplification. There are many territorial typologies in use
+in Europe and globally, but the main takeaway is clear: sub-national boundaries
+are changing very fast, and you must make sure that you join datasets, or data
+with a map with the same boundary definitions.
 
 # Citations and related work
 
@@ -308,39 +359,41 @@ This example is a simplification. There are many territorial typologies in use i
 
 Eurostat data: cite [Eurostat](https://ec.europa.eu/eurostat/).
 
-Administrative boundaries: cite [EuroGeographics](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
+Administrative boundaries: cite
+[EuroGeographics](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units).
 
 ### Citing the eurostat R package
 
-For main developers and contributors, see the [package homepage](https://ropengov.github.io/eurostat).
+For main developers and contributors, see the [package
+homepage](https://ropengov.github.io/eurostat).
 
-This work can be freely used, modified and distributed under the
-BSD-2-clause (modified FreeBSD) license:
+This work can be freely used, modified and distributed under the BSD-2-clause
+(modified FreeBSD) license:
 
-```{r citation-eurostat, message=FALSE, eval=TRUE, echo=TRUE}
+```{r citation-eurostat, message=FALSE}
 citation("eurostat")
 ```
 
 ### Citing the regions R package
 
-For main developer and contributors, see the [package](https://regions.dataobservatory.eu/).
+For main developer and contributors, see the
+[package](https://regions.dataobservatory.eu/).
 
-This work can be freely used, modified and distributed under the
-GPL-3 license:
+This work can be freely used, modified and distributed under the GPL-3 license:
 
-```{r citation-regions, message=FALSE, eval=TRUE, echo=TRUE}
+```{r citation-regions, message=FALSE}
 citation("regions")
 ```
 
 ### Contact
 
-For contact information, see the [package homepage](https://ropengov.github.io/eurostat).
-
+For contact information, see the [package
+homepage](https://ropengov.github.io/eurostat).
 
 # Version info
 
 This tutorial was created with
 
-```{r sessioninfo, message=FALSE, warning=FALSE}
-sessionInfo()
+```{r sessioninfo, message=FALSE}
+sessioninfo::session_info()
 ```

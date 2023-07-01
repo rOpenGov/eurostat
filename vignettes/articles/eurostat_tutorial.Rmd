@@ -1,17 +1,11 @@
 ---
 title: "Tutorial for the eurostat R package"
 date: "`r Sys.Date()`"
-output: 
-  rmarkdown::html_vignette:
-    toc: true
-vignette: >
-    %\VignetteIndexEntry{Tutorial for the eurostat R package}
-    %\VignetteDepends{Cairo}
-    %\VignetteEncoding{UTF-8}
-    \usepackage[utf8]{inputenc}
-    %\VignetteEngine{knitr::rmarkdown}
 editor_options:
     chunk_output_type: inline
+output: 
+  html_document: 
+    toc: yes
 ---
 
 # R Tools for Eurostat Open Data
@@ -34,7 +28,7 @@ install.packages("eurostat")
 
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
-```{r install2, eval=FALSE}
+```r
 library(remotes)
 remotes::install_github("ropengov/eurostat")
 ```
@@ -62,7 +56,6 @@ Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets
 ```{r get_eurostat_toc, warning=FALSE, message=FALSE, eval = evaluate}
 # Load the package
 library(eurostat)
-# library(rvest)
 
 # Get Eurostat data listing
 toc <- get_eurostat_toc()
@@ -279,5 +272,5 @@ For contact information, see the [package homepage](http://ropengov.github.io/eu
 This tutorial was created with
 
 ```{r sessioninfo, message=FALSE, warning=FALSE}
-sessionInfo()
+sessioninfo::session_info()
 ```

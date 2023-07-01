@@ -31,15 +31,14 @@ URL: https://ropengov.github.io/eurostat/,
     https://github.com/rOpenGov/eurostat
 BugReports: https://github.com/rOpenGov/eurostat/issues
 Depends:
-    methods,
     R (>= 3.5.0)
 Imports:
-    broom,
     classInt,
     countrycode,
     curl,
     dplyr,
     httr (>= 1.4.0),
+    ISOweek,
     jsonlite,
     lubridate,
     rappdirs,
@@ -49,18 +48,16 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr (>= 1.0.0),
-    ISOweek
+    tidyr (>= 1.0.0)
 Suggests:
-    RColorBrewer,
+    giscoR,
     knitr,
     rmarkdown,
     sf,
-    sp,
-    testthat (>= 3.0.0),
-    remotes
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
+Config/Needs/website: ggplot2, tmap, styler, sessioninfo
 Config/testthat/edition: 3
 Config/testthat/parallel: false
 Encoding: UTF-8
