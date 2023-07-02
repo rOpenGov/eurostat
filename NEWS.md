@@ -14,8 +14,9 @@ downloading geospatial data:
 ## Minor updates 
 
 * Print more informative API error messages.
-* Removed `sp`, `sf`, `methods` and `broom` packages from dependencies. 
+* Removed `sp`, `methods` and `broom` packages from dependencies. 
 * Added `giscoR` to Suggests.
+
 ## Bug fixes
 
 * Fix issue related to downloading quarterly data
