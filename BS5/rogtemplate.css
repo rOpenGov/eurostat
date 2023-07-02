@@ -161,3 +161,12 @@ footer .pkgdown-footer-left {
 .navbar-dark.bg-dark {
   background-color: #343a40 !important;
 }
+
+/* ---Caption figure--- */
+.caption,.figure {
+	color: #6c757d;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: 0.5rem;
+	font-size: 85%;
+}
