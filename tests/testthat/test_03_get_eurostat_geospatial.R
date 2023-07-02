@@ -108,7 +108,7 @@ test_that("get_eurostat_geospatial nuts levels", {
   expect_gt(nrow(gn3), nrow(gn2))
   expect_gt(nrow(gn2), nrow(gn1))
   expect_gt(nrow(gn1), nrow(gn0))
-  expect_identical(names(all), names(gall))
+  expect_true("geo" %in% names(gall))
 
   expect_s3_class(gall, "sf")
   expect_s3_class(gn3, "sf")
@@ -189,7 +189,7 @@ test_that("get_eurostat_geospatial df", {
   expect_gt(nrow(gn3), nrow(gn2))
   expect_gt(nrow(gn2), nrow(gn1))
   expect_gt(nrow(gn1), nrow(gn0))
-  expect_identical(names(all), names(gall))
+  expect_true("geo" %in% names(gall))
 
   expect_s3_class(gall, "data.frame")
   expect_s3_class(gn3, "data.frame")

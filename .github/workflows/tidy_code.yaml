@@ -33,6 +33,7 @@ jobs:
             any::urlchecker
             any::devtools
             any::roxygen2
+            ropengov/rogtemplate
           needs: website
       - name: Tidy code
         run: |
@@ -48,17 +49,15 @@ jobs:
       
       - name: Commit results
         run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m 'Tidy code' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
       - name: Trigger pkgdown workflow
         if: success()
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.REPO_GHA_PAT }}
-          repository: ${{ github.repository }}
-          event-type: trigger-pkgdown-workflow
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'

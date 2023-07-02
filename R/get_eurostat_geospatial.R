@@ -253,16 +253,9 @@ get_eurostat_geospatial <- function(output_class = "sf",
   shp$geo <- shp$NUTS_ID
   # to df
   if (output_class == "df") {
-    # Instead of sf::st_drop_geometry() (in order to avoid sf on Suggests)
-    # we can mimick that with
+    # Convert yl df
     sf_col <- attr(shp, "sf_column")
-    shp <- as.data.frame(shp)
-    # Remove geom col
-    shp <- shp[, -match(sf_col, names(shp))]
-  } else {
-    # Reorder colnames to have the same usar experience with giscoR and
-    # cached data on sf objects
-    shp <- shp[, names(eurostat::eurostat_geodata_60_2016)]
+    shp <- sf::st_drop_geometry(shp)
   }
 
   return(shp)

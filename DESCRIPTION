@@ -57,7 +57,8 @@ Suggests:
     testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
-Config/Needs/website: ggplot2, tmap, styler, sessioninfo
+Config/Needs/website: ggplot2, tmap, styler, sessioninfo,
+    ropengov/rogtemplate
 Config/testthat/edition: 3
 Config/testthat/parallel: false
 Encoding: UTF-8
