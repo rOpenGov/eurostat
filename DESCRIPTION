@@ -58,7 +58,7 @@ Suggests:
 VignetteBuilder: 
     knitr
 Config/Needs/website: ggplot2, tmap, styler, sessioninfo,
-    ropengov/rogtemplate
+    ropengov/rogtemplate, ragg
 Config/testthat/edition: 3
 Config/testthat/parallel: false
 Encoding: UTF-8

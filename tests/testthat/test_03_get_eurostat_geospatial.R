@@ -252,3 +252,23 @@ test_that("get_eurostat_geospatial cache_dir", {
   suppressMessages(set_eurostat_cache_dir(init_cache))
   expect_identical(init_cache, eur_helper_detect_cache_dir())
 })
+
+
+test_that("giscoR returns NULL", {
+  skip_if_not_installed(pkg = "giscoR")
+  skip_on_cran()
+  skip_if_offline()
+  skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
+  skip_if(packageVersion("giscoR") < "0.3.5", "Use latest giscoR release")
+
+  options(giscoR_test_offline = TRUE)
+  expect_message(
+    n <- get_eurostat_geospatial(
+      country = "AT", nuts_level = "0",
+      update_cache = TRUE
+    ),
+    "not reachable"
+  )
+  expect_null(n)
+  options(giscoR_test_offline = FALSE)
+})

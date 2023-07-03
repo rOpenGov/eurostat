@@ -207,12 +207,20 @@ get_eurostat_geospatial <- function(output_class = "sf",
     # Check if package "giscoR" is installed
     # nocov start
     if (!requireNamespace("giscoR")) {
+      message("'giscoR' package is required for geospatial functionalities")
+      return(invisible())
+    }
+
+    if (!requireNamespace("sf")) {
       message("'sf' package is required for geospatial functionalities")
       return(invisible())
     }
     # nocov end
 
-    message("Extracting data using giscoR package")
+    message(paste0(
+      "Extracting data using giscoR package, please report issues",
+      " on https://github.com/rOpenGov/giscoR/issues"
+    ))
 
     # Manage cache: Priority is eurostat cache (if set)
     # If not make use of giscoR default options
@@ -220,9 +228,12 @@ get_eurostat_geospatial <- function(output_class = "sf",
     if (!is.null(cache_dir)) {
       # Already set by the user, no need message
       cache_dir <- eur_helper_cachedir(cache_dir)
-    } else if (identical(detect_eurostat_cache, file.path(tempdir(), "eurostat"))) {
+    } else if (identical(
+      detect_eurostat_cache,
+      file.path(tempdir(), "eurostat")
+    )) {
       # eurostat not set, using default giscoR cache management
-      message("Cache management as per giscoR. see 'giscoR::gisco_get_nuts()")
+      message("Cache management as per giscoR. see 'giscoR::gisco_get_nuts()'")
     } else {
       cache_dir <- eur_helper_cachedir(cache_dir)
     }
@@ -241,11 +252,9 @@ get_eurostat_geospatial <- function(output_class = "sf",
 
   # Just to capture potential NULL outputs from giscoR - this happen
   # on some errors
-  # nocov start
   if (is.null(shp)) {
     return(NULL)
   }
-  # nocov end
 
   # Post-data treatments
 
@@ -253,8 +262,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
   shp$geo <- shp$NUTS_ID
   # to df
   if (output_class == "df") {
-    # Convert yl df
-    sf_col <- attr(shp, "sf_column")
+    # Remove geometry
     shp <- sf::st_drop_geometry(shp)
   }
 

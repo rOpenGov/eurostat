@@ -3,20 +3,20 @@
     Code
       a <- get_eurostat_geospatial(nuts_id = "LU", nuts_level = 0)
     Message <simpleMessage>
-      Extracting data using giscoR package
+      Extracting data using giscoR package, please report issues on https://github.com/rOpenGov/giscoR/issues
 
 ---
 
     Code
       a <- get_eurostat_geospatial(nuts_id = "LU", nuts_level = 0, cache_dir = another_temp)
     Message <simpleMessage>
-      Extracting data using giscoR package
+      Extracting data using giscoR package, please report issues on https://github.com/rOpenGov/giscoR/issues
 
 ---
 
     Code
       a <- get_eurostat_geospatial(nuts_id = "LU", nuts_level = 0)
     Message <simpleMessage>
-      Extracting data using giscoR package
-      Cache management as per giscoR. see 'giscoR::gisco_get_nuts()
+      Extracting data using giscoR package, please report issues on https://github.com/rOpenGov/giscoR/issues
+      Cache management as per giscoR. see 'giscoR::gisco_get_nuts()'
 
