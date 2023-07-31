@@ -38,4 +38,10 @@ eu_candidate_countries
 Countries and country codes in EU,
 Euro area, EFTA and EU candidate countries.
 }
+\seealso{
+Other datasets: 
+\code{\link{eurostat_geodata_60_2016}},
+\code{\link{tgs00026}}
+}
+\concept{datasets}
 \keyword{datasets}

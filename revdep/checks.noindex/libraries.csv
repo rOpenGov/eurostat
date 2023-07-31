@@ -1,4 +1,0 @@
-package,old,new,delta
-eurostat,3.7.10,3.7.14,*
-lubridate,NA,1.9.2,*
-readr,NA,2.1.4,*

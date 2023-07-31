@@ -1,11 +1,6 @@
 ---
 title: "Publications using the eurostat R package"
 date: "2022-02-07"
-output: rmarkdown::html_vignette
-vignette: >
-    %\VignetteIndexEntry{Publications using the eurostat R package}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

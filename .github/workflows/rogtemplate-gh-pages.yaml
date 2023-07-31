@@ -19,7 +19,7 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
       - uses: r-lib/actions/setup-pandoc@v2
 
@@ -34,11 +34,7 @@ jobs:
             local::.
             any::pkgdown
             ropengov/rogtemplate
-            any::magick
-            any::tmap
-            any::Cairo
             any::rcmdcheck
-            any::XML
 
       - name: Build logo if not present and prepare template
         run: |
@@ -57,6 +53,6 @@ jobs:
 
       - name: Deploy package
         run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'

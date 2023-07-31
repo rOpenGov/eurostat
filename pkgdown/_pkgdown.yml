@@ -13,6 +13,6 @@ reference:
 - title: Additional functions
   contents: has_concept("helpers")
 - title: Datasets
-  contents: has_keyword("datasets")
+  contents: has_concept("datasets")
 - title: About the package
   contents: eurostat
