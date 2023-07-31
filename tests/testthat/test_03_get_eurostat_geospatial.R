@@ -272,3 +272,358 @@ test_that("giscoR returns NULL", {
   expect_null(n)
   options(giscoR_test_offline = FALSE)
 })
+
+
+test_that("Check column names", {
+  # See https://github.com/rOpenGov/eurostat/issues/240
+  col_order <- c(
+    "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
+    "NUTS_NAME", "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE",
+    "FID", "geo", "geometry"
+  )
+
+
+  cached <- get_eurostat_geospatial()
+  expect_s3_class(cached, "sf")
+  expect_identical(names(cached), col_order)
+
+  # df
+  cached_df <- get_eurostat_geospatial(output_class = "df")
+  expect_s3_class(cached_df, "data.frame")
+  expect_identical(names(cached_df), col_order[-length(col_order)])
+})
+
+
+test_that("Check column names POLYGONS from GISCO", {
+  skip_if_not_installed(pkg = "giscoR")
+  skip_on_cran()
+  skip_if_offline()
+  skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
+  skip_if(packageVersion("giscoR") < "0.3.5", "Use latest giscoR release")
+
+  col_order <- c(
+    "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
+    "NUTS_NAME", "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE",
+    "FID", "geo", "geometry"
+  )
+
+  # Polygons 2003
+  poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 20, year = 2003)
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 20, year = 2003
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Polygons 2006
+  poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2006)
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2006
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+
+  # Polygons 2010
+  poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2010)
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2010
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Polygons 2013
+  poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2013)
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2013
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Polygons 2016
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2016,
+    update_cache = TRUE
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2016,
+    update_cache = TRUE
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Polygons 2021
+  poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2021)
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2021
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+})
+
+test_that("Check column names LABELS from GISCO", {
+  skip_if_not_installed(pkg = "giscoR")
+  skip_on_cran()
+  skip_if_offline()
+  skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
+  skip_if(packageVersion("giscoR") < "0.3.5", "Use latest giscoR release")
+
+  col_order <- c(
+    "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
+    "NUTS_NAME", "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE",
+    "FID", "geo", "geometry"
+  )
+
+  # Labels 2003
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 20, year = 2003,
+    spatialtype = "LB"
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 20, year = 2003,
+    spatialtype = "LB"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Labels 2006
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2006,
+    spatialtype = "LB"
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2006,
+    spatialtype = "LB"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+
+  # Labels 2010
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2010,
+    spatialtype = "LB"
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2010,
+    spatialtype = "LB"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Labels 2013
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2013,
+    spatialtype = "LB"
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2013,
+    spatialtype = "LB"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Labels 2016
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2016,
+    update_cache = TRUE, spatialtype = "LB"
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2016,
+    update_cache = TRUE,
+    spatialtype = "LB"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  # Labels 2021
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2021,
+    spatialtype = "LB"
+  )
+  expect_s3_class(poly, "sf")
+  expect_identical(names(poly), col_order)
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2021,
+    spatialtype = "LB"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+  expect_identical(names(poly_df), col_order[-length(col_order)])
+})
+
+
+test_that("Check column names BORDERS from GISCO", {
+  skip_if_not_installed(pkg = "giscoR")
+  skip_on_cran()
+  skip_if_offline()
+  skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
+  skip_if(packageVersion("giscoR") < "0.3.5", "Use latest giscoR release")
+
+  # BORDERS 2003
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 20, year = 2003,
+    spatialtype = "BN"
+  )
+  expect_s3_class(poly, "sf")
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 20, year = 2003,
+    spatialtype = "BN"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+
+  # BORDERS 2006
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2006,
+    spatialtype = "BN"
+  )
+  expect_s3_class(poly, "sf")
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2006,
+    spatialtype = "BN"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+
+
+  # BORDERS 2010
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2010,
+    spatialtype = "BN"
+  )
+  expect_s3_class(poly, "sf")
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2010,
+    spatialtype = "BN"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+
+  # BORDERS 2013
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2013,
+    spatialtype = "BN"
+  )
+  expect_s3_class(poly, "sf")
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2013,
+    spatialtype = "BN"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+
+  # BORDERS 2016
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2016,
+    update_cache = TRUE, spatialtype = "BN"
+  )
+  expect_s3_class(poly, "sf")
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2016,
+    update_cache = TRUE,
+    spatialtype = "BN"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+
+  # BORDERS 2021
+  poly <- get_eurostat_geospatial(
+    nuts_level = 0, resolution = 60, year = 2021,
+    spatialtype = "BN"
+  )
+  expect_s3_class(poly, "sf")
+
+  # df
+  poly_df <- get_eurostat_geospatial(
+    output_class = "df", nuts_level = 0,
+    resolution = 60, year = 2021,
+    spatialtype = "BN"
+  )
+
+  expect_s3_class(poly_df, "data.frame")
+})

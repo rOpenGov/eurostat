@@ -14,6 +14,8 @@
 #' The dataset contains 2016 observations (rows) and 12 variables (columns).
 #'
 #' The object contains the following columns:
+#' * **id**: JSON id code, the same as **NUTS_ID**. See **NUTS_ID** below for
+#'   further clarification.
 #' * **LEVL_CODE**: NUTS level code: 0 (national level), 1 (major
 #'   socio-economic regions), 2 (basic regions for the application of regional
 #'   policies) or 3 (small regions).
@@ -47,9 +49,9 @@
 #'   * 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
 #'     regions)
 #' * **FID**: Same as NUTS_ID.
-#' * **geometry**: geospatial information.
 #' * **geo**: Same as NUTS_ID, added for for easier joins with dplyr. However,
 #'   it is recommended to use other identical fields for this purpose.
+#' * **geometry**: geospatial information.
 #'
 #' Dataset updated: 2023-06-29. For a more recent version, please use
 #'   [giscoR::gisco_get_nuts()] function.

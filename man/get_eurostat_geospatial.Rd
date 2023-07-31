@@ -98,6 +98,8 @@ self-intersecting (multi-)polygon geometries (for some years/resolutions).
 The objects downloaded from GISCO should contain all or some of the
 following variable columns:
 \itemize{
+\item \strong{id}: JSON id code, the same as \strong{NUTS_ID}. See \strong{NUTS_ID} below for
+further clarification.
 \item \strong{LEVL_CODE}: NUTS level code: 0 (national level), 1 (major
 socio-economic regions), 2 (basic regions for the application of regional
 policies) or 3 (small regions).
@@ -137,9 +139,9 @@ regions)
 regions)
 }
 \item \strong{FID}: Same as NUTS_ID.
-\item \strong{geometry}: geospatial information.
 \item \strong{geo}: Same as NUTS_ID, added for for easier joins with dplyr. However,
 it is recommended to use other identical fields for this purpose.
+\item \strong{geometry}: geospatial information.
 }
 }
 \examples{

@@ -42,6 +42,8 @@
 #'
 #' The objects downloaded from GISCO should contain all or some of the
 #' following variable columns:
+#' * **id**: JSON id code, the same as **NUTS_ID**. See **NUTS_ID** below for
+#'   further clarification.
 #' * **LEVL_CODE**: NUTS level code: 0 (national level), 1 (major
 #'   socio-economic regions), 2 (basic regions for the application of regional
 #'   policies) or 3 (small regions).
@@ -75,9 +77,9 @@
 #'   * 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
 #'     regions)
 #' * **FID**: Same as NUTS_ID.
-#' * **geometry**: geospatial information.
 #' * **geo**: Same as NUTS_ID, added for for easier joins with dplyr. However,
 #'   it is recommended to use other identical fields for this purpose.
+#' * **geometry**: geospatial information.
 #'
 #' @author
 #' Markus Kainu <markuskainu@gmail.com>, Diego Hernangomez
@@ -175,10 +177,12 @@ get_eurostat_geospatial <- function(output_class = "sf",
   nuts_level <- match.arg(nuts_level, c("all", 0:3))
 
   # Performance - If df requested resolution and crs are meaningless. Switching
-  # to 60 and 4326 for speed
+  # to 60 and 4326 for speed (except for 2003, no available)
   if (output_class == "df") {
     resolution <- "60"
     crs <- "4326"
+
+    if (as.integer(year) == 2003) resolution <- "20"
   }
 
 
@@ -249,7 +253,6 @@ get_eurostat_geospatial <- function(output_class = "sf",
     )
   }
 
-
   # Just to capture potential NULL outputs from giscoR - this happen
   # on some errors
   if (is.null(shp)) {
@@ -257,9 +260,9 @@ get_eurostat_geospatial <- function(output_class = "sf",
   }
 
   # Post-data treatments
+  # Manage col names
+  shp <- geo_names(shp)
 
-  # Adding a `geo` column for easier joins with dplyr
-  shp$geo <- shp$NUTS_ID
   # to df
   if (output_class == "df") {
     # Remove geometry
@@ -267,4 +270,43 @@ get_eurostat_geospatial <- function(output_class = "sf",
   }
 
   return(shp)
+}
+
+
+# Helper function, add names and reorder
+geo_names <- function(x) {
+  # Case for border (BN), there are no NUTS_ID , do nothing
+  if (!"NUTS_ID" %in% names(x)) {
+    return(x)
+  }
+
+
+  # Add `id` and `geo` column for easier joins with dplyr
+  x$geo <- x$NUTS_ID
+  x$id <- x$geo
+
+  # Arrange names in proper order
+  sfcol <- attr(x, "sf_column")
+  rest <- c(
+    "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN", "NUTS_NAME",
+    "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE", "FID", "geo"
+  )
+
+  # Check what needed columns are not present in the source file
+  miss_cols <- setdiff(unique(c(rest, sfcol)), names(x))
+  extra_cols <- setdiff(names(x), unique(c(rest, sfcol)))
+
+
+  # Add missing cols with NAs
+  list_df <- lapply(miss_cols, function(x) {
+    template_df <- data.frame(somecol = NA)
+    names(template_df) <- x
+    template_df
+  })
+  x <- dplyr::bind_cols(c(list(x), list_df))
+
+  # Final column order
+  order_cols <- unique(c(rest, extra_cols, sfcol))
+  xend <- x[, order_cols]
+  xend
 }
