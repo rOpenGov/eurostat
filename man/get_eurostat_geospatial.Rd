@@ -139,16 +139,24 @@ regions)
 regions)
 }
 \item \strong{FID}: Same as NUTS_ID.
-\item \strong{geo}: Same as NUTS_ID, added for for easier joins with dplyr. However,
-it is recommended to use other identical fields for this purpose.
+\item \strong{geo}: Same as NUTS_ID, added for for easier joins with dplyr. Consider
+the status of this column "questioning" and use other columns for joins
+when possible.
 \item \strong{geometry}: geospatial information.
 }
 }
 \examples{
 \donttest{
+# Uses cached dataset
 sf <- get_eurostat_geospatial(
   output_class = "sf",
   resolution = "60",
+  nuts_level = "all"
+)
+# Downloads dataset from server
+sf2 <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "20",
   nuts_level = "all"
 )
 df <- get_eurostat_geospatial(

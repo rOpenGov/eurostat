@@ -77,8 +77,9 @@
 #'   * 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
 #'     regions)
 #' * **FID**: Same as NUTS_ID.
-#' * **geo**: Same as NUTS_ID, added for for easier joins with dplyr. However,
-#'   it is recommended to use other identical fields for this purpose.
+#' * **geo**: Same as NUTS_ID, added for for easier joins with dplyr. Consider
+#'   the status of this column "questioning" and use other columns for joins
+#'   when possible.
 #' * **geometry**: geospatial information.
 #'
 #' @author
@@ -137,9 +138,16 @@
 #' @family geospatial
 #' @examples
 #' \donttest{
+#' # Uses cached dataset
 #' sf <- get_eurostat_geospatial(
 #'   output_class = "sf",
 #'   resolution = "60",
+#'   nuts_level = "all"
+#' )
+#' # Downloads dataset from server
+#' sf2 <- get_eurostat_geospatial(
+#'   output_class = "sf",
+#'   resolution = "20",
 #'   nuts_level = "all"
 #' )
 #' df <- get_eurostat_geospatial(
@@ -201,7 +209,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
   )
 
   if (use_local) {
-    # Not modified - using eurostat datase
+    # Not modified - using dataset included with eurostat package
     message("Extracting data from eurostat::eurostat_geodata_60_2016")
     shp <- eurostat::eurostat_geodata_60_2016
     if (nuts_level != "all") {
@@ -253,7 +261,7 @@ get_eurostat_geospatial <- function(output_class = "sf",
     )
   }
 
-  # Just to capture potential NULL outputs from giscoR - this happen
+  # Just to capture potential NULL outputs from giscoR - this can happen
   # on some errors
   if (is.null(shp)) {
     return(NULL)
