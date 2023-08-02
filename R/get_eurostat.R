@@ -211,7 +211,7 @@ get_eurostat <- function(id,
       } else if (filters == "none") {
 
           # Download from new dissemination API in TSV file format
-          y_raw <- try(get_eurostat_raw(id))
+          y_raw <- try(get_eurostat_raw(id), silent = TRUE)
           if ("try-error" %in% class(y_raw)) {
             stop(paste("get_eurostat_raw fails with the id", id))
           }
