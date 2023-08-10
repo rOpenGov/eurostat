@@ -38,12 +38,12 @@ clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE) {
     )
   }
 
-  files <- list.files(cache_dir, pattern = "rds|RData", full.names = TRUE)
+  files <- list.files(cache_dir, pattern = "rds|RData|cache_list.json", full.names = TRUE)
   if (length(files) == 0) {
     message("The cache folder ", cache_dir, " is empty.")
   } else {
     unlink(files)
-    message("Deleted .rds/.RData files from ", cache_dir)
+    message("Deleted .rds/.RData files and cache_list.json from ", cache_dir)
   }
   invisible(TRUE)
 }

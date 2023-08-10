@@ -145,10 +145,15 @@
 #'   time_format = "date_last"
 #' )
 #' }
-#'
+#' 
+#' @importFrom digest digest
+#' @importFrom jsonlite toJSON fromJSON
+#' @importFrom dplyr filter
+#' @importFrom rlang !! sym
+#' 
 get_eurostat <- function(id, 
                          time_format = "date", 
-                         filters = "none",
+                         filters = NULL,
                          type = "code",
                          select_time = NULL,
                          cache = TRUE, 
@@ -160,21 +165,34 @@ get_eurostat <- function(id,
                          ...) {
   
   # Check if you have access to ec.europe.eu.
+  # If dataset is cached, access to ec.europe.eu is not needed
+  # Therefore this is a warning, not a stop
   if (!check_access_to_data()) {
-    message("You have no access to ec.europe.eu.
+    warning("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
-  } else {
-    # Warning for flags with filter
-    if (keepFlags & !is.character(filters) && filters != "none") {
-      warning("The keepFlags argument of the get_eurostat function
-               can be used only without filters. No Flags returned.")
-    }
+  }
+
+  # Warning for situations where keepFlags == TRUE and filter arguments are provided
+  if (keepFlags && !is.null(filters) || keepFlags && identical(filters, "none")) {
+    warning("The keepFlags argument of the get_eurostat function
+             can be used only without filters. No Flags returned.")
+    keepFlags <- FALSE
+  }
+  
+  # For use later on
+  data_superset_exists <- FALSE
+  
+  # For better clarity, use only NULL in code
+  if (identical(filters, "none")) {
+    filters <- NULL
+  }
     
-    # No cache for json
-    if (is.null(filters) || identical(filters, "none")) {
-      cache <- FALSE
-    }
-    
+    # No cache if filters argument not explicitly set to "none"
+    # This means only whole datasets are cached
+    # if (!is.null(filters)) {
+    #   cache <- FALSE
+    # }
+
     if (cache) {
       
       # check option for update
@@ -183,22 +201,120 @@ get_eurostat <- function(id,
       # get cache directory
       cache_dir <- eur_helper_cachedir(cache_dir)
       
+      cache_list <- file.path(
+        cache_dir,
+        paste0(
+          "cache_list",
+          ".json"
+        )
+      )
+      
+      # cache_list <- tempfile(fileext=".json", tmpdir = cache_dir, pattern = "cache_list")
+      cache_list_conn <- file(cache_list, "a")
+      
+      # Sort filters alphabetically ####
+      # Set filters in alphabetical order
+      filters <- filters[sort(names(filters), decreasing = FALSE)]
+      
+      # Set items inside each individual filter to alphabetical order
+      for (i in seq_along(filters)) {
+        if (length(filters[i]) > 1) {
+          filters[i] <- sort(filters[i])
+        }
+      }
+      
+      query <- list(
+        list(
+          id = id,
+          time_format = time_format,
+          filters = filters,
+          type = type,
+          select_time = select_time,
+          stringsAsFactors = stringsAsFactors,
+          keepFlags = keepFlags
+          )
+      )
+      
+      query_unfiltered <- list(
+        list(
+          id = id, 
+          time_format = time_format, 
+          filters = NULL, 
+          type = type,
+          select_time = select_time,
+          stringsAsFactors = stringsAsFactors,
+          keepFlags = keepFlags
+          )
+      )
+      
+      query_hash <- digest::digest(query, algo = "md5")
+      query_hash_unfiltered <- digest::digest(query_unfiltered, algo = "md5")
+      names(query) <- digest::digest(query, algo = "md5")
+      
+      # Make a JSON string with predefined order
+      # Order is defined by the order of arguments in function documentation
+      # Append .json file if the query has not been printed before
+      if (!any(grepl(query_hash, readLines(cache_list)))) {
+        if (length(readLines(cache_list)) == 0) {
+          
+          json_query <- jsonlite::toJSON(
+            list(
+              query
+              ),
+            pretty = TRUE,
+            null = "null")
+          
+          writeLines(text = json_query,
+                     con = cache_list_conn,
+                     sep = "\n")
+          
+        } else if (length(readLines(cache_list)) != 0) {
+          cache_list_history <- jsonlite::fromJSON(cache_list)
+          close(cache_list_conn)
+          cache_list_conn <- file(cache_list, "w")
+          cache_list_history <- c(cache_list_history, query)
+
+          json_query <- jsonlite::toJSON(
+            cache_list_history,
+            pretty = TRUE,
+            null = "null"
+            )
+
+          writeLines(text = paste0(json_query),
+                     con = cache_list_conn,
+                     sep = "\n")
+        }
+      } else if (!identical(query_hash, query_hash_unfiltered) && any(grepl(query_hash_unfiltered, readLines(cache_list)))) {
+        message("Dataset query is not in cache_list.json but the whole dataset is...")
+        data_superset_exists <- TRUE
+      } else {
+        message("Dataset query already saved in cache_list.json...")
+      }
+
+      close(cache_list_conn)
+      
       # cache filename
       cache_file <- file.path(
         cache_dir,
         paste0(
-          id, "_", time_format,
-          "_", type, select_time, "_",
-          strtrim(stringsAsFactors, 1),
-          strtrim(keepFlags, 1),
+          query_hash,
+          ".rds"
+        )
+      )
+      
+      # bulk cache filename
+      cache_file_bulk <- file.path(
+        cache_dir,
+        paste0(
+          query_hash_unfiltered,
           ".rds"
         )
       )
     }
-    
-    # if cache = FALSE or update or new: dowload else read from cache
-    if (!cache || update_cache || !file.exists(cache_file)) {
-      if (is.null(filters) || is.list(filters)) {
+  
+    # if cache = FALSE or update or new: download else read from cache
+    if (!cache || update_cache || !file.exists(cache_file) || !file.exists(cache_file_bulk)) {
+      if (is.list(filters)) {
         
         # JSON API Download
         y <- get_eurostat_json(id, filters,
@@ -208,7 +324,7 @@ get_eurostat <- function(id,
         y$time <- convert_time_col(factor(y$time), time_format = time_format)
         
         # Bulk download
-      } else if (filters == "none") {
+      } else if (is.null(filters)) {
 
           # Download from new dissemination API in TSV file format
           y_raw <- try(get_eurostat_raw(id), silent = TRUE)
@@ -224,16 +340,28 @@ get_eurostat <- function(id,
                              keepFlags = keepFlags
           )
         
-        if (type == "code") {
+        if (identical(type, "code")) {
           y <- y
-        } else if (type == "label"){
+        } else if (identical(type, "label")){
           y <- label_eurostat(y)
-        } else if (type == "both") {
+        } else if (identical(type, "both")) {
           stop("type = \"both\" can be only used with JSON API. Set filters argument")
         } else {
           stop("Invalid type.")
         }
       }
+    } else if (file.exists(cache_file_bulk) && data_superset_exists) {
+      # Maybe filtering a dataset that was potentially downloaded from bulk
+      # download facilities is not a good idea...? Should the source be indicated in
+      # json file?
+      
+      message(paste("Reading cache file", cache_file_bulk, "and filtering it"))
+      y_raw <- readRDS(cache_file_bulk)
+      for (i in seq_along(filters)) {
+        y_raw <- dplyr::filter(y_raw,
+                               !!rlang::sym(names(filters)[i]) == filters[i])
+      }
+      y <- y_raw
     } else {
       cf <- path.expand(cache_file)
       message(paste("Reading cache file", cf))
@@ -248,6 +376,5 @@ get_eurostat <- function(id,
     }
     
     y
-  }
 }
 

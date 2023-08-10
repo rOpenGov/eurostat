@@ -7,7 +7,7 @@
 get_eurostat(
   id,
   time_format = "date",
-  filters = "none",
+  filters = NULL,
   type = "code",
   select_time = NULL,
   cache = TRUE,
