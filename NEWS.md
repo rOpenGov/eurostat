@@ -1,3 +1,9 @@
+# eurostat 4.0.0.9003
+
+## Major updates
+
+* First attempt at rewriting caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. Much work left to do.
+
 # eurostat 4.0.0.9002
 
 ## Major updates
