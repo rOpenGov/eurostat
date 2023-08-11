@@ -75,26 +75,18 @@ With `search_eurostat()` you can search the table of contents for particular pat
 kable(head(search_eurostat("passenger transport")))
 ```
 
-Codes for the dataset can be searched also from the [Eurostat
-database](http://ec.europa.eu/eurostat/data/database). The Eurostat
-database gives codes in the Data Navigation Tree after every dataset
-in parenthesis.
+Codes for the dataset can be searched also from the [Eurostat database](http://ec.europa.eu/eurostat/data/database). The Eurostat database gives codes in the Data Navigation Tree after every dataset in parenthesis.
 
 
 # Downloading data 
 
-The package supports two of the Eurostats download methods: the bulk download 
-facility and the Web Services' JSON API. The bulk download facility is the 
-fastest method to download whole datasets. It is also often the only way as 
-the JSON API has limitation of maximum 50 sub-indicators at a time and 
-whole datasets usually exceeds that. To download only a small section of the 
-dataset the JSON API is faster, as it allows to make a data selection 
-before downloading.
+The package supports two of the Eurostats download methods: the SDMX 2.1 REST API (old bulk download facility) and the Eurostat Web Services ("JSON API"). The bulk download facility is thefastest method to download whole datasets. 
 
-A user does not usually have to bother with methods, as both are used via main
-function `get_eurostat()`. If only the table id is given, the whole table is 
-downloaded from the bulk download facility. If also filters are defined 
-the JSON API is used.
+<--! STILL RELEVANT? It is also often the only way as the JSON API has limitation of maximum 50 sub-indicators at a time and whole datasets usually exceeds that. -->
+
+To download only a small section of the dataset the JSON API is faster, as it allows to make a data selection before downloading.
+
+A user does not usually have to bother with methods, as both are used via main function `get_eurostat()`. If only the table id is given, the whole table is downloaded from the SDMX 2.1 REST API. If filters are defined the JSON API is used instead.
 
 Here an example of indicator 'Modal split of passenger transport'. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
@@ -122,6 +114,7 @@ dat <- get_eurostat(id, time_format = "num")
 ```
 
 Investigate the structure of the downloaded data set:
+
 ```{r str_dat, warning=FALSE, message=FALSE, eval = evaluate}
 str(dat)
 ```
@@ -130,7 +123,7 @@ str(dat)
 kable(head(dat))
 ```
 
-Or you can get only a part of the dataset by defining `filters` argument. It
+You can get only a part of the dataset by defining `filters` argument. It
 should be named list, where names corresponds to variable names (lower case) and
 values are vectors of codes corresponding desired series (upper case). For
 time variable, in addition to a `time`, also a `sinceTimePeriod` 

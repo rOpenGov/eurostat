@@ -242,7 +242,8 @@ get_eurostat <- function(id,
           select_time = select_time,
           stringsAsFactors = stringsAsFactors,
           keepFlags = keepFlags,
-          source = ifelse(is.null(filters), "bulk", "json")
+          source = ifelse(is.null(filters), "bulk", "json"),
+          download_date = Sys.Date()
           )
       )
       
@@ -256,7 +257,8 @@ get_eurostat <- function(id,
             select_time = select_time,
             stringsAsFactors = stringsAsFactors,
             keepFlags = keepFlags,
-            source = "bulk"
+            source = "bulk",
+            download_date = Sys.Date()
           )
         )
       } else {
@@ -272,7 +274,8 @@ get_eurostat <- function(id,
             select_time = select_time,
             stringsAsFactors = stringsAsFactors,
             keepFlags = keepFlags,
-            source = "json"
+            source = "json",
+            download_date = Sys.Date()
           )
         )
       }
@@ -323,6 +326,8 @@ get_eurostat <- function(id,
       
       close(cache_list_conn)
       
+      # If query_hash and query_hash_unfiltered are not identical
+      # it means that it makes sense to see if a superset of the data exists 
      if (!identical(query_hash, query_hash_unfiltered) && any(grepl(query_hash_unfiltered, readLines(cache_list)))) {
         message("Dataset query is not in cache_list.json but the whole dataset is...")
         data_superset_exists <- TRUE
@@ -351,15 +356,17 @@ get_eurostat <- function(id,
   
   
     # Download always files from server if any of the following is TRUE
-    # cache = FALSE -> no caching, always downloading
-    # update_cache = TRUE -> if we want to update a static cache, redownload
-    # cache_file does not exist -> no cache file, no reading from cache
-    # 
-    # if cache = FALSE or update or new: download else read from cache
+    # cache = FALSE 
+    #   -> no caching, always downloading
+    # update_cache = TRUE 
+    #   -> want to update a cache -> redownload
+    # suitable cache_file AND cache_file_bulk do not exist 
+    #   -> no cache files -> no reading from cache -> download
     if (!cache || update_cache || (!file.exists(cache_file) && !file.exists(cache_file_bulk))) {
       if (is.list(filters)) {
+        # If filters value is some type of a list
+        #   -> Download from Eurostat Web Service (replaces "JSON API")
         
-        # JSON API Download
         y <- get_eurostat_json(id, 
                                filters,
                                type = type,
@@ -367,22 +374,24 @@ get_eurostat <- function(id,
         )
         y$time <- convert_time_col(factor(y$time), time_format = time_format)
         
-        # Bulk download
       } else if (is.null(filters)) {
+        # If filters value is NULL 
+        #   -> Download from SDMX 2.1 REST API (replaces old "Bulk download")
 
-          # Download from new dissemination API in TSV file format
-          y_raw <- try(get_eurostat_raw(id), silent = TRUE)
-          if ("try-error" %in% class(y_raw)) {
-            stop(paste("get_eurostat_raw fails with the id", id))
-          }
-          # If download from new dissemination API is successful
-          # Then tidy the dataset with tidy_eurostat function
-          y <- tidy_eurostat(y_raw, 
-                             time_format, 
-                             select_time,
-                             stringsAsFactors = stringsAsFactors,
-                             keepFlags = keepFlags
-          )
+        y_raw <- try(get_eurostat_raw(id), silent = TRUE)
+        if ("try-error" %in% class(y_raw)) {
+          stop(paste("get_eurostat_raw fails with the id", id))
+        }
+
+        # If download from SDMX 2.1 REST API is successful
+        #   -> tidy the dataset with tidy_eurostat function
+        
+        y <- tidy_eurostat(y_raw, 
+                           time_format, 
+                           select_time,
+                           stringsAsFactors = stringsAsFactors,
+                           keepFlags = keepFlags
+        )
         
         if (identical(type, "code")) {
           y <- y
@@ -395,10 +404,10 @@ get_eurostat <- function(id,
         }
       }
     } else if (file.exists(cache_file_bulk) && data_superset_exists) {
-      # Maybe filtering a dataset that was potentially downloaded from bulk
-      # download facilities is not a good idea...? Should the source be indicated in
-      # json file?
-      
+      # Somewhat redundant as data_superset_exists checks cache_list.json
+      # which lists files downloaded and saved to cache but maybe in some
+      # situations the cached file could go missing? Not very likely though
+
       message(paste("Reading cache file", cache_file_bulk, "and filtering it"))
       y_raw <- readRDS(cache_file_bulk)
       for (i in seq_along(filters)) {
@@ -413,7 +422,8 @@ get_eurostat <- function(id,
       message(paste("Table ", id, " read from cache file: ", cf))
     }
     
-    # if update or new: save
+    # if update_cache = TRUE or cache file does not yet exist
+    #   -> save cache file to cache directory
     if (cache && (update_cache || !file.exists(cache_file))) {
       saveRDS(y, file = cache_file, compress = compress_file)
       message("Table ", id, " cached at ", path.expand(cache_file))
