@@ -6,13 +6,13 @@
 #' @param id 
 #' A code name for the dataset of interest.
 #' See [search_eurostat()] or details for how to get code.
-#' @param filters a "none" (default) to get a whole dataset or a named list of
-#' filters to get just part of the table. Names of list objects are
-#' Eurostat variable codes and values are vectors of observation codes.
-#' If `NULL` the whole
-#' dataset is returned via API. More on details. See more on filters and
-#' limitations per query via API from for
-#' [get_eurostat_json()].
+#' @param filters 
+#' A list of filters to get only a part of the dataset from server. 
+#' The default parameter `NULL` (or "none") gets the whole dataset. 
+#' Names of list objects are Eurostat variable codes and they can vary from one
+#' dataset to another. Values are vectors of observation codes. See more 
+#' information on filters and limitations per query via API from 
+#' in [get_eurostat_json()] documentation.
 #' @param time_format 
 #' a string giving a type of the conversion of the time
 #' column from the eurostat format. A "date" (default) converts to
@@ -32,16 +32,15 @@
 #' "M" = monthly, "W" = weekly. For all frequencies in same data 
 #' frame `time_format = "raw"` should be used.
 #' @param cache 
-#' a logical whether to do caching. Default is `TRUE`. Affects
-#' only queries from the bulk download facility.
+#' a logical whether to do caching. Default is `TRUE`.
 #' @param update_cache 
 #' a logical whether to update cache. Can be set also with
 #' options(eurostat_update = TRUE)
-#' @param cache_dir a
-#' path to a cache directory. The directory must exist.
+#' @param cache_dir 
+#' a path to a cache directory. The directory must exist.
 #' The `NULL` (default) uses and creates
-#' 'eurostat' directory in the temporary directory from
-#' [tempdir()]. The directory can also be set with
+#' 'eurostat' directory in the temporary directory defined by base R
+#' [tempdir()]. The cache directory can also be set with
 #' [set_eurostat_cache_dir()].
 #' @param compress_file 
 #' a logical whether to compress the
@@ -72,13 +71,13 @@
 #' For more detailed information and exceptions regarding commercial use,
 #' see [Eurostat policy on copyright and free re-use of data](https://ec.europa.eu/eurostat/web/main/about/policies/copyright).
 #'
-#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
-#' @details Data sets are downloaded from
-#' [the Eurostat bulk download facility](https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing) or from The Eurostat Web Services
-#' [JSON API](https://ec.europa.eu/eurostat/web/main/data/web-services).
+#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen
+#' @details Datasets are downloaded from
+#' [the Eurostat SDMX 2.1 API](https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API) 
+#' in TSV format  or from The Eurostat Web Services
+#' [JSON API](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query).
 #' If only the table `id` is given, the whole table is downloaded from the
-#' bulk download facility. If also `filters` are defined the JSON API is
-#' used.
+#' SDMX API. If any `filters` are given JSON API is used.
 #'
 #' The bulk download facility is the fastest method to download whole datasets.
 #' It is also often the only way as the JSON API has limitation of maximum
@@ -90,9 +89,8 @@
 #' If your connection is thru a proxy, you probably have to set proxy parameters
 #' to use JSON API, see [get_eurostat_json()].
 #'
-#' By default datasets from the bulk download facility are cached as they are
-#' often rather large. Caching is not (currently) possible for datasets from
-#' JSON API.
+#' By default datasets are cached to reduce load on Eurostat services and 
+#' because some datasets can be rather large.
 #' Cache files are stored in a temporary directory by default or in
 #' a named directory (See [set_eurostat_cache_dir()]).
 #' The cache can be emptied with [clean_eurostat_cache()].
@@ -144,6 +142,19 @@
 #'   select_time = c("A", "M", "Q"),
 #'   time_format = "date_last"
 #' )
+#' 
+#' # An example of downloading whole dataset from JSON API
+#' dd3 <- get_eurostat("AVIA_GOR_ME", 
+#'   filters = list()
+#' )
+#' 
+#' # Filtering a dataset from a local file
+#' dd3_filter <- get_eurostat("AVIA_GOR_ME",
+#'   filters = list(
+#'     tra_meas = "FRM_BRD"
+#'   )
+#' )
+#' 
 #' }
 #' 
 #' @importFrom digest digest
@@ -181,17 +192,12 @@ get_eurostat <- function(id,
   
   # For use later on
   data_superset_exists <- FALSE
+  null_value <- NULL
   
-  # For better clarity, use only NULL in code
+  # For better code clarity, use only NULL in code
   if (identical(filters, "none")) {
     filters <- NULL
   }
-    
-    # No cache if filters argument not explicitly set to "none"
-    # This means only whole datasets are cached
-    # if (!is.null(filters)) {
-    #   cache <- FALSE
-    # }
 
     if (cache) {
       
@@ -209,12 +215,16 @@ get_eurostat <- function(id,
         )
       )
       
-      # cache_list <- tempfile(fileext=".json", tmpdir = cache_dir, pattern = "cache_list")
+      # cache file connection
       cache_list_conn <- file(cache_list, "a")
       
       # Sort filters alphabetically ####
-      # Set filters in alphabetical order
-      filters <- filters[sort(names(filters), decreasing = FALSE)]
+      # Subsetting with NULL turns list("") (List of 1) to list() (List of 0)
+      # This needs to be looked into, even if it's useful, it's unexpected
+      # if structure below prevents subsetting when names(filters) is NULL
+      if (!is.null(names(filters))) {
+        filters <- filters[sort(names(filters), decreasing = FALSE)]
+      }
       
       # Set items inside each individual filter to alphabetical order
       for (i in seq_along(filters)) {
@@ -231,21 +241,41 @@ get_eurostat <- function(id,
           type = type,
           select_time = select_time,
           stringsAsFactors = stringsAsFactors,
-          keepFlags = keepFlags
+          keepFlags = keepFlags,
+          source = ifelse(is.null(filters), "bulk", "json")
           )
       )
       
-      query_unfiltered <- list(
-        list(
-          id = id, 
-          time_format = time_format, 
-          filters = NULL, 
-          type = type,
-          select_time = select_time,
-          stringsAsFactors = stringsAsFactors,
-          keepFlags = keepFlags
+      if (is.null(filters)) {
+        query_unfiltered <- list(
+          list(
+            id = id, 
+            time_format = time_format, 
+            filters = NULL, 
+            type = type,
+            select_time = select_time,
+            stringsAsFactors = stringsAsFactors,
+            keepFlags = keepFlags,
+            source = "bulk"
           )
-      )
+        )
+      } else {
+        # This is to make it possible to filter local dataset
+        # The only way to return a whole dataset from JSON API is to use
+        # empty list with filters argument
+        query_unfiltered <- list(
+          list(
+            id = id, 
+            time_format = time_format, 
+            filters = list(), 
+            type = type,
+            select_time = select_time,
+            stringsAsFactors = stringsAsFactors,
+            keepFlags = keepFlags,
+            source = "json"
+          )
+        )
+      }
       
       query_hash <- digest::digest(query, algo = "md5")
       query_hash_unfiltered <- digest::digest(query_unfiltered, algo = "md5")
@@ -256,7 +286,9 @@ get_eurostat <- function(id,
       # Append .json file if the query has not been printed before
       if (!any(grepl(query_hash, readLines(cache_list)))) {
         if (length(readLines(cache_list)) == 0) {
-          
+          # close previous connection with mode "a"
+          close(cache_list_conn)
+          cache_list_conn <- file(cache_list, "w")
           json_query <- jsonlite::toJSON(
             list(
               query
@@ -269,8 +301,11 @@ get_eurostat <- function(id,
                      sep = "\n")
           
         } else if (length(readLines(cache_list)) != 0) {
+          # read previously saved queries and save them
           cache_list_history <- jsonlite::fromJSON(cache_list)
+          # close previous connection with mode "a"
           close(cache_list_conn)
+          # open a new connection with mode "w" that wipes the file
           cache_list_conn <- file(cache_list, "w")
           cache_list_history <- c(cache_list_history, query)
 
@@ -284,14 +319,16 @@ get_eurostat <- function(id,
                      con = cache_list_conn,
                      sep = "\n")
         }
-      } else if (!identical(query_hash, query_hash_unfiltered) && any(grepl(query_hash_unfiltered, readLines(cache_list)))) {
+      }
+      
+      close(cache_list_conn)
+      
+     if (!identical(query_hash, query_hash_unfiltered) && any(grepl(query_hash_unfiltered, readLines(cache_list)))) {
         message("Dataset query is not in cache_list.json but the whole dataset is...")
         data_superset_exists <- TRUE
       } else {
         message("Dataset query already saved in cache_list.json...")
       }
-
-      close(cache_list_conn)
       
       # cache filename
       cache_file <- file.path(
@@ -312,12 +349,19 @@ get_eurostat <- function(id,
       )
     }
   
+  
+    # Download always files from server if any of the following is TRUE
+    # cache = FALSE -> no caching, always downloading
+    # update_cache = TRUE -> if we want to update a static cache, redownload
+    # cache_file does not exist -> no cache file, no reading from cache
+    # 
     # if cache = FALSE or update or new: download else read from cache
-    if (!cache || update_cache || !file.exists(cache_file) || !file.exists(cache_file_bulk)) {
+    if (!cache || update_cache || (!file.exists(cache_file) && !file.exists(cache_file_bulk))) {
       if (is.list(filters)) {
         
         # JSON API Download
-        y <- get_eurostat_json(id, filters,
+        y <- get_eurostat_json(id, 
+                               filters,
                                type = type,
                                stringsAsFactors = stringsAsFactors, ...
         )
@@ -362,7 +406,7 @@ get_eurostat <- function(id,
                                !!rlang::sym(names(filters)[i]) == filters[i])
       }
       y <- y_raw
-    } else {
+    } else if (file.exists(cache_file)) {
       cf <- path.expand(cache_file)
       message(paste("Reading cache file", cf))
       y <- readRDS(cache_file)
