@@ -36,6 +36,7 @@ Imports:
     classInt,
     countrycode,
     curl,
+    digest,
     dplyr,
     httr (>= 1.4.0),
     ISOweek,
@@ -45,12 +46,11 @@ Imports:
     readr,
     RefManageR,
     regions,
+    rlang,
     stringi,
     stringr,
     tibble,
-    tidyr (>= 1.0.0),
-    digest,
-    rlang
+    tidyr (>= 1.0.0)
 Suggests:
     giscoR,
     knitr,

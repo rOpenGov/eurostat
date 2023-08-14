@@ -183,17 +183,13 @@ get_eurostat <- function(id,
       Please check your connection and/or review your proxy settings")
   }
 
-  # Warning for situations where keepFlags == TRUE and filter arguments are provided
+  # Inform user with message if keepFlags == TRUE cannot be delivered
   if (keepFlags && !is.null(filters) || keepFlags && identical(filters, "none")) {
-    warning("The keepFlags argument of the get_eurostat function
+    message("The keepFlags argument of the get_eurostat function
              can be used only without filters. No Flags returned.")
     keepFlags <- FALSE
   }
-  
-  # For use later on
-  data_superset_exists <- FALSE
-  null_value <- NULL
-  
+
   # For better code clarity, use only NULL in code
   if (identical(filters, "none")) {
     filters <- NULL
@@ -226,13 +222,15 @@ get_eurostat <- function(id,
         filters <- filters[sort(names(filters), decreasing = FALSE)]
       }
       
-      # Set items inside each individual filter to alphabetical order
+      # Sort items inside each individual filter to alphabetical order
       for (i in seq_along(filters)) {
         if (length(filters[i]) > 1) {
           filters[i] <- sort(filters[i])
         }
       }
       
+      # Turn query into lists with predefined order
+      # Order is defined by the order of arguments in function documentation
       query <- list(
         list(
           id = id,
@@ -283,12 +281,14 @@ get_eurostat <- function(id,
       query_hash <- digest::digest(query, algo = "md5")
       query_hash_unfiltered <- digest::digest(query_unfiltered, algo = "md5")
       names(query) <- digest::digest(query, algo = "md5")
+      cache_list_current <- readLines(cache_list)
       
-      # Make a JSON string with predefined order
-      # Order is defined by the order of arguments in function documentation
-      # Append .json file if the query has not been printed before
-      if (!any(grepl(query_hash, readLines(cache_list)))) {
-        if (length(readLines(cache_list)) == 0) {
+      if (any(grepl(query_hash, cache_list_current))) {
+        # Check if the same query has already been made
+        message("Dataset query already saved in cache_list.json...")
+      } else if (!any(grepl(query_hash, cache_list_current))) {
+        # If query was not made, append cache_list with new json query
+        if (length(cache_list_current) == 0) {
           # close previous connection with mode "a"
           close(cache_list_conn)
           cache_list_conn <- file(cache_list, "w")
@@ -303,17 +303,17 @@ get_eurostat <- function(id,
                      con = cache_list_conn,
                      sep = "\n")
           
-        } else if (length(readLines(cache_list)) != 0) {
+        } else if (length(cache_list_current) != 0) {
           # read previously saved queries and save them
           cache_list_history <- jsonlite::fromJSON(cache_list)
           # close previous connection with mode "a"
           close(cache_list_conn)
           # open a new connection with mode "w" that wipes the file
           cache_list_conn <- file(cache_list, "w")
-          cache_list_history <- c(cache_list_history, query)
+          cache_list_history_and_query <- c(cache_list_history, query)
 
           json_query <- jsonlite::toJSON(
-            cache_list_history,
+            cache_list_history_and_query,
             pretty = TRUE,
             null = "null"
             )
@@ -323,18 +323,21 @@ get_eurostat <- function(id,
                      sep = "\n")
         }
       }
-      
+
       close(cache_list_conn)
-      
+
       # If query_hash and query_hash_unfiltered are not identical
       # it means that it makes sense to see if a superset of the data exists 
-     if (!identical(query_hash, query_hash_unfiltered) && any(grepl(query_hash_unfiltered, readLines(cache_list)))) {
+      data_superset_exists <- FALSE
+      # Re-read cache_list file if there were any changes
+      cache_list_current <- readLines(cache_list)
+
+     if (!identical(query_hash, query_hash_unfiltered) && 
+         any(grepl(query_hash_unfiltered, cache_list_current))) {
         message("Dataset query is not in cache_list.json but the whole dataset is...")
         data_superset_exists <- TRUE
-      } else {
-        message("Dataset query already saved in cache_list.json...")
       }
-      
+
       # cache filename
       cache_file <- file.path(
         cache_dir,
@@ -343,7 +346,7 @@ get_eurostat <- function(id,
           ".rds"
         )
       )
-      
+
       # bulk cache filename
       cache_file_bulk <- file.path(
         cache_dir,
@@ -370,7 +373,8 @@ get_eurostat <- function(id,
         y <- get_eurostat_json(id, 
                                filters,
                                type = type,
-                               stringsAsFactors = stringsAsFactors, ...
+                               stringsAsFactors = stringsAsFactors, 
+                               ...
         )
         y$time <- convert_time_col(factor(y$time), time_format = time_format)
         
