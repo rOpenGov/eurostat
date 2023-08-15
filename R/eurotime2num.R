@@ -1,8 +1,8 @@
 #' @title Conversion of Eurostat Time Format to Numeric
 #' @description A conversion of a Eurostat time format to numeric.
-#' @details 
-#' Bi-annual (semester), quarterly, monthly and weekly data can be presented as 
-#' a fraction of the year in beginning of the period. Conversion of daily data 
+#' @details
+#' Bi-annual (semester), quarterly, monthly and weekly data can be presented as
+#' a fraction of the year in beginning of the period. Conversion of daily data
 #' is not supported.
 #' @param x a charter string with time information in Eurostat time format.
 #' @return see [as.numeric()].
@@ -20,10 +20,10 @@
 eurotime2num <- function(x) {
   x <- as.factor(x)
   times <- levels(x)
-  
+
   if (nchar(times[1]) > 8) {
     # Finds the only format that is longer than YYYY-WNN (weeks, 8 chars)
-    # Day/date notation: YYYY-MM-DD, 10 chars 
+    # Day/date notation: YYYY-MM-DD, 10 chars
     # tcode <- substr(times[1], 8, 8)
     tcode <- "D"
   } else {
@@ -37,19 +37,23 @@ eurotime2num <- function(x) {
       tcode <- "A"
     }
   }
-  
-  
+
   # check input type
   if (!(tcode %in% c("A", "S", "Q", "M", "W", "D"))) {
-    
+
     # for daily
     if (tcode == "D") {
       warning("Time format is daily data. No numeric conversion was made.")
     } else {
-      warning("Unknown time code, ", tcode, ". No numeric conversion was made.\n
-              Please fill bug report at https://github.com/rOpenGov/eurostat/issues.")
+      warning(
+        paste0(
+          "Unknown time code, ", tcode, ". No numeric conversion was made.\n",
+          "Please fill bug report at ",
+          "https://github.com/rOpenGov/eurostat/issues."
+        )
+      )
     }
-    
+
     return(x)
   }
 
@@ -61,7 +65,8 @@ eurotime2num <- function(x) {
   subyear[subyear == ""] <- 1
 
   levels(x) <- as.numeric(year) +
-    (as.numeric(subyear) - 1) * 1 / c(A = 1, S = 2, Q = 4, M = 12, W = 53)[tcode]
+    (as.numeric(subyear) - 1) *
+    1 / c(A = 1, S = 2, Q = 4, M = 12, W = 53)[tcode]
   y <- as.numeric(as.character(x))
   y
 }

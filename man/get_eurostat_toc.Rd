@@ -21,7 +21,9 @@ data.start, data.end: Dates.
 Download table of contents (TOC) of eurostat datasets.
 }
 \details{
-The TOC is downloaded from \url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt}. The values in column 'code' should be used to download a selected dataset.
+The TOC is downloaded from
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}.
+The values in column 'code' should be used to download a selected dataset.
 }
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}

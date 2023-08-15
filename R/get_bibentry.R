@@ -35,7 +35,7 @@ get_bibentry <- function(code,
   if (!any(class(code) %in% c("character", "factor"))) {
     stop("The code(s) must be added as character vector")
   }
-  if (!is.null(keywords) & !inherits(keywords, "list")) {
+  if (!is.null(keywords) && !inherits(keywords, "list")) {
     stop("If keyword(s) are added, they must be added as a list.")
   }
 
@@ -64,12 +64,11 @@ get_bibentry <- function(code,
     gsub("\\.", "-", toc$`last update of data`)
   )
 
-  for (i in 1:nrow(toc)) {
+  for (i in seq_len(nrow(toc))) {
     last_update_date <- lubridate::dmy(toc[["last update of data"]][[i]])
     last_update_year <- lubridate::year(last_update_date)
     last_update_month <- lubridate::month(last_update_date)
     last_update_day <- lubridate::day(last_update_date)
-
 
     if (!is.null(keywords)) { # if user entered keywords
       if (length(keywords) < i) { # last keyword not entered
@@ -85,7 +84,8 @@ get_bibentry <- function(code,
       bibtype = "misc",
       key = eurostat_id[i],
       title = paste0(toc$title[i], " [", code[i], "]"),
-      url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/-/", code[i]),
+      url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/-/",
+                   code[i]),
       language = "en",
       year = paste0(toc$`last update of data`[i]),
       publisher = "Eurostat",

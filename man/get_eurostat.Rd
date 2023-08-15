@@ -159,7 +159,7 @@ dd2 <- get_eurostat("AVIA_GOR_ME",
 )
 
 # An example of downloading whole dataset from JSON API
-dd3 <- get_eurostat("AVIA_GOR_ME", 
+dd3 <- get_eurostat("AVIA_GOR_ME",
   filters = list()
 )
 

@@ -53,14 +53,27 @@
 #' label_eurostat_vars(names(lp))
 #' label_eurostat_tables("nama_10_lp_ulc")
 #' label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
-#' label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
-#' label_eurostat(c("FI", "DE", "EU28"),
+#' label_eurostat(
+#'   c("FI", "DE", "EU28"),
+#'   dic = "geo",
+#'   custom_dic = c(DE = "Germany")
+#' )
+#' label_eurostat(
+#'   c("FI", "DE", "EU28"),
 #'   dic = "geo", countrycode = "country.name",
 #'   custom_dic = c(EU28 = "EU")
 #' )
-#' label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
+#' label_eurostat(
+#'   c("FI", "DE", "EU28"),
+#'   dic = "geo",
+#'   countrycode = "country.name"
+#' )
 #' # In Finnish
-#' label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
+#' label_eurostat(
+#'   c("FI", "DE", "EU28"),
+#'   dic = "geo",
+#'   countrycode = "cldr.short.fi"
+#' )
 #' }
 #'
 #' @importFrom countrycode countrycode
@@ -78,89 +91,112 @@ label_eurostat <-
            countrycode_nomatch = NULL,
            custom_dic = NULL,
            fix_duplicated = FALSE) {
-    
+
     # Check if you have access to ec.europe.eu.
     if (!check_access_to_data()) {
-      message("You have no access to ec.europe.eu.
-Please check your connection and/or review your proxy settings")
+      message(paste("You have no access to ec.europe.eu. Please check your",
+                    "connection and/or review your proxy settings"))
     } else {
-      
+
       # Avoid warnings
       code_name <- NULL
-      
+
       if (is.data.frame(x)) {
         y <- x
-        
-        mynams <- names(y)[!(names(y) %in% c("TIME_PERIOD", "values", "flags"))]
-        
-        for (i in names(y)[!(names(y) %in% c("TIME_PERIOD", "values", "flags"))]) {
-          y[[i]] <- label_eurostat(y[[i]], i,
-                                   eu_order = eu_order,
-                                   lang = lang,
-                                   countrycode = countrycode,
-                                   countrycode_nomatch = countrycode_nomatch,
-                                   custom_dic = custom_dic,
-                                   fix_duplicated = fix_duplicated
+
+        mynams <- names(y)[!(names(y) %in%
+                               c("TIME_PERIOD", "values", "flags"))]
+
+        for (i in names(y)[!(names(y) %in%
+                               c("TIME_PERIOD", "values", "flags"))]) {
+          y[[i]] <- label_eurostat(
+            y[[i]],
+            i,
+            eu_order = eu_order,
+            lang = lang,
+            countrycode = countrycode,
+            countrycode_nomatch = countrycode_nomatch,
+            custom_dic = custom_dic,
+            fix_duplicated = fix_duplicated
           )
         }
-        
+
         # Fix the first two variables
         # nams <- names(y)
         # y <- cbind(as.vector(unlist(x[[1]])),
         #           as.vector(unlist(x[[2]])),
         #           x[, 3:ncol(x)])
         # colnames(y) <- nams
-        
+
         # Codes added if asked
         if (!is.null(code)) {
           code_in <- code %in% names(y)
           if (!all(code_in)) {
-            stop("code column name(s) ", shQuote(code[!code_in]), " not found on x")
+            stop("code column name(s) ",
+                 shQuote(code[!code_in]),
+                 " not found on x")
           }
           y_code <- x[, code, drop = FALSE]
           names(y_code) <- paste0(names(y_code), "_code")
           y <- cbind(y_code, y)
         }
-        
+
         return(tibble::as_tibble(y))
       } else {
         if (is.null(dic)) {
           stop("Dictionary information is missing")
         }
-        
+
         dic_df <- get_eurostat_dic(dic, lang = lang)
-        
+
         if (is.factor(x)) {
           if (eu_order) {
             ord <- dic_order(levels(x), dic_df, "code")
           } else {
             ord <- seq_along(levels(x))
           }
-          
-          y <- factor(x, levels(x)[ord],
-                      labels = label_eurostat(levels(x),
-                                              dic = dic,
-                                              eu_order = eu_order,
-                                              lang = lang,
-                                              countrycode = countrycode,
-                                              countrycode_nomatch = countrycode_nomatch,
-                                              custom_dic = custom_dic,
-                                              fix_duplicated = fix_duplicated
-                      )[ord]
+
+          y <- factor(
+            x,
+            levels(x)[ord],
+            labels =
+              label_eurostat(
+                levels(x),
+                dic = dic,
+                eu_order = eu_order,
+                lang = lang,
+                countrycode = countrycode,
+                countrycode_nomatch = countrycode_nomatch,
+                custom_dic = custom_dic,
+                fix_duplicated = fix_duplicated
+              )[ord]
           )
-          
+
           # return factor
           return(y)
-        } else if (dic == "geo" & !is.null(countrycode)) {
+        } else if (dic == "geo" && !is.null(countrycode)) {
           if (is.null(countrycode_nomatch)) {
-            y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NULL)
+            y <- countrycode::countrycode(x,
+                                          origin = "eurostat",
+                                          destination = countrycode,
+                                          nomatch = NULL)
           } else if (is.na(countrycode_nomatch)) {
-            y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NA)
+            y <- countrycode::countrycode(x,
+                                          origin = "eurostat",
+                                          destination = countrycode,
+                                          nomatch = NA)
           } else if (countrycode_nomatch == "eurostat") {
-            y <- countrycode::countrycode(x, origin = "eurostat", destination = countrycode, nomatch = NA)
-            y[is.na(y)] <- label_eurostat(x[is.na(y)], dic = "geo", lang = lang, fix_duplicated = fix_duplicated)
+            y <- countrycode::countrycode(x,
+                                          origin = "eurostat",
+                                          destination = countrycode,
+                                          nomatch = NA)
+            y[is.na(y)] <- label_eurostat(x[is.na(y)],
+                                          dic = "geo",
+                                          lang = lang,
+                                          fix_duplicated = fix_duplicated)
           } else {
-            stop("unknown argument ", countrycode_nomatch, " for countrycode_nomatch")
+            stop("unknown argument ", countrycode_nomatch,
+                 " for countrycode_nomatch")
           }
         } else {
           # dics are in upper case, change if x is not
@@ -170,14 +206,15 @@ Please check your connection and/or review your proxy settings")
           }
           # test duplicates
           dic_sel <- dplyr::filter(dic_df, code_name %in% x)
-          
+
           if (anyDuplicated(dic_sel$full_name)) {
             if (fix_duplicated) {
-              dup_labels <-
-                dic_sel$full_name %in% dic_sel$full_name[duplicated(dic_sel$full_name)]
-              modif_dup_labels <- paste(dic_sel$code_name[dup_labels],
-                                        dic_sel$full_name[dup_labels],
-                                        sep = " "
+              dup_labels <- dic_sel$full_name %in%
+                dic_sel$full_name[duplicated(dic_sel$full_name)]
+              modif_dup_labels <- paste(
+                dic_sel$code_name[dup_labels],
+                dic_sel$full_name[dup_labels],
+                sep = " "
               )
               dic_sel$full_name[dup_labels] <- modif_dup_labels
               message(
@@ -193,28 +230,26 @@ Please check your connection and/or review your proxy settings")
                 "Labels for ",
                 dic,
                 " includes duplicated labels in the Eurostat dictionary. ",
-                "Use fix_duplicated = TRUE with label_eurostat() to fix duplicated
-              labels automatically."
+                "Use fix_duplicated = TRUE with label_eurostat() to fix ",
+                "duplicated labels automatically."
               )
             }
           }
           # mapvalues
           y <- dic_sel[[2]][match(x, dic_sel[[1]])]
         }
-        
+
         # apply custom_dic
         if (!is.null(custom_dic)) {
           if (is.list(custom_dic)) custom_dic <- custom_dic[[dic]]
           y <- dplyr::coalesce(unname(custom_dic[x]), y)
         }
-        
+
         if (any(is.na(y))) {
           warning("All labels for ", dic, " were not found.")
         }
       }
-      
-      
-      
+
       y
     }
   }
@@ -224,7 +259,7 @@ Please check your connection and/or review your proxy settings")
 #'  objects other than characters or factors definitions are get for names.
 #' @export
 label_eurostat_vars <- function(x, lang = "en") {
-  if (!(is.character(x) | is.factor(x))) {
+  if (!(is.character(x) || is.factor(x))) {
     x <- names(x)
   }
   x <- x[!grepl("values", x)] # remove values column
@@ -234,8 +269,7 @@ label_eurostat_vars <- function(x, lang = "en") {
 #' @describeIn label_eurostat Get definitions for table names
 #' @export
 label_eurostat_tables <- function(x, lang = "en") {
-  if (!(is.character(x) |
-    is.factor(x))) {
+  if (!(is.character(x) || is.factor(x))) {
     stop("x have to be a character or a factor")
   }
   label_eurostat(x, dic = "table_dic", lang = lang)
@@ -246,7 +280,7 @@ label_eurostat_tables <- function(x, lang = "en") {
 #'  objects other than characters or factors definitions are get for names.
 #' @export
 label_eurostat_vars <- function(x, lang = "en") {
-  if (!(is.character(x) | is.factor(x))) {
+  if (!(is.character(x) || is.factor(x))) {
     x <- names(x)
   }
   x <- x[!grepl("values", x)] # remove values column
@@ -256,8 +290,7 @@ label_eurostat_vars <- function(x, lang = "en") {
 #' @describeIn label_eurostat Get definitions for table names
 #' @export
 label_eurostat_tables <- function(x, lang = "en") {
-  if (!(is.character(x) |
-        is.factor(x))) {
+  if (!(is.character(x) || is.factor(x))) {
     stop("x have to be a character or a factor")
   }
   label_eurostat(x, dic = "table_dic", lang = lang)

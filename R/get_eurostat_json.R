@@ -2,7 +2,7 @@
 #' @description Retrieve data from Eurostat API in JSON format.
 #' @details
 #'   Data to retrieve from
-#'   [The Eurostat Web Services](https://ec.europa.eu/eurostat/web/main/data/web-services) 
+#'   [The Eurostat Web Services](https://ec.europa.eu/eurostat/web/main/data/web-services)
 #'   can be specified with filters. Normally, it is
 #'   better to use JSON query through [get_eurostat()], than to use
 #'   [get_eurostat_json()] directly.
@@ -17,14 +17,14 @@
 #'   passed to [httr::GET()]. For example
 #'   `get_eurostat_json(id, filters,
 #'   config = httr::use_proxy(url, port, username, password))`.
-#'   
+#'
 #'   When retrieving data from Eurostat JSON API the user may encounter errors.
-#'   For end user convenience, we have provided a ready-made internal dataset 
+#'   For end user convenience, we have provided a ready-made internal dataset
 #'   `sdmx_http_errors` that contains descriptive labels and descriptions about
-#'   the possible interpretation or cause of each error. These messages are 
-#'   returned if the API returns a status indicating a HTTP error 
+#'   the possible interpretation or cause of each error. These messages are
+#'   returned if the API returns a status indicating a HTTP error
 #'   (400 or greater).
-#'   
+#'
 #'   The Eurostat implementation seems to be based on SDMX 2.1, which is the
 #'   reason we've used SDMX Standards guidelines as a supplementary source
 #'   that we have included in the dataset. What this means in practice is that
@@ -39,18 +39,18 @@
 #'   and limitations per query.
 #' @param lang A language used for metadata. Default is `EN`, other options are
 #'  `FR` and `DE`.
-#' @param type A type of variables, "`code`" (default), "`label`" or "`both`". 
-#'   The parameter "`both`" will return a data_frame with named vectors, 
+#' @param type A type of variables, "`code`" (default), "`label`" or "`both`".
+#'   The parameter "`both`" will return a data_frame with named vectors,
 #'   labels as values and codes as names.
 #' @param stringsAsFactors if `FALSE` (the default) the variables are
-#'        returned as characters. If `TRUE` the variables are converted to 
+#'        returned as characters. If `TRUE` the variables are converted to
 #'        factors in original Eurostat order.
 #' @param ... Other arguments passed on to [httr::GET()]. For example
 #'   a proxy parameters, see details.
 #' @inheritDotParams httr::GET
 #' @return A dataset as an object of `data.frame` class.
-#' @export
-#' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
+#' @author
+#' Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
 #' @references
 #' See `citation("eurostat")`:
 #'
@@ -69,7 +69,7 @@
 #'   na_item = "B1GQ",
 #'   unit = "CLV_I10"
 #' ))
-#' 
+#'
 #' # TIME_PERIOD filter works also with the new JSON API
 #' yy2 <- get_eurostat_json("nama_10_gdp", filters = list(
 #'    geo = c("FI", "SE", "EU28"),
@@ -78,7 +78,7 @@
 #'    na_item = "B1GQ",
 #'    unit = "CLV_I10"
 #' ))
-#'   
+#'
 #' # An example from get_eurostat
 #' dd <- get_eurostat("nama_10_gdp",
 #'   filters = list(
@@ -91,20 +91,21 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_glue
-#' @seealso 
+#' @seealso
 #' [httr::GET()]
-#' 
+#'
 #' Eurostat Data Browser online help: API Statistics - data query:
 #' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
-#' 
+#'
 #' Eurostat Data Browser online help: migrating from JSON web service to API
-#' Statistics: 
+#' Statistics:
 #' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
-#' 
-#' SDMX standards: Section 7: Guidelines for the use of web services, Version 2.1: 
+#'
+#' SDMX standards: Section 7: Guidelines for the use of web services, Version 2.1:
 #' \url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
 #' @keywords utilities database
-get_eurostat_json <- function(id, 
+#' @export
+get_eurostat_json <- function(id,
                               filters = NULL,
                               type = "code",
                               lang = "EN",
@@ -112,7 +113,7 @@ get_eurostat_json <- function(id,
                               ...) {
 
   ## Special products that must be built to matrix
-  ## User gets message to use iotables::iotables_download() and halt this operation.
+  ## User is prompted to halt and use iotables::iotables_download()
   user_want_stop <- special_id_values(id)
   if (user_want_stop) {
     return(NULL)
@@ -126,8 +127,9 @@ get_eurostat_json <- function(id,
 
   # construct url
   url <- eurostat_json_url(id = id, filters = filters, lang = lang)
-  # set user agent
-  # ua <- httr::user_agent(paste0("eurostat_", packageDescription("eurostat", fields = "Version")))
+  # set user agent with version
+  # ua <- httr::user_agent(paste0("eurostat_",
+  # packageDescription("eurostat", fields = "Version")))
   ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
 
   # RETRY GET 3 times
@@ -144,7 +146,9 @@ get_eurostat_json <- function(id,
 
   # parse JSON data into R object (as per [httr_vignette])
   # assume that content encoding is utf8
-  result <- jsonlite::fromJSON(txt = httr::content(resp, "text", encoding = "utf8"), 
+  result <- jsonlite::fromJSON(txt = httr::content(x = resp,
+                                                   as = "text",
+                                                   encoding = "utf8"),
                                simplifyVector = TRUE)
 
   if (httr::http_error(resp)) {
@@ -174,67 +178,63 @@ get_eurostat_json <- function(id,
       )
     }
   }
-  
-  if (resp$status_code == 200 & length(result$value) == 0) {
-    
+
+  if (resp$status_code == 200 && length(result$value) == 0) {
+
     msg <- paste(" Please also note that some datasets are not accessible via",
                  "the eurostat API interface. You can try to search the data",
                  "manually from the comext database at",
                  "https://ec.europa.eu/eurostat/comext/newxtweb/ or explore",
                  "data at https://ec.europa.eu/eurostat/web/main/data/database")
-    
+
     stop(paste("HTTP status: 200, but the dataset didn't have any values.\n",
                " Editing the query parameters may resolve the issue.\n",
-                msg)
+               msg)
     )
   }
 
-    #status <- httr::status_code(resp)
-    
-    # check status and get json
-    jdat <- result
-    # no need to download same data twice
-    # jdat <- jsonlite::fromJSON(url, simplifyVector = TRUE)
+  #status <- httr::status_code(resp)
 
-    # dims <- jdat[[1]]$dimension # Was called like this in API v1.1
-    dims <- jdat$dimension # Switched to this with API v2.1
-    # ids <- dims$id # v1.1
-    ids <- jdat$id # v2.1
+  # check status and get json
+  jdat <- result
+  # no need to download same data twice
+  # jdat <- jsonlite::fromJSON(url, simplifyVector = TRUE)
 
-    dims_list <- lapply(dims[rev(ids)], function(x) {
-      y <- x$category$label
-      if (type == "label") {
-        y <- unlist(y, use.names = FALSE)
-      } else if (type == "code") {
-        y <- names(unlist(y))
-      } else if (type == "both") {
-        y <- unlist(y)
-      } else {
-        stop("Invalid type ", type)
-      }
-    })
+  # dims <- jdat[[1]]$dimension # Was called like this in API v1.1
+  dims <- jdat$dimension # Switched to this with API v2.1
+  # ids <- dims$id # v1.1
+  ids <- jdat$id # v2.1
 
-    variables <- expand.grid(dims_list,
-      KEEP.OUT.ATTRS = FALSE,
-      stringsAsFactors = stringsAsFactors
-    )
-
-    # dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value) # v1.1
-    dat <- as.data.frame(variables[rev(names(variables))])
-    vals <- unlist(jdat$value, use.names = FALSE)
-    dat$values <- rep(NA, nrow(dat))
-    inds <- 1 + as.numeric(names(jdat$value)) # 0-indexed
-    if (!length(vals) == length(inds)) {
-      stop("Complex indexing not implemented.")
+  dims_list <- lapply(dims[rev(ids)], function(x) {
+    y <- x$category$label
+    if (type == "label") {
+      y <- unlist(y, use.names = FALSE)
+    } else if (type == "code") {
+      y <- names(unlist(y))
+    } else if (type == "both") {
+      y <- unlist(y)
+    } else {
+      stop("Invalid type ", type)
     }
-    dat$values[inds] <- vals
+  })
 
+  variables <- expand.grid(dims_list,
+    KEEP.OUT.ATTRS = FALSE,
+    stringsAsFactors = stringsAsFactors
+  )
 
-
-    tibble::as_tibble(dat)
+  # dat <- data.frame(variables[rev(names(variables))], values = jdat[[1]]$value) # v1.1
+  dat <- as.data.frame(variables[rev(names(variables))])
+  vals <- unlist(jdat$value, use.names = FALSE)
+  dat$values <- rep(NA, nrow(dat))
+  inds <- 1 + as.numeric(names(jdat$value)) # 0-indexed
+  if (!length(vals) == length(inds)) {
+    stop("Complex indexing not implemented.")
   }
+  dat$values[inds] <- vals
 
-
+  tibble::as_tibble(dat)
+}
 
 
 #' @title Internal function to build json url
@@ -249,19 +249,21 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
   filters2 <- as.list(unlist(filters))
   # Give items names without numbers
   names(filters2) <- rep(names(filters), lapply(filters, length))
-  
+
   # The “format” parameter’s only possible value is "JSON".
   if (!hasName(filters2, "format")) {
     filters2$format <- "JSON"
   }
-  
+
   if (!is.null(lang)) {
-    # The Language parameter (“lang”) can have only three values: 
+    # The Language parameter (“lang”) can have only three values:
     # "EN" (English), "FR" (French), and "DE" (German).
     if (toupper(lang) %in% c("EN", "FR", "DE")) {
       filters2$lang <- toupper(lang)
     } else {
-      message("Unsupported language code used. Using the default language: \"EN\"")
+      message(
+        "Unsupported language code used. Using the default language: \"EN\""
+      )
       filters2$lang <- "EN"
     }
   } else {
@@ -275,14 +277,14 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
   version <- "1.0/"
   response_type <- "data/"
   datasetCode <- id
-  
+
   # Parse host_url and add relevant information in the standard list
   url_list <- httr::parse_url(host_url)
   # Paste "statistics/1.0/data/{id}" at the end of the fixed part of the URL
-  url_list$path <- paste0(url_list$path, 
-                          service, 
-                          version, 
-                          response_type, 
+  url_list$path <- paste0(url_list$path,
+                          service,
+                          version,
+                          response_type,
                           datasetCode)
   url_list$query <- filters2
 

@@ -10,8 +10,7 @@ clean_eurostat_cache(cache_dir = NULL, config = FALSE)
 \item{cache_dir}{A path to cache directory. If \code{NULL} (default)
 tries to clean default temporary cache directory.}
 
-\item{config}{Logical \code{TRUE/FALSE}. Should the cached path be
-deleted?}
+\item{config}{Logical \code{TRUE/FALSE}. Should the cached path be deleted?}
 }
 \description{
 Delete all .rds files from the eurostat cache directory.

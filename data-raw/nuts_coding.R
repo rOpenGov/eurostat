@@ -13,7 +13,7 @@ download.file(
 
 regional_changes_2016 <- readxl::read_excel(tf,
   sheet = "NUTS2013-NUTS2016",
-  skip = 1, col_names = T
+  skip = 1, col_names = TRUE
 ) %>%
   select(1:12) %>%
   purrr::set_names(., c(
@@ -34,7 +34,7 @@ regional_changes_2016 <- readxl::read_excel(tf,
 nuts1_correspondence <- readxl::read_excel(
   tf,
   sheet = "Correspondence NUTS-1",
-  skip = 0, col_names = T
+  skip = 0, col_names = TRUE
 ) %>%
   purrr::set_names(., c(
     "code13", "code16",
@@ -50,7 +50,7 @@ warning("FR7 - Centre-Est appears to be an errorneous line and it is removed fro
 nuts2_correspondence <- readxl::read_excel(
   tf,
   sheet = "Correspondence NUTS-2",
-  skip = 0, col_names = T
+  skip = 0, col_names = TRUE
 ) %>%
   select(1:5) %>%
   purrr::set_names(., c(
@@ -64,7 +64,7 @@ nuts2_correspondence <- readxl::read_excel(
 nuts3_correspondence <- readxl::read_excel(
   tf,
   sheet = "Correspondence NUTS-3",
-  skip = 0, col_names = T
+  skip = 0, col_names = TRUE
 ) %>%
   select(1:5) %>%
   purrr::set_names(., c(

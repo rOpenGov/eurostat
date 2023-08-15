@@ -35,7 +35,7 @@ get_eurostat_raw <- function(id) {
   url <- paste0(
     base,
     "api/dissemination/sdmx/2.1/data/",
-    id, 
+    id,
     "?format=TSV&compressed=true"
   )
 
@@ -57,22 +57,31 @@ get_eurostat_raw <- function(id) {
     na = ":",
     col_types = readr::cols(.default = readr::col_character())
   )
-  
+
   # NEW CODE: data.table
-  # dat <- data.table::fread(cmd = paste("gzip -dc", tfile), 
+  # dat <- data.table::fread(cmd = paste("gzip -dc", tfile),
   #                          na.strings = ":",
   #                          colClasses = "character")
   # The reason why data.table is not currently used is that readr::cols
   # and readr::col_character() worked better with some datasets
   # and because RAM usage was not that much lower with data.table
-  
+
   # OLD CODE
   dat <- tibble::as_tibble(dat)
 
 
   # check validity
-  if (ncol(dat) < 2 | nrow(dat) < 1) {
-    msg <- ". Some datasets (for instance the comext type) are not accessible via the eurostat interface. You can try to search the data manually from the comext database at http://epp.eurostat.ec.europa.eu/newxtweb/ or bulk download facility at http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing or annual Excel files http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
+  if (ncol(dat) < 2 || nrow(dat) < 1) {
+    msg <- paste0(
+      ". Some datasets (for instance the comext type) are not ",
+      "accessible via the eurostat interface. You can try to ",
+      "search the data manually from the comext database at ",
+      "http://epp.eurostat.ec.europa.eu/newxtweb/ ",
+      "or bulk download facility at ",
+      "http://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing ",
+      "or annual Excel files at ",
+      "http://ec.europa.eu/eurostat/web/prodcom/data/excel-files-nace-rev.2"
+    )
 
     if (grepl("does not exist or is not readable", dat[1])) {
       stop(id, " does not exist or is not readable", msg)

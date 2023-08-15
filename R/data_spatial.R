@@ -69,7 +69,9 @@
 #' Please check up-to-date copyright information from the eurostat website:
 #' [GISCO: Geographical information and maps - Administrative units/statistical units](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units)
 #'
-#' "In addition to the [general copyright and licence policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright) applicable to the whole Eurostat website, the following
+#' "In addition to the
+#' [general copyright and licence policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright)
+#' applicable to the whole Eurostat website, the following
 #' specific provisions apply to the datasets you are downloading. The download
 #' and usage of these data is subject to the acceptance of the following
 #' clauses:
@@ -116,7 +118,7 @@
 #' # Manipulate and plot
 #' if (require(sf)) {
 #'   library(sf)
-#'   # Filter NUTS3 from some countries in the same way than a regular data frame
+#'   # Filter NUTS3 from select countries like in a regular data frame
 #'   example_nuts <- subset(eurostat_geodata_60_2016, LEVL_CODE == 3 &
 #'     CNTR_CODE %in% c("DK", "DE", "PL"))
 #'
