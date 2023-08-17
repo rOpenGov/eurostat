@@ -36,8 +36,8 @@ unique(na_q$TIME_PERIOD)
 \dontrun{
 # Test for weekly data
 get_eurostat(
-  id = "lfsi_abs_w", 
-  select_time = c("W"), 
+  id = "lfsi_abs_w",
+  select_time = c("W"),
   time_format = "date"
   )
 }

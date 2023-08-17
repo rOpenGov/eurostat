@@ -2,7 +2,7 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{tidy_eurostat}
 \alias{tidy_eurostat}
-\title{Transform Data from the New Dissemination API into Row-Column-Value Format}
+\title{Transform Data into Row-Column-Value Format}
 \usage{
 tidy_eurostat(
   dat,
@@ -16,18 +16,19 @@ tidy_eurostat(
 \item{dat}{a data_frame from \code{\link[=get_eurostat_raw]{get_eurostat_raw()}}.}
 
 \item{time_format}{a string giving a type of the conversion of the time column from the
-eurostat format. A "date" (default) converts to a \code{\link[=Date]{Date()}}
-with a first date of the period. A "date_last" converts to a \code{\link[=Date]{Date()}} with
-a last date of the period. A "num" converts to a numeric and "raw"
-does not do conversion. See \code{\link[=eurotime2date]{eurotime2date()}} and \code{\link[=eurotime2num]{eurotime2num()}}.}
+eurostat format. A "date" (default) converts to a \code{\link[=Date]{Date()}} class
+with the date being the first day of the period. A "date_last" converts
+to a \code{\link[=Date]{Date()}} class object with the date being the last date of the period.
+Argument "num" converts the date into a numeric and argument "raw"
+does not do any conversions. See \code{\link[=eurotime2date]{eurotime2date()}} and \code{\link[=eurotime2num]{eurotime2num()}}
+for more information.}
 
 \item{select_time}{a single character symbol for a time frequency, a vector
 containing multiple time frequencies, or \code{NULL} (default).
 Available options are "A" (annual), "Q" (quarterly), "S"
 (semester, 1st or 2nd half of the year), "M" (monthly) and "D" (daily).
-When downloading data from the New Dissemination API, it is now possible
-to select multiple time frequencies and return them in the same data.frame
-object.}
+It is possible to select multiple time frequencies and return them in
+the same tibble.}
 
 \item{stringsAsFactors}{if \code{TRUE} (the default) variables are
 converted to factors in original Eurostat order. If \code{FALSE}
@@ -41,13 +42,16 @@ can be removed. Default is \code{FALSE}}
 tibble in the molten format with the last column 'values'.
 }
 \description{
-Transform raw Eurostat data table downloaded from the new
-dissemination API into the row-column-value format (RCV).
+Transform raw Eurostat data table downloaded from the
+API into a tidy row-column-value format (RCV).
 }
 \examples{
 \dontrun{
 # Example of a dataset with multiple time series
-get_eurostat("AVIA_GOR_ME", time_format = "date_last", cache = F, bulk_new_style = TRUE)
+get_eurostat("AVIA_GOR_ME",
+  time_format = "date_last",
+  cache = F
+  )
 }
 
 }

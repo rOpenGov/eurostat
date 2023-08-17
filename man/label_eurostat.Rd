@@ -105,14 +105,27 @@ lpl_code <- label_eurostat(lp, code = "unit")
 label_eurostat_vars(names(lp))
 label_eurostat_tables("nama_10_lp_ulc")
 label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
-label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
-label_eurostat(c("FI", "DE", "EU28"),
+label_eurostat(
+  c("FI", "DE", "EU28"),
+  dic = "geo",
+  custom_dic = c(DE = "Germany")
+)
+label_eurostat(
+  c("FI", "DE", "EU28"),
   dic = "geo", countrycode = "country.name",
   custom_dic = c(EU28 = "EU")
 )
-label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
+label_eurostat(
+  c("FI", "DE", "EU28"),
+  dic = "geo",
+  countrycode = "country.name"
+)
 # In Finnish
-label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
+label_eurostat(
+  c("FI", "DE", "EU28"),
+  dic = "geo",
+  countrycode = "cldr.short.fi"
+)
 }
 
 }

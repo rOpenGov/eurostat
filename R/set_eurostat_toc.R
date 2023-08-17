@@ -11,8 +11,7 @@
 set_eurostat_toc <- function(...) {
   if (!exists(".eurostatTOC", envir = .EurostatEnv)) {
     base <- getOption("eurostat_url")
-    url <- paste(base, "estat-navtree-portlet-prod/",
-      "BulkDownloadListing?sort=1&downfile=table_of_contents_en.txt",
+    url <- paste(base, "api/dissemination/catalogue/toc/txt?lang=en",
       sep = ""
     )
     .eurostatTOC <- readr::read_tsv(url(url),

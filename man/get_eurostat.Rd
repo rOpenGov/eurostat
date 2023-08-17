@@ -7,7 +7,7 @@
 get_eurostat(
   id,
   time_format = "date",
-  filters = "none",
+  filters = NULL,
   type = "code",
   select_time = NULL,
   cache = TRUE,
@@ -31,13 +31,12 @@ a last date of the period. A "num" converts to a numeric and "raw"
 does not do conversion. See \code{\link[=eurotime2date]{eurotime2date()}} and
 \code{\link[=eurotime2num]{eurotime2num()}}.}
 
-\item{filters}{a "none" (default) to get a whole dataset or a named list of
-filters to get just part of the table. Names of list objects are
-Eurostat variable codes and values are vectors of observation codes.
-If \code{NULL} the whole
-dataset is returned via API. More on details. See more on filters and
-limitations per query via API from for
-\code{\link[=get_eurostat_json]{get_eurostat_json()}}.}
+\item{filters}{A list of filters to get only a part of the dataset from server.
+The default parameter \code{NULL} (or "none") gets the whole dataset.
+Names of list objects are Eurostat variable codes and they can vary from one
+dataset to another. Values are vectors of observation codes. See more
+information on filters and limitations per query via API from
+in \code{\link[=get_eurostat_json]{get_eurostat_json()}} documentation.}
 
 \item{type}{A type of variables, "code" (default) or "label".}
 
@@ -49,17 +48,15 @@ frequencies, select one or more of the desired frequencies with:
 "M" = monthly, "W" = weekly. For all frequencies in same data
 frame \code{time_format = "raw"} should be used.}
 
-\item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects
-only queries from the bulk download facility.}
+\item{cache}{a logical whether to do caching. Default is \code{TRUE}.}
 
 \item{update_cache}{a logical whether to update cache. Can be set also with
 options(eurostat_update = TRUE)}
 
-\item{cache_dir}{a
-path to a cache directory. The directory must exist.
+\item{cache_dir}{a path to a cache directory. The directory must exist.
 The \code{NULL} (default) uses and creates
-'eurostat' directory in the temporary directory from
-\code{\link[=tempdir]{tempdir()}}. The directory can also be set with
+'eurostat' directory in the temporary directory defined by base R
+\code{\link[=tempdir]{tempdir()}}. The cache directory can also be set with
 \code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}.}
 
 \item{compress_file}{a logical whether to compress the
@@ -99,12 +96,12 @@ bulk download facility can be completed for example with \code{\link[tidyr:compl
 Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 }
 \details{
-Data sets are downloaded from
-\href{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}{the Eurostat bulk download facility} or from The Eurostat Web Services
-\href{https://ec.europa.eu/eurostat/web/main/data/web-services}{JSON API}.
+Datasets are downloaded from
+\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}{the Eurostat SDMX 2.1 API}
+in TSV format  or from The Eurostat Web Services
+\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}{JSON API}.
 If only the table \code{id} is given, the whole table is downloaded from the
-bulk download facility. If also \code{filters} are defined the JSON API is
-used.
+SDMX API. If any \code{filters} are given JSON API is used.
 
 The bulk download facility is the fastest method to download whole datasets.
 It is also often the only way as the JSON API has limitation of maximum
@@ -116,9 +113,8 @@ JSON API method.
 If your connection is thru a proxy, you probably have to set proxy parameters
 to use JSON API, see \code{\link[=get_eurostat_json]{get_eurostat_json()}}.
 
-By default datasets from the bulk download facility are cached as they are
-often rather large. Caching is not (currently) possible for datasets from
-JSON API.
+By default datasets are cached to reduce load on Eurostat services and
+because some datasets can be rather large.
 Cache files are stored in a temporary directory by default or in
 a named directory (See \code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}).
 The cache can be emptied with \code{\link[=clean_eurostat_cache]{clean_eurostat_cache()}}.
@@ -161,6 +157,19 @@ dd2 <- get_eurostat("AVIA_GOR_ME",
   select_time = c("A", "M", "Q"),
   time_format = "date_last"
 )
+
+# An example of downloading whole dataset from JSON API
+dd3 <- get_eurostat("AVIA_GOR_ME",
+  filters = list()
+)
+
+# Filtering a dataset from a local file
+dd3_filter <- get_eurostat("AVIA_GOR_ME",
+  filters = list(
+    tra_meas = "FRM_BRD"
+  )
+)
+
 }
 \dontshow{\}) # examplesIf}
 }
@@ -199,5 +208,5 @@ see \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{Euros
 \code{\link[=search_eurostat]{search_eurostat()}}, \code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
-Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
+Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen
 }

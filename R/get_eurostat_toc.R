@@ -10,7 +10,10 @@
 #'        data.start, data.end: Dates.
 #' @export
 #' @seealso [get_eurostat()], [search_eurostat()].
-#' @details The TOC is downloaded from <https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&file=table_of_contents_en.txt>. The values in column 'code' should be used to download a selected dataset.
+#' @details
+#' The TOC is downloaded from
+#' <https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en>.
+#' The values in column 'code' should be used to download a selected dataset.
 #' @references
 #' See `citation("eurostat")`:
 #'

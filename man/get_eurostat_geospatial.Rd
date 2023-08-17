@@ -217,6 +217,6 @@ Other geospatial:
 }
 \author{
 Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}, Diego Hernangomez
-\url{http://github.com/dieghernan/}
+\url{https://github.com/dieghernan/}
 }
 \concept{geospatial}

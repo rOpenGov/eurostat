@@ -106,7 +106,7 @@ yy2 <- get_eurostat_json("nama_10_gdp", filters = list(
    na_item = "B1GQ",
    unit = "CLV_I10"
 ))
-  
+
 # An example from get_eurostat
 dd <- get_eurostat("nama_10_gdp",
   filters = list(

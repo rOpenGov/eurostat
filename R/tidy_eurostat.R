@@ -1,23 +1,24 @@
-#' @title Transform Data from the New Dissemination API into Row-Column-Value Format
-#' @description Transform raw Eurostat data table downloaded from the new 
-#' dissemination API into the row-column-value format (RCV).
-#' @param dat 
+#' @title Transform Data into Row-Column-Value Format
+#' @description Transform raw Eurostat data table downloaded from the
+#' API into a tidy row-column-value format (RCV).
+#' @param dat
 #' a data_frame from [get_eurostat_raw()].
-#' @param time_format 
-#' a string giving a type of the conversion of the time column from the 
-#' eurostat format. A "date" (default) converts to a [Date()]
-#' with a first date of the period. A "date_last" converts to a [Date()] with
-#' a last date of the period. A "num" converts to a numeric and "raw"
-#' does not do conversion. See [eurotime2date()] and [eurotime2num()].
-#' @param select_time 
+#' @param time_format
+#' a string giving a type of the conversion of the time column from the
+#' eurostat format. A "date" (default) converts to a [Date()] class
+#' with the date being the first day of the period. A "date_last" converts
+#' to a [Date()] class object with the date being the last date of the period.
+#' Argument "num" converts the date into a numeric and argument "raw"
+#' does not do any conversions. See [eurotime2date()] and [eurotime2num()]
+#' for more information.
+#' @param select_time
 #' a single character symbol for a time frequency, a vector
 #' containing multiple time frequencies, or `NULL` (default).
 #' Available options are "A" (annual), "Q" (quarterly), "S"
 #' (semester, 1st or 2nd half of the year), "M" (monthly) and "D" (daily).
-#' When downloading data from the New Dissemination API, it is now possible
-#' to select multiple time frequencies and return them in the same data.frame
-#' object.
-#' @param stringsAsFactors 
+#' It is possible to select multiple time frequencies and return them in
+#' the same tibble.
+#' @param stringsAsFactors
 #' if `TRUE` (the default) variables are
 #' converted to factors in original Eurostat order. If `FALSE`
 #' they are returned as strings.
@@ -29,19 +30,23 @@
 #' @references See citation("eurostat").
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen
 #'
-#' @importFrom stringi stri_extract_first_regex stri_replace_all_regex stri_replace_all_fixed
+#' @importFrom stringi stri_extract_first_regex stri_replace_all_regex
+#' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tidyr separate pivot_longer
 #' @importFrom dplyr filter
-#' 
-#' @examples 
+#'
+#' @examples
 #' \dontrun{
 #' # Example of a dataset with multiple time series
-#' get_eurostat("AVIA_GOR_ME", time_format = "date_last", cache = F, bulk_new_style = TRUE)
+#' get_eurostat("AVIA_GOR_ME",
+#'   time_format = "date_last",
+#'   cache = F
+#'   )
 #' }
 #'
 #' @keywords internal utilities database
-tidy_eurostat <- function(dat, 
-                          time_format = "date", 
+tidy_eurostat <- function(dat,
+                          time_format = "date",
                           select_time = NULL,
                           stringsAsFactors = FALSE,
                           keepFlags = FALSE) {
@@ -62,7 +67,7 @@ tidy_eurostat <- function(dat,
     sep = ",",
     convert = FALSE
   )
-  
+
   # NEW CODE: data.table
   # defining dat as data.table object is necessary to use data.table functions
   # dat <- data.table::as.data.table(dat)
@@ -70,10 +75,10 @@ tidy_eurostat <- function(dat,
   # Get variable from column names
   # OLD CODE
   dat <- tidyr::pivot_longer(data = dat,
-                              cols = -seq_along(cnames1),
-                              names_to = cnames2,
-                              values_to = "values")
-  
+                             cols = -seq_along(cnames1),
+                             names_to = cnames2,
+                             values_to = "values")
+
   # NEW CODE: data.table
   # dat <- data.table::melt(data = dat,
   #                         measure.vars = setdiff(names(dat), cnames1),
@@ -103,7 +108,9 @@ tidy_eurostat <- function(dat,
   # dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
   # NEW CODE: use stringi instead of gsub for faster execution
   dat$TIME_PERIOD <- stringi::stri_replace_all_fixed(dat$TIME_PERIOD, "X", "")
-  dat$values <- as.numeric(stringi::stri_replace_all_regex(as.character(dat$values), "[^0-9.-]+", ""))
+  dat$values <- as.numeric(
+    stringi::stri_replace_all_regex(as.character(dat$values), "[^0-9.-]+", "")
+  )
 
   # variable columns
   var_cols <- names(dat)[!(names(dat) %in% c("TIME_PERIOD", "values"))]
@@ -112,7 +119,7 @@ tidy_eurostat <- function(dat,
   # reorder to standard order
   # OLD CODE
   dat <- dat[c(var_cols, "TIME_PERIOD", "values")]
-  
+
   # NEW CODE: data.table
   # either this way
   # dat <- dat[, ..selected_cols]
@@ -147,7 +154,7 @@ tidy_eurostat <- function(dat,
     } else if (identical(select_time, "A")) {
       # Annual with new notation, "A" for annual
       dat <- subset(dat, dat$freq == "A")
-    } else { 
+    } else {
       # Others, subset the data with whatever choices
       dat <- subset(dat, dat$freq %in% select_time)
     }
@@ -160,7 +167,7 @@ tidy_eurostat <- function(dat,
     }
   } else {
 
-    if (length(freqs) > 1 & time_format != "raw") {
+    if (length(freqs) > 1 && time_format != "raw") {
       message(
         "Data includes several time frequencies. Select a single frequency \n",
         "with select_time or use time_format = \"raw\" to return all data \n",
@@ -175,14 +182,14 @@ tidy_eurostat <- function(dat,
     for (i in seq_along(select_time)) {
       dat_subset <- subset(dat, dat$freq == select_time[i])
       dat_subset$TIME_PERIOD <- convert_time_col(x = dat_subset$TIME_PERIOD,
-                                                   time_format = time_format)
+                                                 time_format = time_format)
       dat_copy <- rbind(dat_copy, dat_subset)
     }
     dat <- dat_copy
   } else {
     # convert time column to Date
     dat$TIME_PERIOD <- convert_time_col(x = dat$TIME_PERIOD,
-                                          time_format = time_format)
+                                        time_format = time_format)
   }
 
   # NEW CODE: data.table
@@ -192,14 +199,14 @@ tidy_eurostat <- function(dat,
 }
 
 
-#' @title 
+#' @title
 #' Time Column Conversions for data from new dissemination API
-#' @description 
+#' @description
 #' Internal function to convert time column.
-#' @param x 
+#' @param x
 #' A time column (vector) from a downloaded dataset
-#' @param time_format 
-#' one of the following: `date`, `date_last`, or `num`. 
+#' @param time_format
+#' one of the following: `date`, `date_last`, or `num`.
 #' See [tidy_eurostat()] for more information.
 #' @keywords internal
 convert_time_col <- function(x, time_format) {

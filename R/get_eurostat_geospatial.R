@@ -84,7 +84,7 @@
 #'
 #' @author
 #' Markus Kainu <markuskainu@gmail.com>, Diego Hernangomez
-#' <http://github.com/dieghernan/>
+#' <https://github.com/dieghernan/>
 #' @return a sf or data_frame
 #'
 #' @source
