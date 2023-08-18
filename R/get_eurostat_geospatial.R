@@ -273,8 +273,15 @@ get_eurostat_geospatial <- function(output_class = "sf",
 
   # to df
   if (output_class == "df") {
-    # Remove geometry
-    shp <- sf::st_drop_geometry(shp)
+    # nocov start
+    if (!requireNamespace("sf", quietly = TRUE)) {
+      # Remove geometry without sf package
+      shp$geometry <- NULL
+    # nocov end
+    } else {
+      # Remove geometry
+      shp <- sf::st_drop_geometry(shp)
+    }
   }
 
   return(shp)
