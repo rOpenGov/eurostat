@@ -23,7 +23,7 @@
 #'   my_bibliography
 #' }
 #' @importFrom lubridate dmy year month day
-#' @importFrom utils toBibtex
+#' @importFrom utils toBibtex person personList
 #' @importFrom RefManageR BibEntry toBiblatex
 #'
 #' @export
@@ -59,16 +59,16 @@ get_bibentry <- function(code,
     return()
   }
 
-  eurostat_id <- paste0(
-    toc$code, "_",
-    gsub("\\.", "-", toc$`last update of data`)
-  )
-
   for (i in seq_len(nrow(toc))) {
     last_update_date <- lubridate::dmy(toc[["last update of data"]][[i]])
     last_update_year <- lubridate::year(last_update_date)
     last_update_month <- lubridate::month(last_update_date)
     last_update_day <- lubridate::day(last_update_date)
+    
+    eurostat_id <- paste0(
+      toc$code[i], "_", last_update_day, "-", last_update_month, "-", 
+      last_update_year
+    )
 
     if (!is.null(keywords)) { # if user entered keywords
       if (length(keywords) < i) { # last keyword not entered
@@ -82,14 +82,16 @@ get_bibentry <- function(code,
 
     entry <- RefManageR::BibEntry(
       bibtype = "misc",
-      key = eurostat_id[i],
-      title = paste0(toc$title[i], " [", code[i], "]"),
+      key = eurostat_id,
+      title = paste0(toc$title[i], " (", toc$code[i], ")"),
       url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/-/",
-                   code[i]),
+                   toc$code[i]),
       language = "en",
-      year = paste0(toc$`last update of data`[i]),
-      publisher = "Eurostat",
-      author = "Eurostat",
+      date = last_update_date,
+      author = utils::personList(
+        utils::person(given = "European Commission"),
+        utils::person(given = "Eurostat")
+      ),
       keywords = keyword_entry,
       urldate = urldate
     )
