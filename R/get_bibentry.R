@@ -23,7 +23,7 @@
 #'   my_bibliography
 #' }
 #' @importFrom lubridate dmy year month day
-#' @importFrom utils toBibtex person personList
+#' @importFrom utils toBibtex person
 #' @importFrom RefManageR BibEntry toBiblatex
 #'
 #' @export
@@ -88,7 +88,7 @@ get_bibentry <- function(code,
                    toc$code[i]),
       language = "en",
       date = last_update_date,
-      author = utils::personList(
+      author = c(
         utils::person(given = "European Commission"),
         utils::person(given = "Eurostat")
       ),
