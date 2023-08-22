@@ -55,11 +55,12 @@ get_bibentry <- function(code,
   urldate <- as.character(Sys.Date())
 
   if (nrow(toc) == 0) {
-    warning(paste("None of the codes were found in",
-                  "the Eurostat table of contents:\n",
-                  paste(code, collapse = ", "),
-                  "\n",
-                  "Please check the 'code' argument in get_bibentry()"))
+    warning(paste(
+      "None of the codes were found in the Eurostat table of contents.\n",
+      "Please check the 'code' argument in get_bibentry() for errors:\n",
+      paste(code, collapse = ", ")
+      )
+    )
     return()
   }
   
@@ -67,10 +68,10 @@ get_bibentry <- function(code,
   not_found <- !(code %in% toc$code)
   not_found <- code[not_found]
   if (!is.null(not_found)) {
-    warning(paste("The following codes were not found in", 
-                  "the Eurostat table of contents.",
-                  "Bibliography object returned without the following items:\n",
-                  paste(not_found, collapse = ", ")
+    warning(paste(
+      "The following codes were not found in the Eurostat table of contents.\n",
+      "Bibliography object returned without the following items:\n",
+      paste(not_found, collapse = ", ")
     ))
   }
 
