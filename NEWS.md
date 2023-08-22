@@ -2,7 +2,11 @@
 
 ## Major updates
 
-* First attempt at rewriting caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. Much work left to do.
+* Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached.
+
+## Bug fixes
+
+* `get_bibentry()` returns correct codes for titles and warns the user if some / all of the requested codes were not found in the TOC.
 
 # eurostat 4.0.0.9002
 
