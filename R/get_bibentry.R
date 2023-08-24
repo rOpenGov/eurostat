@@ -13,10 +13,10 @@
 #' @examplesIf check_access_to_data()
 #' \dontrun{
 #'   my_bibliography <- get_bibentry(
-#'     code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
+#'     code = c("tran_hv_frtra", "tec00001"),
 #'     keywords = list(
-#'       c("railways", "freight", "transport"),
-#'       c("railways", "passengers", "modal split")
+#'       c("transport", "freight", "multimodal data", "GDP"),
+#'       c("economy and finance", "annual", "national accounts", "GDP")
 #'     ),
 #'     format = "Biblatex"
 #'   )
@@ -67,7 +67,7 @@ get_bibentry <- function(code,
   not_found <- NULL
   not_found <- !(code %in% toc$code)
   not_found <- code[not_found]
-  if (!is.null(not_found)) {
+  if (is.character(not_found) && length(not_found) != 0) {
     warning(paste(
       "The following codes were not found in the Eurostat table of contents.\n",
       "Bibliography object returned without the following items:\n",
@@ -105,7 +105,6 @@ get_bibentry <- function(code,
       language = "en",
       date = last_update_date,
       author = c(
-        utils::person(given = "European Commission"),
         utils::person(given = "Eurostat")
       ),
       keywords = keyword_entry,
