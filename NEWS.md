@@ -1,12 +1,25 @@
 # eurostat 4.0.0.9003
 
+## New features
+
+* `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()`
+
 ## Major updates
 
 * Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached.
 
+## Minor updates
+
+* Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle)
+
+## Deprecated and defunct
+
+* `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them, `grepEurostatTOC()` is completely deprecated and removed from the package
+
 ## Bug fixes
 
-* `get_bibentry()` returns correct codes for titles and warns the user if some / all of the requested codes were not found in the TOC.
+* `get_bibentry()` returns correct codes for titles and warns the user if some / all of the requested codes were not found in the TOC. 
+* `get_bibentry()` uses the date field with the internal BibEntry format that can be easily translated to other formats (biblatex, built-in bibentry)
 
 # eurostat 4.0.0.9002
 

@@ -2,51 +2,61 @@
 % Please edit documentation in R/search_eurostat.R
 \name{search_eurostat}
 \alias{search_eurostat}
-\alias{grepEurostatTOC}
 \title{Grep Datasets Titles from Eurostat}
 \usage{
 search_eurostat(pattern, type = "dataset", fixed = TRUE)
-
-grepEurostatTOC(pattern, type = "dataset")
 }
 \arguments{
-\item{pattern}{Character, datasets, folder or tables with this pattern in
-the description will be returned (depending on the 'type' argument)}
+\item{pattern}{Text string that is used to search from dataset, folder or table titles,
+depending on the type argument.}
 
-\item{type}{Grep the Eurostat table of contents either for
-'dataset' (default), 'folder', 'table' or "all" (for all types).}
+\item{type}{Selection for types of datasets to be searched. Default is \code{dataset}, other
+possible options are \code{table}, \code{folder} and \code{all} for all types.}
 
-\item{fixed}{logical. If TRUE, pattern is a string to be matched as is.
-Change to FALSE if more complex regex matching is needed.}
+\item{fixed}{logical. If TRUE (default), pattern is a string to be matched as is.
+See \code{grep()} documentation for more information.}
 }
 \value{
-A tibble with eight columns
-\itemize{
-\item \strong{title}: The name of dataset of theme
-\itemize{
-\item \strong{code}: The codename of dataset of theme, will be used by the
-\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions.
-\item \strong{type}: Is it a dataset, folder or table.
-\item \strong{last.update.of.data, last.table.structure.change, data.start,
-data.end}: Dates.
-}
+A tibble with eight columns:
+\describe{
+\item{title}{Dataset title in English (default)}
+\item{code}{ Each item (dataset, table and folder) of the TOC has a
+unique code which allows it to be identified in the API. Used in the
+\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions to retrieve datasets.}
+\item{type}{dataset, folder or table}
+\item{last.update.of.data}{Date, indicates the last time the
+dataset/table was updated}
+\item{last.table.structure.change}{Date, indicates the last time the
+dataset/table structure was modified}
+\item{data.start}{Date of the oldest value included in the dataset
+(if available)}
+\item{data.end}{Date of the most recent value included in the dataset
+(if available)}
 }
 }
 \description{
-Lists names of dataset from eurostat with the particular
-pattern in the description.
+Lists datasets from eurostat table of contents with the
+particular pattern in item titles.
 }
 \details{
 Downloads list of all datasets available on
 eurostat and return list of names of datasets that contains particular
 pattern in the dataset description. E.g. all datasets related to
 education of teaching.
-}
-\section{Functions}{
-\itemize{
-\item \code{grepEurostatTOC()}: Old deprecated version
 
-}}
+If you wish to perform searches on other fields than item title,
+you can download the Eurostat Table of Contents manually using
+\code{get_eurostat_toc()} function and use \code{grep()} function normally. The data
+browser on Eurostat website may also return useful results.
+}
+\section{Data source: Eurostat Table of Contents}{
+The Eurostat Table of Contents (TOC) is downloaded from
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}
+
+See Eurostat documentation on TOC items:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -61,31 +71,34 @@ tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
-# 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
-# 
-# A BibTeX entry for LaTeX users is
-# 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+
+  (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
+  Retrieval and analysis of Eurostat open data with the eurostat
+  package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
+  Package URL: http://ropengov.github.io/eurostat Article URL:
+  https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+
+A BibTeX entry for LaTeX users is
+
+  @Article\{,
+    title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
+    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+    journal = \{The R Journal\},
+    volume = \{9\},
+    number = \{1\},
+    pages = \{385--392\},
+    year = \{2017\},
+    doi = \{10.32614/RJ-2017-019\},
+    url = \{https://doi.org/10.32614/RJ-2017-019\},
+  \}
 }\if{html}{\out{</div>}}
+
+When citing data downloaded from Eurostat, see section "Citing Eurostat data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
-\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=get_eurostat_toc]{get_eurostat_toc()}}
+\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}

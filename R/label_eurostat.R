@@ -20,8 +20,6 @@
 #'     should be retained. The suffix "_code" is added to code column names.
 #' @param eu_order Logical. Should Eurostat ordering used for label levels.
 #'     Affects only factors.
-#' @param lang A character, code for language. Available are "en" (default),
-#'     "fr" and "de".
 #' @param countrycode A `NULL` or a name of the coding scheme for
 #'     the [countrycode::countrycode()]
 #'     to label "geo" variable with countrycode-package. It can be used to
@@ -39,6 +37,7 @@
 #' @param fix_duplicated A logical. If TRUE, the code is added to the
 #'     duplicated label values. If FALSE (default) error is given if
 #'     labeling produce duplicates.
+#' @inheritParams get_eurostat
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @family helpers
 #' @seealso [countrycode::countrycode()]

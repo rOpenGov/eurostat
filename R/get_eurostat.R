@@ -4,51 +4,57 @@
 #' Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 #'
 #' @param id
-#' A code name for the dataset of interest.
-#' See [search_eurostat()] or details for how to get code.
+#' A unique identifier / code for the dataset of interest. If code is not
+#' known [search_eurostat()] function can be used to search Eurostat table
+#' of contents.
 #' @param filters
-#' A list of filters to get only a part of the dataset from server.
-#' The default parameter `NULL` (or "none") gets the whole dataset.
-#' Names of list objects are Eurostat variable codes and they can vary from one
-#' dataset to another. Values are vectors of observation codes. See more
-#' information on filters and limitations per query via API from
-#' in [get_eurostat_json()] documentation.
+#' A named list of filters. Names of list objects are Eurostat
+#' variable codes and values are vectors of observation codes. If `NULL`
+#' (default) the whole dataset is returned. See details for more information 
+#' on filters and limitations per query.
 #' @param time_format
-#' a string giving a type of the conversion of the time
-#' column from the eurostat format. A "date" (default) converts to
-#' a [Date()] with a first date of the period.
-#' A "date_last" converts to a [Date()] with
-#' a last date of the period. A "num" converts to a numeric and "raw"
-#' does not do conversion. See [eurotime2date()] and
-#' [eurotime2num()].
+#' a string giving a type of the conversion of the time column from the
+#' eurostat format. The default argument "`date`" converts to a [Date()] class
+#' with the date being the first day of the period. A "`date_last`" argument 
+#' converts the dataset date to a [Date()] class object with the difference 
+#' that the exact date is the last date of the period. Period can be year,
+#' semester (half year), quarter, month, or week (See [eurotime2date()] for 
+#' more information).
+#' Argument "`num`" converts the date into a numeric (integer) meaning that
+#' the first day of the year 2000 is close to 2000.01 and the last day of the
+#' year is close to 2000.99 (see [eurotime2num() for more information). 
+#' Using the argument "`raw`" preserves the dates as they were in the original
+#' Eurostat data.
 #' @param type
-#' A type of variables, "code" (default) or "label".
+#' A type of variables, "`code`" (default), "`label`" or "`both`".
+#' The parameter "`both`" will return a data_frame with named vectors,
+#' labels as values and codes as names.
 #' @param select_time
-#' a character symbol for a time frequency or NULL,
+#' a character symbol for a time frequency or `NULL`,
 #' which is used by default as most datasets have just one time
 #' frequency. For datasets with multiple time
 #' frequencies, select one or more of the desired frequencies with:
 #' "Y" (or "A") = annual, "S" = semi-annual / semester, "Q" = quarterly,
 #' "M" = monthly, "W" = weekly. For all frequencies in same data
 #' frame `time_format = "raw"` should be used.
+#' @param lang 2-letter language code, default is "`en`" (English), other 
+#' options are "`fr`" (French) and "`de`" (German). Used for labeling datasets.
 #' @param cache
 #' a logical whether to do caching. Default is `TRUE`.
 #' @param update_cache
 #' a logical whether to update cache. Can be set also with
-#' options(eurostat_update = TRUE)
+#' `options(eurostat_update = TRUE)`
 #' @param cache_dir
-#' a path to a cache directory. The directory must exist.
-#' The `NULL` (default) uses and creates
+#' a path to a cache directory. `NULL` (default) uses and creates
 #' 'eurostat' directory in the temporary directory defined by base R
-#' [tempdir()]. The cache directory can also be set with
-#' [set_eurostat_cache_dir()].
+#' [tempdir()] function. The user can set the cache directory to an existing
+#' directory by using this argument. The cache directory can also be set with
+#' [set_eurostat_cache_dir()] function.
 #' @param compress_file
-#' a logical whether to compress the
-#' RDS-file in caching. Default is `TRUE`.
+#' a logical whether to compress the RDS-file in caching. Default is `TRUE`.
 #' @param stringsAsFactors
-#' if `FALSE` (the default) the variables are
-#' returned as characters. If `TRUE` the variables are converted to
-#' factors in original Eurostat order.
+#' if `TRUE` (the default) variables are converted to factors in the original 
+#' Eurostat order. If `FALSE` they are returned as strings.
 #' @param keepFlags
 #' a logical whether the flags (e.g. "confidential",
 #' "provisional") should be kept in a separate column or if they
@@ -58,24 +64,19 @@
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
 #' @inheritDotParams get_eurostat_json
-#' @references
-#' See `citation("eurostat")`:
+#' 
+#' @inherit eurostat-package references
 #'
-#' ```{r, echo=FALSE, comment="#" }
-#' citation("eurostat")
-#' ```
-#'
-#' When citing data, please indicate that the data source is Eurostat. If the
-#' re-use of data involves modification to the data or text, state this clearly.
-#' For more detailed information and exceptions regarding commercial use,
-#' see [Eurostat policy on copyright and free re-use of data](https://ec.europa.eu/eurostat/web/main/about/policies/copyright).
+#' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
+#' @inheritSection eurostat-package Citing Eurostat data
 #'
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen
+#' 
 #' @details
 #' Datasets are downloaded from
 #' [the Eurostat SDMX 2.1 API](https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API)
-#' in TSV format  or from The Eurostat Web Services
+#' in TSV format or from The Eurostat Web Services
 #' [JSON API](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query).
 #' If only the table `id` is given, the whole table is downloaded from the
 #' SDMX API. If any `filters` are given JSON API is used.
@@ -101,6 +102,7 @@
 #' <https://ec.europa.eu/eurostat/data/database>. The Eurostat
 #' database gives codes in the Data Navigation Tree after every dataset
 #' in parenthesis.
+#' 
 #' @return
 #' a tibble.
 #'
@@ -111,8 +113,10 @@
 #' dimensions are missing on particular time. In JSON API missing values are
 #' dropped only if all dimensions are missing on all times. The data from
 #' bulk download facility can be completed for example with [tidyr::complete()].
+#' 
 #' @seealso
 #' [search_eurostat()], [label_eurostat()]
+#' 
 #' @examplesIf check_access_to_data()
 #' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc")
@@ -169,6 +173,7 @@ get_eurostat <- function(id,
                          filters = NULL,
                          type = "code",
                          select_time = NULL,
+                         lang = "en",
                          cache = TRUE,
                          update_cache = FALSE,
                          cache_dir = NULL,
@@ -184,19 +189,26 @@ get_eurostat <- function(id,
     warning("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
   }
+  
+  # For better code clarity, use only NULL in code
+  if (is.character(filters) && identical(tolower(filters), "none")) {
+    filters <- NULL
+  } else if (is.character(filters) && !identical(tolower(filters), "null")) {
+    message("Non-standard filters argument. Using argument 'filters = NULL'")
+    filters <- NULL
+  }
 
   # Inform user with message if keepFlags == TRUE cannot be delivered
-  if (keepFlags && !is.null(filters) ||
-        keepFlags && identical(filters, "none")) {
+  if (keepFlags && !is.null(filters)) {
     message("The keepFlags argument of the get_eurostat function
              can be used only without filters. No Flags returned.")
     keepFlags <- FALSE
   }
-
-  # For better code clarity, use only NULL in code
-  if (identical(filters, "none")) {
-    filters <- NULL
-  }
+  
+  # Sanity check
+  type <- tolower(type)
+  time_format <- tolower(time_format)
+  
 
   if (cache) {
 
@@ -378,8 +390,9 @@ get_eurostat <- function(id,
       y <- get_eurostat_json(
         id,
         filters,
-        type = type,
-        stringsAsFactors = stringsAsFactors,
+        type,
+        lang,
+        stringsAsFactors,
         ...
       )
       y$time <- convert_time_col(factor(y$time), time_format = time_format)
@@ -407,7 +420,7 @@ get_eurostat <- function(id,
       if (identical(type, "code")) {
         y <- y
       } else if (identical(type, "label")) {
-        y <- label_eurostat(y)
+        y <- label_eurostat(y, lang)
       } else if (identical(type, "both")) {
         stop(paste("type = \"both\" can be only used with JSON API.",
                    "Set filters argument"))

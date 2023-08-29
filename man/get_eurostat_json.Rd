@@ -8,30 +8,30 @@ get_eurostat_json(
   id,
   filters = NULL,
   type = "code",
-  lang = "EN",
+  lang = "en",
   stringsAsFactors = FALSE,
   ...
 )
 }
 \arguments{
-\item{id}{A code name for the dataset of interested. See the table of
-contents of eurostat datasets for more details.}
+\item{id}{A unique identifier / code for the dataset of interest. If code is not
+known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
+of contents.}
 
 \item{filters}{A named list of filters. Names of list objects are Eurostat
 variable codes and values are vectors of observation codes. If \code{NULL}
-(default) the whole dataset is returned. See details for more on filters
-and limitations per query.}
+(default) the whole dataset is returned. See details for more information
+on filters and limitations per query.}
 
 \item{type}{A type of variables, "\code{code}" (default), "\code{label}" or "\code{both}".
 The parameter "\code{both}" will return a data_frame with named vectors,
 labels as values and codes as names.}
 
-\item{lang}{A language used for metadata. Default is \code{EN}, other options are
-\code{FR} and \code{DE}.}
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 
-\item{stringsAsFactors}{if \code{FALSE} (the default) the variables are
-returned as characters. If \code{TRUE} the variables are converted to
-factors in original Eurostat order.}
+\item{stringsAsFactors}{if \code{TRUE} (the default) variables are converted to factors in the original
+Eurostat order. If \code{FALSE} they are returned as strings.}
 
 \item{...}{
   Arguments passed on to \code{\link[httr:GET]{httr::GET}}
@@ -86,6 +86,68 @@ that we have included in the dataset. What this means in practice is that
 the dataset contains error codes and their mappings that are not mentioned
 in the Eurostat website. We hope you never encounter them.
 }
+\section{Data source: Eurostat API Statistics (JSON API)}{
+Data is downloaded from Eurostat API Statistics. See Eurostat documentation
+for more information about data queries in API Statistics
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
+
+This replaces the old JSON Web Services that was used by Eurostat before
+February 2023 and by the eurostat R package versions before 3.7.13.
+See Eurostat documentation about the migration from JSON web service to API
+Statistics for more information about the differences between the old and
+the new service:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+}
+
+\section{Eurostat: Copyright notice and free re-use of data}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the eurostat website:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+"(c) European Union, 1995 - today
+
+Eurostat has a policy of encouraging free re-use of its data, both for
+non-commercial and commercial purposes. All statistical data, metadata,
+content of web pages or other dissemination tools, official publications
+and other documents published on its website, with the exceptions listed
+below, can be reused without any payment or written licence provided that:
+\itemize{
+\item the source is indicated as Eurostat;
+\item when re-use involves modifications to the data or text, this must be
+stated clearly to the end user of the information."
+}
+
+For exceptions to the abovementioned principles see
+\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+}
+
+\section{Citing Eurostat data}{
+For citing datasets, use \code{\link[=get_bibentry]{get_bibentry()}} to build a bibliography that
+is suitable for your reference manager of choice.
+
+When using Eurostat data in other contexts than academic publications that
+in-text citations or footnotes/endnotes, the following guidelines may be
+helpful:
+\itemize{
+\item The origin of the data should always be mentioned as "Source: Eurostat".
+\item The online dataset codes(s) should also be provided in order to ensure
+transparency and facilitate access to the Eurostat data and related
+methodological information. For example:
+"Source: Eurostat (online data code: namq_10_gdp)"
+\item Online publications (e.g. web pages, PDF) should include a clickable
+link to the dataset using the bookmark functionality available in the
+Eurostat data browser.
+}
+
+It should be avoided to associate different entities (e.g. Eurostat,
+National Statistical Offices, other data providers) to the same dataset or
+indicator without specifying the role of each of them in the treatment of
+data.
+
+See also section "Eurostat: Copyright notice and free re-use of data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
+}
+
 \examples{
 \dontrun{
 # Generally speaking these queries would be done through get_eurostat
@@ -144,16 +206,6 @@ See \code{citation("eurostat")}:
 }
 \seealso{
 \code{\link[httr:GET]{httr::GET()}}
-
-Eurostat Data Browser online help: API Statistics - data query:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
-
-Eurostat Data Browser online help: migrating from JSON web service to API
-Statistics:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
-
-SDMX standards: Section 7: Guidelines for the use of web services, Version 2.1:
-\url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen

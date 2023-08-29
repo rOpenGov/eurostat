@@ -3,31 +3,10 @@
 #' API into a tidy row-column-value format (RCV).
 #' @param dat
 #' a data_frame from [get_eurostat_raw()].
-#' @param time_format
-#' a string giving a type of the conversion of the time column from the
-#' eurostat format. A "date" (default) converts to a [Date()] class
-#' with the date being the first day of the period. A "date_last" converts
-#' to a [Date()] class object with the date being the last date of the period.
-#' Argument "num" converts the date into a numeric and argument "raw"
-#' does not do any conversions. See [eurotime2date()] and [eurotime2num()]
-#' for more information.
-#' @param select_time
-#' a single character symbol for a time frequency, a vector
-#' containing multiple time frequencies, or `NULL` (default).
-#' Available options are "A" (annual), "Q" (quarterly), "S"
-#' (semester, 1st or 2nd half of the year), "M" (monthly) and "D" (daily).
-#' It is possible to select multiple time frequencies and return them in
-#' the same tibble.
-#' @param stringsAsFactors
-#' if `TRUE` (the default) variables are
-#' converted to factors in original Eurostat order. If `FALSE`
-#' they are returned as strings.
-#' @param keepFlags a logical whether the flags (e.g. "confidential",
-#' "provisional") should be kept in a separate column or if they
-#' can be removed. Default is `FALSE`
-#' @return tibble in the molten format with the last column 'values'.
+#' @inheritParams get_eurostat
+#' @return tibble in the melted format with the last column 'values'.
 #' @seealso [get_eurostat()], [convert_time_col()], [eurotime2date()]
-#' @references See citation("eurostat").
+#' @inherit eurostat-package references
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen
 #'
 #' @importFrom stringi stri_extract_first_regex stri_replace_all_regex

@@ -8,23 +8,38 @@ get_eurostat_toc()
 }
 \value{
 A tibble with eight columns:
-\itemize{
-\item title: The name of dataset of theme.
-\item code: The codename of dataset of theme, will be used by the
-\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions.
-\item type: Is it a dataset, folder or table.
-\item last.update.of.data, last.table.structure.change,
-data.start, data.end: Dates.
+\describe{
+\item{title}{Dataset title in English (default)}
+\item{code}{ Each item (dataset, table and folder) of the TOC has a
+unique code which allows it to be identified in the API. Used in the
+\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions to retrieve datasets.}
+\item{type}{dataset, folder or table}
+\item{last.update.of.data}{Date, indicates the last time the
+dataset/table was updated}
+\item{last.table.structure.change}{Date, indicates the last time the
+dataset/table structure was modified}
+\item{data.start}{Date of the oldest value included in the dataset
+(if available)}
+\item{data.end}{Date of the most recent value included in the dataset
+(if available)}
 }
 }
 \description{
 Download table of contents (TOC) of eurostat datasets.
 }
 \details{
-The TOC is downloaded from
-\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}.
-The values in column 'code' should be used to download a selected dataset.
+In the downloaded Eurostat Table of Contents the 'code' column
+values are refer to the function 'id' that is used as an argument in certain
+functions when downloading datasets.
 }
+\section{Data source: Eurostat Table of Contents}{
+The Eurostat Table of Contents (TOC) is downloaded from
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}
+
+See Eurostat documentation on TOC items:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -60,7 +75,7 @@ See \code{citation("eurostat")}:
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}.
+\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}

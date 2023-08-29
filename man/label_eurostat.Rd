@@ -39,8 +39,8 @@ should be retained. The suffix "_code" is added to code column names.}
 \item{eu_order}{Logical. Should Eurostat ordering used for label levels.
 Affects only factors.}
 
-\item{lang}{A character, code for language. Available are "en" (default),
-"fr" and "de".}
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 
 \item{countrycode}{A \code{NULL} or a name of the coding scheme for
 the \code{\link[countrycode:countrycode]{countrycode::countrycode()}}
