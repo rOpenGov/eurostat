@@ -8,6 +8,7 @@
 
 * Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached.
 * Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces, e.g. turning `last update of data` to `last.update.of.data`
+* `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
 * `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
 
 ## Minor updates

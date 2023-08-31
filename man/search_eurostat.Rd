@@ -20,7 +20,7 @@ other possible option is \code{code}.}
 See \code{grep()} documentation for more information.}
 }
 \value{
-A tibble with eight columns:
+A tibble with nine columns:
 \describe{
 \item{title}{Dataset title in English (default)}
 \item{code}{ Each item (dataset, table and folder) of the TOC has a
@@ -28,13 +28,18 @@ unique code which allows it to be identified in the API. Used in the
 \code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions to retrieve datasets.}
 \item{type}{dataset, folder or table}
 \item{last.update.of.data}{Date, indicates the last time the
-dataset/table was updated}
+dataset/table was updated (format \code{DD.MM.YYYY} or \verb{\%d.\%m.\%Y})}
 \item{last.table.structure.change}{Date, indicates the last time the
-dataset/table structure was modified}
+dataset/table structure was modified (format \code{DD.MM.YYYY} or \verb{\%d.\%m.\%Y})}
 \item{data.start}{Date of the oldest value included in the dataset
-(if available)}
+(if available) (format usually \code{YYYY} or \verb{\%Y} but can also be \code{YYYY-MM},
+\code{YYYY-MM-DD}, \code{YYYY-SN}, \code{YYYY-QN} etc.)}
 \item{data.end}{Date of the most recent value included in the dataset
-(if available)}
+(if available) (format usually \code{YYYY} or \verb{\%Y} but can also be \code{YYYY-MM},
+\code{YYYY-MM-DD}, \code{YYYY-SN}, \code{YYYY-QN} etc.)}
+\item{values}{Number of actual values included in the dataset}
+\item{hierarchy}{Hierarchy of the data navigation tree, represented
+in the original txt file by a 4-spaces indentation prefix in the title}
 }
 }
 \description{
