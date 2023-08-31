@@ -40,7 +40,10 @@
 #' @keywords utilities database
 #' 
 #' @export
-search_eurostat <- function(pattern, type = "dataset", column = "title", fixed = TRUE) {
+search_eurostat <- function(pattern,
+                            type = "dataset",
+                            column = "title",
+                            fixed = TRUE) {
 
   # Sanity check
   type <- tolower(as.character(type))

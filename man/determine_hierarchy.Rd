@@ -6,6 +6,9 @@
 \usage{
 determine_hierarchy(input_string)
 }
+\arguments{
+\item{input_string}{A string containing Eurostat TOC titles}
+}
 \value{
 Numeric
 }
