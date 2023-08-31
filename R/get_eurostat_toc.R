@@ -22,13 +22,8 @@
 #' 
 #' @seealso [get_eurostat()], [search_eurostat()]
 #' @inheritSection eurostat-package Data source: Eurostat Table of Contents
-#' @references
-#' See `citation("eurostat")`:
-#'
-#' ```{r, echo=FALSE, comment="#" }
-#' citation("eurostat")
-#' ```
-#'
+#' @inherit get_eurostat references
+#' 
 #' @author
 #' Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
 #' 

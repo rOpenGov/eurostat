@@ -33,16 +33,12 @@
 #'
 #' @inheritParams get_eurostat
 #' @inheritDotParams httr::GET
+#' @inherit get_eurostat references
+#' 
 #' @return A dataset as an object of `data.frame` class.
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
-#' @references
-#' See `citation("eurostat")`:
-#'
-#' ```{r, echo=FALSE, comment="#" }
-#' citation("eurostat")
-#' ```
-#'
+
 #' @examples
 #' \dontrun{
 #' # Generally speaking these queries would be done through get_eurostat

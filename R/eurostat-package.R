@@ -32,6 +32,19 @@
 #' in [get_eurostat()] documentation.
 #'
 #' @details 
+#' # Eurostat
+#' Eurostat website: \url{https://ec.europa.eu/eurostat}
+#' Eurostat database: \url{https://ec.europa.eu/eurostat/web/main/data/database}
+#' 
+#' Information about the data update schedule from Eurostat:
+#' "Eurostat datasets are updated twice a day at 11:00 and 23:00 CET, if newer
+#' data is available or for structural changes, for example for the
+#' dimensions in the dataset.
+#' 
+#' The Eurostat database always contains the latest version of the datasets,
+#' meaning that there is no versioning or documentation of past versions of
+#' the data."
+#' 
 #' # Data source: Eurostat SDMX 2.1 API
 #' 
 #' Data is downloaded from Eurostat SDMX 2.1 API endpoint 
@@ -65,6 +78,11 @@
 #' Statistics for more information about the differences between the old and
 #' the new service:
 #' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+#' 
+#' For easily viewing which filtering options are available -  in addition to
+#' the default ones, time and language - Eurostat Web services Query builder 
+#' tool may be useful:
+#' \url{https://ec.europa.eu/eurostat/web/query-builder}
 #' 
 #' # Data source: Eurostat Table of Contents
 #' 

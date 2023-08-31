@@ -97,6 +97,11 @@ See Eurostat documentation about the migration from JSON web service to API
 Statistics for more information about the differences between the old and
 the new service:
 \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+
+For easily viewing which filtering options are available -  in addition to
+the default ones, time and language - Eurostat Web services Query builder
+tool may be useful:
+\url{https://ec.europa.eu/eurostat/web/query-builder}
 }
 
 \section{Eurostat: Copyright notice and free re-use of data}{
@@ -181,28 +186,31 @@ dd <- get_eurostat("nama_10_gdp",
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
-# 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
-# 
-# A BibTeX entry for LaTeX users is
-# 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+
+  (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
+  Retrieval and analysis of Eurostat open data with the eurostat
+  package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
+  Package URL: http://ropengov.github.io/eurostat Article URL:
+  https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+
+A BibTeX entry for LaTeX users is
+
+  @Article\{,
+    title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
+    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+    journal = \{The R Journal\},
+    volume = \{9\},
+    number = \{1\},
+    pages = \{385--392\},
+    year = \{2017\},
+    doi = \{10.32614/RJ-2017-019\},
+    url = \{https://doi.org/10.32614/RJ-2017-019\},
+  \}
 }\if{html}{\out{</div>}}
+
+When citing data downloaded from Eurostat, see section "Citing Eurostat data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
 \code{\link[httr:GET]{httr::GET()}}
