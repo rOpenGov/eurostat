@@ -4,7 +4,7 @@
 \alias{search_eurostat}
 \title{Grep Datasets Titles from Eurostat}
 \usage{
-search_eurostat(pattern, type = "dataset", fixed = TRUE)
+search_eurostat(pattern, type = "dataset", column = "title", fixed = TRUE)
 }
 \arguments{
 \item{pattern}{Text string that is used to search from dataset, folder or table titles,
@@ -12,6 +12,9 @@ depending on the type argument.}
 
 \item{type}{Selection for types of datasets to be searched. Default is \code{dataset}, other
 possible options are \code{table}, \code{folder} and \code{all} for all types.}
+
+\item{column}{Selection for the column of TOC where search is done. Default is \code{title},
+other possible option is \code{code}.}
 
 \item{fixed}{logical. If TRUE (default), pattern is a string to be matched as is.
 See \code{grep()} documentation for more information.}

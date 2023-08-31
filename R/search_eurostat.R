@@ -16,6 +16,9 @@
 #' @param type
 #' Selection for types of datasets to be searched. Default is `dataset`, other
 #' possible options are `table`, `folder` and `all` for all types.
+#' @param column
+#' Selection for the column of TOC where search is done. Default is `title`, 
+#' other possible option is `code`.
 #' @param fixed 
 #' logical. If TRUE (default), pattern is a string to be matched as is.
 #' See `grep()` documentation for more information.
@@ -37,25 +40,38 @@
 #' @keywords utilities database
 #' 
 #' @export
-search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
+search_eurostat <- function(pattern, type = "dataset", column = "title", fixed = TRUE) {
 
   # Sanity check
   type <- tolower(as.character(type))
-  
+  column <- tolower(as.character(column))
+
   if (!type %in% c("dataset", "table", "folder", "all")) {
-    warning("The type", type, " is not recognized, will return dataset as
-              default.")
+    warning(stringr::str_glue("The type \"{type}\" is not recognized, ",
+                              "will return the search results using the ",
+                              "default argument: type = \"dataset\"."))
     type <- "dataset"
+  }
+
+  if (!column %in% c("title", "code")) {
+    warning(stringr::str_glue("The column \"{column}\" is not recognized, ",
+                              "will return the search results using the ",
+                              "default argument: column = \"title\"."))
+    column <- "title"
   }
 
   # Check if you have access to ec.europe.eu.
   if (!check_access_to_data()) {
     message("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
-  } else {
-    set_eurostat_toc()
-    tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-    if (type != "all") tmp <- tmp[tmp$type %in% type, ]
-    tmp[grep(tmp$title, pattern = pattern, fixed = fixed), ]
+    return(invisible())
   }
+
+  set_eurostat_toc()
+  tmp <- get(".eurostatTOC", envir = .EurostatEnv)
+
+  if (!identical(type, "all")) {
+    tmp <- tmp[tmp$type %in% type, ]
+  }
+  tmp <- tmp[grep(tmp[[column]], pattern = pattern, fixed = fixed), ]
 }
