@@ -169,6 +169,7 @@ footer .pkgdown-footer-left {
 	margin-right: auto;
 	margin-top: 0.5rem;
 	font-size: 85%;
+  width: 100%;
 }
 .pkg {
   font-weight: bold;
