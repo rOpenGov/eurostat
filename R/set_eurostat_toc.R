@@ -17,6 +17,9 @@ set_eurostat_toc <- function(...) {
     .eurostatTOC <- readr::read_tsv(url(url),
       col_types = readr::cols(.default = readr::col_character())
     )
+    
+    # Clean the names, replace " " (empty spaces) with "."
+    names(.eurostatTOC) <- gsub(" ", ".", names(.eurostatTOC))
 
     assign(".eurostatTOC", .eurostatTOC, envir = .EurostatEnv)
   }
