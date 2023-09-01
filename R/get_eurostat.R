@@ -456,3 +456,65 @@ get_eurostat <- function(id,
 
   y
 }
+
+#' @title Get all datasets in a folder
+#' @description
+#' Loops over all files in a Eurostat database folder, downloads the data and
+#' assigns the datasets to environment.
+#' @details
+#' The datasets are assigned into Global Environment using dataset codes as
+#' object names. The datasets are downloaded from SDMX API as TSV files,
+#' meaning that they are returned without filtering. No filters can be
+#' provided using this function.
+#' 
+#' Please do not attempt to download too many datasets or the whole database
+#' at once. The function is designed to be slightly annoying to discourage
+#' heavy use. The limit is set to 10.
+#' @param limit User assigned limit on downloads. Affects the limit after
+#' which the user is prompted if they wish to proceed with downloading datasets.
+#' 
+#' @inheritSection eurostat-package Data source: Eurostat Table of Contents
+#' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 API
+#' @inheritParams toc_count_children
+#' 
+#' @author Pyry Kantanen
+#' 
+#' @inherit set_eurostat_toc seealso
+#' 
+#' @importFrom stringr str_glue
+#' @importFrom utils menu
+#' 
+#' @export
+get_eurostat_folder <- function(code, limit = 3) {
+  
+  children <- toc_list_children(code)
+  # Filter out folders
+  children <- children[which(children$type %in% c("dataset", "table")), ]
+  
+  if (nrow(children) > 10) {
+    warning(stringr::str_glue(
+      "The number of datasets in folder ({nrow(children)}) is too large. ",
+      "Please use some other method for retrieving a large number of datasets."
+    ))
+    return(invisible())
+  }
+  
+  if (nrow(children) > limit) {
+    title_msg <- stringr::str_glue(
+      "The number of items in the folder is more than {limit}. ",
+      "Do you wish to proceed?")
+    switch(menu(c("Yes", "No"), title = title_msg) + 1,
+           cat("Nothing done\n"),
+           message("Proceeding to download datasets in folder..."),
+           return(invisible()))
+  }
+  
+  for (i in seq_len(nrow(children))) {
+    dataset <- get_eurostat(children$code[i])
+    assign(children$code[i], dataset, envir = .EurostatEnv)
+    message(
+      stringr::str_glue(
+        "Dataset {i} / {nrow(children)} assigned to .EurostatEnv\n\n")
+    )
+  }
+}

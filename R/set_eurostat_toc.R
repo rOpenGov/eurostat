@@ -6,6 +6,9 @@
 #' @author Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
 #'
 #' @importFrom readr read_tsv cols col_character
+#' 
+#' @seealso [get_eurostat_toc()] [toc_count_children()] [toc_determine_hierarchy()] 
+#' [toc_list_children()] [toc_count_whitespace()]
 #'
 #' @keywords internal
 set_eurostat_toc <- function(...) {
@@ -24,7 +27,7 @@ set_eurostat_toc <- function(...) {
     # Clean the names, replace " " (empty spaces) with "."
     # names(.eurostatTOC) <- gsub(" ", ".", names(.eurostatTOC))
     
-    .eurostatTOC$hierarchy <- determine_hierarchy(.eurostatTOC$title)
+    .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
     .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
 
     assign(".eurostatTOC", .eurostatTOC, envir = .EurostatEnv)
@@ -35,17 +38,23 @@ set_eurostat_toc <- function(...) {
 #' @title Count white space at the start of the title
 #' @description Counts the number of white space characters at the start
 #' of the string.
-#' @inherit determine_hierarchy details
+#' @inherit toc_determine_hierarchy details
+#' @inheritParams toc_determine_hierarchy
 #' @return Numeric (number of white space characters)
-#' @importFrom stringr str_match
+#' @importFrom stringr str_extract
 #' @examples
 #' strings <- c("    abc", "  cdf", "no_spaces")
 #' for (string in strings) {
-#'  whitespace_count <- eurostat:::count_whitespace_before_alphanumeric(string)
+#'  whitespace_count <- eurostat:::toc_count_whitespace(string)
 #'  cat("String:", string, "\tWhitespace Count:", whitespace_count, "\n")
 #' }
+#' 
+#' @inherit set_eurostat_toc seealso
+#' 
+#' @author Pyry Kantanen
+#' 
 #' @keywords internal
-count_whitespace_before_alphanumeric <- function(input_string) {
+toc_count_whitespace <- function(input_string) {
   # Counts white space chars \s before encountering the 1st non-ws char \S
   pattern <- "^\\s*(?=\\S)"
   extracted_ws <- stringr::str_extract(input_string, pattern)
@@ -56,7 +65,7 @@ count_whitespace_before_alphanumeric <- function(input_string) {
 #' @title Determine level in hierarchy
 #' @description Divides the number of spaces before alphanumeric characters
 #' with 4 and uses the result to determine hierarchy. Top level is 0.
-#' @details Used in determine_hierarchy function to determine hierarchy. 
+#' @details Used in toc_determine_hierarchy function to determine hierarchy. 
 #' Hierarchy is defined in Eurostat .txt format TOC files by the number of 
 #' white space characters at intervals of four. For example, 
 #' "    Foo" (4 white space characters) is one level higher than 
@@ -72,10 +81,15 @@ count_whitespace_before_alphanumeric <- function(input_string) {
 #' @return Numeric
 #' @examples
 #' strings <- c("        abc", "    cdf", "no_spaces")
-#' eurostat:::determine_hierarchy(strings)
+#' eurostat:::toc_determine_hierarchy(strings)
+#' 
+#' @inherit set_eurostat_toc seealso
+#' 
+#' @author Pyry Kantanen
+#' 
 #' @keywords internal
-determine_hierarchy <- function(input_string) {
-  number_of_whitespace <- count_whitespace_before_alphanumeric(input_string)
+toc_determine_hierarchy <- function(input_string) {
+  number_of_whitespace <- toc_count_whitespace(input_string)
 
   # If all x mod y calculations equal 0 everything is ok. 
   # If not, input is somehow mangled
@@ -97,9 +111,13 @@ determine_hierarchy <- function(input_string) {
 #' 
 #' @importFrom stringr str_glue
 #' 
+#' @inherit set_eurostat_toc seealso
+#' 
+#' @author Pyry Kantanen
+#' 
 #' @keywords internal
 #' 
-count_children <- function(code) {
+toc_count_children <- function(code) {
   toc <- get_eurostat_toc()
   
   # Line number for hit
@@ -117,8 +135,57 @@ count_children <- function(code) {
   num_children <- 0
 
   while (toc$hierarchy[i] > initial_hierarchy) {
+    # Check for the 1st iteration: If the next item is of the same hierarchy
+    # break the while loop and determine that the number of children is 0
+    if (toc$hierarchy[i] == initial_hierarchy && num_children == 0) {
+      num_children <- 0
+      break
+    }
     num_children <- i - initial_pos
     i <- i + 1
   }
   num_children
+}
+
+#' @title List children
+#' @description
+#' List children of a specific folder.
+#' @inheritParams toc_count_children
+#' 
+#' @importFrom stringr str_glue
+#' 
+#' @inherit set_eurostat_toc seealso
+#' 
+#' @author Pyry Kantanen
+#' 
+#' @keywords internal
+#' 
+toc_list_children <- function(code) {
+  toc <- get_eurostat_toc()
+  # Line number for hit
+  initial_pos <- which(toc$code == code)
+
+  if (length(initial_pos) > 1) {
+    warning(stringr::str_glue(
+      "Unambiguous code input: \"{code}\". ",
+      "TOC contains multiple items with the same code."))
+    return(invisible())
+  }
+
+  final_pos <- initial_pos + toc_count_children(code)
+
+  if (final_pos == initial_pos) {
+    initial_pos_type <- toc$type[initial_pos]
+    message(stringr::str_glue(
+      "The TOC item with code \"{code}\" (type: {initial_pos_type}) ",
+      "does not have any children. Please use another code.")
+    )
+    return(invisible())
+  }
+
+  # Add 1 to omit root folder
+  initial_pos <- initial_pos + 1
+
+  children <- toc[initial_pos:final_pos, ]
+  children
 }

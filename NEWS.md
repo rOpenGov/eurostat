@@ -3,6 +3,7 @@
 ## New features
 
 * `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()`
+* New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 10 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`.
 
 ## Major updates
 
