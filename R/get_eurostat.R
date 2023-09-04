@@ -68,6 +68,7 @@
 #' @inherit eurostat-package references
 #'
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
+#' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Citing Eurostat data
 #'
 #' @author
@@ -76,10 +77,10 @@
 #' @details
 #' Datasets are downloaded from
 #' [the Eurostat SDMX 2.1 API](https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API)
-#' in TSV format or from The Eurostat Web Services
-#' [JSON API](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query).
+#' in TSV format or from The Eurostat
+#' [API Statistics JSON API](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query).
 #' If only the table `id` is given, the whole table is downloaded from the
-#' SDMX API. If any `filters` are given JSON API is used.
+#' SDMX API. If any `filters` are given JSON API is used instead.
 #'
 #' The bulk download facility is the fastest method to download whole datasets.
 #' It is also often the only way as the JSON API has limitation of maximum
@@ -88,11 +89,11 @@
 #' bulk download facility and the `select_time` is not available for
 #' JSON API method.
 #'
-#' If your connection is thru a proxy, you probably have to set proxy parameters
+#' If your connection is through a proxy, you may have to set proxy parameters
 #' to use JSON API, see [get_eurostat_json()].
 #'
 #' By default datasets are cached to reduce load on Eurostat services and
-#' because some datasets can be rather large.
+#' because some datasets can be quite large.
 #' Cache files are stored in a temporary directory by default or in
 #' a named directory (See [set_eurostat_cache_dir()]).
 #' The cache can be emptied with [clean_eurostat_cache()].

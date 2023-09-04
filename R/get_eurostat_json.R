@@ -11,7 +11,8 @@
 #'   filtered with fixed "time" filter or with "sinceTimePeriod" and
 #'   "lastTimePeriod" filters. A `sinceTimePeriod = 2000` returns
 #'   observations from 2000 to a last available. A `lastTimePeriod = 10`
-#'   returns a 10 last observations.
+#'   returns a 10 last observations. See "Filtering datasets" section below
+#'   for more detailed information about filters.
 #'
 #'   To use a proxy to connect, a [httr::use_proxy()] can be
 #'   passed to [httr::GET()]. For example
@@ -74,6 +75,7 @@
 #' @importFrom stringr str_glue
 #' 
 #' @inheritSection eurostat-package Data source: Eurostat API Statistics (JSON API)
+#' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Citing Eurostat data
 #' 

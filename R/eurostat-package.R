@@ -84,6 +84,95 @@
 #' tool may be useful:
 #' \url{https://ec.europa.eu/eurostat/web/query-builder}
 #' 
+#' # Filtering datasets
+#' 
+#' When using Eurostat API Statistics (JSON API), datasets can be filtered
+#' before they are downloaded and saved in local memory. The general format
+#' for filter parameters is `<DIMENSION_CODE>=<VALUE>`. 
+#' 
+#' Filter parameters are optional but the used dimension codes must be present
+#' in the data product that is being queried. Dimension codes can
+#' vary between different data products so it may be useful to examine new 
+#' datasets in Eurostat data browser beforehand. However, most if not all
+#' Eurostat datasets concern European countries and contain information that
+#' was gathered at some point in time, so `geo` and `time` dimension codes
+#' can usually be used.
+#' 
+#' `<DIMENSION_CODE>` and `<VALUE>` are case-insensitive and they can be written
+#' in lowercase or uppercase in the query.
+#' 
+#' Parameters are passed onto the `eurostat` package functions [get_eurostat()]
+#' and [get_eurostat_json()] as a list item. If an individual item contains
+#' multiple items, as it often can be in the case of `geo` parameters and
+#' other optional items, they must be in the form of a vector: `c("FI", "SE")`.
+#' For examples on how to use these parameters, see function examples below.
+#' 
+#' ## Time parameters
+#' 
+#' `time` and `time_period` address the same `TIME_PERIOD` dimension in the
+#' dataset and can be used interchangeably. In the Eurostat documentation
+#' it is stated that "Using more than one Time parameter in the same query
+#' is not accepted", but practice has shown that actually Eurostat API allows
+#' multiple `time` parameters in the same query. This makes it possible to
+#' use R colon operator when writing queries, so `time = c(2015:2018)` 
+#' translates to `&time=2015&time=2016&time=2017&time=2018`. 
+#' 
+#' The only exception
+#' to this is when the queried dataset contains e.g. quarterly data and 
+#' `TIME_PERIOD` is saved as `2015-Q1`, `2015-Q2` etc. Then it is possible
+#' to use `time=2015-Q1&time=2015-Q2` style in the query URL, but this makes it
+#' unfeasible to use the colon operator and requires a lot of manual typing.
+#' 
+#' Because of this, it is useful to know about other time parameters as well:
+#' * `untilTimePeriod`: return dataset items from the oldest record up until the
+#' set time, for example "all data until 2000": `untilTimePeriod = 2000`
+#' * `sinceTimePeriod`: return dataset items starting from set time, for example
+#' "all datastarting from 2008": `sinceTimePeriod = 2008`
+#' * `lastTimePeriod`: starting from the most recent time period, how many
+#' preceding time periods should be returned? For example 10 most 
+#' recent observations: `lastTimePeriod = 10`
+#' 
+#' Using both `untilTimePeriod` and `sinceTimePeriod` parameters in the same
+#' query is allowed, making the usage of the R colon operator unnecessary.
+#' In the case of quarterly data, using `untilTimePeriod` and `sinceTimePeriod`
+#' parameters also works, as opposed to the colon operator, so it is generally
+#' safer to use them as well.
+#' 
+#' ## Other dimensions
+#' 
+#' In [get_eurostat_json()] examples `nama_10_gdp` dataset is filtered with
+#' two additional filter parameters:
+#' * `na_item = "B1GQ"`
+#' * `unit = "CLV_I10"`
+#' 
+#' Filters like these are most likely unique to the `nama_10_gdp` dataset 
+#' (or other datasets within the same domain) and should
+#' not be used with others dataset without user discretion. 
+#' By using [label_eurostat()] we know that `"B1GQ"` stands for 
+#' "Gross domestic product at market prices" and
+#' `"CLV_I10"` means "Chain linked volumes, index 2010=100".
+#' 
+#' Different dimension codes can be translated to a natural language by using
+#' the [get_eurostat_dic()] function, which returns labels for individual 
+#' dimension items such as `na_item` and `unit`, as opposed to 
+#' [label_eurostat()] which does it for whole datasets. For example, the 
+#' parameter `na_item` stands for "National accounts indicator (ESA 2010)" and
+#' `unit` stands for "Unit of measure".
+#' 
+#' ## Language
+#' 
+#' All datasets have metadata available in English, French and German. If no
+#' parameter is given, the labels are returned in English.
+#' 
+#' Example:
+#' * `lang = "fr"`
+#' 
+#' ## More information 
+#' 
+#' For more information about data filtering see Eurostat documentation
+#' on API Statistics:
+#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+#' 
 #' # Data source: Eurostat Table of Contents
 #' 
 #' The Eurostat Table of Contents (TOC) is downloaded from

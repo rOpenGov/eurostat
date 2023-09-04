@@ -67,7 +67,8 @@ Queries are limited to 50 sub-indicators at a time. A time can be
 filtered with fixed "time" filter or with "sinceTimePeriod" and
 "lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
 observations from 2000 to a last available. A \code{lastTimePeriod = 10}
-returns a 10 last observations.
+returns a 10 last observations. See "Filtering datasets" section below
+for more detailed information about filters.
 
 To use a proxy to connect, a \code{\link[httr:use_proxy]{httr::use_proxy()}} can be
 passed to \code{\link[httr:GET]{httr::GET()}}. For example
@@ -102,6 +103,104 @@ For easily viewing which filtering options are available -  in addition to
 the default ones, time and language - Eurostat Web services Query builder
 tool may be useful:
 \url{https://ec.europa.eu/eurostat/web/query-builder}
+}
+
+\section{Filtering datasets}{
+When using Eurostat API Statistics (JSON API), datasets can be filtered
+before they are downloaded and saved in local memory. The general format
+for filter parameters is \verb{<DIMENSION_CODE>=<VALUE>}.
+
+Filter parameters are optional but the used dimension codes must be present
+in the data product that is being queried. Dimension codes can
+vary between different data products so it may be useful to examine new
+datasets in Eurostat data browser beforehand. However, most if not all
+Eurostat datasets concern European countries and contain information that
+was gathered at some point in time, so \code{geo} and \code{time} dimension codes
+can usually be used.
+
+\verb{<DIMENSION_CODE>} and \verb{<VALUE>} are case-insensitive and they can be written
+in lowercase or uppercase in the query.
+
+Parameters are passed onto the \code{eurostat} package functions \code{\link[=get_eurostat]{get_eurostat()}}
+and \code{\link[=get_eurostat_json]{get_eurostat_json()}} as a list item. If an individual item contains
+multiple items, as it often can be in the case of \code{geo} parameters and
+other optional items, they must be in the form of a vector: \code{c("FI", "SE")}.
+For examples on how to use these parameters, see function examples below.
+\subsection{Time parameters}{
+
+\code{time} and \code{time_period} address the same \code{TIME_PERIOD} dimension in the
+dataset and can be used interchangeably. In the Eurostat documentation
+it is stated that "Using more than one Time parameter in the same query
+is not accepted", but practice has shown that actually Eurostat API allows
+multiple \code{time} parameters in the same query. This makes it possible to
+use R colon operator when writing queries, so \code{time = c(2015:2018)}
+translates to \verb{&time=2015&time=2016&time=2017&time=2018}.
+
+The only exception
+to this is when the queried dataset contains e.g. quarterly data and
+\code{TIME_PERIOD} is saved as \code{2015-Q1}, \code{2015-Q2} etc. Then it is possible
+to use \code{time=2015-Q1&time=2015-Q2} style in the query URL, but this makes it
+unfeasible to use the colon operator and requires a lot of manual typing.
+
+Because of this, it is useful to know about other time parameters as well:
+\itemize{
+\item \code{untilTimePeriod}: return dataset items from the oldest record up until the
+set time, for example "all data until 2000": \code{untilTimePeriod = 2000}
+\item \code{sinceTimePeriod}: return dataset items starting from set time, for example
+"all datastarting from 2008": \code{sinceTimePeriod = 2008}
+\item \code{lastTimePeriod}: starting from the most recent time period, how many
+preceding time periods should be returned? For example 10 most
+recent observations: \code{lastTimePeriod = 10}
+}
+
+Using both \code{untilTimePeriod} and \code{sinceTimePeriod} parameters in the same
+query is allowed, making the usage of the R colon operator unnecessary.
+In the case of quarterly data, using \code{untilTimePeriod} and \code{sinceTimePeriod}
+parameters also works, as opposed to the colon operator, so it is generally
+safer to use them as well.
+}
+
+\subsection{Other dimensions}{
+
+In \code{\link[=get_eurostat_json]{get_eurostat_json()}} examples \code{nama_10_gdp} dataset is filtered with
+two additional filter parameters:
+\itemize{
+\item \code{na_item = "B1GQ"}
+\item \code{unit = "CLV_I10"}
+}
+
+Filters like these are most likely unique to the \code{nama_10_gdp} dataset
+(or other datasets within the same domain) and should
+not be used with others dataset without user discretion.
+By using \code{\link[=label_eurostat]{label_eurostat()}} we know that \code{"B1GQ"} stands for
+"Gross domestic product at market prices" and
+\code{"CLV_I10"} means "Chain linked volumes, index 2010=100".
+
+Different dimension codes can be translated to a natural language by using
+the \code{\link[=get_eurostat_dic]{get_eurostat_dic()}} function, which returns labels for individual
+dimension items such as \code{na_item} and \code{unit}, as opposed to
+\code{\link[=label_eurostat]{label_eurostat()}} which does it for whole datasets. For example, the
+parameter \code{na_item} stands for "National accounts indicator (ESA 2010)" and
+\code{unit} stands for "Unit of measure".
+}
+
+\subsection{Language}{
+
+All datasets have metadata available in English, French and German. If no
+parameter is given, the labels are returned in English.
+
+Example:
+\itemize{
+\item \code{lang = "fr"}
+}
+}
+
+\subsection{More information}{
+
+For more information about data filtering see Eurostat documentation
+on API Statistics:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+}
 }
 
 \section{Eurostat: Copyright notice and free re-use of data}{
