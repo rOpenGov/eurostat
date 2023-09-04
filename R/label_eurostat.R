@@ -104,10 +104,10 @@ label_eurostat <-
         y <- x
 
         mynams <- names(y)[!(names(y) %in%
-                               c("TIME_PERIOD", "values", "flags"))]
+                               c("TIME_PERIOD", "time", "values", "flags"))]
 
         for (i in names(y)[!(names(y) %in%
-                               c("TIME_PERIOD", "values", "flags"))]) {
+                               c("TIME_PERIOD", "time", "values", "flags"))]) {
           y[[i]] <- label_eurostat(
             y[[i]],
             i,

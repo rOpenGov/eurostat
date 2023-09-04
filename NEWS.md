@@ -15,6 +15,8 @@
 ## Minor updates
 
 * Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle)
+* Documentation more explicitly explains how to use filter parameters in `get_eurostat()` and `get_eurostat_json()` functions. The documentation now warns users about potential problems caused by `time` / `TIME_PERIOD` parameters when used to query datasets that contain quarterly data (issue #260)
+* As continuation of the update done in 3.7.14, started to use the new URL also for dictionary files in `get_eurostat_dic()` and `label_eurostat()` functions.
 
 ## Deprecated and defunct
 

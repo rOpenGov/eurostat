@@ -36,8 +36,8 @@ get_eurostat_dic <- function(dictname, lang = "en") {
     url <- getOption("eurostat_url")
     tname <- paste0(
       url,
-      "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
-      dictname, ".dic"
+      "api/dissemination/sdmx/2.1/codelist/ESTAT/", dictname, 
+      "?format=TSV&lang=", lang
     )
     dict <- readr::read_tsv(url(tname),
       col_names = c("code_name", "full_name"),
