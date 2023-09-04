@@ -10,9 +10,10 @@
 #' @seealso 
 #' [get_eurostat()]
 #' 
-#' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 API
+#' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 Dissemination API
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Citing Eurostat data
+#' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
 #' @references
 #' See `citation("eurostat")`:
 #'

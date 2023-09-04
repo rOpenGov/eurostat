@@ -78,6 +78,7 @@
 #' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Citing Eurostat data
+#' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
 #' 
 #' @seealso
 #' [httr::GET()]

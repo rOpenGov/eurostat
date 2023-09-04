@@ -279,6 +279,16 @@ See also section "Eurostat: Copyright notice and free re-use of data"
 in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 
+\section{Disclaimer: Availability of filtering functionalities}{
+Currently it only possible to download filtered data through API Statistics
+(JSON API) when using \code{eurostat} package, although technically filtering
+datasets downloaded through the SDMX Dissemination API is also supported by
+Eurostat. We may support this feature in the future. In the meantime, if you
+are interested in filtering Dissemination API data queries manually, please
+consult the following Eurostat documentation:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{

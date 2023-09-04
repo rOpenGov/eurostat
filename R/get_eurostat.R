@@ -70,6 +70,7 @@
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Citing Eurostat data
+#' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
 #'
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen
@@ -475,7 +476,7 @@ get_eurostat <- function(id,
 #' which the user is prompted if they wish to proceed with downloading datasets.
 #' 
 #' @inheritSection eurostat-package Data source: Eurostat Table of Contents
-#' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 API
+#' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 Dissemination API
 #' @inheritParams toc_count_children
 #' 
 #' @author Pyry Kantanen

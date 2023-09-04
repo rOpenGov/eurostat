@@ -22,14 +22,15 @@ flags for data.
 Download data from the eurostat database through the new
 dissemination API.
 }
-\section{Data source: Eurostat SDMX 2.1 API}{
+\section{Data source: Eurostat SDMX 2.1 Dissemination API}{
 Data is downloaded from Eurostat SDMX 2.1 API endpoint
 as compressed TSV files that are transformed into tabular format.
 See Eurostat documentation for more information:
 \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query}
 
-This replaces the old bulk download facility that was used by Eurostat
-before October 2023 and by the eurostat R package versions before 4.0.0.
+The new dissemination API replaces the old bulk download facility that was
+used by Eurostat before October 2023 and by the eurostat R package versions
+before 4.0.0.
 See Eurostat documentation about the transition from Bulk Download to API
 for more information about the differences between the old bulk download
 facility and the data provided by the new API connection:
@@ -90,6 +91,16 @@ data.
 
 See also section "Eurostat: Copyright notice and free re-use of data"
 in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
+}
+
+\section{Disclaimer: Availability of filtering functionalities}{
+Currently it only possible to download filtered data through API Statistics
+(JSON API) when using \code{eurostat} package, although technically filtering
+datasets downloaded through the SDMX Dissemination API is also supported by
+Eurostat. We may support this feature in the future. In the meantime, if you
+are interested in filtering Dissemination API data queries manually, please
+consult the following Eurostat documentation:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
 }
 
 \examples{

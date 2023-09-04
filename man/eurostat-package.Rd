@@ -35,14 +35,15 @@ meaning that there is no versioning or documentation of past versions of
 the data."
 }
 
-\section{Data source: Eurostat SDMX 2.1 API}{
+\section{Data source: Eurostat SDMX 2.1 Dissemination API}{
 Data is downloaded from Eurostat SDMX 2.1 API endpoint
 as compressed TSV files that are transformed into tabular format.
 See Eurostat documentation for more information:
 \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query}
 
-This replaces the old bulk download facility that was used by Eurostat
-before October 2023 and by the eurostat R package versions before 4.0.0.
+The new dissemination API replaces the old bulk download facility that was
+used by Eurostat before October 2023 and by the eurostat R package versions
+before 4.0.0.
 See Eurostat documentation about the transition from Bulk Download to API
 for more information about the differences between the old bulk download
 facility and the data provided by the new API connection:
@@ -54,6 +55,16 @@ changes in TSV file format in new applications.
 For more information about SDMX 2.1, see SDMX standards: Section 7:
 Guidelines for the use of web services, Version 2.1:
 \url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
+}
+
+\section{Disclaimer: Availability of filtering functionalities}{
+Currently it only possible to download filtered data through API Statistics
+(JSON API) when using \code{eurostat} package, although technically filtering
+datasets downloaded through the SDMX Dissemination API is also supported by
+Eurostat. We may support this feature in the future. In the meantime, if you
+are interested in filtering Dissemination API data queries manually, please
+consult the following Eurostat documentation:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
 }
 
 \section{Data source: Eurostat API Statistics (JSON API)}{
