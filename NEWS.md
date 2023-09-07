@@ -11,6 +11,7 @@
 * Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces in the style of `base::make.names()`, e.g. turning `last update of data` to `last.update.of.data`
 * `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
 * `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
+* `label_eurostat_tables()` has been rewritten to use the new SDMX API instead of `table_dic.dic` file in Eurostat Bulk Download Listing
 
 ## Minor updates
 
@@ -20,7 +21,8 @@
 
 ## Deprecated and defunct
 
-* `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them, `grepEurostatTOC()` is completely deprecated and removed from the package
+* `grepEurostatTOC()` is completely marked as defunct and is enroute to being removed from the package as `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them
+* `label_eurostat_vars()` has been marked as deprecated in favour of a new (temporary) function `label_eurostat_vars2()` which uses the new SDMX API to retrieve names for dataset columns. The old function will be completely removed after October 2023 when Eurostat Bulk Download Listing website is retired and `label_eurostat_vars2` will be renamed to `label_eurostat_vars()`. Function evolution is subject to ongoing Eurostat API developments.
 
 ## Bug fixes
 

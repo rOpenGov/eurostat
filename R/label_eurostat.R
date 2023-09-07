@@ -49,7 +49,10 @@
 #' str(lpl)
 #' lpl_order <- label_eurostat(lp, eu_order = TRUE)
 #' lpl_code <- label_eurostat(lp, code = "unit")
+#' # old deprecated function
 #' label_eurostat_vars(names(lp))
+#' # new function. Notice that dataset id must be provided now
+#' label_eurostat_vars2(id = "nama_10_lp_ulc", x = "geo", lang = "en")
 #' label_eurostat_tables("nama_10_lp_ulc")
 #' label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
 #' label_eurostat(
@@ -254,43 +257,138 @@ label_eurostat <-
   }
 
 
-#' @describeIn label_eurostat Get definitions for variable (column) names. For
-#'  objects other than characters or factors definitions are get for names.
+#' @rdname eurostat-deprecated
+#' @inheritParams label_eurostat
 #' @export
 label_eurostat_vars <- function(x, lang = "en") {
+  .Deprecated("label_eurostat_vars2")
+  dictname <- "dimlst"
+
   if (!(is.character(x) || is.factor(x))) {
     x <- names(x)
   }
   x <- x[!grepl("values", x)] # remove values column
-  label_eurostat(x, dic = "dimlst", lang = lang)
+  
+  url <- getOption("eurostat_url")
+  tname <- paste0(
+    url,
+    "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
+    dictname, ".dic"
+  )
+  dict <- readr::read_tsv(url(tname),
+                          col_names = c("code_name", "full_name"),
+                          col_types = readr::cols(.default = readr::col_character())
+  )
+  dict$full_name <- gsub(
+    pattern = "\u0092", replacement = "'",
+    dict$full_name
+  )
+  
+
+  y <- dict$full_name[which(dict$code_name %in% toupper(x))]
+  
+  if (length(y) < length(x)) {
+    warning(paste(
+      "The query did not return names for the following variables:\n",
+      x[which(!(toupper(x) %in% dict$code_name))]
+      )
+    )
+  }
+  
+  y
+}
+
+
+#' @describeIn label_eurostat Get definitions for variable (column) names. For
+#'  objects other than characters or factors definitions are get for names.
+#' @inheritParams get_eurostat
+#' @export
+label_eurostat_vars2 <- function(x = NULL, id, lang = "en") {
+
+  eurostat_base_url <- getOption("eurostat_url")
+  api_base_uri <- paste0(eurostat_base_url, "api/dissemination/sdmx/2.1")
+  resource <- "conceptscheme"
+  agencyID <- "ESTAT"
+  resourceID <- id
+  parameters <- list(
+    compressed = "false"
+  )
+
+  req_url <- paste(api_base_uri, resource, agencyID, resourceID, sep = "/")
+  req_url <- httr::parse_url(req_url)
+  req_url$query <- parameters
+  req_url <- httr::build_url(req_url)
+
+  columns <- c("code_name", "full_name")
+  dict = data.frame(matrix(nrow = 0, ncol = length(columns)))
+  
+  xml_obj <- xml2::read_xml(req_url)
+  concepts <- xml_obj %>% 
+    xml2::xml_find_all(xpath = stringr::str_glue(".//s:Concept")) %>% 
+    xml2::xml_attr(attr = "id")
+  
+  for (i in seq_len(length(concepts))) {
+    concept <- concepts[i]
+    var_name <- xml2::xml_find_all(
+      xml_obj, 
+      xpath = stringr::str_glue(".//s:Concept[@id='{concept}']/c:Name[@xml:lang='{lang}']")
+      ) %>% 
+      xml2::xml_text()
+    
+    dict <- rbind(dict, c(concept, var_name), make.row.names = FALSE)
+  }
+  
+  colnames(dict) <- columns
+  
+  if (nrow(dict) == 0) {
+    warning("The query did not return any names for dataset columns")
+    return(invisible())
+  } else if (nrow(dict) < length(concepts)) {
+    warning("The query did not return names for all concepts")
+  }
+  
+  if (!is.null(x)) {
+    filtered_dict <- dict$full_name[which(dict$code_name %in% x)]
+    return(filtered_dict)
+  }
+  
+  unfiltered_dict <- dict$full_name
+  unfiltered_dict
 }
 
 #' @describeIn label_eurostat Get definitions for table names
+#' @importFrom xml2 xml_find_all xml_text read_xml
+#' @importFrom httr parse_url build_url
+#' @importFrom dplyr %>% 
+#' @importFrom stringr str_glue
 #' @export
 label_eurostat_tables <- function(x, lang = "en") {
   if (!(is.character(x) || is.factor(x))) {
     stop("x have to be a character or a factor")
   }
-  label_eurostat(x, dic = "table_dic", lang = lang)
-}
+  eurostat_base_url <- getOption("eurostat_url")
+  api_base_uri <- paste0(eurostat_base_url, "api/dissemination/sdmx/2.1")
+  resource <- "dataflow"
+  agencyID <- "ESTAT"
+  resourceID <- x
+  parameters <- list(
+    compressed = "false"
+  )
 
+  req_url <- paste(api_base_uri, resource, agencyID, resourceID, sep = "/")
+  req_url <- httr::parse_url(req_url)
+  req_url$query <- parameters
+  req_url <- httr::build_url(req_url)
 
-#' @describeIn label_eurostat Get definitions for variable (column) names. For
-#'  objects other than characters or factors definitions are get for names.
-#' @export
-label_eurostat_vars <- function(x, lang = "en") {
-  if (!(is.character(x) || is.factor(x))) {
-    x <- names(x)
+  xml_obj <- xml2::read_xml(req_url)
+  table_name <- xml_obj %>% 
+    xml2::xml_find_all(xpath = stringr::str_glue(".//c:Name[@xml:lang='{lang}']")) %>% 
+    xml2::xml_text()
+  
+  if (length(table_name) == 0) {
+    warning("The query did not return a name for the dataset")
+    return(invisible())
   }
-  x <- x[!grepl("values", x)] # remove values column
-  label_eurostat(x, dic = "dimlst", lang = lang)
-}
-
-#' @describeIn label_eurostat Get definitions for table names
-#' @export
-label_eurostat_tables <- function(x, lang = "en") {
-  if (!(is.character(x) || is.factor(x))) {
-    stop("x have to be a character or a factor")
-  }
-  label_eurostat(x, dic = "table_dic", lang = lang)
+  
+  table_name
 }

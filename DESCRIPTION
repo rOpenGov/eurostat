@@ -50,7 +50,8 @@ Imports:
     stringi,
     stringr,
     tibble,
-    tidyr (>= 1.0.0)
+    tidyr (>= 1.0.0),
+    xml2
 Suggests:
     giscoR,
     knitr,
