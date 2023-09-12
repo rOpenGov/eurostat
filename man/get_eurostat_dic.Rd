@@ -38,25 +38,18 @@ See \code{citation("eurostat")}:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+#   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+#   analysis of Eurostat open data with the eurostat package. R Journal
+#   9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 # 
-# A BibTeX entry for LaTeX users is
+#   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+#   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+#   [Computer software]. R package version 4.0.0.9003.
+#   https://github.com/rOpenGov/eurostat
 # 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+# To see these entries in BibTeX format, use 'print(<citation>,
+# bibtex=TRUE)', 'toBibtex(.)', or set
+# 'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
 }
 \seealso{
