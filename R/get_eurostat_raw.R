@@ -1,17 +1,19 @@
 #' @title Download Data from Eurostat Dissemination API
 #' @description Download data from the eurostat database through the new
 #' dissemination API.
-#' @param id A code name for the dataset of interested. See the table of
-#'  contents of eurostat datasets for more details.
+#' @inheritParams get_eurostat
 #' @return A dataset in tibble format. First column contains comma
 #' 	  separated codes of cases. Other columns usually corresponds to
 #' 	  years and column names are years with preceding X. Data is in
 #' 	  character format as it contains values together with eurostat
 #' 	  flags for data.
-#' @seealso [get_eurostat()].
-#' @details Data is downloaded from
-#'  <https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing>
-#'  and transformed into tabular format.
+#' @seealso 
+#' [get_eurostat()]
+#' 
+#' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 Dissemination API
+#' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
+#' @inheritSection eurostat-package Citing Eurostat data
+#' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
 #' @references
 #' See `citation("eurostat")`:
 #'
@@ -27,6 +29,7 @@
 #'
 #' @importFrom readr read_tsv cols col_character
 #' @importFrom utils download.file
+#' @importFrom tibble as_tibble
 #'
 #' @keywords utilities database
 get_eurostat_raw <- function(id) {

@@ -89,12 +89,6 @@ Downloads either a simple features (sf) or a data_frame
 of NUTS regions. This function is a wrapper of \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}
 }
 \details{
-The data source URL is
-\url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
-The source provides feature collections as line strings (GeoJSON format),
-not as (multi-)polygons which, in some cases, yields invalid
-self-intersecting (multi-)polygon geometries (for some years/resolutions).
-
 The objects downloaded from GISCO should contain all or some of the
 following variable columns:
 \itemize{
@@ -145,30 +139,55 @@ when possible.
 \item \strong{geometry}: geospatial information.
 }
 }
-\examples{
-\donttest{
-# Uses cached dataset
-sf <- get_eurostat_geospatial(
-  output_class = "sf",
-  resolution = "60",
-  nuts_level = "all"
-)
-# Downloads dataset from server
-sf2 <- get_eurostat_geospatial(
-  output_class = "sf",
-  resolution = "20",
-  nuts_level = "all"
-)
-df <- get_eurostat_geospatial(
-  output_class = "df",
-  nuts_level = "0"
-)
-}
-
-}
-\references{
+\section{Eurostat: Copyright notice and free re-use of data}{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+"(c) European Union, 1995 - today
+
+Eurostat has a policy of encouraging free re-use of its data, both for
+non-commercial and commercial purposes. All statistical data, metadata,
+content of web pages or other dissemination tools, official publications
+and other documents published on its website, with the exceptions listed
+below, can be reused without any payment or written licence provided that:
+\itemize{
+\item the source is indicated as Eurostat;
+\item when re-use involves modifications to the data or text, this must be
+stated clearly to the end user of the information."
+}
+
+For exceptions to the abovementioned principles see
+\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+}
+
+\section{Data source: GISCO - General Copyright}{
+"Eurostat's general copyright notice and licence policy is applicable and
+can be consulted here:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+Please also be aware of the European Commission's general conditions:
+\url{https://commission.europa.eu/legal-notice_en}
+
+Moreover, there are specific provisions applicable to some of the following
+datasets available for downloading. The download and usage of these data
+is subject to their acceptance:
+\itemize{
+\item Administrative Units / Statistical Units
+\item Population distribution / Demography
+\item Transport Networks
+\item Land Cover
+\item Elevation (DEM)"
+}
+
+Of the abovementioned datasets, Administrative Units / Statistical Units
+is applicable if the user wants to draw maps with borders provided by
+GISCO / EuroGeographics.
+}
+
+\section{Data source: GISCO - Administrative Units / Statistical Units}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the GISCO website:
 \href{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}{GISCO: Geographical information and maps - Administrative units/statistical units}
 
 "In addition to the \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{general copyright and licence policy} applicable to the whole Eurostat website, the following
@@ -184,7 +203,7 @@ from this page (the "data").
 \item the data will not be used for commercial purposes;
 \item the source will be acknowledged. A copyright notice, as specified
 below, will have to be visible on any printed or electronic publication
-using the data downloaded from this page.
+using the data downloaded from this page."
 }
 }
 \subsection{Copyright notice}{
@@ -208,6 +227,28 @@ be used.
 If you intend to use the data commercially, please contact EuroGeographics
 for information regarding their licence agreements."
 }
+}
+
+\examples{
+\donttest{
+# Uses cached dataset
+sf <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "60",
+  nuts_level = "all"
+)
+# Downloads dataset from server
+sf2 <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "20",
+  nuts_level = "all"
+)
+df <- get_eurostat_geospatial(
+  output_class = "df",
+  nuts_level = "0"
+)
+}
+
 }
 \seealso{
 \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}

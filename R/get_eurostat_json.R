@@ -11,7 +11,8 @@
 #'   filtered with fixed "time" filter or with "sinceTimePeriod" and
 #'   "lastTimePeriod" filters. A `sinceTimePeriod = 2000` returns
 #'   observations from 2000 to a last available. A `lastTimePeriod = 10`
-#'   returns a 10 last observations.
+#'   returns a 10 last observations. See "Filtering datasets" section below
+#'   for more detailed information about filters.
 #'
 #'   To use a proxy to connect, a [httr::use_proxy()] can be
 #'   passed to [httr::GET()]. For example
@@ -31,33 +32,14 @@
 #'   the dataset contains error codes and their mappings that are not mentioned
 #'   in the Eurostat website. We hope you never encounter them.
 #'
-#' @param id A code name for the dataset of interested. See the table of
-#'   contents of eurostat datasets for more details.
-#' @param filters A named list of filters. Names of list objects are Eurostat
-#'   variable codes and values are vectors of observation codes. If `NULL`
-#'   (default) the whole dataset is returned. See details for more on filters
-#'   and limitations per query.
-#' @param lang A language used for metadata. Default is `EN`, other options are
-#'  `FR` and `DE`.
-#' @param type A type of variables, "`code`" (default), "`label`" or "`both`".
-#'   The parameter "`both`" will return a data_frame with named vectors,
-#'   labels as values and codes as names.
-#' @param stringsAsFactors if `FALSE` (the default) the variables are
-#'        returned as characters. If `TRUE` the variables are converted to
-#'        factors in original Eurostat order.
-#' @param ... Other arguments passed on to [httr::GET()]. For example
-#'   a proxy parameters, see details.
+#' @inheritParams get_eurostat
 #' @inheritDotParams httr::GET
+#' @inherit get_eurostat references
+#' 
 #' @return A dataset as an object of `data.frame` class.
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
-#' @references
-#' See `citation("eurostat")`:
-#'
-#' ```{r, echo=FALSE, comment="#" }
-#' citation("eurostat")
-#' ```
-#'
+
 #' @examples
 #' \dontrun{
 #' # Generally speaking these queries would be done through get_eurostat
@@ -91,24 +73,22 @@
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_glue
+#' 
+#' @inheritSection eurostat-package Data source: Eurostat API Statistics (JSON API)
+#' @inheritSection eurostat-package Filtering datasets
+#' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
+#' @inheritSection eurostat-package Citing Eurostat data
+#' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
+#' 
 #' @seealso
 #' [httr::GET()]
 #'
-#' Eurostat Data Browser online help: API Statistics - data query:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
-#'
-#' Eurostat Data Browser online help: migrating from JSON web service to API
-#' Statistics:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
-#'
-#' SDMX standards: Section 7: Guidelines for the use of web services, Version 2.1:
-#' \url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
 #' @keywords utilities database
 #' @export
 get_eurostat_json <- function(id,
                               filters = NULL,
                               type = "code",
-                              lang = "EN",
+                              lang = "en",
                               stringsAsFactors = FALSE,
                               ...) {
 
@@ -257,19 +237,19 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
 
   if (!is.null(lang)) {
     # The Language parameter (“lang”) can have only three values:
-    # "EN" (English), "FR" (French), and "DE" (German).
-    if (toupper(lang) %in% c("EN", "FR", "DE")) {
-      filters2$lang <- toupper(lang)
+    # "en" (English), "fr" (French), and "de" (German).
+    if (tolower(lang) %in% c("en", "fr", "de")) {
+      filters2$lang <- tolower(lang)
     } else {
       message(
-        "Unsupported language code used. Using the default language: \"EN\""
+        "Unsupported language code used. Using the default language: \"en\""
       )
-      filters2$lang <- "EN"
+      filters2$lang <- "en"
     }
   } else {
-    # In case the parameter isn’t specified, the default value "EN" is taken.
-    message("Using the default language: \"EN\"")
-    filters2$lang <- "EN"
+    # In case the parameter isn’t specified, the default value "en" is taken.
+    message("Using the default language: \"en\"")
+    filters2$lang <- "en"
   }
 
   host_url <- "https://ec.europa.eu/eurostat/api/dissemination/"

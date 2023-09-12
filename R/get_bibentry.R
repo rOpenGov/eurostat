@@ -7,9 +7,12 @@
 #' @param keywords A list of keywords to be added to the entries. Defaults
 #' to `NULL`.
 #' @param format Default is `'Biblatex'`, alternatives are `'bibentry'`
-#' or `'Bibtex'` (not case sensitive.)
+#' or `'Bibtex'` (not case sensitive)
 #' @author Daniel Antal, Przemyslaw Biecek
+#' @inheritSection eurostat-package Citing Eurostat data
+#' 
 #' @return a bibentry, Bibtex or Biblatex object.
+#' 
 #' @examplesIf check_access_to_data()
 #' \dontrun{
 #'   my_bibliography <- get_bibentry(
@@ -22,13 +25,12 @@
 #'   )
 #'   my_bibliography
 #' }
+#' 
 #' @importFrom lubridate dmy year month day
 #' @importFrom utils toBibtex person
 #' @importFrom RefManageR BibEntry toBiblatex
 #'
 #' @export
-
-
 get_bibentry <- function(code,
                          keywords = NULL,
                          format = "Biblatex") {

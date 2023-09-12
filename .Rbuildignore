@@ -27,7 +27,6 @@ docs
 ^\.Rproj\.user$
 ^packrat/
 ^\.Rprofile$
-^NEWS.md$
 ^cran-comments\.md$
 ^data-raw$
 ^revdep$

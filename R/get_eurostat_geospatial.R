@@ -33,13 +33,7 @@
 #'
 #' @inheritDotParams giscoR::gisco_get_nuts -epsg
 #'
-#' @details The data source URL is
-#' <https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>.
-#' The source provides feature collections as line strings (GeoJSON format),
-#' not as (multi-)polygons which, in some cases, yields invalid
-#' self-intersecting (multi-)polygon geometries (for some years/resolutions).
-#'
-#'
+#' @details
 #' The objects downloaded from GISCO should contain all or some of the
 #' following variable columns:
 #' * **id**: JSON id code, the same as **NUTS_ID**. See **NUTS_ID** below for
@@ -93,47 +87,10 @@
 #' © EuroGeographics for the administrative boundaries
 #'
 #' Data downloaded using \pkg{giscoR}
-
-#' @references
-#' The following copyright notice is provided for end user convenience.
-#' Please check up-to-date copyright information from the eurostat website:
-#' [GISCO: Geographical information and maps - Administrative units/statistical units](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units)
-#'
-#' "In addition to the [general copyright and licence policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright) applicable to the whole Eurostat website, the following
-#' specific provisions apply to the datasets you are downloading. The download
-#' and usage of these data is subject to the acceptance of the following
-#' clauses:
-#'
-#' 1. The Commission agrees to grant the non-exclusive and not transferable
-#' right to use and process the Eurostat/GISCO geographical data downloaded
-#' from this page (the "data").
-#'
-#' 1. The permission to use the data is granted on condition that:
-#'    1. the data will not be used for commercial purposes;
-#'    2. the source will be acknowledged. A copyright notice, as specified
-#'    below, will have to be visible on any printed or electronic publication
-#'    using the data downloaded from this page.
-#'
-#' ## Copyright notice
-#'
-#' When data downloaded from this page is used in any printed or electronic
-#' publication, in addition to any other provisions applicable to the whole
-#' Eurostat website, data source will have to be acknowledged in the legend of
-#' the map and in the introductory page of the publication with the following
-#' copyright notice:
-#'
-#' EN: © EuroGeographics for the administrative boundaries
-#'
-#' FR: © EuroGeographics pour les limites administratives
-#'
-#' DE: © EuroGeographics bezüglich der Verwaltungsgrenzen
-#'
-#' For publications in languages other than English, French or German, the
-#' translation of the copyright notice in the language of the publication shall
-#' be used.
-#'
-#' If you intend to use the data commercially, please contact EuroGeographics
-#' for information regarding their licence agreements."
+#' 
+#' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
+#' @inheritSection eurostat-package Data source: GISCO - General Copyright
+#' @inheritSection eurostat-package Data source: GISCO - Administrative Units / Statistical Units
 #'
 #' @family geospatial
 #' @examples
