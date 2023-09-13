@@ -51,6 +51,8 @@ get_bibentry <- function(code,
   }
 
   toc <- get_eurostat_toc()
+  # Remove hierarchy column to make duplicated() check more viable
+  toc <- toc[, !names(toc) %in% c("hierarchy")]
   toc <- toc[toc$code %in% code, ]
   toc <- toc[!duplicated(toc), ]
 
@@ -78,7 +80,7 @@ get_bibentry <- function(code,
   }
 
   for (i in seq_len(nrow(toc))) {
-    last_update_date <- lubridate::dmy(toc[["last update of data"]][[i]])
+    last_update_date <- lubridate::dmy(toc[["last.update.of.data"]][[i]])
     last_update_year <- lubridate::year(last_update_date)
     last_update_month <- lubridate::month(last_update_date)
     last_update_day <- lubridate::day(last_update_date)
