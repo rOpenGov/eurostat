@@ -65,9 +65,25 @@ get_eurostat_toc <- function() {
   invisible(get(".eurostatTOC", envir = .EurostatEnv))
 }
 
-# @describeIn get_eurostat_toc Old deprecated version
-# @export
-# getEurostatTOC <- function() {
-#  .Deprecated("get_eurostat_toc")
-#  get_eurostat_toc()
-# }
+#' @title Download Table of Contents of Eurostat Data Sets (multilingual)
+#' @describeIn get_eurostat_toc Same function but with multilingual support
+#' @inheritParams get_eurostat
+#' @export
+get_eurostat_toc_multilingual <- function(lang = "en") {
+  
+  lang <- tolower(lang)
+  
+  if (!(lang %in% c("en", "fr", "de"))) {
+    warning("Invalid language input")
+    return(invisible())
+  }
+
+  language_version <- switch(lang,
+                             en = ".eurostatTOC_en",
+                             fr = ".eurostatTOC_fr",
+                             de = ".eurostatTOC_de")
+
+  set_eurostat_toc_multilingual(version = language_version, lang = lang)
+
+  invisible(get(language_version, envir = .EurostatEnv))
+}

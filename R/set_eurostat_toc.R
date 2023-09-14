@@ -35,6 +35,33 @@ set_eurostat_toc <- function(...) {
   invisible(0)
 }
 
+#' @describeIn set_eurostat_toc Same function but with multilingual support
+#' @inheritParams get_eurostat
+#' @param version language version to download, one of the following: 
+#' "`.eurostatTOC_en`", "`.eurostatTOC_fr`", "`.eurostatTOC_de`"
+#' @importFrom stringr str_glue
+set_eurostat_toc_multilingual <- function(version, lang, ...) {
+  if (!exists(version, envir = .EurostatEnv)) {
+    base <- getOption("eurostat_url")
+    url <- stringr::str_glue(
+      paste0(base, "api/dissemination/catalogue/toc/txt?lang={lang}")
+      )
+
+    .eurostatTOC <- readr::read_tsv(
+      file = url(url),
+      col_types = readr::cols(.default = readr::col_character()),
+      name_repair = make.names,
+      trim_ws = FALSE
+    )
+
+    .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
+    .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
+    
+    assign(version, .eurostatTOC, envir = .EurostatEnv)
+  }
+  invisible(0)
+}
+
 #' @title Count white space at the start of the title
 #' @description Counts the number of white space characters at the start
 #' of the string.

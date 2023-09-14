@@ -2,12 +2,21 @@
 % Please edit documentation in R/set_eurostat_toc.R
 \name{set_eurostat_toc}
 \alias{set_eurostat_toc}
+\alias{set_eurostat_toc_multilingual}
 \title{Set Eurostat TOC}
 \usage{
 set_eurostat_toc(...)
+
+set_eurostat_toc_multilingual(version, lang, ...)
 }
 \arguments{
 \item{...}{Arguments to be passed}
+
+\item{version}{language version to download, one of the following:
+"\code{.eurostatTOC_en}", "\code{.eurostatTOC_fr}", "\code{.eurostatTOC_de}"}
+
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 }
 \value{
 Empty element
@@ -15,6 +24,11 @@ Empty element
 \description{
 Internal function.
 }
+\section{Functions}{
+\itemize{
+\item \code{set_eurostat_toc_multilingual()}: Same function but with multilingual support
+
+}}
 \references{
 see citation("eurostat")
 }

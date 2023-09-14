@@ -4,7 +4,7 @@
 \alias{get_bibentry}
 \title{Create A Data Bibliography}
 \usage{
-get_bibentry(code, keywords = NULL, format = "Biblatex")
+get_bibentry(code, keywords = NULL, format = "Biblatex", lang = "en")
 }
 \arguments{
 \item{code}{A Eurostat data code or a vector of Eurostat data codes as
@@ -15,6 +15,9 @@ to \code{NULL}.}
 
 \item{format}{Default is \code{'Biblatex'}, alternatives are \code{'bibentry'}
 or \code{'Bibtex'} (not case sensitive)}
+
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 }
 \value{
 a bibentry, Bibtex or Biblatex object.
@@ -65,6 +68,9 @@ in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
   my_bibliography
 }
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\link[utils:bibentry]{utils::bibentry} \link[RefManageR:toBiblatex]{RefManageR::toBiblatex}
 }
 \author{
 Daniel Antal, Przemyslaw Biecek
