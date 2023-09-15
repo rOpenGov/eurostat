@@ -22,6 +22,7 @@
 #' @param fixed 
 #' logical. If TRUE (default), pattern is a string to be matched as is.
 #' See `grep()` documentation for more information.
+#' @inheritParams get_eurostat
 #' @inherit get_eurostat_toc return seealso
 #' @inherit eurostat-package references
 #' @inheritSection eurostat-package Data source: Eurostat Table of Contents
@@ -43,11 +44,13 @@
 search_eurostat <- function(pattern,
                             type = "dataset",
                             column = "title",
-                            fixed = TRUE) {
+                            fixed = TRUE,
+                            lang = "en") {
 
   # Sanity check
   type <- tolower(as.character(type))
   column <- tolower(as.character(column))
+  lang <- check_lang(lang)
 
   if (!type %in% c("dataset", "table", "folder", "all")) {
     warning(stringr::str_glue("The type \"{type}\" is not recognized, ",
@@ -70,9 +73,11 @@ search_eurostat <- function(pattern,
     return(invisible())
   }
 
-  set_eurostat_toc()
-  tmp <- get(".eurostatTOC", envir = .EurostatEnv)
+  #set_eurostat_toc()
+  #tmp <- get(".eurostatTOC", envir = .EurostatEnv)
+  tmp <- get_eurostat_toc_multilingual(lang = lang)
 
+  
   if (!identical(type, "all")) {
     tmp <- tmp[tmp$type %in% type, ]
   }

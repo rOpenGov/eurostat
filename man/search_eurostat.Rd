@@ -4,7 +4,13 @@
 \alias{search_eurostat}
 \title{Grep Datasets Titles from Eurostat}
 \usage{
-search_eurostat(pattern, type = "dataset", column = "title", fixed = TRUE)
+search_eurostat(
+  pattern,
+  type = "dataset",
+  column = "title",
+  fixed = TRUE,
+  lang = "en"
+)
 }
 \arguments{
 \item{pattern}{Text string that is used to search from dataset, folder or table titles,
@@ -18,6 +24,9 @@ other possible option is \code{code}.}
 
 \item{fixed}{logical. If TRUE (default), pattern is a string to be matched as is.
 See \code{grep()} documentation for more information.}
+
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 }
 \value{
 A tibble with nine columns:
@@ -60,6 +69,9 @@ browser on Eurostat website may also return useful results.
 \section{Data source: Eurostat Table of Contents}{
 The Eurostat Table of Contents (TOC) is downloaded from
 \url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}
+(default) or from French or German language variants:
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=fr}
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de}
 
 See Eurostat documentation on TOC items:
 \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
