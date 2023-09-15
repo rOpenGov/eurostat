@@ -5,6 +5,7 @@
 * `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()`
 * New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 10 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`.
 * EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental sister functions `get_eurostat_toc_multilingual()` and `set_eurostat_toc_multilingual()` that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang`
+* Related to updates to `get_eurostat_toc()`, `search_eurostat()` now supports searching from French and German TOC-files as well.
 
 ## Major updates
 
@@ -19,7 +20,8 @@
 * Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle)
 * Documentation more explicitly explains how to use filter parameters in `get_eurostat()` and `get_eurostat_json()` functions. The documentation now warns users about potential problems caused by `time` / `TIME_PERIOD` parameters when used to query datasets that contain quarterly data (issue #260)
 * As continuation of the update done in 3.7.14, started to use the new URL also for dictionary files in `get_eurostat_dic()` and `label_eurostat()` functions.
-* `get_bibentry()` now outputs "Accessed YYYY-MM-DD" and "dataset last updated YYYY-MM-DD" in note field as otherwise it would be sporadically printed or not at all printed from `urldate` field. 
+* `get_bibentry()` now outputs "Accessed YYYY-MM-DD" and "dataset last updated YYYY-MM-DD" in note field as otherwise it would be sporadically printed or not at all printed from `urldate` field.
+* New internal function `check_lang()`
 
 ## Deprecated and defunct
 
