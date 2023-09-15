@@ -12,6 +12,16 @@ test_that("Bibentry gives correct results", {
     )),
     "Bibtex"
   )
+  
+  expect_equal(
+    class(get_bibentry(
+      code = c("sts_inpr_a"),
+      lang = "fr",
+      format = "Bibtex"
+    )),
+    "Bibtex"
+  )
+  
   expect_error(
     get_bibentry(code = 123456)
   )
