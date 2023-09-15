@@ -83,12 +83,14 @@ eurotime2date <- function(x, last = FALSE) {
     period <- gsub("M", "", subyear)
     day <- gsub("D", "", days)
   } else {
+    # nocov start
     warning(
       "Unknown time code, ", tcode, ". No date conversion was made.\n
             Please fill bug report at ",
       "https://github.com/rOpenGov/eurostat/issues."
     )
     return(x)
+    # nocov end
   }
 
   # The date as the last date of the period

@@ -7,7 +7,7 @@
 \usage{
 set_eurostat_toc(...)
 
-set_eurostat_toc_multilingual(version, lang, ...)
+set_eurostat_toc_multilingual(version = ".eurostatTOC", lang = "en", ...)
 }
 \arguments{
 \item{...}{Arguments to be passed}

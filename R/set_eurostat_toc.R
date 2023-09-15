@@ -40,7 +40,9 @@ set_eurostat_toc <- function(...) {
 #' @param version language version to download, one of the following: 
 #' "`.eurostatTOC_en`", "`.eurostatTOC_fr`", "`.eurostatTOC_de`"
 #' @importFrom stringr str_glue
-set_eurostat_toc_multilingual <- function(version, lang, ...) {
+set_eurostat_toc_multilingual <- function(version = ".eurostatTOC", 
+                                          lang = "en", 
+                                          ...) {
   if (!exists(version, envir = .EurostatEnv)) {
     base <- getOption("eurostat_url")
     url <- stringr::str_glue(

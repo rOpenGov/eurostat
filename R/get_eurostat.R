@@ -22,7 +22,7 @@
 #' more information).
 #' Argument "`num`" converts the date into a numeric (integer) meaning that
 #' the first day of the year 2000 is close to 2000.01 and the last day of the
-#' year is close to 2000.99 (see [eurotime2num() for more information). 
+#' year is close to 2000.99 (see [eurotime2num()] for more information). 
 #' Using the argument "`raw`" preserves the dates as they were in the original
 #' Eurostat data.
 #' @param type
@@ -188,8 +188,10 @@ get_eurostat <- function(id,
   # If dataset is cached, access to ec.europe.eu is not needed
   # Therefore this is a warning, not a stop
   if (!check_access_to_data()) {
+    # nocov start
     warning("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
+    # nocov end
   }
   
   # For better code clarity, use only NULL in code

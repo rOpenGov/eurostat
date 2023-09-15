@@ -93,3 +93,34 @@ test_that("get_eurostat get non-normal variable order", {
   skip_if_offline()
   expect_gt(nrow(get_eurostat("cens_01rdhh")), 0)
 })
+
+test_that("get_eurostat and eurotime2date work with daily data", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_match(get_eurostat("irt_h_eurcoe_d",
+                            filters = list(lastTimePeriod = 10))$freq[1], "D")
+})
+
+test_that("get_eurostat and eurotime2num work with daily data", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_match(get_eurostat("irt_h_eurcoe_d",
+                            filters = list(lastTimePeriod = 10),
+                            time_format = "num")$freq[1], "D")
+})
+
+test_that("get_eurostat and eurotime2num work with daily data", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_match(get_eurostat("ei_bsci_m_r2",
+                            filters = list(lastTimePeriod = 10),
+                            time_format = "num")$freq[1], "M")
+})
+
+test_that("get_eurostat and eurotime2num work with daily data", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_match(get_eurostat("med_ag32",
+                            filters = list(lastTimePeriod = 10),
+                            time_format = "num")$freq[1], "A")
+})

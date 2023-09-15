@@ -18,7 +18,8 @@ test_that("Get json data", {
                         geo = "FI",
                         na_item = "B1GQ",
                         unit = "CLV_I10"),
-                      lang = "FI")
+                      lang = "FI",
+                      type = "label")
   )
   
   # Using the default language: "en"
@@ -28,7 +29,13 @@ test_that("Get json data", {
                         geo = "FI",
                         na_item = "B1GQ",
                         unit = "CLV_I10"),
-                      lang = NULL)
+                      lang = NULL,
+                      type = "both")
+  )
+  
+  # Error message
+  expect_error(
+    get_eurostat_json("invalid_id")
   )
   
   # sleep for a while to let the API rest

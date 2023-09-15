@@ -1,8 +1,12 @@
 test_that("Variable names are labeled", {
   skip_on_cran()
   skip_if_offline()
-  expect_equal(label_eurostat_vars("geo"), "Geopolitical entity (reporting)")
-  expect_equal(label_eurostat_vars("housing", lang = "fr"), "Habitation")
+  # Deprecation warning
+  expect_warning(label_eurostat_vars("geo"))
+  expect_equal(label_eurostat_vars2(id = "nama_10_lp_ulc", x = "geo", lang = "en"), "Geopolitical entity (reporting)")
+  expect_equal(label_eurostat_tables("nama_10_lp_ulc"), "Labour productivity and unit labour costs")
+  # Deprecation warning
+  expect_warning(label_eurostat_vars("housing", lang = "fr"))
 
   expect_true(any(grepl(
     "_code",
@@ -73,5 +77,15 @@ test_that("custom_dic works", {
   expect_equal(
     label_eurostat(c("FI", "DE"), dic = "geo", custom_dic = c(DE = "Germany")),
     c("Finland", "Germany")
+  )
+})
+
+test_that("wrong code (for this dataset) produces an error", {
+  skip_on_cran()
+  skip_if_offline()
+  expect_error(
+    label_eurostat(
+      get_eurostat("road_eqr_trams"), code = "coef"
+    )
   )
 })

@@ -81,6 +81,7 @@
 #' @importFrom countrycode countrycode
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr filter coalesce
+#' @importFrom stringr str_glue
 #'
 #' @export
 label_eurostat <-
@@ -134,9 +135,11 @@ label_eurostat <-
         if (!is.null(code)) {
           code_in <- code %in% names(y)
           if (!all(code_in)) {
-            stop("code column name(s) ",
-                 shQuote(code[!code_in]),
-                 " not found on x")
+            stop(
+              stringr::str_glue(
+                "The following code column name(s) not found on x:\n",
+                "{code[!code_in]}")
+            )
           }
           y_code <- x[, code, drop = FALSE]
           names(y_code) <- paste0(names(y_code), "_code")
@@ -197,8 +200,11 @@ label_eurostat <-
                                           lang = lang,
                                           fix_duplicated = fix_duplicated)
           } else {
-            stop("unknown argument ", countrycode_nomatch,
-                 " for countrycode_nomatch")
+            stop(
+              stringr::str_glue(
+                "unknown argument {countrycode_nomatch} for countrycode_nomatch"
+                )
+              )
           }
         } else {
           # dics are in upper case, change if x is not

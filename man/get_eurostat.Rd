@@ -34,7 +34,7 @@ semester (half year), quarter, month, or week (See \code{\link[=eurotime2date]{e
 more information).
 Argument "\code{num}" converts the date into a numeric (integer) meaning that
 the first day of the year 2000 is close to 2000.01 and the last day of the
-year is close to 2000.99 (see [eurotime2num() for more information).
+year is close to 2000.99 (see \code{\link[=eurotime2num]{eurotime2num()}} for more information).
 Using the argument "\code{raw}" preserves the dates as they were in the original
 Eurostat data.}
 

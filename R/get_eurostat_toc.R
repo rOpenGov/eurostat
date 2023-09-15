@@ -74,7 +74,7 @@ get_eurostat_toc_multilingual <- function(lang = "en") {
   lang <- check_lang(lang)
 
   language_version <- switch(lang,
-                             en = ".eurostatTOC_en",
+                             en = ".eurostatTOC",
                              fr = ".eurostatTOC_fr",
                              de = ".eurostatTOC_de")
 

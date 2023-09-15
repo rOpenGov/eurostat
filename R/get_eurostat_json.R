@@ -101,8 +101,10 @@ get_eurostat_json <- function(id,
 
   # Check if you have access to ec.europe.eu.
   if (!check_access_to_data()) {
+    # nocov start
     message("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
+    # nocov end
   }
 
   # construct url
@@ -161,11 +163,13 @@ get_eurostat_json <- function(id,
 
   if (resp$status_code == 200 && length(result$value) == 0) {
 
+    # nocov start
     msg <- paste(" Please also note that some datasets are not accessible via",
                  "the eurostat API interface. You can try to search the data",
                  "manually from the comext database at",
                  "https://ec.europa.eu/eurostat/comext/newxtweb/ or explore",
                  "data at https://ec.europa.eu/eurostat/web/main/data/database")
+    # nocov end
 
     stop(paste("HTTP status: 200, but the dataset didn't have any values.\n",
                " Editing the query parameters may resolve the issue.\n",
