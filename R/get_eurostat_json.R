@@ -235,22 +235,7 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
     filters2$format <- "JSON"
   }
 
-  if (!is.null(lang)) {
-    # The Language parameter (“lang”) can have only three values:
-    # "en" (English), "fr" (French), and "de" (German).
-    if (tolower(lang) %in% c("en", "fr", "de")) {
-      filters2$lang <- tolower(lang)
-    } else {
-      message(
-        "Unsupported language code used. Using the default language: \"en\""
-      )
-      filters2$lang <- "en"
-    }
-  } else {
-    # In case the parameter isn’t specified, the default value "en" is taken.
-    message("Using the default language: \"en\"")
-    filters2$lang <- "en"
-  }
+  filters2$lang <- check_lang(lang)
 
   host_url <- "https://ec.europa.eu/eurostat/api/dissemination/"
   service <- "statistics/"

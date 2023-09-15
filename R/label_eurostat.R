@@ -314,6 +314,8 @@ label_eurostat_vars2 <- function(x = NULL, id, lang = "en") {
     compressed = "false"
   )
 
+  lang <- check_lang(lang)
+
   req_url <- paste(api_base_uri, resource, agencyID, resourceID, sep = "/")
   req_url <- httr::parse_url(req_url)
   req_url$query <- parameters
@@ -374,6 +376,8 @@ label_eurostat_tables <- function(x, lang = "en") {
   parameters <- list(
     compressed = "false"
   )
+  
+  lang <- check_lang(lang)
 
   req_url <- paste(api_base_uri, resource, agencyID, resourceID, sep = "/")
   req_url <- httr::parse_url(req_url)

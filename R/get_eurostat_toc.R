@@ -71,12 +71,7 @@ get_eurostat_toc <- function() {
 #' @export
 get_eurostat_toc_multilingual <- function(lang = "en") {
   
-  lang <- tolower(lang)
-  
-  if (!(lang %in% c("en", "fr", "de"))) {
-    warning("Invalid language input")
-    return(invisible())
-  }
+  lang <- check_lang(lang)
 
   language_version <- switch(lang,
                              en = ".eurostatTOC_en",

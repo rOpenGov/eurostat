@@ -30,3 +30,24 @@ load_package_data <- function(dataset) {
   }
   .new_data_environment[[dataset]]
 }
+
+check_lang <- function(lang) {
+  if (!is.null(lang)) {
+    # The Language parameter (“lang”) can have only three values:
+    # "en" (English), "fr" (French), and "de" (German).
+    lang <- tolower(lang)
+    if (lang %in% c("en", "fr", "de")) {
+      return(lang)
+    } else {
+      message(
+        "Unsupported language code used. Using the default language: \"en\""
+      )
+      lang <- "en"
+    }
+  } else {
+    # In case the parameter isn’t specified, the default value "en" is taken.
+    message("Using the default language: \"en\"")
+    lang <- "en"
+  }
+  lang
+}

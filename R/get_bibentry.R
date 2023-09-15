@@ -63,17 +63,12 @@ get_bibentry <- function(code,
 
   urldate <- as.character(Sys.Date())
   
-  lang <- tolower(lang)
+  lang <- check_lang(lang)
   
-  if (!(lang %in% c("en", "fr", "de"))) {
-    warning("Invalid language input")
-    return(invisible())
-  } else {
-    lang_long <- switch(lang,
-                        en = "english",
-                        fr = "french",
-                        de = "german")
-  }
+  lang_long <- switch(lang,
+                      en = "english",
+                      fr = "french",
+                      de = "german")
 
   if (nrow(toc) == 0) {
     warning(paste(

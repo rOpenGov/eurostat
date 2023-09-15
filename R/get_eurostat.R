@@ -210,7 +210,7 @@ get_eurostat <- function(id,
   # Sanity check
   type <- tolower(type)
   time_format <- tolower(time_format)
-  
+  lang <- check_lang(lang)
 
   if (cache) {
 

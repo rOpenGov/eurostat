@@ -31,6 +31,9 @@
 #'
 #' @keywords utilities database
 get_eurostat_dic <- function(dictname, lang = "en") {
+  
+  lang <- check_lang(lang)
+  
   dictlang <- paste0(dictname, "_", lang)
   if (!exists(dictlang, envir = .EurostatEnv)) {
     url <- getOption("eurostat_url")
