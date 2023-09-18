@@ -1,61 +1,48 @@
 #' @title Set Eurostat TOC
 #' @description Internal function.
 #' @param ... Arguments to be passed
+#' @param version language version to download, one of the following: 
+#' "`.eurostatTOC`" (English), "`.eurostatTOC_fr`" (French), 
+#' "`.eurostatTOC_de`" (German)
+#' @inheritParams get_eurostat
 #' @return Empty element
 #' @references see citation("eurostat")
 #' @author Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
 #'
 #' @importFrom readr read_tsv cols col_character
+#' @importFrom stringr str_glue
 #' 
 #' @seealso [get_eurostat_toc()] [toc_count_children()] [toc_determine_hierarchy()] 
 #' [toc_list_children()] [toc_count_whitespace()]
 #'
 #' @keywords internal
-set_eurostat_toc <- function(...) {
-  if (!exists(".eurostatTOC", envir = .EurostatEnv)) {
-    base <- getOption("eurostat_url")
-    url <- paste(base, "api/dissemination/catalogue/toc/txt?lang=en",
-      sep = ""
+set_eurostat_toc <- function(version = ".eurostatTOC", 
+                             lang = "en", 
+                             ...) {
+  lang <- check_lang(lang)
+  
+  if (!(version %in% c(".eurostatTOC", ".eurostatTOC_fr", ".eurostatTOC_de"))) {
+    stop(
+      paste(
+        "The version argument must be one of the following: .eurostatTOC,",
+        ".eurostatTOC_fr, or .eurostatTOC_de"
+      )
     )
-    .eurostatTOC <- readr::read_tsv(
-      file = url(url),
-      col_types = readr::cols(.default = readr::col_character()),
-      name_repair = make.names,
-      trim_ws = FALSE
-    )
-    
-    # Clean the names, replace " " (empty spaces) with "."
-    # names(.eurostatTOC) <- gsub(" ", ".", names(.eurostatTOC))
-    
-    .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
-    .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
-
-    assign(".eurostatTOC", .eurostatTOC, envir = .EurostatEnv)
   }
-  invisible(0)
-}
-
-#' @describeIn set_eurostat_toc Same function but with multilingual support
-#' @inheritParams get_eurostat
-#' @param version language version to download, one of the following: 
-#' "`.eurostatTOC_en`", "`.eurostatTOC_fr`", "`.eurostatTOC_de`"
-#' @importFrom stringr str_glue
-set_eurostat_toc_multilingual <- function(version = ".eurostatTOC", 
-                                          lang = "en", 
-                                          ...) {
+  
   if (!exists(version, envir = .EurostatEnv)) {
     base <- getOption("eurostat_url")
     url <- stringr::str_glue(
       paste0(base, "api/dissemination/catalogue/toc/txt?lang={lang}")
-      )
-
+    )
+    
     .eurostatTOC <- readr::read_tsv(
       file = url(url),
       col_types = readr::cols(.default = readr::col_character()),
       name_repair = make.names,
       trim_ws = FALSE
     )
-
+    
     .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
     .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
     

@@ -28,6 +28,7 @@
 #' @seealso [get_eurostat()], [search_eurostat()]
 #' @inheritSection eurostat-package Data source: Eurostat Table of Contents
 #' @inherit get_eurostat references
+#' @inheritParams get_eurostat
 #' 
 #' @author
 #' Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
@@ -60,25 +61,16 @@
 #' 
 #' @keywords utilities database
 #' @export
-get_eurostat_toc <- function() {
-  set_eurostat_toc()
-  invisible(get(".eurostatTOC", envir = .EurostatEnv))
-}
-
-#' @title Download Table of Contents of Eurostat Data Sets (multilingual)
-#' @describeIn get_eurostat_toc Same function but with multilingual support
-#' @inheritParams get_eurostat
-#' @export
-get_eurostat_toc_multilingual <- function(lang = "en") {
+get_eurostat_toc <- function(lang = "en") {
   
   lang <- check_lang(lang)
-
+  
   language_version <- switch(lang,
                              en = ".eurostatTOC",
                              fr = ".eurostatTOC_fr",
                              de = ".eurostatTOC_de")
-
-  set_eurostat_toc_multilingual(version = language_version, lang = lang)
-
+  
+  set_eurostat_toc(version = language_version, lang = lang)
+  
   invisible(get(language_version, envir = .EurostatEnv))
 }

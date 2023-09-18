@@ -2,12 +2,9 @@
 % Please edit documentation in R/get_eurostat_toc.R
 \name{get_eurostat_toc}
 \alias{get_eurostat_toc}
-\alias{get_eurostat_toc_multilingual}
 \title{Download Table of Contents of Eurostat Data Sets}
 \usage{
-get_eurostat_toc()
-
-get_eurostat_toc_multilingual(lang = "en")
+get_eurostat_toc(lang = "en")
 }
 \arguments{
 \item{lang}{2-letter language code, default is "\code{en}" (English), other
@@ -44,11 +41,6 @@ In the downloaded Eurostat Table of Contents the 'code' column
 values are refer to the function 'id' that is used as an argument in certain
 functions when downloading datasets.
 }
-\section{Functions}{
-\itemize{
-\item \code{get_eurostat_toc_multilingual()}: Same function but with multilingual support
-
-}}
 \section{Data source: Eurostat Table of Contents}{
 The Eurostat Table of Contents (TOC) is downloaded from
 \url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}

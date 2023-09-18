@@ -75,7 +75,7 @@ search_eurostat <- function(pattern,
 
   #set_eurostat_toc()
   #tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-  tmp <- get_eurostat_toc_multilingual(lang = lang)
+  tmp <- get_eurostat_toc(lang = lang)
 
   
   if (!identical(type, "all")) {

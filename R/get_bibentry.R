@@ -55,7 +55,7 @@ get_bibentry <- function(code,
     format <- "biblatex"
   }
 
-  toc <- get_eurostat_toc_multilingual(lang = lang)
+  toc <- get_eurostat_toc(lang = lang)
   # Remove hierarchy column to make duplicated() check more viable
   toc <- toc[, !names(toc) %in% c("hierarchy")]
   toc <- toc[toc$code %in% code, ]

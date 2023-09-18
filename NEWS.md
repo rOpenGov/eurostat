@@ -4,7 +4,7 @@
 
 * `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()`
 * New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 10 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`.
-* EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental sister functions `get_eurostat_toc_multilingual()` and `set_eurostat_toc_multilingual()` that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang`
+* EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental features that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang`
 * Related to updates to `get_eurostat_toc()`, `search_eurostat()` now supports searching from French and German TOC-files as well.
 
 ## Major updates
