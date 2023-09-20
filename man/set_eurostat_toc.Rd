@@ -4,17 +4,11 @@
 \alias{set_eurostat_toc}
 \title{Set Eurostat TOC}
 \usage{
-set_eurostat_toc(version = ".eurostatTOC", lang = "en", ...)
+set_eurostat_toc(lang = "en")
 }
 \arguments{
-\item{version}{language version to download, one of the following:
-"\code{.eurostatTOC}" (English), "\code{.eurostatTOC_fr}" (French),
-"\code{.eurostatTOC_de}" (German)}
-
 \item{lang}{2-letter language code, default is "\code{en}" (English), other
 options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
-
-\item{...}{Arguments to be passed}
 }
 \value{
 Empty element

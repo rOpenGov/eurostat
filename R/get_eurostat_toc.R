@@ -70,7 +70,7 @@ get_eurostat_toc <- function(lang = "en") {
                              fr = ".eurostatTOC_fr",
                              de = ".eurostatTOC_de")
   
-  set_eurostat_toc(version = language_version, lang = lang)
+  set_eurostat_toc(lang = lang)
   
   invisible(get(language_version, envir = .EurostatEnv))
 }

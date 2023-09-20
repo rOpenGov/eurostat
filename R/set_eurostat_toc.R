@@ -1,9 +1,5 @@
 #' @title Set Eurostat TOC
 #' @description Internal function.
-#' @param ... Arguments to be passed
-#' @param version language version to download, one of the following: 
-#' "`.eurostatTOC`" (English), "`.eurostatTOC_fr`" (French), 
-#' "`.eurostatTOC_de`" (German)
 #' @inheritParams get_eurostat
 #' @return Empty element
 #' @references see citation("eurostat")
@@ -16,21 +12,15 @@
 #' [toc_list_children()] [toc_count_whitespace()]
 #'
 #' @keywords internal
-set_eurostat_toc <- function(version = ".eurostatTOC", 
-                             lang = "en", 
-                             ...) {
+set_eurostat_toc <- function(lang = "en") {
   lang <- check_lang(lang)
   
-  if (!(version %in% c(".eurostatTOC", ".eurostatTOC_fr", ".eurostatTOC_de"))) {
-    stop(
-      paste(
-        "The version argument must be one of the following: .eurostatTOC,",
-        ".eurostatTOC_fr, or .eurostatTOC_de"
-      )
-    )
-  }
+  language_version <- switch(lang,
+                             en = ".eurostatTOC",
+                             fr = ".eurostatTOC_fr",
+                             de = ".eurostatTOC_de")
   
-  if (!exists(version, envir = .EurostatEnv)) {
+  if (!exists(language_version, envir = .EurostatEnv)) {
     base <- getOption("eurostat_url")
     url <- stringr::str_glue(
       paste0(base, "api/dissemination/catalogue/toc/txt?lang={lang}")
@@ -46,7 +36,7 @@ set_eurostat_toc <- function(version = ".eurostatTOC",
     .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
     .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
     
-    assign(version, .eurostatTOC, envir = .EurostatEnv)
+    assign(language_version, .eurostatTOC, envir = .EurostatEnv)
   }
   invisible(0)
 }
