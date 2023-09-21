@@ -205,3 +205,31 @@ eur_helper_cachedir <- function(cache_dir = NULL) {
   }
   return(cache_dir)
 }
+
+#' Output a vector of cached dataset codes
+#' @description
+#' Parses cache_list.json file and returns a data.frame
+#' @return
+#' A data.frame object with 3 columns: dataset code, download date and 
+#' dataset md5 hash
+#' 
+#' @inheritParams get_eurostat
+#' @importFrom jsonlite fromJSON
+list_cache_items <- function(cache_dir = NULL) {
+  if (is.null(cache_dir)) {
+    cache_dir <- eur_helper_detect_cache_dir()
+  }
+  json_file <- jsonlite::fromJSON(paste0(cache_dir, "/cache_list.json"))
+  # return(json_file)
+  columns <- c("code", "download_date", "md5_hash")
+  df <- data.frame(matrix(nrow = 0, ncol = length(columns))) 
+  for (i in seq_len(length(json_file))) {
+    df_i <- data.frame(
+      code = json_file[[i]][["id"]],
+      download_date = json_file[[i]][["download_date"]],
+      md5_hash = names(json_file[i])
+    )
+    df <- rbind(df, df_i)
+  }
+  df
+}
