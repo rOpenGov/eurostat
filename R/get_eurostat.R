@@ -311,8 +311,9 @@ get_eurostat <- function(id,
         # close previous connection with mode "a"
         close(cache_list_conn)
         cache_list_conn <- file(cache_list, "w")
+
         json_query <- jsonlite::toJSON(
-          list(query),
+          query,
           pretty = TRUE,
           null = "null"
         )
@@ -466,20 +467,22 @@ get_eurostat <- function(id,
 #' Loops over all files in a Eurostat database folder, downloads the data and
 #' assigns the datasets to environment.
 #' @details
-#' The datasets are assigned into Global Environment using dataset codes as
-#' object names. The datasets are downloaded from SDMX API as TSV files,
+#' The datasets are assigned into .EurostatEnv by default, using dataset codes
+#' as object names. The datasets are downloaded from SDMX API as TSV files,
 #' meaning that they are returned without filtering. No filters can be
 #' provided using this function.
 #' 
 #' Please do not attempt to download too many datasets or the whole database
-#' at once. The function is designed to be slightly annoying to discourage
-#' heavy use. The limit is set to 10.
-#' @param limit User assigned limit on downloads. Affects the limit after
-#' which the user is prompted if they wish to proceed with downloading datasets.
+#' at once. The number of datasets that can be downloaded at once is hardcoded 
+#' to 20. The function also asks the user for confirmation if the number of 
+#' datasets in a folder is more than 10. This is by design to discourage
+#' straining Eurostat API.
+#' @param code Folder code from Eurostat Table of Contents.
+#' @param env Name of the environment where downloaded datasets are assigned.
+#' Default is .EurostatEnv. If NULL, datasets are returned as a list object.
 #' 
 #' @inheritSection eurostat-package Data source: Eurostat Table of Contents
 #' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 Dissemination API
-#' @inheritParams toc_count_children
 #' 
 #' @author Pyry Kantanen
 #' 
@@ -488,24 +491,41 @@ get_eurostat <- function(id,
 #' @importFrom stringr str_glue
 #' @importFrom utils menu
 #' 
+#' 
 #' @export
-get_eurostat_folder <- function(code, limit = 3) {
+get_eurostat_folder <- function(code, env = .EurostatEnv) {
   
+  # Limit after which the function prompts the user whether they really want
+  # to proceed
+  soft_limit <- 10
+  # Limit that cannot be crossed with this function
+  hard_limit <- 20
+  
+  toc <- get_eurostat_toc()
+  if (toc[["type"]][which(toc[["code"]] == code)] != "folder") {
+    warning("The code you provided is not a folder.")
+    return(invisible())
+  }
   children <- toc_list_children(code)
-  # Filter out folders
+  # Filter out potential subfolders
   children <- children[which(children$type %in% c("dataset", "table")), ]
   
-  if (nrow(children) > 10) {
+  if (nrow(children) == 0) {
+    warning("The folder code you provided did not have any items.")
+    return(invisible())
+  }
+
+  if (nrow(children) > hard_limit) {
     warning(stringr::str_glue(
       "The number of datasets in folder ({nrow(children)}) is too large. ",
-      "Please use some other method for retrieving a large number of datasets."
+      "Please use some other method for retrieving datasets."
     ))
     return(invisible())
   }
-  
-  if (nrow(children) > limit) {
+
+  if (nrow(children) > soft_limit) {
     title_msg <- stringr::str_glue(
-      "The number of items in the folder is more than {limit}. ",
+      "The number of items in the folder is more than {soft_limit}. ",
       "Do you wish to proceed?")
     switch(menu(c("Yes", "No"), title = title_msg) + 1,
            cat("Nothing done\n"),
@@ -513,12 +533,28 @@ get_eurostat_folder <- function(code, limit = 3) {
            return(invisible()))
   }
   
-  for (i in seq_len(nrow(children))) {
-    dataset <- get_eurostat(children$code[i])
-    assign(children$code[i], dataset, envir = .EurostatEnv)
-    message(
-      stringr::str_glue(
-        "Dataset {i} / {nrow(children)} assigned to .EurostatEnv\n\n")
-    )
+  if (!is.null(env)) {
+    for (i in seq_len(nrow(children))) {
+      dataset <- get_eurostat(children$code[i], cache = TRUE)
+      assign(children$code[i], dataset, envir = env)
+      message(
+        stringr::str_glue(
+          "Dataset {i} / {nrow(children)} assigned to environment\n\n")
+      )
+    }
+    return(invisible())
+  } else {
+    list_of_datasets <- list()
+    for (i in seq_len(nrow(children))) {
+      dataset <- get_eurostat(children$code[i], cache = TRUE)
+      list_of_datasets[[i]] <- dataset
+      # names(list_of_datasets[i]) <- children$code[i]
+      message(
+        stringr::str_glue(
+          "Dataset {i} / {nrow(children)} assigned to a list\n\n")
+      )
+    }
+    names(list_of_datasets) <- children[["code"]]
+    return(list_of_datasets)
   }
 }

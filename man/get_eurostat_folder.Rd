@@ -4,27 +4,29 @@
 \alias{get_eurostat_folder}
 \title{Get all datasets in a folder}
 \usage{
-get_eurostat_folder(code, limit = 3)
+get_eurostat_folder(code, env = .EurostatEnv)
 }
 \arguments{
-\item{code}{Eurostat TOC item code (folder, dataset, table)}
+\item{code}{Folder code from Eurostat Table of Contents.}
 
-\item{limit}{User assigned limit on downloads. Affects the limit after
-which the user is prompted if they wish to proceed with downloading datasets.}
+\item{env}{Name of the environment where downloaded datasets are assigned.
+Default is .EurostatEnv. If NULL, datasets are returned as a list object.}
 }
 \description{
 Loops over all files in a Eurostat database folder, downloads the data and
 assigns the datasets to environment.
 }
 \details{
-The datasets are assigned into Global Environment using dataset codes as
-object names. The datasets are downloaded from SDMX API as TSV files,
+The datasets are assigned into .EurostatEnv by default, using dataset codes
+as object names. The datasets are downloaded from SDMX API as TSV files,
 meaning that they are returned without filtering. No filters can be
 provided using this function.
 
 Please do not attempt to download too many datasets or the whole database
-at once. The function is designed to be slightly annoying to discourage
-heavy use. The limit is set to 10.
+at once. The number of datasets that can be downloaded at once is hardcoded
+to 20. The function also asks the user for confirmation if the number of
+datasets in a folder is more than 10. This is by design to discourage
+straining Eurostat API.
 }
 \section{Data source: Eurostat Table of Contents}{
 The Eurostat Table of Contents (TOC) is downloaded from
