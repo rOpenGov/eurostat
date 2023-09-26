@@ -21,7 +21,7 @@ bibentry("Article",
   url = "https://doi.org/10.32614/RJ-2017-019",
   textVersion =
     paste("Lahti L., Huovari J., Kainu M., and Biecek P. (2017).",
-      "Retrieval and analysis of Eurostat open data with the eurostat package. R Journal 9(1), pp. 385-392.",
+      "Retrieval and analysis of Eurostat open data with the eurostat package. The R Journal 9(1), pp. 385-392.",
       "doi: 10.32614/RJ-2017-019",
       sep = " "
     )

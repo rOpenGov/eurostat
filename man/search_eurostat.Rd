@@ -94,8 +94,8 @@ See \code{citation("eurostat")}:
 \if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
 
   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
-  analysis of Eurostat open data with the eurostat package. R Journal
-  9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
+  analysis of Eurostat open data with the eurostat package. The R
+  Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
