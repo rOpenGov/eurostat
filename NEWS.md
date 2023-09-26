@@ -9,7 +9,7 @@
 
 ## Major updates
 
-* Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. A list of queries and cached item hashes is stored in a cache_list.json file in cache folder. This can be viewed with a new function: `list_cache_items()`
+* Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. A list of queries and cached item hashes is stored in a cache_list.json file in cache folder. This can be viewed with a new function: `list_eurostat_cache_items()`
 * Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces in the style of `base::make.names()`, e.g. turning `last update of data` to `last.update.of.data`
 * `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
 * `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
