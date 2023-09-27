@@ -1,7 +1,7 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.0.0.9003
+Version: 4.0.0.9004
 Date: 2023-08-15
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
@@ -38,7 +38,7 @@ Imports:
     curl,
     digest,
     dplyr,
-    httr (>= 1.4.0),
+    httr2 (>= 0.2.3),
     ISOweek,
     jsonlite,
     lubridate,

@@ -69,7 +69,8 @@
 #'   unit = "CLV_I10"
 #' ))
 #' }
-#' @importFrom httr http_error status_code content RETRY http_type
+#' @importFrom httr2 request req_user_agent req_retry resp_is_error 
+#' @importFrom httr2 resp_body_json resp_content_type
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_glue
@@ -112,28 +113,34 @@ get_eurostat_json <- function(id,
   # set user agent with version
   # ua <- httr::user_agent(paste0("eurostat_",
   # packageDescription("eurostat", fields = "Version")))
-  ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
+  # ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
+  
+  # req <- httr2::request(url)
+  resp <- httr2::request(url) %>% 
+    httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
+    # httr2::req_perform()
+    httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
+    httr2::req_perform()
 
   # RETRY GET 3 times
-  resp <- httr::RETRY(verb = "GET",
-                      url = url,
-                      times = 3,
-                      terminate_on = c(404),
-                      ua)
+  # resp <- httr::RETRY(verb = "GET",
+  #                     url = url,
+  #                     times = 3,
+  #                     terminate_on = c(404),
+  #                     ua)
 
   # Source: httr vignette "Best practices for API packages" [httr_vignette]
-  if (httr::http_type(resp) != "application/json") {
+  if (httr2::resp_content_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
 
   # parse JSON data into R object (as per [httr_vignette])
   # assume that content encoding is utf8
-  result <- jsonlite::fromJSON(txt = httr::content(x = resp,
-                                                   as = "text",
-                                                   encoding = "utf8"),
-                               simplifyVector = TRUE)
+  result <- httr2::resp_body_json(
+      resp = resp,
+      simplifyVector = TRUE)
 
-  if (httr::http_error(resp)) {
+  if (httr2::resp_is_error(resp)) {
 
     # These objects are only needed if there is an error
     json_data_frame <- as.data.frame(result)
@@ -224,7 +231,7 @@ get_eurostat_json <- function(id,
 #' @title Internal function to build json url
 #' @description Internal function to build json url
 #' @importFrom utils hasName
-#' @importFrom httr parse_url build_url
+#' @importFrom httr2 url_parse url_build
 #' @noRd
 #' @keywords internal utilities
 eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
@@ -248,7 +255,7 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
   datasetCode <- id
 
   # Parse host_url and add relevant information in the standard list
-  url_list <- httr::parse_url(host_url)
+  url_list <- httr2::url_parse(host_url)
   # Paste "statistics/1.0/data/{id}" at the end of the fixed part of the URL
   url_list$path <- paste0(url_list$path,
                           service,
@@ -257,7 +264,7 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
                           datasetCode)
   url_list$query <- filters2
 
-  url <- httr::build_url(url_list)
+  url <- httr2::url_build(url_list)
   url
 }
 

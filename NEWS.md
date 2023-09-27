@@ -1,3 +1,9 @@
+# eurostat 4.0.0.9004
+
+## Major updates
+
+* switch from `httr` package to `httr2`
+
 # eurostat 4.0.0.9003
 
 ## New features
