@@ -6,7 +6,9 @@
 \alias{eurostat}
 \title{R Tools for Eurostat open data}
 \description{
-Brief summary of the eurostat package
+Tools to download data from the Eurostat database
+\url{https://ec.europa.eu/eurostat} together with search and manipulation
+utilities.
 }
 \details{
 \tabular{ll}{
@@ -18,10 +20,297 @@ Brief summary of the eurostat package
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr
 }
-
-
-R Tools for Eurostat Open Data
 }
+\section{Eurostat}{
+Eurostat website: \url{https://ec.europa.eu/eurostat}
+Eurostat database: \url{https://ec.europa.eu/eurostat/web/main/data/database}
+
+Information about the data update schedule from Eurostat:
+"Eurostat datasets are updated twice a day at 11:00 and 23:00 CET, if newer
+data is available or for structural changes, for example for the
+dimensions in the dataset.
+
+The Eurostat database always contains the latest version of the datasets,
+meaning that there is no versioning or documentation of past versions of
+the data."
+}
+
+\section{Data source: Eurostat SDMX 2.1 Dissemination API}{
+Data is downloaded from Eurostat SDMX 2.1 API endpoint
+as compressed TSV files that are transformed into tabular format.
+See Eurostat documentation for more information:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query}
+
+The new dissemination API replaces the old bulk download facility that was
+used by Eurostat before October 2023 and by the eurostat R package versions
+before 4.0.0.
+See Eurostat documentation about the transition from Bulk Download to API
+for more information about the differences between the old bulk download
+facility and the data provided by the new API connection:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}
+
+See especially the document Migrating_to_API_TSV.pdf that describes the
+changes in TSV file format in new applications.
+
+For more information about SDMX 2.1, see SDMX standards: Section 7:
+Guidelines for the use of web services, Version 2.1:
+\url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
+}
+
+\section{Disclaimer: Availability of filtering functionalities}{
+Currently it only possible to download filtered data through API Statistics
+(JSON API) when using \code{eurostat} package, although technically filtering
+datasets downloaded through the SDMX Dissemination API is also supported by
+Eurostat. We may support this feature in the future. In the meantime, if you
+are interested in filtering Dissemination API data queries manually, please
+consult the following Eurostat documentation:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+}
+
+\section{Data source: Eurostat API Statistics (JSON API)}{
+Data is downloaded from Eurostat API Statistics. See Eurostat documentation
+for more information about data queries in API Statistics
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
+
+This replaces the old JSON Web Services that was used by Eurostat before
+February 2023 and by the eurostat R package versions before 3.7.13.
+See Eurostat documentation about the migration from JSON web service to API
+Statistics for more information about the differences between the old and
+the new service:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+
+For easily viewing which filtering options are available -  in addition to
+the default ones, time and language - Eurostat Web services Query builder
+tool may be useful:
+\url{https://ec.europa.eu/eurostat/web/query-builder}
+}
+
+\section{Filtering datasets}{
+When using Eurostat API Statistics (JSON API), datasets can be filtered
+before they are downloaded and saved in local memory. The general format
+for filter parameters is \verb{<DIMENSION_CODE>=<VALUE>}.
+
+Filter parameters are optional but the used dimension codes must be present
+in the data product that is being queried. Dimension codes can
+vary between different data products so it may be useful to examine new
+datasets in Eurostat data browser beforehand. However, most if not all
+Eurostat datasets concern European countries and contain information that
+was gathered at some point in time, so \code{geo} and \code{time} dimension codes
+can usually be used.
+
+\verb{<DIMENSION_CODE>} and \verb{<VALUE>} are case-insensitive and they can be written
+in lowercase or uppercase in the query.
+
+Parameters are passed onto the \code{eurostat} package functions \code{\link[=get_eurostat]{get_eurostat()}}
+and \code{\link[=get_eurostat_json]{get_eurostat_json()}} as a list item. If an individual item contains
+multiple items, as it often can be in the case of \code{geo} parameters and
+other optional items, they must be in the form of a vector: \code{c("FI", "SE")}.
+For examples on how to use these parameters, see function examples below.
+\subsection{Time parameters}{
+
+\code{time} and \code{time_period} address the same \code{TIME_PERIOD} dimension in the
+dataset and can be used interchangeably. In the Eurostat documentation
+it is stated that "Using more than one Time parameter in the same query
+is not accepted", but practice has shown that actually Eurostat API allows
+multiple \code{time} parameters in the same query. This makes it possible to
+use R colon operator when writing queries, so \code{time = c(2015:2018)}
+translates to \verb{&time=2015&time=2016&time=2017&time=2018}.
+
+The only exception
+to this is when the queried dataset contains e.g. quarterly data and
+\code{TIME_PERIOD} is saved as \code{2015-Q1}, \code{2015-Q2} etc. Then it is possible
+to use \code{time=2015-Q1&time=2015-Q2} style in the query URL, but this makes it
+unfeasible to use the colon operator and requires a lot of manual typing.
+
+Because of this, it is useful to know about other time parameters as well:
+\itemize{
+\item \code{untilTimePeriod}: return dataset items from the oldest record up until the
+set time, for example "all data until 2000": \code{untilTimePeriod = 2000}
+\item \code{sinceTimePeriod}: return dataset items starting from set time, for example
+"all datastarting from 2008": \code{sinceTimePeriod = 2008}
+\item \code{lastTimePeriod}: starting from the most recent time period, how many
+preceding time periods should be returned? For example 10 most
+recent observations: \code{lastTimePeriod = 10}
+}
+
+Using both \code{untilTimePeriod} and \code{sinceTimePeriod} parameters in the same
+query is allowed, making the usage of the R colon operator unnecessary.
+In the case of quarterly data, using \code{untilTimePeriod} and \code{sinceTimePeriod}
+parameters also works, as opposed to the colon operator, so it is generally
+safer to use them as well.
+}
+
+\subsection{Other dimensions}{
+
+In \code{\link[=get_eurostat_json]{get_eurostat_json()}} examples \code{nama_10_gdp} dataset is filtered with
+two additional filter parameters:
+\itemize{
+\item \code{na_item = "B1GQ"}
+\item \code{unit = "CLV_I10"}
+}
+
+Filters like these are most likely unique to the \code{nama_10_gdp} dataset
+(or other datasets within the same domain) and should
+not be used with others dataset without user discretion.
+By using \code{\link[=label_eurostat]{label_eurostat()}} we know that \code{"B1GQ"} stands for
+"Gross domestic product at market prices" and
+\code{"CLV_I10"} means "Chain linked volumes, index 2010=100".
+
+Different dimension codes can be translated to a natural language by using
+the \code{\link[=get_eurostat_dic]{get_eurostat_dic()}} function, which returns labels for individual
+dimension items such as \code{na_item} and \code{unit}, as opposed to
+\code{\link[=label_eurostat]{label_eurostat()}} which does it for whole datasets. For example, the
+parameter \code{na_item} stands for "National accounts indicator (ESA 2010)" and
+\code{unit} stands for "Unit of measure".
+}
+
+\subsection{Language}{
+
+All datasets have metadata available in English, French and German. If no
+parameter is given, the labels are returned in English.
+
+Example:
+\itemize{
+\item \code{lang = "fr"}
+}
+}
+
+\subsection{More information}{
+
+For more information about data filtering see Eurostat documentation
+on API Statistics:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+}
+}
+
+\section{Data source: Eurostat Table of Contents}{
+The Eurostat Table of Contents (TOC) is downloaded from
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}
+(default) or from French or German language variants:
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=fr}
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de}
+
+See Eurostat documentation on TOC items:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+}
+
+\section{Data source: GISCO - General Copyright}{
+"Eurostat's general copyright notice and licence policy is applicable and
+can be consulted here:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+Please also be aware of the European Commission's general conditions:
+\url{https://commission.europa.eu/legal-notice_en}
+
+Moreover, there are specific provisions applicable to some of the following
+datasets available for downloading. The download and usage of these data
+is subject to their acceptance:
+\itemize{
+\item Administrative Units / Statistical Units
+\item Population distribution / Demography
+\item Transport Networks
+\item Land Cover
+\item Elevation (DEM)"
+}
+
+Of the abovementioned datasets, Administrative Units / Statistical Units
+is applicable if the user wants to draw maps with borders provided by
+GISCO / EuroGeographics.
+}
+
+\section{Data source: GISCO - Administrative Units / Statistical Units}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the GISCO website:
+\href{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}{GISCO: Geographical information and maps - Administrative units/statistical units}
+
+"In addition to the \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{general copyright and licence policy} applicable to the whole Eurostat website, the following
+specific provisions apply to the datasets you are downloading. The download
+and usage of these data is subject to the acceptance of the following
+clauses:
+\enumerate{
+\item The Commission agrees to grant the non-exclusive and not transferable
+right to use and process the Eurostat/GISCO geographical data downloaded
+from this page (the "data").
+\item The permission to use the data is granted on condition that:
+\enumerate{
+\item the data will not be used for commercial purposes;
+\item the source will be acknowledged. A copyright notice, as specified
+below, will have to be visible on any printed or electronic publication
+using the data downloaded from this page."
+}
+}
+\subsection{Copyright notice}{
+
+When data downloaded from this page is used in any printed or electronic
+publication, in addition to any other provisions applicable to the whole
+Eurostat website, data source will have to be acknowledged in the legend of
+the map and in the introductory page of the publication with the following
+copyright notice:
+
+EN: © EuroGeographics for the administrative boundaries
+
+FR: © EuroGeographics pour les limites administratives
+
+DE: © EuroGeographics bezüglich der Verwaltungsgrenzen
+
+For publications in languages other than English, French or German, the
+translation of the copyright notice in the language of the publication shall
+be used.
+
+If you intend to use the data commercially, please contact EuroGeographics
+for information regarding their licence agreements."
+}
+}
+
+\section{Eurostat: Copyright notice and free re-use of data}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the eurostat website:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+"(c) European Union, 1995 - today
+
+Eurostat has a policy of encouraging free re-use of its data, both for
+non-commercial and commercial purposes. All statistical data, metadata,
+content of web pages or other dissemination tools, official publications
+and other documents published on its website, with the exceptions listed
+below, can be reused without any payment or written licence provided that:
+\itemize{
+\item the source is indicated as Eurostat;
+\item when re-use involves modifications to the data or text, this must be
+stated clearly to the end user of the information."
+}
+
+For exceptions to the abovementioned principles see
+\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+}
+
+\section{Citing Eurostat data}{
+For citing datasets, use \code{\link[=get_bibentry]{get_bibentry()}} to build a bibliography that
+is suitable for your reference manager of choice.
+
+When using Eurostat data in other contexts than academic publications that
+in-text citations or footnotes/endnotes, the following guidelines may be
+helpful:
+\itemize{
+\item The origin of the data should always be mentioned as "Source: Eurostat".
+\item The online dataset codes(s) should also be provided in order to ensure
+transparency and facilitate access to the Eurostat data and related
+methodological information. For example:
+"Source: Eurostat (online data code: namq_10_gdp)"
+\item Online publications (e.g. web pages, PDF) should include a clickable
+link to the dataset using the bookmark functionality available in the
+Eurostat data browser.
+}
+
+It should be avoided to associate different entities (e.g. Eurostat,
+National Statistical Offices, other data providers) to the same dataset or
+indicator without specifying the role of each of them in the treatment of
+data.
+
+See also section "Eurostat: Copyright notice and free re-use of data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
+}
+
 \section{regions functions}{
 
 For working with sub-national statistics the basic functions of the
@@ -34,28 +323,24 @@ library(eurostat)
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
-# 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
-# 
-# A BibTeX entry for LaTeX users is
-# 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+
+  Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+  analysis of Eurostat open data with the eurostat package. The R
+  Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
+
+  Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+  and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+  [Computer software]. R package version 4.0.0.9003.
+  https://github.com/rOpenGov/eurostat
+
+To see these entries in BibTeX format, use 'print(<citation>,
+bibtex=TRUE)', 'toBibtex(.)', or set
+'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
+
+When citing data downloaded from Eurostat, see section "Citing Eurostat data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
 \code{help("regions")}, \url{https://regions.dataobservatory.eu/}

@@ -16,30 +16,39 @@ tidy_eurostat(
 \item{dat}{a data_frame from \code{\link[=get_eurostat_raw]{get_eurostat_raw()}}.}
 
 \item{time_format}{a string giving a type of the conversion of the time column from the
-eurostat format. A "date" (default) converts to a \code{\link[=Date]{Date()}} class
-with the date being the first day of the period. A "date_last" converts
-to a \code{\link[=Date]{Date()}} class object with the date being the last date of the period.
-Argument "num" converts the date into a numeric and argument "raw"
-does not do any conversions. See \code{\link[=eurotime2date]{eurotime2date()}} and \code{\link[=eurotime2num]{eurotime2num()}}
-for more information.}
+eurostat format. The default argument "\code{date}" converts to a \code{\link[=Date]{Date()}} class
+with the date being the first day of the period. A "\code{date_last}" argument
+converts the dataset date to a \code{\link[=Date]{Date()}} class object with the difference
+that the exact date is the last date of the period. Period can be year,
+semester (half year), quarter, month, or week (See \code{\link[=eurotime2date]{eurotime2date()}} for
+more information).
+Argument "\code{num}" converts the date into a numeric (integer) meaning that
+the first day of the year 2000 is close to 2000.01 and the last day of the
+year is close to 2000.99 (see \code{\link[=eurotime2num]{eurotime2num()}} for more information).
+Using the argument "\code{raw}" preserves the dates as they were in the original
+Eurostat data.}
 
-\item{select_time}{a single character symbol for a time frequency, a vector
-containing multiple time frequencies, or \code{NULL} (default).
-Available options are "A" (annual), "Q" (quarterly), "S"
-(semester, 1st or 2nd half of the year), "M" (monthly) and "D" (daily).
-It is possible to select multiple time frequencies and return them in
-the same tibble.}
+\item{select_time}{a character symbol for a time frequency or \code{NULL},
+which is used by default as most datasets have just one time
+frequency. For datasets with multiple time
+frequencies, select one or more of the desired frequencies with:
+"Y" (or "A") = annual, "S" = semi-annual / semester, "Q" = quarterly,
+"M" = monthly, "W" = weekly. For all frequencies in same data
+frame \code{time_format = "raw"} should be used.}
 
-\item{stringsAsFactors}{if \code{TRUE} (the default) variables are
-converted to factors in original Eurostat order. If \code{FALSE}
-they are returned as strings.}
+\item{stringsAsFactors}{if \code{TRUE} (the default) variables are converted to factors in the original
+Eurostat order. If \code{FALSE} they are returned as strings.}
 
 \item{keepFlags}{a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
-can be removed. Default is \code{FALSE}}
+can be removed. Default is \code{FALSE}. For flag values see:
+\url{https://ec.europa.eu/eurostat/data/database/information}.
+Also possible non-real zero "0n" is indicated in flags column.
+Flags are not available for eurostat API, so \code{keepFlags}
+can not be used with a \code{filters}.}
 }
 \value{
-tibble in the molten format with the last column 'values'.
+tibble in the melted format with the last column 'values'.
 }
 \description{
 Transform raw Eurostat data table downloaded from the
@@ -56,7 +65,26 @@ get_eurostat("AVIA_GOR_ME",
 
 }
 \references{
-See citation("eurostat").
+See \code{citation("eurostat")}:
+
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+
+  Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+  analysis of Eurostat open data with the eurostat package. The R
+  Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
+
+  Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+  and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+  [Computer software]. R package version 4.0.0.9003.
+  https://github.com/rOpenGov/eurostat
+
+To see these entries in BibTeX format, use 'print(<citation>,
+bibtex=TRUE)', 'toBibtex(.)', or set
+'options(citation.bibtex.max=999)'.
+}\if{html}{\out{</div>}}
+
+When citing data downloaded from Eurostat, see section "Citing Eurostat data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
 \code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=convert_time_col]{convert_time_col()}}, \code{\link[=eurotime2date]{eurotime2date()}}

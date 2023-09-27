@@ -1,8 +1,38 @@
 # eurostat 4.0.0.9003
 
+## New features
+
+* `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()`
+* New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 20 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`.
+* EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental features that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang`
+* Related to updates to `get_eurostat_toc()`, `search_eurostat()` now supports searching from French and German TOC-files as well.
+
 ## Major updates
 
-* First attempt at rewriting caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. Much work left to do.
+* Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. A list of queries and cached item hashes is stored in a cache_list.json file in cache folder. This can be viewed with a new function: `list_eurostat_cache_items()`
+* Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces in the style of `base::make.names()`, e.g. turning `last update of data` to `last.update.of.data`
+* `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
+* `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
+* `label_eurostat_tables()` has been rewritten to use the new SDMX API instead of `table_dic.dic` file in Eurostat Bulk Download Listing
+
+## Minor updates
+
+* Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle)
+* Documentation more explicitly explains how to use filter parameters in `get_eurostat()` and `get_eurostat_json()` functions. The documentation now warns users about potential problems caused by `time` / `TIME_PERIOD` parameters when used to query datasets that contain quarterly data (issue #260)
+* As continuation of the update done in 3.7.14, started to use the new URL also for dictionary files in `get_eurostat_dic()` and `label_eurostat()` functions.
+* `get_bibentry()` now outputs "Accessed YYYY-MM-DD" and "dataset last updated YYYY-MM-DD" in note field as otherwise it would be sporadically printed or not at all printed from `urldate` field.
+* New internal function `check_lang()`
+
+## Deprecated and defunct
+
+* `grepEurostatTOC()` is completely marked as defunct and is enroute to being removed from the package as `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them
+* `label_eurostat_vars()` has been marked as deprecated in favour of a new (temporary) function `label_eurostat_vars2()` which uses the new SDMX API to retrieve names for dataset columns. The old function will be completely removed after October 2023 when Eurostat Bulk Download Listing website is retired and `label_eurostat_vars2` will be renamed to `label_eurostat_vars()`. Function evolution is subject to ongoing Eurostat API developments.
+
+## Bug fixes
+
+* `get_bibentry()` returns correct codes for titles and warns the user if some / all of the requested codes were not found in the TOC. 
+* `get_bibentry()` uses the date field with the internal BibEntry format that can be easily translated to other formats: bibtex, bibentry
+* `get_bibentry()` now outputs dataset codes in titles correctly so that `bibtex` and `biblatex` entries can be copypasted into bibliographies without adding escape characters manually.
 
 # eurostat 4.0.0.9002
 

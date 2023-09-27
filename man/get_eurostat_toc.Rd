@@ -4,63 +4,106 @@
 \alias{get_eurostat_toc}
 \title{Download Table of Contents of Eurostat Data Sets}
 \usage{
-get_eurostat_toc()
+get_eurostat_toc(lang = "en")
+}
+\arguments{
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 }
 \value{
-A tibble with eight columns:
-\itemize{
-\item title: The name of dataset of theme.
-\item code: The codename of dataset of theme, will be used by the
-\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions.
-\item type: Is it a dataset, folder or table.
-\item last.update.of.data, last.table.structure.change,
-data.start, data.end: Dates.
+A tibble with nine columns:
+\describe{
+\item{title}{Dataset title in English (default)}
+\item{code}{ Each item (dataset, table and folder) of the TOC has a
+unique code which allows it to be identified in the API. Used in the
+\code{\link[=get_eurostat]{get_eurostat()}} and \code{\link[=get_eurostat_raw]{get_eurostat_raw()}} functions to retrieve datasets.}
+\item{type}{dataset, folder or table}
+\item{last.update.of.data}{Date, indicates the last time the
+dataset/table was updated (format \code{DD.MM.YYYY} or \verb{\%d.\%m.\%Y})}
+\item{last.table.structure.change}{Date, indicates the last time the
+dataset/table structure was modified (format \code{DD.MM.YYYY} or \verb{\%d.\%m.\%Y})}
+\item{data.start}{Date of the oldest value included in the dataset
+(if available) (format usually \code{YYYY} or \verb{\%Y} but can also be \code{YYYY-MM},
+\code{YYYY-MM-DD}, \code{YYYY-SN}, \code{YYYY-QN} etc.)}
+\item{data.end}{Date of the most recent value included in the dataset
+(if available) (format usually \code{YYYY} or \verb{\%Y} but can also be \code{YYYY-MM},
+\code{YYYY-MM-DD}, \code{YYYY-SN}, \code{YYYY-QN} etc.)}
+\item{values}{Number of actual values included in the dataset}
+\item{hierarchy}{Hierarchy of the data navigation tree, represented
+in the original txt file by a 4-spaces indentation prefix in the title}
 }
 }
 \description{
 Download table of contents (TOC) of eurostat datasets.
 }
 \details{
-The TOC is downloaded from
-\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}.
-The values in column 'code' should be used to download a selected dataset.
+In the downloaded Eurostat Table of Contents the 'code' column
+values are refer to the function 'id' that is used as an argument in certain
+functions when downloading datasets.
 }
+\section{Data source: Eurostat Table of Contents}{
+The Eurostat Table of Contents (TOC) is downloaded from
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=en}
+(default) or from French or German language variants:
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=fr}
+\url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de}
+
+See Eurostat documentation on TOC items:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 tmp <- get_eurostat_toc()
 head(tmp)
+
+# Convert columns containing dates as character into Date class
+# Last update of data
+tmp[[4]] <- as.Date(tmp[[4]], format = c("\%d.\%m.\%Y"))
+# Last table structure change
+tmp[[5]] <- as.Date(tmp[[5]], format = c("\%d.\%m.\%Y"))
+# Data start, contains several formats (date, week, month quarter, semester)
+# Unfortunately semesters are not directly supported so they need to be
+# changed into quarters
+tmp$data.start <- gsub("S2", "Q3", tmp$data.start)
+tmp$data.start <- lubridate::as_date(
+ x = tmp$data.start, 
+ format = c("\%Y", "\%Y-Q\%q", "\%Y-W\%W", "\%Y-S\%q", "\%Y-\%m-\%d", "\%Y-\%m")
+ )
+# Data end, same as data start
+tmp$data.end <- gsub("S2", "Q3", tmp$data.end)
+tmp$data.end <- lubridate::as_date(
+ x = tmp$data.end, 
+ format = c("\%Y", "\%Y-Q\%q", "\%Y-W\%W", "\%Y-S\%q", "\%Y-\%m-\%d", "\%Y-\%m")
+ )
 }
 \dontshow{\}) # examplesIf}
 }
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
-# 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
-# 
-# A BibTeX entry for LaTeX users is
-# 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+
+  Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+  analysis of Eurostat open data with the eurostat package. The R
+  Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
+
+  Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+  and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+  [Computer software]. R package version 4.0.0.9003.
+  https://github.com/rOpenGov/eurostat
+
+To see these entries in BibTeX format, use 'print(<citation>,
+bibtex=TRUE)', 'toBibtex(.)', or set
+'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
+
+When citing data downloaded from Eurostat, see section "Citing Eurostat data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
-\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}.
+\code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}

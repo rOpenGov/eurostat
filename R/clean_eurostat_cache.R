@@ -21,7 +21,7 @@ clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE) {
 
   # Config
   # nocov start
-  if (isTRUE(config)) {
+  if (config) {
     config_dir <- rappdirs::user_config_dir("eurostat", "R")
 
     if (dir.exists(config_dir)) {
@@ -36,10 +36,12 @@ clean_eurostat_cache <- function(cache_dir = NULL, config = FALSE) {
   cache_dir <- eur_helper_cachedir(cache_dir)
 
   if (!file.exists(cache_dir)) {
+    # nocov start
     stop(
       "The cache folder ", cache_dir,
       " does not exist"
     )
+    # nocov end
   }
 
   files <- list.files(

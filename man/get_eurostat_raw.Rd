@@ -7,8 +7,9 @@
 get_eurostat_raw(id)
 }
 \arguments{
-\item{id}{A code name for the dataset of interested. See the table of
-contents of eurostat datasets for more details.}
+\item{id}{A unique identifier / code for the dataset of interest. If code is not
+known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
+of contents.}
 }
 \value{
 A dataset in tibble format. First column contains comma
@@ -21,11 +22,87 @@ flags for data.
 Download data from the eurostat database through the new
 dissemination API.
 }
-\details{
-Data is downloaded from
-\url{https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing}
-and transformed into tabular format.
+\section{Data source: Eurostat SDMX 2.1 Dissemination API}{
+Data is downloaded from Eurostat SDMX 2.1 API endpoint
+as compressed TSV files that are transformed into tabular format.
+See Eurostat documentation for more information:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query}
+
+The new dissemination API replaces the old bulk download facility that was
+used by Eurostat before October 2023 and by the eurostat R package versions
+before 4.0.0.
+See Eurostat documentation about the transition from Bulk Download to API
+for more information about the differences between the old bulk download
+facility and the data provided by the new API connection:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}
+
+See especially the document Migrating_to_API_TSV.pdf that describes the
+changes in TSV file format in new applications.
+
+For more information about SDMX 2.1, see SDMX standards: Section 7:
+Guidelines for the use of web services, Version 2.1:
+\url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
 }
+
+\section{Eurostat: Copyright notice and free re-use of data}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the eurostat website:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+"(c) European Union, 1995 - today
+
+Eurostat has a policy of encouraging free re-use of its data, both for
+non-commercial and commercial purposes. All statistical data, metadata,
+content of web pages or other dissemination tools, official publications
+and other documents published on its website, with the exceptions listed
+below, can be reused without any payment or written licence provided that:
+\itemize{
+\item the source is indicated as Eurostat;
+\item when re-use involves modifications to the data or text, this must be
+stated clearly to the end user of the information."
+}
+
+For exceptions to the abovementioned principles see
+\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+}
+
+\section{Citing Eurostat data}{
+For citing datasets, use \code{\link[=get_bibentry]{get_bibentry()}} to build a bibliography that
+is suitable for your reference manager of choice.
+
+When using Eurostat data in other contexts than academic publications that
+in-text citations or footnotes/endnotes, the following guidelines may be
+helpful:
+\itemize{
+\item The origin of the data should always be mentioned as "Source: Eurostat".
+\item The online dataset codes(s) should also be provided in order to ensure
+transparency and facilitate access to the Eurostat data and related
+methodological information. For example:
+"Source: Eurostat (online data code: namq_10_gdp)"
+\item Online publications (e.g. web pages, PDF) should include a clickable
+link to the dataset using the bookmark functionality available in the
+Eurostat data browser.
+}
+
+It should be avoided to associate different entities (e.g. Eurostat,
+National Statistical Offices, other data providers) to the same dataset or
+indicator without specifying the role of each of them in the treatment of
+data.
+
+See also section "Eurostat: Copyright notice and free re-use of data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
+}
+
+\section{Disclaimer: Availability of filtering functionalities}{
+Currently it only possible to download filtered data through API Statistics
+(JSON API) when using \code{eurostat} package, although technically filtering
+datasets downloaded through the SDMX Dissemination API is also supported by
+Eurostat. We may support this feature in the future. In the meantime, if you
+are interested in filtering Dissemination API data queries manually, please
+consult the following Eurostat documentation:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
@@ -38,29 +115,22 @@ See \code{citation("eurostat")}:
 
 \if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+#   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+#   analysis of Eurostat open data with the eurostat package. The R
+#   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 # 
-# A BibTeX entry for LaTeX users is
+#   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+#   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+#   [Computer software]. R package version 4.0.0.9003.
+#   https://github.com/rOpenGov/eurostat
 # 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+# To see these entries in BibTeX format, use 'print(<citation>,
+# bibtex=TRUE)', 'toBibtex(.)', or set
+# 'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
 }
 \seealso{
-\code{\link[=get_eurostat]{get_eurostat()}}.
+\code{\link[=get_eurostat]{get_eurostat()}}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen

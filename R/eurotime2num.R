@@ -39,12 +39,13 @@ eurotime2num <- function(x) {
   }
 
   # check input type
-  if (!(tcode %in% c("A", "S", "Q", "M", "W", "D"))) {
+  if (!(tcode %in% c("A", "S", "Q", "M", "W"))) {
 
     # for daily
     if (tcode == "D") {
       warning("Time format is daily data. No numeric conversion was made.")
     } else {
+      # nocov start
       warning(
         paste0(
           "Unknown time code, ", tcode, ". No numeric conversion was made.\n",
@@ -52,6 +53,7 @@ eurotime2num <- function(x) {
           "https://github.com/rOpenGov/eurostat/issues."
         )
       )
+      # nocov end
     }
 
     return(x)

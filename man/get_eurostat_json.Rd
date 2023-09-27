@@ -8,30 +8,30 @@ get_eurostat_json(
   id,
   filters = NULL,
   type = "code",
-  lang = "EN",
+  lang = "en",
   stringsAsFactors = FALSE,
   ...
 )
 }
 \arguments{
-\item{id}{A code name for the dataset of interested. See the table of
-contents of eurostat datasets for more details.}
+\item{id}{A unique identifier / code for the dataset of interest. If code is not
+known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
+of contents.}
 
 \item{filters}{A named list of filters. Names of list objects are Eurostat
 variable codes and values are vectors of observation codes. If \code{NULL}
-(default) the whole dataset is returned. See details for more on filters
-and limitations per query.}
+(default) the whole dataset is returned. See details for more information
+on filters and limitations per query.}
 
 \item{type}{A type of variables, "\code{code}" (default), "\code{label}" or "\code{both}".
 The parameter "\code{both}" will return a data_frame with named vectors,
 labels as values and codes as names.}
 
-\item{lang}{A language used for metadata. Default is \code{EN}, other options are
-\code{FR} and \code{DE}.}
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 
-\item{stringsAsFactors}{if \code{FALSE} (the default) the variables are
-returned as characters. If \code{TRUE} the variables are converted to
-factors in original Eurostat order.}
+\item{stringsAsFactors}{if \code{TRUE} (the default) variables are converted to factors in the original
+Eurostat order. If \code{FALSE} they are returned as strings.}
 
 \item{...}{
   Arguments passed on to \code{\link[httr:GET]{httr::GET}}
@@ -67,7 +67,8 @@ Queries are limited to 50 sub-indicators at a time. A time can be
 filtered with fixed "time" filter or with "sinceTimePeriod" and
 "lastTimePeriod" filters. A \code{sinceTimePeriod = 2000} returns
 observations from 2000 to a last available. A \code{lastTimePeriod = 10}
-returns a 10 last observations.
+returns a 10 last observations. See "Filtering datasets" section below
+for more detailed information about filters.
 
 To use a proxy to connect, a \code{\link[httr:use_proxy]{httr::use_proxy()}} can be
 passed to \code{\link[httr:GET]{httr::GET()}}. For example
@@ -86,6 +87,181 @@ that we have included in the dataset. What this means in practice is that
 the dataset contains error codes and their mappings that are not mentioned
 in the Eurostat website. We hope you never encounter them.
 }
+\section{Data source: Eurostat API Statistics (JSON API)}{
+Data is downloaded from Eurostat API Statistics. See Eurostat documentation
+for more information about data queries in API Statistics
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
+
+This replaces the old JSON Web Services that was used by Eurostat before
+February 2023 and by the eurostat R package versions before 3.7.13.
+See Eurostat documentation about the migration from JSON web service to API
+Statistics for more information about the differences between the old and
+the new service:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+
+For easily viewing which filtering options are available -  in addition to
+the default ones, time and language - Eurostat Web services Query builder
+tool may be useful:
+\url{https://ec.europa.eu/eurostat/web/query-builder}
+}
+
+\section{Filtering datasets}{
+When using Eurostat API Statistics (JSON API), datasets can be filtered
+before they are downloaded and saved in local memory. The general format
+for filter parameters is \verb{<DIMENSION_CODE>=<VALUE>}.
+
+Filter parameters are optional but the used dimension codes must be present
+in the data product that is being queried. Dimension codes can
+vary between different data products so it may be useful to examine new
+datasets in Eurostat data browser beforehand. However, most if not all
+Eurostat datasets concern European countries and contain information that
+was gathered at some point in time, so \code{geo} and \code{time} dimension codes
+can usually be used.
+
+\verb{<DIMENSION_CODE>} and \verb{<VALUE>} are case-insensitive and they can be written
+in lowercase or uppercase in the query.
+
+Parameters are passed onto the \code{eurostat} package functions \code{\link[=get_eurostat]{get_eurostat()}}
+and \code{\link[=get_eurostat_json]{get_eurostat_json()}} as a list item. If an individual item contains
+multiple items, as it often can be in the case of \code{geo} parameters and
+other optional items, they must be in the form of a vector: \code{c("FI", "SE")}.
+For examples on how to use these parameters, see function examples below.
+\subsection{Time parameters}{
+
+\code{time} and \code{time_period} address the same \code{TIME_PERIOD} dimension in the
+dataset and can be used interchangeably. In the Eurostat documentation
+it is stated that "Using more than one Time parameter in the same query
+is not accepted", but practice has shown that actually Eurostat API allows
+multiple \code{time} parameters in the same query. This makes it possible to
+use R colon operator when writing queries, so \code{time = c(2015:2018)}
+translates to \verb{&time=2015&time=2016&time=2017&time=2018}.
+
+The only exception
+to this is when the queried dataset contains e.g. quarterly data and
+\code{TIME_PERIOD} is saved as \code{2015-Q1}, \code{2015-Q2} etc. Then it is possible
+to use \code{time=2015-Q1&time=2015-Q2} style in the query URL, but this makes it
+unfeasible to use the colon operator and requires a lot of manual typing.
+
+Because of this, it is useful to know about other time parameters as well:
+\itemize{
+\item \code{untilTimePeriod}: return dataset items from the oldest record up until the
+set time, for example "all data until 2000": \code{untilTimePeriod = 2000}
+\item \code{sinceTimePeriod}: return dataset items starting from set time, for example
+"all datastarting from 2008": \code{sinceTimePeriod = 2008}
+\item \code{lastTimePeriod}: starting from the most recent time period, how many
+preceding time periods should be returned? For example 10 most
+recent observations: \code{lastTimePeriod = 10}
+}
+
+Using both \code{untilTimePeriod} and \code{sinceTimePeriod} parameters in the same
+query is allowed, making the usage of the R colon operator unnecessary.
+In the case of quarterly data, using \code{untilTimePeriod} and \code{sinceTimePeriod}
+parameters also works, as opposed to the colon operator, so it is generally
+safer to use them as well.
+}
+
+\subsection{Other dimensions}{
+
+In \code{\link[=get_eurostat_json]{get_eurostat_json()}} examples \code{nama_10_gdp} dataset is filtered with
+two additional filter parameters:
+\itemize{
+\item \code{na_item = "B1GQ"}
+\item \code{unit = "CLV_I10"}
+}
+
+Filters like these are most likely unique to the \code{nama_10_gdp} dataset
+(or other datasets within the same domain) and should
+not be used with others dataset without user discretion.
+By using \code{\link[=label_eurostat]{label_eurostat()}} we know that \code{"B1GQ"} stands for
+"Gross domestic product at market prices" and
+\code{"CLV_I10"} means "Chain linked volumes, index 2010=100".
+
+Different dimension codes can be translated to a natural language by using
+the \code{\link[=get_eurostat_dic]{get_eurostat_dic()}} function, which returns labels for individual
+dimension items such as \code{na_item} and \code{unit}, as opposed to
+\code{\link[=label_eurostat]{label_eurostat()}} which does it for whole datasets. For example, the
+parameter \code{na_item} stands for "National accounts indicator (ESA 2010)" and
+\code{unit} stands for "Unit of measure".
+}
+
+\subsection{Language}{
+
+All datasets have metadata available in English, French and German. If no
+parameter is given, the labels are returned in English.
+
+Example:
+\itemize{
+\item \code{lang = "fr"}
+}
+}
+
+\subsection{More information}{
+
+For more information about data filtering see Eurostat documentation
+on API Statistics:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+}
+}
+
+\section{Eurostat: Copyright notice and free re-use of data}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the eurostat website:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+"(c) European Union, 1995 - today
+
+Eurostat has a policy of encouraging free re-use of its data, both for
+non-commercial and commercial purposes. All statistical data, metadata,
+content of web pages or other dissemination tools, official publications
+and other documents published on its website, with the exceptions listed
+below, can be reused without any payment or written licence provided that:
+\itemize{
+\item the source is indicated as Eurostat;
+\item when re-use involves modifications to the data or text, this must be
+stated clearly to the end user of the information."
+}
+
+For exceptions to the abovementioned principles see
+\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+}
+
+\section{Citing Eurostat data}{
+For citing datasets, use \code{\link[=get_bibentry]{get_bibentry()}} to build a bibliography that
+is suitable for your reference manager of choice.
+
+When using Eurostat data in other contexts than academic publications that
+in-text citations or footnotes/endnotes, the following guidelines may be
+helpful:
+\itemize{
+\item The origin of the data should always be mentioned as "Source: Eurostat".
+\item The online dataset codes(s) should also be provided in order to ensure
+transparency and facilitate access to the Eurostat data and related
+methodological information. For example:
+"Source: Eurostat (online data code: namq_10_gdp)"
+\item Online publications (e.g. web pages, PDF) should include a clickable
+link to the dataset using the bookmark functionality available in the
+Eurostat data browser.
+}
+
+It should be avoided to associate different entities (e.g. Eurostat,
+National Statistical Offices, other data providers) to the same dataset or
+indicator without specifying the role of each of them in the treatment of
+data.
+
+See also section "Eurostat: Copyright notice and free re-use of data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
+}
+
+\section{Disclaimer: Availability of filtering functionalities}{
+Currently it only possible to download filtered data through API Statistics
+(JSON API) when using \code{eurostat} package, although technically filtering
+datasets downloaded through the SDMX Dissemination API is also supported by
+Eurostat. We may support this feature in the future. In the meantime, if you
+are interested in filtering Dissemination API data queries manually, please
+consult the following Eurostat documentation:
+\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+}
+
 \examples{
 \dontrun{
 # Generally speaking these queries would be done through get_eurostat
@@ -119,41 +295,27 @@ dd <- get_eurostat("nama_10_gdp",
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
-# 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
-# 
-# A BibTeX entry for LaTeX users is
-# 
-#   @Article\{,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+
+  Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+  analysis of Eurostat open data with the eurostat package. The R
+  Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
+
+  Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+  and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+  [Computer software]. R package version 4.0.0.9003.
+  https://github.com/rOpenGov/eurostat
+
+To see these entries in BibTeX format, use 'print(<citation>,
+bibtex=TRUE)', 'toBibtex(.)', or set
+'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
+
+When citing data downloaded from Eurostat, see section "Citing Eurostat data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
 \code{\link[httr:GET]{httr::GET()}}
-
-Eurostat Data Browser online help: API Statistics - data query:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
-
-Eurostat Data Browser online help: migrating from JSON web service to API
-Statistics:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
-
-SDMX standards: Section 7: Guidelines for the use of web services, Version 2.1:
-\url{https://sdmx.org/wp-content/uploads/SDMX_2-1_SECTION_7_WebServicesGuidelines.pdf}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
