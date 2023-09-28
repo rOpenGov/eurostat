@@ -10,6 +10,7 @@ get_eurostat_json(
   type = "code",
   lang = "en",
   stringsAsFactors = FALSE,
+  proxy = FALSE,
   ...
 )
 }
@@ -33,21 +34,16 @@ options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling dat
 \item{stringsAsFactors}{if \code{TRUE} (the default) variables are converted to factors in the original
 Eurostat order. If \code{FALSE} they are returned as strings.}
 
+\item{proxy}{Use proxy, TRUE or FALSE (default).}
+
 \item{...}{
-  Arguments passed on to \code{\link[httr:GET]{httr::GET}}
+  Arguments passed on to \code{\link[httr2:req_proxy]{httr2::req_proxy}}
   \describe{
-    \item{\code{url}}{the url of the page to retrieve}
-    \item{\code{config}}{Additional configuration settings such as http
-authentication (\code{\link[httr:authenticate]{authenticate()}}), additional headers
-(\code{\link[httr:add_headers]{add_headers()}}), cookies (\code{\link[httr:set_cookies]{set_cookies()}}) etc.
-See \code{\link[httr:config]{config()}} for full details and list of helpers.}
-    \item{\code{handle}}{The handle to use with this request. If not
-supplied, will be retrieved and reused from the \code{\link[httr:handle_pool]{handle_pool()}}
-based on the scheme, hostname and port of the url. By default \pkg{httr}
-requests to the same scheme/host/port combo. This substantially reduces
-connection time, and ensures that cookies are maintained over multiple
-requests to the same host. See \code{\link[httr:handle_pool]{handle_pool()}} for more
-details.}
+    \item{\code{req}}{A \link[httr2]{request}.}
+    \item{\code{url,port}}{Location of proxy.}
+    \item{\code{username,password}}{Login details for proxy, if needed.}
+    \item{\code{auth}}{Type of HTTP authentication to use. Should be one of the
+following: \code{basic}, digest, digest_ie, gssnegotiate, ntlm, any.}
   }}
 }
 \value{
@@ -70,9 +66,11 @@ observations from 2000 to a last available. A \code{lastTimePeriod = 10}
 returns a 10 last observations. See "Filtering datasets" section below
 for more detailed information about filters.
 
-To use a proxy to connect, a \code{\link[httr:use_proxy]{httr::use_proxy()}} can be
-passed to \code{\link[httr:GET]{httr::GET()}}. For example
-\code{get_eurostat_json(id, filters, config = httr::use_proxy(url, port, username, password))}.
+To use a proxy to connect, proxy arguments can be
+passed to \code{\link[httr2:req_perform]{httr2::req_perform()}} via \code{\link[httr2:req_proxy]{httr2::req_proxy()}} - see latter
+function documentation for parameter names that can be passed with \code{...}.
+A non-functional example:
+\code{get_eurostat_json(id, filters, proxy = TRUE, url = "127.0.0.1", port = 80)}.
 
 When retrieving data from Eurostat JSON API the user may encounter errors.
 For end user convenience, we have provided a ready-made internal dataset
@@ -303,7 +301,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.9003.
+  [Computer software]. R package version 4.0.0.9004.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,
@@ -315,7 +313,7 @@ When citing data downloaded from Eurostat, see section "Citing Eurostat data"
 in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 \seealso{
-\code{\link[httr:GET]{httr::GET()}}
+\code{\link[httr2:req_proxy]{httr2::req_proxy()}}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen

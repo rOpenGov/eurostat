@@ -14,10 +14,11 @@
 #'   returns a 10 last observations. See "Filtering datasets" section below
 #'   for more detailed information about filters.
 #'
-#'   To use a proxy to connect, a [httr::use_proxy()] can be
-#'   passed to [httr::GET()]. For example
-#'   `get_eurostat_json(id, filters,
-#'   config = httr::use_proxy(url, port, username, password))`.
+#'   To use a proxy to connect, proxy arguments can be
+#'   passed to [httr2::req_perform()] via [httr2::req_proxy()] - see latter
+#'   function documentation for parameter names that can be passed with `...`. 
+#'   A non-functional example:
+#'   `get_eurostat_json(id, filters, proxy = TRUE, url = "127.0.0.1", port = 80)`.
 #'
 #'   When retrieving data from Eurostat JSON API the user may encounter errors.
 #'   For end user convenience, we have provided a ready-made internal dataset
@@ -32,8 +33,9 @@
 #'   the dataset contains error codes and their mappings that are not mentioned
 #'   in the Eurostat website. We hope you never encounter them.
 #'
+#' @param proxy Use proxy, TRUE or FALSE (default).
 #' @inheritParams get_eurostat
-#' @inheritDotParams httr::GET
+#' @inheritDotParams httr2::req_proxy
 #' @inherit get_eurostat references
 #' 
 #' @return A dataset as an object of `data.frame` class.
@@ -69,11 +71,12 @@
 #'   unit = "CLV_I10"
 #' ))
 #' }
-#' @importFrom httr2 request req_user_agent req_retry resp_is_error 
-#' @importFrom httr2 resp_body_json resp_content_type
+#' @importFrom httr2 request req_user_agent req_retry req_perform req_proxy 
+#' @importFrom httr2 resp_body_json resp_content_type resp_is_error req_error
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_glue
+#' @importFrom httr2 %>% 
 #' 
 #' @inheritSection eurostat-package Data source: Eurostat API Statistics (JSON API)
 #' @inheritSection eurostat-package Filtering datasets
@@ -82,7 +85,7 @@
 #' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
 #' 
 #' @seealso
-#' [httr::GET()]
+#' [httr2::req_proxy()]
 #'
 #' @keywords utilities database
 #' @export
@@ -91,6 +94,7 @@ get_eurostat_json <- function(id,
                               type = "code",
                               lang = "en",
                               stringsAsFactors = FALSE,
+                              proxy = FALSE,
                               ...) {
 
   ## Special products that must be built to matrix
@@ -115,11 +119,35 @@ get_eurostat_json <- function(id,
   # packageDescription("eurostat", fields = "Version")))
   # ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
   
-  # req <- httr2::request(url)
+  if (proxy == TRUE) {
+    # Check if "..." has arguments needed for proxy
+    args <- list(...)
+    dot_url <- dot_port <- dot_username <- dot_password <- NULL
+    if("url" %in% names(args)) dot_url <- args$url
+    if("port" %in% names(args)) dot_port <- as.numeric(args$port)
+    if("username" %in% names(args)) dot_username <- args$username
+    if("password" %in% names(args)) dot_port <- args$password
+    if("auth" %in% names(args)) {
+      dot_auth <- args$auth
+    } else {
+      dot_auth <- "basic"
+    }
+  
+    resp <- httr2::request(url) %>% 
+      httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
+      httr2::req_proxy(url = dot_url,
+                       port = dot_port,
+                       username = dot_username,
+                       password = dot_password,
+                       auth = dot_auth) %>% 
+      httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
+      httr2::req_error(is_error = function(resp) FALSE) %>%
+      httr2::req_perform()
+  }
   resp <- httr2::request(url) %>% 
     httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
-    # httr2::req_perform()
     httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
+    httr2::req_error(is_error = function(resp) FALSE) %>% 
     httr2::req_perform()
 
   # RETRY GET 3 times
