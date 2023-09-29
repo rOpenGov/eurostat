@@ -85,7 +85,7 @@ can not be used with a \code{filters}.}
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
   \describe{
-    \item{\code{}}{}
+    \item{\code{proxy}}{Use proxy, TRUE or FALSE (default).}
   }}
 }
 \value{
@@ -348,7 +348,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.9003.
+  [Computer software]. R package version 4.0.0.9004.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,

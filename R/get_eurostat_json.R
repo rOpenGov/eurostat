@@ -14,10 +14,11 @@
 #'   returns a 10 last observations. See "Filtering datasets" section below
 #'   for more detailed information about filters.
 #'
-#'   To use a proxy to connect, a [httr::use_proxy()] can be
-#'   passed to [httr::GET()]. For example
-#'   `get_eurostat_json(id, filters,
-#'   config = httr::use_proxy(url, port, username, password))`.
+#'   To use a proxy to connect, proxy arguments can be
+#'   passed to [httr2::req_perform()] via [httr2::req_proxy()] - see latter
+#'   function documentation for parameter names that can be passed with `...`. 
+#'   A non-functional example:
+#'   `get_eurostat_json(id, filters, proxy = TRUE, url = "127.0.0.1", port = 80)`.
 #'
 #'   When retrieving data from Eurostat JSON API the user may encounter errors.
 #'   For end user convenience, we have provided a ready-made internal dataset
@@ -32,8 +33,9 @@
 #'   the dataset contains error codes and their mappings that are not mentioned
 #'   in the Eurostat website. We hope you never encounter them.
 #'
+#' @param proxy Use proxy, TRUE or FALSE (default).
 #' @inheritParams get_eurostat
-#' @inheritDotParams httr::GET
+#' @inheritDotParams httr2::req_proxy
 #' @inherit get_eurostat references
 #' 
 #' @return A dataset as an object of `data.frame` class.
@@ -69,10 +71,12 @@
 #'   unit = "CLV_I10"
 #' ))
 #' }
-#' @importFrom httr http_error status_code content RETRY http_type
+#' @importFrom httr2 request req_user_agent req_retry req_perform req_proxy 
+#' @importFrom httr2 resp_body_json resp_content_type resp_is_error req_error
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_glue
+#' @importFrom httr2 %>% 
 #' 
 #' @inheritSection eurostat-package Data source: Eurostat API Statistics (JSON API)
 #' @inheritSection eurostat-package Filtering datasets
@@ -81,7 +85,7 @@
 #' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
 #' 
 #' @seealso
-#' [httr::GET()]
+#' [httr2::req_proxy()]
 #'
 #' @keywords utilities database
 #' @export
@@ -90,6 +94,7 @@ get_eurostat_json <- function(id,
                               type = "code",
                               lang = "en",
                               stringsAsFactors = FALSE,
+                              proxy = FALSE,
                               ...) {
 
   ## Special products that must be built to matrix
@@ -112,28 +117,58 @@ get_eurostat_json <- function(id,
   # set user agent with version
   # ua <- httr::user_agent(paste0("eurostat_",
   # packageDescription("eurostat", fields = "Version")))
-  ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
+  # ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
+  
+  if (proxy == TRUE) {
+    # Check if "..." has arguments needed for proxy
+    args <- list(...)
+    dot_url <- dot_port <- dot_username <- dot_password <- NULL
+    if("url" %in% names(args)) dot_url <- args$url
+    if("port" %in% names(args)) dot_port <- as.numeric(args$port)
+    if("username" %in% names(args)) dot_username <- args$username
+    if("password" %in% names(args)) dot_port <- args$password
+    if("auth" %in% names(args)) {
+      dot_auth <- args$auth
+    } else {
+      dot_auth <- "basic"
+    }
+  
+    resp <- httr2::request(url) %>% 
+      httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
+      httr2::req_proxy(url = dot_url,
+                       port = dot_port,
+                       username = dot_username,
+                       password = dot_password,
+                       auth = dot_auth) %>% 
+      httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
+      httr2::req_error(is_error = function(resp) FALSE) %>%
+      httr2::req_perform()
+  }
+  resp <- httr2::request(url) %>% 
+    httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
+    httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
+    httr2::req_error(is_error = function(resp) FALSE) %>% 
+    httr2::req_perform()
 
   # RETRY GET 3 times
-  resp <- httr::RETRY(verb = "GET",
-                      url = url,
-                      times = 3,
-                      terminate_on = c(404),
-                      ua)
+  # resp <- httr::RETRY(verb = "GET",
+  #                     url = url,
+  #                     times = 3,
+  #                     terminate_on = c(404),
+  #                     ua)
 
   # Source: httr vignette "Best practices for API packages" [httr_vignette]
-  if (httr::http_type(resp) != "application/json") {
+  if (httr2::resp_content_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
   }
 
   # parse JSON data into R object (as per [httr_vignette])
   # assume that content encoding is utf8
-  result <- jsonlite::fromJSON(txt = httr::content(x = resp,
-                                                   as = "text",
-                                                   encoding = "utf8"),
-                               simplifyVector = TRUE)
+  result <- httr2::resp_body_json(
+      resp = resp,
+      simplifyVector = TRUE)
 
-  if (httr::http_error(resp)) {
+  if (httr2::resp_is_error(resp)) {
 
     # These objects are only needed if there is an error
     json_data_frame <- as.data.frame(result)
@@ -224,7 +259,7 @@ get_eurostat_json <- function(id,
 #' @title Internal function to build json url
 #' @description Internal function to build json url
 #' @importFrom utils hasName
-#' @importFrom httr parse_url build_url
+#' @importFrom httr2 url_parse url_build
 #' @noRd
 #' @keywords internal utilities
 eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
@@ -248,7 +283,7 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
   datasetCode <- id
 
   # Parse host_url and add relevant information in the standard list
-  url_list <- httr::parse_url(host_url)
+  url_list <- httr2::url_parse(host_url)
   # Paste "statistics/1.0/data/{id}" at the end of the fixed part of the URL
   url_list$path <- paste0(url_list$path,
                           service,
@@ -257,7 +292,7 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
                           datasetCode)
   url_list$query <- filters2
 
-  url <- httr::build_url(url_list)
+  url <- httr2::url_build(url_list)
   url
 }
 

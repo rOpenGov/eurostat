@@ -308,6 +308,8 @@ label_eurostat_vars <- function(x, lang = "en") {
 #' @describeIn label_eurostat Get definitions for variable (column) names. For
 #'  objects other than characters or factors definitions are get for names.
 #' @inheritParams get_eurostat
+#' @importFrom httr2 url_build url_parse
+#' 
 #' @export
 label_eurostat_vars2 <- function(x = NULL, id, lang = "en") {
 
@@ -323,9 +325,9 @@ label_eurostat_vars2 <- function(x = NULL, id, lang = "en") {
   lang <- check_lang(lang)
 
   req_url <- paste(api_base_uri, resource, agencyID, resourceID, sep = "/")
-  req_url <- httr::parse_url(req_url)
+  req_url <- httr2::url_parse(req_url)
   req_url$query <- parameters
-  req_url <- httr::build_url(req_url)
+  req_url <- httr2::url_build(req_url)
 
   columns <- c("code_name", "full_name")
   dict = data.frame(matrix(nrow = 0, ncol = length(columns)))
@@ -366,7 +368,7 @@ label_eurostat_vars2 <- function(x = NULL, id, lang = "en") {
 
 #' @describeIn label_eurostat Get definitions for table names
 #' @importFrom xml2 xml_find_all xml_text read_xml
-#' @importFrom httr parse_url build_url
+#' @importFrom httr2 url_parse url_build
 #' @importFrom dplyr %>% 
 #' @importFrom stringr str_glue
 #' @export
@@ -386,9 +388,9 @@ label_eurostat_tables <- function(x, lang = "en") {
   lang <- check_lang(lang)
 
   req_url <- paste(api_base_uri, resource, agencyID, resourceID, sep = "/")
-  req_url <- httr::parse_url(req_url)
+  req_url <- httr2::url_parse(req_url)
   req_url$query <- parameters
-  req_url <- httr::build_url(req_url)
+  req_url <- httr2::url_build(req_url)
 
   xml_obj <- xml2::read_xml(req_url)
   table_name <- xml_obj %>% 
