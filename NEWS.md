@@ -1,8 +1,14 @@
+# eurostat 4.0.0.9005
+
+## Major updates
+
+* Add data.table to package Imports and make using data.table functions optional with `get_eurostat()` `use.data.table` argument. This is especially useful with big datasets that would otherwise take a long time to go through the different data cleaning functions or crash R with their large memory footprint. (issue #277, PR #278)
+
 # eurostat 4.0.0.9004
 
 ## Major updates
 
-* switch from `httr` package to `httr2`
+* switch from `httr` package to `httr2` (issue #273, PR #276)
 
 # eurostat 4.0.0.9003
 

@@ -15,7 +15,7 @@ utilities.
     \tab  \cr
    \strong{Package} \tab eurostat \cr
    \strong{Type} \tab Package \cr
-   \strong{Version} \tab 4.0.0.9004 \cr
+   \strong{Version} \tab 4.0.0.9005 \cr
    \strong{Date} \tab 2014-2023 \cr
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr
@@ -331,7 +331,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.9004.
+  [Computer software]. R package version 4.0.0.9005.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,
