@@ -4,12 +4,14 @@
 \alias{get_eurostat_raw}
 \title{Download Data from Eurostat Dissemination API}
 \usage{
-get_eurostat_raw(id)
+get_eurostat_raw(id, use.data.table = FALSE)
 }
 \arguments{
 \item{id}{A unique identifier / code for the dataset of interest. If code is not
 known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
 of contents.}
+
+\item{use.data.table}{Use faster data.table functions? Default is FALSE}
 }
 \value{
 A dataset in tibble format. First column contains comma

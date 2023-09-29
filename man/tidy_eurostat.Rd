@@ -9,7 +9,8 @@ tidy_eurostat(
   time_format = "date",
   select_time = NULL,
   stringsAsFactors = FALSE,
-  keepFlags = FALSE
+  keepFlags = FALSE,
+  use.data.table = FALSE
 )
 }
 \arguments{
@@ -46,6 +47,8 @@ can be removed. Default is \code{FALSE}. For flag values see:
 Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
+
+\item{use.data.table}{Use faster data.table functions? Default is FALSE}
 }
 \value{
 tibble in the melted format with the last column 'values'.

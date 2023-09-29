@@ -17,6 +17,7 @@ get_eurostat(
   compress_file = TRUE,
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
+  use.data.table = FALSE,
   ...
 )
 }
@@ -81,6 +82,8 @@ can be removed. Default is \code{FALSE}. For flag values see:
 Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
+
+\item{use.data.table}{Use faster data.table functions? Default is FALSE}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}

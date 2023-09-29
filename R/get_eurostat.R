@@ -63,6 +63,7 @@
 #' Also possible non-real zero "0n" is indicated in flags column.
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
+#' @param use.data.table Use faster data.table functions? Default is FALSE
 #' @inheritDotParams get_eurostat_json
 #' 
 #' @inherit eurostat-package references
@@ -182,6 +183,7 @@ get_eurostat <- function(id,
                          compress_file = TRUE,
                          stringsAsFactors = FALSE,
                          keepFlags = FALSE,
+                         use.data.table = FALSE,
                          ...) {
 
   # Check if you have access to ec.europe.eu.
@@ -406,7 +408,7 @@ get_eurostat <- function(id,
       # If filters value is NULL
       #   -> Download from SDMX 2.1 REST API (replaces old "Bulk download")
 
-      y_raw <- try(get_eurostat_raw(id), silent = TRUE)
+      y_raw <- try(get_eurostat_raw(id, use.data.table = use.data.table), silent = TRUE)
       if ("try-error" %in% class(y_raw)) {
         stop(paste("get_eurostat_raw fails with the id", id))
       }
@@ -419,7 +421,7 @@ get_eurostat <- function(id,
         time_format,
         select_time,
         stringsAsFactors = stringsAsFactors,
-        keepFlags = keepFlags
+        keepFlags = keepFlags, use.data.table = use.data.table
       )
 
       if (identical(type, "code")) {
