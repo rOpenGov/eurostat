@@ -68,6 +68,7 @@ get_eurostat_raw <- function(id, use.data.table = FALSE) {
     # NEW CODE: data.table
     dat <- data.table::fread(cmd = paste("gzip -dc", tfile),
                              na.strings = ":",
+                             header = TRUE,
                              colClasses = "character")
     
     # OLD CODE
