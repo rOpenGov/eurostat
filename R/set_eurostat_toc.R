@@ -35,6 +35,7 @@ set_eurostat_toc <- function(lang = "en") {
     
     .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
     .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
+    .eurostatTOC$values <- as.numeric(.eurostatTOC$values)
     
     assign(language_version, .eurostatTOC, envir = .EurostatEnv)
   }
