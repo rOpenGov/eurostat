@@ -63,7 +63,8 @@
 #' Also possible non-real zero "0n" is indicated in flags column.
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
-#' @param use.data.table Use faster data.table functions? Default is FALSE
+#' @param use.data.table Use faster data.table functions? Default is FALSE. 
+#' On Windows requires that RTools is installed.
 #' @inheritDotParams get_eurostat_json
 #' 
 #' @inherit eurostat-package references
@@ -72,6 +73,7 @@
 #' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Citing Eurostat data
 #' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
+#' @inheritSection eurostat-package Strategies for handling large datasets more efficiently
 #'
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen

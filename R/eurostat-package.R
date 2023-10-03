@@ -309,6 +309,30 @@
 #' See also section "Eurostat: Copyright notice and free re-use of data"
 #' in [get_eurostat()] documentation.
 #' 
+#' # Strategies for handling large datasets more efficiently
+#' 
+#' Most Eurostat datasets are relatively manageable, at least on a machine
+#' with 16 GB of RAM. The largest dataset in Eurostat database, at the time
+#' of writing this, had 148362539 (148 million) values, which results in an
+#' object with 148 million rows in tidy data (long) format. The test machine
+#' with 16 GB of RAM was able to handle the second largest dataset in the
+#' database with 91 million values (rows).
+#' 
+#' There are still some methods to make data fetching 
+#' functions perform faster:
+#' 
+#' * turn caching off: `get_eurostat(cache = FALSE)`
+#' * turn cache compression off (may result in rather large cache files!): 
+#' `get_eurostat(compress_file = FALSE)`
+#' * if you want faster caching with manageable file sizes, use stringsAsFactors: 
+#' `get_eurostat(cache = TRUE, compress_file = TRUE, stringsAsFactors = TRUE)`
+#' * Use faster data.table functions: `get_eurostat(use.data.table = TRUE)`
+#' * Keep column processing to a minimum: 
+#' `get_eurostat(time_format = "raw", type = "code")` etc.
+#' * Read `get_eurostat()` function documentation carefully so you understand
+#' what different arguments do
+#' * Filter the dataset so that you fetch only the parts you need!
+#' 
 #' @examples library(eurostat)
 #' @section regions functions:
 #' For working with sub-national statistics the basic functions of the

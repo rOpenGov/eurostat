@@ -11,7 +11,8 @@ get_eurostat_raw(id, use.data.table = FALSE)
 known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
 of contents.}
 
-\item{use.data.table}{Use faster data.table functions? Default is FALSE}
+\item{use.data.table}{Use faster data.table functions? Default is FALSE.
+On Windows requires that RTools is installed.}
 }
 \value{
 A dataset in tibble format. First column contains comma

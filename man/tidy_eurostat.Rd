@@ -48,7 +48,8 @@ Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
 
-\item{use.data.table}{Use faster data.table functions? Default is FALSE}
+\item{use.data.table}{Use faster data.table functions? Default is FALSE.
+On Windows requires that RTools is installed.}
 }
 \value{
 tibble in the melted format with the last column 'values'.
