@@ -410,8 +410,8 @@ get_eurostat <- function(id,
       # If filters value is NULL
       #   -> Download from SDMX 2.1 REST API (replaces old "Bulk download")
 
-      y_raw <- try(get_eurostat_raw(id, use.data.table = use.data.table), silent = TRUE)
-      if ("try-error" %in% class(y_raw)) {
+      y <- try(get_eurostat_raw(id, use.data.table = use.data.table), silent = TRUE)
+      if ("try-error" %in% class(y)) {
         stop(paste("get_eurostat_raw fails with the id", id))
       }
 
@@ -419,7 +419,7 @@ get_eurostat <- function(id,
       #   -> tidy the dataset with tidy_eurostat function
 
       y <- tidy_eurostat(
-        y_raw,
+        y,
         time_format,
         select_time,
         stringsAsFactors = stringsAsFactors,
@@ -427,7 +427,8 @@ get_eurostat <- function(id,
       )
 
       if (identical(type, "code")) {
-        y <- y
+        # do nothing
+        # y <- y
       } else if (identical(type, "label")) {
         y <- label_eurostat(y, lang)
       } else if (identical(type, "both")) {
@@ -443,12 +444,12 @@ get_eurostat <- function(id,
     # situations the cached file could go missing? Not very likely though
 
     message(paste("Reading cache file", cache_file_bulk, "and filtering it"))
-    y_raw <- readRDS(cache_file_bulk)
+    y <- readRDS(cache_file_bulk)
     for (i in seq_along(filters)) {
-      y_raw <- dplyr::filter(y_raw,
+      y <- dplyr::filter(y,
                              !!rlang::sym(names(filters)[i]) == filters[i])
     }
-    y <- y_raw
+    # y <- y_raw
   } else if (file.exists(cache_file)) {
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))

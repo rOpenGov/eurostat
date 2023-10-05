@@ -13,7 +13,7 @@
 #' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tidyr separate pivot_longer
 #' @importFrom dplyr filter
-#' @importFrom data.table as.data.table melt .SD :=
+#' @importFrom data.table setDT melt .SD :=
 #' @importFrom stats na.omit
 #'
 #' @examples
@@ -49,7 +49,6 @@ tidy_eurostat <- function(dat,
                          sep = ",",
                          convert = FALSE
   )
-  
   if (!use.data.table) {
     
     # Get variable from column names
@@ -96,7 +95,9 @@ tidy_eurostat <- function(dat,
   } else if (use.data.table) {
     # NEW CODE: data.table
     # defining dat as data.table object is necessary to use data.table functions
-    dat <- data.table::as.data.table(dat)
+    # dat <- data.table::as.data.table(dat)
+    # Coerce data.frame to data.table by reference
+    data.table::setDT(dat)
     
     # Use factors by default to reduce RAM use (?)
     dat[, (cnames1) := lapply(.SD, as.factor), .SDcols = cnames1]
@@ -115,7 +116,7 @@ tidy_eurostat <- function(dat,
     # dat <- na.omit(object = dat, cols = "values")
     
     ## separate flags into separate column
-    # Use data.table update := for less RAM usage
+    # Use data.table update := for smaller RAM footprint
     if (keepFlags == TRUE) {
       dat[, `:=`(flags = as.vector(
         stringi::stri_extract_first_regex(values, c("(^0n( [A-Za-z]+)*)|[A-Za-z]+"))
@@ -124,7 +125,7 @@ tidy_eurostat <- function(dat,
     
     # clean time and values
     # NEW CODE: use stringi instead of gsub for faster execution
-    # Use data.table update := for less RAM usage
+    # Use data.table update := for smaller RAM footprint
     dat[, TIME_PERIOD := stringi::stri_replace_all_fixed(TIME_PERIOD, "X", "")]
     # dat$TIME_PERIOD <- stringi::stri_replace_all_fixed(dat$TIME_PERIOD, "X", "")
     dat[, values := stringi::stri_replace_all_regex(values, "[^0-9.-]+", "")]

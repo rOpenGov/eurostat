@@ -51,8 +51,8 @@ get_eurostat_raw <- function(id, use.data.table = FALSE) {
     curl::curl_download(url = url, destfile = tfile)
   } else {
     # R Packages (2e): Restore state with base::on.exit()
-    # Use timeout = 90 for bigger datasets
-    op <- options(timeout = 90)
+    # timeout = 120 should in most cases be enough for even the biggest datasets
+    op <- options(timeout = 120)
     on.exit(options(op), add = TRUE)
     utils::download.file(url, tfile)
   }
