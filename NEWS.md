@@ -1,3 +1,14 @@
+# eurostat 4.0.0.9006
+
+## Bug fixes
+
+* Added a more informatic warning message in situations where TOC datasets downloaded from Eurostat might not have proper titles. For some reason this was isolated to German and French language versions of TOC while English language TOC had proper titles for all items. 
+
+## Minor updates
+
+* Added suppressWarnings() to some of the tests that use TOC's directly or indirectly as the tests are not directly related to TOC files.
+* Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment.
+
 # eurostat 4.0.0.9005
 
 ## Major updates
