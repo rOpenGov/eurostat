@@ -86,7 +86,9 @@ a sf or data_frame
 }
 \description{
 Downloads either a simple features (sf) or a data_frame
-of NUTS regions. This function is a wrapper of \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}
+of NUTS regions. This function is a wrapper of \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}.
+This function requires to have installed the packages \CRANpkg{sf} and
+\CRANpkg{giscoR}.
 }
 \details{
 The objects downloaded from GISCO should contain all or some of the

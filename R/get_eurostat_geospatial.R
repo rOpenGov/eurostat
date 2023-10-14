@@ -1,7 +1,9 @@
 #' @title Download Geospatial Data from GISCO
 #'
 #' @description Downloads either a simple features (sf) or a data_frame
-#' of NUTS regions. This function is a wrapper of [giscoR::gisco_get_nuts()]
+#' of NUTS regions. This function is a wrapper of [giscoR::gisco_get_nuts()].
+#' This function requires to have installed the packages \CRANpkg{sf} and
+#' \CRANpkg{giscoR}.
 #'
 #' @seealso [giscoR::gisco_get_nuts()]
 #' @param output_class Class of object returned,
@@ -87,7 +89,7 @@
 #' © EuroGeographics for the administrative boundaries
 #'
 #' Data downloaded using \pkg{giscoR}
-#' 
+#'
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Data source: GISCO - General Copyright
 #' @inheritSection eurostat-package Data source: GISCO - Administrative Units / Statistical Units
@@ -120,6 +122,12 @@ get_eurostat_geospatial <- function(output_class = "sf",
                                     cache = TRUE, update_cache = FALSE,
                                     cache_dir = NULL, crs = "4326",
                                     make_valid = "DEPRECATED", ...) {
+  # nocov start
+  if (!requireNamespace("sf")) {
+    message("'sf' package is required for geospatial functionalities")
+    return(invisible())
+  }
+  # nocov end
   # Simplified and leaving most of the heavy-lifting to giscoR
 
   # Deprecation messages
@@ -179,11 +187,6 @@ get_eurostat_geospatial <- function(output_class = "sf",
       message("'giscoR' package is required for geospatial functionalities")
       return(invisible())
     }
-
-    if (!requireNamespace("sf")) {
-      message("'sf' package is required for geospatial functionalities")
-      return(invisible())
-    }
     # nocov end
 
     message(paste0(
@@ -230,15 +233,8 @@ get_eurostat_geospatial <- function(output_class = "sf",
 
   # to df
   if (output_class == "df") {
-    # nocov start
-    if (!requireNamespace("sf", quietly = TRUE)) {
-      # Remove geometry without sf package
-      shp$geometry <- NULL
-    # nocov end
-    } else {
-      # Remove geometry
-      shp <- sf::st_drop_geometry(shp)
-    }
+    # Remove geometry
+    shp <- sf::st_drop_geometry(shp)
   }
 
   return(shp)
@@ -258,15 +254,16 @@ geo_names <- function(x) {
   x$id <- x$geo
 
   # Arrange names in proper order
-  sfcol <- attr(x, "sf_column")
+  the_geom <- sf::st_geometry(x)
+  the_df <- sf::st_drop_geometry(x)
   rest <- c(
     "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN", "NUTS_NAME",
     "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE", "FID", "geo"
   )
 
   # Check what needed columns are not present in the source file
-  miss_cols <- setdiff(unique(c(rest, sfcol)), names(x))
-  extra_cols <- setdiff(names(x), unique(c(rest, sfcol)))
+  miss_cols <- setdiff(unique(rest), names(the_df))
+  extra_cols <- setdiff(names(the_df), rest)
 
 
   # Add missing cols with NAs
@@ -275,10 +272,14 @@ geo_names <- function(x) {
     names(template_df) <- x
     template_df
   })
-  x <- dplyr::bind_cols(c(list(x), list_df))
+  new_df <- dplyr::bind_cols(c(list(the_df), list_df))
 
   # Final column order
-  order_cols <- unique(c(rest, extra_cols, sfcol))
-  xend <- x[, order_cols]
-  xend
+  order_cols <- unique(c(rest, extra_cols))
+  xend <- new_df[, order_cols]
+
+  # Back to sf
+  final_sf <- sf::st_sf(xend, geometry = the_geom)
+
+  final_sf
 }

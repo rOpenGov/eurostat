@@ -1,5 +1,6 @@
 test_that("get_eurostat_geospatial errors", {
   skip_if_not_installed(pkg = "giscoR")
+  skip_if_not_installed(pkg = "sf")
   skip_on_cran()
   skip_if_offline()
   skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
@@ -35,6 +36,7 @@ test_that("get_eurostat_geospatial errors", {
 
 test_that("get_eurostat_geospatial messages", {
   skip_if_not_installed(pkg = "giscoR")
+  skip_if_not_installed(pkg = "sf")
   skip_on_cran()
   skip_if_offline()
   skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
@@ -59,6 +61,7 @@ test_that("get_eurostat_geospatial messages", {
 
 
 test_that("get_eurostat_geospatial nuts levels", {
+  skip_if_not_installed(pkg = "sf")
   # From internal data with default args
   expect_message(all <- get_eurostat_geospatial(nuts_level = "all"), "eurostat")
   expect_message(n0 <- get_eurostat_geospatial(nuts_level = "0"), "eurostat")
@@ -117,6 +120,7 @@ test_that("get_eurostat_geospatial nuts levels", {
 })
 
 test_that("get_eurostat_geospatial df", {
+  skip_if_not_installed(pkg = "sf")
   # From internal data with default args
   expect_message(
     all <- get_eurostat_geospatial(
@@ -199,6 +203,7 @@ test_that("get_eurostat_geospatial df", {
 
 
 test_that("get_eurostat_geospatial cache_dir", {
+  skip_if_not_installed(pkg = "sf")
   skip_if_not_installed(pkg = "giscoR")
   skip_on_cran()
   skip_if_offline()
@@ -255,6 +260,7 @@ test_that("get_eurostat_geospatial cache_dir", {
 
 
 test_that("giscoR returns NULL", {
+  skip_if_not_installed(pkg = "sf")
   skip_if_not_installed(pkg = "giscoR")
   skip_on_cran()
   skip_if_offline()
@@ -275,6 +281,8 @@ test_that("giscoR returns NULL", {
 
 
 test_that("Check column names", {
+  skip_if_not_installed(pkg = "sf")
+
   # See https://github.com/rOpenGov/eurostat/issues/240
   col_order <- c(
     "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
@@ -295,6 +303,7 @@ test_that("Check column names", {
 
 
 test_that("Check column names POLYGONS from GISCO", {
+  skip_if_not_installed(pkg = "sf")
   skip_if_not_installed(pkg = "giscoR")
   skip_on_cran()
   skip_if_offline()
@@ -398,6 +407,7 @@ test_that("Check column names POLYGONS from GISCO", {
 })
 
 test_that("Check column names LABELS from GISCO", {
+  skip_if_not_installed(pkg = "sf")
   skip_if_not_installed(pkg = "giscoR")
   skip_on_cran()
   skip_if_offline()
@@ -523,6 +533,7 @@ test_that("Check column names LABELS from GISCO", {
 
 
 test_that("Check column names BORDERS from GISCO", {
+  skip_if_not_installed(pkg = "sf")
   skip_if_not_installed(pkg = "giscoR")
   skip_on_cran()
   skip_if_offline()
