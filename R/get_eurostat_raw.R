@@ -31,9 +31,10 @@
 #' @importFrom utils download.file
 #' @importFrom tibble as_tibble
 #' @importFrom curl curl_download
+#' @importFrom data.table fread
 #'
 #' @keywords utilities database
-get_eurostat_raw <- function(id) {
+get_eurostat_raw <- function(id, use.data.table = FALSE) {
   base <- getOption("eurostat_url")
 
   url <- paste0(
@@ -50,29 +51,31 @@ get_eurostat_raw <- function(id) {
     curl::curl_download(url = url, destfile = tfile)
   } else {
     # R Packages (2e): Restore state with base::on.exit()
-    # Use timeout = 90 for bigger datasets
-    op <- options(timeout = 90)
+    # timeout = 120 should in most cases be enough for even the biggest datasets
+    op <- options(timeout = 120)
     on.exit(options(op), add = TRUE)
     utils::download.file(url, tfile)
   }
-
-  # OLD CODE
-  dat <- readr::read_tsv(gzfile(tfile),
-    na = ":",
-    col_types = readr::cols(.default = readr::col_character())
-  )
-
-  # NEW CODE: data.table
-  # dat <- data.table::fread(cmd = paste("gzip -dc", tfile),
-  #                          na.strings = ":",
-  #                          colClasses = "character")
-  # The reason why data.table is not currently used is that readr::cols
-  # and readr::col_character() worked better with some datasets
-  # and because RAM usage was not that much lower with data.table
-
-  # OLD CODE
-  dat <- tibble::as_tibble(dat)
-
+  
+  if (!use.data.table) {
+    # OLD CODE
+    dat <- readr::read_tsv(gzfile(tfile),
+      na = ":",
+      progress = TRUE,
+      col_types = readr::cols(.default = readr::col_character())
+    )
+  } else if (use.data.table) {
+    # NEW CODE: data.table
+    dat <- data.table::fread(cmd = paste("gzip -dc", tfile),
+                             na.strings = ":",
+                             header = TRUE,
+                             colClasses = "character")
+    
+    # OLD CODE
+    # data.table object does not need to be converted into a tibble at this 
+    # point as it will handled by data.table functions in tidy_eurostat.    
+    # dat <- tibble::as_tibble(dat)
+  }
 
   # check validity
   if (ncol(dat) < 2 || nrow(dat) < 1) {

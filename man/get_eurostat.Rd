@@ -17,6 +17,7 @@ get_eurostat(
   compress_file = TRUE,
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
+  use.data.table = FALSE,
   ...
 )
 }
@@ -81,6 +82,9 @@ can be removed. Default is \code{FALSE}. For flag values see:
 Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
+
+\item{use.data.table}{Use faster data.table functions? Default is FALSE.
+On Windows requires that RTools is installed.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
@@ -289,6 +293,31 @@ consult the following Eurostat documentation:
 \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
 }
 
+\section{Strategies for handling large datasets more efficiently}{
+Most Eurostat datasets are relatively manageable, at least on a machine
+with 16 GB of RAM. The largest dataset in Eurostat database, at the time
+of writing this, had 148362539 (148 million) values, which results in an
+object with 148 million rows in tidy data (long) format. The test machine
+with 16 GB of RAM was able to handle the second largest dataset in the
+database with 91 million values (rows).
+
+There are still some methods to make data fetching
+functions perform faster:
+\itemize{
+\item turn caching off: \code{get_eurostat(cache = FALSE)}
+\item turn cache compression off (may result in rather large cache files!):
+\code{get_eurostat(compress_file = FALSE)}
+\item if you want faster caching with manageable file sizes, use stringsAsFactors:
+\code{get_eurostat(cache = TRUE, compress_file = TRUE, stringsAsFactors = TRUE)}
+\item Use faster data.table functions: \code{get_eurostat(use.data.table = TRUE)}
+\item Keep column processing to a minimum:
+\code{get_eurostat(time_format = "raw", type = "code")} etc.
+\item Read \code{get_eurostat()} function documentation carefully so you understand
+what different arguments do
+\item Filter the dataset so that you fetch only the parts you need!
+}
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
@@ -348,7 +377,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.9004.
+  [Computer software]. R package version 4.0.0.9006.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,

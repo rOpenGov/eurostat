@@ -14,11 +14,13 @@ test_that("Bibentry gives correct results", {
   )
   
   expect_equal(
-    class(get_bibentry(
-      code = c("sts_inpr_a"),
-      lang = "fr",
-      format = "Bibtex"
-    )),
+    class(
+      suppressWarnings(
+        get_bibentry(
+        code = c("sts_inpr_a"),
+        lang = "fr",
+        format = "Bibtex"
+      ))),
     "Bibtex"
   )
   

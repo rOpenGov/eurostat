@@ -35,6 +35,7 @@ set_eurostat_toc <- function(lang = "en") {
     
     .eurostatTOC$hierarchy <- toc_determine_hierarchy(.eurostatTOC$title)
     .eurostatTOC$title <- trimws(.eurostatTOC$title, which = "left")
+    .eurostatTOC$values <- as.numeric(.eurostatTOC$values)
     
     assign(language_version, .eurostatTOC, envir = .EurostatEnv)
   }
@@ -99,13 +100,28 @@ toc_determine_hierarchy <- function(input_string) {
 
   # If all x mod y calculations equal 0 everything is ok. 
   # If not, input is somehow mangled
+  # For example "    General and regional statistics" (4 whitespace) returns 1
+  # whereas "            " (12 whitespace without any letters) returns also 1
+  # Normally all dataset items are expected to have a title to determine
+  # their place in hierarchy. Testing for this might be a bit tricky.
   if (!all((number_of_whitespace %% 4) %in% c(0))) {
-    warning("Mangled input")
-    return(invisible())
+    warning(
+      paste(
+      "TOC indentation was not uniform in all rows or there were some",
+      "items that were missing a proper title. Hierarchy value set to NA",
+      "for problematic rows."
+        )
+      )
+    invalid_rows <- which(!(number_of_whitespace %% 4) %in% c(0))
+    # return(invisible())
+    hierarchy <- number_of_whitespace %/% 4
+    hierarchy[invalid_rows] <- NA
+    return(hierarchy)
   }
   
   # If white space is 0, it gets number 0 in hierarchy
-  (number_of_whitespace %/% 4)
+  hierarchy <- number_of_whitespace %/% 4
+  hierarchy
   # Or should it be 1?
   # (number_of_whitespace %/% 4) + 1
 }

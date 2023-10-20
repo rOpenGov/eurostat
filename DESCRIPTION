@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.0.0.9004
-Date: 2023-08-15
+Version: 4.0.0.9006
+Date: 2023-10-20
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -31,7 +31,7 @@ URL: https://ropengov.github.io/eurostat/,
     https://github.com/rOpenGov/eurostat
 BugReports: https://github.com/rOpenGov/eurostat/issues
 Depends:
-    R (>= 3.5.0)
+    R (>= 3.6.0)
 Imports:
     classInt,
     countrycode,
@@ -51,7 +51,8 @@ Imports:
     stringr,
     tibble,
     tidyr (>= 1.0.0),
-    xml2
+    xml2,
+    data.table (>= 1.14.8)
 Suggests:
     giscoR,
     knitr,

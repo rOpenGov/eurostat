@@ -1,8 +1,25 @@
+# eurostat 4.0.0.9006
+
+## Bug fixes
+
+* Added a more informatic warning message in situations where TOC datasets downloaded from Eurostat might not have proper titles. For some reason this was isolated to German and French language versions of TOC while English language TOC had proper titles for all items. 
+
+## Minor updates
+
+* Added suppressWarnings() to some of the tests that use TOC's directly or indirectly as the tests are not directly related to TOC files.
+* Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment.
+
+# eurostat 4.0.0.9005
+
+## Major updates
+
+* Add data.table to package Imports and make using data.table functions optional with `get_eurostat()` `use.data.table` argument. This is especially useful with big datasets that would otherwise take a long time to go through the different data cleaning functions or crash R with their large memory footprint. (issue #277, PR #278)
+
 # eurostat 4.0.0.9004
 
 ## Major updates
 
-* switch from `httr` package to `httr2`
+* switch from `httr` package to `httr2` (issue #273, PR #276)
 
 # eurostat 4.0.0.9003
 

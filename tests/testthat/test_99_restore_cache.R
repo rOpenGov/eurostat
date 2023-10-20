@@ -19,4 +19,6 @@ test_that("Restore user cache dir after testing", {
   expect_equal(user_dir, Sys.getenv("EUROSTAT_CACHE_DIR"))
 
   cat("Cache restored to ", Sys.getenv("EUROSTAT_CACHE_DIR"), "\n")
+  
+  eurostat:::clean_eurostat_toc()
 })

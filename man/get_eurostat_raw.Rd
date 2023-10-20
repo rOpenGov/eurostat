@@ -4,12 +4,15 @@
 \alias{get_eurostat_raw}
 \title{Download Data from Eurostat Dissemination API}
 \usage{
-get_eurostat_raw(id)
+get_eurostat_raw(id, use.data.table = FALSE)
 }
 \arguments{
 \item{id}{A unique identifier / code for the dataset of interest. If code is not
 known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
 of contents.}
+
+\item{use.data.table}{Use faster data.table functions? Default is FALSE.
+On Windows requires that RTools is installed.}
 }
 \value{
 A dataset in tibble format. First column contains comma
@@ -121,7 +124,7 @@ See \code{citation("eurostat")}:
 # 
 #   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
 #   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-#   [Computer software]. R package version 4.0.0.9004.
+#   [Computer software]. R package version 4.0.0.9006.
 #   https://github.com/rOpenGov/eurostat
 # 
 # To see these entries in BibTeX format, use 'print(<citation>,

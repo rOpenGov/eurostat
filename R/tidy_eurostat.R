@@ -13,6 +13,8 @@
 #' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tidyr separate pivot_longer
 #' @importFrom dplyr filter
+#' @importFrom data.table setDT melt .SD :=
+#' @importFrom stats na.omit
 #'
 #' @examples
 #' \dontrun{
@@ -28,7 +30,8 @@ tidy_eurostat <- function(dat,
                           time_format = "date",
                           select_time = NULL,
                           stringsAsFactors = FALSE,
-                          keepFlags = FALSE) {
+                          keepFlags = FALSE,
+                          use.data.table = FALSE) {
 
   # To avoid warnings
   TIME_PERIOD <- values <- NULL
@@ -37,81 +40,120 @@ tidy_eurostat <- function(dat,
   cnames <- strsplit(colnames(dat)[1], split = "[\\,]")[[1]]
   cnames1 <- cnames[-length(cnames)] # for columns
   cnames2 <- cnames[length(cnames)] # for colnames
-
-  # Separe variables from first column
+  
+  # Separate variables from first column
   # OLD CODE
   dat <- tidyr::separate(dat,
-    col = colnames(dat)[1],
-    into = cnames1,
-    sep = ",",
-    convert = FALSE
+                         col = colnames(dat)[1],
+                         into = cnames1,
+                         sep = ",",
+                         convert = FALSE
   )
-
-  # NEW CODE: data.table
-  # defining dat as data.table object is necessary to use data.table functions
-  # dat <- data.table::as.data.table(dat)
-
-  # Get variable from column names
-  # OLD CODE
-  dat <- tidyr::pivot_longer(data = dat,
-                             cols = -seq_along(cnames1),
-                             names_to = cnames2,
-                             values_to = "values")
-
-  # NEW CODE: data.table
-  # dat <- data.table::melt(data = dat,
-  #                         measure.vars = setdiff(names(dat), cnames1),
-  #                         variable.name = cnames2,
-  #                         value.name = "values")
-
-  # to save memory (and backward compatibility)
-  # OLD CODE
-  dat <- dplyr::filter(dat, !is.na(values))
-
-  # NEW CODE: data.table
-  # dat <- na.omit(dat, "values")
-
-  ## separate flags into separate column
-  if (keepFlags == TRUE) {
-    dat$flags <- as.vector(
-      stringi::stri_extract_first_regex(
-        dat$values,
-        c("(^0n( [A-Za-z]+)*)|[A-Za-z]+")
+  if (!use.data.table) {
+    
+    # Get variable from column names
+    # OLD CODE
+    dat <- tidyr::pivot_longer(data = dat,
+                               cols = -seq_along(cnames1),
+                               names_to = cnames2,
+                               values_to = "values")
+    
+    # to save memory (and backward compatibility)
+    # OLD CODE
+    dat <- dplyr::filter(dat, !is.na(values))
+    
+    ## separate flags into separate column
+    if (keepFlags == TRUE) {
+      dat$flags <- as.vector(
+        stringi::stri_extract_first_regex(
+          dat$values,
+          c("(^0n( [A-Za-z]+)*)|[A-Za-z]+")
+        )
       )
-    )
-  }
+    }
+    
+    # clean time and values
+    # OLD CODE
+    dat$TIME_PERIOD <- gsub("X", "", dat$TIME_PERIOD, fixed = TRUE)
+    dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
+    
+    # variable columns
+    var_cols <- names(dat)[!(names(dat) %in% c("TIME_PERIOD", "values"))]
+    
+    # reorder to standard order
+    # OLD CODE
+    dat <- dat[c(var_cols, "TIME_PERIOD", "values")]
+    
+    # columns from var_cols are converted into factors
+    # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
+    if (stringsAsFactors) {
+      dat[, var_cols] <- lapply(
+        dat[, var_cols, drop = FALSE],
+        function(x) factor(x, levels = unique(x))
+      )
+    }
+  } else if (use.data.table) {
+    # NEW CODE: data.table
+    # defining dat as data.table object is necessary to use data.table functions
+    # dat <- data.table::as.data.table(dat)
+    # Coerce data.frame to data.table by reference
+    data.table::setDT(dat)
+    
+    # Use factors by default to reduce RAM use (?)
+    dat[, (cnames1) := lapply(.SD, as.factor), .SDcols = cnames1]
+    
+    # NEW CODE: data.table
+    # Use pipe to reduce RAM use (?)
+    dat <- data.table::melt(data = dat,
+                            measure.vars = setdiff(names(dat), cnames1),
+                            variable.name = cnames2,
+                            value.name = "values") %>% 
+      na.omit(cols = "values")
+    
+    # NEW CODE: data.table
+    # should be using S3 method for data.table here...
+    # Problem has been with "vector memory exhausted (limit reached?)"
+    # dat <- na.omit(object = dat, cols = "values")
+    
+    ## separate flags into separate column
+    # Use data.table update := for smaller RAM footprint
+    if (keepFlags == TRUE) {
+      dat[, `:=`(flags = as.vector(
+        stringi::stri_extract_first_regex(values, c("(^0n( [A-Za-z]+)*)|[A-Za-z]+"))
+        ))]
+    }
+    
+    # clean time and values
+    # NEW CODE: use stringi instead of gsub for faster execution
+    # Use data.table update := for smaller RAM footprint
+    dat[, TIME_PERIOD := stringi::stri_replace_all_fixed(TIME_PERIOD, "X", "")]
+    # dat$TIME_PERIOD <- stringi::stri_replace_all_fixed(dat$TIME_PERIOD, "X", "")
+    dat[, values := stringi::stri_replace_all_regex(values, "[^0-9.-]+", "")]
+    dat[, values := as.numeric(values)]
+    # dat$values <- as.numeric(
+    #  stringi::stri_replace_all_regex(as.character(dat$values), "[^0-9.-]+", "")
+    # )
+    
+    # variable columns
+    # cnames1 is the same as var_cols so cnames1 is used
+    # var_cols <- names(dat)[!(names(dat) %in% c("TIME_PERIOD", "values"))]
+    # selected_cols <- c(var_cols, "TIME_PERIOD", "values")
+    
+    # reorder to standard order
+    # NEW CODE: data.table
+    # either this way
+    # dat <- dat[, ..selected_cols]
+    # or this way
+    # reorder to standard order
+    data.table::setcolorder(dat, c(cnames1, "TIME_PERIOD", "values"))
+    
+    # Turn factors back into characters if stringsAsFactors = FALSE
+    # columns from cnames1 (var_cols) are converted into factors
+    if (!stringsAsFactors) {
+      dat[, (cnames1) := lapply(.SD, as.character), .SDcols = cnames1]
+    }
 
-  # clean time and values
-  # OLD CODE
-  # dat$TIME_PERIOD <- gsub("X", "", dat$TIME_PERIOD, fixed = TRUE)
-  # dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
-  # NEW CODE: use stringi instead of gsub for faster execution
-  dat$TIME_PERIOD <- stringi::stri_replace_all_fixed(dat$TIME_PERIOD, "X", "")
-  dat$values <- as.numeric(
-    stringi::stri_replace_all_regex(as.character(dat$values), "[^0-9.-]+", "")
-  )
-
-  # variable columns
-  var_cols <- names(dat)[!(names(dat) %in% c("TIME_PERIOD", "values"))]
-  # selected_cols <- c(var_cols, "TIME_PERIOD", "values")
-
-  # reorder to standard order
-  # OLD CODE
-  dat <- dat[c(var_cols, "TIME_PERIOD", "values")]
-
-  # NEW CODE: data.table
-  # either this way
-  # dat <- dat[, ..selected_cols]
-  # or this way
-  # data.table::setcolorder(dat, c(var_cols, "TIME_PERIOD", "values"))
-
-  # columns from var_cols are converted into factors
-  # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
-  if (stringsAsFactors) {
-    dat[, var_cols] <- lapply(
-      dat[, var_cols, drop = FALSE],
-      function(x) factor(x, levels = unique(x))
-    )
+    dat <- tibble::as_tibble(dat)
   }
 
   # For multiple time frequency

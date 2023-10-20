@@ -63,6 +63,8 @@
 #' Also possible non-real zero "0n" is indicated in flags column.
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
+#' @param use.data.table Use faster data.table functions? Default is FALSE. 
+#' On Windows requires that RTools is installed.
 #' @inheritDotParams get_eurostat_json
 #' 
 #' @inherit eurostat-package references
@@ -71,6 +73,7 @@
 #' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Citing Eurostat data
 #' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
+#' @inheritSection eurostat-package Strategies for handling large datasets more efficiently
 #'
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen
@@ -182,6 +185,7 @@ get_eurostat <- function(id,
                          compress_file = TRUE,
                          stringsAsFactors = FALSE,
                          keepFlags = FALSE,
+                         use.data.table = FALSE,
                          ...) {
 
   # Check if you have access to ec.europe.eu.
@@ -406,8 +410,8 @@ get_eurostat <- function(id,
       # If filters value is NULL
       #   -> Download from SDMX 2.1 REST API (replaces old "Bulk download")
 
-      y_raw <- try(get_eurostat_raw(id), silent = TRUE)
-      if ("try-error" %in% class(y_raw)) {
+      y <- try(get_eurostat_raw(id, use.data.table = use.data.table), silent = TRUE)
+      if ("try-error" %in% class(y)) {
         stop(paste("get_eurostat_raw fails with the id", id))
       }
 
@@ -415,15 +419,16 @@ get_eurostat <- function(id,
       #   -> tidy the dataset with tidy_eurostat function
 
       y <- tidy_eurostat(
-        y_raw,
+        y,
         time_format,
         select_time,
         stringsAsFactors = stringsAsFactors,
-        keepFlags = keepFlags
+        keepFlags = keepFlags, use.data.table = use.data.table
       )
 
       if (identical(type, "code")) {
-        y <- y
+        # do nothing
+        # y <- y
       } else if (identical(type, "label")) {
         y <- label_eurostat(y, lang)
       } else if (identical(type, "both")) {
@@ -439,12 +444,12 @@ get_eurostat <- function(id,
     # situations the cached file could go missing? Not very likely though
 
     message(paste("Reading cache file", cache_file_bulk, "and filtering it"))
-    y_raw <- readRDS(cache_file_bulk)
+    y <- readRDS(cache_file_bulk)
     for (i in seq_along(filters)) {
-      y_raw <- dplyr::filter(y_raw,
+      y <- dplyr::filter(y,
                              !!rlang::sym(names(filters)[i]) == filters[i])
     }
-    y <- y_raw
+    # y <- y_raw
   } else if (file.exists(cache_file)) {
     cf <- path.expand(cache_file)
     message(paste("Reading cache file", cf))

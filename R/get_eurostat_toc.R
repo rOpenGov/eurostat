@@ -74,3 +74,9 @@ get_eurostat_toc <- function(lang = "en") {
   
   invisible(get(language_version, envir = .EurostatEnv))
 }
+
+clean_eurostat_toc <- function() {
+  objects_in_env <- objects(envir = .EurostatEnv, all.names = TRUE)
+  toc_objects_in_env <- objects_in_env[grep(".eurostatTOC", objects_in_env)]
+  remove(list = toc_objects_in_env, envir = .EurostatEnv)
+}

@@ -74,7 +74,8 @@ test_that("eurostat2num2 (dissemination API) works correctly", {
   expect_true(
     is.numeric(
       get_eurostat(id = "earn_mw_cur", 
-                   time_format = "num")$TIME_PERIOD
+                   time_format = "num",
+                   use.data.table = TRUE)$TIME_PERIOD
       )
     )
 })
@@ -98,22 +99,22 @@ test_that("get_eurostat and eurotime2date work with daily data", {
   skip_on_cran()
   skip_if_offline()
   expect_match(get_eurostat("irt_h_eurcoe_d",
-                            filters = list(lastTimePeriod = 10))$freq[1], "D")
+                            filters = list(lastTimePeriod = 5))$freq[1], "D")
 })
 
 test_that("get_eurostat and eurotime2num work with daily data", {
   skip_on_cran()
   skip_if_offline()
   expect_match(get_eurostat("irt_h_eurcoe_d",
-                            filters = list(lastTimePeriod = 10),
-                            time_format = "num")$freq[1], "D")
+                            filters = list(lastTimePeriod = 5),
+                            time_format = "raw")$freq[1], "D")
 })
 
 test_that("get_eurostat and eurotime2num work with daily data", {
   skip_on_cran()
   skip_if_offline()
   expect_match(get_eurostat("ei_bsci_m_r2",
-                            filters = list(lastTimePeriod = 10),
+                            filters = list(lastTimePeriod = 5),
                             time_format = "num")$freq[1], "M")
 })
 
@@ -121,6 +122,6 @@ test_that("get_eurostat and eurotime2num work with daily data", {
   skip_on_cran()
   skip_if_offline()
   expect_match(get_eurostat("med_ag32",
-                            filters = list(lastTimePeriod = 10),
+                            filters = list(lastTimePeriod = 5),
                             time_format = "num")$freq[1], "A")
 })

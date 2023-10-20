@@ -10,21 +10,23 @@ test_that("search_eurostat finds", {
   )
   
   expect_equal(
-    search_eurostat(
-      "Volkswirtschaftliche Gesamtrechnungen",
-      type = "folder",
-      lang = "de"
-    )$code[1],
+    suppressWarnings(
+      search_eurostat(
+        "Volkswirtschaftliche Gesamtrechnungen",
+        type = "folder",
+        lang = "de"
+      ))$code[1],
     "ei_qna"
   )
   
   expect_equal(
-    search_eurostat(
-      "sts_os_t",
-      type = "folder",
-      column = "code",
-      lang = "fr"
-    )$title[1],
+    suppressWarnings(
+      search_eurostat(
+        "sts_os_t",
+        type = "folder",
+        column = "code",
+        lang = "fr"
+      ))$title[1],
     "Chiffre d'affaires"
   )
 })

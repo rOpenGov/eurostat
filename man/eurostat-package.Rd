@@ -15,7 +15,7 @@ utilities.
     \tab  \cr
    \strong{Package} \tab eurostat \cr
    \strong{Type} \tab Package \cr
-   \strong{Version} \tab 4.0.0.9004 \cr
+   \strong{Version} \tab 4.0.0.9006 \cr
    \strong{Date} \tab 2014-2023 \cr
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr
@@ -311,6 +311,31 @@ See also section "Eurostat: Copyright notice and free re-use of data"
 in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 
+\section{Strategies for handling large datasets more efficiently}{
+Most Eurostat datasets are relatively manageable, at least on a machine
+with 16 GB of RAM. The largest dataset in Eurostat database, at the time
+of writing this, had 148362539 (148 million) values, which results in an
+object with 148 million rows in tidy data (long) format. The test machine
+with 16 GB of RAM was able to handle the second largest dataset in the
+database with 91 million values (rows).
+
+There are still some methods to make data fetching
+functions perform faster:
+\itemize{
+\item turn caching off: \code{get_eurostat(cache = FALSE)}
+\item turn cache compression off (may result in rather large cache files!):
+\code{get_eurostat(compress_file = FALSE)}
+\item if you want faster caching with manageable file sizes, use stringsAsFactors:
+\code{get_eurostat(cache = TRUE, compress_file = TRUE, stringsAsFactors = TRUE)}
+\item Use faster data.table functions: \code{get_eurostat(use.data.table = TRUE)}
+\item Keep column processing to a minimum:
+\code{get_eurostat(time_format = "raw", type = "code")} etc.
+\item Read \code{get_eurostat()} function documentation carefully so you understand
+what different arguments do
+\item Filter the dataset so that you fetch only the parts you need!
+}
+}
+
 \section{regions functions}{
 
 For working with sub-national statistics the basic functions of the
@@ -331,7 +356,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.9004.
+  [Computer software]. R package version 4.0.0.9006.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,
