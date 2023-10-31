@@ -63,7 +63,7 @@ test_that("bi-annual data contains freq S", {
   skip_on_cran()
   skip_if_offline()
   expect_true("S" %in% get_eurostat("earn_mw_cur")$freq)
-  
+  # sleep for a while to let the API rest
   Sys.sleep(5)
 })
 
@@ -105,9 +105,11 @@ test_that("get_eurostat and eurotime2date work with daily data", {
 test_that("get_eurostat and eurotime2num work with daily data", {
   skip_on_cran()
   skip_if_offline()
-  expect_match(get_eurostat("irt_h_eurcoe_d",
+  # Downloading daily data with time_format = "num" produces a warning
+  # suppressWarnings is here to suppress that
+  expect_match(suppressWarnings(get_eurostat("irt_h_eurcoe_d",
                             filters = list(lastTimePeriod = 5),
-                            time_format = "raw")$freq[1], "D")
+                            time_format = "num"))$freq[1], "D")
 })
 
 test_that("get_eurostat and eurotime2num work with daily data", {
