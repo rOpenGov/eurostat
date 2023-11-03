@@ -1,57 +1,44 @@
-# eurostat 4.0.0.9007
+# eurostat 4.0.0
 
 ## Major updates
 
 * Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do. 
 * There is also a new function `fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
-
-# eurostat 4.0.0.9006
-
-## Bug fixes
-
-* Added a more informatic warning message in situations where TOC datasets downloaded from Eurostat might not have proper titles. For some reason this was isolated to German and French language versions of TOC while English language TOC had proper titles for all items. 
+* Add data.table to package Imports and make using data.table functions optional with `get_eurostat()` `use.data.table` argument. This is especially useful with big datasets that would otherwise take a long time to go through the different data cleaning functions or crash R with their large memory footprint. (issue #277, PR #278)
+* switch from `httr` package to `httr2` (issue #273, PR #276)
+* Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. A list of queries and cached item hashes is stored in a cache_list.json file in cache folder. This can be viewed with a new function: `list_eurostat_cache_items()`. (Affects issues mentioned in #144, #257, #258, fixed in PR #267)
+* Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces in the style of `base::make.names()`, e.g. turning `last update of data` to `last.update.of.data` (PR #271)
+* `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
+* `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
+* `label_eurostat_tables()` has been rewritten to use the new SDMX API instead of `table_dic.dic` file in Eurostat Bulk Download Listing
+* Remove legacy code related to downloading data from old bulk download facilities and temporary functions added in package version 3.7.14.
+* `get_eurostat_geospatial()` now leverages on `giscoR::gisco_get_nuts()` for 
+downloading geospatial data (PR #264, thanks to @dieghernan):
+  * `"spdf"` output class soft-deprecated, it would return a `sf` object with a message.
+  * `make_valid` parameter soft-deprecated.
+  * Added `...` to the function so additional parametes can be passed to `giscoR::gisco_get_nuts()`.
+  * Dataset `eurostat_geodata_60_2016` updated.
+* `get_eurostat_geospatial()` now requires sf package to work at all (PR #280, thanks to @dieghernan)
 
 ## Minor updates
 
 * Added suppressWarnings() to some of the tests that use TOC's directly or indirectly as the tests are not directly related to TOC files.
-* Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment.
-
-# eurostat 4.0.0.9005
-
-## Major updates
-
-* Add data.table to package Imports and make using data.table functions optional with `get_eurostat()` `use.data.table` argument. This is especially useful with big datasets that would otherwise take a long time to go through the different data cleaning functions or crash R with their large memory footprint. (issue #277, PR #278)
-
-# eurostat 4.0.0.9004
-
-## Major updates
-
-* switch from `httr` package to `httr2` (issue #273, PR #276)
-
-# eurostat 4.0.0.9003
-
-## New features
-
-* `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()`
-* New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 20 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`.
-* EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental features that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang`
-* Related to updates to `get_eurostat_toc()`, `search_eurostat()` now supports searching from French and German TOC-files as well.
-
-## Major updates
-
-* Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. A list of queries and cached item hashes is stored in a cache_list.json file in cache folder. This can be viewed with a new function: `list_eurostat_cache_items()`
-* Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces in the style of `base::make.names()`, e.g. turning `last update of data` to `last.update.of.data`
-* `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
-* `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
-* `label_eurostat_tables()` has been rewritten to use the new SDMX API instead of `table_dic.dic` file in Eurostat Bulk Download Listing
-
-## Minor updates
-
-* Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle)
+* Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment. (PR #278)
+* Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle) (PR #270)
 * Documentation more explicitly explains how to use filter parameters in `get_eurostat()` and `get_eurostat_json()` functions. The documentation now warns users about potential problems caused by `time` / `TIME_PERIOD` parameters when used to query datasets that contain quarterly data (issue #260)
 * As continuation of the update done in 3.7.14, started to use the new URL also for dictionary files in `get_eurostat_dic()` and `label_eurostat()` functions.
 * `get_bibentry()` now outputs "Accessed YYYY-MM-DD" and "dataset last updated YYYY-MM-DD" in note field as otherwise it would be sporadically printed or not at all printed from `urldate` field.
 * New internal function `check_lang()`
+* Print more informative API error messages. (issue #261, PR #262)
+* Removed `sp`, `methods` and `broom` packages from dependencies. 
+* Added `giscoR` to Suggests.
+
+## New features
+
+* `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()` (PR #270)
+* New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 20 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`. (PR #270)
+* EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental features that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang` (PR #270)
+* Related to updates to `get_eurostat_toc()`, `search_eurostat()` now supports searching from French and German TOC-files as well (PR #270)
 
 ## Deprecated and defunct
 
@@ -60,32 +47,11 @@
 
 ## Bug fixes
 
-* `get_bibentry()` returns correct codes for titles and warns the user if some / all of the requested codes were not found in the TOC. 
-* `get_bibentry()` uses the date field with the internal BibEntry format that can be easily translated to other formats: bibtex, bibentry
-* `get_bibentry()` now outputs dataset codes in titles correctly so that `bibtex` and `biblatex` entries can be copypasted into bibliographies without adding escape characters manually.
-
-# eurostat 4.0.0.9002
-
-## Major updates
-
-* Remove legacy code related to downloading data from old bulk download facilities and temporary functions added in package version 3.7.14.
-
-* `get_eurostat_geospatial()` now leverages on `giscoR::gisco_get_nuts()` for 
-downloading geospatial data:
-  * `"spdf"` output class soft-deprecated, it would return a `sf` object with a message.
-  * `make_valid` parameter soft-deprecated.
-  * Added `...` to the function so additional parametes can be passed to `giscoR::gisco_get_nuts()`.
-  * Dataset `eurostat_geodata_60_2016` updated.
-
-## Minor updates 
-
-* Print more informative API error messages.
-* Removed `sp`, `methods` and `broom` packages from dependencies. 
-* Added `giscoR` to Suggests.
-
-## Bug fixes
-
-* Fix issue related to downloading quarterly data
+* Added a more informatic warning message in situations where TOC datasets downloaded from Eurostat might not have proper titles. For some reason this was isolated to German and French language versions of TOC while English language TOC had proper titles for all items. (PR #278)
+* `get_bibentry()` returns correct codes for titles and warns the user if some / all of the requested codes were not found in the TOC (PR #270)
+* `get_bibentry()` uses the date field with the internal BibEntry format that can be easily translated to other formats: bibtex, bibentry (PR #270)
+* `get_bibentry()` now outputs dataset codes in titles correctly so that `bibtex` and `biblatex` entries can be copypasted into bibliographies without adding escape characters manually (PR #270)
+* Fix issue related to downloading quarterly data (issue #260, PR #271)
 * Reduce RAM usage in `eurotime2date()` when handling big datasets containing weekly data and tens of millions of rows (dataset used for testing mentioned in issue #200).
 
 # eurostat 3.8.3 (2023-03-07)
