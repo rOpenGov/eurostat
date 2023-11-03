@@ -28,7 +28,7 @@ install.packages("eurostat")
 
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
-```r
+```{r install_devel, eval=FALSE}
 library(remotes)
 remotes::install_github("ropengov/eurostat")
 ```
@@ -51,7 +51,7 @@ evaluate <- curl::has_internet()
 
 # Finding data
 
-Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
+Function `get_eurostat_toc()` downloads a table of contents (TOC) of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
 
 ```{r get_eurostat_toc, warning=FALSE, message=FALSE, eval = evaluate}
 # Load the package
@@ -65,6 +65,14 @@ library(knitr)
 kable(tail(toc))
 ```
 
+From eurostat version 4.0.0 onwards the returned TOC object has had an additional column, `hierarchy`. It can be used to determine which dataset belongs to which folder. This is helpful for example when downloading all datasets in a single folder at once.
+
+From eurostat version 4.0.0 onwards it is possible to download TOC objects in French and German as well, in addition to English, which is still the default option. This enables new functionalities in other eurostat functions that have used the TOC object internally.
+
+```{r get_eurostat_toc2, warning=FALSE, message=FALSE, eval = evaluate}
+kable(head(get_eurostat_toc(lang = "fr")))
+```
+
 Some of the data sets (e.g. in the 'comext' type) are not accessible
 through the standard interface. See the `get_eurostat()` function documentation for more details.
 
@@ -75,12 +83,23 @@ With `search_eurostat()` you can search the table of contents for particular pat
 kable(head(search_eurostat("passenger transport")))
 ```
 
-Codes for the dataset can be searched also from the [Eurostat database](http://ec.europa.eu/eurostat/data/database). The Eurostat database gives codes in the Data Navigation Tree after every dataset in parenthesis.
+From eurostat version 4.0.0 onwards it possible to perform searches also from dataset codes. This is done by specifying the search column by setting the `column` attribute to `"code"`. Searching for codes can be useful in finding datasets that belong to the same folder or larger theme.
 
+```{r search_eurostat2, warning=FALSE, message=FALSE, eval = evaluate}
+kable(head(search_eurostat("migr", column = "code")))
+```
+
+Another new addition in version 4.0.0 is the option to perform searches from French and German language TOC versions as well by setting the `lang` argument to `"fr"` or `"de"`. Naturally, dataset codes are shared between language versions so French and German language searches should be conducted only on the title column.
+
+```{r search_eurostat3, warning=FALSE, message=FALSE, eval = evaluate}
+kable(head(search_eurostat("flughafen", column = "title", lang = "de")))
+```
+
+Codes for the dataset can be searched also from the [Eurostat database](http://ec.europa.eu/eurostat/data/database). The Eurostat database gives codes in the Data Navigation Tree after every dataset in parenthesis.
 
 # Downloading data 
 
-The package supports two of the Eurostats download methods: the SDMX 2.1 REST API (old bulk download facility) and the Eurostat Web Services ("JSON API"). The bulk download facility is thefastest method to download whole datasets. 
+The package supports two of the Eurostats download methods: the SDMX 2.1 REST API and the API Statistics ("JSON API"). The bulk download facility is the fastest method to download whole datasets. 
 
 <--! STILL RELEVANT? It is also often the only way as the JSON API has limitation of maximum 50 sub-indicators at a time and whole datasets usually exceeds that. -->
 
@@ -88,14 +107,14 @@ To download only a small section of the dataset the JSON API is faster, as it al
 
 A user does not usually have to bother with methods, as both are used via main function `get_eurostat()`. If only the table id is given, the whole table is downloaded from the SDMX 2.1 REST API. If filters are defined the JSON API is used instead.
 
-Here an example of indicator 'Modal split of passenger transport'. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
+Here an example of indicator 'Modal split of air, sea and inland passenger transport'. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
 
 Pick and print the id of the data set to download: 
 ```{r get_id, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
 # For the original data, see
 # http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210
-id <- search_eurostat("Modal split of passenger transport",
-  type = "table"
+id <- search_eurostat("Modal split of air, sea and inland passenger transport",
+  type = "dataset"
 )$code[1]
 print(id)
 ```
@@ -110,7 +129,7 @@ Get the whole corresponding table. As the table is annual data, it is more
 convenient to use a numeric time variable than use the default date format:
 
 ```{r get_eurostat, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
-dat <- get_eurostat(id, time_format = "num")
+dat <- get_eurostat(id, time_format = "num", stringsAsFactors = TRUE)
 ```
 
 Investigate the structure of the downloaded data set:
@@ -130,7 +149,7 @@ time variable, in addition to a `time`, also a `sinceTimePeriod`
 and a `lastTimePeriod` can be used.
 
 ```{r get_eurostat_json, warning=FALSE, message=FALSE, results='asis', eval=evaluate}
-dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod = 1), time_format = "num")
+dat2 <- get_eurostat(id, filters = list(geo = c("EU27_2020", "FI"), lastTimePeriod = 1), time_format = "num")
 kable(dat2)
 ```
 
@@ -142,7 +161,7 @@ labels instead, use a `type = "label"` argument.
 ```{r json_labels, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
 datl2 <- get_eurostat(id,
   filters = list(
-    geo = c("EU28", "FI"),
+    geo = c("EU27_2020", "FI"),
     lastTimePeriod = 1
   ),
   type = "label", time_format = "num"
@@ -163,11 +182,11 @@ The `label_eurostat()` allows conversion of individual variable
 vectors or variable names as well.
 
 ```{r name_labels, eval = evaluate}
-label_eurostat_vars(names(datl))
+label_eurostat_vars2(id = "tran_hv_ms_psmod", names(datl))
 ```
 
 
-Vehicle information has 3 levels. You can check them now with:
+Vehicle information has 5 levels. You can check them now with:
 
 ```{r vehicle_levels, eval = evaluate}
 levels(datl$vehicle)
@@ -190,25 +209,25 @@ kable(efta_countries)
 ## EU data from 2012 in all vehicles:
 
 ```{r eu_12, eval = evaluate}
-dat_eu12 <- subset(datl, geo == "European Union - 28 countries" & time == 2012)
+dat_eu12 <- subset(datl, geo == "European Union - 27 countries (from 2020)" & TIME_PERIOD == 2012)
 kable(dat_eu12, row.names = FALSE)
 ```
 
-## EU data from 2000 - 2012 with vehicle types as variables:
+## EU data from 2008 - 2020 with vehicle types as variables:
 
 Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table, eval = evaluate}
 library("tidyr")
-dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
+dat_eu_0012 <- subset(dat, geo == "EU27_2020" & TIME_PERIOD %in% c(2008:2020))
 dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
 kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
-## Train passengers for selected EU countries in 2000 - 2012
+## Train passengers for selected EU countries in 2008 - 2020
 
 ```{r trains_table, eval = evaluate}
 dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden") &
-  time %in% 2000:2012 &
+  TIME_PERIOD %in% c(2008:2020) &
   vehicle == "Trains")
 dat_trains_wide <- spread(dat_trains, geo, values)
 kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
