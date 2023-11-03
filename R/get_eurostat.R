@@ -1,4 +1,4 @@
-#' @title Read Eurostat Data
+#' @title Get Eurostat Data
 #'
 #' @description
 #' Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
@@ -562,4 +562,225 @@ get_eurostat_folder <- function(code, env = .EurostatEnv) {
     names(list_of_datasets) <- children[["code"]]
     return(list_of_datasets)
   }
+}
+
+#' @title Get Eurostat data interactive
+#' @description
+#' A simple interactive helper function to go through the steps of downloading 
+#' and/or finding suitable eurostat datasets. 
+#' 
+#' @details
+#' This function is intended to enable easy exploration of different eurostat
+#' package functionalities and functions. In order to not drown the end user
+#' in endless menus this function does not allow for setting 
+#' all possible [get_eurostat()] function arguments. It is possible to set
+#' `time_format`, `type`, `lang`, `stringsAsFactors`, `keepFlags`, and
+#' `use.data.table` in the interactive menus. 
+#' 
+#' In some datasets setting these parameters may result in a 
+#' "Error in label_eurostat" error, for example: 
+#' "labels for XXXXXX includes duplicated labels in the Eurostat dictionary". 
+#' In these cases, and with other more complex queries, please
+#' use [get_eurostat()] function directly.
+#' 
+#' @param code 
+#' A unique identifier / code for the dataset of interest. If code is not
+#' known [search_eurostat()] function can be used to search Eurostat table
+#' of contents.
+#' 
+#' @seealso [get_eurostat()]
+#' @importFrom stringr str_glue
+#' @importFrom utils capture.output
+#' @export
+get_eurostat_interactive <- function(code = NULL) {
+  # Interactive function, not feasible to test
+  # nocov start
+  lang_selection <- switch(
+    menu(c("English", "French", "German"), title = "Select language") + 1,
+    return(invisible()),
+    "en",
+    "fr",
+    "de"
+  )
+  
+  if (is.null(code)) {
+    
+    search_term <- readline(prompt = "Enter search term for data: ")
+    results <- search_eurostat(pattern = search_term, lang = lang_selection)
+    code_and_title <- paste0("[", results$code, "] ", results$title)
+    if (nrow(results) > 0) {
+       choice <- menu(choices = code_and_title, title = "Which dataset would you like to download?")
+       if (choice == 0) {
+         # message("Nothing done\n")
+         return(invisible())
+       }
+    } else {
+      stop(paste("No data found with given search term:", search_term))
+    }
+    code <- results$code[choice]
+  }
+  
+  download_selection <- switch(
+    menu(choices = c("Yes", "No"), 
+         title = "Download the dataset?") + 1,
+    return(invisible()),
+    TRUE,
+    FALSE
+  )
+  # Set manual_selection to FALSE here to make it possible to print code
+  # for downloading dataset later
+  manual_selection <- FALSE
+  
+  if (download_selection) {
+    manual_selection <- switch(
+      menu(choices = c("Default", "Manually selected"), 
+           title = "Would you like to use default download arguments or set them manually?") + 1,
+      return(invisible()),
+      FALSE,
+      TRUE
+    )
+    
+    if (manual_selection) {
+      time_format_selection <- switch(
+        menu(choices = c("Convert to date, first day of the period (2000-04-01) (default)",
+                         "Convert to date, last day of the period (2000-06-30)",
+                         "Convert to numeric (2000.25)",
+                         "Use raw data (2000-Q2)")) + 1,
+        "date",
+        "date",
+        "date_last",
+        "num",
+        "raw"
+      )
+      
+      type_selection <- switch(
+        menu(choices = c("Return categorical variables as short codes (default)",
+                         "Return categorical variables in labeled (long) format"),
+             title = "Note: The option 'both' is supported only when using the JSON API.") + 1,
+        "code",
+        "code",
+        "label"
+      )
+      
+      stringsAsFactors_selection <- switch(
+        menu(choices = c("Return categorical data as characters (default)",
+                         "Convert categorical data into factors"),
+             title = "Converting text data into factors may help reduce time used in data processing, reduce RAM usage and cache file size") + 1,
+        FALSE,
+        FALSE,
+        TRUE
+      )
+      
+      keepFlags_selection <- switch(
+        menu(choices = c("Do not return flags, just remove them (default)",
+                         "Return flags in separate column")) + 1,
+        FALSE,
+        FALSE,
+        TRUE
+      )
+      
+      use.data.table_selection <- switch(
+        menu(choices = c("Do not use data.table functions (default",
+                         "Use data.table functions"),
+             title = "Using data.table functions may help reduce time used in data processing and reduce RAM usage. It is advisable especially when dealing with large datasets.") + 1,
+        FALSE,
+        FALSE,
+        TRUE
+      )
+      eurostat_data <- tryCatch({
+        get_eurostat(id = code,
+                     time_format = time_format_selection,
+                     type = type_selection,
+                     lang = lang_selection,
+                     stringsAsFactors = stringsAsFactors_selection,
+                     keepFlags = keepFlags_selection,
+                     use.data.table = use.data.table_selection)
+      }, error=function(error_message) {
+        message("\nEncountered the following error message while attempting to modify the downloaded data:\n")
+        message(error_message)
+        message("\nUsing default options for downloading data...\n")
+        # Use scoping assignment here to influence code print below
+        time_format_selection <<- "date"
+        type_selection <<- "code"
+        lang_selection <<- lang_selection
+        stringsAsFactors_selection <<- FALSE
+        keepFlags_selection <<- FALSE
+        use.data.table_selection <<- FALSE
+        get_eurostat(id = code,
+                     time_format = time_format_selection,
+                     type = type_selection,
+                     lang = lang_selection,
+                     stringsAsFactors = stringsAsFactors_selection,
+                     keepFlags = keepFlags_selection,
+                     use.data.table = use.data.table_selection)
+      })
+    } else if (!manual_selection) {
+      eurostat_data <- get_eurostat(id = code)
+    }
+  }
+  
+  tempfile_for_sinking <- tempfile()
+  
+  # eurostat_data <- get_eurostat(id = code)
+  print_citation <- switch(
+    menu(choices = c("Yes", "No"), 
+         title = "Print dataset citation?") + 1,
+    return(invisible()), 
+    TRUE, 
+    FALSE
+  )
+  
+  if (print_citation) {
+    citation <- get_bibentry(code, lang = lang_selection)
+    capture.output(cat("##### DATASET CITATION:\n\n"), file = tempfile_for_sinking, append = TRUE)
+    capture.output(print(citation), file = tempfile_for_sinking, append = TRUE)
+    capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
+  }
+  
+  print_code <- switch(
+    menu(choices = c("Yes", "No"), 
+         title = "Print code for downloading dataset?") + 1,
+    return(invisible()), 
+    TRUE,
+    FALSE
+  )
+  
+  if (print_code == TRUE && manual_selection == TRUE) {
+    capture.output(cat("##### DOWNLOAD PARAMETERS:\n\n"))
+    capture.output(print(stringr::str_glue(paste0("get_eurostat(id = '{code}', time_format = '{time_format_selection}', ",
+                                                  "type = '{type_selection}', lang = '{lang_selection}', ",
+                                                  "stringsAsFactors = {stringsAsFactors_selection}, ",
+                                                  "keepFlags = {keepFlags_selection}, ",
+                                                  "use.data.table = {use.data.table_selection})"))), file = tempfile_for_sinking, append = TRUE)
+    capture.output(cat("\n"))
+  } else if (print_code == TRUE && manual_selection == FALSE) {
+    capture.output(cat("##### DOWNLOAD PARAMETERS:\n\n"), file = tempfile_for_sinking, append = TRUE)
+    capture.output(print(stringr::str_glue("get_eurostat(id = '{code}')")), file = tempfile_for_sinking, append = TRUE)
+    capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
+  }
+  
+  if (exists("eurostat_data")) {
+    print_code <- switch(
+      menu(choices = c("Yes", "No"), 
+           title = "Print dataset fixity checksum?") + 1,
+      return(invisible()),
+      TRUE,
+      FALSE
+    )
+    
+    if (print_code) {
+      capture.output(cat("##### FIXITY CHECKSUM:\n\n"), file = tempfile_for_sinking, append = TRUE)
+      capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
+      capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
+    }
+  }
+  
+  if (exists("eurostat_data")) {
+    cat(readLines(tempfile_for_sinking), sep = "\n")
+    return(eurostat_data)
+  } else {
+    cat(readLines(tempfile_for_sinking), sep = "\n")
+    return(invisible())
+  }
+  # nocov end
 }

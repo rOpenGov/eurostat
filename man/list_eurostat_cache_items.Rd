@@ -15,7 +15,7 @@ directory by using this argument. The cache directory can also be set with
 }
 \value{
 A data.frame object with 3 columns: dataset code, download date and
-dataset md5 hash
+query md5 hash
 }
 \description{
 Parses cache_list.json file and returns a data.frame

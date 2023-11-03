@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat.R
 \name{get_eurostat}
 \alias{get_eurostat}
-\title{Read Eurostat Data}
+\title{Get Eurostat Data}
 \usage{
 get_eurostat(
   id,
@@ -377,7 +377,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.9006.
+  [Computer software]. R package version 4.0.0.9007.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,

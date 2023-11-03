@@ -1,3 +1,10 @@
+# eurostat 4.0.0.9007
+
+## Major updates
+
+* Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do. 
+* There is also a new function `fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
+
 # eurostat 4.0.0.9006
 
 ## Bug fixes

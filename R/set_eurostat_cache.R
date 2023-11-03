@@ -211,7 +211,7 @@ eur_helper_cachedir <- function(cache_dir = NULL) {
 #' Parses cache_list.json file and returns a data.frame
 #' @return
 #' A data.frame object with 3 columns: dataset code, download date and 
-#' dataset md5 hash
+#' query md5 hash
 #' 
 #' @inheritParams get_eurostat
 #' @importFrom jsonlite fromJSON
@@ -230,13 +230,13 @@ list_eurostat_cache_items <- function(cache_dir = NULL) {
   
   json_file <- jsonlite::fromJSON(path)
   # return(json_file)
-  columns <- c("code", "download_date", "md5_hash")
+  columns <- c("code", "download_date", "query_md5_hash")
   df <- data.frame(matrix(nrow = 0, ncol = length(columns))) 
   for (i in seq_len(length(json_file))) {
     df_i <- data.frame(
       code = json_file[[i]][["id"]],
       download_date = json_file[[i]][["download_date"]],
-      md5_hash = names(json_file[i])
+      query_md5_hash = names(json_file[i])
     )
     df <- rbind(df, df_i)
   }
