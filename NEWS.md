@@ -2,15 +2,13 @@
 
 ## Major updates
 
-* Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do. 
-* There is also a new function `fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
 * Add data.table to package Imports and make using data.table functions optional with `get_eurostat()` `use.data.table` argument. This is especially useful with big datasets that would otherwise take a long time to go through the different data cleaning functions or crash R with their large memory footprint. (issue #277, PR #278)
 * switch from `httr` package to `httr2` (issue #273, PR #276)
 * Rewritten caching functionalities, making it possible to cache filtered queries and rely on local caches if the user attempt to filter a complete dataset that has already been cached. A list of queries and cached item hashes is stored in a cache_list.json file in cache folder. This can be viewed with a new function: `list_eurostat_cache_items()`. (Affects issues mentioned in #144, #257, #258, fixed in PR #267)
 * Column names in `.eurostatTOC` object (returned by `get_eurostat_toc()`) now use dots instead of spaces in the style of `base::make.names()`, e.g. turning `last update of data` to `last.update.of.data` (PR #271)
 * `.eurostatTOC` object includes a new hierarchy column that represents the position of each folder, dataset and table in the folder structure.
 * `search_eurostat()` includes the option to search Table of Content items by dataset codes in addition to titles. This makes it possible to make further queries from similar datasets (e.g. "nama_10_gdp", "nama_10r_2gdp", "nama_10r_3popgdp") that might have different titles.
-* `label_eurostat_tables()` has been rewritten to use the new SDMX API instead of `table_dic.dic` file in Eurostat Bulk Download Listing
+* `label_eurostat_tables()` has been rewritten to use the new SDMX API instead of `table_dic.dic` file in Eurostat Bulk Download Listing (PR #271)
 * Remove legacy code related to downloading data from old bulk download facilities and temporary functions added in package version 3.7.14.
 * `get_eurostat_geospatial()` now leverages on `giscoR::gisco_get_nuts()` for 
 downloading geospatial data (PR #264, thanks to @dieghernan):
@@ -23,18 +21,20 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 ## Minor updates
 
 * Added suppressWarnings() to some of the tests that use TOC's directly or indirectly as the tests are not directly related to TOC files.
-* Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment. (PR #278)
 * Use more parameter inheritance in package function documentation to reduce discrepancies between different functions (DRY-principle) (PR #270)
 * Documentation more explicitly explains how to use filter parameters in `get_eurostat()` and `get_eurostat_json()` functions. The documentation now warns users about potential problems caused by `time` / `TIME_PERIOD` parameters when used to query datasets that contain quarterly data (issue #260)
 * As continuation of the update done in 3.7.14, started to use the new URL also for dictionary files in `get_eurostat_dic()` and `label_eurostat()` functions.
 * `get_bibentry()` now outputs "Accessed YYYY-MM-DD" and "dataset last updated YYYY-MM-DD" in note field as otherwise it would be sporadically printed or not at all printed from `urldate` field.
-* New internal function `check_lang()`
-* Print more informative API error messages. (issue #261, PR #262)
+* Print more informative API error messages. (issue #261, PR #262, thanks to @ake123)
 * Removed `sp`, `methods` and `broom` packages from dependencies. 
-* Added `giscoR` to Suggests.
+* Added `giscoR` to Suggests. (PR #264)
 
 ## New features
 
+* Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do. 
+* There is also a new function `fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
+* Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment. (PR #278)
+* New internal function `check_lang()` (PR #270)
 * `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()` (PR #270)
 * New user facing function: `get_eurostat_folder()` for downloading all datasets in a folder. The function is limited to downloading folders that contain at maximum 20 datasets. This function relies on new internal helper functions: `toc_count_whitespace()`, `toc_determine_hierarchy()`, `toc_count_children()` and `toc_list_children()`. (PR #270)
 * EXPERIMENTAL: `get_eurostat_toc()` and `set_eurostat_toc()` now have experimental features that support downloading TOCs in French and German as well. This support, in turn, is leveraged in `get_bibentry()` which now has a language parameter: `lang` (PR #270)
@@ -42,8 +42,8 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 
 ## Deprecated and defunct
 
-* `grepEurostatTOC()` is completely marked as defunct and is enroute to being removed from the package as `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them
-* `label_eurostat_vars()` has been marked as deprecated in favour of a new (temporary) function `label_eurostat_vars2()` which uses the new SDMX API to retrieve names for dataset columns. The old function will be completely removed after October 2023 when Eurostat Bulk Download Listing website is retired and `label_eurostat_vars2` will be renamed to `label_eurostat_vars()`. Function evolution is subject to ongoing Eurostat API developments.
+* `grepEurostatTOC()` is completely marked as defunct and is enroute to being removed from the package as `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them (PR #270)
+* `label_eurostat_vars()` has been marked as deprecated in favour of a new (temporary) function `label_eurostat_vars2()` which uses the new SDMX API to retrieve names for dataset columns. The old function will be completely removed after October 2023 when Eurostat Bulk Download Listing website is retired and `label_eurostat_vars2` will be renamed to `label_eurostat_vars()`. Function evolution is subject to ongoing Eurostat API developments. (PR #270)
 
 ## Bug fixes
 
