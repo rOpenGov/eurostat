@@ -35,6 +35,7 @@ Other helpers:
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
 \code{\link{eurotime2date}()},
+\code{\link{fixity_checksum}()},
 \code{\link{harmonize_country_code}()},
 \code{\link{label_eurostat}()}
 }

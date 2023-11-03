@@ -54,7 +54,7 @@ See \code{citation("eurostat")}:
 # 
 #   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
 #   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-#   [Computer software]. R package version 4.0.0.9007.
+#   [Computer software]. R package version 4.0.0.
 #   https://github.com/rOpenGov/eurostat
 # 
 # To see these entries in BibTeX format, use 'print(<citation>,
@@ -69,6 +69,7 @@ Other helpers:
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
 \code{\link{eurotime2num}()},
+\code{\link{fixity_checksum}()},
 \code{\link{harmonize_country_code}()},
 \code{\link{label_eurostat}()}
 }

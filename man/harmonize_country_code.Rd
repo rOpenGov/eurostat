@@ -33,6 +33,7 @@ Other helpers:
 \code{\link{dic_order}()},
 \code{\link{eurotime2date}()},
 \code{\link{eurotime2num}()},
+\code{\link{fixity_checksum}()},
 \code{\link{label_eurostat}()}
 }
 \author{

@@ -53,6 +53,7 @@ Other helpers:
 \code{\link{dic_order}()},
 \code{\link{eurotime2date}()},
 \code{\link{eurotime2num}()},
+\code{\link{fixity_checksum}()},
 \code{\link{harmonize_country_code}()},
 \code{\link{label_eurostat}()}
 }
