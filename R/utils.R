@@ -95,8 +95,7 @@ check_lang <- function(lang) {
 #' @seealso [digest::digest()]
 #' @source https://www.dpconline.org/handbook/technical-solutions-and-tools/fixity-and-checksums
 #' @importFrom digest digest
-#' @family helpers
-#' @export
+#' @keywords internal utilities
 fixity_checksum <- function(data_object, algorithm = "md5") {
   if (!(algorithm %in% c("md5", "sha1", "crc32", "sha256", "sha512",
                       "xxhash32", "xxhash64", "murmur32", "spookyhash",

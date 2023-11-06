@@ -770,7 +770,7 @@ get_eurostat_interactive <- function(code = NULL) {
     
     if (print_code) {
       capture.output(cat("##### FIXITY CHECKSUM:\n\n"), file = tempfile_for_sinking, append = TRUE)
-      capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
+      capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {eurostat:::fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
       capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
     }
   }

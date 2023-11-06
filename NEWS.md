@@ -32,7 +32,7 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 ## New features
 
 * Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do. 
-* There is also a new function `fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
+* There is also a new internal function `eurostat:::fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
 * Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment. (PR #278)
 * New internal function `check_lang()` (PR #270)
 * `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()` (PR #270)

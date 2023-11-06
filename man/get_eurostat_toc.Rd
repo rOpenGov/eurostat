@@ -106,7 +106,7 @@ in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 \code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek, Leo Lahti and Pyry Kantanen \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
 }
 \keyword{database}
 \keyword{utilities}
