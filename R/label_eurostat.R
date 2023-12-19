@@ -49,10 +49,8 @@
 #' str(lpl)
 #' lpl_order <- label_eurostat(lp, eu_order = TRUE)
 #' lpl_code <- label_eurostat(lp, code = "unit")
-#' # old deprecated function
-#' label_eurostat_vars(names(lp))
-#' # new function. Notice that dataset id must be provided now
-#' label_eurostat_vars2(id = "nama_10_lp_ulc", x = "geo", lang = "en")
+#' # Note that the dataset id must be provided in label_eurostat_vars
+#' label_eurostat_vars(id = "nama_10_lp_ulc", x = "geo", lang = "en")
 #' label_eurostat_tables("nama_10_lp_ulc")
 #' label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
 #' label_eurostat(
@@ -262,56 +260,55 @@ label_eurostat <-
     }
   }
 
+## OLD CODE
+# @rdname eurostat-deprecated
+# @inheritParams label_eurostat
+# @export
+# label_eurostat_vars <- function(x, lang = "en") {
+#   .Deprecated("label_eurostat_vars2")
+#   dictname <- "dimlst"
+# 
+#   if (!(is.character(x) || is.factor(x))) {
+#     x <- names(x)
+#   }
+#   x <- x[!grepl("values", x)] # remove values column
+#   
+#   url <- getOption("eurostat_url")
+#   tname <- paste0(
+#     url,
+#     "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
+#     dictname, ".dic"
+#   )
+#   dict <- readr::read_tsv(url(tname),
+#                           col_names = c("code_name", "full_name"),
+#                           col_types = readr::cols(.default = readr::col_character())
+#   )
+#   dict$full_name <- gsub(
+#     pattern = "\u0092", replacement = "'",
+#     dict$full_name
+#   )
+#   
+# 
+#   y <- dict$full_name[which(dict$code_name %in% toupper(x))]
+#   
+#   if (length(y) < length(x)) {
+#     warning(paste(
+#       "The query did not return names for the following variables:\n",
+#       x[which(!(toupper(x) %in% dict$code_name))]
+#       )
+#     )
+#   }
+#   
+#   y
+# }
 
-#' @rdname eurostat-deprecated
-#' @inheritParams label_eurostat
-#' @export
-label_eurostat_vars <- function(x, lang = "en") {
-  .Deprecated("label_eurostat_vars2")
-  dictname <- "dimlst"
 
-  if (!(is.character(x) || is.factor(x))) {
-    x <- names(x)
-  }
-  x <- x[!grepl("values", x)] # remove values column
-  
-  url <- getOption("eurostat_url")
-  tname <- paste0(
-    url,
-    "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
-    dictname, ".dic"
-  )
-  dict <- readr::read_tsv(url(tname),
-                          col_names = c("code_name", "full_name"),
-                          col_types = readr::cols(.default = readr::col_character())
-  )
-  dict$full_name <- gsub(
-    pattern = "\u0092", replacement = "'",
-    dict$full_name
-  )
-  
-
-  y <- dict$full_name[which(dict$code_name %in% toupper(x))]
-  
-  if (length(y) < length(x)) {
-    warning(paste(
-      "The query did not return names for the following variables:\n",
-      x[which(!(toupper(x) %in% dict$code_name))]
-      )
-    )
-  }
-  
-  y
-}
-
-
-#' @describeIn label_eurostat Get definitions for variable (column) names. For
-#'  objects other than characters or factors definitions are get for names.
+#' @describeIn label_eurostat Get definitions for variable (column) names.
 #' @inheritParams get_eurostat
 #' @importFrom httr2 url_build url_parse
 #' 
 #' @export
-label_eurostat_vars2 <- function(x = NULL, id, lang = "en") {
+label_eurostat_vars <- function(x = NULL, id, lang = "en") {
 
   eurostat_base_url <- getOption("eurostat_url")
   api_base_uri <- paste0(eurostat_base_url, "api/dissemination/sdmx/2.1")
