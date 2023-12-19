@@ -31,7 +31,7 @@
 #' @inheritParams get_eurostat
 #' 
 #' @author
-#' Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
+#' Przemyslaw Biecek, Leo Lahti and Pyry Kantanen <ropengov-forum@@googlegroups.com>
 #' 
 #' @examplesIf check_access_to_data()
 #' \donttest{

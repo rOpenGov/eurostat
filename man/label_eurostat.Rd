@@ -2,7 +2,7 @@
 % Please edit documentation in R/label_eurostat.R
 \name{label_eurostat}
 \alias{label_eurostat}
-\alias{label_eurostat_vars2}
+\alias{label_eurostat_vars}
 \alias{label_eurostat_tables}
 \title{Get Eurostat Codes for data downloaded from new dissemination API}
 \usage{
@@ -18,7 +18,7 @@ label_eurostat(
   fix_duplicated = FALSE
 )
 
-label_eurostat_vars2(x = NULL, id, lang = "en")
+label_eurostat_vars(x = NULL, id, lang = "en")
 
 label_eurostat_tables(x, lang = "en")
 }
@@ -84,8 +84,7 @@ with \code{fix_duplicated = TRUE}.
 }
 \section{Functions}{
 \itemize{
-\item \code{label_eurostat_vars2()}: Get definitions for variable (column) names. For
-objects other than characters or factors definitions are get for names.
+\item \code{label_eurostat_vars()}: Get definitions for variable (column) names.
 
 \item \code{label_eurostat_tables()}: Get definitions for table names
 
@@ -97,10 +96,8 @@ lpl <- label_eurostat(lp)
 str(lpl)
 lpl_order <- label_eurostat(lp, eu_order = TRUE)
 lpl_code <- label_eurostat(lp, code = "unit")
-# old deprecated function
-label_eurostat_vars(names(lp))
-# new function. Notice that dataset id must be provided now
-label_eurostat_vars2(id = "nama_10_lp_ulc", x = "geo", lang = "en")
+# Note that the dataset id must be provided in label_eurostat_vars
+label_eurostat_vars(id = "nama_10_lp_ulc", x = "geo", lang = "en")
 label_eurostat_tables("nama_10_lp_ulc")
 label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
 label_eurostat(
@@ -135,7 +132,6 @@ Other helpers:
 \code{\link{dic_order}()},
 \code{\link{eurotime2date}()},
 \code{\link{eurotime2num}()},
-\code{\link{fixity_checksum}()},
 \code{\link{harmonize_country_code}()}
 }
 \author{

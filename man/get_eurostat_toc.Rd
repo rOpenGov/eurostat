@@ -89,14 +89,35 @@ See \code{citation("eurostat")}:
   analysis of Eurostat open data with the eurostat package. The R
   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
+A BibTeX entry for LaTeX users is
+
+  @Article\{10.32614/RJ-2017-019,
+    title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
+    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+    journal = \{The R Journal\},
+    volume = \{9\},
+    number = \{1\},
+    pages = \{385--392\},
+    year = \{2017\},
+    doi = \{10.32614/RJ-2017-019\},
+    url = \{https://doi.org/10.32614/RJ-2017-019\},
+  \}
+
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
   [Computer software]. R package version 4.0.0.
   https://github.com/rOpenGov/eurostat
 
-To see these entries in BibTeX format, use 'print(<citation>,
-bibtex=TRUE)', 'toBibtex(.)', or set
-'options(citation.bibtex.max=999)'.
+A BibTeX entry for LaTeX users is
+
+  @Misc\{eurostat,
+    title = \{eurostat: Tools for Eurostat Open Data\},
+    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
+    url = \{https://github.com/rOpenGov/eurostat\},
+    type = \{Computer software\},
+    year = \{2023\},
+    note = \{R package version 4.0.0\},
+  \}
 }\if{html}{\out{</div>}}
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat data"
@@ -106,7 +127,7 @@ in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 \code{\link[=get_eurostat]{get_eurostat()}}, \code{\link[=search_eurostat]{search_eurostat()}}
 }
 \author{
-Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
+Przemyslaw Biecek, Leo Lahti and Pyry Kantanen \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}
 }
 \keyword{database}
 \keyword{utilities}

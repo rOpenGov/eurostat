@@ -52,13 +52,6 @@ responsibility of the user.
 }
 \seealso{
 \code{\link[digest:digest]{digest::digest()}}
-
-Other helpers: 
-\code{\link{cut_to_classes}()},
-\code{\link{dic_order}()},
-\code{\link{eurotime2date}()},
-\code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat}()}
 }
-\concept{helpers}
+\keyword{internal}
+\keyword{utilities}

@@ -31,8 +31,8 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 
 ## New features
 
-* Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do. 
-* There is also a new function `fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
+* Added new function: `get_eurostat_interactive()` for interactively searching and downloading data from Eurostat SDMX API. The function aims to make good data citation practices more prominently visible and also make it easier to explore what different arguments in `get_eurostat()` function do.
+* There is also a new internal function `eurostat:::fixity_checksum()` to easily calculate a fixity checksum for datasets downloaded from Eurostat. The fixity checksum can, for example, be saved in research notes and reported in as part of data appendices. Printing the fixity checksum is encouraged by including an option to print it in every `get_eurostat_interactive()` query.
 * Added a new internal function `clean_eurostat_toc()` for easy removal of TOC objects from .EurostatEnv environment. (PR #278)
 * New internal function `check_lang()` (PR #270)
 * `get_eurostat()` function now explicity accepts a 'lang' argument, for passing onwards to `get_eurostat_json()` and `label_eurostat()` (PR #270)
@@ -43,7 +43,7 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 ## Deprecated and defunct
 
 * `grepEurostatTOC()` is completely marked as defunct and is enroute to being removed from the package as `search_eurostat()` is now the only way to fetch Eurostat TOC items and search (grep) them (PR #270)
-* `label_eurostat_vars()` has been marked as deprecated in favour of a new (temporary) function `label_eurostat_vars2()` which uses the new SDMX API to retrieve names for dataset columns. The old function will be completely removed after October 2023 when Eurostat Bulk Download Listing website is retired and `label_eurostat_vars2` will be renamed to `label_eurostat_vars()`. Function evolution is subject to ongoing Eurostat API developments. (PR #270)
+* During the development of the 4.0.0 version there was a temporary function called `label_eurostat_vars2` that has been removed in the final version, as promised earlier: "The old function will be completely removed after October 2023 when Eurostat Bulk Download Listing website is retired and `label_eurostat_vars2` will be renamed to `label_eurostat_vars()`". The new `label_eurostat_vars()` function uses the new SDMX API to retrieve names for dataset columns. Function evolution is subject to ongoing Eurostat API developments. (PR #270)
 
 ## Bug fixes
 

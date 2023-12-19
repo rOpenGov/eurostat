@@ -18,7 +18,8 @@
 #' ```
 #'
 #' @author Przemyslaw Biecek and Leo Lahti <leo.lahti@@iki.fi>. Thanks to
-#' Wietse Dol for contributions.
+#' Wietse Dol for contributions. Updated by Pyry Kantanen to support XML
+#' codelists.
 #' @examplesIf check_access_to_data()
 #' \donttest{
 #' get_eurostat_dic("crop_pro")

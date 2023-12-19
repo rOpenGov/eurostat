@@ -16,6 +16,7 @@ This [rOpenGov](http://ropengov.github.io) R package provides tools to access [E
 # Global options
 library(knitr)
 opts_chunk$set(fig.path = "fig/")
+options(citation.bibtex.max=999)
 ```
 
 # Installation
@@ -28,17 +29,30 @@ install.packages("eurostat")
 
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
-```r
+```{r install_devel, eval=FALSE}
 library(remotes)
 remotes::install_github("ropengov/eurostat")
 ```
+
+Alternatively, development versions (more specifically: development versions in the master branch of eurostat GitHub repository) can be installed with the help of R-universe:
+
+```{r install_runiverse, eval=FALSE}
+# Enable this universe
+options(repos = c(
+  ropengov = "https://ropengov.r-universe.dev",
+  CRAN = "https://cloud.r-project.org"
+))
+
+install.packages("eurostat")
+```
+
+The package is loaded with the library function.
 
 ```{r, echo=FALSE}
 library(eurostat)
 ```
 
-
-Overall, the eurostat package includes the following functions:
+Overall, the eurostat package includes the following user-facing functions:
 
 ```{r, echo=FALSE,comment=NA}
 cat(paste0(library(help = "eurostat")$info[[2]], collapse = "\n"))
@@ -51,7 +65,9 @@ evaluate <- curl::has_internet()
 
 # Finding data
 
-Function `get_eurostat_toc()` downloads a table of contents of eurostat datasets. The values in column 'code' should be used to download a selected dataset.
+First stop for most researchers would be to browse the [Eurostat Data Browser website](https://ec.europa.eu/eurostat/databrowser/explore/all/all_themes) or other thematically arranged sections in the Eurostat website. However, the eurostat R package offers some ways to search for datasets without leaving the R interface.
+
+Function `get_eurostat_toc()` downloads a table of contents (TOC) of eurostat datasets.
 
 ```{r get_eurostat_toc, warning=FALSE, message=FALSE, eval = evaluate}
 # Load the package
@@ -65,38 +81,61 @@ library(knitr)
 kable(tail(toc))
 ```
 
-Some of the data sets (e.g. in the 'comext' type) are not accessible
-through the standard interface. See the `get_eurostat()` function documentation for more details.
+The values in column 'code' are unique identifiers for each dataset that have to be used when downloading specific datasets. In the `get_eurostat()` function the dataset code is put into the first argument of the function, `id`.
 
-With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. The kable function to produces nice markdown output. Note that with the `type` argument of this function you could restrict the search to for instance datasets or tables.
+From eurostat version 4.0.0 onwards the returned TOC object has had an additional column, `hierarchy`. It is used to determine which dataset belongs to which folder. This is helpful for example when downloading datasets in a single folder all at once.
+
+From eurostat version 4.0.0 onwards it is possible to download TOC objects in French and German as well, in addition to English, which remains the default option. This enables new functionalities in other eurostat functions that have used the TOC object internally but retains backwards-compatibility with old code as the `lang` argument is not mandatory and queries without it continue to deliver the English version of the TOC object.
+
+```{r get_eurostat_toc2, warning=FALSE, message=FALSE, eval = evaluate}
+kable(head(get_eurostat_toc(lang = "fr")))
+```
+
+With `search_eurostat()` you can search the table of contents for particular patterns, e.g. all datasets related to *passenger transport*. With the `type` argument the user can choose which types of datasets the search should return: datasets, tables, folders or all types (the default).
+
+According to [Eurostat database basic terminology](https://ec.europa.eu/eurostat/statistics-explained/index.php?title=Glossary:Eurostat_database_-_basic_terminology) "tables (predefined tables) are used to provide easy access to the main statistical indicators. They are based in general on datasets and are derived from them. They are predefined, non-modifiable and presented as two or three dimensional tables." The more general purpose datasets are, on the other hand, described to be "multi-dimensional tables" that have "up to 8 dimensions" and are used "store the base data, more appropriate for use by statistical and other experts via special applications".
 
 ```{r search_eurostat, warning=FALSE, message=FALSE, eval = evaluate}
 # info about passengers
 kable(head(search_eurostat("passenger transport")))
 ```
 
-Codes for the dataset can be searched also from the [Eurostat database](http://ec.europa.eu/eurostat/data/database). The Eurostat database gives codes in the Data Navigation Tree after every dataset in parenthesis.
+From eurostat version 4.0.0 onwards it possible to perform searches also from dataset codes. This is done by specifying the search column by setting the `column` attribute to `"code"`. Searching for codes can be useful in finding datasets that belong to the same folder or are part of a larger theme that shares similar dataset code patterns, such as "migr" for migration related statistics and "tran" in the case of (multimodal) transport statistics.
 
+```{r search_eurostat2, warning=FALSE, message=FALSE, eval = evaluate}
+kable(head(search_eurostat("migr", column = "code")))
+```
+
+Another new addition in version 4.0.0 is the option to perform searches from French and German language TOC versions as well by setting the `lang` argument to `"fr"` or `"de"`. Naturally, dataset codes are shared between language versions so French and German language searches should be conducted only on the title column.
+
+```{r search_eurostat3, warning=FALSE, message=FALSE, eval = evaluate}
+kable(head(search_eurostat("flughafen", column = "title", lang = "de")))
+```
+
+As mentioned in the beginning, codes for different dataset can be found also from the [Eurostat database](http://ec.europa.eu/eurostat/data/database). The Eurostat database gives codes in the Data Navigation Tree in parenthesis after the full name of the dataset, folder, or table.
 
 # Downloading data 
 
-The package supports two of the Eurostats download methods: the SDMX 2.1 REST API (old bulk download facility) and the Eurostat Web Services ("JSON API"). The bulk download facility is thefastest method to download whole datasets. 
+The package supports two of the Eurostats download methods: the SDMX 2.1 REST API and the API Statistics ("JSON API"). The bulk download facility is the fastest method to download whole datasets. To download only a small section of the dataset the JSON API is faster, as it allows to make a data selection before downloading.
 
-<--! STILL RELEVANT? It is also often the only way as the JSON API has limitation of maximum 50 sub-indicators at a time and whole datasets usually exceeds that. -->
+The end user does not usually have to bother where original data is downloaded, as both data sources are accessed via the main download function `get_eurostat()`. If only the table id is given, the whole table is downloaded from the SDMX 2.1 REST API. If any filters are given the JSON API is used instead. However, the `get_eurostat_json()` function used internally is also a user-facing function so that can be used as well.
 
-To download only a small section of the dataset the JSON API is faster, as it allows to make a data selection before downloading.
-
-A user does not usually have to bother with methods, as both are used via main function `get_eurostat()`. If only the table id is given, the whole table is downloaded from the SDMX 2.1 REST API. If filters are defined the JSON API is used instead.
-
-Here an example of indicator 'Modal split of passenger transport'. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, and trains. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. 
+We will use the dataset 'Modal split of air, sea and inland passenger transport' as an example dataset in this vignette. This is the percentage share of each mode of transport in total inland transport, expressed in passenger-kilometres (pkm) based on transport by passenger cars, buses and coaches, trains, aircraft, and seagoing vessels. All data should be based on movements on national territory, regardless of the nationality of the vehicle. However, the data collection is not harmonized at the EU level. For more detailed information about the dataset, see [Reference Metadata](https://ec.europa.eu/eurostat/cache/metadata/en/tran_hv_ms_esms.htm).
 
 Pick and print the id of the data set to download: 
 ```{r get_id, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
-# For the original data, see
-# http://ec.europa.eu/eurostat/tgm/table.do?tab=table&init=1&plugin=1&language=en&pcode=tsdtr210
-id <- search_eurostat("Modal split of passenger transport",
-  type = "table"
-)$code[1]
+# Perform search, the output is a table of search results
+search_results <- search_eurostat("Modal split of air, sea and inland passenger transport",
+  type = "dataset"
+)
+
+# Since our search term was so detailed, we should have only 1 result / 1 row
+kable(head(search_results))
+
+# Get the id from the table
+id <- search_results$code[1]
+
+# Check the id
 print(id)
 ```
 
@@ -105,15 +144,14 @@ print(id)
 if (!is.na(id)) evaluate <- TRUE else evaluate <- FALSE
 ```
 
-
 Get the whole corresponding table. As the table is annual data, it is more
-convenient to use a numeric time variable than use the default date format:
+convenient to use a numeric time variable than use the default date format, where yearly data would be coerced to be on the first day of the year (e.g. 2000-01-01).
 
 ```{r get_eurostat, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
-dat <- get_eurostat(id, time_format = "num")
+dat <- get_eurostat(id, time_format = "num", stringsAsFactors = TRUE)
 ```
 
-Investigate the structure of the downloaded data set:
+The structure of the downloaded data set can be investigated by using the base R `str()` function:
 
 ```{r str_dat, warning=FALSE, message=FALSE, eval = evaluate}
 str(dat)
@@ -126,28 +164,29 @@ kable(head(dat))
 You can get only a part of the dataset by defining `filters` argument. It
 should be named list, where names corresponds to variable names (lower case) and
 values are vectors of codes corresponding desired series (upper case). For
-time variable, in addition to a `time`, also a `sinceTimePeriod` 
-and a `lastTimePeriod` can be used.
+time variable, in addition to a `time` or `TIME_PERIOD` , also `sinceTimePeriod`, `untilTimePeriod` and a `lastTimePeriod` can be used. 
+
+More information about filtering can be found in `get_eurostat()` and `get_eurostat_json()` function documentation.
 
 ```{r get_eurostat_json, warning=FALSE, message=FALSE, results='asis', eval=evaluate}
-dat2 <- get_eurostat(id, filters = list(geo = c("EU28", "FI"), lastTimePeriod = 1), time_format = "num")
+dat2 <- get_eurostat(id, filters = list(geo = c("EU27_2020", "FI"), lastTimePeriod = 1), time_format = "num")
 kable(dat2)
 ```
 
 ## Replacing codes with labels
 
 By default variables are returned as Eurostat codes, but to get human-readable 
-labels instead, use a `type = "label"` argument.  
+labels instead, use a `type = "label"` argument in `get_eurostat()`.  
 
 ```{r json_labels, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
-datl2 <- get_eurostat(id,
+dat_labeled2 <- get_eurostat(id,
   filters = list(
-    geo = c("EU28", "FI"),
+    geo = c("EU27_2020", "FI"),
     lastTimePeriod = 1
   ),
   type = "label", time_format = "num"
 )
-kable(head(datl2))
+kable(head(dat_labeled2))
 ```
 
 Eurostat codes in the downloaded data set can be replaced with
@@ -155,25 +194,119 @@ human-readable labels from the Eurostat dictionaries with the
 `label_eurostat()` function.
 
 ```{r labels, warning=FALSE, message=FALSE, results='asis', eval = evaluate}
-datl <- label_eurostat(dat)
-kable(head(datl))
+dat_labeled <- label_eurostat(dat)
+kable(head(dat_labeled))
 ```
 
-The `label_eurostat()` allows conversion of individual variable
-vectors or variable names as well.
+The `label_eurostat_vars()` allows conversion of variable names as well.
 
 ```{r name_labels, eval = evaluate}
-label_eurostat_vars(names(datl))
+print(label_eurostat_vars(id = "tran_hv_ms_psmod", names(dat_labeled)))
 ```
 
 
-Vehicle information has 3 levels. You can check them now with:
+Vehicle information has 5 levels. You can check them now with:
 
 ```{r vehicle_levels, eval = evaluate}
-levels(datl$vehicle)
+levels(dat_labeled$vehicle)
 ```
 
+## Downloading data interactively
 
+New function in the eurostat package version 4.0.0 is the `get_eurostat_interactive()` function that allows users to search and download datasets with the help of interactive menus. If the user already knows which dataset they want to download, the `get_eurostat_interactive()` function can also take a dataset code as a parameter, skipping the search part of the interactive menu. Below we will demonstrate the whole process from search to download to printing a citation for the dataset, utilizing several different eurostat package functions at once.
+
+```{text}
+> get_eurostat_interactive()
+Select language 
+
+1: English
+2: French
+3: German
+
+Selection: 1
+Enter search term for data: aviation
+Which dataset would you like to download?                                                             
+
+1: [tran_sf_aviagah] Air accident victims in general aviation, by country of occurrence and country of registration of aircraft - maximum take-off mass above 2250 kg (source: EASA)
+2: [tran_sf_aviagal] Air accident victims in general aviation by country of occurrence and country of registration of aircraft - maximum take-off mass under 2250 kg (source: EASA)
+3: [avia_ec_enterp] Number of aviation and airport enterprises
+4: [avia_ec_emp_ent] Employment in aviation and airport enterprises by sex
+
+
+Selection: 4
+Download the dataset? 
+
+1: Yes
+2: No
+
+Selection: 1
+Would you like to use default download arguments or set them manually? 
+
+1: Default
+2: Manually selected
+
+Selection: 1
+trying URL 'https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/data/avia_ec_emp_ent?format=TSV&compressed=true'
+Content type 'text/tab-separated-values; charset=UTF-8' length 1354 bytes
+==================================================
+downloaded 1354 bytes
+
+Table avia_ec_emp_ent cached at /var/folders/f4/h_r3y60n0nn0qm6qx5hnx1s00000gn/T//RtmpDJ1gUA/eurostat/60ee371bcdcc9b130a20514d1e0d574d.rds
+Print dataset citation? 
+
+1: Yes
+2: No
+
+Selection: 1
+Print code for downloading dataset? 
+
+1: Yes
+2: No
+
+Selection: 1
+Print dataset fixity checksum? 
+
+1: Yes
+2: No
+
+Selection: 1
+##### DATASET CITATION:
+
+@Misc{avia-ec-emp-ent-2016-4-20,
+  title = {Employment in aviation and airport enterprises by sex (avia\_ec\_emp\_ent)},
+  url = {https://ec.europa.eu/eurostat/web/products-datasets/product?code=avia_ec_emp_ent},
+  language = {english},
+  year = {2016},
+  author = {{Eurostat}},
+  urldate = {2023-12-19},
+  type = {Dataset},
+  note = {Accessed 2023-12-19, dataset last updated 2016-04-20},
+}
+
+##### DOWNLOAD PARAMETERS:
+
+get_eurostat(id = 'avia_ec_emp_ent')
+
+##### FIXITY CHECKSUM:
+
+Fixity checksum (md5) for dataset avia_ec_emp_ent: 36975282eaaea50a6e5f0e6cd64ef4d2
+
+# A tibble: 450 × 6
+   freq  enterpr sex   geo   TIME_PERIOD values
+   <chr> <chr>   <chr> <chr> <date>       <dbl>
+ 1 A     AIRP    F     CY    2006-01-01     192
+ 2 A     AIRP    F     CY    2007-01-01     240
+ 3 A     AIRP    F     CY    2008-01-01     514
+ 4 A     AIRP    F     CY    2009-01-01    3278
+ 5 A     AIRP    F     CY    2010-01-01    2587
+ 6 A     AIRP    F     CY    2011-01-01    2255
+ 7 A     AIRP    F     CY    2012-01-01    2954
+ 8 A     AIRP    F     CZ    2001-01-01       0
+ 9 A     AIRP    F     CZ    2002-01-01       0
+10 A     AIRP    F     CZ    2003-01-01       0
+# ℹ 440 more rows
+# ℹ Use `print(n = ...)` to see more rows
+```
 
 # Selecting and modifying data
 
@@ -190,51 +323,48 @@ kable(efta_countries)
 ## EU data from 2012 in all vehicles:
 
 ```{r eu_12, eval = evaluate}
-dat_eu12 <- subset(datl, geo == "European Union - 28 countries" & time == 2012)
+dat_eu12 <- subset(dat_labeled, geo == "European Union - 27 countries (from 2020)" & TIME_PERIOD == 2012)
 kable(dat_eu12, row.names = FALSE)
 ```
 
-## EU data from 2000 - 2012 with vehicle types as variables:
+## EU data from 2008 - 2020 with vehicle types as variables:
 
 Reshaping the data is best done with `spread()` in `tidyr`.
 ```{r eu_vehicles_table, eval = evaluate}
 library("tidyr")
-dat_eu_0012 <- subset(dat, geo == "EU28" & time %in% 2000:2012)
+dat_eu_0012 <- subset(dat, geo == "EU27_2020" & TIME_PERIOD %in% c(2008:2020))
 dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
 kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 ```
 
-## Train passengers for selected EU countries in 2000 - 2012
+## Train passengers for selected EU countries in 2008 - 2020
 
 ```{r trains_table, eval = evaluate}
-dat_trains <- subset(datl, geo %in% c("Austria", "Belgium", "Finland", "Sweden") &
-  time %in% 2000:2012 &
+dat_trains <- subset(dat_labeled, geo %in% c("Austria", "Belgium", "Finland", "Sweden") &
+  TIME_PERIOD %in% c(2008:2020) &
   vehicle == "Trains")
 dat_trains_wide <- spread(dat_trains, geo, values)
 kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 ```
 
 
+## Other packages
 
-## SDMX
+### Strongly recommended
 
-Eurostat data is available also in the Statistical Data and Metadata eXchange ([SDMX](https://sdmx.org)) [Web Services](https://ec.europa.eu/eurostat/web/sdmx-web-services/about-this-service). Our eurostat R package does not provide custom tools for this but the following generic R packages provide access to eurostat SDMX version:
+The `giscoR` ([package homepage](https://ropengov.github.io/giscoR/)) package used to be only suggested but starting from `eurostat` version 4.0.0 it has become a dependency of eurostat and required for using geospatial data functions. In addition to using `get_eurostat_geospatial()` from the `eurostat` package, it is highly recommended to study `giscoR` package functions and vignettes for creating more sophisticated visualisations to support geospatial analyses.
 
- - [restatapi](https://github.com/eurostat/restatapi)
- - [rsdmx](https://CRAN.R-project.org/package=rsdmx)
- - [rjsdmx](https://github.com/amattioc/SDMX/wiki)
+### Packages with similar functionalities
+
+The [restatapi](https://CRAN.R-project.org/package=restatapi) R package has similar functionalities and some familiar function names for seasoned eurostat R package users. The `restatapi` package focuses more on statistical data and retrieving and returning data in a non-tidy data format.
+
+The [rsdmx](https://CRAN.R-project.org/package=rsdmx) and [rjsdmx](https://CRAN.R-project.org/package=RJSDMX) R packages provide a more generic method to download data from a wide variety of statistical data providers that utilize the Statistical Data and Metadata eXchange ([SDMX](https://sdmx.org)) standards.
 
 # Further examples
 
-For further examples, see the [package homepage](http://ropengov.github.io/eurostat/articles/index.html).
-
+For further examples, see articles in the [package homepage](http://ropengov.github.io/eurostat/).
 
 # Citations and related work
-
-### Recommended packages
-
-NOTE: we recommend to check also the `giscoR` package (https://dieghernan.github.io/giscoR/). This is another API package that provides R tools for Eurostat geographic data to support geospatial analysis and visualization.
-
 
 ### Citing the data sources
 
