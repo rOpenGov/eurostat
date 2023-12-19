@@ -20,7 +20,7 @@ version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.o
 GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/watchers)
 [![Star on
 GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/stargazers)
-[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
+[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/ropengov)
 
 <!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
 <!--[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
@@ -81,14 +81,14 @@ passengers <- search_eurostat("passenger transport")
 knitr::kable(head(passengers))
 ```
 
-| title                                                                                        | code             | type    | last.update.of.data | last.table.structure.change | data.start | data.end | values  | hierarchy |
-|:---------------------------------------------------------------------------------------------|:-----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|:--------|----------:|
-| Air passenger transport                                                                      | enps_avia_pa     | dataset | 13.03.2023          | 13.03.2023                  | 2005       | 2021     | 406     |         6 |
-| Modal split of air, sea and inland passenger transport                                       | tran_hv_ms_psmod | dataset | 29.06.2023          | 29.06.2023                  | 2008       | 2021     | 2100    |         4 |
-| Modal split of inland passenger transport                                                    | tran_hv_psmod    | dataset | 29.06.2023          | 29.06.2023                  | 1990       | 2021     | 4219    |         4 |
-| Volume of passenger transport relative to GDP                                                | tran_hv_pstra    | dataset | 11.08.2023          | 29.06.2023                  | 1990       | 2021     | 969     |         4 |
-| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 25.07.2023          | 21.02.2023                  | 2005       | 2021     | 1752    |         4 |
-| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 15.09.2023          | 15.09.2023                  | 1993       | 2023-Q2  | 2460928 |         5 |
+| title                                                                                        | code             | type    | last.update.of.data | last.table.structure.change | data.start | data.end |  values | hierarchy |
+|:---------------------------------------------------------------------------------------------|:-----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
+| Air passenger transport                                                                      | enps_avia_pa     | dataset | 13.03.2023          | 13.03.2023                  | 2005       | 2021     |     406 |         6 |
+| Modal split of air, sea and inland passenger transport                                       | tran_hv_ms_psmod | dataset | 29.06.2023          | 29.06.2023                  | 2008       | 2021     |    2100 |         4 |
+| Modal split of inland passenger transport                                                    | tran_hv_psmod    | dataset | 29.06.2023          | 29.06.2023                  | 1990       | 2021     |    4219 |         4 |
+| Volume of passenger transport relative to GDP                                                | tran_hv_pstra    | dataset | 11.08.2023          | 29.06.2023                  | 1990       | 2021     |     969 |         4 |
+| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 21.02.2023          | 21.02.2023                  | 2005       | 2021     |    1752 |         4 |
+| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 04.12.2023          | 28.11.2023                  | 1993       | 2023-Q3  | 2482969 |         5 |
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
