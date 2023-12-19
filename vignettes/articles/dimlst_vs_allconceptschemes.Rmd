@@ -1,0 +1,353 @@
+---
+title: "Differences between dimlst.dic and ALL_CONCEPTSCHEMES.xml"
+date: "`r Sys.Date()`"
+editor_options:
+    chunk_output_type: inline
+output: 
+  html_document: 
+    toc: yes
+---
+
+# Introduction
+
+As Eurostat is in the process of getting rid of Bulk Download facilities, there are inevitably some changes that affect the `eurostat` package as well. One of those is the removal of old `.dic` objects that have been used in translating Eurostat variable codes into cleartext labels in English, French or German. 
+
+All things must pass. We have removed the old `label_eurostat_vars()` function that simply downloaded `dimlst.dic`, sort of 'master file' of all available codes and their cleartext labels, and used that to label all Eurostat datasets. Now labeling is done by downloading a Concept Scheme file for each individual dataset and using that information to give labels to the dataset in the desired language.
+
+# Comparison of old and new
+
+An example of the old English version dimlst.dic file (downloaded 2023-12-18 from [here](https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&dir=dic%2Fen)), 10 first rows:
+
+```{text}
+ACCIDENT	Accident
+ACCOMMOD	Mode of accommodation 
+ACCOMSIZE	Size of accommodation by number of bedplaces
+ACCOMUNIT	Accommodation unit
+ACL00	Classification of activities for time use
+ACTIVITY	Type of activity
+ADMINISTR	Administration indicator
+AFFORD	Affordability
+AGE	Age class
+AGECHILD	Age of the child
+AGEDEF	Age definition
+```
+
+An example of the new Concept Scheme file for dataset `NAMA_10_GDP` (see instructions for downloading [here](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+metadata+query#APISDMX2.1metadataquery-SDMX2.1endpoint-REST-SDMX-ML2.1ConceptScheme)):
+
+```{xml}
+<s:Concept id="freq" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq">
+  <c:Name xml:lang="en">
+    Time frequency
+  </c:Name>
+  <c:Name xml:lang="de">
+    Zeitliche Frequenz
+  </c:Name>
+  <c:Name xml:lang="fr">
+    Fréquence (relative au temps)
+  </c:Name>
+  <s:CoreRepresentation>
+    <s:Enumeration>
+      <Ref agencyID="ESTAT" class="Codelist" id="FREQ" package="codelist" version="3.2"/>
+    </s:Enumeration>
+  </s:CoreRepresentation>
+</s:Concept>
+<s:Concept id="unit" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).unit">
+  <c:Name xml:lang="en">
+    Unit of measure
+  </c:Name>
+  <c:Name xml:lang="de">
+    Maßeinheit
+  </c:Name>
+  <c:Name xml:lang="fr">
+    Unité de mesure
+  </c:Name>
+  <s:CoreRepresentation>
+    <s:Enumeration>
+      <Ref agencyID="ESTAT" class="Codelist" id="UNIT" package="codelist" version="22.0"/>
+    </s:Enumeration>
+  </s:CoreRepresentation>
+</s:Concept>
+```
+
+The apparent benefit of XML presentation is that all language versions can be found in the same file. This makes the files a bit larger than old .tsv files but for individual datasets the size is still manageable. 
+
+Concept id's or Ref id's ("unit", "UNIT") can be used to look up further classifications in Codelists. In the old .dic metaphor all definition files were "dictionaries" where `dimlst.dic` was a special case, a dictionary of dictionaries, whereas in the new metaphor there is more of a hierarchy of definitions. For example in the case of units all available English labels can be downloaded in JSON-stat and TSV formats:
+
+https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/codelist/ESTAT/UNIT?format=TSV&lang=en
+https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/codelist/ESTAT/UNIT?format=JSON&lang=en
+
+However, the new TSV files and the old .dic files are virtually identical:
+
+```{text}
+# unit.dic
+TOTAL	Total
+NR	Number
+NR_HAB	Number per inhabitant
+THS	Thousand
+MIO	Million
+BN	Billion
+CT	Euro cent
+EUR	Euro
+THS_EUR	Thousand euro
+MIO_EUR	Million euro
+BN_EUR	Billion euro
+[...]
+[711 lines]
+
+# ESTAT_UNIT_22.0_EN.tsv
+TOTAL	Total
+NR	Number
+NR_HAB	Number per inhabitant
+THS	Thousand
+MIO	Million
+BN	Billion
+CT	Euro cent
+EUR	Euro
+THS_EUR	Thousand euro
+MIO_EUR	Million euro
+BN_EUR	Billion euro
+[...]
+[711 lines]
+```
+
+# Replicating old style dimlst.dic with new xml files
+
+In some cases it may have been useful to access all labels for all datasets from a single file. In theory this is possible with Concept Schemes as well, by downlaoding all concept schemes at once in the form of "ALL_CONCEPTSCHEMES.xml" file, at 29.7 Mb large. We can parse the xml file to create a list that is similar to the old `dimlst.dic` object to see if there are any functional differences.
+
+```{r eval=FALSE}
+library(xml2)
+# file downloaded from https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/conceptscheme/ESTAT/?compressed=true and unpacked
+xml_object <- xml2::read_xml("ALL_CONCEPTSCHEMES.xml")
+number <- length(xml2::xml_find_all(xml_object, ".//s:Concept"))
+dic_df <- data.frame(
+  code_name = rep(NA, times = number),
+  full_name = rep(NA, times = number)
+)
+attributes <- xml2::xml_attrs(xml2::xml_find_all(xml_object, ".//s:Concept"))
+contents <- xml2::xml_text(xml2::xml_find_all(xml_object, ".//s:Concept/c:Name[@xml:lang='en']"))
+for (i in seq_len(number)) {
+  dic_df$code_name[i] <- unname(attributes[[i]]["id"])
+}
+# This is ok because the length of <s:Concept> and <c:Name> is the same
+dic_df$full_name <- contents
+```
+
+We can see that there are more unique codes than labels and that some labels are being used in several different codes:
+
+```{r eval=FALSE}
+length(unique(dic_df$full_name))
+# [1] 586
+length(unique(dic_df$code_name))
+# [1] 592
+```
+
+To make the data.frame similar to the one that we would get from reading a tab-separated .dic object:
+
+```{r eval=FALSE}
+# Select unique rows
+library(dplyr)
+
+new_df <- dic_df %>% 
+  distinct()
+
+# codes toupper
+new_df$code_name <- toupper(new_df$code_name)
+
+new_df_sort <- new_df[order(new_df$code_name),]
+
+# Remove row numbers
+rownames(new_df_sort) <- NULL
+
+head(new_df_sort)
+#   code_name                                    full_name
+# 1  ACCIDENT                                     Accident
+# 2  ACCOMMOD                        Mode of accommodation
+# 3 ACCOMSIZE Size of accommodation by number of bedplaces
+# 4 ACCOMUNIT                           Accommodation unit
+# 5     ACL00    Classification of activities for time use
+# 6  ACTIVITY                             Type of activity
+```
+
+As comparison to the `dimlst.dic` object:
+
+```{r eval=FALSE}
+# downloaded from https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&dir=dic%2Fen
+dimlst_dic <- readr::read_tsv("dimlst.dic",
+                col_names = c("code_name", "full_name"),
+                col_types = readr::cols(.default = readr::col_character()))
+
+head(dimlst_dic)
+##  A tibble: 6 × 2
+#   code_name full_name                                   
+#   <chr>     <chr>                                       
+# 1 ACCIDENT  Accident                                    
+# 2 ACCOMMOD  Mode of accommodation                       
+# 3 ACCOMSIZE Size of accommodation by number of bedplaces
+# 4 ACCOMUNIT Accommodation unit                          
+# 5 ACL00     Classification of activities for time use   
+# 6 ACTIVITY  Type of activity   
+```
+
+Clearly, the two objects have different types (the former is a data.frame, the latter is a tibble), but that doesn't stop us from noticing that at least the 6 first rows are similar with each other. However, `dimlst.dic` has 623 rows while `new_df` object has 593 rows (obs.). Let's find out what the differences are:
+
+```{r eval=FALSE}
+setdiff(dimlst_dic$code_name, new_df_sort$code_name)
+#  [1] "AGR_INP"    "CALCMETH"   "DIMLST"     "ECOSYST"    "ECOSYST_C"  "FARMSIZE"   "HLTH_HLE"  
+#  [8] "HOSPCARE"   "HOUS_ANI"   "INDIC_AGR"  "IND_ACCT"   "IND_IMPV"   "ISSUER"     "LEARNING"  
+# [15] "LEV_INTRF"  "MANSTO"     "NRG_FLOW"   "NRG_TECH"   "OBS_STATUS" "OGA_FAM"    "OGA_NRH"   
+# [22] "OGA_RH"     "OGA_TYPE"   "PEDS"       "PERS_INV"   "PRD_ACCT"   "PRD_AMO"    "RAWMATPR"  
+# [29] "RAWMATSEC"  "REVDATE"    "SIZE_TUR"   "TABLE_DIC"  "TIME"       "VOT_CAT"    "WEEK"      
+# [36] "YN_CARE"    "YN_DIF"     "YN_DIS" 
+# length: 38 items
+length(setdiff(dimlst_dic$code_name, new_df_sort$code_name))
+# [1] 38
+setdiff(new_df_sort$code_name, dimlst_dic$code_name)
+# [1] "FIELDID"     "INDIC_EU"    "OBS_FLAG"    "OBS_VALUE"   "SIZEN_R2"    "TARGET"      "TARGET_FLAG"
+# [8] "TIME_PERIOD"
+length(setdiff(new_df_sort$code_name, dimlst_dic$code_name))
+# [1] 8
+```
+
+To summarize, the old `dimlst.dic` file has 38 codes that are not found in the `ALL_CONCEPTSCHEMES.xml` file. The new `ALL_CONCEPTSCHEMES.xml` has 8 codes that are not found in the old `dimlst.dic`.
+
+For more information about the different fields, let's print the codes and their descriptions. Unique to `dimlst_dic` object:
+
+```{r eval=FALSE}
+print(dimlst_dic[which(dimlst_dic$code_name %in% setdiff(dimlst_dic$code_name, new_df_sort$code_name)),], n = 40)
+# A tibble: 38 × 2
+#    code_name  full_name                                                                     
+#    <chr>      <chr>                                                                         
+#  1 AGR_INP    Agricultural inputs                                                           
+#  2 CALCMETH   Calculation method                                                            
+#  3 DIMLST     null                                                                          
+#  4 ECOSYST    Ecosystem typology                                                            
+#  5 ECOSYST_C  Ecosystem typology - converted                                                
+#  6 FARMSIZE   Size of farm                                                                  
+#  7 HLTH_HLE   Health and life expectancy                                                    
+#  8 HOSPCARE   Hospital care                                                                 
+#  9 HOUS_ANI   Animal housing                                                                
+# 10 INDIC_AGR  Agricultural indicators                                                       
+# 11 IND_ACCT   Industries and accounting items                                               
+# 12 IND_IMPV   Industries, imports and valuations                                            
+# 13 ISSUER     Type of issuer                                                                
+# 14 LEARNING   Learning form                                                                 
+# 15 LEV_INTRF  Level of interference                                                         
+# 16 MANSTO     Manure storage                                                                
+# 17 NRG_FLOW   Energy flows                                                                  
+# 18 NRG_TECH   Energy technologies                                                           
+# 19 OBS_STATUS Observation status (Flag)                                                     
+# 20 OGA_FAM    Other gainful activity of the family members                                  
+# 21 OGA_NRH    Other gainful activity of the holder (not related to the agricultural holding)
+# 22 OGA_RH     Other gainful activity of the holder (related to the agricultural holding)    
+# 23 OGA_TYPE   Types of other gainful activity (OGA) related to the agricultural holding     
+# 24 PEDS       Potential Environmentally Damaging Subsidies (ESA transfers)                  
+# 25 PERS_INV   Persons involved in the accident                                              
+# 26 PRD_ACCT   Products and accounting items                                                 
+# 27 PRD_AMO    Products, adjustments and market output                                       
+# 28 RAWMATPR   Primary raw materials                                                         
+# 29 RAWMATSEC  Secondary raw materials                                                       
+# 30 REVDATE    Revision date                                                                 
+# 31 SIZE_TUR   Size classes of turnover                                                      
+# 32 TABLE_DIC  null                                                                          
+# 33 TIME       Period of time                                                                
+# 34 VOT_CAT    Category of voters                                                            
+# 35 WEEK       Calendar week                                                                 
+# 36 YN_CARE    Use of profesional care - Yes/No                                              
+# 37 YN_DIF     Difficulties - Yes/No                                                         
+# 38 YN_DIS     Disability - Yes/No    
+```
+
+Unique to new_df or new_df_sort:
+
+```{r eval=FALSE}
+new_df_sort[which(new_df_sort$code_name %in% setdiff(new_df_sort$code_name, dimlst_dic$code_name)),]
+#       code_name                        full_name
+# 152     FIELDID             Agricultural product
+# 221    INDIC_EU    Indicators for EU2020 project
+# 364    OBS_FLAG        Observation status (Flag)
+# 365   OBS_VALUE                Observation value
+# 464    SIZEN_R2  Enterprise size and Nace Rev. 2
+# 502      TARGET         TARGET Observation value
+# 503 TARGET_FLAG TARGET Observation status (Flag)
+# 510 TIME_PERIOD                             Time
+``` 
+
+Of these, "FIELDID / Agricultural product" seems almost like an input error as there are also "prod_apr / Agricultural product (old codes)" and "agriprod / Agricultural products" on the list. If that were the case, the correct course of action is to of course give feedback to Eurostat.
+
+# Types of duplicates
+
+There are also some duplicates in the list created from the XML file. Duplicates exist both in the `code_name` column or in the `full_name` column.
+
+```{r eval=FALSE}
+new_df_sort[duplicated(new_df_sort$code_name),]
+#     code_name               full_name
+# 471    SO_EUR Standardoutput in Euros
+
+new_df_sort[duplicated(new_df_sort$full_name),]
+#     code_name                                               full_name
+# 35   ASYL_APP                                          Applicant type
+# 179    HHTYPE                                       Type of household
+# 227 INDIC_INN                                    Innovation indicator
+# 233 INDIC_NRG                                        Energy indicator
+# 237 INDIC_SBS Economical indicator for structural business statistics
+# 452  SECTPART                                       Sector (ESA 2010)
+# 528        TY                                     Type of expenditure
+```
+
+The differences can be due to typos (probably ?):
+
+```{r eval=FALSE}
+
+new_df_sort[which(new_df_sort$code_name == "SO_EUR"),]
+#     code_name                full_name
+# 470    SO_EUR Standard output in Euros
+# 471    SO_EUR  Standardoutput in Euros
+
+new_df_sort[which(new_df_sort$full_name == "Type of household"),]
+#     code_name         full_name
+# 178     HHTYP Type of household
+# 179    HHTYPE Type of household
+
+new_df_sort[which(new_df_sort$full_name == "Innovation indicator"),]
+#     code_name            full_name
+# 226  INDIC_IN Innovation indicator
+# 227 INDIC_INN Innovation indicator
+
+new_df_sort[which(new_df_sort$full_name == "Economical indicator for structural business statistics"),]
+#     code_name                                               full_name
+# 236  INDIC_SB Economical indicator for structural business statistics
+# 237 INDIC_SBS Economical indicator for structural business statistics
+```
+
+...or due to actual differences (?) in the fields, although there could also be some kind of a misunderstanding:
+
+```{r eval=FALSE}
+# Different types of applicants
+new_df_sort[which(new_df_sort$full_name == "Applicant type"),]
+#    code_name      full_name
+# 24 APPLICANT Applicant type
+# 35  ASYL_APP Applicant type
+
+new_df_sort[which(new_df_sort$full_name == "Energy indicator"),]
+#     code_name        full_name
+# 218  INDIC_EN Energy indicator
+# 233 INDIC_NRG Energy indicator
+
+new_df_sort[which(new_df_sort$full_name == "Sector (ESA 2010)"),]
+#     code_name         full_name
+# 450  SECTOR10 Sector (ESA 2010)
+# 452  SECTPART Sector (ESA 2010)
+
+new_df_sort[which(new_df_sort$full_name == "Type of expenditure"),]
+#     code_name           full_name
+# 144     EXPEN Type of expenditure
+# 528        TY Type of expenditure
+```
+
+# Conclusion
+
+Changes in methods of delivering metadata affect, naturally, all end users of Eurostat data. With the eurostat package version 4.0.0 we have aimed at retaining the user-facing functionalities and the expected outputs. The interesting world of XML parsing is kept under the hood and should not be of concern for users. 
+
+This document is written mainly as a future reference for ourselves if we might at some point be wondering why something that was possible before is not possible anymore, or for users who have had scripts relying on functions like `label_eurostat_vars()`. 
+
+Feel free to open an issue or a pull request in Github if there are any suggestions or corrections you would like to make.
