@@ -16,17 +16,17 @@ see \code{\link[=as.numeric]{as.numeric()}}.
 A conversion of a Eurostat time format to numeric.
 }
 \details{
-Bi-annual, quarterly and monthly data is presented as fraction of
-the year in beginning of the period. Conversion of daily data is not
-supported.
+Bi-annual (semester), quarterly, monthly and weekly data can be presented as
+a fraction of the year in beginning of the period. Conversion of daily data
+is not supported.
 }
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-na_q$time <- eurotime2num(x = na_q$time)
+na_q$TIME_PERIOD <- eurotime2num(x = na_q$TIME_PERIOD)
 
-unique(na_q$time)
+unique(na_q$TIME_PERIOD)
 }
 \dontshow{\}) # examplesIf}
 }
@@ -34,14 +34,11 @@ unique(na_q$time)
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
-\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
-\code{\link{eurotime2num2}()},
 \code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat2}()},
 \code{\link{label_eurostat}()}
 }
 \author{
-Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
+Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}, Pyry Kantanen
 }
 \concept{helpers}

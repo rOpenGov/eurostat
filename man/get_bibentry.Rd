@@ -4,7 +4,7 @@
 \alias{get_bibentry}
 \title{Create A Data Bibliography}
 \usage{
-get_bibentry(code, keywords = NULL, format = "Biblatex")
+get_bibentry(code, keywords = NULL, format = "Biblatex", lang = "en")
 }
 \arguments{
 \item{code}{A Eurostat data code or a vector of Eurostat data codes as
@@ -14,7 +14,10 @@ character or factor.}
 to \code{NULL}.}
 
 \item{format}{Default is \code{'Biblatex'}, alternatives are \code{'bibentry'}
-or \code{'Bibtex'} (not case sensitive.)}
+or \code{'Bibtex'} (not case sensitive)}
+
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 }
 \value{
 a bibentry, Bibtex or Biblatex object.
@@ -24,20 +27,50 @@ Creates a bibliography from selected Eurostat data files,
 including last Eurostat update, URL access data, and optional keywords
 set by the user.
 }
+\section{Citing Eurostat data}{
+For citing datasets, use \code{\link[=get_bibentry]{get_bibentry()}} to build a bibliography that
+is suitable for your reference manager of choice.
+
+When using Eurostat data in other contexts than academic publications that
+in-text citations or footnotes/endnotes, the following guidelines may be
+helpful:
+\itemize{
+\item The origin of the data should always be mentioned as "Source: Eurostat".
+\item The online dataset codes(s) should also be provided in order to ensure
+transparency and facilitate access to the Eurostat data and related
+methodological information. For example:
+"Source: Eurostat (online data code: namq_10_gdp)"
+\item Online publications (e.g. web pages, PDF) should include a clickable
+link to the dataset using the bookmark functionality available in the
+Eurostat data browser.
+}
+
+It should be avoided to associate different entities (e.g. Eurostat,
+National Statistical Offices, other data providers) to the same dataset or
+indicator without specifying the role of each of them in the treatment of
+data.
+
+See also section "Eurostat: Copyright notice and free re-use of data"
+in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
+}
+
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \dontrun{
   my_bibliography <- get_bibentry(
-    code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
+    code = c("tran_hv_frtra", "tec00001"),
     keywords = list(
-      c("railways", "freight", "transport"),
-      c("railways", "passengers", "modal split")
+      c("transport", "freight", "multimodal data", "GDP"),
+      c("economy and finance", "annual", "national accounts", "GDP")
     ),
     format = "Biblatex"
   )
   my_bibliography
 }
 \dontshow{\}) # examplesIf}
+}
+\seealso{
+\link[utils:bibentry]{utils::bibentry} \link[RefManageR:toBiblatex]{RefManageR::toBiblatex}
 }
 \author{
 Daniel Antal, Przemyslaw Biecek

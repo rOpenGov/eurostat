@@ -12,9 +12,44 @@ test_that("Bibentry gives correct results", {
     )),
     "Bibtex"
   )
+  
+  expect_equal(
+    class(
+      suppressWarnings(
+        get_bibentry(
+        code = c("sts_inpr_a"),
+        lang = "fr",
+        format = "Bibtex"
+      ))),
+    "Bibtex"
+  )
+  
   expect_error(
     get_bibentry(code = 123456)
   )
+  
+  expect_error(
+    get_bibentry(
+      code = c("sts_inpr_a"),
+      lang = "fr",
+      keywords = "production"
+    )
+  )
+  
+  # None of the codes not found
+  expect_warning(
+    get_bibentry(
+      code = "sts_inpr_b"
+    )
+  )
+  
+  # Some of the codes not found
+  expect_warning(
+    get_bibentry(
+      code = c("sts_inpr_b", "sts_inpr_a")
+    )
+  )
+  
   expect_warning(
     get_bibentry(
       code = c("sts_inpr_a", "nama_10_gdp"),
@@ -25,4 +60,6 @@ test_that("Bibentry gives correct results", {
       format = "character"
     )
   )
+  
+  
 })

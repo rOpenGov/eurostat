@@ -7,35 +7,42 @@
 #' @param keywords A list of keywords to be added to the entries. Defaults
 #' to `NULL`.
 #' @param format Default is `'Biblatex'`, alternatives are `'bibentry'`
-#' or `'Bibtex'` (not case sensitive.)
+#' or `'Bibtex'` (not case sensitive)
+#' @inheritParams get_eurostat
 #' @author Daniel Antal, Przemyslaw Biecek
+#' @inheritSection eurostat-package Citing Eurostat data
+#' 
 #' @return a bibentry, Bibtex or Biblatex object.
+#' 
+#' @seealso [utils::bibentry] [RefManageR::toBiblatex]
+#' 
 #' @examplesIf check_access_to_data()
 #' \dontrun{
 #'   my_bibliography <- get_bibentry(
-#'     code = c("tran_hv_frtra", "t2020_rk310", "tec00001"),
+#'     code = c("tran_hv_frtra", "tec00001"),
 #'     keywords = list(
-#'       c("railways", "freight", "transport"),
-#'       c("railways", "passengers", "modal split")
+#'       c("transport", "freight", "multimodal data", "GDP"),
+#'       c("economy and finance", "annual", "national accounts", "GDP")
 #'     ),
 #'     format = "Biblatex"
 #'   )
 #'   my_bibliography
 #' }
+#' 
 #' @importFrom lubridate dmy year month day
-#' @importFrom utils toBibtex
+#' @importFrom utils toBibtex person
 #' @importFrom RefManageR BibEntry toBiblatex
+#' @importFrom stringr str_glue
 #'
 #' @export
-
-
 get_bibentry <- function(code,
                          keywords = NULL,
-                         format = "Biblatex") {
+                         format = "Biblatex",
+                         lang = "en") {
   if (!any(class(code) %in% c("character", "factor"))) {
     stop("The code(s) must be added as character vector")
   }
-  if (!is.null(keywords) & !inherits(keywords, "list")) {
+  if (!is.null(keywords) && !inherits(keywords, "list")) {
     stop("If keyword(s) are added, they must be added as a list.")
   }
 
@@ -48,28 +55,60 @@ get_bibentry <- function(code,
     format <- "biblatex"
   }
 
-  toc <- get_eurostat_toc()
+  toc <- get_eurostat_toc(lang = lang)
+  # Remove hierarchy column to make duplicated() check more viable
+  toc <- toc[, !names(toc) %in% c("hierarchy")]
   toc <- toc[toc$code %in% code, ]
   toc <- toc[!duplicated(toc), ]
 
   urldate <- as.character(Sys.Date())
+  
+  lang <- check_lang(lang)
+  
+  lang_long <- switch(lang,
+                      en = "english",
+                      fr = "french",
+                      de = "german")
 
   if (nrow(toc) == 0) {
-    warning(paste0("Code ", code, "not found"))
+    warning(paste(
+      "None of the codes were found in the Eurostat table of contents.\n",
+      "Please check the 'code' argument in get_bibentry() for errors:\n",
+      paste(code, collapse = ", ")
+      )
+    )
     return()
   }
+  
+  not_found <- NULL
+  not_found <- !(code %in% toc$code)
+  not_found <- code[not_found]
+  if (is.character(not_found) && length(not_found) != 0) {
+    warning(paste(
+      "The following codes were not found in the Eurostat table of contents.\n",
+      "Bibliography object returned without the following items:\n",
+      paste(not_found, collapse = ", ")
+    ))
+  }
 
-  eurostat_id <- paste0(
-    toc$code, "_",
-    gsub("\\.", "-", toc$`last update of data`)
-  )
-
-  for (i in 1:nrow(toc)) {
-    last_update_date <- lubridate::dmy(toc[["last update of data"]][[i]])
+  for (i in seq_len(nrow(toc))) {
+    last_update_date <- lubridate::dmy(toc[["last.update.of.data"]][[i]])
     last_update_year <- lubridate::year(last_update_date)
     last_update_month <- lubridate::month(last_update_date)
     last_update_day <- lubridate::day(last_update_date)
-
+    
+    dataset_key <- paste0(
+      toc$code[i], "-", last_update_year, "-", last_update_month, "-", 
+      last_update_day
+    )
+    # replace troublesome _ with -
+    dataset_key <- gsub("_", "-", dataset_key)
+    
+    dataset_id <- toc$code[i]
+    # replace troublesome _ with \_ for bibtex and biblatex references
+    if (format %in% c("bibtex", "biblatex")) {
+      dataset_id <- gsub("_", "\\\\_", dataset_id)
+    }
 
     if (!is.null(keywords)) { # if user entered keywords
       if (length(keywords) < i) { # last keyword not entered
@@ -83,15 +122,23 @@ get_bibentry <- function(code,
 
     entry <- RefManageR::BibEntry(
       bibtype = "misc",
-      key = eurostat_id[i],
-      title = paste0(toc$title[i], " [", code[i], "]"),
-      url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/-/", code[i]),
-      language = "en",
-      year = paste0(toc$`last update of data`[i]),
-      publisher = "Eurostat",
-      author = "Eurostat",
+      key = dataset_key,
+      title = paste0(toc$title[i], " (", dataset_id, ")"),
+      url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/product?code=",
+                   toc$code[i]),
+      language = lang_long,
+      # date = last_update_date,
+      year = last_update_year,
+      author = c(
+        utils::person(given = "Eurostat")
+      ),
       keywords = keyword_entry,
-      urldate = urldate
+      urldate = urldate,
+      type = "Dataset",
+      note = stringr::str_glue(
+        paste("Accessed {as.Date(urldate)},",
+              "dataset last updated {as.Date(last_update_date)}")
+      )
     )
 
     if (i > 1) {

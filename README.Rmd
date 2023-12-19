@@ -27,7 +27,7 @@ knitr::opts_chunk$set(
 
 [![Watch on GitHub][github-watch-badge]][github-watch]
 [![Star on GitHub][github-star-badge]][github-star]
-[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/intent/follow?screen_name=ropengov)
+[![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/ropengov)
 
 <!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
 <!--[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
@@ -106,7 +106,13 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this package** as follows: [Leo Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu and Janne Huovari. Retrieval and analysis of Eurostat open data with the eurostat package. [R Journal 9(1):385-392, 2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). R package version `r sessionInfo()$otherPkgs$eurostat$Version`. DOI: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL: [https://ropengov.github.io/eurostat/](https://ropengov.github.io/eurostat/)
+**Kindly cite this package** by citing the following R Journal article: 
+
+[Lahti L.](https://github.com/antagomir), Huovari J., Kainu M., and Biecek P. (2017). Retrieval and analysis of Eurostat open data with the eurostat package. [The R Journal 9(1), pp. 385-392](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). doi: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019).
+
+In addition, please provide a citation to the specific software version used:
+
+Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D., and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data [Computer software]. R package version 4.0.0.9003. https://github.com/rOpenGov/eurostat
 
 We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](https://ropengov.org).
 

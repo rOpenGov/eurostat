@@ -1,11 +1,6 @@
 ---
 title: "Blog posts"
 date: "2022-02-07"
-output: rmarkdown::html_vignette
-vignette: >
-    %\VignetteIndexEntry{Blog posts}
-    %\VignetteEngine{knitr::rmarkdown}
-    %\VignetteEncoding{UTF-8}
 ---
 
 ```{r, include = FALSE}

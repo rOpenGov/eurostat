@@ -16,23 +16,24 @@ jobs:
     env:
       GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
 
-      - uses: r-lib/actions/setup-pandoc@master
+      - uses: r-lib/actions/setup-pandoc@v2
 
-      - uses: r-lib/actions/setup-r@master
+      - uses: r-lib/actions/setup-r@v2
         with:
           use-public-rspm: true
 
-      - uses: r-lib/actions/setup-r-dependencies@master
+      - uses: r-lib/actions/setup-r-dependencies@v2
         with:
           extra-packages: |
-            usethis
-            styler
-            urlchecker
-            devtools
-            roxygen2
-            
+            local::.
+            any::usethis
+            any::styler
+            any::urlchecker
+            any::devtools
+            any::roxygen2
+            ropengov/rogtemplate
           needs: website
       - name: Tidy code
         run: |
@@ -48,17 +49,15 @@ jobs:
       
       - name: Commit results
         run: |
-          git config --local user.name "$GITHUB_ACTOR"
-          git config --local user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
           git commit -m 'Tidy code' || echo "No changes to commit"
           git push origin || echo "No changes to commit"
           
       - name: Trigger pkgdown workflow
         if: success()
-        uses: peter-evans/repository-dispatch@v1
-        with:
-          token: ${{ secrets.REPO_GHA_PAT }}
-          repository: ${{ github.repository }}
-          event-type: trigger-pkgdown-workflow
-          client-payload: '{"ref": "${{ github.ref }}", "sha": "${{ github.sha }}"}'
+        run: |
+          git config --local user.name "github-actions[bot]"
+          git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          Rscript -e 'pkgdown::deploy_to_branch(new_process = FALSE)'

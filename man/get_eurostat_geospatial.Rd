@@ -8,7 +8,7 @@ Data source: Eurostat
 
 © EuroGeographics for the administrative boundaries
 
-Data downloaded from: \url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
+Data downloaded using \pkg{giscoR}
 }
 \usage{
 get_eurostat_geospatial(
@@ -20,13 +20,14 @@ get_eurostat_geospatial(
   update_cache = FALSE,
   cache_dir = NULL,
   crs = "4326",
-  make_valid = FALSE
+  make_valid = "DEPRECATED",
+  ...
 )
 }
 \arguments{
-\item{output_class}{A string. Class of object returned,
-either \code{sf} \verb{simple features}, \code{df} (\code{data_frame}) or
-\code{spdf} (\code{SpatialPolygonDataFrame})}
+\item{output_class}{Class of object returned,
+either \code{sf} \verb{simple features} or \code{df} (\code{data_frame}). \code{spdf} output has
+been soft-deprecated, the function would switch to \code{sf}.}
 
 \item{resolution}{Resolution of the geospatial data. One of
 \itemize{
@@ -43,17 +44,14 @@ either \code{sf} \verb{simple features}, \code{df} (\code{data_frame}) or
 \item{year}{NUTS release year. One of
 "2003", "2006", "2010", "2013", "2016" or "2021"}
 
-\item{cache}{a logical whether to do caching. Default is \code{TRUE}. Affects
-only queries from the bulk download facility.}
+\item{cache}{a logical whether to do caching. Default is \code{TRUE}.}
 
 \item{update_cache}{a logical whether to update cache. Can be set also with
-options(eurostat_update = TRUE)}
+\code{options(eurostat_update = TRUE)}}
 
-\item{cache_dir}{a path to a cache directory. The directory have to exist.
-The \code{NULL} (default) uses and creates
-'eurostat' directory in the temporary directory from
-\code{\link[=tempdir]{tempdir()}}. Directory can also be set with
-\code{option} eurostat_cache_dir.}
+\item{cache_dir}{a path to a cache directory. See
+\code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}. If \code{NULL} and the cache dir has not been set
+globally the file would be stored in the \code{\link[=tempdir]{tempdir()}}.}
 
 \item{crs}{projection of the map: 4-digit
 \href{https://spatialreference.org/ref/epsg/}{EPSG code}. One of:
@@ -63,136 +61,151 @@ The \code{NULL} (default) uses and creates
 \item "3857" - Pseudo-Mercator
 }}
 
-\item{make_valid}{logical; ensure that valid (multi-)polygon features are
-returned if \code{output_class="sf"}, see Details. Current default
-\code{FALSE}, will be changed in the future.}
+\item{make_valid}{Deprecated}
+
+\item{...}{
+  Arguments passed on to \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts}}
+  \describe{
+    \item{\code{verbose}}{Logical, displays information. Useful for debugging,
+default is \code{FALSE}.}
+    \item{\code{spatialtype}}{Type of geometry to be returned:
+\itemize{
+\item \strong{"BN"}: Boundaries - \code{LINESTRING} object.
+\item \strong{"LB"}: Labels - \code{POINT} object.
+\item \strong{"RG"}: Regions - \code{MULTIPOLYGON/POLYGON} object.
+}}
+    \item{\code{country}}{Optional. A character vector of country codes. It could be
+either a vector of country names, a vector of ISO3 country codes or a
+vector of Eurostat country codes. Mixed types (as \code{c("Turkey","US","FRA")})
+would not work. See also \code{\link[countrycode:countrycode]{countrycode::countrycode()}}.}
+    \item{\code{nuts_id}}{Optional. A character vector of NUTS IDs.}
+  }}
 }
 \value{
-a sf, data_frame or SpatialPolygonDataFrame.
+a sf or data_frame
 }
 \description{
-Downloads either a simple features (sf),
-SpatialPolygonDataFrame or a data_frame preprocessed using \code{\link[broom:reexports]{broom::tidy()}}.
+Downloads either a simple features (sf) or a data_frame
+of NUTS regions. This function is a wrapper of \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}.
+This function requires to have installed the packages \CRANpkg{sf} and
+\CRANpkg{giscoR}.
 }
 \details{
-The data source URL is
-\url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}.
-The source provides feature collections as line strings (GeoJSON format),
-not as (multi-)polygons which, in some cases, yields invalid
-self-intersecting (multi-)polygon geometries (for some years/resolutions).
-This can cause problems, e.g., when using these geometries as input argument
-to \code{\link[sf:interpolate_aw]{sf::st_interpolate_aw()}}. \code{make_valid = TRUE} makes sure that
-only valid (multi-)polygons are returned, example included below.
-
 The objects downloaded from GISCO should contain all or some of the
 following variable columns:
 \itemize{
-\item \strong{id}: JSON id code, the same as NUTS_ID. See NUTS_ID below for further clarification.
-\item \strong{LEVL_CODE}: NUTS level code: 0 (national level), 1 (major socio-economic regions), 2 (basic regions for the application of regional policies) or 3 (small regions).
-\item \strong{NUTS_ID}: NUTS ID code, consisting of country code and numbers (1 for NUTS 1, 2 for NUTS 2 and 3 for NUTS 3)
-\item \strong{CNTR_CODE}: Country code: two-letter ISO code (ISO 3166 alpha-2), except in the case of Greece (EL).
+\item \strong{id}: JSON id code, the same as \strong{NUTS_ID}. See \strong{NUTS_ID} below for
+further clarification.
+\item \strong{LEVL_CODE}: NUTS level code: 0 (national level), 1 (major
+socio-economic regions), 2 (basic regions for the application of regional
+policies) or 3 (small regions).
+\item \strong{NUTS_ID}: NUTS ID code, consisting of country code and numbers (1 for
+NUTS 1, 2 for NUTS 2 and 3 for NUTS 3)
+\item \strong{CNTR_CODE}: Country code: two-letter ISO code (ISO 3166 alpha-2), except
+in the case of Greece (EL).
 \item \strong{NAME_LATN}: NUTS name in local language, transliterated to Latin script
 \item \strong{NUTS_NAME}: NUTS name in local language, in local script.
 \item \strong{MOUNT_TYPE}: Mountain typology for NUTS 3 regions.
 \itemize{
-\item{1: "where more than 50 \% of the surface is covered by topographic mountain areas"}
-\item{2: "in which more than 50 \% of the regional population lives in topographic mountain areas"}
-\item{3: "where more than 50 \% of the surface is covered by topographic mountain areas and where more than 50 \% of the regional population lives in these mountain areas"}
-\item{4: non-mountain region / other region}
-\item{0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 and non-EU countries)}
+\item 1: "where more than 50 \% of the surface is covered by topographic
+mountain areas"
+\item 2: "in which more than 50 \% of the regional population lives in
+topographic mountain areas"
+\item 3: "where more than 50 \% of the surface is covered by topographic
+mountain areas and where more than 50 \% of the regional population lives
+in these mountain areas"
+\item 4: non-mountain region / other region
+\item 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 and
+non-EU countries)
 }
 \item \strong{URBN_TYPE}: Urban-rural typology for NUTS 3 regions.
 \itemize{
-\item{1: predominantly urban region}
-\item{2: intermediate region}
-\item{3: predominantly rural region}
-\item{0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 regions)}
+\item 1: predominantly urban region
+\item 2: intermediate region
+\item 3: predominantly rural region
+\item 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
+regions)
 }
 \item \strong{COAST_TYPE}: Coastal typology for NUTS 3 regions.
 \itemize{
-\item{1: coastal (on coast)}
-\item{2: coastal (>= 50\% of population living within 50km of the coastline)}
-\item{3: non-coastal region}
-\item{0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 regions)}
+\item 1: coastal (on coast)
+\item 2: coastal (>= 50\% of population living within 50km of the coastline)
+\item 3: non-coastal region
+\item 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
+regions)
 }
 \item \strong{FID}: Same as NUTS_ID.
+\item \strong{geo}: Same as NUTS_ID, added for for easier joins with dplyr. Consider
+the status of this column "questioning" and use other columns for joins
+when possible.
 \item \strong{geometry}: geospatial information.
-\item \strong{geo}: Same as NUTS_ID, added for for easier joins with dplyr. However, it is recommended to use other identical fields for this purpose.
 }
 }
-\examples{
-\donttest{
-sf <- get_eurostat_geospatial(
-  output_class = "sf",
-  resolution = "60",
-  nuts_level = "all"
-)
-df <- get_eurostat_geospatial(
-  output_class = "df",
-  resolution = "20",
-  nuts_level = "0"
-)
-}
-
-\dontrun{
-spdf <- get_eurostat_geospatial(
-  output_class = "spdf",
-  resolution = "10",
-  nuts_level = "3"
-)
-}
-
-\dontrun{
-# -------------------------------------------------------------------
-# Minimal example to demonstrate reason/effect of 'make_valid = TRUE'
-# Spatial data set; rectangle spanning the entire globe with a constant value of 1L.
-# Requires the R package sf.
-library("sf")
-d <- c(-180, -90, -180, 90, 180, 90, 180, -90, -180, -90)
-poly <- st_polygon(list(matrix(d, ncol = 2, byrow = TRUE)))
-data <- st_sf(data.frame(geom = st_sfc(poly), data = 1L),
-  crs = st_crs(4326)
-)
-
-# Causing an error: Self-intersection of some points of the geometry
-NUTS2_A <- get_eurostat_geospatial("sf", 60,
-  nuts_level = 2, year = 2013,
-  crs = 4326, make_valid = FALSE
-)
-res <- tryCatch(st_interpolate_aw(data, NUTS2_A, extensive = FALSE),
-  error = function(e) e
-)
-print(res)
-
-# Resolving the problem using
-# make_valid = TRUE. 'extensive = FALSE' returns
-# average over each area, thus resulting in a
-# constant value of 1 for each geometry in NUTS2_B.
-NUTS2_B <- get_eurostat_geospatial("sf", 60,
-  nuts_level = 2, year = 2013,
-  crs = 4326, make_valid = TRUE
-)
-res <- st_interpolate_aw(data, NUTS2_B, extensive = FALSE)
-print(head(res))
-}
-
-}
-\references{
+\section{Eurostat: Copyright notice and free re-use of data}{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+"(c) European Union, 1995 - today
+
+Eurostat has a policy of encouraging free re-use of its data, both for
+non-commercial and commercial purposes. All statistical data, metadata,
+content of web pages or other dissemination tools, official publications
+and other documents published on its website, with the exceptions listed
+below, can be reused without any payment or written licence provided that:
+\itemize{
+\item the source is indicated as Eurostat;
+\item when re-use involves modifications to the data or text, this must be
+stated clearly to the end user of the information."
+}
+
+For exceptions to the abovementioned principles see
+\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+}
+
+\section{Data source: GISCO - General Copyright}{
+"Eurostat's general copyright notice and licence policy is applicable and
+can be consulted here:
+\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+
+Please also be aware of the European Commission's general conditions:
+\url{https://commission.europa.eu/legal-notice_en}
+
+Moreover, there are specific provisions applicable to some of the following
+datasets available for downloading. The download and usage of these data
+is subject to their acceptance:
+\itemize{
+\item Administrative Units / Statistical Units
+\item Population distribution / Demography
+\item Transport Networks
+\item Land Cover
+\item Elevation (DEM)"
+}
+
+Of the abovementioned datasets, Administrative Units / Statistical Units
+is applicable if the user wants to draw maps with borders provided by
+GISCO / EuroGeographics.
+}
+
+\section{Data source: GISCO - Administrative Units / Statistical Units}{
+The following copyright notice is provided for end user convenience.
+Please check up-to-date copyright information from the GISCO website:
 \href{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}{GISCO: Geographical information and maps - Administrative units/statistical units}
 
-"In addition to the \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{general copyright and licence policy} applicable to the whole Eurostat website, the following specific provisions apply to the datasets you are downloading. The download and usage of these data is subject to the acceptance of the following clauses:
+"In addition to the \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{general copyright and licence policy} applicable to the whole Eurostat website, the following
+specific provisions apply to the datasets you are downloading. The download
+and usage of these data is subject to the acceptance of the following
+clauses:
 \enumerate{
 \item The Commission agrees to grant the non-exclusive and not transferable
 right to use and process the Eurostat/GISCO geographical data downloaded
 from this page (the "data").
 \item The permission to use the data is granted on condition that:
 \enumerate{
-\item{the data will not be used for commercial purposes;}
-\item{the source will be acknowledged. A copyright notice, as specified
+\item the data will not be used for commercial purposes;
+\item the source will be acknowledged. A copyright notice, as specified
 below, will have to be visible on any printed or electronic publication
-using the data downloaded from this page.}
+using the data downloaded from this page."
 }
 }
 \subsection{Copyright notice}{
@@ -217,11 +230,36 @@ If you intend to use the data commercially, please contact EuroGeographics
 for information regarding their licence agreements."
 }
 }
+
+\examples{
+\donttest{
+# Uses cached dataset
+sf <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "60",
+  nuts_level = "all"
+)
+# Downloads dataset from server
+sf2 <- get_eurostat_geospatial(
+  output_class = "sf",
+  resolution = "20",
+  nuts_level = "all"
+)
+df <- get_eurostat_geospatial(
+  output_class = "df",
+  nuts_level = "0"
+)
+}
+
+}
 \seealso{
+\code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}
+
 Other geospatial: 
 \code{\link{eurostat_geodata_60_2016}}
 }
 \author{
-Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}
+Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}, Diego Hernangomez
+\url{https://github.com/dieghernan/}
 }
 \concept{geospatial}

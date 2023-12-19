@@ -20,7 +20,7 @@ cut_to_classes(
 
 \item{n}{A numeric. number of classes/categories}
 
-\item{style}{chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih", "headtails", or "maximum"}
+\item{style}{chosen style: one of "fixed", "sd", "equal", "pretty", "quantile", "kmeans", "hclust", "bclust", "fisher", "jenks", "dpih", "headtails", "maximum", or "box"}
 
 \item{manual}{Logical. If manual breaks are being used}
 
@@ -51,12 +51,9 @@ lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
 
 Other helpers: 
 \code{\link{dic_order}()},
-\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
-\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
 \code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat2}()},
 \code{\link{label_eurostat}()}
 }
 \author{
