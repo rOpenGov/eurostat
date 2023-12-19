@@ -81,14 +81,14 @@ passengers <- search_eurostat("passenger transport")
 knitr::kable(head(passengers))
 ```
 
-| title                                                                                        | code             | type    | last update of data | last table structure change | data start | data end | values |
-|:---------------------------------------------------------------------------------------------|:-----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|:-------|
-| Air passenger transport                                                                      | enps_avia_pa     | dataset | 10.02.2022          | 10.02.2022                  | 2005       | 2020     | NA     |
-| Modal split of air, sea and inland passenger transport                                       | tran_hv_ms_psmod | dataset | 31.01.2023          | NA                          | 2008       | 2020     | NA     |
-| Modal split of inland passenger transport                                                    | tran_hv_psmod    | dataset | 13.07.2022          | 13.07.2022                  | 1990       | 2020     | NA     |
-| Volume of passenger transport relative to GDP                                                | tran_hv_pstra    | dataset | 13.07.2022          | 13.07.2022                  | 1990       | 2020     | NA     |
-| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 21.02.2023          | 21.02.2023                  | 2005       | 2021     | NA     |
-| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 13.02.2023          | 13.02.2023                  | 1993       | 2022Q4   | NA     |
+| title                                                                                        | code             | type    | last.update.of.data | last.table.structure.change | data.start | data.end | values  | hierarchy |
+|:---------------------------------------------------------------------------------------------|:-----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|:--------|----------:|
+| Air passenger transport                                                                      | enps_avia_pa     | dataset | 13.03.2023          | 13.03.2023                  | 2005       | 2021     | 406     |         6 |
+| Modal split of air, sea and inland passenger transport                                       | tran_hv_ms_psmod | dataset | 29.06.2023          | 29.06.2023                  | 2008       | 2021     | 2100    |         4 |
+| Modal split of inland passenger transport                                                    | tran_hv_psmod    | dataset | 29.06.2023          | 29.06.2023                  | 1990       | 2021     | 4219    |         4 |
+| Volume of passenger transport relative to GDP                                                | tran_hv_pstra    | dataset | 11.08.2023          | 29.06.2023                  | 1990       | 2021     | 969     |         4 |
+| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 25.07.2023          | 21.02.2023                  | 2005       | 2021     | 1752    |         4 |
+| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 15.09.2023          | 15.09.2023                  | 1993       | 2023-Q2  | 2460928 |         5 |
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
@@ -116,14 +116,21 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this package** as follows: [Leo
-Lahti](https://github.com/antagomir), Przemyslaw Biecek, Markus Kainu
-and Janne Huovari. Retrieval and analysis of Eurostat open data with the
-eurostat package. [R Journal 9(1):385-392,
-2017](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-R package version 3.7.15. DOI:
-[10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019). URL:
-<https://ropengov.github.io/eurostat/>
+**Kindly cite this package** by citing the following R Journal article:
+
+[Lahti L.](https://github.com/antagomir), Huovari J., Kainu M., and
+Biecek P. (2017). Retrieval and analysis of Eurostat open data with the
+eurostat package. [The R Journal 9(1),
+pp. 385-392](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
+doi: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019).
+
+In addition, please provide a citation to the specific software version
+used:
+
+Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+\[Computer software\]. R package version 4.0.0.9003.
+<https://github.com/rOpenGov/eurostat>
 
 We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),

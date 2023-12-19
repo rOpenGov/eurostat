@@ -161,12 +161,8 @@ eur_helper_detect_cache_dir <- function() {
       cached_path <- readLines(cache_config)
 
       # Case on empty cached path - would default
-      if (is.null(cached_path) ||
-        is.na(cached_path) || cached_path == "") {
-        cache_dir <- set_eurostat_cache_dir(
-          overwrite = TRUE,
-          verbose = FALSE
-        )
+      if (is.null(cached_path) || is.na(cached_path) || cached_path == "") {
+        cache_dir <- set_eurostat_cache_dir(overwrite = TRUE, verbose = FALSE)
         return(cache_dir)
       }
 
@@ -208,4 +204,41 @@ eur_helper_cachedir <- function(cache_dir = NULL) {
     dir.create(cache_dir, recursive = TRUE)
   }
   return(cache_dir)
+}
+
+#' Output cache information as data.frame
+#' @description
+#' Parses cache_list.json file and returns a data.frame
+#' @return
+#' A data.frame object with 3 columns: dataset code, download date and 
+#' query md5 hash
+#' 
+#' @inheritParams get_eurostat
+#' @importFrom jsonlite fromJSON
+#' @export
+list_eurostat_cache_items <- function(cache_dir = NULL) {
+  if (is.null(cache_dir)) {
+    cache_dir <- eur_helper_detect_cache_dir()
+  }
+  
+  path <- paste0(cache_dir, "/cache_list.json")
+  
+  if (!file.exists(path)) {
+    warning("No cache_list.json file found!")
+    return(invisible())
+  }
+  
+  json_file <- jsonlite::fromJSON(path)
+  # return(json_file)
+  columns <- c("code", "download_date", "query_md5_hash")
+  df <- data.frame(matrix(nrow = 0, ncol = length(columns))) 
+  for (i in seq_len(length(json_file))) {
+    df_i <- data.frame(
+      code = json_file[[i]][["id"]],
+      download_date = json_file[[i]][["download_date"]],
+      query_md5_hash = names(json_file[i])
+    )
+    df <- rbind(df, df_i)
+  }
+  df
 }

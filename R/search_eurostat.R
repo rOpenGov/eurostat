@@ -1,35 +1,34 @@
 #' @title Grep Datasets Titles from Eurostat
-#' @description Lists names of dataset from eurostat with the particular
-#' pattern in the description.
+#' @description Lists datasets from eurostat table of contents with the 
+#' particular pattern in item titles.
 #' @details Downloads list of all datasets available on
 #' eurostat and return list of names of datasets that contains particular
 #' pattern in the dataset description. E.g. all datasets related to
-#' education of teaching.
-#' @param pattern Character, datasets, folder or tables with this pattern in
-#'  	  the description will be returned (depending on the 'type' argument)
-#' @param type Grep the Eurostat table of contents either for
-#'  	  'dataset' (default), 'folder', 'table' or "all" (for all types).
-#' @param fixed logical. If TRUE, pattern is a string to be matched as is.
-#'      Change to FALSE if more complex regex matching is needed.
-#' @return A tibble with eight columns
-#'
-#'    * **title**: The name of dataset of theme
-#' 	  * **code**: The codename of dataset of theme, will be used by the
-#' 	  [get_eurostat()] and [get_eurostat_raw()] functions.
-#' 	  * **type**: Is it a dataset, folder or table.
-#' 	  * **last.update.of.data, last.table.structure.change, data.start,
-#' 	  data.end**: Dates.
-#'
-#' @export
-#' @seealso [get_eurostat()], [get_eurostat_toc()]
-#' @references
-#' See `citation("eurostat")`:
-#'
-#' ```{r, echo=FALSE, comment="#" }
-#' citation("eurostat")
-#' ```
-#'
+#' education of teaching. 
+#' 
+#' If you wish to perform searches on other fields than item title, 
+#' you can download the Eurostat Table of Contents manually using 
+#' `get_eurostat_toc()` function and use `grep()` function normally. The data
+#' browser on Eurostat website may also return useful results.
+#' @param pattern 
+#' Text string that is used to search from dataset, folder or table titles,
+#' depending on the type argument.
+#' @param type
+#' Selection for types of datasets to be searched. Default is `dataset`, other
+#' possible options are `table`, `folder` and `all` for all types.
+#' @param column
+#' Selection for the column of TOC where search is done. Default is `title`, 
+#' other possible option is `code`.
+#' @param fixed 
+#' logical. If TRUE (default), pattern is a string to be matched as is.
+#' See `grep()` documentation for more information.
+#' @inheritParams get_eurostat
+#' @inherit get_eurostat_toc return seealso
+#' @inherit eurostat-package references
+#' @inheritSection eurostat-package Data source: Eurostat Table of Contents
+#' 
 #' @author Przemyslaw Biecek and Leo Lahti <ropengov-forum@@googlegroups.com>
+#' 
 #' @examplesIf check_access_to_data()
 #' \donttest{
 #' tmp <- search_eurostat("education")
@@ -38,25 +37,49 @@
 #' # Here, parentheses would normally need to be escaped in regex
 #' tmp <- search_eurostat("Live births (total) by NUTS 3 region", fixed = TRUE)
 #' }
+#' 
 #' @keywords utilities database
-search_eurostat <- function(pattern, type = "dataset", fixed = TRUE) {
+#' 
+#' @export
+search_eurostat <- function(pattern,
+                            type = "dataset",
+                            column = "title",
+                            fixed = TRUE,
+                            lang = "en") {
+
+  # Sanity check
+  type <- tolower(as.character(type))
+  column <- tolower(as.character(column))
+  lang <- check_lang(lang)
+
+  if (!type %in% c("dataset", "table", "folder", "all")) {
+    warning(stringr::str_glue("The type \"{type}\" is not recognized, ",
+                              "will return the search results using the ",
+                              "default argument: type = \"dataset\"."))
+    type <- "dataset"
+  }
+
+  if (!column %in% c("title", "code")) {
+    warning(stringr::str_glue("The column \"{column}\" is not recognized, ",
+                              "will return the search results using the ",
+                              "default argument: column = \"title\"."))
+    column <- "title"
+  }
 
   # Check if you have access to ec.europe.eu.
   if (!check_access_to_data()) {
     message("You have no access to ec.europe.eu.
       Please check your connection and/or review your proxy settings")
-  } else {
-    set_eurostat_toc()
-    tmp <- get(".eurostatTOC", envir = .EurostatEnv)
-    if (type != "all") tmp <- tmp[tmp$type %in% type, ]
-    tmp[grep(tmp$title, pattern = pattern, fixed = fixed), ]
+    return(invisible())
   }
-}
 
+  #set_eurostat_toc()
+  #tmp <- get(".eurostatTOC", envir = .EurostatEnv)
+  tmp <- get_eurostat_toc(lang = lang)
 
-#' @describeIn search_eurostat Old deprecated version
-#' @export
-grepEurostatTOC <- function(pattern, type = "dataset") {
-  .Deprecated("search_eurostat")
-  search_eurostat(pattern = pattern, type = type)
+  
+  if (!identical(type, "all")) {
+    tmp <- tmp[tmp$type %in% type, ]
+  }
+  tmp <- tmp[grep(tmp[[column]], pattern = pattern, fixed = fixed), ]
 }

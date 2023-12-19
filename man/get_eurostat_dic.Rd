@@ -36,18 +36,15 @@ get_eurostat_dic("crop_pro", lang = "fr")
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
-# Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+#   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+#   analysis of Eurostat open data with the eurostat package. The R
+#   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 # 
 # A BibTeX entry for LaTeX users is
 # 
-#   @Article\{,
+#   @Article\{10.32614/RJ-2017-019,
 #     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
 #     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
 #     journal = \{The R Journal\},
@@ -58,6 +55,22 @@ See \code{citation("eurostat")}:
 #     doi = \{10.32614/RJ-2017-019\},
 #     url = \{https://doi.org/10.32614/RJ-2017-019\},
 #   \}
+# 
+#   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+#   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+#   [Computer software]. R package version 4.0.0.
+#   https://github.com/rOpenGov/eurostat
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Misc\{eurostat,
+#     title = \{eurostat: Tools for Eurostat Open Data\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
+#     url = \{https://github.com/rOpenGov/eurostat\},
+#     type = \{Computer software\},
+#     year = \{2023\},
+#     note = \{R package version 4.0.0\},
+#   \}
 }\if{html}{\out{</div>}}
 }
 \seealso{
@@ -66,7 +79,8 @@ See \code{citation("eurostat")}:
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \href{mailto:leo.lahti@iki.fi}{leo.lahti@iki.fi}. Thanks to
-Wietse Dol for contributions.
+Wietse Dol for contributions. Updated by Pyry Kantanen to support XML
+codelists.
 }
 \keyword{database}
 \keyword{utilities}

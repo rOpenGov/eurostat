@@ -4,10 +4,11 @@
 \alias{set_eurostat_toc}
 \title{Set Eurostat TOC}
 \usage{
-set_eurostat_toc(...)
+set_eurostat_toc(lang = "en")
 }
 \arguments{
-\item{...}{Arguments to be passed}
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 }
 \value{
 Empty element
@@ -17,6 +18,10 @@ Internal function.
 }
 \references{
 see citation("eurostat")
+}
+\seealso{
+\code{\link[=get_eurostat_toc]{get_eurostat_toc()}} \code{\link[=toc_count_children]{toc_count_children()}} \code{\link[=toc_determine_hierarchy]{toc_determine_hierarchy()}}
+\code{\link[=toc_list_children]{toc_list_children()}} \code{\link[=toc_count_whitespace]{toc_count_whitespace()}}
 }
 \author{
 Przemyslaw Biecek and Leo Lahti \href{mailto:ropengov-forum@googlegroups.com}{ropengov-forum@googlegroups.com}

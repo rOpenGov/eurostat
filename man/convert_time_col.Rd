@@ -2,14 +2,15 @@
 % Please edit documentation in R/tidy_eurostat.R
 \name{convert_time_col}
 \alias{convert_time_col}
-\title{Time Column Conversions}
+\title{Time Column Conversions for data from new dissemination API}
 \usage{
 convert_time_col(x, time_format)
 }
 \arguments{
-\item{x}{A time column (vector)}
+\item{x}{A time column (vector) from a downloaded dataset}
 
-\item{time_format}{see \code{\link[=tidy_eurostat]{tidy_eurostat()}}}
+\item{time_format}{one of the following: \code{date}, \code{date_last}, or \code{num}.
+See \code{\link[=tidy_eurostat]{tidy_eurostat()}} for more information.}
 }
 \description{
 Internal function to convert time column.

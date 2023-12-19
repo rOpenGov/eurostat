@@ -18,7 +18,8 @@
 #' ```
 #'
 #' @author Przemyslaw Biecek and Leo Lahti <leo.lahti@@iki.fi>. Thanks to
-#' Wietse Dol for contributions.
+#' Wietse Dol for contributions. Updated by Pyry Kantanen to support XML
+#' codelists.
 #' @examplesIf check_access_to_data()
 #' \donttest{
 #' get_eurostat_dic("crop_pro")
@@ -31,13 +32,16 @@
 #'
 #' @keywords utilities database
 get_eurostat_dic <- function(dictname, lang = "en") {
+  
+  lang <- check_lang(lang)
+  
   dictlang <- paste0(dictname, "_", lang)
   if (!exists(dictlang, envir = .EurostatEnv)) {
     url <- getOption("eurostat_url")
     tname <- paste0(
       url,
-      "estat-navtree-portlet-prod/BulkDownloadListing?file=dic%2F", lang, "%2F",
-      dictname, ".dic"
+      "api/dissemination/sdmx/2.1/codelist/ESTAT/", dictname, 
+      "?format=TSV&lang=", lang
     )
     dict <- readr::read_tsv(url(tname),
       col_names = c("code_name", "full_name"),

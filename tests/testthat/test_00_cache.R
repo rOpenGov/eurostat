@@ -31,6 +31,20 @@ test_that("Cache works", {
   expect_true(inherits(k, "data.frame"))
 })
 
+test_that("Dataset is filtered from cached bulk file", {
+  skip_on_cran()
+  skip_if_offline()
+  
+  t_dir <- file.path(tempdir(), "reurostat")
+  k2 <- get_eurostat("nama_10_lp_ulc", 
+                     cache_dir = t_dir, 
+                     filters = list())
+  expect_message(get_eurostat("nama_10_lp_ulc", 
+                              cache_dir = t_dir, 
+                              filters = list(geo = "AT")), "and filtering it")
+  
+})
+
 test_that("Set cache", {
   old <- eur_helper_detect_cache_dir()
   new <- file.path(tempdir(), "eurostat", "testthat", "new")

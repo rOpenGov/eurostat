@@ -2,7 +2,7 @@
 % Please edit documentation in R/eurotime2date.R
 \name{eurotime2date}
 \alias{eurotime2date}
-\title{Date Conversion from Eurostat Time Format}
+\title{Date Conversion from New Eurostat Time Format}
 \usage{
 eurotime2date(x, last = FALSE)
 }
@@ -21,30 +21,40 @@ Date conversion from Eurostat time format. A function to
 convert Eurostat time values to objects of class \code{\link[=Date]{Date()}}
 representing calendar dates.
 }
+\details{
+Available patterns are YYYY (year), YYYY-SN (semester), YYYY-QN (quarter),
+YYYY-MM (month), YYYY-WNN (week) and YYYY-MM-DD (day).
+}
 \examples{
 \dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
 \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-na_q$time <- eurotime2date(x = na_q$time)
-unique(na_q$time)
+na_q$TIME_PERIOD <- eurotime2date(x = na_q$TIME_PERIOD)
+unique(na_q$TIME_PERIOD)
+}
+
+\dontrun{
+# Test for weekly data
+get_eurostat(
+  id = "lfsi_abs_w",
+  select_time = c("W"),
+  time_format = "date"
+  )
 }
 \dontshow{\}) # examplesIf}
 }
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# 
-# Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
 # 
-#   (C) Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.
-#   Retrieval and analysis of Eurostat open data with the eurostat
-#   package. R Journal 9(1):385-392, 2017. doi: 10.32614/RJ-2017-019
-#   Package URL: http://ropengov.github.io/eurostat Article URL:
-#   https://journal.r-project.org/archive/2017/RJ-2017-019/index.html
+#   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+#   analysis of Eurostat open data with the eurostat package. The R
+#   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 # 
 # A BibTeX entry for LaTeX users is
 # 
-#   @Article\{,
+#   @Article\{10.32614/RJ-2017-019,
 #     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
 #     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
 #     journal = \{The R Journal\},
@@ -55,6 +65,22 @@ See \code{citation("eurostat")}:
 #     doi = \{10.32614/RJ-2017-019\},
 #     url = \{https://doi.org/10.32614/RJ-2017-019\},
 #   \}
+# 
+#   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
+#   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+#   [Computer software]. R package version 4.0.0.
+#   https://github.com/rOpenGov/eurostat
+# 
+# A BibTeX entry for LaTeX users is
+# 
+#   @Misc\{eurostat,
+#     title = \{eurostat: Tools for Eurostat Open Data\},
+#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
+#     url = \{https://github.com/rOpenGov/eurostat\},
+#     type = \{Computer software\},
+#     year = \{2023\},
+#     note = \{R package version 4.0.0\},
+#   \}
 }\if{html}{\out{</div>}}
 }
 \seealso{
@@ -63,11 +89,8 @@ See \code{citation("eurostat")}:
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
-\code{\link{eurotime2date2}()},
-\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
 \code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat2}()},
 \code{\link{label_eurostat}()}
 }
 \author{

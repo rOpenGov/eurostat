@@ -4,7 +4,7 @@
 \alias{label_eurostat}
 \alias{label_eurostat_vars}
 \alias{label_eurostat_tables}
-\title{Get Eurostat Codes}
+\title{Get Eurostat Codes for data downloaded from new dissemination API}
 \usage{
 label_eurostat(
   x,
@@ -18,11 +18,7 @@ label_eurostat(
   fix_duplicated = FALSE
 )
 
-label_eurostat_vars(x, lang = "en")
-
-label_eurostat_tables(x, lang = "en")
-
-label_eurostat_vars(x, lang = "en")
+label_eurostat_vars(x = NULL, id, lang = "en")
 
 label_eurostat_tables(x, lang = "en")
 }
@@ -39,8 +35,8 @@ should be retained. The suffix "_code" is added to code column names.}
 \item{eu_order}{Logical. Should Eurostat ordering used for label levels.
 Affects only factors.}
 
-\item{lang}{A character, code for language. Available are "en" (default),
-"fr" and "de".}
+\item{lang}{2-letter language code, default is "\code{en}" (English), other
+options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 
 \item{countrycode}{A \code{NULL} or a name of the coding scheme for
 the \code{\link[countrycode:countrycode]{countrycode::countrycode()}}
@@ -62,6 +58,10 @@ list names should be dictionary codes.}
 \item{fix_duplicated}{A logical. If TRUE, the code is added to the
 duplicated label values. If FALSE (default) error is given if
 labeling produce duplicates.}
+
+\item{id}{A unique identifier / code for the dataset of interest. If code is not
+known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to search Eurostat table
+of contents.}
 }
 \value{
 a vector or a data_frame.
@@ -84,13 +84,7 @@ with \code{fix_duplicated = TRUE}.
 }
 \section{Functions}{
 \itemize{
-\item \code{label_eurostat_vars()}: Get definitions for variable (column) names. For
-objects other than characters or factors definitions are get for names.
-
-\item \code{label_eurostat_tables()}: Get definitions for table names
-
-\item \code{label_eurostat_vars()}: Get definitions for variable (column) names. For
-objects other than characters or factors definitions are get for names.
+\item \code{label_eurostat_vars()}: Get definitions for variable (column) names.
 
 \item \code{label_eurostat_tables()}: Get definitions for table names
 
@@ -102,17 +96,31 @@ lpl <- label_eurostat(lp)
 str(lpl)
 lpl_order <- label_eurostat(lp, eu_order = TRUE)
 lpl_code <- label_eurostat(lp, code = "unit")
-label_eurostat_vars(names(lp))
+# Note that the dataset id must be provided in label_eurostat_vars
+label_eurostat_vars(id = "nama_10_lp_ulc", x = "geo", lang = "en")
 label_eurostat_tables("nama_10_lp_ulc")
 label_eurostat(c("FI", "DE", "EU28"), dic = "geo")
-label_eurostat(c("FI", "DE", "EU28"), dic = "geo", custom_dic = c(DE = "Germany"))
-label_eurostat(c("FI", "DE", "EU28"),
+label_eurostat(
+  c("FI", "DE", "EU28"),
+  dic = "geo",
+  custom_dic = c(DE = "Germany")
+)
+label_eurostat(
+  c("FI", "DE", "EU28"),
   dic = "geo", countrycode = "country.name",
   custom_dic = c(EU28 = "EU")
 )
-label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "country.name")
+label_eurostat(
+  c("FI", "DE", "EU28"),
+  dic = "geo",
+  countrycode = "country.name"
+)
 # In Finnish
-label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi")
+label_eurostat(
+  c("FI", "DE", "EU28"),
+  dic = "geo",
+  countrycode = "cldr.short.fi"
+)
 }
 
 }
@@ -122,12 +130,9 @@ label_eurostat(c("FI", "DE", "EU28"), dic = "geo", countrycode = "cldr.short.fi"
 Other helpers: 
 \code{\link{cut_to_classes}()},
 \code{\link{dic_order}()},
-\code{\link{eurotime2date2}()},
 \code{\link{eurotime2date}()},
-\code{\link{eurotime2num2}()},
 \code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat2}()}
+\code{\link{harmonize_country_code}()}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
