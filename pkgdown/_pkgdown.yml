@@ -10,9 +10,13 @@ reference:
   contents:
   - has_concept("cache utilities")
   - check_access_to_data
+  - list_eurostat_cache_items
 - title: Additional functions
   contents: has_concept("helpers")
 - title: Datasets
   contents: has_concept("datasets")
 - title: About the package
   contents: eurostat
+- title: Deprecated or defunct
+  contents:
+  - eurostat-defunct
