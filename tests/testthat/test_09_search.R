@@ -22,11 +22,11 @@ test_that("search_eurostat finds", {
   expect_equal(
     suppressWarnings(
       search_eurostat(
-        "sts_os_t",
+        "sts_os",
         type = "folder",
         column = "code",
         lang = "fr"
       ))$title[1],
-    "Chiffre d'affaires"
+    "Services"
   )
 })
