@@ -42,17 +42,33 @@ img[src$='#floatright'] {
 /*********************************/
 
 
-/* Mono fonts */
+/* Navbar tweaks */
+
+.navbar-dark.bg-dark {
+  background-color: #343a40 !important;
+}
 
 .navbar-brand {
   font-family: 'B612 Mono', monospace;
   letter-spacing: 2px;
-}
-
-.navbar-brand {
   font-size: 1.5rem;
+  color: #fff;
+}
+.navbar-brand:hover, .navbar-brand:focus {
+  color: #fff;
+}
+.navbar .text-muted {
+  color: #6c757d !important;
 }
 
+.navbar .nav-link{
+  color:  rgba(255,255,255,.5);
+}
+
+.navbar .nav-link:hover, .navbar .nav-link:focus{
+  color:  rgba(255,255,255,.75);
+  background: #343a40 !important;
+}
 
 /* Position hack to get full width footer even though pkgdown puts it inside a container * See: https://css-tricks.com/full-width-containers-limited-width-parents/ */
 
@@ -156,12 +172,6 @@ footer .pkgdown-footer-left {
 }
 
 
-/* Navbar */
-
-.navbar-dark.bg-dark {
-  background-color: #343a40 !important;
-}
-
 /* ---Caption figure--- */
 .caption,.figure {
 	color: #6c757d;
@@ -169,7 +179,6 @@ footer .pkgdown-footer-left {
 	margin-right: auto;
 	margin-top: 0.5rem;
 	font-size: 85%;
-  width: 100%;
 }
 .pkg {
   font-weight: bold;

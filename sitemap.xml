@@ -13,6 +13,9 @@
     <loc>https://ropengov.github.io/eurostat/articles/cheatsheet.html</loc>
   </url>
   <url>
+    <loc>https://ropengov.github.io/eurostat/articles/dimlst_vs_allconceptschemes.html</loc>
+  </url>
+  <url>
     <loc>https://ropengov.github.io/eurostat/articles/eurostat_tutorial.html</loc>
   </url>
   <url>
@@ -52,9 +55,6 @@
     <loc>https://ropengov.github.io/eurostat/reference/convert_time_col.html</loc>
   </url>
   <url>
-    <loc>https://ropengov.github.io/eurostat/reference/convert_time_col2.html</loc>
-  </url>
-  <url>
     <loc>https://ropengov.github.io/eurostat/reference/cut_to_classes.html</loc>
   </url>
   <url>
@@ -62,6 +62,9 @@
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/eu_countries.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/eurostat-defunct.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/eurostat-package.html</loc>
@@ -73,13 +76,10 @@
     <loc>https://ropengov.github.io/eurostat/reference/eurotime2date.html</loc>
   </url>
   <url>
-    <loc>https://ropengov.github.io/eurostat/reference/eurotime2date2.html</loc>
-  </url>
-  <url>
     <loc>https://ropengov.github.io/eurostat/reference/eurotime2num.html</loc>
   </url>
   <url>
-    <loc>https://ropengov.github.io/eurostat/reference/eurotime2num2.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/fixity_checksum.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_bibentry.html</loc>
@@ -91,16 +91,19 @@
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_dic.html</loc>
   </url>
   <url>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_folder.html</loc>
+  </url>
+  <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_interactive.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_json.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_raw.html</loc>
-  </url>
-  <url>
-    <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_raw2.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/get_eurostat_toc.html</loc>
@@ -118,7 +121,7 @@
     <loc>https://ropengov.github.io/eurostat/reference/label_eurostat.html</loc>
   </url>
   <url>
-    <loc>https://ropengov.github.io/eurostat/reference/label_eurostat2.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/list_eurostat_cache_items.html</loc>
   </url>
   <url>
     <loc>https://ropengov.github.io/eurostat/reference/recode_to_nuts_2013.html</loc>
@@ -145,6 +148,15 @@
     <loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat.html</loc>
   </url>
   <url>
-    <loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat2.html</loc>
+    <loc>https://ropengov.github.io/eurostat/reference/toc_count_children.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/toc_count_whitespace.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/toc_determine_hierarchy.html</loc>
+  </url>
+  <url>
+    <loc>https://ropengov.github.io/eurostat/reference/toc_list_children.html</loc>
   </url>
 </urlset>
