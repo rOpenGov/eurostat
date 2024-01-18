@@ -12,7 +12,7 @@
 #' | **Package**  | eurostat |
 #' | **Type**     | Package  |
 #' | **Version**  | `r packageVersion("eurostat")` |
-#' | **Date**     | 2014-2023     |
+#' | **Date**     | 2014-2024     |
 #' | **License**  | `r as.character(utils::packageDescription("eurostat")["License"])`|
 #' | **LazyLoad** | yes      |
 #'
