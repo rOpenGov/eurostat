@@ -65,6 +65,9 @@
 #' can not be used with a `filters`.
 #' @param use.data.table Use faster data.table functions? Default is FALSE. 
 #' On Windows requires that RTools is installed.
+#' @param legacy.data.output Use legacy column names and data object structure.
+#' Default is FALSE. If TRUE, the object will try to emulate the conventions of
+#' eurostat package 3.7.x and earlier.
 #' @inheritDotParams get_eurostat_json
 #' 
 #' @inherit eurostat-package references
@@ -186,6 +189,7 @@ get_eurostat <- function(id,
                          stringsAsFactors = FALSE,
                          keepFlags = FALSE,
                          use.data.table = FALSE,
+                         legacy.data.output = FALSE,
                          ...) {
 
   # Check if you have access to ec.europe.eu.
@@ -462,6 +466,10 @@ get_eurostat <- function(id,
   if (cache && (update_cache || !file.exists(cache_file))) {
     saveRDS(y, file = cache_file, compress = compress_file)
     message("Table ", id, " cached at ", path.expand(cache_file))
+  }
+  
+  if (legacy.data.output){
+    y <- legacy_data_format(y)
   }
 
   y

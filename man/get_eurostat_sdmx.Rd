@@ -6,14 +6,15 @@
 \usage{
 get_eurostat_sdmx(
   id,
-  time_format,
+  time_format = "date",
   filters = NULL,
-  type,
-  lang,
+  type = "code",
+  lang = "en",
   use.data.table,
   agency = "Eurostat",
   compressed = TRUE,
-  label = FALSE
+  keepFlags = FALSE,
+  legacy.data.output = FALSE
 )
 }
 \arguments{
@@ -51,6 +52,18 @@ On Windows requires that RTools is installed.}
 
 \item{agency}{Either "Eurostat" (default), "Eurostat_comext"
 (for Comext and Prodcom datasets), "COMP", "EMPL" or "GROW"}
+
+\item{keepFlags}{a logical whether the flags (e.g. "confidential",
+"provisional") should be kept in a separate column or if they
+can be removed. Default is \code{FALSE}. For flag values see:
+\url{https://ec.europa.eu/eurostat/data/database/information}.
+Also possible non-real zero "0n" is indicated in flags column.
+Flags are not available for eurostat API, so \code{keepFlags}
+can not be used with a \code{filters}.}
+
+\item{legacy.data.output}{Use legacy column names and data object structure.
+Default is FALSE. If TRUE, the object will try to emulate the conventions of
+eurostat package 3.7.x and earlier.}
 }
 \description{
 Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
