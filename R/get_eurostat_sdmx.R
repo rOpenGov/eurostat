@@ -40,22 +40,25 @@ get_eurostat_sdmx <- function(
   
   agency <- tolower(agency)
   
-  agencyID <- switch(
-    agency,
-    eurostat = "ESTAT",
-    eurostat_comext = "ESTAT",
-    comp = "COMP",
-    empl = "EMPL",
-    grow = "GROW"
-  )
+  # agencyID <- switch(
+  #   agency,
+  #   eurostat = "ESTAT",
+  #   eurostat_comext = "ESTAT",
+  #   comp = "COMP",
+  #   empl = "EMPL",
+  #   grow = "GROW"
+  # )
   
-  api_base_uri <- switch(
-    agency,
-    eurostat = "https://ec.europa.eu/eurostat/api/dissemination",
-    eurostat_comext = "https://ec.europa.eu/eurostat/api/comext/dissemination",
-    comp = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination",
-    empl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination",
-    grow = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination")
+  api_base_uri <- build_api_base_uri(agency)
+  agencyID <- build_agencyID(agency)
+  
+  # api_base_uri <- switch(
+  #   agency,
+  #   eurostat = "https://ec.europa.eu/eurostat/api/dissemination",
+  #   eurostat_comext = "https://ec.europa.eu/eurostat/api/comext/dissemination",
+  #   comp = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination",
+  #   empl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination",
+  #   grow = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination")
   
   if (is.null(api_base_uri)) stop("Use valid agency")
   
@@ -67,7 +70,7 @@ get_eurostat_sdmx <- function(
   resource <- "data"
   # The identifier of the dataflow reference
   flowRef <- id
-  key <- data_filtering_on_dimension(api_base_uri, id, filters)
+  key <- data_filtering_on_dimension(agency, id, filters)
   compressed <- ifelse(compressed == TRUE, "&compressed=true", "&compressed=false")
   
   url <- paste0(
@@ -94,9 +97,8 @@ get_eurostat_sdmx <- function(
   
   if (label){
     x <- label_eurostat_sdmx(x = x,
-                             api_base_uri = api_base_uri,
+                             agency = agency,
                              resourceID = "codelist",
-                             agencyID = agencyID,
                              id = id)
   }
   
@@ -104,7 +106,32 @@ get_eurostat_sdmx <- function(
   
 }
 
-data_filtering_on_dimension <- function(api_base_uri, id, filters) {
+build_api_base_uri <- function(agency) {
+  api_base_uri <- switch(
+    agency,
+    eurostat = "https://ec.europa.eu/eurostat/api/dissemination",
+    eurostat_comext = "https://ec.europa.eu/eurostat/api/comext/dissemination",
+    comp = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination",
+    empl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination",
+    grow = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination")
+  
+  api_base_uri
+}
+
+build_agencyID <- function(agency) {
+  agencyID <- switch(
+    agency,
+    eurostat = "ESTAT",
+    eurostat_comext = "ESTAT",
+    comp = "COMP",
+    empl = "EMPL",
+    grow = "GROW"
+  )
+  
+  agencyID
+}
+
+data_filtering_on_dimension <- function(agency, id, filters) {
   # data_structure_definition_url <- paste0(
   #   api_base_url,
   #   "/sdmx/2.1/datastructure/estat/",
@@ -112,27 +139,16 @@ data_filtering_on_dimension <- function(api_base_uri, id, filters) {
   
   filter_names <- toupper(names(filters))
   
-  dimension_df <- map_dimensions(api_base_uri = api_base_uri,
+  dimension_df <- get_codelist_id(agency = agency,
                                  id = id)
   dimension_id_upper <- dimension_df$dimension_id_upper
-  
-  # dsd <- xml2::read_xml(data_structure_definition_url)
-  # 
-  # # dimension_id <- xml2::xml_text(xml2::xml_find_all(xml2::xml_find_all(dsd, ".//s:Dimension"), ".//Ref[@class='Codelist']/@id"))
-  # dimension_id <- xml2::xml_text(xml2::xml_find_all(dsd, ".//s:Dimension/@id"))
-  # dimension_position <- xml2::xml_text(xml2::xml_find_all(dsd, ".//s:Dimension/@position"))
-  # codelist_id <- xml2::xml_text(xml2::xml_find_all(dsd, ".//s:Dimension/s:LocalRepresentation/s:Enumeration/Ref/@id"))
-  # dimension_id_upper <- toupper(dimension_id)
-  # dimension_df <- data.frame(dimension_position, dimension_id, dimension_id_upper, codelist_id)
-  
-  # if (!setequal(filter_names, dimension_id)) {
-  #   stop(paste0("Use valid filter dimensions, in this order: ", paste(dimension_id, collapse = ".")))
-  # }
   
   if (!rlang::is_empty(setdiff(filter_names, dimension_id_upper))) {
     stop(paste0("Use valid filter dimensions in the correct order: ", paste(dimension_id, collapse = ".")))
   }
   
+  # Assumes that dimensions are listed in the order of their positions
+  # If there is an example to the contrary somewhere, this should be changed
   filter_string <- ""
   for (i in seq_along(dimension_df$dimension_id_upper)){
     if (dimension_df$dimension_id_upper[i] %in% filter_names) {
@@ -149,7 +165,10 @@ data_filtering_on_dimension <- function(api_base_uri, id, filters) {
   return(filter_string)
 }
 
-map_dimensions <- function(api_base_uri, id) {
+get_codelist_id <- function(agency, id) {
+  
+  api_base_uri <- build_api_base_uri(agency)
+  
   data_structure_definition_url <- paste0(
     api_base_uri,
     "/sdmx/2.1/datastructure/estat/",
@@ -188,10 +207,14 @@ map_dimensions <- function(api_base_uri, id) {
 #   
 # }
 
-label_eurostat_sdmx <- function(x, api_base_uri, resourceID, id, agencyID, lang = "en") {
+label_eurostat_sdmx <- function(x, agency, id, lang = "en") {
   # how many columns there are that can be labeled with a codelist
-  dimension_df <- map_dimensions(api_base_uri = api_base_uri, id = id)
+  dimension_df <- get_codelist_id(agency = agency, id = id)
   resource <- "codelist"
+  
+  api_base_uri <- build_api_base_uri(agency)
+  agencyID <- build_agencyID(agency)
+  
   agencyID <- agencyID
   for (i in seq_len(nrow(dimension_df))) {
     resourceID <- dimension_df$codelist_id[[i]]
