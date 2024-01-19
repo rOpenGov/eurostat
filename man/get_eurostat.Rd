@@ -18,6 +18,7 @@ get_eurostat(
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
   use.data.table = FALSE,
+  legacy.data.output = FALSE,
   ...
 )
 }
@@ -85,6 +86,10 @@ can not be used with a \code{filters}.}
 
 \item{use.data.table}{Use faster data.table functions? Default is FALSE.
 On Windows requires that RTools is installed.}
+
+\item{legacy.data.output}{Use legacy column names and data object structure.
+Default is FALSE. If TRUE, the object will try to emulate the conventions of
+eurostat package 3.7.x and earlier.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}

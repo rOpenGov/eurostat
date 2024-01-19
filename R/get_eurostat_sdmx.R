@@ -18,14 +18,15 @@
 #' @export
 get_eurostat_sdmx <- function(
     id,
-    time_format,
+    time_format = "date",
     filters = NULL,
-    type,
-    lang,
+    type = "code",
+    lang = "en",
     use.data.table,
     agency = "Eurostat",
     compressed = TRUE,
-    label = FALSE
+    keepFlags = FALSE,
+    legacy.data.output = FALSE
     ) {
   
   # Check if you have access to ec.europe.eu.
@@ -37,6 +38,8 @@ get_eurostat_sdmx <- function(
       Please check your connection and/or review your proxy settings")
     # nocov end
   }
+  
+  lang <- check_lang(lang)
   
   agency <- tolower(agency)
   
@@ -91,26 +94,55 @@ get_eurostat_sdmx <- function(
   
   curl::curl_download(url = url, destfile = tfile)
 
-  x <- read.csv(tfile, colClasses = "character")
+  dat <- read.csv(tfile, colClasses = "character")
+  if (!keepFlags) {
+    col_names <- names(dat)
+    dat <- dat[setdiff(col_names, "OBS_FLAG")]
+  }
   
   # return(references_resolution(api_base_uri, resource = "datastructure", agencyID = agencyID, resourceID = id))
   
-  if (label){
-    x <- label_eurostat_sdmx(x = x,
+  if (identical(type, "label")){
+    dat <- label_eurostat_sdmx(x = dat,
                              agency = agency,
-                             resourceID = "codelist",
-                             id = id)
+                             id = id,
+                             lang = lang)
   }
   
-  x
+  dat$TIME_PERIOD <- convert_time_col(x = dat$TIME_PERIOD,
+                                      time_format = time_format)
+  
+  dat$OBS_VALUE <- as.numeric(dat$OBS_VALUE)
+  
+  if (legacy.data.output) {
+    dat <- legacy_data_format(dat)
+  }
+  
+  dat
   
 }
 
+legacy_data_format <- function(x, cols_to_drop = c("DATAFLOW", "LAST.UPDATE", "freq")) {
+  x <- x[setdiff(names(x), cols_to_drop)]
+  cols_to_rename <- data.frame(old = c("TIME_PERIOD", "OBS_VALUE"),
+                               new = c("time", "values"))
+  for (i in seq_len(nrow(cols_to_rename))) {
+    old <- cols_to_rename[i,1]
+    if (old %in% names(x)) {
+      col_num <- which(names(x) == old)
+      colnames(x)[col_num] <- cols_to_rename[i,2]
+    }
+  }
+  x
+}
+
 build_api_base_uri <- function(agency) {
+  agency <- tolower(agency)
   api_base_uri <- switch(
     agency,
     eurostat = "https://ec.europa.eu/eurostat/api/dissemination",
     eurostat_comext = "https://ec.europa.eu/eurostat/api/comext/dissemination",
+    eurostat_prodcom = "https://ec.europa.eu/eurostat/api/comext/dissemination",
     comp = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination",
     empl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination",
     grow = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination")
@@ -119,10 +151,12 @@ build_api_base_uri <- function(agency) {
 }
 
 build_agencyID <- function(agency) {
+  agency <- tolower(agency)
   agencyID <- switch(
     agency,
     eurostat = "ESTAT",
     eurostat_comext = "ESTAT",
+    eurostat_prodcom = "ESTAT",
     comp = "COMP",
     empl = "EMPL",
     grow = "GROW"
@@ -211,6 +245,7 @@ label_eurostat_sdmx <- function(x, agency, id, lang = "en") {
   # how many columns there are that can be labeled with a codelist
   dimension_df <- get_codelist_id(agency = agency, id = id)
   resource <- "codelist"
+  lang <- check_lang(lang)
   
   api_base_uri <- build_api_base_uri(agency)
   agencyID <- build_agencyID(agency)
