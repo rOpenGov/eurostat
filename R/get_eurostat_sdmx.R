@@ -88,7 +88,7 @@ get_eurostat_sdmx <- function(
   
   curl::curl_download(url = url, destfile = tfile)
 
-  x <- read.csv(tfile)
+  x <- read.csv(tfile, colClasses = "character")
   
   # return(references_resolution(api_base_uri, resource = "datastructure", agencyID = agencyID, resourceID = id))
   
@@ -96,6 +96,7 @@ get_eurostat_sdmx <- function(
     x <- label_eurostat_sdmx(x = x,
                              api_base_uri = api_base_uri,
                              resourceID = "codelist",
+                             agencyID = agencyID,
                              id = id)
   }
   
@@ -187,11 +188,11 @@ map_dimensions <- function(api_base_uri, id) {
 #   
 # }
 
-label_eurostat_sdmx <- function(x, api_base_uri, resourceID, id, lang = "en") {
+label_eurostat_sdmx <- function(x, api_base_uri, resourceID, id, agencyID, lang = "en") {
   # how many columns there are that can be labeled with a codelist
   dimension_df <- map_dimensions(api_base_uri = api_base_uri, id = id)
   resource <- "codelist"
-  agencyID <- "ESTAT"
+  agencyID <- agencyID
   for (i in seq_len(nrow(dimension_df))) {
     resourceID <- dimension_df$codelist_id[[i]]
     message(paste("Building codelist URL for resourceID:", resourceID))
@@ -207,40 +208,48 @@ label_eurostat_sdmx <- function(x, api_base_uri, resourceID, id, lang = "en") {
       "&lang=",
       lang
     )
-    codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc"))
-    column_to_handle <- dimension_df$dimension_id[[i]]
-    col <- x[[column_to_handle]]
-    codes_to_label <- codelist[(codelist[,1] %in% col),]
-    message(paste("Labeling dimension (column):", column_to_handle))
-    for (j in seq_len(nrow(codes_to_label))) {
-      col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
-    }
-    x[column_to_handle] <- col
+    tryCatch({
+      codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc", col_names = FALSE))
+      column_to_handle <- dimension_df$dimension_id[[i]]
+      col <- x[[column_to_handle]]
+      codes_to_label <- codelist[(codelist[,1] %in% col),]
+      message(paste("Labeling dimension (column):", column_to_handle))
+      for (j in seq_len(nrow(codes_to_label))) {
+        col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
+      }
+      x[column_to_handle] <- col
+    },
+    error = function(e) message(paste("Couldn't label", resourceID))
+    )
   }
   if ("OBS_FLAG" %in% names(x)){
-    resourceID <- "OBS_FLAG"
-    message(paste("Building codelist URL for resourceID:", resourceID))
-    codelist_url <- paste0(
-      api_base_uri,
-      "/sdmx/2.1/",
-      resource,
-      "/",
-      agencyID,
-      "/",
-      resourceID,
-      "?format=TSV",
-      "&lang=",
-      lang
+    tryCatch({
+      resourceID <- "OBS_FLAG"
+      message(paste("Building codelist URL for resourceID:", resourceID))
+      codelist_url <- paste0(
+        api_base_uri,
+        "/sdmx/2.1/",
+        resource,
+        "/",
+        agencyID,
+        "/",
+        resourceID,
+        "?format=TSV",
+        "&lang=",
+        lang
+      )
+      codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc"))
+      column_to_handle <- "OBS_FLAG"
+      col <- x[[column_to_handle]]
+      codes_to_label <- codelist[(codelist[,1] %in% col),]
+      message(paste("Labeling dimension (column):", column_to_handle))
+      for (j in seq_len(nrow(codes_to_label))) {
+        col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
+      }
+      x[column_to_handle] <- col
+    },
+    error = function(e) message(paste("Couldn't label", resourceID))
     )
-    codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc"))
-    column_to_handle <- "OBS_FLAG"
-    col <- x[[column_to_handle]]
-    codes_to_label <- codelist[(codelist[,1] %in% col),]
-    message(paste("Labeling dimension (column):", column_to_handle))
-    for (j in seq_len(nrow(codes_to_label))) {
-      col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
-    }
-    x[column_to_handle] <- col
   }
   x
 }
