@@ -117,52 +117,56 @@ get_eurostat_sdmx <- function(
   if (legacy.data.output) {
     dat <- legacy_data_format(dat)
   }
-  
-  metadata <- extract_metadata(api_base_uri, id, agencyID)
+  metadata <- extract_metadata(agency, id)
   attr(dat, "metadata") <- metadata
   
   dat
   
 }
-extract_metadata <- function(api_base_uri, flowRef, agencyID) {
-  # Construct the URL for the DSD (Data Structure Definitions)
-  dsd_url <- paste0(api_base_uri, "/sdmx/2.1/datastructure/", agencyID, "/", flowRef, "?references=children")
+
+extract_metadata <- function(agency, id) {
   
-  # Fetch the DSD XML
-  dsd_response <- httr::GET(dsd_url)
-  dsd_content <- httr::content(dsd_response, "text",encoding = "UTF-8")
-  dsd_xml <- xml2::read_xml(dsd_content)
+  api_base_uri <- build_api_base_uri(agency)
   
+  data_structure_definition_url <- paste0(
+    api_base_uri,
+    "/sdmx/2.1/datastructure/estat/",
+    id)
+  
+  dsd_xml <- xml2::read_xml(data_structure_definition_url)
+  
+  
+  #dimension_df
   # Define namespaces
   namespaces <- xml2::xml_ns(dsd_xml)
   
-
+  
   # Extract various pieces of metadata from the DSD XML
-  dataset_title_node <- xml2::xml_find_first(dsd_xml, ".//s:DataStructure/s:Name[@lang='en']", ns = namespaces)
+  dataset_title_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:Name[@lang='en']", ns = namespaces)
   dataset_title <- if (!is.na(dataset_title_node)) xml2::xml_text(dataset_title_node) else NA
   
-  dataset_description_node <- xml2::xml_find_first(dsd_xml, ".//s:DataStructure/s:Description[@lang='en']", ns = namespaces)
+  dataset_description_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:Description[@lang='en']", ns = namespaces)
   dataset_description <- if (!is.na(dataset_description_node)) xml2::xml_text(dataset_description_node) else NA
   
   # Assuming the structure contains information about the last update
-  last_update_node <- xml2::xml_find_first(dsd_xml, ".//s:DataStructure/s:LastUpdate", ns = namespaces)
+  last_update_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:LastUpdate", ns = namespaces)
   last_update_date <- if (!is.na(last_update_node)) xml2::xml_text(last_update_node) else NA
   
   # Assuming there are elements indicating the period of the data and geographical coverage
-  period_node <- xml2::xml_find_first(dsd_xml, ".//s:DataStructure/s:ReferencePeriod", ns = namespaces)
+  period_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:ReferencePeriod", ns = namespaces)
   period_coverage <- if (!is.na(period_node)) xml2::xml_text(period_node) else NA
   
-  geographic_coverage_node <- xml2::xml_find_first(dsd_xml, ".//s:DataStructure/s:GeographicCoverage", ns = namespaces)
+  geographic_coverage_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:GeographicCoverage", ns = namespaces)
   geographic_coverage <- if (!is.na(geographic_coverage_node)) xml2::xml_text(geographic_coverage_node) else NA
   
   # Other metadata fields...
-  dataset_id <- flowRef  # Using flowRef as the dataset ID
+  #dataset_id <- flowRef  # Using flowRef as the dataset ID
   
   # Construct the metadata list
   metadata <- list(
     title = dataset_title,
     description = dataset_description,
-    dataset_id = dataset_id,
+    #dataset_id = dataset_id,
     last_update_date = last_update_date,
     period_coverage = period_coverage,
     geographic_coverage = geographic_coverage,
@@ -173,6 +177,8 @@ extract_metadata <- function(api_base_uri, flowRef, agencyID) {
   return(metadata)
   
 }
+
+
 legacy_data_format <- function(x, cols_to_drop = c("DATAFLOW", "LAST.UPDATE", "freq")) {
   x <- x[setdiff(names(x), cols_to_drop)]
   cols_to_rename <- data.frame(old = c("TIME_PERIOD", "OBS_VALUE"),
