@@ -142,34 +142,52 @@ extract_metadata <- function(agency, id) {
   
   
   # Extract various pieces of metadata from the DSD XML
-  dataset_title_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:Name[@lang='en']", ns = namespaces)
-  dataset_title <- if (!is.na(dataset_title_node)) xml2::xml_text(dataset_title_node) else NA
-  
-  dataset_description_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:Description[@lang='en']", ns = namespaces)
-  dataset_description <- if (!is.na(dataset_description_node)) xml2::xml_text(dataset_description_node) else NA
-  
-  # Assuming the structure contains information about the last update
-  last_update_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:LastUpdate", ns = namespaces)
-  last_update_date <- if (!is.na(last_update_node)) xml2::xml_text(last_update_node) else NA
-  
-  # Assuming there are elements indicating the period of the data and geographical coverage
-  period_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:ReferencePeriod", ns = namespaces)
-  period_coverage <- if (!is.na(period_node)) xml2::xml_text(period_node) else NA
-  
-  geographic_coverage_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:GeographicCoverage", ns = namespaces)
-  geographic_coverage <- if (!is.na(geographic_coverage_node)) xml2::xml_text(geographic_coverage_node) else NA
-  
+  # dataset_title_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:Annotations", ns = namespaces)
+  # dataset_title <- if (!is.na(dataset_title_node)) xml2::xml_text(dataset_title_node) else NA
+  # 
+  # dataset_description_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:Description[@lang='en']", ns = namespaces)
+  # dataset_description <- if (!is.na(dataset_description_node)) xml2::xml_text(dataset_description_node) else NA
+  # 
+  # # Assuming the structure contains information about the last update
+  # last_update_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:LastUpdate", ns = namespaces)
+  # last_update_date <- if (!is.na(last_update_node)) xml2::xml_text(last_update_node) else NA
+  # 
+  # # Assuming there are elements indicating the period of the data and geographical coverage
+  # period_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:ReferencePeriod", ns = namespaces)
+  # period_coverage <- if (!is.na(period_node)) xml2::xml_text(period_node) else NA
+  # 
+  # geographic_coverage_node <- xml2::xml_find_first(dsd_xml, ".//c:DataStructure/c:GeographicCoverage", ns = namespaces)
+  # geographic_coverage <- if (!is.na(geographic_coverage_node)) xml2::xml_text(geographic_coverage_node) else NA
+  # 
+  annotations <- xml2::xml_find_all(dsd_xml, ".//c:Annotation")
+  annotation_list <- lapply(annotations, function(ann) {
+    list(
+      AnnotationTitle = xml2::xml_text(xml2::xml_find_first(ann, ".//c:AnnotationTitle")),
+      AnnotationType = xml2::xml_text(xml2::xml_find_first(ann, ".//c:AnnotationType")),
+      AnnotationURL = xml2::xml_text(xml2::xml_find_first(ann, ".//c:AnnotationURL"))
+    )
+  })
+  header <- xml2::xml_find_first(dsd_xml, ".//m:Header")
+  id <- xml2::xml_text(xml2::xml_find_first(header, ".//m:ID"))
+  test <- xml2::xml_text(xml2::xml_find_first(header, ".//m:Test"))
+  prepared <- xml2::xml_text(xml2::xml_find_first(header, ".//m:Prepared"))
+  sender_id <- xml2::xml_attr(xml2::xml_find_first(header, ".//m:Sender"), "id")
   # Other metadata fields...
   #dataset_id <- flowRef  # Using flowRef as the dataset ID
   
   # Construct the metadata list
   metadata <- list(
-    title = dataset_title,
-    description = dataset_description,
+    ID = id,
+    Test = test,
+    Prepared = prepared,
+    SenderID = sender_id,
+    #title = dataset_title,
+    #description = dataset_description,
     #dataset_id = dataset_id,
-    last_update_date = last_update_date,
-    period_coverage = period_coverage,
-    geographic_coverage = geographic_coverage,
+    #last_update_date = last_update_date,
+    #period_coverage = period_coverage,
+    #geographic_coverage = geographic_coverage,
+    Annotations = annotation_list,
     retrieval_date = Sys.Date()
     # Add additional metadata fields as necessary
   )
