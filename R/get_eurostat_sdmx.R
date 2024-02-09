@@ -158,24 +158,6 @@ extract_metadata <- function(agency, id) {
   
   
   annotations_nodes <- xml2::xml_find_all(dataflow, ".//c:Annotation", namespaces)
-  # filtered_annotations <- lapply(annotations_nodes, function(node) {
-  #   title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
-  #   type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
-  #   url <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationURL", namespaces))
-  #   if (type == "OBS_PERIOD_OVERALL_LATEST") {
-  #     latest_period_annotation <- list(Title = title, Type = type, URL = url)
-  #   } else if (type == "OBS_PERIOD_OVERALL_OLDEST") {
-  #     oldest_period_annotation <- list(Title = title, Type = type, URL = url)
-  #   } else if (type == "UPDATE_DATA") {
-  #     update_data_annotation <- list(Title = title, Type = type, URL = url)
-  #   }
-  #   if (grepl("adms:Identifier", title)) {
-  #     # Parse the XML content within the title to extract the DOI URL
-  #     title_xml <- xml2::read_xml(title)
-  #     doi_url <<- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
-  #   }
-  #   
-  # })
   for (node in annotations_nodes) {
     title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
     type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
