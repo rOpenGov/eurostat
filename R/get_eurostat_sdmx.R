@@ -130,7 +130,7 @@ extract_metadata <- function(agency, id) {
   
   data_structure_definition_url <- paste0(
     api_base_uri,
-    "/sdmx/2.1/datastructure/estat/",
+    "/sdmx/2.1/dataflow/estat/",
     id)
   
   dsd_xml <- xml2::read_xml(data_structure_definition_url)
