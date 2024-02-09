@@ -146,18 +146,30 @@ extract_metadata <- function(agency, id) {
   version <- xml2::xml_attr(dataflow, "version")
   isFinal <- xml2::xml_attr(dataflow, "isFinal")
   # Extract names in different languages
-  names <- list(
-    de = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='de']", namespaces)),
-    en = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='en']", namespaces)),
-    fr = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='fr']", namespaces))
-  )
+  # Extract names in different languages independently
+  name_de <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='de']", namespaces))
+  name_en <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='en']", namespaces))
+  name_fr <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='fr']", namespaces))
+  
+  latest_period_annotation <- NULL
+  oldest_period_annotation <- NULL
+  doi_url <- NULL
+  
+  
   annotations_nodes <- xml2::xml_find_all(dataflow, ".//c:Annotation", namespaces)
   filtered_annotations <- lapply(annotations_nodes, function(node) {
     title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
     type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
     url <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationURL", namespaces))
-    if (type %in% c("OBS_PERIOD_OVERALL_LATEST", "OBS_PERIOD_OVERALL_OLDEST")) {
-      return(list(Title = title, Type = type))
+    if (type == "OBS_PERIOD_OVERALL_LATEST") {
+      latest_period_annotation <- list(Title = title, Type = type, URL = url)
+    } else if (type == "OBS_PERIOD_OVERALL_OLDEST") {
+      oldest_period_annotation <- list(Title = title, Type = type, URL = url)
+    }
+    if (grepl("adms:Identifier", title)) {
+      # Parse the XML content within the title to extract the DOI URL
+      title_xml <- xml2::read_xml(title)
+      doi_url <<- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
     }
     
   })
@@ -173,8 +185,12 @@ extract_metadata <- function(agency, id) {
     AgencyID = agencyID,
     Version = version,
     IsFinal = isFinal,
-    Names = names,
-    SpecificAnnotations = filtered_annotations # Include only filtered annotations
+    Name_DE = name_de,
+    Name_EN = name_en,
+    Name_FR = name_fr,
+    LatestPeriodAnnotation = latest_period_annotation,
+    OldestPeriodAnnotation = oldest_period_annotation,
+    DOI_URL = doi_url 
   )
   
   return(metadata)
