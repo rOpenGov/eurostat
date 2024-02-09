@@ -135,13 +135,10 @@ extract_metadata <- function(agency, id) {
   
   dsd_xml <- xml2::read_xml(data_structure_definition_url)
   
-  
-  #dimension_df
-  # Define namespaces
+    # Define namespaces
   namespaces <- xml2::xml_ns(dsd_xml)
   
   
-  #dataflow <- xml2::xml_find_first(dsd_xml, ".//default:Dataflow")
   dataflow <- xml2::xml_find_first(dsd_xml, ".//s:Dataflow", namespaces)
   dataflow_id <- xml2::xml_attr(dataflow, "id")
   urn <- xml2::xml_attr(dataflow, "urn")
