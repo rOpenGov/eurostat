@@ -151,6 +151,20 @@ extract_metadata <- function(agency, id) {
     en = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='en']", namespaces)),
     fr = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='fr']", namespaces))
   )
+  annotations_nodes <- xml2::xml_find_all(dataflow, ".//c:Annotation", namespaces)
+  filtered_annotations <- lapply(annotations_nodes, function(node) {
+    title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
+    type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
+    url <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationURL", namespaces))
+    if (type %in% c("OBS_PERIOD_OVERALL_LATEST", "OBS_PERIOD_OVERALL_OLDEST")) {
+      return(list(Title = title, Type = type))
+    }
+    
+  })
+  
+  # Remove NULL entries from the list
+  filtered_annotations <- Filter(Negate(is.null), filtered_annotations)
+  
   
   
   metadata <- list(
@@ -159,8 +173,8 @@ extract_metadata <- function(agency, id) {
     AgencyID = agencyID,
     Version = version,
     IsFinal = isFinal,
-    Names = names
- 
+    Names = names,
+    SpecificAnnotations = filtered_annotations # Include only filtered annotations
   )
   
   return(metadata)
