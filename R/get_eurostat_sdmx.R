@@ -140,31 +140,30 @@ extract_metadata <- function(agency, id) {
   # Define namespaces
   namespaces <- xml2::xml_ns(dsd_xml)
   
-  annotations <- xml2::xml_find_all(dsd_xml, ".//c:Annotation")
-  annotation_list <- lapply(annotations, function(ann) {
-    list(
-      AnnotationTitle = xml2::xml_text(xml2::xml_find_first(ann, ".//c:AnnotationTitle")),
-      AnnotationType = xml2::xml_text(xml2::xml_find_first(ann, ".//c:AnnotationType")),
-      AnnotationURL = xml2::xml_text(xml2::xml_find_first(ann, ".//c:AnnotationURL"))
-    )
-  })
-  header <- xml2::xml_find_first(dsd_xml, ".//m:Header")
-  id <- xml2::xml_text(xml2::xml_find_first(header, ".//m:ID"))
-  test <- xml2::xml_text(xml2::xml_find_first(header, ".//m:Test"))
-  prepared <- xml2::xml_text(xml2::xml_find_first(header, ".//m:Prepared"))
-  sender_id <- xml2::xml_attr(xml2::xml_find_first(header, ".//m:Sender"), "id")
-  # Other metadata fields...
-  #dataset_id <- flowRef  # Using flowRef as the dataset ID
   
-  # Construct the metadata list
+  #dataflow <- xml2::xml_find_first(dsd_xml, ".//default:Dataflow")
+  dataflow <- xml2::xml_find_first(dsd_xml, ".//s:Dataflow", namespaces)
+  dataflow_id <- xml2::xml_attr(dataflow, "id")
+  urn <- xml2::xml_attr(dataflow, "urn")
+  agencyID <- xml2::xml_attr(dataflow, "agencyID")
+  version <- xml2::xml_attr(dataflow, "version")
+  isFinal <- xml2::xml_attr(dataflow, "isFinal")
+  # Extract names in different languages
+  names <- list(
+    de = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='de']", namespaces)),
+    en = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='en']", namespaces)),
+    fr = xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='fr']", namespaces))
+  )
+  
+  
   metadata <- list(
-    ID = id,
-    Test = test,
-    Prepared = prepared,
-    SenderID = sender_id,
-    Annotations = annotation_list,
-    retrieval_date = Sys.Date()
-    # Add additional metadata fields as necessary
+    DataflowID = dataflow_id,
+    URN = urn,
+    AgencyID = agencyID,
+    Version = version,
+    IsFinal = isFinal,
+    Names = names
+ 
   )
   
   return(metadata)
