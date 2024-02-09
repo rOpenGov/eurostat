@@ -151,31 +151,53 @@ extract_metadata <- function(agency, id) {
   name_en <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='en']", namespaces))
   name_fr <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='fr']", namespaces))
   
-  latest_period_annotation <- NULL
-  oldest_period_annotation <- NULL
+  oldest_period_timestamp <- NULL
+  latest_period_timestamp <- NULL
+  update_data_timestamp <- NULL
   doi_url <- NULL
   
   
   annotations_nodes <- xml2::xml_find_all(dataflow, ".//c:Annotation", namespaces)
-  filtered_annotations <- lapply(annotations_nodes, function(node) {
+  # filtered_annotations <- lapply(annotations_nodes, function(node) {
+  #   title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
+  #   type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
+  #   url <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationURL", namespaces))
+  #   if (type == "OBS_PERIOD_OVERALL_LATEST") {
+  #     latest_period_annotation <- list(Title = title, Type = type, URL = url)
+  #   } else if (type == "OBS_PERIOD_OVERALL_OLDEST") {
+  #     oldest_period_annotation <- list(Title = title, Type = type, URL = url)
+  #   } else if (type == "UPDATE_DATA") {
+  #     update_data_annotation <- list(Title = title, Type = type, URL = url)
+  #   }
+  #   if (grepl("adms:Identifier", title)) {
+  #     # Parse the XML content within the title to extract the DOI URL
+  #     title_xml <- xml2::read_xml(title)
+  #     doi_url <<- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
+  #   }
+  #   
+  # })
+  for (node in annotations_nodes) {
     title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
     type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
-    url <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationURL", namespaces))
+    
+    # Assign specific annotations based on type
     if (type == "OBS_PERIOD_OVERALL_LATEST") {
-      latest_period_annotation <- list(Title = title, Type = type, URL = url)
+      latest_period_timestamp <- title  # Directly store the latest period timestamp
     } else if (type == "OBS_PERIOD_OVERALL_OLDEST") {
-      oldest_period_annotation <- list(Title = title, Type = type, URL = url)
-    }
-    if (grepl("adms:Identifier", title)) {
-      # Parse the XML content within the title to extract the DOI URL
-      title_xml <- xml2::read_xml(title)
-      doi_url <<- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
+      oldest_period_timestamp <- title
+    } else if (type == "UPDATE_DATA") {
+      update_data_timestamp <- title
     }
     
-  })
+    # Extract DOI URL if the annotation contains adms:Identifier
+    if (grepl("adms:Identifier", title)) {
+      title_xml <- xml2::read_xml(title)
+      doi_url <- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
+    }
+  }
   
   # Remove NULL entries from the list
-  filtered_annotations <- Filter(Negate(is.null), filtered_annotations)
+  #filtered_annotations <- Filter(Negate(is.null), filtered_annotations)
   
   
   
@@ -188,8 +210,9 @@ extract_metadata <- function(agency, id) {
     Name_DE = name_de,
     Name_EN = name_en,
     Name_FR = name_fr,
-    LatestPeriodAnnotation = latest_period_annotation,
-    OldestPeriodAnnotation = oldest_period_annotation,
+    OldestPeriodTimestamp = oldest_period_timestamp,
+    LatestPeriodTimestamp = latest_period_timestamp,
+    UpdateDataTimestamp = update_data_timestamp,
     DOI_URL = doi_url 
   )
   
