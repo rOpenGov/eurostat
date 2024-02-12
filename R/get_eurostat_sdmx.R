@@ -184,18 +184,18 @@ extract_metadata <- function(agency, id) {
   
   
   metadata <- list(
-    DataflowID = dataflow_id,
-    URN = urn,
-    AgencyID = agencyID,
-    Version = version,
-    IsFinal = isFinal,
-    Name_DE = name_de,
     Name_EN = name_en,
+    Name_DE = name_de,
     Name_FR = name_fr,
+    DOI_URL = doi_url,
+    DataflowID = dataflow_id,
+    AgencyID = agencyID,
     OldestPeriodTimestamp = oldest_period_timestamp,
     LatestPeriodTimestamp = latest_period_timestamp,
     UpdateDataTimestamp = update_data_timestamp,
-    DOI_URL = doi_url 
+    URN = urn,
+    Version = version,
+    IsFinal = isFinal
   )
   
   return(metadata)
