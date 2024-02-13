@@ -117,14 +117,12 @@ get_eurostat_sdmx <- function(
   if (legacy.data.output) {
     dat <- legacy_data_format(dat)
   }
-  metadata <- extract_metadata(agency, id)
-  attr(dat, "metadata") <- metadata
   
   dat
   
 }
 
-extract_metadata <- function(agency, id) {
+extract_metadata <- function(id,agency = "Eurostat") {
   
   api_base_uri <- build_api_base_uri(agency)
   
