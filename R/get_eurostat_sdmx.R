@@ -122,7 +122,7 @@ get_eurostat_sdmx <- function(
   
 }
 
-extract_metadata <- function(id,agency = "Eurostat") {
+extract_metadata <- function(id, agency = "Eurostat") {
   
   api_base_uri <- build_api_base_uri(agency)
   
@@ -133,10 +133,16 @@ extract_metadata <- function(id,agency = "Eurostat") {
   
   dsd_xml <- xml2::read_xml(data_structure_definition_url)
   
-    # Define namespaces
+  # Define namespaces
   namespaces <- xml2::xml_ns(dsd_xml)
   
+  # Extract Header information
+  header <- xml2::xml_find_first(dsd_xml, ".//m:Header", namespaces)
+  header_id <- xml2::xml_text(xml2::xml_find_first(header, ".//m:ID", namespaces))
+  prepared <- xml2::xml_text(xml2::xml_find_first(header, ".//m:Prepared", namespaces))
+  sender_id <- xml2::xml_attr(xml2::xml_find_first(header, ".//m:Sender", namespaces), "id")
   
+  # Continue with dataflow and annotations extraction 
   dataflow <- xml2::xml_find_first(dsd_xml, ".//s:Dataflow", namespaces)
   dataflow_id <- xml2::xml_attr(dataflow, "id")
   urn <- xml2::xml_attr(dataflow, "urn")
@@ -149,16 +155,15 @@ extract_metadata <- function(id,agency = "Eurostat") {
   name_en <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='en']", namespaces))
   name_fr <- xml2::xml_text(xml2::xml_find_first(dataflow, ".//c:Name[@xml:lang='fr']", namespaces))
   
-  oldest_period_timestamp <- NULL
-  latest_period_timestamp <- NULL
-  update_data_timestamp <- NULL
-  doi_url <- NULL
-  
+  source_institutions <- list()
+  doi_details <- NULL
   
   annotations_nodes <- xml2::xml_find_all(dataflow, ".//c:Annotation", namespaces)
   for (node in annotations_nodes) {
     title <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationTitle", namespaces))
     type <- xml2::xml_text(xml2::xml_find_first(node, ".//c:AnnotationType", namespaces))
+    texts_nodes <- xml2::xml_find_all(node, ".//c:AnnotationText", namespaces)
+    
     
     # Assign specific annotations based on type
     if (type == "OBS_PERIOD_OVERALL_LATEST") {
@@ -167,18 +172,22 @@ extract_metadata <- function(id,agency = "Eurostat") {
       oldest_period_timestamp <- title
     } else if (type == "UPDATE_DATA") {
       update_data_timestamp <- title
-    }
-    
-    # Extract DOI URL if the annotation contains adms:Identifier
-    if (grepl("adms:Identifier", title)) {
-      title_xml <- xml2::read_xml(title)
-      doi_url <- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
+    } else if(type == "SOURCE_INSTITUTIONS"){
+      for (text_node in texts_nodes) {
+        lang <- xml2::xml_attr(text_node, "xml:lang")
+        text <- xml2::xml_text(text_node)
+        source_institutions[[lang]] <- text
+        
+      }
+      
     }
   }
   
-  # Remove NULL entries from the list
-  #filtered_annotations <- Filter(Negate(is.null), filtered_annotations)
-  
+  # Extract DOI URL if the annotation contains adms:Identifier
+  if (grepl("adms:Identifier", title)) {
+    title_xml <- xml2::read_xml(title)
+    doi_url <- xml2::xml_attr(xml2::xml_find_first(title_xml, ".//adms:Identifier"), "rdf:about", xml2::xml_ns(title_xml))
+  }
   
   
   metadata <- list(
@@ -188,9 +197,13 @@ extract_metadata <- function(id,agency = "Eurostat") {
     DOI_URL = doi_url,
     DataflowID = dataflow_id,
     AgencyID = agencyID,
+    ID = header_id,
+    Prepared = prepared,
+    SenderID = sender_id,
     OldestPeriodTimestamp = oldest_period_timestamp,
     LatestPeriodTimestamp = latest_period_timestamp,
     UpdateDataTimestamp = update_data_timestamp,
+    SourceInstitutions = source_institutions,
     URN = urn,
     Version = version,
     IsFinal = isFinal
