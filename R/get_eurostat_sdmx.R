@@ -139,7 +139,7 @@ extract_metadata <- function(id, agency = "Eurostat") {
   # Extract Header information
   header <- xml2::xml_find_first(dsd_xml, ".//m:Header", namespaces)
   header_id <- xml2::xml_text(xml2::xml_find_first(header, ".//m:ID", namespaces))
-  prepared <- xml2::xml_text(xml2::xml_find_first(header, ".//m:Prepared", namespaces))
+  prepared <- substr(xml2::xml_text(xml2::xml_find_first(header, ".//m:Prepared", namespaces)),1,10)
   sender_id <- xml2::xml_attr(xml2::xml_find_first(header, ".//m:Sender", namespaces), "id")
   
   # Continue with dataflow and annotations extraction 
