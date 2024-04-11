@@ -1,4 +1,4 @@
-pandoc: 2.19.2
+pandoc: 3.1.11
 pkgdown: 2.0.7
 pkgdown_sha: ~
 articles:
@@ -10,7 +10,7 @@ articles:
   maps: maps.html
   publications: publications.html
   vignette: vignette.html
-last_built: 2024-01-08T11:19Z
+last_built: 2024-04-11T10:21Z
 urls:
   reference: https://ropengov.github.io/eurostat/reference
   article: https://ropengov.github.io/eurostat/articles

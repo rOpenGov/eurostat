@@ -15,8 +15,7 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/Roboto_Mono-0.4.8/font.css" rel="stylesheet">
-<!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Differences between dimlst.dic and ALL_CONCEPTSCHEMES.xml">
 <meta property="og:description" content="eurostat">
@@ -29,8 +28,8 @@
 <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 <![endif]--><link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=B612+Mono&amp;display=swap" rel="stylesheet">
-<!-- rogtemplate style sheet --><link href="../BS5/rogtemplate.css" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Roboto+Mono:ital,wght@0,100..700;1,100..700&amp;display=swap" rel="stylesheet">
+<!-- rogtemplate style sheet --><link href="../BS5/rogtemplate.min.css" rel="stylesheet">
 </head>
 <body>
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
@@ -94,7 +93,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Differences between dimlst.dic and ALL_CONCEPTSCHEMES.xml</h1>
             
-            <h4 data-toc-skip class="date">2024-01-08</h4>
+            <h4 data-toc-skip class="date">2024-04-11</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/HEAD/vignettes/articles/dimlst_vs_allconceptschemes.Rmd" class="external-link"><code>vignettes/articles/dimlst_vs_allconceptschemes.Rmd</code></a></small>
       <div class="d-none name"><code>dimlst_vs_allconceptschemes.Rmd</code></div>
@@ -138,38 +137,38 @@ AGECHILD    Age of the child
 AGEDEF  Age definition</code></pre>
 <p>An example of the new Concept Scheme file for dataset
 <code>NAMA_10_GDP</code> (see instructions for downloading <a href="https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+metadata+query#APISDMX2.1metadataquery-SDMX2.1endpoint-REST-SDMX-ML2.1ConceptScheme" class="external-link">here</a>):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span><span class="ot"> id=</span><span class="st">"freq"</span><span class="ot"> urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq"</span>&gt;</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    Time frequency</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"de"</span>&gt;</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>    Zeitliche Frequenz</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"fr"</span>&gt;</span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>    Fréquence (relative au temps)</span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">s:CoreRepresentation</span>&gt;</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">s:Enumeration</span>&gt;</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">Ref</span><span class="ot"> agencyID=</span><span class="st">"ESTAT"</span><span class="ot"> class=</span><span class="st">"Codelist"</span><span class="ot"> id=</span><span class="st">"FREQ"</span><span class="ot"> package=</span><span class="st">"codelist"</span><span class="ot"> version=</span><span class="st">"3.2"</span>/&gt;</span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">s:Enumeration</span>&gt;</span>
-<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">s:CoreRepresentation</span>&gt;</span>
-<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">s:Concept</span>&gt;</span>
-<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span><span class="ot"> id=</span><span class="st">"unit"</span><span class="ot"> urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).unit"</span>&gt;</span>
-<span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
-<span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a>    Unit of measure</span>
-<span id="cb2-20"><a href="#cb2-20" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-21"><a href="#cb2-21" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"de"</span>&gt;</span>
-<span id="cb2-22"><a href="#cb2-22" aria-hidden="true" tabindex="-1"></a>    Maßeinheit</span>
-<span id="cb2-23"><a href="#cb2-23" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-24"><a href="#cb2-24" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"fr"</span>&gt;</span>
-<span id="cb2-25"><a href="#cb2-25" aria-hidden="true" tabindex="-1"></a>    Unité de mesure</span>
-<span id="cb2-26"><a href="#cb2-26" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-27"><a href="#cb2-27" aria-hidden="true" tabindex="-1"></a>  &lt;<span class="kw">s:CoreRepresentation</span>&gt;</span>
-<span id="cb2-28"><a href="#cb2-28" aria-hidden="true" tabindex="-1"></a>    &lt;<span class="kw">s:Enumeration</span>&gt;</span>
-<span id="cb2-29"><a href="#cb2-29" aria-hidden="true" tabindex="-1"></a>      &lt;<span class="kw">Ref</span><span class="ot"> agencyID=</span><span class="st">"ESTAT"</span><span class="ot"> class=</span><span class="st">"Codelist"</span><span class="ot"> id=</span><span class="st">"UNIT"</span><span class="ot"> package=</span><span class="st">"codelist"</span><span class="ot"> version=</span><span class="st">"22.0"</span>/&gt;</span>
-<span id="cb2-30"><a href="#cb2-30" aria-hidden="true" tabindex="-1"></a>    &lt;/<span class="kw">s:Enumeration</span>&gt;</span>
-<span id="cb2-31"><a href="#cb2-31" aria-hidden="true" tabindex="-1"></a>  &lt;/<span class="kw">s:CoreRepresentation</span>&gt;</span>
-<span id="cb2-32"><a href="#cb2-32" aria-hidden="true" tabindex="-1"></a>&lt;/<span class="kw">s:Concept</span>&gt;</span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span><span class="ot"> id=</span><span class="st">"freq"</span><span class="ot"> urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq"</span>&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    Time frequency</span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"de"</span>&gt;</span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    Zeitliche Frequenz</span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"fr"</span>&gt;</span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    Fréquence (relative au temps)</span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  &lt;<span class="kw">s:CoreRepresentation</span>&gt;</span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    &lt;<span class="kw">s:Enumeration</span>&gt;</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>      &lt;<span class="kw">Ref</span><span class="ot"> agencyID=</span><span class="st">"ESTAT"</span><span class="ot"> class=</span><span class="st">"Codelist"</span><span class="ot"> id=</span><span class="st">"FREQ"</span><span class="ot"> package=</span><span class="st">"codelist"</span><span class="ot"> version=</span><span class="st">"3.2"</span>/&gt;</span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    &lt;/<span class="kw">s:Enumeration</span>&gt;</span>
+<span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>  &lt;/<span class="kw">s:CoreRepresentation</span>&gt;</span>
+<span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>&lt;/<span class="kw">s:Concept</span>&gt;</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span><span class="ot"> id=</span><span class="st">"unit"</span><span class="ot"> urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).unit"</span>&gt;</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
+<span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>    Unit of measure</span>
+<span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"de"</span>&gt;</span>
+<span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    Maßeinheit</span>
+<span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"fr"</span>&gt;</span>
+<span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>    Unité de mesure</span>
+<span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
+<span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>  &lt;<span class="kw">s:CoreRepresentation</span>&gt;</span>
+<span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>    &lt;<span class="kw">s:Enumeration</span>&gt;</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>      &lt;<span class="kw">Ref</span><span class="ot"> agencyID=</span><span class="st">"ESTAT"</span><span class="ot"> class=</span><span class="st">"Codelist"</span><span class="ot"> id=</span><span class="st">"UNIT"</span><span class="ot"> package=</span><span class="st">"codelist"</span><span class="ot"> version=</span><span class="st">"22.0"</span>/&gt;</span>
+<span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>    &lt;/<span class="kw">s:Enumeration</span>&gt;</span>
+<span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>  &lt;/<span class="kw">s:CoreRepresentation</span>&gt;</span>
+<span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>&lt;/<span class="kw">s:Concept</span>&gt;</span></code></pre></div>
 <p>The apparent benefit of XML presentation is that all language
 versions can be found in the same file. This makes the files a bit
 larger than old .tsv files but for individual datasets the size is still
