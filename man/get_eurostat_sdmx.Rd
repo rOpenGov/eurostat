@@ -62,8 +62,8 @@ Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
 
 \item{legacy.data.output}{Use legacy column names and data object structure.
-Default is FALSE. If TRUE, the object will try to emulate the conventions of
-eurostat package 3.7.x and earlier.}
+Default is FALSE. If TRUE, the object will try to emulate the naming
+conventions of eurostat package version 3.7.x and earlier.}
 }
 \description{
 Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}

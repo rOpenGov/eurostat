@@ -124,7 +124,7 @@ See \code{citation("eurostat")}:
 # 
 #   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
 #   and Kantanen P. (2024). eurostat: Tools for Eurostat Open Data
-#   [Computer software]. R package version 4.1.0.9000.
+#   [Computer software]. R package version 4.1.0.9001.
 #   https://github.com/rOpenGov/eurostat
 # 
 # To see these entries in BibTeX format, use 'print(<citation>,
