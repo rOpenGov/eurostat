@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.1.0.9000
-Date: 2024-01-18
+Version: 4.1.0.9001
+Date: 2024-04-29
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -18,7 +18,7 @@ Authors@R: c(
     person("Paul", "Rougieux", role = "ctb"),
     person("Anna", "Vasylytsya", role = "ctb"),
     person("Oliver", "Reiter", role = "ctb"),
-    person("Pyry", "Kantanen", role = "ctb",
+    person("Pyry", "Kantanen", role = "aut",
            comment = c(ORCID = "0000-0003-2853-2765")),
     person("Enrico", "Spinielli", , "enrico.spinielli@gmail.com", role = "ctb",
            comment = c(ORCID = "0000-0001-8584-9131"))
@@ -71,6 +71,6 @@ MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.1
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
