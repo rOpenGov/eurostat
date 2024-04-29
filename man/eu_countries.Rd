@@ -10,16 +10,19 @@
 \format{
 A data_frame:
 \itemize{
-\item \strong{code}: Country code in the Eurostat database.
+\item \strong{code}: Country code in the Eurostat database (two-letter ISO code (ISO 3166 alpha-2) except in the case of Greece where EL is used).
 \item \strong{name}: Country name in English.
-\item \strong{label}: Country name in the Eurostat database.
+\item \strong{label}: Country name in the Eurostat database
+\item \strong{name_fr}: Country name in French
+\item \strong{name_de}: Country name in German
+\item \strong{country_language}: Country name in national language(s).
 }
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 19 rows and 3 columns.
+An object of class \code{data.frame} with 20 rows and 6 columns.
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 4 rows and 3 columns.
+An object of class \code{data.frame} with 4 rows and 6 columns.
 
-An object of class \code{tbl_df} (inherits from \code{tbl}, \code{data.frame}) with 7 rows and 3 columns.
+An object of class \code{data.frame} with 9 rows and 6 columns.
 }
 \source{
 \url{https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order},
@@ -37,6 +40,10 @@ eu_candidate_countries
 \description{
 Countries and country codes in EU,
 Euro area, EFTA and EU candidate countries.
+}
+\details{
+Country codes are two-letter ISO codes (ISO 3166 alpha-2) except in the case
+of Greece where EL is used instead of the standard ISO code.
 }
 \seealso{
 Other datasets: 
