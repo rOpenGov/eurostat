@@ -688,7 +688,7 @@ get_eurostat_interactive <- function(code = NULL) {
       )
       
       use.data.table_selection <- switch(
-        menu(choices = c("Do not use data.table functions (default",
+        menu(choices = c("Do not use data.table functions (default)",
                          "Use data.table functions"),
              title = "Using data.table functions may help reduce time used in data processing and reduce RAM usage. It is advisable especially when dealing with large datasets.") + 1,
         FALSE,
@@ -768,7 +768,7 @@ get_eurostat_interactive <- function(code = NULL) {
   }
   
   if (exists("eurostat_data")) {
-    print_code <- switch(
+    print_fixity <- switch(
       menu(choices = c("Yes", "No"), 
            title = "Print dataset fixity checksum?") + 1,
       return(invisible()),
@@ -776,7 +776,7 @@ get_eurostat_interactive <- function(code = NULL) {
       FALSE
     )
     
-    if (print_code) {
+    if (print_fixity) {
       capture.output(cat("##### FIXITY CHECKSUM:\n\n"), file = tempfile_for_sinking, append = TRUE)
       capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {eurostat:::fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
       capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
@@ -784,10 +784,14 @@ get_eurostat_interactive <- function(code = NULL) {
   }
   
   if (exists("eurostat_data")) {
-    cat(readLines(tempfile_for_sinking), sep = "\n")
+    if (any(c(print_citation, print_code, print_fixity))) {
+      cat(readLines(tempfile_for_sinking), sep = "\n")
+    }
     return(eurostat_data)
   } else {
-    cat(readLines(tempfile_for_sinking), sep = "\n")
+    if (any(c(print_citation, print_code))) {
+      cat(readLines(tempfile_for_sinking), sep = "\n")
+    }
     return(invisible())
   }
   # nocov end
