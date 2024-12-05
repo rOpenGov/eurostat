@@ -213,16 +213,34 @@ extract_metadata <- function(id, agency = "Eurostat") {
   
 }
 
-
-legacy_data_format <- function(x, cols_to_drop = c("DATAFLOW", "LAST.UPDATE", "freq")) {
-  x <- x[setdiff(names(x), cols_to_drop)]
-  cols_to_rename <- data.frame(old = c("TIME_PERIOD", "OBS_VALUE"),
-                               new = c("time", "values"))
-  for (i in seq_len(nrow(cols_to_rename))) {
-    old <- cols_to_rename[i,1]
-    if (old %in% names(x)) {
-      col_num <- which(names(x) == old)
-      colnames(x)[col_num] <- cols_to_rename[i,2]
+legacy_data_format <- function(x, cols_to_drop = c("DATAFLOW", "LAST UPDATE", "freq")) {
+  if (inherits(x, "data.table")) {
+    # Drop columns that were not used in old API
+    for (i in seq_along(cols_to_drop)) {
+      if (cols_to_drop[i] %in% names(x)){
+        x[, (cols_to_drop[i]):=NULL]
+      }
+    }
+    
+    # Rename columns
+    non_legacy_col_name = c("TIME_PERIOD", "OBS_VALUE", "OBS_FLAG")
+    legacy_col_name = c("time", "values", "flags")
+    for (i in seq_along(non_legacy_col_name)) {
+      if (non_legacy_col_name[i] %in% names(x)){
+        data.table::setnames(x, (non_legacy_col_name[i]), (legacy_col_name[i]))
+      }
+    }
+    
+  } else {
+    x <- x[setdiff(names(x), cols_to_drop)]
+    cols_to_rename <- data.frame(non_legacy_col_name = c("TIME_PERIOD", "OBS_VALUE", "OBS_FLAG"),
+                                 legacy_col_name = c("time", "values", "flags"))
+    for (i in seq_len(nrow(cols_to_rename))) {
+      non_legacy_col_name <- cols_to_rename[i,1]
+      if (non_legacy_col_name %in% names(x)) {
+        col_num <- which(names(x) == non_legacy_col_name)
+        colnames(x)[col_num] <- cols_to_rename[i,2]
+      }
     }
   }
   x
@@ -233,8 +251,11 @@ build_api_base_uri <- function(agency) {
   api_base_uri <- switch(
     agency,
     eurostat = "https://ec.europa.eu/eurostat/api/dissemination",
+    estat = "https://ec.europa.eu/eurostat/api/dissemination",
     eurostat_comext = "https://ec.europa.eu/eurostat/api/comext/dissemination",
+    comext = "https://ec.europa.eu/eurostat/api/comext/dissemination",
     eurostat_prodcom = "https://ec.europa.eu/eurostat/api/comext/dissemination",
+    prodcom = "https://ec.europa.eu/eurostat/api/comext/dissemination",
     comp = "https://webgate.ec.europa.eu/comp/redisstat/api/dissemination",
     empl = "https://webgate.ec.europa.eu/empl/redisstat/api/dissemination",
     grow = "https://webgate.ec.europa.eu/grow/redisstat/api/dissemination")
@@ -247,8 +268,11 @@ build_agencyID <- function(agency) {
   agencyID <- switch(
     agency,
     eurostat = "ESTAT",
+    estat = "ESTAT",
     eurostat_comext = "ESTAT",
+    comext = "ESTAT",
     eurostat_prodcom = "ESTAT",
+    prodcom = "ESTAT",
     comp = "COMP",
     empl = "EMPL",
     grow = "GROW"
@@ -297,7 +321,7 @@ get_codelist_id <- function(agency, id) {
   
   data_structure_definition_url <- paste0(
     api_base_uri,
-    "/sdmx/2.1/datastructure/estat/",
+    "/sdmx/2.1/datastructure/ESTAT/",
     id)
   
   dsd <- xml2::read_xml(data_structure_definition_url)
@@ -339,42 +363,16 @@ label_eurostat_sdmx <- function(x, agency, id, lang = "en") {
   resource <- "codelist"
   lang <- check_lang(lang)
   
+  # non-destructive editing
+  y <- x
   api_base_uri <- build_api_base_uri(agency)
   agencyID <- build_agencyID(agency)
   
   agencyID <- agencyID
-  for (i in seq_len(nrow(dimension_df))) {
-    resourceID <- dimension_df$codelist_id[[i]]
-    message(paste("Building codelist URL for resourceID:", resourceID))
-    codelist_url <- paste0(
-      api_base_uri,
-      "/sdmx/2.1/",
-      resource,
-      "/",
-      agencyID,
-      "/",
-      resourceID,
-      "?format=TSV",
-      "&lang=",
-      lang
-    )
-    tryCatch({
-      codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc", col_names = FALSE))
-      column_to_handle <- dimension_df$dimension_id[[i]]
-      col <- x[[column_to_handle]]
-      codes_to_label <- codelist[(codelist[,1] %in% col),]
-      message(paste("Labeling dimension (column):", column_to_handle))
-      for (j in seq_len(nrow(codes_to_label))) {
-        col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
-      }
-      x[column_to_handle] <- col
-    },
-    error = function(e) message(paste("Couldn't label", resourceID))
-    )
-  }
-  if ("OBS_FLAG" %in% names(x)){
-    tryCatch({
-      resourceID <- "OBS_FLAG"
+  # data.table objects need different kind of handling
+  if (inherits(y, "data.table")) {
+    for (i in seq_len(nrow(dimension_df))) {
+      resourceID <- dimension_df$codelist_id[[i]]
       message(paste("Building codelist URL for resourceID:", resourceID))
       codelist_url <- paste0(
         api_base_uri,
@@ -388,18 +386,78 @@ label_eurostat_sdmx <- function(x, agency, id, lang = "en") {
         "&lang=",
         lang
       )
-      codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc"))
-      column_to_handle <- "OBS_FLAG"
-      col <- x[[column_to_handle]]
-      codes_to_label <- codelist[(codelist[,1] %in% col),]
-      message(paste("Labeling dimension (column):", column_to_handle))
-      for (j in seq_len(nrow(codes_to_label))) {
-        col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
-      }
-      x[column_to_handle] <- col
-    },
-    error = function(e) message(paste("Couldn't label", resourceID))
-    )
+      tryCatch({
+        codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc", col_names = FALSE))
+        column_to_handle <- dimension_df$dimension_id[[i]]
+        codes_to_label <- unique(y[[column_to_handle]])
+        codelist_subset <- codelist[which(codelist[,1] %in% codes_to_label),]
+        message(paste("Labeling dimension (column):", column_to_handle))
+        for (j in seq_len(nrow(codelist_subset))) {
+          data.table::set(y, i=which(y[[column_to_handle]] == codelist_subset[j,1]), j = column_to_handle, value = codelist_subset[j,2])
+        }
+      },
+      error = function(e) message(paste("Couldn't label", resourceID))
+      )
+    }
+  } else {
+    for (i in seq_len(nrow(dimension_df))) {
+      resourceID <- dimension_df$codelist_id[[i]]
+      message(paste("Building codelist URL for resourceID:", resourceID))
+      codelist_url <- paste0(
+        api_base_uri,
+        "/sdmx/2.1/",
+        resource,
+        "/",
+        agencyID,
+        "/",
+        resourceID,
+        "?format=TSV",
+        "&lang=",
+        lang
+      )
+      tryCatch({
+        codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc", col_names = FALSE))
+        column_to_handle <- dimension_df$dimension_id[[i]]
+        col <- x[[column_to_handle]]
+        codes_to_label <- codelist[(codelist[,1] %in% col),]
+        message(paste("Labeling dimension (column):", column_to_handle))
+        for (j in seq_len(nrow(codes_to_label))) {
+          col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
+        }
+        x[column_to_handle] <- col
+      },
+      error = function(e) message(paste("Couldn't label", resourceID))
+      )
+    }
+    if ("OBS_FLAG" %in% names(x)){
+      tryCatch({
+        resourceID <- "OBS_FLAG"
+        message(paste("Building codelist URL for resourceID:", resourceID))
+        codelist_url <- paste0(
+          api_base_uri,
+          "/sdmx/2.1/",
+          resource,
+          "/",
+          agencyID,
+          "/",
+          resourceID,
+          "?format=TSV",
+          "&lang=",
+          lang
+        )
+        codelist <- as.data.frame(readr::read_tsv(file = codelist_url, col_types = "cc"))
+        column_to_handle <- "OBS_FLAG"
+        col <- x[[column_to_handle]]
+        codes_to_label <- codelist[(codelist[,1] %in% col),]
+        message(paste("Labeling dimension (column):", column_to_handle))
+        for (j in seq_len(nrow(codes_to_label))) {
+          col[which(col == as.character(codes_to_label[j,][1]))] <- as.character(codes_to_label[j,2])
+        }
+        x[column_to_handle] <- col
+      },
+      error = function(e) message(paste("Couldn't label", resourceID))
+      )
+    }
   }
   x
 }

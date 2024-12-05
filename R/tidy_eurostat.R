@@ -1,5 +1,5 @@
-#' @title Transform Data into Row-Column-Value Format
-#' @description Transform raw Eurostat data table downloaded from the
+#' @title Transform TSV files into Row-Column-Value Format
+#' @description Transform raw Eurostat TSV files downloaded from the
 #' API into a tidy row-column-value format (RCV).
 #' @param dat
 #' a data_frame from [get_eurostat_raw()].
@@ -78,7 +78,7 @@ tidy_eurostat <- function(dat,
     dat$values <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$values)))
     
     # variable columns
-    var_cols <- names(dat)[!(names(dat) %in% c("TIME_PERIOD", "values"))]
+    var_cols <- setdiff(names(dat), c("TIME_PERIOD", "values"))
     
     # reorder to standard order
     # OLD CODE
@@ -249,4 +249,121 @@ convert_time_col <- function(x, time_format) {
     }
   }
   y
+}
+
+#' @title Transform CSV files into Row-Column-Value Format data.table object
+#' @description Transform raw Eurostat TSV files downloaded from the
+#' API into a tidy row-column-value format (RCV).
+#' @details
+#' Can read only SDMX-CSV files, in compressed (.csv.gz) and uncompressed (.csv)
+#' format. As opposed to regular tidy_eurostat function, stringsAsFactors is
+#' determined outside this function, in `get_eurostat_local()`.
+#' 
+#' @param dat
+#' a data_frame from [get_eurostat_raw()].
+#' @inheritParams get_eurostat
+#' @return data.table object in the melted format with the last column 'values' or 'OBS_VALUE'.
+#' @seealso [get_eurostat_local()]
+#' @inherit eurostat-package references
+#' @author Pyry Kantanen
+#'
+#' @importFrom stringi stri_extract_first_regex stri_replace_all_regex
+#' @importFrom stringi stri_replace_all_fixed
+#' @importFrom tidyr separate pivot_longer
+#' @importFrom dplyr filter
+#' @importFrom data.table setDT melt .SD := setcolorder
+#' @importFrom stats na.omit
+#'
+#'
+#' @keywords internal utilities database
+tidy_eurostat_sdmx_csv <- function(dat,
+                          time_format = "date",
+                          select_time = NULL,
+                          keepFlags = FALSE) {
+  
+  dat <- dplyr::filter(dat, !is.na(OBS_VALUE))
+  
+  if (keepFlags == FALSE) {
+    # Remove OBS_FLAG column
+    dat[,OBS_FLAG:=NULL]
+  }
+  
+  # clean time and values
+  dat$TIME_PERIOD <- gsub("X", "", dat$TIME_PERIOD, fixed = TRUE)
+  dat$OBS_VALUE <- as.numeric(gsub("[^0-9.-]+", "", as.character(dat$OBS_VALUE)))
+  
+  # variable columns
+  var_cols <- setdiff(names(dat), c("TIME_PERIOD", "OBS_VALUE"))
+  
+  # reorder to standard order
+  data.table::setcolorder(dat, c(var_cols, "TIME_PERIOD", "OBS_VALUE"))
+  
+  # columns from var_cols are converted into factors
+  # avoid convert = FALSE since it converts T into TRUE instead of TOTAL
+  # not needed in data.table
+  # if (stringsAsFactors) {
+  #   dat[, var_cols] <- lapply(
+  #     dat[, var_cols, drop = FALSE],
+  #     function(x) factor(x, levels = unique(x))
+  #   )
+  # }
+  
+  # For multiple time frequency
+  freqs <- unique(dat$freq)
+  
+  if (!is.null(select_time)) {
+    if (length(select_time) > 1) {
+      message(
+        "Selected multiple time frequencies with select_time parameter: ",
+        shQuote(select_time)
+      )
+    }
+    
+    # Filter dataset according to select_time filter
+    # This only works when a single frequency is chosen
+    if (identical(select_time, "Y")) {
+      # Annual with old style notation, "Y" for annual
+      dat <- subset(dat, dat$freq == "A")
+    } else if (identical(select_time, "A")) {
+      # Annual with new notation, "A" for annual
+      dat <- subset(dat, dat$freq == "A")
+    } else {
+      # Others, subset the data with whatever choices
+      dat <- subset(dat, dat$freq %in% select_time)
+    }
+    # Test if filtered dataset actually contains any data
+    if (nrow(dat) == 0) {
+      stop(
+        "No data selected with select_time:", dQuote(select_time), "\n",
+        "Available frequencies: ", shQuote(freqs)
+      )
+    }
+  } else {
+    
+    if (length(freqs) > 1 && time_format != "raw") {
+      message(
+        "Data includes several time frequencies. Select a single frequency \n",
+        "with select_time or use time_format = \"raw\" to return all data \n",
+        "without any filtering. Available frequencies: ", shQuote(freqs), "\n",
+        "Returning the dataset with multiple frequencies."
+      )
+    }
+  }
+  
+  if (length(select_time) > 1) {
+    dat_copy <- data.frame()
+    for (i in seq_along(select_time)) {
+      dat_subset <- subset(dat, dat$freq == select_time[i])
+      dat_subset$TIME_PERIOD <- convert_time_col(x = dat_subset$TIME_PERIOD,
+                                                 time_format = time_format)
+      dat_copy <- rbind(dat_copy, dat_subset)
+    }
+    dat <- dat_copy
+  } else {
+    # convert time column to Date
+    dat$TIME_PERIOD <- convert_time_col(x = dat$TIME_PERIOD,
+                                        time_format = time_format)
+  }
+
+  dat
 }

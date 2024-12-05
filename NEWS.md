@@ -1,3 +1,11 @@
+# eurostat 4.1.0.9000
+
+## Major updates
+
+* Add new function `get_eurostat_sdmx()` for implementing functionalities that are specifically targeted for the new SDMX API. It is accompanied by other helper functions that are related to fetching metadata from the SDMX API: `build_api_base_uri()`, `build_agencyID()`, `data_filtering_on_dimension()`, `get_codelist_id()` and `label_eurostat_sdmx()`
+* Add new function `get_eurostat_local()` for reading local SDMX-CSV (.csv) and compressed SDMX-CSV (.csv.gz) files downloaded manually from the Eurostat website. This function relies only on `data.table` functions as it is expected that locally stored files may be larger and require more efficient handling with regards to RAM and processing time constrains. `tidy_eurostat_sdmx()` and `parse_filename()` are helper functions related to this function.
+* New `legacy_data_format()` function and `legacy.data.output` attribute in `get_eurostat()` and `get_eurostat_local()` transforms modern API naming conventions into the format that was used in the old API and eurostat package versions 3.8.* and prior. It is a helper function to other functions.
+
 # eurostat 4.0.0
 
 ## Major updates

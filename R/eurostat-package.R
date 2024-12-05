@@ -339,4 +339,4 @@
 #' regions package are imported <https://regions.dataobservatory.eu/>.
 #' @keywords package
 #' @seealso `help("regions")`, <https://regions.dataobservatory.eu/>
-NULL
+"_PACKAGE"

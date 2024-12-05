@@ -66,8 +66,8 @@
 #' @param use.data.table Use faster data.table functions? Default is FALSE. 
 #' On Windows requires that RTools is installed.
 #' @param legacy.data.output Use legacy column names and data object structure.
-#' Default is FALSE. If TRUE, the object will try to emulate the conventions of
-#' eurostat package 3.7.x and earlier.
+#' Default is FALSE. If TRUE, the object will try to emulate the naming
+#' conventions of eurostat package version 3.7.x and earlier.
 #' @inheritDotParams get_eurostat_json
 #' 
 #' @inherit eurostat-package references

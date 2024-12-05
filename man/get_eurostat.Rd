@@ -88,8 +88,8 @@ can not be used with a \code{filters}.}
 On Windows requires that RTools is installed.}
 
 \item{legacy.data.output}{Use legacy column names and data object structure.
-Default is FALSE. If TRUE, the object will try to emulate the conventions of
-eurostat package 3.7.x and earlier.}
+Default is FALSE. If TRUE, the object will try to emulate the naming
+conventions of eurostat package version 3.7.x and earlier.}
 
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
@@ -382,7 +382,7 @@ See \code{citation("eurostat")}:
 
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2024). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.1.0.9000.
+  [Computer software]. R package version 4.1.0.9001.
   https://github.com/rOpenGov/eurostat
 
 To see these entries in BibTeX format, use 'print(<citation>,
