@@ -128,8 +128,9 @@ extract_metadata <- function(id, agency = "Eurostat") {
   
   data_structure_definition_url <- paste0(
     api_base_uri,
-    "/sdmx/2.1/dataflow/estat/",
-    id)
+    "/sdmx/2.1/dataflow/ESTAT/",
+    id,
+    "?compressed=false")
   
   dsd_xml <- xml2::read_xml(data_structure_definition_url)
   
@@ -194,7 +195,7 @@ extract_metadata <- function(id, agency = "Eurostat") {
     Name_EN = name_en,
     Name_DE = name_de,
     Name_FR = name_fr,
-    DOI_URL = doi_url,
+    DOI_URL = ifelse(exists("doi_url"), eval(doi_url), NA_character_),
     DataflowID = dataflow_id,
     AgencyID = agencyID,
     ID = header_id,
