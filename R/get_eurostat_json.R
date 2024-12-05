@@ -183,7 +183,6 @@ get_eurostat_json <- function(id,
   result <- httr2::resp_body_json(
       resp = resp,
       simplifyVector = TRUE)
-
   if (httr2::resp_is_error(resp)) {
 
     # These objects are only needed if there is an error
@@ -203,10 +202,10 @@ get_eurostat_json <- function(id,
                              "  Error id: {id} ({faultstring})\n",
                              "  Error label from API: {label}")
       )
-    } else {
+    } else{
       stop(stringr::str_glue("\n",
                              "HTTP status: {status} ({status_code_label})\n",
-                             "  Error id: {id} ({faultstring})\n",
+                             "  Error id: {id} \n",
                              "  Error label from API: {label}")
       )
     }
