@@ -138,6 +138,8 @@ including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver
 Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data
 portal! This project is part of [rOpenGov](https://ropengov.org).
 
+This project has received funding from the European Union under grant No 101095295 (OpenMUSE), the FIN-CLARIAH research infrastructure and the Strategic Research Council's YOUNG program by the Research Council of Finland (decisions 345630, 358720, 367756, 352604).
+
 ### Disclaimer
 
 This package is in no way officially related to or endorsed by Eurostat.
