@@ -28,20 +28,23 @@ test_that("Duplicated with fix_duplicated does not give an error", {
   ), "P5", all = TRUE)
 })
 
-test_that("Get eurotime2date error message related to W99 values", {
-  skip_on_cran()
-  skip_if_offline()
-  expect_warning(
-    get_eurostat(
-      "demo_r_mweek3",
-      filters = list(
-        sex = "F",
-        age = "TOTAL",
-        geo = "BG"
-        )
-      )
-  )
-})
+# W99 values are now reported in separate Excel files that are published
+# in demo_r_mweek3 Reference metadata page so this test no longer
+# applies, as of 2025-02-17
+# test_that("Get eurotime2date error message related to W99 values", {
+#   skip_on_cran()
+#   skip_if_offline()
+#   expect_warning(
+#     get_eurostat(
+#       "demo_r_mweek3",
+#       filters = list(
+#         sex = "F",
+#         age = "TOTAL",
+#         geo = "BG"
+#         )
+#       )
+#   )
+# })
 
 test_that("cut_to_classes works", {
   skip_on_cran()
