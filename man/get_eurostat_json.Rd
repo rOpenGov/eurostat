@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_eurostat_json.R
 \name{get_eurostat_json}
 \alias{get_eurostat_json}
-\title{Get Data from Eurostat API Statistics}
+\title{Get Data from Eurostat API in JSON}
 \usage{
 get_eurostat_json(
   id,
@@ -50,18 +50,14 @@ following: \code{basic}, digest, digest_ie, gssnegotiate, ntlm, any.}
 A dataset as an object of \code{data.frame} class.
 }
 \description{
-Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
+Retrieve data from Eurostat API in JSON format.
 }
 \details{
 Data to retrieve from
-\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}{The Eurostat API Statistics}
+\href{https://ec.europa.eu/eurostat/web/main/data/web-services}{The Eurostat Web Services}
 can be specified with filters. Normally, it is
 better to use JSON query through \code{\link[=get_eurostat]{get_eurostat()}}, than to use
-\code{\link[=get_eurostat_json]{get_eurostat_json()}} directly. The main reason for this is that
-\code{\link[=get_eurostat_json]{get_eurostat_json()}} returns a relatively raw dataset that does not go
-through helper functions in \code{\link[=get_eurostat]{get_eurostat()}}, such as \code{\link[=eurotime2date]{eurotime2date()}} or
-\code{\link[=eurotime2num]{eurotime2num()}} functions or reading data from cache and saving data
-to cache.
+\code{\link[=get_eurostat_json]{get_eurostat_json()}} directly.
 
 Queries are limited to 50 sub-indicators at a time. A time can be
 filtered with fixed "time" filter or with "sinceTimePeriod" and
@@ -82,18 +78,6 @@ For end user convenience, we have provided a ready-made internal dataset
 the possible interpretation or cause of each error. These messages are
 returned if the API returns a status indicating a HTTP error
 (400 or greater).
-
-Additionally, there is limit on the size of the returned extractions
-(error code 413).
-At the time of publishing this package version, the max authorised size for
-the extraction seems to be 5000000 (5 million) rows. The server seems to
-estimate the size of the returned data object with a method that is
-unknown to us so the number of rows might not be the same as the number
-of returned rows in the JSON-stat object. You can limit the number of rows
-in your extraction by providing more filters to the query. If the
-extraction size continues to go over limit you can try to download the
-whole dataset with \code{\link[=get_eurostat]{get_eurostat()}} and filter it locally on your computer,
-for example with base R or dplyr data wrangling functions.
 
 The Eurostat implementation seems to be based on SDMX 2.1, which is the
 reason we've used SDMX Standards guidelines as a supplementary source
@@ -315,14 +299,35 @@ See \code{citation("eurostat")}:
   analysis of Eurostat open data with the eurostat package. The R
   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
+A BibTeX entry for LaTeX users is
+
+  @Article\{10.32614/RJ-2017-019,
+    title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
+    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
+    journal = \{The R Journal\},
+    volume = \{9\},
+    number = \{1\},
+    pages = \{385--392\},
+    year = \{2017\},
+    doi = \{10.32614/RJ-2017-019\},
+    url = \{https://doi.org/10.32614/RJ-2017-019\},
+  \}
+
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-  and Kantanen P. (2024). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.1.0.9001.
+  and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
+  [Computer software]. R package version 4.0.0.
   https://github.com/rOpenGov/eurostat
 
-To see these entries in BibTeX format, use 'print(<citation>,
-bibtex=TRUE)', 'toBibtex(.)', or set
-'options(citation.bibtex.max=999)'.
+A BibTeX entry for LaTeX users is
+
+  @Misc\{eurostat,
+    title = \{eurostat: Tools for Eurostat Open Data\},
+    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
+    url = \{https://github.com/rOpenGov/eurostat\},
+    type = \{Computer software\},
+    year = \{2023\},
+    note = \{R package version 4.0.0\},
+  \}
 }\if{html}{\out{</div>}}
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat data"

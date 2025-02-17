@@ -65,9 +65,6 @@
 #' can not be used with a `filters`.
 #' @param use.data.table Use faster data.table functions? Default is FALSE. 
 #' On Windows requires that RTools is installed.
-#' @param legacy.data.output Use legacy column names and data object structure.
-#' Default is FALSE. If TRUE, the object will try to emulate the naming
-#' conventions of eurostat package version 3.7.x and earlier.
 #' @inheritDotParams get_eurostat_json
 #' 
 #' @inherit eurostat-package references
@@ -189,7 +186,6 @@ get_eurostat <- function(id,
                          stringsAsFactors = FALSE,
                          keepFlags = FALSE,
                          use.data.table = FALSE,
-                         legacy.data.output = FALSE,
                          ...) {
 
   # Check if you have access to ec.europe.eu.
@@ -467,10 +463,6 @@ get_eurostat <- function(id,
     saveRDS(y, file = cache_file, compress = compress_file)
     message("Table ", id, " cached at ", path.expand(cache_file))
   }
-  
-  if (legacy.data.output){
-    y <- legacy_data_format(y)
-  }
 
   y
 }
@@ -688,7 +680,7 @@ get_eurostat_interactive <- function(code = NULL) {
       )
       
       use.data.table_selection <- switch(
-        menu(choices = c("Do not use data.table functions (default)",
+        menu(choices = c("Do not use data.table functions (default",
                          "Use data.table functions"),
              title = "Using data.table functions may help reduce time used in data processing and reduce RAM usage. It is advisable especially when dealing with large datasets.") + 1,
         FALSE,
@@ -768,7 +760,7 @@ get_eurostat_interactive <- function(code = NULL) {
   }
   
   if (exists("eurostat_data")) {
-    print_fixity <- switch(
+    print_code <- switch(
       menu(choices = c("Yes", "No"), 
            title = "Print dataset fixity checksum?") + 1,
       return(invisible()),
@@ -776,7 +768,7 @@ get_eurostat_interactive <- function(code = NULL) {
       FALSE
     )
     
-    if (print_fixity) {
+    if (print_code) {
       capture.output(cat("##### FIXITY CHECKSUM:\n\n"), file = tempfile_for_sinking, append = TRUE)
       capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {eurostat:::fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
       capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
@@ -784,14 +776,10 @@ get_eurostat_interactive <- function(code = NULL) {
   }
   
   if (exists("eurostat_data")) {
-    if (any(c(print_citation, print_code, print_fixity))) {
-      cat(readLines(tempfile_for_sinking), sep = "\n")
-    }
+    cat(readLines(tempfile_for_sinking), sep = "\n")
     return(eurostat_data)
   } else {
-    if (any(c(print_citation, print_code))) {
-      cat(readLines(tempfile_for_sinking), sep = "\n")
-    }
+    cat(readLines(tempfile_for_sinking), sep = "\n")
     return(invisible())
   }
   # nocov end

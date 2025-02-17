@@ -12,7 +12,7 @@
 #' | **Package**  | eurostat |
 #' | **Type**     | Package  |
 #' | **Version**  | `r packageVersion("eurostat")` |
-#' | **Date**     | 2014-2024     |
+#' | **Date**     | 2014-2023     |
 #' | **License**  | `r as.character(utils::packageDescription("eurostat")["License"])`|
 #' | **LazyLoad** | yes      |
 #'
@@ -339,4 +339,4 @@
 #' regions package are imported <https://regions.dataobservatory.eu/>.
 #' @keywords package
 #' @seealso `help("regions")`, <https://regions.dataobservatory.eu/>
-"_PACKAGE"
+NULL

@@ -1,15 +1,11 @@
-#' @title Get Data from Eurostat API Statistics
-#' @description Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
+#' @title Get Data from Eurostat API in JSON
+#' @description Retrieve data from Eurostat API in JSON format.
 #' @details
 #'   Data to retrieve from
-#'   [The Eurostat API Statistics](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
+#'   [The Eurostat Web Services](https://ec.europa.eu/eurostat/web/main/data/web-services)
 #'   can be specified with filters. Normally, it is
 #'   better to use JSON query through [get_eurostat()], than to use
-#'   [get_eurostat_json()] directly. The main reason for this is that 
-#'   [get_eurostat_json()] returns a relatively raw dataset that does not go
-#'   through helper functions in [get_eurostat()], such as [eurotime2date()] or 
-#'   [eurotime2num()] functions or reading data from cache and saving data 
-#'   to cache.
+#'   [get_eurostat_json()] directly.
 #'
 #'   Queries are limited to 50 sub-indicators at a time. A time can be
 #'   filtered with fixed "time" filter or with "sinceTimePeriod" and
@@ -30,18 +26,6 @@
 #'   the possible interpretation or cause of each error. These messages are
 #'   returned if the API returns a status indicating a HTTP error
 #'   (400 or greater).
-#'   
-#'   Additionally, there is limit on the size of the returned extractions 
-#'   (error code 413). 
-#'   At the time of publishing this package version, the max authorised size for
-#'   the extraction seems to be 5000000 (5 million) rows. The server seems to
-#'   estimate the size of the returned data object with a method that is
-#'   unknown to us so the number of rows might not be the same as the number
-#'   of returned rows in the JSON-stat object. You can limit the number of rows
-#'   in your extraction by providing more filters to the query. If the
-#'   extraction size continues to go over limit you can try to download the
-#'   whole dataset with [get_eurostat()] and filter it locally on your computer,
-#'   for example with base R or dplyr data wrangling functions.
 #'
 #'   The Eurostat implementation seems to be based on SDMX 2.1, which is the
 #'   reason we've used SDMX Standards guidelines as a supplementary source
