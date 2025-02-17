@@ -1,8 +1,8 @@
-/* Beautify: https://www.freeformatter.com/css-beautifier.html */
-/* Minify: https://www.freeformatter.com/css-minifier.html */
-
-/* From http://ropengov.org/css/style.css */
-
+/*!
+	* Beautify: https://www.freeformatter.com/css-beautifier.html
+	* Minify: https://www.freeformatter.com/css-minifier.html
+	* From http://ropengov.org/css/style.css
+*/
 .blog-header,
 .blog-post,
 .blog-pagination {
@@ -210,4 +210,17 @@ footer .pkgdown-footer-left {
 	background-color: var(--bs-body-bg);
 	padding: 0;
 	border-radius: 0;
+}
+
+/* ---allcontributors package--- */
+
+.allctb-avatar {
+	border: 1px solid;
+	border-radius: 50%;
+	border-color: var(--bs-dark-border-subtle);
+	max-width: 100px;
+}
+
+table.allctb-table td {
+	border-color: transparent;
 }

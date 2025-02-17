@@ -1,17 +1,16 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
-  blogposts: blogposts.html
-  cheatsheet: cheatsheet.html
-  dimlst_vs_allconceptschemes: dimlst_vs_allconceptschemes.html
-  eurostat_tutorial: eurostat_tutorial.html
-  mapping: mapping.html
-  maps: maps.html
-  publications: publications.html
+  articles/blogposts: blogposts.html
+  articles/cheatsheet: cheatsheet.html
+  articles/dimlst_vs_allconceptschemes: dimlst_vs_allconceptschemes.html
+  articles/eurostat_tutorial: eurostat_tutorial.html
+  articles/mapping: mapping.html
+  articles/maps: maps.html
+  articles/publications: publications.html
   vignette: vignette.html
-last_built: 2024-04-11T10:21Z
+last_built: 2025-02-17T08:56Z
 urls:
   reference: https://ropengov.github.io/eurostat/reference
   article: https://ropengov.github.io/eurostat/articles
-
