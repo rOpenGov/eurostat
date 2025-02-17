@@ -7,7 +7,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -42,16 +42,6 @@
       <small>Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/NEWS.md" class="external-link"><code>NEWS.md</code></a></small>
     </div>
 
-    <div class="section level2">
-<h2 class="pkg-version" data-toc-text="4.1.0.9000" id="eurostat-4109000">eurostat 4.1.0.9000<a class="anchor" aria-label="anchor" href="#eurostat-4109000"></a></h2>
-<div class="section level3">
-<h3 id="major-updates-4-1-0-9000">Major updates<a class="anchor" aria-label="anchor" href="#major-updates-4-1-0-9000"></a></h3>
-<ul><li>Add new function <code><a href="../reference/get_eurostat_sdmx.html">get_eurostat_sdmx()</a></code> for implementing functionalities that are specifically targeted for the new SDMX API. It is accompanied by other helper functions that are related to fetching metadata from the SDMX API: <code>build_api_base_uri()</code>, <code>build_agencyID()</code>, <code>data_filtering_on_dimension()</code>, <code>get_codelist_id()</code> and <code>label_eurostat_sdmx()</code>
-</li>
-<li>Add new function <code><a href="../reference/get_eurostat_local.html">get_eurostat_local()</a></code> for reading local SDMX-CSV (.csv) and compressed SDMX-CSV (.csv.gz) files downloaded manually from the Eurostat website. This function relies only on <code>data.table</code> functions as it is expected that locally stored files may be larger and require more efficient handling with regards to RAM and processing time constrains. <code>tidy_eurostat_sdmx()</code> and <code>parse_filename()</code> are helper functions related to this function.</li>
-<li>New <code>legacy_data_format()</code> function and <code>legacy.data.output</code> attribute in <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code> and <code><a href="../reference/get_eurostat_local.html">get_eurostat_local()</a></code> transforms modern API naming conventions into the format that was used in the old API and eurostat package versions 3.8.* and prior. It is a helper function to other functions.</li>
-</ul></div>
-</div>
     <div class="section level2">
 <h2 class="pkg-version" data-toc-text="4.0.0" id="eurostat-400">eurostat 4.0.0<a class="anchor" aria-label="anchor" href="#eurostat-400"></a></h2><p class="text-muted">CRAN release: 2023-12-19</p>
 <div class="section level3">
@@ -366,7 +356,7 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek, Pyry Kantanen.</p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown-footer-right">

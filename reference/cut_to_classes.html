@@ -9,7 +9,7 @@ categories and polishes the labels ready for used in mapping with ggplot2."><met
 
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0.9001</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -120,7 +120,7 @@ categories and polishes the labels ready for used in mapping with <code>ggplot2<
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># lp &lt;- get_eurostat("nama_aux_lp")</span></span></span>
 <span class="r-in"><span><span class="va">lp</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/Rtmp5CdCFK/eurostat/33173e1cf98fd4be6e937231eca9f7f1.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/Rtmp6bnJv3/eurostat/33173e1cf98fd4be6e937231eca9f7f1.rds</span>
 <span class="r-in"><span><span class="va">lp</span><span class="op">$</span><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu">cut_to_classes</span><span class="op">(</span><span class="va">lp</span><span class="op">$</span><span class="va">values</span>, n <span class="op">=</span> <span class="fl">5</span>, style <span class="op">=</span> <span class="st">"equal"</span>, decimals <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>var has missing values, omitted in finding classes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>var has missing values, omitted in finding classes</span>
@@ -132,7 +132,7 @@ categories and polishes the labels ready for used in mapping with <code>ggplot2<
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek, Pyry Kantanen.</p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
 </div>
 
 <div class="pkgdown-footer-right">
