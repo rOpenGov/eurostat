@@ -33,7 +33,9 @@
 <url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_interactive.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_json.html</loc></url>
+<url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_local.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_raw.html</loc></url>
+<url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_sdmx.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/get_eurostat_toc.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/harmonize_country_code.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/harmonize_geo_code.html</loc></url>
@@ -48,6 +50,7 @@
 <url><loc>https://ropengov.github.io/eurostat/reference/set_eurostat_toc.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/tgs00026.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat.html</loc></url>
+<url><loc>https://ropengov.github.io/eurostat/reference/tidy_eurostat_sdmx_csv.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/toc_count_children.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/toc_count_whitespace.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/reference/toc_determine_hierarchy.html</loc></url>
