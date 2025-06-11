@@ -108,9 +108,9 @@ Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 }
 \details{
 Datasets are downloaded from
-\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}{the Eurostat SDMX 2.1 API}
+\href{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload}{the Eurostat SDMX 2.1 API}
 in TSV format or from The Eurostat
-\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}{API Statistics JSON API}.
+\href{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api}{API Statistics JSON API}.
 If only the table \code{id} is given, the whole table is downloaded from the
 SDMX API. If any \code{filters} are given JSON API is used instead.
 
@@ -252,7 +252,7 @@ Example:
 
 For more information about data filtering see Eurostat documentation
 on API Statistics:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
 }
 }
 
@@ -290,7 +290,7 @@ datasets downloaded through the SDMX Dissemination API is also supported by
 Eurostat. We may support this feature in the future. In the meantime, if you
 are interested in filtering Dissemination API data queries manually, please
 consult the following Eurostat documentation:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys}
 }
 
 \section{Strategies for handling large datasets more efficiently}{

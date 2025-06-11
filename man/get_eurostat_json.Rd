@@ -88,14 +88,14 @@ in the Eurostat website. We hope you never encounter them.
 \section{Data source: Eurostat API Statistics (JSON API)}{
 Data is downloaded from Eurostat API Statistics. See Eurostat documentation
 for more information about data queries in API Statistics
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api}
 
 This replaces the old JSON Web Services that was used by Eurostat before
 February 2023 and by the eurostat R package versions before 3.7.13.
 See Eurostat documentation about the migration from JSON web service to API
 Statistics for more information about the differences between the old and
 the new service:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/json}
 
 For easily viewing which filtering options are available -  in addition to
 the default ones, time and language - Eurostat Web services Query builder
@@ -197,7 +197,7 @@ Example:
 
 For more information about data filtering see Eurostat documentation
 on API Statistics:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
 }
 }
 
@@ -257,7 +257,7 @@ datasets downloaded through the SDMX Dissemination API is also supported by
 Eurostat. We may support this feature in the future. In the meantime, if you
 are interested in filtering Dissemination API data queries manually, please
 consult the following Eurostat documentation:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys}
 }
 
 \examples{

@@ -80,9 +80,9 @@
 #' 
 #' @details
 #' Datasets are downloaded from
-#' [the Eurostat SDMX 2.1 API](https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API)
+#' [the Eurostat SDMX 2.1 API](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload)
 #' in TSV format or from The Eurostat
-#' [API Statistics JSON API](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query).
+#' [API Statistics JSON API](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api).
 #' If only the table `id` is given, the whole table is downloaded from the
 #' SDMX API. If any `filters` are given JSON API is used instead.
 #'

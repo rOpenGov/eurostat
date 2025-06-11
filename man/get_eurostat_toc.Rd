@@ -49,7 +49,7 @@ The Eurostat Table of Contents (TOC) is downloaded from
 \url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de}
 
 See Eurostat documentation on TOC items:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/catalogue-api/toc}
 }
 
 \examples{
