@@ -6,18 +6,17 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <title>Tutorial for the eurostat R package • eurostat</title>
-<!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="../favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="../favicon-32x32.png">
-<link rel="apple-touch-icon" type="image/png" sizes="180x180" href="../apple-touch-icon.png">
-<link rel="apple-touch-icon" type="image/png" sizes="120x120" href="../apple-touch-icon-120x120.png">
-<link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
-<link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
-<script src="../katex-auto.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<!-- favicons --><link rel="icon" type="image/png" sizes="96x96" href="../favicon-96x96.png">
+<link rel="icon" type="”image/svg+xml”" href="../favicon.svg">
+<link rel="apple-touch-icon" sizes="180x180" href="../apple-touch-icon.png">
+<link rel="icon" sizes="any" href="../favicon.ico">
+<link rel="manifest" href="../site.webmanifest">
+<!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
 <script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><link href="../deps/KaTex-0.16.10/katex.min.css" rel="stylesheet">
-<script src="../deps/KaTex-0.16.10/katex.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial for the eurostat R package">
+<script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Tutorial for the eurostat R package">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=B612+Mono:ital,wght@0,400;0,700;1,400;1,700&amp;family=Roboto+Mono:ital,wght@0,100..700;1,100..700&amp;display=swap" rel="stylesheet">
@@ -75,7 +74,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Tutorial for the eurostat R package</h1>
             
-            <h4 data-toc-skip class="date">2025-02-17</h4>
+            <h4 data-toc-skip class="date">2025-09-08</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/articles/eurostat_tutorial.Rmd" class="external-link"><code>vignettes/articles/eurostat_tutorial.Rmd</code></a></small>
       <div class="d-none name"><code>eurostat_tutorial.Rmd</code></div>
@@ -203,7 +202,7 @@ activities or active citizenship by sex, age and educational
 attainment</td>
 <td align="left">ilc_scp19</td>
 <td align="left">dataset</td>
-<td align="left">14.10.2024</td>
+<td align="left">18.07.2025</td>
 <td align="left">01.10.2024</td>
 <td align="left">2015</td>
 <td align="left">2022</td>
@@ -214,11 +213,11 @@ attainment</td>
 <td align="left">Individuals - internet activities</td>
 <td align="left">isoc_ci_ac_i</td>
 <td align="left">dataset</td>
-<td align="left">17.12.2024</td>
-<td align="left">17.12.2024</td>
+<td align="left">14.08.2025</td>
+<td align="left">27.05.2025</td>
 <td align="left">2002</td>
 <td align="left">2024</td>
-<td align="right">2634994</td>
+<td align="right">2644319</td>
 <td align="right">5</td>
 </tr>
 <tr class="odd">
@@ -227,7 +226,7 @@ activities in the last 12 months by sex, age and educational
 attainment</td>
 <td align="left">ilc_scp01</td>
 <td align="left">dataset</td>
-<td align="left">22.08.2024</td>
+<td align="left">18.07.2025</td>
 <td align="left">22.04.2024</td>
 <td align="left">2006</td>
 <td align="left">2022</td>
@@ -240,7 +239,7 @@ in the last 12 months by sex, age, educational attainment, activity type
 and frequency</td>
 <td align="left">ilc_scp03</td>
 <td align="left">dataset</td>
-<td align="left">24.04.2024</td>
+<td align="left">18.07.2025</td>
 <td align="left">22.04.2024</td>
 <td align="left">2006</td>
 <td align="left">2022</td>
@@ -253,7 +252,7 @@ activities in the last 12 months by sex, age, educational attainment,
 activity type and reasons</td>
 <td align="left">ilc_scp05</td>
 <td align="left">dataset</td>
-<td align="left">04.12.2024</td>
+<td align="left">18.07.2025</td>
 <td align="left">04.12.2024</td>
 <td align="left">2015</td>
 <td align="left">2022</td>
@@ -265,7 +264,7 @@ activity type and reasons</td>
 educational attainment and frequency</td>
 <td align="left">ilc_scp07</td>
 <td align="left">dataset</td>
-<td align="left">24.04.2024</td>
+<td align="left">18.07.2025</td>
 <td align="left">22.04.2024</td>
 <td align="left">2015</td>
 <td align="left">2022</td>
@@ -364,22 +363,22 @@ court terme</td>
 <td align="left">Compte courant - données trimestrielles</td>
 <td align="left">ei_bpm6ca_q</td>
 <td align="left">table</td>
-<td align="left">05.02.2025</td>
-<td align="left">05.02.2025</td>
+<td align="left">19.08.2025</td>
+<td align="left">19.08.2025</td>
 <td align="left">1991-Q1</td>
-<td align="left">2024-Q3</td>
-<td align="right">285289</td>
+<td align="left">2025-Q2</td>
+<td align="right">292049</td>
 <td align="right">4</td>
 </tr>
 <tr class="even">
 <td align="left">Compte financier - données trimestrielles</td>
 <td align="left">ei_bpm6fa_q</td>
 <td align="left">table</td>
-<td align="left">05.02.2025</td>
-<td align="left">05.02.2025</td>
+<td align="left">19.08.2025</td>
+<td align="left">19.08.2025</td>
 <td align="left">1991-Q1</td>
-<td align="left">2024-Q3</td>
-<td align="right">51240</td>
+<td align="left">2025-Q2</td>
+<td align="right">51698</td>
 <td align="right">4</td>
 </tr>
 </tbody>
@@ -426,14 +425,14 @@ experts via special applications”.</p>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="left">Air passenger transport</td>
+<td align="left">Air passenger transport - ENP-South countries</td>
 <td align="left">enps_avia_pa</td>
 <td align="left">dataset</td>
-<td align="left">26.02.2024</td>
-<td align="left">26.02.2024</td>
+<td align="left">12.05.2025</td>
+<td align="left">12.05.2025</td>
 <td align="left">2005</td>
-<td align="left">2022</td>
-<td align="right">421</td>
+<td align="left">2023</td>
+<td align="right">480</td>
 <td align="right">6</td>
 </tr>
 <tr class="even">
@@ -441,11 +440,11 @@ experts via special applications”.</p>
 coverage and country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">14.01.2025</td>
-<td align="left">14.01.2025</td>
+<td align="left">18.08.2025</td>
+<td align="left">18.08.2025</td>
 <td align="left">1993</td>
-<td align="left">2024-Q3</td>
-<td align="right">2505117</td>
+<td align="left">2025-Q2</td>
+<td align="right">2519348</td>
 <td align="right">5</td>
 </tr>
 <tr class="odd">
@@ -453,23 +452,23 @@ coverage and country</td>
 coverage and main airports</td>
 <td align="left">avia_paoa</td>
 <td align="left">dataset</td>
-<td align="left">14.01.2025</td>
-<td align="left">14.01.2025</td>
+<td align="left">18.08.2025</td>
+<td align="left">18.08.2025</td>
 <td align="left">1993</td>
-<td align="left">2024-Q3</td>
-<td align="right">20211516</td>
+<td align="left">2025-Q2</td>
+<td align="right">20557100</td>
 <td align="right">5</td>
 </tr>
 <tr class="even">
-<td align="left">Air passenger transport between reporting
-countries</td>
+<td align="left">Air passenger transport between reporting and partner
+countries by type of schedule</td>
 <td align="left">avia_paocc</td>
 <td align="left">dataset</td>
-<td align="left">14.01.2025</td>
-<td align="left">14.01.2025</td>
+<td align="left">18.08.2025</td>
+<td align="left">18.08.2025</td>
 <td align="left">1993</td>
-<td align="left">2024-Q3</td>
-<td align="right">3725868</td>
+<td align="left">2025-Q2</td>
+<td align="right">10484757</td>
 <td align="right">5</td>
 </tr>
 <tr class="odd">
@@ -477,11 +476,11 @@ countries</td>
 partner reporting countries</td>
 <td align="left">avia_paoac</td>
 <td align="left">dataset</td>
-<td align="left">14.01.2025</td>
-<td align="left">14.01.2025</td>
+<td align="left">18.08.2025</td>
+<td align="left">18.08.2025</td>
 <td align="left">1993</td>
-<td align="left">2024-Q3</td>
-<td align="right">19690266</td>
+<td align="left">2025-Q2</td>
+<td align="right">20133126</td>
 <td align="right">5</td>
 </tr>
 <tr class="even">
@@ -489,11 +488,11 @@ partner reporting countries</td>
 bands and transport coverage</td>
 <td align="left">avia_paodis</td>
 <td align="left">dataset</td>
-<td align="left">06.12.2024</td>
+<td align="left">16.06.2025</td>
 <td align="left">06.12.2024</td>
 <td align="left">2008</td>
 <td align="left">2023</td>
-<td align="right">853440</td>
+<td align="right">852432</td>
 <td align="right">5</td>
 </tr>
 </tbody>
@@ -540,7 +539,7 @@ status, residence one year prior to the census and NUTS 3 region</td>
 <td align="left">03.01.2024</td>
 <td align="left">2001</td>
 <td align="left">2001</td>
-<td align="right">1485361</td>
+<td align="right">1482371</td>
 <td align="right">6</td>
 </tr>
 <tr class="even">
@@ -552,7 +551,7 @@ status, residence one year prior to the census and NUTS 3 region</td>
 <td align="left">03.01.2024</td>
 <td align="left">2001</td>
 <td align="left">2001</td>
-<td align="right">1485361</td>
+<td align="right">1482371</td>
 <td align="right">6</td>
 </tr>
 <tr class="odd">
@@ -560,11 +559,11 @@ status, residence one year prior to the census and NUTS 3 region</td>
 citizenship</td>
 <td align="left">migr_pop2ctz</td>
 <td align="left">dataset</td>
-<td align="left">14.02.2025</td>
-<td align="left">13.02.2025</td>
+<td align="left">23.05.2025</td>
+<td align="left">20.05.2025</td>
 <td align="left">1998</td>
 <td align="left">2024</td>
-<td align="right">665062</td>
+<td align="right">667061</td>
 <td align="right">4</td>
 </tr>
 <tr class="even">
@@ -572,11 +571,11 @@ citizenship</td>
 citizenship</td>
 <td align="left">migr_pop1ctz</td>
 <td align="left">dataset</td>
-<td align="left">14.02.2025</td>
-<td align="left">13.02.2025</td>
+<td align="left">23.05.2025</td>
+<td align="left">20.05.2025</td>
 <td align="left">1998</td>
 <td align="left">2024</td>
-<td align="right">8355988</td>
+<td align="right">8372812</td>
 <td align="right">4</td>
 </tr>
 <tr class="odd">
@@ -584,11 +583,11 @@ citizenship</td>
 of birth</td>
 <td align="left">migr_pop3ctb</td>
 <td align="left">dataset</td>
-<td align="left">14.02.2025</td>
-<td align="left">13.02.2025</td>
+<td align="left">23.05.2025</td>
+<td align="left">06.03.2025</td>
 <td align="left">1998</td>
 <td align="left">2024</td>
-<td align="right">6639016</td>
+<td align="right">6657303</td>
 <td align="right">4</td>
 </tr>
 <tr class="even">
@@ -596,11 +595,11 @@ of birth</td>
 country of birth</td>
 <td align="left">migr_pop4ctb</td>
 <td align="left">dataset</td>
-<td align="left">14.02.2025</td>
+<td align="left">23.05.2025</td>
 <td align="left">13.02.2025</td>
 <td align="left">1998</td>
 <td align="left">2024</td>
-<td align="right">643488</td>
+<td align="right">644408</td>
 <td align="right">4</td>
 </tr>
 </tbody>
@@ -641,11 +640,11 @@ on the title column.</p>
 Typ des Fahrplans - monatliche Daten (Quelle: Eurocontrol)</td>
 <td align="left">avia_tf_airpm</td>
 <td align="left">dataset</td>
-<td align="left">10.02.2025</td>
-<td align="left">10.02.2025</td>
+<td align="left">11.08.2025</td>
+<td align="left">11.08.2025</td>
 <td align="left">2019-01</td>
-<td align="left">2025-01</td>
-<td align="right">564113</td>
+<td align="left">2025-07</td>
+<td align="right">615054</td>
 <td align="right">4</td>
 </tr></tbody>
 </table>
@@ -716,11 +715,11 @@ Metadata</a>.</p>
 transport</td>
 <td align="left">tran_hv_ms_psmod</td>
 <td align="left">dataset</td>
-<td align="left">25.07.2024</td>
-<td align="left">25.07.2024</td>
+<td align="left">05.06.2025</td>
+<td align="left">05.06.2025</td>
 <td align="left">2008</td>
-<td align="left">2022</td>
-<td align="right">2250</td>
+<td align="left">2023</td>
+<td align="right">2272</td>
 <td align="right">4</td>
 </tr></tbody>
 </table>
@@ -741,13 +740,13 @@ year (e.g. 2000-01-01).</p>
 the base R <code><a href="https://rdrr.io/r/utils/str.html" class="external-link">str()</a></code> function:</p>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/str.html" class="external-link">str</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span></span></code></pre></div>
-<pre><code><span><span class="co">## tibble [2,250 × 6] (S3: tbl_df/tbl/data.frame)</span></span>
+<pre><code><span><span class="co">## tibble [2,400 × 6] (S3: tbl_df/tbl/data.frame)</span></span>
 <span><span class="co">##  $ freq       : Factor w/ 1 level "A": 1 1 1 1 1 1 1 1 1 1 ...</span></span>
 <span><span class="co">##  $ vehicle    : Factor w/ 5 levels "AC","BUS_TOT",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
 <span><span class="co">##  $ unit       : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...</span></span>
 <span><span class="co">##  $ geo        : Factor w/ 30 levels "AT","BE","BG",..: 1 1 1 1 1 1 1 1 1 1 ...</span></span>
-<span><span class="co">##  $ TIME_PERIOD: num [1:2250] 2008 2009 2010 2011 2012 ...</span></span>
-<span><span class="co">##  $ values     : num [1:2250] 16.4 16 16.9 17.7 18.2 18.5 18.9 19.2 19 20.1 ...</span></span></code></pre>
+<span><span class="co">##  $ TIME_PERIOD: num [1:2400] 2008 2009 2010 2011 2012 ...</span></span>
+<span><span class="co">##  $ values     : num [1:2400] 16.3 15.9 16.9 17.7 18.2 18.5 18.9 19.2 19 20.1 ...</span></span></code></pre>
 <div class="sourceCode" id="cb16"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">dat</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table class="table">
@@ -766,7 +765,7 @@ the base R <code><a href="https://rdrr.io/r/utils/str.html" class="external-link
 <td align="left">PC</td>
 <td align="left">AT</td>
 <td align="right">2008</td>
-<td align="right">16.4</td>
+<td align="right">16.3</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
@@ -774,7 +773,7 @@ the base R <code><a href="https://rdrr.io/r/utils/str.html" class="external-link
 <td align="left">PC</td>
 <td align="left">AT</td>
 <td align="right">2009</td>
-<td align="right">16.0</td>
+<td align="right">15.9</td>
 </tr>
 <tr class="odd">
 <td align="left">A</td>
@@ -838,80 +837,80 @@ function documentation.</p>
 <td align="left">TRN</td>
 <td align="left">PC</td>
 <td align="left">EU27_2020</td>
-<td align="right">2022</td>
-<td align="right">7.0</td>
+<td align="right">2023</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
 <td align="left">TRN</td>
 <td align="left">PC</td>
 <td align="left">FI</td>
-<td align="right">2022</td>
+<td align="right">2023</td>
+<td align="right">6.5</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">CAR</td>
+<td align="left">PC</td>
+<td align="left">EU27_2020</td>
+<td align="right">2023</td>
+<td align="right">70.6</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">CAR</td>
+<td align="left">PC</td>
+<td align="left">FI</td>
+<td align="right">2023</td>
+<td align="right">76.4</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">BUS_TOT</td>
+<td align="left">PC</td>
+<td align="left">EU27_2020</td>
+<td align="right">2023</td>
+<td align="right">7.2</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">BUS_TOT</td>
+<td align="left">PC</td>
+<td align="left">FI</td>
+<td align="right">2023</td>
+<td align="right">9.1</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">SEAV</td>
+<td align="left">PC</td>
+<td align="left">EU27_2020</td>
+<td align="right">2023</td>
+<td align="right">0.4</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">SEAV</td>
+<td align="left">PC</td>
+<td align="left">FI</td>
+<td align="right">2023</td>
+<td align="right">2.1</td>
+</tr>
+<tr class="odd">
+<td align="left">A</td>
+<td align="left">AC</td>
+<td align="left">PC</td>
+<td align="left">EU27_2020</td>
+<td align="right">2023</td>
+<td align="right">14.7</td>
+</tr>
+<tr class="even">
+<td align="left">A</td>
+<td align="left">AC</td>
+<td align="left">PC</td>
+<td align="left">FI</td>
+<td align="right">2023</td>
 <td align="right">5.9</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="left">CAR</td>
-<td align="left">PC</td>
-<td align="left">EU27_2020</td>
-<td align="right">2022</td>
-<td align="right">72.2</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="left">CAR</td>
-<td align="left">PC</td>
-<td align="left">FI</td>
-<td align="right">2022</td>
-<td align="right">78.6</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="left">BUS_TOT</td>
-<td align="left">PC</td>
-<td align="left">EU27_2020</td>
-<td align="right">2022</td>
-<td align="right">7.4</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="left">BUS_TOT</td>
-<td align="left">PC</td>
-<td align="left">FI</td>
-<td align="right">2022</td>
-<td align="right">8.8</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="left">SEAV</td>
-<td align="left">PC</td>
-<td align="left">EU27_2020</td>
-<td align="right">2022</td>
-<td align="right">0.3</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="left">SEAV</td>
-<td align="left">PC</td>
-<td align="left">FI</td>
-<td align="right">2022</td>
-<td align="right">2.2</td>
-</tr>
-<tr class="odd">
-<td align="left">A</td>
-<td align="left">AC</td>
-<td align="left">PC</td>
-<td align="left">EU27_2020</td>
-<td align="right">2022</td>
-<td align="right">13.1</td>
-</tr>
-<tr class="even">
-<td align="left">A</td>
-<td align="left">AC</td>
-<td align="left">PC</td>
-<td align="left">FI</td>
-<td align="right">2022</td>
-<td align="right">4.5</td>
 </tr>
 </tbody>
 </table>
@@ -953,48 +952,48 @@ argument in <code><a href="../reference/get_eurostat.html">get_eurostat()</a></c
 <td align="left">Trains</td>
 <td align="left">Percentage</td>
 <td align="left">European Union - 27 countries (from 2020)</td>
-<td align="right">2022</td>
-<td align="right">7.0</td>
+<td align="right">2023</td>
+<td align="right">7.1</td>
 </tr>
 <tr class="even">
 <td align="left">Annual</td>
 <td align="left">Trains</td>
 <td align="left">Percentage</td>
 <td align="left">Finland</td>
-<td align="right">2022</td>
-<td align="right">5.9</td>
+<td align="right">2023</td>
+<td align="right">6.5</td>
 </tr>
 <tr class="odd">
 <td align="left">Annual</td>
 <td align="left">Passenger cars</td>
 <td align="left">Percentage</td>
 <td align="left">European Union - 27 countries (from 2020)</td>
-<td align="right">2022</td>
-<td align="right">72.2</td>
+<td align="right">2023</td>
+<td align="right">70.6</td>
 </tr>
 <tr class="even">
 <td align="left">Annual</td>
 <td align="left">Passenger cars</td>
 <td align="left">Percentage</td>
 <td align="left">Finland</td>
-<td align="right">2022</td>
-<td align="right">78.6</td>
+<td align="right">2023</td>
+<td align="right">76.4</td>
 </tr>
 <tr class="odd">
 <td align="left">Annual</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Percentage</td>
 <td align="left">European Union - 27 countries (from 2020)</td>
-<td align="right">2022</td>
-<td align="right">7.4</td>
+<td align="right">2023</td>
+<td align="right">7.2</td>
 </tr>
 <tr class="even">
 <td align="left">Annual</td>
 <td align="left">Motor coaches, buses and trolley buses</td>
 <td align="left">Percentage</td>
 <td align="left">Finland</td>
-<td align="right">2022</td>
-<td align="right">8.8</td>
+<td align="right">2023</td>
+<td align="right">9.1</td>
 </tr>
 </tbody>
 </table>
@@ -1020,7 +1019,7 @@ human-readable labels from the Eurostat dictionaries with the
 <td align="left">Percentage</td>
 <td align="left">Austria</td>
 <td align="right">2008</td>
-<td align="right">16.4</td>
+<td align="right">16.3</td>
 </tr>
 <tr class="even">
 <td align="left">Annual</td>
@@ -1028,7 +1027,7 @@ human-readable labels from the Eurostat dictionaries with the
 <td align="left">Percentage</td>
 <td align="left">Austria</td>
 <td align="right">2009</td>
-<td align="right">16.0</td>
+<td align="right">15.9</td>
 </tr>
 <tr class="odd">
 <td align="left">Annual</td>
@@ -1337,7 +1336,7 @@ use:</p>
 <td align="right">2009</td>
 <td align="right">9.7</td>
 <td align="right">8.5</td>
-<td align="right">75.1</td>
+<td align="right">75.0</td>
 <td align="right">0.5</td>
 <td align="right">6.3</td>
 </tr>
@@ -1357,7 +1356,7 @@ use:</p>
 <td align="right">2011</td>
 <td align="right">10.9</td>
 <td align="right">9.0</td>
-<td align="right">73.1</td>
+<td align="right">73.0</td>
 <td align="right">0.4</td>
 <td align="right">6.6</td>
 </tr>
@@ -1376,8 +1375,8 @@ use:</p>
 <td align="left">PC</td>
 <td align="right">2013</td>
 <td align="right">11.9</td>
-<td align="right">9.1</td>
-<td align="right">72.0</td>
+<td align="right">9.0</td>
+<td align="right">72.1</td>
 <td align="right">0.4</td>
 <td align="right">6.6</td>
 </tr>
@@ -1386,8 +1385,8 @@ use:</p>
 <td align="left">PC</td>
 <td align="right">2014</td>
 <td align="right">12.2</td>
-<td align="right">8.8</td>
-<td align="right">72.0</td>
+<td align="right">8.6</td>
+<td align="right">72.1</td>
 <td align="right">0.4</td>
 <td align="right">6.6</td>
 </tr>
@@ -1396,8 +1395,8 @@ use:</p>
 <td align="left">PC</td>
 <td align="right">2015</td>
 <td align="right">12.5</td>
-<td align="right">8.7</td>
-<td align="right">71.8</td>
+<td align="right">8.6</td>
+<td align="right">71.9</td>
 <td align="right">0.4</td>
 <td align="right">6.6</td>
 </tr>
@@ -1405,29 +1404,29 @@ use:</p>
 <td align="left">A</td>
 <td align="left">PC</td>
 <td align="right">2016</td>
-<td align="right">12.9</td>
-<td align="right">8.6</td>
-<td align="right">71.6</td>
+<td align="right">12.8</td>
+<td align="right">8.4</td>
+<td align="right">72.0</td>
 <td align="right">0.4</td>
-<td align="right">6.6</td>
+<td align="right">6.5</td>
 </tr>
 <tr class="even">
 <td align="left">A</td>
 <td align="left">PC</td>
 <td align="right">2017</td>
 <td align="right">13.7</td>
-<td align="right">8.2</td>
-<td align="right">71.1</td>
+<td align="right">8.0</td>
+<td align="right">71.4</td>
 <td align="right">0.4</td>
-<td align="right">6.6</td>
+<td align="right">6.5</td>
 </tr>
 <tr class="odd">
 <td align="left">A</td>
 <td align="left">PC</td>
 <td align="right">2018</td>
-<td align="right">14.5</td>
-<td align="right">8.1</td>
-<td align="right">70.4</td>
+<td align="right">14.4</td>
+<td align="right">7.9</td>
+<td align="right">70.8</td>
 <td align="right">0.4</td>
 <td align="right">6.6</td>
 </tr>
@@ -1435,21 +1434,21 @@ use:</p>
 <td align="left">A</td>
 <td align="left">PC</td>
 <td align="right">2019</td>
-<td align="right">15.0</td>
-<td align="right">8.1</td>
-<td align="right">69.8</td>
+<td align="right">14.8</td>
+<td align="right">7.9</td>
+<td align="right">70.2</td>
 <td align="right">0.4</td>
-<td align="right">6.8</td>
+<td align="right">6.7</td>
 </tr>
 <tr class="odd">
 <td align="left">A</td>
 <td align="left">PC</td>
 <td align="right">2020</td>
 <td align="right">5.7</td>
-<td align="right">7.0</td>
-<td align="right">81.8</td>
+<td align="right">6.9</td>
+<td align="right">82.1</td>
 <td align="right">0.3</td>
-<td align="right">5.2</td>
+<td align="right">5.1</td>
 </tr>
 </tbody>
 </table>
@@ -1478,7 +1477,7 @@ use:</p>
 <td align="left">Annual</td>
 <td align="left">Percentage</td>
 <td align="right">2008</td>
-<td align="right">9.9</td>
+<td align="right">9.8</td>
 <td align="right">6.6</td>
 <td align="right">4.9</td>
 <td align="right">8.1</td>
@@ -1496,7 +1495,7 @@ use:</p>
 <td align="left">Annual</td>
 <td align="left">Percentage</td>
 <td align="right">2010</td>
-<td align="right">9.8</td>
+<td align="right">9.7</td>
 <td align="right">6.9</td>
 <td align="right">4.7</td>
 <td align="right">8.0</td>
@@ -1505,7 +1504,7 @@ use:</p>
 <td align="left">Annual</td>
 <td align="left">Percentage</td>
 <td align="right">2011</td>
-<td align="right">10.0</td>
+<td align="right">9.9</td>
 <td align="right">7.1</td>
 <td align="right">4.6</td>
 <td align="right">7.5</td>
@@ -1515,7 +1514,7 @@ use:</p>
 <td align="left">Percentage</td>
 <td align="right">2012</td>
 <td align="right">9.7</td>
-<td align="right">6.3</td>
+<td align="right">6.9</td>
 <td align="right">4.8</td>
 <td align="right">7.8</td>
 </tr>
@@ -1524,7 +1523,7 @@ use:</p>
 <td align="left">Percentage</td>
 <td align="right">2013</td>
 <td align="right">10.0</td>
-<td align="right">6.4</td>
+<td align="right">7.0</td>
 <td align="right">4.8</td>
 <td align="right">7.8</td>
 </tr>
@@ -1533,7 +1532,7 @@ use:</p>
 <td align="left">Percentage</td>
 <td align="right">2014</td>
 <td align="right">9.9</td>
-<td align="right">6.7</td>
+<td align="right">7.4</td>
 <td align="right">4.6</td>
 <td align="right">7.8</td>
 </tr>
@@ -1542,7 +1541,7 @@ use:</p>
 <td align="left">Percentage</td>
 <td align="right">2015</td>
 <td align="right">9.7</td>
-<td align="right">6.8</td>
+<td align="right">7.2</td>
 <td align="right">4.8</td>
 <td align="right">8.0</td>
 </tr>
@@ -1551,7 +1550,7 @@ use:</p>
 <td align="left">Percentage</td>
 <td align="right">2016</td>
 <td align="right">9.8</td>
-<td align="right">6.8</td>
+<td align="right">6.9</td>
 <td align="right">4.4</td>
 <td align="right">9.0</td>
 </tr>
@@ -1560,7 +1559,7 @@ use:</p>
 <td align="left">Percentage</td>
 <td align="right">2017</td>
 <td align="right">9.6</td>
-<td align="right">6.9</td>
+<td align="right">7.0</td>
 <td align="right">4.9</td>
 <td align="right">9.1</td>
 </tr>
@@ -1568,8 +1567,8 @@ use:</p>
 <td align="left">Annual</td>
 <td align="left">Percentage</td>
 <td align="right">2018</td>
-<td align="right">10.4</td>
-<td align="right">7.0</td>
+<td align="right">9.7</td>
+<td align="right">7.8</td>
 <td align="right">5.1</td>
 <td align="right">9.2</td>
 </tr>
@@ -1577,8 +1576,8 @@ use:</p>
 <td align="left">Annual</td>
 <td align="left">Percentage</td>
 <td align="right">2019</td>
-<td align="right">10.4</td>
-<td align="right">7.2</td>
+<td align="right">9.6</td>
+<td align="right">7.9</td>
 <td align="right">5.5</td>
 <td align="right">9.9</td>
 </tr>
@@ -1586,8 +1585,8 @@ use:</p>
 <td align="left">Annual</td>
 <td align="left">Percentage</td>
 <td align="right">2020</td>
-<td align="right">8.1</td>
-<td align="right">6.6</td>
+<td align="right">7.9</td>
+<td align="right">7.0</td>
 <td align="right">3.7</td>
 <td align="right">7.1</td>
 </tr>
@@ -1698,15 +1697,15 @@ BSD-2-clause (modified FreeBSD) license:</p>
 <code class="sourceCode R"><span><span class="fu">sessioninfo</span><span class="fu">::</span><span class="fu"><a href="https://sessioninfo.r-lib.org/reference/session_info.html" class="external-link">session_info</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
 <pre><code><span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">─ Session info ───────────────────────────────────────────────────────────────</span></span></span>
 <span><span class="co">##  <span style="color: #555555; font-style: italic;">setting </span> <span style="color: #555555; font-style: italic;">value</span></span></span>
-<span><span class="co">##  version  R version 4.4.2 (2024-10-31)</span></span>
-<span><span class="co">##  os       Ubuntu 24.04.1 LTS</span></span>
+<span><span class="co">##  version  R version 4.5.1 (2025-06-13)</span></span>
+<span><span class="co">##  os       Ubuntu 24.04.3 LTS</span></span>
 <span><span class="co">##  system   x86_64, linux-gnu</span></span>
 <span><span class="co">##  ui       X11</span></span>
 <span><span class="co">##  language en</span></span>
 <span><span class="co">##  collate  C.UTF-8</span></span>
 <span><span class="co">##  ctype    C.UTF-8</span></span>
 <span><span class="co">##  tz       UTC</span></span>
-<span><span class="co">##  date     2025-02-17</span></span>
+<span><span class="co">##  date     2025-09-08</span></span>
 <span><span class="co">##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)</span></span>
 <span><span class="co">##  quarto   NA</span></span>
 <span><span class="co">## </span></span>
@@ -1715,80 +1714,80 @@ BSD-2-clause (modified FreeBSD) license:</p>
 <span><span class="co">##  assertthat    0.2.1   <span style="color: #555555;">2019-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  backports     1.5.0   <span style="color: #555555;">2024-05-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  bibtex        0.5.1   <span style="color: #555555;">2023-01-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  bit           4.5.0.1 <span style="color: #555555;">2024-12-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  bit           4.6.0   <span style="color: #555555;">2025-03-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  bit64         4.6.0-1 <span style="color: #555555;">2025-01-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  bslib         0.9.0   <span style="color: #555555;">2025-01-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  cachem        1.1.0   <span style="color: #555555;">2024-05-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  cellranger    1.1.0   <span style="color: #555555;">2016-07-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  class         7.3-22  <span style="color: #555555;">2023-05-03</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.4.2)</span></span></span>
+<span><span class="co">##  class         7.3-23  <span style="color: #555555;">2025-01-01</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.5.1)</span></span></span>
 <span><span class="co">##  classInt      0.4-11  <span style="color: #555555;">2025-01-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  cli           3.6.4   <span style="color: #555555;">2025-02-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  countrycode   1.6.0   <span style="color: #555555;">2024-03-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  cli           3.6.5   <span style="color: #555555;">2025-04-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  countrycode   1.6.1   <span style="color: #555555;">2025-03-31</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  crayon        1.5.3   <span style="color: #555555;">2024-06-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  curl          6.2.0   <span style="color: #555555;">2025-01-23</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  data.table    1.16.4  <span style="color: #555555;">2024-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  curl          7.0.0   <span style="color: #555555;">2025-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  data.table    1.17.8  <span style="color: #555555;">2025-07-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  desc          1.4.3   <span style="color: #555555;">2023-12-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  digest        0.6.37  <span style="color: #555555;">2024-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  dplyr         1.1.4   <span style="color: #555555;">2023-11-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  e1071         1.7-16  <span style="color: #555555;">2024-09-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  eurostat    * 4.0.0   <span style="color: #555555;">2025-02-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
-<span><span class="co">##  evaluate      1.0.3   <span style="color: #555555;">2025-01-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  eurostat    * 4.0.0   <span style="color: #555555;">2025-09-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
+<span><span class="co">##  evaluate      1.0.5   <span style="color: #555555;">2025-08-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  fastmap       1.2.0   <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  fs            1.6.5   <span style="color: #555555;">2024-10-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  generics      0.1.3   <span style="color: #555555;">2022-07-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  fs            1.6.6   <span style="color: #555555;">2025-04-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  generics      0.1.4   <span style="color: #555555;">2025-05-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  glue          1.8.0   <span style="color: #555555;">2024-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  here          1.0.1   <span style="color: #555555;">2020-12-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  hms           1.1.3   <span style="color: #555555;">2023-03-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  htmltools     0.5.8.1 <span style="color: #555555;">2024-04-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  htmlwidgets   1.6.4   <span style="color: #555555;">2023-12-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  httr          1.4.7   <span style="color: #555555;">2023-08-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  httr2         1.1.0   <span style="color: #555555;">2025-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  httr2         1.2.1   <span style="color: #555555;">2025-07-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  ISOweek       0.6-2   <span style="color: #555555;">2011-09-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  jquerylib     0.1.4   <span style="color: #555555;">2021-04-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  jsonlite      1.8.9   <span style="color: #555555;">2024-09-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  KernSmooth    2.23-24 <span style="color: #555555;">2024-05-17</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.4.2)</span></span></span>
-<span><span class="co">##  knitr       * 1.49    <span style="color: #555555;">2024-11-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  jsonlite      2.0.0   <span style="color: #555555;">2025-03-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  KernSmooth    2.23-26 <span style="color: #555555;">2025-01-01</span> <span style="color: #555555;">[3]</span> <span style="color: #555555;">CRAN (R 4.5.1)</span></span></span>
+<span><span class="co">##  knitr       * 1.50    <span style="color: #555555;">2025-03-16</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  lifecycle     1.0.4   <span style="color: #555555;">2023-11-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  lubridate     1.9.4   <span style="color: #555555;">2024-12-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  magrittr      2.0.3   <span style="color: #555555;">2022-03-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  pillar        1.10.1  <span style="color: #555555;">2025-01-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  pillar        1.11.0  <span style="color: #555555;">2025-07-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  pkgconfig     2.0.3   <span style="color: #555555;">2019-09-22</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  pkgdown       2.1.1   <span style="color: #555555;">2024-09-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@2.1.1)</span></span></span>
+<span><span class="co">##  pkgdown       2.1.3   <span style="color: #555555;">2025-05-25</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@2.1.3)</span></span></span>
 <span><span class="co">##  plyr          1.8.9   <span style="color: #555555;">2023-10-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  proxy         0.4-27  <span style="color: #555555;">2022-06-09</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  purrr         1.0.4   <span style="color: #555555;">2025-02-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  purrr         1.1.0   <span style="color: #555555;">2025-07-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  R6            2.6.1   <span style="color: #555555;">2025-02-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  ragg          1.3.3   <span style="color: #555555;">2024-09-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  ragg          1.5.0   <span style="color: #555555;">2025-09-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  rappdirs      0.3.3   <span style="color: #555555;">2021-01-31</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  Rcpp          1.0.14  <span style="color: #555555;">2025-01-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  Rcpp          1.1.0   <span style="color: #555555;">2025-07-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  readr         2.1.5   <span style="color: #555555;">2024-01-10</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  readxl        1.4.3   <span style="color: #555555;">2023-07-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  readxl        1.4.5   <span style="color: #555555;">2025-03-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  RefManageR    1.4.0   <span style="color: #555555;">2022-09-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  regions       0.1.8   <span style="color: #555555;">2021-06-21</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  rlang         1.1.5   <span style="color: #555555;">2025-01-17</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  rlang         1.1.6   <span style="color: #555555;">2025-04-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  rmarkdown     2.29    <span style="color: #555555;">2024-11-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  rprojroot     2.0.4   <span style="color: #555555;">2023-11-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  sass          0.4.9   <span style="color: #555555;">2024-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  sessioninfo   1.2.3   <span style="color: #555555;">2025-02-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  stringi       1.8.4   <span style="color: #555555;">2024-05-06</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  rprojroot     2.1.1   <span style="color: #555555;">2025-08-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  sass          0.4.10  <span style="color: #555555;">2025-04-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  sessioninfo   1.2.3   <span style="color: #555555;">2025-02-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">any (@1.2.3)</span></span></span>
+<span><span class="co">##  stringi       1.8.7   <span style="color: #555555;">2025-03-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  stringr       1.5.1   <span style="color: #555555;">2023-11-14</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  systemfonts   1.2.1   <span style="color: #555555;">2025-01-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  textshaping   1.0.0   <span style="color: #555555;">2025-01-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  tibble        3.2.1   <span style="color: #555555;">2023-03-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  systemfonts   1.2.3   <span style="color: #555555;">2025-04-30</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  textshaping   1.0.3   <span style="color: #555555;">2025-09-02</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  tibble        3.3.0   <span style="color: #555555;">2025-06-08</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  tidyr       * 1.3.1   <span style="color: #555555;">2024-01-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  tidyselect    1.2.1   <span style="color: #555555;">2024-03-11</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  timechange    0.3.0   <span style="color: #555555;">2024-01-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  tzdb          0.4.0   <span style="color: #555555;">2023-05-12</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  tzdb          0.5.0   <span style="color: #555555;">2025-03-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  vctrs         0.6.5   <span style="color: #555555;">2023-12-01</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  vroom         1.6.5   <span style="color: #555555;">2023-12-05</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  withr         3.0.2   <span style="color: #555555;">2024-10-28</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  xfun          0.50    <span style="color: #555555;">2025-01-07</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">##  xml2          1.3.6   <span style="color: #555555;">2023-12-04</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  xfun          0.53    <span style="color: #555555;">2025-08-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
+<span><span class="co">##  xml2          1.4.0   <span style="color: #555555;">2025-08-20</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">##  yaml          2.3.10  <span style="color: #555555;">2024-07-26</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## <span style="color: #555555;"> [1] /home/runner/work/_temp/Library</span></span></span>
-<span><span class="co">## <span style="color: #555555;"> [2] /opt/R/4.4.2/lib/R/site-library</span></span></span>
-<span><span class="co">## <span style="color: #555555;"> [3] /opt/R/4.4.2/lib/R/library</span></span></span>
+<span><span class="co">## <span style="color: #555555;"> [2] /opt/R/4.5.1/lib/R/site-library</span></span></span>
+<span><span class="co">## <span style="color: #555555;"> [3] /opt/R/4.5.1/lib/R/library</span></span></span>
 <span><span class="co">##  <span style="color: #BBBBBB; background-color: #BB0000;">*</span> ── Packages attached to the search path.</span></span>
 <span><span class="co">## </span></span>
 <span><span class="co">## <span style="color: #00BBBB; font-weight: bold;">──────────────────────────────────────────────────────────────────────────────</span></span></span></code></pre>
@@ -1804,7 +1803,7 @@ BSD-2-clause (modified FreeBSD) license:</p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.1.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
 </div>
 
     </footer>
