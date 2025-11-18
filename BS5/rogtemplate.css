@@ -77,6 +77,19 @@ img[src$='#floatright'] {
 	background: #343a40 !important;
 }
 
+.navbar .nav-item .nav-link {
+	padding-left: .5rem;
+	padding-right: .5rem;
+	margin-left: .5rem;
+	margin-right: .5rem;
+}
+
+#navbar .dropdown-menu,
+#navbar .form-inline {
+	margin-left: .5rem;
+	margin-right: .5rem;
+}
+
 /* Position hack to get full width footer even though pkgdown puts it inside a container * See: https://css-tricks.com/full-width-containers-limited-width-parents/ */
 
 footer {

@@ -179,8 +179,8 @@ in <code><a href="get_eurostat.html">get_eurostat()</a></code> documentation.</p
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">2</span> General and… gene… fold… <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>                 <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>                    <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">3</span> European an… euro… fold… <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>                 <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>                    <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>       </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">4</span> Balance of … ei_bp fold… <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>                 <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>                    <span style="color: #949494;">"</span> <span style="color: #949494;">"</span>       </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Current acc… ei_b… table <span style="color: #949494;">"</span>19.08.2025<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>19.08.2025<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>1991-Q1<span style="color: #949494;">"</span> </span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Financial a… ei_b… table <span style="color: #949494;">"</span>19.08.2025<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>19.08.2025<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>1991-Q1<span style="color: #949494;">"</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">5</span> Current acc… ei_b… table <span style="color: #949494;">"</span>30.10.2025<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>07.10.2025<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>1991-Q1<span style="color: #949494;">"</span> </span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #BCBCBC;">6</span> Financial a… ei_b… table <span style="color: #949494;">"</span>30.10.2025<span style="color: #949494;">"</span>        <span style="color: #949494;">"</span>06.10.2025<span style="color: #949494;">"</span>           <span style="color: #949494;">"</span>1991-Q1<span style="color: #949494;">"</span> </span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ abbreviated name: ¹​last.table.structure.change</span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> <span style="color: #949494;"># ℹ 3 more variables: data.end &lt;chr&gt;, values &lt;dbl&gt;, hierarchy &lt;dbl&gt;</span></span>
 <span class="r-in"><span></span></span>
@@ -197,14 +197,14 @@ in <code><a href="get_eurostat.html">get_eurostat()</a></code> documentation.</p
 <span class="r-in"><span> x <span class="op">=</span> <span class="va">tmp</span><span class="op">$</span><span class="va">data.start</span>, </span></span>
 <span class="r-in"><span> format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"%Y"</span>, <span class="st">"%Y-Q%q"</span>, <span class="st">"%Y-W%W"</span>, <span class="st">"%Y-S%q"</span>, <span class="st">"%Y-%m-%d"</span>, <span class="st">"%Y-%m"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> 1868 failed to parse.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> 1876 failed to parse.</span>
 <span class="r-in"><span><span class="co"># Data end, same as data start</span></span></span>
 <span class="r-in"><span><span class="va">tmp</span><span class="op">$</span><span class="va">data.end</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/grep.html" class="external-link">gsub</a></span><span class="op">(</span><span class="st">"S2"</span>, <span class="st">"Q3"</span>, <span class="va">tmp</span><span class="op">$</span><span class="va">data.end</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">tmp</span><span class="op">$</span><span class="va">data.end</span> <span class="op">&lt;-</span> <span class="fu">lubridate</span><span class="fu">::</span><span class="fu"><a href="https://lubridate.tidyverse.org/reference/as_date.html" class="external-link">as_date</a></span><span class="op">(</span></span></span>
 <span class="r-in"><span> x <span class="op">=</span> <span class="va">tmp</span><span class="op">$</span><span class="va">data.end</span>, </span></span>
 <span class="r-in"><span> format <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"%Y"</span>, <span class="st">"%Y-Q%q"</span>, <span class="st">"%Y-W%W"</span>, <span class="st">"%Y-S%q"</span>, <span class="st">"%Y-%m-%d"</span>, <span class="st">"%Y-%m"</span><span class="op">)</span></span></span>
 <span class="r-in"><span> <span class="op">)</span></span></span>
-<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> 1868 failed to parse.</span>
+<span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span> 1876 failed to parse.</span>
 <span class="r-in"><span><span class="co"># }</span></span></span>
 </code></pre></div>
     </div>
@@ -213,17 +213,18 @@ in <code><a href="get_eurostat.html">get_eurostat()</a></code> documentation.</p
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek.</p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R packages for open government data analytics"></a></p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.1.3.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
 </div>
 
     </footer></div>
 
 
 
-    <!-- Add ropengov logo -->
-  <script src="../BS5/logo.js"></script></body></html>
+
+
+  </body></html>
 
