@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   width="120"
+   height="120"
+   viewBox="0 0 31.749866 31.749375"
+   version="1.1"
+   id="svg2"
+   sodipodi:docname="rog_logo.svg"
+   inkscape:version="1.4.3 (0d15f75, 2025-12-25)"
+   inkscape:export-filename="logo.png"
+   inkscape:export-xdpi="480"
+   inkscape:export-ydpi="480"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="namedview2"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:zoom="6.0416666"
+     inkscape:cx="59.917242"
+     inkscape:cy="60.000001"
+     inkscape:window-width="1920"
+     inkscape:window-height="974"
+     inkscape:window-x="-11"
+     inkscape:window-y="-11"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg2" />
+  <path
+     d="M 16.108208,0.00129307 A 15.893453,15.891112 0 0 0 4.649541,4.6532879 a 15.875509,15.87317 0 0 0 0,22.4474771 15.875509,15.87317 0 0 0 22.450784,0 15.875509,15.87317 0 0 0 0,-22.4474771 A 15.893453,15.891112 0 0 0 16.108208,0.00385616 M 15.672419,1.9902451 a 13.893954,13.891907 0 0 1 9.28998,3.4037736 L 22.175918,8.1800893 A 15.874339,9.91986 44.990371 0 0 11.409385,2.7386652 13.842685,13.840646 0 0 1 15.674983,1.9902451 M 9.668796,4.5840847 A 13.890368,7.9384513 44.991685 0 1 20.768577,9.5872216 L 15.88006,14.477584 6.848989,5.4478434 A 13.890368,7.9384513 44.991685 0 1 9.668796,4.5840847 M 26.379993,6.7832094 A 13.893954,13.891907 0 0 1 29.030609,20.298344 15.874339,9.91986 44.990371 0 0 23.57044,9.5897847 Z M 5.44165,6.8447234 14.475283,15.877027 9.579075,20.772514 A 13.890368,7.9384513 44.991685 0 1 5.44165,6.8447233 m 16.736831,4.1393787 a 13.890368,7.9384513 44.991685 0 1 4.137425,13.927791 L 17.282272,15.877027 Z M 2.7269455,11.460835 A 15.874339,9.91986 44.990371 0 0 8.187116,22.166831 L 5.380127,24.973406 A 13.893954,13.891907 0 0 1 2.7269455,11.460835 m 13.1505505,5.818198 9.03107,9.032302 A 13.890368,7.9384513 44.991685 0 1 10.988978,22.171957 Z M 9.581637,23.57909 A 15.874339,9.91986 44.990371 0 0 20.343044,29.020514 13.893954,13.891907 0 0 1 6.792593,26.36516 Z"
+     style="color:#4d4d4d;fill:#ff6600;fill-opacity:1;stroke:none;stroke-width:1.98434"
+     id="path2" />
+</svg>

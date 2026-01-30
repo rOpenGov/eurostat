@@ -144,6 +144,10 @@ Przemyslaw Biecek, Leo Lahti and Pyry Kantanen
 ``` r
 # \donttest{
 tmp <- get_eurostat_toc()
+#> Warning: One or more parsing issues, call `problems()` on your data frame for details,
+#> e.g.:
+#>   dat <- vroom(...)
+#>   problems(dat)
 head(tmp)
 #> # A tibble: 6 × 9
 #>   title        code  type  last.update.of.data last.table.structure…¹ data.start
@@ -152,8 +156,8 @@ head(tmp)
 #> 2 General and… gene… fold… " "                 " "                    " "       
 #> 3 European an… euro… fold… " "                 " "                    " "       
 #> 4 Balance of … ei_bp fold… " "                 " "                    " "       
-#> 5 Current acc… ei_b… table "30.10.2025"        "07.10.2025"           "1991-Q1" 
-#> 6 Financial a… ei_b… table "30.10.2025"        "06.10.2025"           "1991-Q1" 
+#> 5 Current acc… ei_b… table "13.01.2026"        "13.01.2026"           "1991-Q1" 
+#> 6 Financial a… ei_b… table "13.01.2026"        "12.01.2026"           "1991-Q1" 
 #> # ℹ abbreviated name: ¹​last.table.structure.change
 #> # ℹ 3 more variables: data.end <chr>, values <dbl>, hierarchy <dbl>
 
@@ -170,13 +174,13 @@ tmp$data.start <- lubridate::as_date(
  x = tmp$data.start, 
  format = c("%Y", "%Y-Q%q", "%Y-W%W", "%Y-S%q", "%Y-%m-%d", "%Y-%m")
  )
-#> Warning:  1876 failed to parse.
+#> Warning:  1928 failed to parse.
 # Data end, same as data start
 tmp$data.end <- gsub("S2", "Q3", tmp$data.end)
 tmp$data.end <- lubridate::as_date(
  x = tmp$data.end, 
  format = c("%Y", "%Y-Q%q", "%Y-W%W", "%Y-S%q", "%Y-%m-%d", "%Y-%m")
  )
-#> Warning:  1876 failed to parse.
+#> Warning:  1928 failed to parse.
 # }
 ```
