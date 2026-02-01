@@ -512,7 +512,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-01-30
+#>  date     2026-02-01
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -535,7 +535,7 @@ sessioninfo::session_info()
 #>  digest         0.6.39   2025-11-19 [1] RSPM
 #>  dplyr        * 1.1.4    2023-11-17 [1] RSPM
 #>  e1071          1.7-17   2025-12-18 [1] RSPM
-#>  eurostat     * 4.0.0    2026-01-30 [1] local
+#>  eurostat     * 4.0.0    2026-02-01 [1] local
 #>  evaluate       1.0.5    2025-08-27 [1] RSPM
 #>  farver         2.1.2    2024-05-13 [1] RSPM
 #>  fastmap        1.2.0    2024-05-15 [1] RSPM

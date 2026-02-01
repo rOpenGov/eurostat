@@ -197,7 +197,7 @@ kable(head(search_eurostat("migr", column = "code")))
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
 | Population on 1 January by age, sex and broad group of citizenship                                                   | migr_pop2ctz  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     |  701738 |         4 |
-| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     | 8714594 |         4 |
+| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 30.01.2026          | 20.01.2026                  | 1998       | 2025     | 8714399 |         4 |
 | Population on 1 January by age group, sex and country of birth                                                       | migr_pop3ctb  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     | 7013958 |         4 |
 | Population on 1 January by age, sex and group of country of birth                                                    | migr_pop4ctb  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     |  679234 |         4 |
 
@@ -727,7 +727,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-01-30
+    ##  date     2026-02-01
     ##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -752,7 +752,7 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.1.4    2023-11-17 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.0.0    2026-01-30 [1] local
+    ##  eurostat    * 4.0.0    2026-02-01 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            1.6.6    2025-04-12 [1] RSPM
