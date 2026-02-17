@@ -21,12 +21,15 @@ main img {
 }
 
 .caption,
-.figure {
+.figure,
+.figcaption,
+figcaption,
+caption {
   color: var(--bs-secondary);
   margin-left: auto;
   margin-right: auto;
-  margin-top: 0.5rem;
-  font-size: 85%;
+  margin-top: 1rem;
+  font-size: 0.875rem;
   width: 100%;
 }
 
@@ -63,6 +66,11 @@ main img {
 #navbar .dropdown-menu .dropdown-item .fa {
   opacity: 1;
   color: inherit;
+}
+
+/* --- Dividers in menu --- */
+.navbar-nav .nav-item.dropdown ul li:first-child hr {
+  display: none;
 }
 
 /* --- Search ---*/
@@ -155,6 +163,16 @@ footer .pkgdown-footer-left {
 }
 
 /* ---Misc--- */
+
+/* Render author and date consistenly between Rmd and quarto files */
+.author,
+.date {
+  color: var(--bs-secondary);
+  font-size: var(--bs-body-font-size);
+  font-weight: var(--bs-body-font-weight);
+  margin-bottom: 0.5rem;
+}
+
 /* Logos */
 
 .rog-logo {
@@ -170,8 +188,13 @@ footer .pkgdown-footer-left {
 
 /* Hack to reduce light in dark mode */
 [data-bs-theme="dark"] img.r-plt,
-[data-bs-theme="dark"] pre .r-plt.img img {
-  filter: grayscale(40%) !important;
+[data-bs-theme="dark"] pre .r-plt.img img,
+[data-bs-theme="dark"] .cell-output-display img {
+  filter: brightness(80%) !important;
+}
+
+[data-bs-theme="dark"] img:not(.logo, .d-inline-block, .round-logo, .rog-logo) {
+  filter: brightness(80%) !important;
 }
 
 /* Clipboard button */
@@ -196,26 +219,42 @@ footer .pkgdown-footer-left {
 /* ---Code--- */
 code a:any-link {
   text-decoration: underline;
-  text-decoration-color: var(--brand-code);
   background-color: transparent !important;
 }
 
 a > code {
   text-decoration: underline;
-  color: var(--brand-code);
+  color: var(--bs-code-color);
 }
 
 code {
   font-size: 87.5%;
-  color: var(--brand-code);
   word-wrap: break-word;
   background-color: var(--body-bg) !important;
 }
 
-/* --- Inherited args --- */
-.template-reference-topic dt {
-  font-weight: 800;
-  font-family: "Inter Tight", Roboto;
+@media (max-width: 575.98px) {
+  /* See https://github.com/r-lib/pkgdown/pull/2970 */
+
+  /* Need to override pkgdown */
+  .btn-copy-ex {
+    right: 5px;
+  }
+
+  div > pre {
+    border-radius: 0;
+  }
+
+  :not(li, blockquote) > div > pre {
+    margin-left: calc(var(--bs-gutter-x) * -0.5);
+    margin-right: calc(var(--bs-gutter-x) * -0.5);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  :not(li, blockquote) > div > .btn-copy-ex {
+    right: calc(var(--bs-gutter-x) * -0.5 + 5px);
+  }
 }
 
 /* Highlighter based in tango for dark theme */

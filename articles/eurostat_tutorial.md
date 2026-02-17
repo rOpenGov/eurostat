@@ -174,10 +174,10 @@ kable(head(search_eurostat("passenger transport")))
 | title                                                                               | code         | type    | last.update.of.data | last.table.structure.change | data.start | data.end |   values | hierarchy |
 |:------------------------------------------------------------------------------------|:-------------|:--------|:--------------------|:----------------------------|:-----------|:---------|---------:|----------:|
 | Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 12.05.2025          | 12.05.2025                  | 2005       | 2023     |      480 |         6 |
-| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 28.01.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2602525 |         5 |
-| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 28.01.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21664498 |         5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 28.01.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11215042 |         5 |
-| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 28.01.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21221371 |         5 |
+| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2609977 |         5 |
+| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21761446 |         5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11271094 |         5 |
+| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21346408 |         5 |
 | Air passenger transport by aircraft model, distance bands and transport coverage    | avia_paodis  | dataset | 03.12.2025          | 29.10.2025                  | 2008       | 2024     |   907536 |         5 |
 
 From eurostat version 4.0.0 onwards it possible to perform searches also
@@ -196,10 +196,10 @@ kable(head(search_eurostat("migr", column = "code")))
 |:---------------------------------------------------------------------------------------------------------------------|:--------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
-| Population on 1 January by age, sex and broad group of citizenship                                                   | migr_pop2ctz  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     |  701738 |         4 |
-| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 30.01.2026          | 20.01.2026                  | 1998       | 2025     | 8714399 |         4 |
-| Population on 1 January by age group, sex and country of birth                                                       | migr_pop3ctb  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     | 7013958 |         4 |
-| Population on 1 January by age, sex and group of country of birth                                                    | migr_pop4ctb  | dataset | 29.01.2026          | 20.01.2026                  | 1998       | 2025     |  679234 |         4 |
+| Population on 1 January by age, sex and broad group of citizenship                                                   | migr_pop2ctz  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     |  707342 |         4 |
+| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     | 8773048 |         4 |
+| Population on 1 January by age group, sex and country of birth                                                       | migr_pop3ctb  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     | 7057298 |         4 |
+| Population on 1 January by age, sex and group of country of birth                                                    | migr_pop4ctb  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     |  684541 |         4 |
 
 Another new addition in version 4.0.0 is the option to perform searches
 from French and German language TOC versions as well by setting the
@@ -213,7 +213,7 @@ kable(head(search_eurostat("flughafen", column = "title", lang = "de")))
 
 | title                                                                                     | code          | type    | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
 |:------------------------------------------------------------------------------------------|:--------------|:--------|:--------------------|:----------------------------|:-----------|:---------|-------:|----------:|
-| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 08.01.2026          | 08.01.2026                  | 2019-01    | 2025-12  | 657453 |         4 |
+| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 09.02.2026          | 09.02.2026                  | 2019-01    | 2026-01  | 665788 |         4 |
 
 As mentioned in the beginning, codes for different dataset can be found
 also from the [Eurostat
@@ -727,7 +727,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-02-01
+    ##  date     2026-02-17
     ##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -735,7 +735,7 @@ sessioninfo::session_info()
     ##  package     * version  date (UTC) lib source
     ##  assertthat    0.2.1    2019-03-21 [1] RSPM
     ##  backports     1.5.0    2024-05-23 [1] RSPM
-    ##  bibtex        0.5.1    2023-01-26 [1] RSPM
+    ##  bibtex        0.5.2    2026-02-03 [1] RSPM
     ##  bit           4.6.0    2025-03-06 [1] RSPM
     ##  bit64         4.6.0-1  2025-01-16 [1] RSPM
     ##  bslib         0.10.0   2026-01-26 [1] RSPM
@@ -750,9 +750,9 @@ sessioninfo::session_info()
     ##  data.table    1.18.2.1 2026-01-27 [1] RSPM
     ##  desc          1.4.3    2023-12-10 [1] RSPM
     ##  digest        0.6.39   2025-11-19 [1] RSPM
-    ##  dplyr         1.1.4    2023-11-17 [1] RSPM
+    ##  dplyr         1.2.0    2026-02-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.0.0    2026-02-01 [1] local
+    ##  eurostat    * 4.0.0    2026-02-17 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            1.6.6    2025-04-12 [1] RSPM
@@ -762,7 +762,7 @@ sessioninfo::session_info()
     ##  hms           1.1.4    2025-10-17 [1] RSPM
     ##  htmltools     0.5.9    2025-12-04 [1] RSPM
     ##  htmlwidgets   1.6.4    2023-12-06 [1] RSPM
-    ##  httr          1.4.7    2023-08-15 [1] RSPM
+    ##  httr          1.4.8    2026-02-13 [1] RSPM
     ##  httr2         1.2.2    2025-12-08 [1] RSPM
     ##  ISOweek       0.6-2    2011-09-07 [1] RSPM
     ##  jquerylib     0.1.4    2021-04-26 [1] RSPM
@@ -770,7 +770,7 @@ sessioninfo::session_info()
     ##  KernSmooth    2.23-26  2025-01-01 [3] CRAN (R 4.5.2)
     ##  knitr       * 1.51     2025-12-20 [1] RSPM
     ##  lifecycle     1.0.5    2026-01-08 [1] RSPM
-    ##  lubridate     1.9.4    2024-12-08 [1] RSPM
+    ##  lubridate     1.9.5    2026-02-04 [1] RSPM
     ##  magrittr      2.0.4    2025-09-12 [1] RSPM
     ##  otel          0.2.0    2025-08-29 [1] RSPM
     ##  pillar        1.11.1   2025-09-17 [1] RSPM

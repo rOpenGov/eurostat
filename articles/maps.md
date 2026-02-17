@@ -48,7 +48,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/Rtmph8Rdtq/eurostat/bc25121279a7f367de9f39c58a9cb97b.rds
+#> Table tgs00026 cached at /tmp/RtmpnHI0fi/eurostat/96afba8d04b2cc9aa1b8178beb891618.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -139,7 +139,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/Rtmph8Rdtq/eurostat/a2b8453719de2ce90b8603de9e6215c0.rds
+#> Table tgs00026 cached at /tmp/RtmpnHI0fi/eurostat/7e7e20c31d33ec7cdb9eacad729cc837.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -199,8 +199,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/Rtmph8Rdtq/eurostat/bc25121279a7f367de9f39c58a9cb97b.rds
-#> Table  tgs00026  read from cache file:  /tmp/Rtmph8Rdtq/eurostat/bc25121279a7f367de9f39c58a9cb97b.rds
+#> Reading cache file /tmp/RtmpnHI0fi/eurostat/96afba8d04b2cc9aa1b8178beb891618.rds
+#> Table  tgs00026  read from cache file:  /tmp/RtmpnHI0fi/eurostat/96afba8d04b2cc9aa1b8178beb891618.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
@@ -289,7 +289,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-02-01
+#>  date     2026-02-17
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -298,8 +298,8 @@ sessioninfo::session_info()
 #>  abind               1.4-8     2024-09-12 [1] RSPM
 #>  assertthat          0.2.1     2019-03-21 [1] RSPM
 #>  backports           1.5.0     2024-05-23 [1] RSPM
-#>  base64enc           0.1-3     2015-07-28 [1] RSPM
-#>  bibtex              0.5.1     2023-01-26 [1] RSPM
+#>  base64enc           0.1-6     2026-02-02 [1] RSPM
+#>  bibtex              0.5.2     2026-02-03 [1] RSPM
 #>  bit                 4.6.0     2025-03-06 [1] RSPM
 #>  bit64               4.6.0-1   2025-01-16 [1] RSPM
 #>  bslib               0.10.0    2026-01-26 [1] RSPM
@@ -319,15 +319,15 @@ sessioninfo::session_info()
 #>  DBI                 1.2.3     2024-06-02 [1] RSPM
 #>  desc                1.4.3     2023-12-10 [1] RSPM
 #>  digest              0.6.39    2025-11-19 [1] RSPM
-#>  dplyr             * 1.1.4     2023-11-17 [1] RSPM
+#>  dplyr             * 1.2.0     2026-02-03 [1] RSPM
 #>  e1071               1.7-17    2025-12-18 [1] RSPM
-#>  eurostat          * 4.0.0     2026-02-01 [1] local
+#>  eurostat          * 4.0.0     2026-02-17 [1] local
 #>  evaluate            1.0.5     2025-08-27 [1] RSPM
 #>  farver              2.1.2     2024-05-13 [1] RSPM
 #>  fastmap             1.2.0     2024-05-15 [1] RSPM
 #>  fs                  1.6.6     2025-04-12 [1] RSPM
 #>  generics            0.1.4     2025-05-09 [1] RSPM
-#>  ggplot2           * 4.0.1     2025-11-14 [1] RSPM
+#>  ggplot2           * 4.0.2     2026-02-03 [1] RSPM
 #>  giscoR              1.0.1     2026-01-23 [1] RSPM
 #>  glue                1.8.0     2024-09-30 [1] RSPM
 #>  gtable              0.3.6     2024-10-25 [1] RSPM
@@ -335,7 +335,7 @@ sessioninfo::session_info()
 #>  hms                 1.1.4     2025-10-17 [1] RSPM
 #>  htmltools           0.5.9     2025-12-04 [1] RSPM
 #>  htmlwidgets         1.6.4     2023-12-06 [1] RSPM
-#>  httr                1.4.7     2023-08-15 [1] RSPM
+#>  httr                1.4.8     2026-02-13 [1] RSPM
 #>  httr2               1.2.2     2025-12-08 [1] RSPM
 #>  ISOweek             0.6-2     2011-09-07 [1] RSPM
 #>  jquerylib           0.1.4     2021-04-26 [1] RSPM
@@ -350,7 +350,7 @@ sessioninfo::session_info()
 #>  leafsync            0.1.0     2019-03-05 [1] RSPM
 #>  lifecycle           1.0.5     2026-01-08 [1] RSPM
 #>  logger              0.4.1     2025-09-11 [1] RSPM
-#>  lubridate           1.9.4     2024-12-08 [1] RSPM
+#>  lubridate           1.9.5     2026-02-04 [1] RSPM
 #>  lwgeom              0.2-15    2026-01-12 [1] RSPM
 #>  magrittr            2.0.4     2025-09-12 [1] RSPM
 #>  maptiles            0.11.0    2025-12-12 [1] RSPM
@@ -385,9 +385,9 @@ sessioninfo::session_info()
 #>  scales              1.4.0     2025-04-24 [1] RSPM
 #>  sessioninfo         1.2.3     2025-02-05 [1] RSPM
 #>  sf                * 1.0-24    2026-01-13 [1] RSPM
-#>  sp                  2.2-0     2025-02-01 [1] RSPM
+#>  sp                  2.2-1     2026-02-13 [1] RSPM
 #>  spacesXYZ           1.6-0     2025-06-06 [1] RSPM
-#>  stars               0.7-0     2025-12-14 [1] RSPM
+#>  stars               0.7-1     2026-02-13 [1] RSPM
 #>  stringi             1.8.7     2025-03-27 [1] RSPM
 #>  stringr             1.6.0     2025-11-04 [1] RSPM
 #>  styler              1.11.0    2025-10-13 [1] RSPM
@@ -407,7 +407,7 @@ sessioninfo::session_info()
 #>  withr               3.0.2     2024-10-28 [1] RSPM
 #>  wk                  0.9.5     2025-12-18 [1] RSPM
 #>  xfun                0.56      2026-01-18 [1] RSPM
-#>  XML                 3.99-0.20 2025-11-08 [1] RSPM
+#>  XML                 3.99-0.22 2026-02-10 [1] RSPM
 #>  xml2                1.5.2     2026-01-17 [1] RSPM
 #>  yaml                2.3.12    2025-12-10 [1] RSPM
 #> 
