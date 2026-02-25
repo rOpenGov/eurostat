@@ -1,0 +1,270 @@
+---
+title: "Accessing culture datasets with the eurostat package"
+date: "`r Sys.Date()`"
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+# Introduction
+
+The eurostat package can be used to access datasets related to various facets of life. Datasets belonging to the culture sector are scattered across different database tables. Eurostat has collected datasets related to the cultural sector, for example datasets that are related to culture, music, and literature, in a special section in their website: [https://ec.europa.eu/eurostat/web/culture/database/data-domain](https://ec.europa.eu/eurostat/web/culture/database/data-domain).
+
+Downloading these datasets manually is demonstrated in this article.
+
+# Loading the eurostat R package
+
+```{r setup}
+library(eurostat)
+```
+
+# Dataset examples
+
+## EU Labour Force Survey (EU-LFS)
+
+Download like this:
+
+```{r eu-lfs}
+# J59: Motion picture, video and television programme production, 
+# sound recording and music publishing activities
+# R90: Creative, arts and entertainment activities
+# R91: Libraries, archives, museums and other cultural activities
+
+stats <- get_eurostat(
+  "lfsq_egan22d",
+  filters = 
+    list(
+      nace_r2 = c("R90", "R91", "J59")
+      )
+  )
+stats_label <- label_eurostat(stats, code = "nace_r2")
+```
+
+Quick glance at dataset:
+
+```{r}
+head(stats)
+```
+
+Quick glance at labeled dataset:
+
+```{r}
+head(stats_label)
+```
+
+Variable names:
+
+```{r}
+label_eurostat_vars(names(stats), id = "lfsq_egan22d")
+```
+
+## Structured business statistics (SBS)
+
+First we must ask the question: What are music-related goods and services in the vast sea of structured business statistics? From the [Eurostat website](https://ec.europa.eu/eurostat/web/culture/database/data-domain#Business%20statistics) documentation:
+
+>"No data collection specifically on music exists. The various EU harmonised surveys and data collections include only a few items of information on the topic.
+>
+>A difficulty with those is that statistical classifications and variables often do not differentiate music from other cultural activities in broader categories, such as live performances, or artistic creation."
+
+Two concrete examples are given: Sound recording and music publishing activities (NACE code 59.2) and Manufacture of musical instruments (NACE code 32.2).
+
+### Sound recording and music publishing activities (NACE code 59.2)
+
+```{r}
+# J592: Sound recording and music publishing activities
+music_business1 <- get_eurostat(
+  id = "sbs_na_1a_se_r2",
+  filters = 
+    list(
+      indic_sb = c("V11110", "V12110", "V12120", 
+                   "V12150", "12170"), 
+      nace_r2 = c("J592")
+      )
+  )
+head(music_business1)
+```
+
+### Manufacture of musical instruments (NACE code 32.2)
+
+```{r}
+music_business2 <- get_eurostat(
+  id = "sbs_na_ind_r2",
+  filters = 
+    list(
+      indic_sb = c("V11110", "V12110", "V12120",
+                   "V12130", "12150"), 
+      nace_r2 = c("C322")
+      )
+  )
+head(music_business2)
+# Or
+# music_business2 <- get_eurostat(
+#   id = "sbs_na_ind_r2",
+#   filters = list(
+#     indic_sb = c("V11110", "V12110", "V12120", 
+#                  "V12130", "12150"), 
+#     nace_r2 = c("C3220")
+#     )
+#   )
+```
+
+### Music-related goods production
+
+Also, database on the production of various goods contains information about production of music-related goods, such as instruments and recorded media.
+
+The code to download the dataset:
+
+```{r sbs}
+stats <- get_eurostat("lfsq_egan22d", 
+                      filters = 
+                        list(nace_r2 = c("R90", "R91", "J59")))
+stats_label <- label_eurostat(stats, code = "nace_r2")
+```
+
+## International trade in goods statistics (ITGS) (OM_dataset_sec_eurostat_003)
+
+What, then, are these specified music-related goods? From [Eurostat website](https://ec.europa.eu/eurostat/web/culture/database/data-domain#International%20trade):
+
+>"The domain of international trade in goods includes annual data on trade of musical instruments and parts of thereof.
+>
+>Since 2017, data on recorded media containing only music have not been collected as a separate category. In statistics on international trade in services, music items are included in the existing categories:
+>
+>- audio-visual services
+>- artistic services
+>- licences"
+
+(Source: [https://ec.europa.eu/eurostat/web/culture/database/data-domain#International%20trade](https://ec.europa.eu/eurostat/web/culture/database/data-domain#International%20trade))
+
+Download:
+
+```{r}
+stats <- get_eurostat("ext_lt_intertrd")
+stats_label <- label_eurostat(stats, code = "sitc06")
+```
+
+```{r}
+# C322: Manufacture of musical instruments
+stats <- get_eurostat("ext_tec09", filters = list(nace_r2 = "C322"))
+```
+
+## Data by domain: Culture
+
+### Music
+
+Original information can be found here: [https://ec.europa.eu/eurostat/web/culture/database/data-domain](https://ec.europa.eu/eurostat/web/culture/database/data-domain)
+
+### Employment
+
+There is an Excel file that contains the number of persons employed as musicians, singers and composers (ISCO code 2652, main job) in years 2019-2021.
+
+2 NACE codes could be used to collect data from EU labour force survey (EU-LFS) statistics:
+
+- sound recording and music publishing activities (59.2)
+- manufacture of musical instruments (32.2)
+
+
+## Business statistics
+
+### Sound recording and music publishing activities (NACE code 59.2)
+
+```{r}
+music_business1 <- get_eurostat(
+  id = "sbs_na_1a_se_r2", 
+  filters = 
+    list(
+      indic_sb = c("V11110", "V12110", "V12120", 
+                   "V12150", "12170"), 
+      nace_r2 = c("J592")
+      )
+  )
+head(music_business1)
+```
+
+### Manufacture of musical instruments
+
+```{r}
+music_business2 <- get_eurostat(
+  id = "sbs_na_ind_r2", 
+  filters = 
+    list(
+      indic_sb = c("V11110", "V12110", "V12120", 
+                   "V12130", "12150"), 
+      nace_r2 = c("C322")
+      )
+  )
+head(music_business2)
+# Or
+# music_business2 <- get_eurostat(
+#   id = "sbs_na_ind_r2",
+#   filters = list(
+#     indic_sb = c("V11110", "V12110", "V12120", 
+#                  "V12130", "12150"),
+#     nace_r2 = c("C3220")
+#     )
+#   )
+```
+
+### Music-related goods production
+
+Downloading PRODCOM data is is done via different route than the usual datasets and the functionality is currently experimental. The logic of the functions, however, is identical to the currently existing functions. Here is a non-functional example of how the workflow should look:
+
+```{r remotes-example, eval=FALSE}
+remotes::install_github("ropengov/eurostat", ref = "v4.1")
+```
+
+```{r prodcom-example, eval=FALSE}
+prodcom <- get_eurostat_sdmx(
+  id = "DS-059359",
+  compressed = FALSE, 
+  agency = "eurostat_comext",
+  filters = 
+    list(
+      FREQ = c("A"),
+      product = c("18121920", "18201010", "18201030", 
+                  "18201050", "18201070", "18202050", 
+                  "18202070", "32201110", "32201130", 
+                  "32201150", "32201200", "32201310", 
+                  "32201340", "32201370", "32201400", 
+                  "32201510", "32201530", "32201600", 
+                  "32202000"),
+      DECL = c("001", "003", "004", "005", "006", 
+               "007", "008", "009", "010", "011", 
+               "017", "018", "024", "028", "030", 
+               "032", "038", "046", "052", "053", 
+               "054", "055", "060", "061", "063", 
+               "064", "066", "068", "091", "092", 
+               "093", "096", "097", "098", "2027", 
+               "600"),
+      INDICATORS = c("PRODVAL"),
+      PRCCODE = c("18121920", "18201010", "18201030", 
+                  "18201050", "18201070", "18202050", 
+                  "18202070", "32201110", "32201130", 
+                  "32201150", "32201200", "32201310", 
+                  "32201340", "32201370", "32201400", 
+                  "32201510", "32201530", "32201600", 
+                  "32202000")))
+
+prodcom_labeled <- label_eurostat_sdmx(
+  x,
+  agency = "eurostat_comext",
+  id = "DS-056120"
+  )
+```
+ 
+The URL to this custom dataset: https://ec.europa.eu/eurostat/databrowser/view/DS-056120__custom_4088056/bookmark/table?lang=en&bookmarkId=a25712df-96d0-445a-95d6-4b807e83be43
+
+# Session info
+
+```{r}
+sessionInfo()
+```
+
+
+
+
+
+
