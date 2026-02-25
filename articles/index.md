@@ -2,6 +2,8 @@
 
 ### All vignettes
 
+- [Accessing culture datasets with the eurostat
+  package](https://ropengov.github.io/eurostat/articles/Accessing-culture-datasets-with-the-eurostat-package.md):
 - [Blog
   posts](https://ropengov.github.io/eurostat/articles/blogposts.md):
 - [Cheat sheet: eurostat R

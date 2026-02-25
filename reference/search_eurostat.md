@@ -186,8 +186,8 @@ head(tmp)
 #> 2 Population … cens… data… 26.08.2015          10.01.2024             2011      
 #> 3 Employed pe… cens… data… 27.03.2009          14.10.2024             2001      
 #> 4 Population … cens… data… 27.03.2009          14.10.2024             2001      
-#> 5 Pupils enro… educ… data… 02.02.2026          02.02.2026             2013      
-#> 6 Pupils enro… educ… data… 02.02.2026          02.02.2026             2013      
+#> 5 Pupils enro… educ… data… 23.02.2026          02.02.2026             2013      
+#> 6 Pupils enro… educ… data… 23.02.2026          02.02.2026             2013      
 #> # ℹ abbreviated name: ¹​last.table.structure.change
 #> # ℹ 3 more variables: data.end <chr>, values <dbl>, hierarchy <dbl>
 # Use "fixed = TRUE" when pattern has characters that would need escaping.

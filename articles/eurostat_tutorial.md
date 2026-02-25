@@ -111,7 +111,7 @@ kable(tail(toc))
 | title                                                                               | code        | type    | last.update.of.data | last.table.structure.change | data.start | data.end |  values | hierarchy |
 |:------------------------------------------------------------------------------------|:------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
 | Generation of waste by waste category, hazardousness and NACE Rev. 2 activity       | env_wasgen  | dataset | 22.09.2025          | 30.09.2024                  | 2004       | 2022     | 1457402 |         4 |
-| Food waste and food waste prevention by NACE Rev. 2 activity - tonnes of fresh mass | env_wasfw   | dataset | 15.10.2025          | 15.10.2025                  | 2020       | 2023     |    1356 |         4 |
+| Food waste and food waste prevention by NACE Rev. 2 activity - tonnes of fresh mass | env_wasfw   | dataset | 18.02.2026          | 15.10.2025                  | 2020       | 2023     |    1416 |         4 |
 | Water use by supply category and economical sector                                  | env_wat_cat | dataset | 31.07.2025          | 31.07.2025                  | 1970       | 2023     |    9213 |         4 |
 | Population connected to wastewater treatment plants                                 | env_ww_con  | dataset | 03.11.2025          | 31.07.2025                  | 1970       | 2023     |   16466 |         4 |
 | Population connected to public water supply                                         | env_wat_pop | dataset | 31.07.2025          | 31.07.2025                  | 1990       | 2023     |     569 |         4 |
@@ -146,8 +146,8 @@ kable(head(get_eurostat_toc(lang = "fr")))
 | Statistiques générales et régionales                            | general     | folder |                     |                             |            |          |     NA |         1 |
 | Indicateurs européens et nationaux pour l’analyse à court terme | euroind     | folder |                     |                             |            |          |     NA |         2 |
 | Balance des paiements                                           | ei_bp       | folder |                     |                             |            |          |     NA |         3 |
-| Compte courant - données trimestrielles                         | ei_bpm6ca_q | table  | 13.01.2026          | 13.01.2026                  | 1991-Q1    | 2025-Q3  | 298336 |         4 |
-| Compte financier - données trimestrielles                       | ei_bpm6fa_q | table  | 13.01.2026          | 12.01.2026                  | 1991-Q1    | 2025-Q3  |  52732 |         4 |
+| Compte courant - données trimestrielles                         | ei_bpm6ca_q | table  | 19.02.2026          | 19.02.2026                  | 1991-Q1    | 2025-Q4  | 298407 |         4 |
+| Compte financier - données trimestrielles                       | ei_bpm6fa_q | table  | 19.02.2026          | 19.02.2026                  | 1991-Q1    | 2025-Q4  |  52746 |         4 |
 
 With
 [`search_eurostat()`](https://ropengov.github.io/eurostat/reference/search_eurostat.md)
@@ -174,10 +174,10 @@ kable(head(search_eurostat("passenger transport")))
 | title                                                                               | code         | type    | last.update.of.data | last.table.structure.change | data.start | data.end |   values | hierarchy |
 |:------------------------------------------------------------------------------------|:-------------|:--------|:--------------------|:----------------------------|:-----------|:---------|---------:|----------:|
 | Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 12.05.2025          | 12.05.2025                  | 2005       | 2023     |      480 |         6 |
-| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2609977 |         5 |
-| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21761446 |         5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11271094 |         5 |
-| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 17.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21346408 |         5 |
+| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2612857 |         5 |
+| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21785746 |         5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11290462 |         5 |
+| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21378934 |         5 |
 | Air passenger transport by aircraft model, distance bands and transport coverage    | avia_paodis  | dataset | 03.12.2025          | 29.10.2025                  | 2008       | 2024     |   907536 |         5 |
 
 From eurostat version 4.0.0 onwards it possible to perform searches also
@@ -727,7 +727,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-02-17
+    ##  date     2026-02-25
     ##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -752,7 +752,7 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.2.0    2026-02-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.0.0    2026-02-17 [1] local
+    ##  eurostat    * 4.0.0    2026-02-25 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            1.6.6    2025-04-12 [1] RSPM
@@ -783,7 +783,7 @@ sessioninfo::session_info()
     ##  ragg          1.5.0    2025-09-02 [1] RSPM
     ##  rappdirs      0.3.4    2026-01-17 [1] RSPM
     ##  Rcpp          1.1.1    2026-01-10 [1] RSPM
-    ##  readr         2.1.6    2025-11-14 [1] RSPM
+    ##  readr         2.2.0    2026-02-19 [1] RSPM
     ##  readxl        1.4.5    2025-03-07 [1] RSPM
     ##  RefManageR    1.4.0    2022-09-30 [1] RSPM
     ##  regions       0.1.8    2021-06-21 [1] RSPM

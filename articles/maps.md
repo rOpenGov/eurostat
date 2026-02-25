@@ -48,7 +48,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/RtmpnHI0fi/eurostat/96afba8d04b2cc9aa1b8178beb891618.rds
+#> Table tgs00026 cached at /tmp/Rtmpv9ieWh/eurostat/f6247a5bc66c0654b3ef39768cf50147.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -139,7 +139,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/RtmpnHI0fi/eurostat/7e7e20c31d33ec7cdb9eacad729cc837.rds
+#> Table tgs00026 cached at /tmp/Rtmpv9ieWh/eurostat/d45a194ce1534ae8895f8ce5326dfd25.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -199,8 +199,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpnHI0fi/eurostat/96afba8d04b2cc9aa1b8178beb891618.rds
-#> Table  tgs00026  read from cache file:  /tmp/RtmpnHI0fi/eurostat/96afba8d04b2cc9aa1b8178beb891618.rds
+#> Reading cache file /tmp/Rtmpv9ieWh/eurostat/f6247a5bc66c0654b3ef39768cf50147.rds
+#> Table  tgs00026  read from cache file:  /tmp/Rtmpv9ieWh/eurostat/f6247a5bc66c0654b3ef39768cf50147.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
@@ -289,7 +289,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-02-17
+#>  date     2026-02-25
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -321,7 +321,7 @@ sessioninfo::session_info()
 #>  digest              0.6.39    2025-11-19 [1] RSPM
 #>  dplyr             * 1.2.0     2026-02-03 [1] RSPM
 #>  e1071               1.7-17    2025-12-18 [1] RSPM
-#>  eurostat          * 4.0.0     2026-02-17 [1] local
+#>  eurostat          * 4.0.0     2026-02-25 [1] local
 #>  evaluate            1.0.5     2025-08-27 [1] RSPM
 #>  farver              2.1.2     2024-05-13 [1] RSPM
 #>  fastmap             1.2.0     2024-05-15 [1] RSPM
@@ -372,7 +372,7 @@ sessioninfo::session_info()
 #>  raster              3.6-32    2025-03-28 [1] RSPM
 #>  RColorBrewer        1.1-3     2022-04-03 [1] RSPM
 #>  Rcpp                1.1.1     2026-01-10 [1] RSPM
-#>  readr               2.1.6     2025-11-14 [1] RSPM
+#>  readr               2.2.0     2026-02-19 [1] RSPM
 #>  readxl              1.4.5     2025-03-07 [1] RSPM
 #>  RefManageR          1.4.0     2022-09-30 [1] RSPM
 #>  regions             0.1.8     2021-06-21 [1] RSPM
@@ -384,7 +384,7 @@ sessioninfo::session_info()
 #>  sass                0.4.10    2025-04-11 [1] RSPM
 #>  scales              1.4.0     2025-04-24 [1] RSPM
 #>  sessioninfo         1.2.3     2025-02-05 [1] RSPM
-#>  sf                * 1.0-24    2026-01-13 [1] RSPM
+#>  sf                * 1.1-0     2026-02-24 [1] RSPM
 #>  sp                  2.2-1     2026-02-13 [1] RSPM
 #>  spacesXYZ           1.6-0     2025-06-06 [1] RSPM
 #>  stars               0.7-1     2026-02-13 [1] RSPM

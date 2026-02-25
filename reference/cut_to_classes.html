@@ -20,7 +20,8 @@ categories and polishes the labels ready for used in mapping with ggplot2."><met
       <ul class="navbar-nav me-auto"><li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
-  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/blogposts.html">Blog posts</a></li>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/Accessing-culture-datasets-with-the-eurostat-package.html">Accessing culture datasets with the eurostat package</a></li>
+    <li><a class="dropdown-item" href="../articles/blogposts.html">Blog posts</a></li>
     <li><a class="dropdown-item" href="../articles/cheatsheet.html">Cheat sheet: eurostat R package</a></li>
     <li><a class="dropdown-item" href="../articles/dimlst_vs_allconceptschemes.html">Differences between dimlst.dic and ALL_CONCEPTSCHEMES.xml</a></li>
     <li><a class="dropdown-item" href="../articles/eurostat_tutorial.html">Tutorial for the eurostat R package</a></li>
@@ -126,7 +127,7 @@ categories and polishes the labels ready for used in mapping with <code>ggplot2<
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="co"># lp &lt;- get_eurostat("nama_aux_lp")</span></span></span>
 <span class="r-in"><span><span class="va">lp</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"nama_10_lp_ulc"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/RtmpnHI0fi/eurostat/acd6add385173f70e480efba6eb2dba8.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table nama_10_lp_ulc cached at /tmp/Rtmpv9ieWh/eurostat/2197db2103c1241ff31b7fd37a209828.rds</span>
 <span class="r-in"><span><span class="va">lp</span><span class="op">$</span><span class="va">class</span> <span class="op">&lt;-</span> <span class="fu">cut_to_classes</span><span class="op">(</span><span class="va">lp</span><span class="op">$</span><span class="va">values</span>, n <span class="op">=</span> <span class="fl">5</span>, style <span class="op">=</span> <span class="st">"equal"</span>, decimals <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span></span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>var has missing values, omitted in finding classes</span>
 <span class="r-wrn co"><span class="r-pr">#&gt;</span> <span class="warning">Warning: </span>var has missing values, omitted in finding classes</span>

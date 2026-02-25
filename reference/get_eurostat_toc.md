@@ -156,8 +156,8 @@ head(tmp)
 #> 2 General and… gene… fold… " "                 " "                    " "       
 #> 3 European an… euro… fold… " "                 " "                    " "       
 #> 4 Balance of … ei_bp fold… " "                 " "                    " "       
-#> 5 Current acc… ei_b… table "13.01.2026"        "13.01.2026"           "1991-Q1" 
-#> 6 Financial a… ei_b… table "13.01.2026"        "12.01.2026"           "1991-Q1" 
+#> 5 Current acc… ei_b… table "19.02.2026"        "19.02.2026"           "1991-Q1" 
+#> 6 Financial a… ei_b… table "19.02.2026"        "19.02.2026"           "1991-Q1" 
 #> # ℹ abbreviated name: ¹​last.table.structure.change
 #> # ℹ 3 more variables: data.end <chr>, values <dbl>, hierarchy <dbl>
 

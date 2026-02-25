@@ -1,6 +1,7 @@
 <urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
 <url><loc>https://ropengov.github.io/eurostat/404.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/LICENSE-text.html</loc></url>
+<url><loc>https://ropengov.github.io/eurostat/articles/Accessing-culture-datasets-with-the-eurostat-package.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/articles/blogposts.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/articles/cheatsheet.html</loc></url>
 <url><loc>https://ropengov.github.io/eurostat/articles/dimlst_vs_allconceptschemes.html</loc></url>

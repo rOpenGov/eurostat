@@ -40,8 +40,8 @@ Janne Huovari <janne.huovari@ptt.fi>
 # \donttest{
 lp <- get_eurostat("nama_10_lp_ulc")
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpnHI0fi/eurostat/acd6add385173f70e480efba6eb2dba8.rds
-#> Table  nama_10_lp_ulc  read from cache file:  /tmp/RtmpnHI0fi/eurostat/acd6add385173f70e480efba6eb2dba8.rds
+#> Reading cache file /tmp/Rtmpv9ieWh/eurostat/2197db2103c1241ff31b7fd37a209828.rds
+#> Table  nama_10_lp_ulc  read from cache file:  /tmp/Rtmpv9ieWh/eurostat/2197db2103c1241ff31b7fd37a209828.rds
 lp$geo <- harmonize_country_code(lp$geo)
 # }
 ```
