@@ -48,7 +48,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/Rtmpk5vgHn/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
+#> Table tgs00026 cached at /tmp/RtmpddNXgr/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -139,7 +139,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/Rtmpk5vgHn/eurostat/c6396b4021847cbeffef504760e6204d.rds
+#> Table tgs00026 cached at /tmp/RtmpddNXgr/eurostat/c6396b4021847cbeffef504760e6204d.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -199,8 +199,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/Rtmpk5vgHn/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
-#> Table  tgs00026  read from cache file:  /tmp/Rtmpk5vgHn/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
+#> Reading cache file /tmp/RtmpddNXgr/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
+#> Table  tgs00026  read from cache file:  /tmp/RtmpddNXgr/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
