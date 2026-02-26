@@ -512,7 +512,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-02-25
+#>  date     2026-02-26
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -530,12 +530,12 @@ sessioninfo::session_info()
 #>  countrycode    1.6.1    2025-03-31 [1] RSPM
 #>  curl           7.0.0    2025-08-19 [1] RSPM
 #>  data.table     1.18.2.1 2026-01-27 [1] RSPM
-#>  DBI            1.2.3    2024-06-02 [1] RSPM
+#>  DBI            1.3.0    2026-02-25 [1] RSPM
 #>  desc           1.4.3    2023-12-10 [1] RSPM
 #>  digest         0.6.39   2025-11-19 [1] RSPM
 #>  dplyr        * 1.2.0    2026-02-03 [1] RSPM
 #>  e1071          1.7-17   2025-12-18 [1] RSPM
-#>  eurostat     * 4.0.0    2026-02-25 [1] local
+#>  eurostat     * 4.0.0    2026-02-26 [1] local
 #>  evaluate       1.0.5    2025-08-27 [1] RSPM
 #>  farver         2.1.2    2024-05-13 [1] RSPM
 #>  fastmap        1.2.0    2024-05-15 [1] RSPM

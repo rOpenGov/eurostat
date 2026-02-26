@@ -197,6 +197,16 @@ footer .pkgdown-footer-left {
   filter: brightness(80%) !important;
 }
 
+/* Blockquotes */
+
+blockquote,
+.blockquote {
+  margin: 0 0 1rem;
+  padding: .625rem 1.25rem;
+  margin-bottom: 1rem;
+  font-size: 1.25rem;
+}
+
 /* Clipboard button */
 
 .btn-copy-ex {

@@ -174,10 +174,10 @@ kable(head(search_eurostat("passenger transport")))
 | title                                                                               | code         | type    | last.update.of.data | last.table.structure.change | data.start | data.end |   values | hierarchy |
 |:------------------------------------------------------------------------------------|:-------------|:--------|:--------------------|:----------------------------|:-----------|:---------|---------:|----------:|
 | Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 12.05.2025          | 12.05.2025                  | 2005       | 2023     |      480 |         6 |
-| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2612857 |         5 |
-| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21785746 |         5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11290462 |         5 |
-| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 24.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21378934 |         5 |
+| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2613217 |         5 |
+| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21786106 |         5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11292766 |         5 |
+| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21379510 |         5 |
 | Air passenger transport by aircraft model, distance bands and transport coverage    | avia_paodis  | dataset | 03.12.2025          | 29.10.2025                  | 2008       | 2024     |   907536 |         5 |
 
 From eurostat version 4.0.0 onwards it possible to perform searches also
@@ -727,7 +727,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-02-25
+    ##  date     2026-02-26
     ##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -752,7 +752,7 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.2.0    2026-02-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.0.0    2026-02-25 [1] local
+    ##  eurostat    * 4.0.0    2026-02-26 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            1.6.6    2025-04-12 [1] RSPM

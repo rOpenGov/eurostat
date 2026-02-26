@@ -48,7 +48,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/Rtmpv9ieWh/eurostat/f6247a5bc66c0654b3ef39768cf50147.rds
+#> Table tgs00026 cached at /tmp/Rtmpk5vgHn/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -139,7 +139,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/Rtmpv9ieWh/eurostat/d45a194ce1534ae8895f8ce5326dfd25.rds
+#> Table tgs00026 cached at /tmp/Rtmpk5vgHn/eurostat/c6396b4021847cbeffef504760e6204d.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -199,8 +199,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/Rtmpv9ieWh/eurostat/f6247a5bc66c0654b3ef39768cf50147.rds
-#> Table  tgs00026  read from cache file:  /tmp/Rtmpv9ieWh/eurostat/f6247a5bc66c0654b3ef39768cf50147.rds
+#> Reading cache file /tmp/Rtmpk5vgHn/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
+#> Table  tgs00026  read from cache file:  /tmp/Rtmpk5vgHn/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
@@ -289,7 +289,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-02-25
+#>  date     2026-02-26
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -316,12 +316,12 @@ sessioninfo::session_info()
 #>  crosstalk           1.2.2     2025-08-26 [1] RSPM
 #>  curl                7.0.0     2025-08-19 [1] RSPM
 #>  data.table          1.18.2.1  2026-01-27 [1] RSPM
-#>  DBI                 1.2.3     2024-06-02 [1] RSPM
+#>  DBI                 1.3.0     2026-02-25 [1] RSPM
 #>  desc                1.4.3     2023-12-10 [1] RSPM
 #>  digest              0.6.39    2025-11-19 [1] RSPM
 #>  dplyr             * 1.2.0     2026-02-03 [1] RSPM
 #>  e1071               1.7-17    2025-12-18 [1] RSPM
-#>  eurostat          * 4.0.0     2026-02-25 [1] local
+#>  eurostat          * 4.0.0     2026-02-26 [1] local
 #>  evaluate            1.0.5     2025-08-27 [1] RSPM
 #>  farver              2.1.2     2024-05-13 [1] RSPM
 #>  fastmap             1.2.0     2024-05-15 [1] RSPM
