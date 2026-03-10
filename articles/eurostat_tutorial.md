@@ -173,7 +173,7 @@ kable(head(search_eurostat("passenger transport")))
 
 | title                                                                               | code         | type    | last.update.of.data | last.table.structure.change | data.start | data.end |   values | hierarchy |
 |:------------------------------------------------------------------------------------|:-------------|:--------|:--------------------|:----------------------------|:-----------|:---------|---------:|----------:|
-| Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 12.05.2025          | 12.05.2025                  | 2005       | 2023     |      480 |         6 |
+| Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 05.03.2026          | 05.03.2026                  | 2005       | 2025     |      425 |         6 |
 | Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2613217 |         5 |
 | Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21786106 |         5 |
 | Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11292766 |         5 |
@@ -196,10 +196,10 @@ kable(head(search_eurostat("migr", column = "code")))
 |:---------------------------------------------------------------------------------------------------------------------|:--------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
-| Population on 1 January by age, sex and broad group of citizenship                                                   | migr_pop2ctz  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     |  707342 |         4 |
-| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     | 8773048 |         4 |
-| Population on 1 January by age group, sex and country of birth                                                       | migr_pop3ctb  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     | 7057298 |         4 |
-| Population on 1 January by age, sex and group of country of birth                                                    | migr_pop4ctb  | dataset | 13.02.2026          | 20.01.2026                  | 1998       | 2025     |  684541 |         4 |
+| Population on 1 January by age, sex and broad group of citizenship                                                   | migr_pop2ctz  | dataset | 05.03.2026          | 20.01.2026                  | 1998       | 2025     |  708590 |         4 |
+| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 05.03.2026          | 20.01.2026                  | 1998       | 2025     | 8773372 |         4 |
+| Population on 1 January by age group, sex and country of birth                                                       | migr_pop3ctb  | dataset | 05.03.2026          | 03.03.2026                  | 1998       | 2025     | 7057460 |         4 |
+| Population on 1 January by age, sex and group of country of birth                                                    | migr_pop4ctb  | dataset | 05.03.2026          | 03.03.2026                  | 1998       | 2025     |  685165 |         4 |
 
 Another new addition in version 4.0.0 is the option to perform searches
 from French and German language TOC versions as well by setting the
@@ -213,7 +213,7 @@ kable(head(search_eurostat("flughafen", column = "title", lang = "de")))
 
 | title                                                                                     | code          | type    | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
 |:------------------------------------------------------------------------------------------|:--------------|:--------|:--------------------|:----------------------------|:-----------|:---------|-------:|----------:|
-| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 09.02.2026          | 09.02.2026                  | 2019-01    | 2026-01  | 665788 |         4 |
+| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 09.03.2026          | 09.03.2026                  | 2019-01    | 2026-02  | 674104 |         4 |
 
 As mentioned in the beginning, codes for different dataset can be found
 also from the [Eurostat
@@ -727,7 +727,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-02-26
+    ##  date     2026-03-10
     ##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -744,7 +744,7 @@ sessioninfo::session_info()
     ##  class         7.3-23   2025-01-01 [3] CRAN (R 4.5.2)
     ##  classInt      0.4-11   2025-01-08 [1] RSPM
     ##  cli           3.6.5    2025-04-23 [1] RSPM
-    ##  countrycode   1.6.1    2025-03-31 [1] RSPM
+    ##  countrycode   1.7.0    2026-02-27 [1] RSPM
     ##  crayon        1.5.3    2024-06-20 [1] RSPM
     ##  curl          7.0.0    2025-08-19 [1] RSPM
     ##  data.table    1.18.2.1 2026-01-27 [1] RSPM
@@ -752,10 +752,10 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.2.0    2026-02-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.0.0    2026-02-26 [1] local
+    ##  eurostat    * 4.0.0    2026-03-10 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
-    ##  fs            1.6.6    2025-04-12 [1] RSPM
+    ##  fs            1.6.7    2026-03-06 [1] RSPM
     ##  generics      0.1.4    2025-05-09 [1] RSPM
     ##  glue          1.8.0    2024-09-30 [1] RSPM
     ##  here          1.0.2    2025-09-15 [1] RSPM
@@ -780,7 +780,7 @@ sessioninfo::session_info()
     ##  proxy         0.4-29   2025-12-29 [1] RSPM
     ##  purrr         1.2.1    2026-01-09 [1] RSPM
     ##  R6            2.6.1    2025-02-15 [1] RSPM
-    ##  ragg          1.5.0    2025-09-02 [1] RSPM
+    ##  ragg          1.5.1    2026-03-06 [1] RSPM
     ##  rappdirs      0.3.4    2026-01-17 [1] RSPM
     ##  Rcpp          1.1.1    2026-01-10 [1] RSPM
     ##  readr         2.2.0    2026-02-19 [1] RSPM
@@ -794,8 +794,8 @@ sessioninfo::session_info()
     ##  sessioninfo   1.2.3    2025-02-05 [1] RSPM
     ##  stringi       1.8.7    2025-03-27 [1] RSPM
     ##  stringr       1.6.0    2025-11-04 [1] RSPM
-    ##  systemfonts   1.3.1    2025-10-01 [1] RSPM
-    ##  textshaping   1.0.4    2025-10-10 [1] RSPM
+    ##  systemfonts   1.3.2    2026-03-05 [1] RSPM
+    ##  textshaping   1.0.5    2026-03-06 [1] RSPM
     ##  tibble        3.3.1    2026-01-11 [1] RSPM
     ##  tidyr       * 1.3.2    2025-12-19 [1] RSPM
     ##  tidyselect    1.2.1    2024-03-11 [1] RSPM

@@ -512,7 +512,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-02-26
+#>  date     2026-03-10
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -527,7 +527,7 @@ sessioninfo::session_info()
 #>  class          7.3-23   2025-01-01 [3] CRAN (R 4.5.2)
 #>  classInt       0.4-11   2025-01-08 [1] RSPM
 #>  cli            3.6.5    2025-04-23 [1] RSPM
-#>  countrycode    1.6.1    2025-03-31 [1] RSPM
+#>  countrycode    1.7.0    2026-02-27 [1] RSPM
 #>  curl           7.0.0    2025-08-19 [1] RSPM
 #>  data.table     1.18.2.1 2026-01-27 [1] RSPM
 #>  DBI            1.3.0    2026-02-25 [1] RSPM
@@ -535,11 +535,11 @@ sessioninfo::session_info()
 #>  digest         0.6.39   2025-11-19 [1] RSPM
 #>  dplyr        * 1.2.0    2026-02-03 [1] RSPM
 #>  e1071          1.7-17   2025-12-18 [1] RSPM
-#>  eurostat     * 4.0.0    2026-02-26 [1] local
+#>  eurostat     * 4.0.0    2026-03-10 [1] local
 #>  evaluate       1.0.5    2025-08-27 [1] RSPM
 #>  farver         2.1.2    2024-05-13 [1] RSPM
 #>  fastmap        1.2.0    2024-05-15 [1] RSPM
-#>  fs             1.6.6    2025-04-12 [1] RSPM
+#>  fs             1.6.7    2026-03-06 [1] RSPM
 #>  generics       0.1.4    2025-05-09 [1] RSPM
 #>  ggplot2      * 4.0.2    2026-02-03 [1] RSPM
 #>  glue           1.8.0    2024-09-30 [1] RSPM
@@ -571,7 +571,7 @@ sessioninfo::session_info()
 #>  R.oo           1.27.1   2025-05-02 [1] RSPM
 #>  R.utils        2.13.0   2025-02-24 [1] RSPM
 #>  R6             2.6.1    2025-02-15 [1] RSPM
-#>  ragg           1.5.0    2025-09-02 [1] RSPM
+#>  ragg           1.5.1    2026-03-06 [1] RSPM
 #>  rappdirs       0.3.4    2026-01-17 [1] RSPM
 #>  RColorBrewer   1.1-3    2022-04-03 [1] RSPM
 #>  Rcpp           1.1.1    2026-01-10 [1] RSPM
@@ -590,8 +590,8 @@ sessioninfo::session_info()
 #>  stringi        1.8.7    2025-03-27 [1] RSPM
 #>  stringr        1.6.0    2025-11-04 [1] RSPM
 #>  styler         1.11.0   2025-10-13 [1] RSPM
-#>  systemfonts    1.3.1    2025-10-01 [1] RSPM
-#>  textshaping    1.0.4    2025-10-10 [1] RSPM
+#>  systemfonts    1.3.2    2026-03-05 [1] RSPM
+#>  textshaping    1.0.5    2026-03-06 [1] RSPM
 #>  tibble         3.3.1    2026-01-11 [1] RSPM
 #>  tidyr          1.3.2    2025-12-19 [1] RSPM
 #>  tidyselect     1.2.1    2024-03-11 [1] RSPM

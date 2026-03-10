@@ -97,13 +97,13 @@ foo <- data.frame (
 
 recode_nuts(foo, nuts_year = 2013)
 }
-#>     geo    values     typology                           typology_change
-#> 1    FR 64.167935      country                                 unchanged
-#> 2  UKI3  9.602416 nuts_level_2                                 unchanged
-#> 3   DED 76.967480 nuts_level_1                                 unchanged
-#> 4   FRK 99.071231 nuts_level_1 Recoded from FRK [used in NUTS 2016-2021]
-#> 5  HU12 76.560016 nuts_level_2                    Used in NUTS 2016-2021
-#> 6 DEE32 66.028435 nuts_level_3                    Used in NUTS 1999-2003
+#>     geo     values     typology                           typology_change
+#> 1    FR  8.0750138      country                                 unchanged
+#> 2  UKI3 60.0760886 nuts_level_2                                 unchanged
+#> 3   DED  0.7399441 nuts_level_1                                 unchanged
+#> 4   FRK 46.6393497 nuts_level_1 Recoded from FRK [used in NUTS 2016-2021]
+#> 5  HU12 15.7208442 nuts_level_2                    Used in NUTS 2016-2021
+#> 6 DEE32 83.4333037 nuts_level_3                    Used in NUTS 1999-2003
 #>   code_2013
 #> 1        FR
 #> 2      UKI3
@@ -122,43 +122,43 @@ my_reg_data <- data.frame(
 )
 
 validate_nuts_regions(my_reg_data)
-#>      geo    values         typology valid_2016
-#> 1    BE1 0.9705209     nuts_level_1       TRUE
-#> 2  HU102 0.3891828             <NA>      FALSE
-#> 3    FR1 0.4611865     nuts_level_1       TRUE
-#> 4    DED 0.3152418     nuts_level_1       TRUE
-#> 5    FR7 0.1746759 iso-3166-alpha-3      FALSE
-#> 6     TR 0.5315735          country       TRUE
-#> 7   DED2 0.4936370     nuts_level_2       TRUE
-#> 8     EL 0.7793086          country       TRUE
-#> 9     XK 0.2041783          country       TRUE
-#> 10    GB 0.7133973          country       TRUE
+#>      geo     values         typology valid_2016
+#> 1    BE1 0.49777739     nuts_level_1       TRUE
+#> 2  HU102 0.28976724             <NA>      FALSE
+#> 3    FR1 0.73288199     nuts_level_1       TRUE
+#> 4    DED 0.77252151     nuts_level_1       TRUE
+#> 5    FR7 0.87460066 iso-3166-alpha-3      FALSE
+#> 6     TR 0.17494063          country       TRUE
+#> 7   DED2 0.03424133     nuts_level_2       TRUE
+#> 8     EL 0.32038573          country       TRUE
+#> 9     XK 0.40232824          country       TRUE
+#> 10    GB 0.19566983          country       TRUE
 
 validate_nuts_regions(my_reg_data, nuts_year = 2013)
-#>      geo    values     typology valid_2013
-#> 1    BE1 0.9705209 nuts_level_1       TRUE
-#> 2  HU102 0.3891828 nuts_level_3       TRUE
-#> 3    FR1 0.4611865 nuts_level_1       TRUE
-#> 4    DED 0.3152418 nuts_level_1       TRUE
-#> 5    FR7 0.1746759 nuts_level_1       TRUE
-#> 6     TR 0.5315735      country       TRUE
-#> 7   DED2 0.4936370 nuts_level_2       TRUE
-#> 8     EL 0.7793086      country       TRUE
-#> 9     XK 0.2041783      country       TRUE
-#> 10    GB 0.7133973      country       TRUE
+#>      geo     values     typology valid_2013
+#> 1    BE1 0.49777739 nuts_level_1       TRUE
+#> 2  HU102 0.28976724 nuts_level_3       TRUE
+#> 3    FR1 0.73288199 nuts_level_1       TRUE
+#> 4    DED 0.77252151 nuts_level_1       TRUE
+#> 5    FR7 0.87460066 nuts_level_1       TRUE
+#> 6     TR 0.17494063      country       TRUE
+#> 7   DED2 0.03424133 nuts_level_2       TRUE
+#> 8     EL 0.32038573      country       TRUE
+#> 9     XK 0.40232824      country       TRUE
+#> 10    GB 0.19566983      country       TRUE
 
 validate_nuts_regions(my_reg_data, nuts_year = 2003)
-#>      geo    values     typology valid_2003
-#> 1    BE1 0.9705209 nuts_level_1       TRUE
-#> 2  HU102 0.3891828         <NA>      FALSE
-#> 3    FR1 0.4611865 nuts_level_1       TRUE
-#> 4    DED 0.3152418 nuts_level_1       TRUE
-#> 5    FR7 0.1746759 nuts_level_1       TRUE
-#> 6     TR 0.5315735      country       TRUE
-#> 7   DED2 0.4936370 nuts_level_2       TRUE
-#> 8     EL 0.7793086      country       TRUE
-#> 9     XK 0.2041783      country       TRUE
-#> 10    GB 0.7133973      country       TRUE
+#>      geo     values     typology valid_2003
+#> 1    BE1 0.49777739 nuts_level_1       TRUE
+#> 2  HU102 0.28976724         <NA>      FALSE
+#> 3    FR1 0.73288199 nuts_level_1       TRUE
+#> 4    DED 0.77252151 nuts_level_1       TRUE
+#> 5    FR7 0.87460066 nuts_level_1       TRUE
+#> 6     TR 0.17494063      country       TRUE
+#> 7   DED2 0.03424133 nuts_level_2       TRUE
+#> 8     EL 0.32038573      country       TRUE
+#> 9     XK 0.40232824      country       TRUE
+#> 10    GB 0.19566983      country       TRUE
 # }
 # \donttest{
 my_reg_data <- data.frame(

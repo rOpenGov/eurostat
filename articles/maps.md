@@ -48,7 +48,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/RtmpddNXgr/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
+#> Table tgs00026 cached at /tmp/RtmpviRApf/eurostat/6ab50846dd6488c9715a9569d2300eb2.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -139,7 +139,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/RtmpddNXgr/eurostat/c6396b4021847cbeffef504760e6204d.rds
+#> Table tgs00026 cached at /tmp/RtmpviRApf/eurostat/5927d3e0e4f16399db40447d2b396d6d.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -199,8 +199,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpddNXgr/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
-#> Table  tgs00026  read from cache file:  /tmp/RtmpddNXgr/eurostat/27959e307dac5a3a11eb4d1aeae1db2b.rds
+#> Reading cache file /tmp/RtmpviRApf/eurostat/6ab50846dd6488c9715a9569d2300eb2.rds
+#> Table  tgs00026  read from cache file:  /tmp/RtmpviRApf/eurostat/6ab50846dd6488c9715a9569d2300eb2.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
@@ -289,7 +289,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-02-26
+#>  date     2026-03-10
 #>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -311,7 +311,7 @@ sessioninfo::session_info()
 #>  codetools           0.2-20    2024-03-31 [3] CRAN (R 4.5.2)
 #>  colorspace          2.1-2     2025-09-22 [1] RSPM
 #>  cols4all            0.10      2025-10-27 [1] RSPM
-#>  countrycode         1.6.1     2025-03-31 [1] RSPM
+#>  countrycode         1.7.0     2026-02-27 [1] RSPM
 #>  crayon              1.5.3     2024-06-20 [1] RSPM
 #>  crosstalk           1.2.2     2025-08-26 [1] RSPM
 #>  curl                7.0.0     2025-08-19 [1] RSPM
@@ -321,11 +321,11 @@ sessioninfo::session_info()
 #>  digest              0.6.39    2025-11-19 [1] RSPM
 #>  dplyr             * 1.2.0     2026-02-03 [1] RSPM
 #>  e1071               1.7-17    2025-12-18 [1] RSPM
-#>  eurostat          * 4.0.0     2026-02-26 [1] local
+#>  eurostat          * 4.0.0     2026-03-10 [1] local
 #>  evaluate            1.0.5     2025-08-27 [1] RSPM
 #>  farver              2.1.2     2024-05-13 [1] RSPM
 #>  fastmap             1.2.0     2024-05-15 [1] RSPM
-#>  fs                  1.6.6     2025-04-12 [1] RSPM
+#>  fs                  1.6.7     2026-03-06 [1] RSPM
 #>  generics            0.1.4     2025-05-09 [1] RSPM
 #>  ggplot2           * 4.0.2     2026-02-03 [1] RSPM
 #>  giscoR              1.0.1     2026-01-23 [1] RSPM
@@ -367,7 +367,7 @@ sessioninfo::session_info()
 #>  R.oo                1.27.1    2025-05-02 [1] RSPM
 #>  R.utils             2.13.0    2025-02-24 [1] RSPM
 #>  R6                  2.6.1     2025-02-15 [1] RSPM
-#>  ragg                1.5.0     2025-09-02 [1] RSPM
+#>  ragg                1.5.1     2026-03-06 [1] RSPM
 #>  rappdirs            0.3.4     2026-01-17 [1] RSPM
 #>  raster              3.6-32    2025-03-28 [1] RSPM
 #>  RColorBrewer        1.1-3     2022-04-03 [1] RSPM
@@ -391,9 +391,9 @@ sessioninfo::session_info()
 #>  stringi             1.8.7     2025-03-27 [1] RSPM
 #>  stringr             1.6.0     2025-11-04 [1] RSPM
 #>  styler              1.11.0    2025-10-13 [1] RSPM
-#>  systemfonts         1.3.1     2025-10-01 [1] RSPM
-#>  terra               1.8-93    2026-01-12 [1] RSPM
-#>  textshaping         1.0.4     2025-10-10 [1] RSPM
+#>  systemfonts         1.3.2     2026-03-05 [1] RSPM
+#>  terra               1.9-1     2026-03-08 [1] RSPM
+#>  textshaping         1.0.5     2026-03-06 [1] RSPM
 #>  tibble              3.3.1     2026-01-11 [1] RSPM
 #>  tidyr               1.3.2     2025-12-19 [1] RSPM
 #>  tidyselect          1.2.1     2024-03-11 [1] RSPM

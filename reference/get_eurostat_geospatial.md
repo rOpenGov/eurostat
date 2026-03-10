@@ -121,7 +121,7 @@ Data downloaded using giscoR
       a vector of country names, a vector of ISO3 country codes or a
       vector of Eurostat country codes. Mixed types (as
       `c("Turkey","US","FRA")`) would not work. See also
-      [`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/reference/countrycode.html).
+      [`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/man/countrycode.html).
 
   `nuts_id`
 

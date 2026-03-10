@@ -52,7 +52,7 @@ label_eurostat_tables(x, lang = "en")
 - countrycode:
 
   A `NULL` or a name of the coding scheme for the
-  [`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/reference/countrycode.html)
+  [`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/man/countrycode.html)
   to label "geo" variable with countrycode-package. It can be used to
   convert to short and long country names in many different languages.
   If `NULL` (default) eurostat dictionary is used instead.
@@ -110,7 +110,7 @@ with `fix_duplicated = TRUE`.
 
 ## See also
 
-[`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/reference/countrycode.html)
+[`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/man/countrycode.html)
 
 Other helpers:
 [`cut_to_classes()`](https://ropengov.github.io/eurostat/reference/cut_to_classes.md),

@@ -174,13 +174,13 @@ tmp$data.start <- lubridate::as_date(
  x = tmp$data.start, 
  format = c("%Y", "%Y-Q%q", "%Y-W%W", "%Y-S%q", "%Y-%m-%d", "%Y-%m")
  )
-#> Warning:  1927 failed to parse.
+#> Warning:  1929 failed to parse.
 # Data end, same as data start
 tmp$data.end <- gsub("S2", "Q3", tmp$data.end)
 tmp$data.end <- lubridate::as_date(
  x = tmp$data.end, 
  format = c("%Y", "%Y-Q%q", "%Y-W%W", "%Y-S%q", "%Y-%m-%d", "%Y-%m")
  )
-#> Warning:  1927 failed to parse.
+#> Warning:  1929 failed to parse.
 # }
 ```
