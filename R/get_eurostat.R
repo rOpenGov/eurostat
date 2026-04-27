@@ -10,19 +10,19 @@
 #' @param filters
 #' A named list of filters. Names of list objects are Eurostat
 #' variable codes and values are vectors of observation codes. If `NULL`
-#' (default) the whole dataset is returned. See details for more information 
+#' (default) the whole dataset is returned. See details for more information
 #' on filters and limitations per query.
 #' @param time_format
 #' a string giving a type of the conversion of the time column from the
 #' eurostat format. The default argument "`date`" converts to a [Date()] class
-#' with the date being the first day of the period. A "`date_last`" argument 
-#' converts the dataset date to a [Date()] class object with the difference 
+#' with the date being the first day of the period. A "`date_last`" argument
+#' converts the dataset date to a [Date()] class object with the difference
 #' that the exact date is the last date of the period. Period can be year,
-#' semester (half year), quarter, month, or week (See [eurotime2date()] for 
+#' semester (half year), quarter, month, or week (See [eurotime2date()] for
 #' more information).
 #' Argument "`num`" converts the date into a numeric (integer) meaning that
 #' the first day of the year 2000 is close to 2000.01 and the last day of the
-#' year is close to 2000.99 (see [eurotime2num()] for more information). 
+#' year is close to 2000.99 (see [eurotime2num()] for more information).
 #' Using the argument "`raw`" preserves the dates as they were in the original
 #' Eurostat data.
 #' @param type
@@ -37,7 +37,7 @@
 #' "Y" (or "A") = annual, "S" = semi-annual / semester, "Q" = quarterly,
 #' "M" = monthly, "W" = weekly. For all frequencies in same data
 #' frame `time_format = "raw"` should be used.
-#' @param lang 2-letter language code, default is "`en`" (English), other 
+#' @param lang 2-letter language code, default is "`en`" (English), other
 #' options are "`fr`" (French) and "`de`" (German). Used for labeling datasets.
 #' @param cache
 #' a logical whether to do caching. Default is `TRUE`.
@@ -53,7 +53,7 @@
 #' @param compress_file
 #' a logical whether to compress the RDS-file in caching. Default is `TRUE`.
 #' @param stringsAsFactors
-#' if `TRUE` (the default) variables are converted to factors in the original 
+#' if `TRUE` (the default) variables are converted to factors in the original
 #' Eurostat order. If `FALSE` they are returned as strings.
 #' @param keepFlags
 #' a logical whether the flags (e.g. "confidential",
@@ -63,10 +63,10 @@
 #' Also possible non-real zero "0n" is indicated in flags column.
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
-#' @param use.data.table Use faster data.table functions? Default is FALSE. 
+#' @param use.data.table Use faster data.table functions? Default is FALSE.
 #' On Windows requires that RTools is installed.
 #' @inheritDotParams get_eurostat_json
-#' 
+#'
 #' @inherit eurostat-package references
 #'
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
@@ -77,7 +77,7 @@
 #'
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and Pyry Kantanen
-#' 
+#'
 #' @details
 #' Datasets are downloaded from
 #' [the Eurostat SDMX 2.1 API](https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API)
@@ -107,7 +107,7 @@
 #' <https://ec.europa.eu/eurostat/data/database>. The Eurostat
 #' database gives codes in the Data Navigation Tree after every dataset
 #' in parenthesis.
-#' 
+#'
 #' @return
 #' a tibble.
 #'
@@ -118,10 +118,10 @@
 #' dimensions are missing on particular time. In JSON API missing values are
 #' dropped only if all dimensions are missing on all times. The data from
 #' bulk download facility can be completed for example with [tidyr::complete()].
-#' 
+#'
 #' @seealso
 #' [search_eurostat()], [label_eurostat()]
-#' 
+#'
 #' @examplesIf check_access_to_data()
 #' \dontrun{
 #' k <- get_eurostat("nama_10_lp_ulc")
@@ -138,7 +138,7 @@
 #' set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))
 #' k <- get_eurostat("nama_10_lp_ulc")
 #' k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
-#' k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
+#' k <- get_eurostat("avia_gooc", select_time = "Y", cache = FALSE)
 #'
 #' dd <- get_eurostat("nama_10_gdp",
 #'   filters = list(
@@ -197,7 +197,7 @@ get_eurostat <- function(id,
       Please check your connection and/or review your proxy settings")
     # nocov end
   }
-  
+
   # For better code clarity, use only NULL in code
   if (is.character(filters) && identical(tolower(filters), "none")) {
     filters <- NULL
@@ -212,7 +212,7 @@ get_eurostat <- function(id,
              can be used only without filters. No Flags returned.")
     keepFlags <- FALSE
   }
-  
+
   # Sanity check
   type <- tolower(type)
   time_format <- tolower(time_format)
@@ -476,36 +476,36 @@ get_eurostat <- function(id,
 #' as object names. The datasets are downloaded from SDMX API as TSV files,
 #' meaning that they are returned without filtering. No filters can be
 #' provided using this function.
-#' 
+#'
 #' Please do not attempt to download too many datasets or the whole database
-#' at once. The number of datasets that can be downloaded at once is hardcoded 
-#' to 20. The function also asks the user for confirmation if the number of 
+#' at once. The number of datasets that can be downloaded at once is hardcoded
+#' to 20. The function also asks the user for confirmation if the number of
 #' datasets in a folder is more than 10. This is by design to discourage
 #' straining Eurostat API.
 #' @param code Folder code from Eurostat Table of Contents.
 #' @param env Name of the environment where downloaded datasets are assigned.
 #' Default is .EurostatEnv. If NULL, datasets are returned as a list object.
-#' 
+#'
 #' @inheritSection eurostat-package Data source: Eurostat Table of Contents
 #' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 Dissemination API
-#' 
+#'
 #' @author Pyry Kantanen
-#' 
+#'
 #' @inherit set_eurostat_toc seealso
-#' 
+#'
 #' @importFrom stringr str_glue
 #' @importFrom utils menu
-#' 
-#' 
+#'
+#'
 #' @export
 get_eurostat_folder <- function(code, env = .EurostatEnv) {
-  
+
   # Limit after which the function prompts the user whether they really want
   # to proceed
   soft_limit <- 10
   # Limit that cannot be crossed with this function
   hard_limit <- 20
-  
+
   toc <- get_eurostat_toc()
   if (toc[["type"]][which(toc[["code"]] == code)] != "folder") {
     warning("The code you provided is not a folder.")
@@ -514,7 +514,7 @@ get_eurostat_folder <- function(code, env = .EurostatEnv) {
   children <- toc_list_children(code)
   # Filter out potential subfolders
   children <- children[which(children$type %in% c("dataset", "table")), ]
-  
+
   if (nrow(children) == 0) {
     warning("The folder code you provided did not have any items.")
     return(invisible())
@@ -537,7 +537,7 @@ get_eurostat_folder <- function(code, env = .EurostatEnv) {
            message("Proceeding to download datasets in folder..."),
            return(invisible()))
   }
-  
+
   if (!is.null(env)) {
     for (i in seq_len(nrow(children))) {
       dataset <- get_eurostat(children$code[i], cache = TRUE)
@@ -566,28 +566,28 @@ get_eurostat_folder <- function(code, env = .EurostatEnv) {
 
 #' @title Get Eurostat data interactive
 #' @description
-#' A simple interactive helper function to go through the steps of downloading 
-#' and/or finding suitable eurostat datasets. 
-#' 
+#' A simple interactive helper function to go through the steps of downloading
+#' and/or finding suitable eurostat datasets.
+#'
 #' @details
 #' This function is intended to enable easy exploration of different eurostat
 #' package functionalities and functions. In order to not drown the end user
-#' in endless menus this function does not allow for setting 
+#' in endless menus this function does not allow for setting
 #' all possible [get_eurostat()] function arguments. It is possible to set
 #' `time_format`, `type`, `lang`, `stringsAsFactors`, `keepFlags`, and
-#' `use.data.table` in the interactive menus. 
-#' 
-#' In some datasets setting these parameters may result in a 
-#' "Error in label_eurostat" error, for example: 
-#' "labels for XXXXXX includes duplicated labels in the Eurostat dictionary". 
+#' `use.data.table` in the interactive menus.
+#'
+#' In some datasets setting these parameters may result in a
+#' "Error in label_eurostat" error, for example:
+#' "labels for XXXXXX includes duplicated labels in the Eurostat dictionary".
 #' In these cases, and with other more complex queries, please
 #' use [get_eurostat()] function directly.
-#' 
-#' @param code 
+#'
+#' @param code
 #' A unique identifier / code for the dataset of interest. If code is not
 #' known [search_eurostat()] function can be used to search Eurostat table
 #' of contents.
-#' 
+#'
 #' @seealso [get_eurostat()]
 #' @importFrom stringr str_glue
 #' @importFrom utils capture.output
@@ -602,9 +602,9 @@ get_eurostat_interactive <- function(code = NULL) {
     "fr",
     "de"
   )
-  
+
   if (is.null(code)) {
-    
+
     search_term <- readline(prompt = "Enter search term for data: ")
     results <- search_eurostat(pattern = search_term, lang = lang_selection)
     code_and_title <- paste0("[", results$code, "] ", results$title)
@@ -619,9 +619,9 @@ get_eurostat_interactive <- function(code = NULL) {
     }
     code <- results$code[choice]
   }
-  
+
   download_selection <- switch(
-    menu(choices = c("Yes", "No"), 
+    menu(choices = c("Yes", "No"),
          title = "Download the dataset?") + 1,
     return(invisible()),
     TRUE,
@@ -630,16 +630,16 @@ get_eurostat_interactive <- function(code = NULL) {
   # Set manual_selection to FALSE here to make it possible to print code
   # for downloading dataset later
   manual_selection <- FALSE
-  
+
   if (download_selection) {
     manual_selection <- switch(
-      menu(choices = c("Default", "Manually selected"), 
+      menu(choices = c("Default", "Manually selected"),
            title = "Would you like to use default download arguments or set them manually?") + 1,
       return(invisible()),
       FALSE,
       TRUE
     )
-    
+
     if (manual_selection) {
       time_format_selection <- switch(
         menu(choices = c("Convert to date, first day of the period (2000-04-01) (default)",
@@ -652,7 +652,7 @@ get_eurostat_interactive <- function(code = NULL) {
         "num",
         "raw"
       )
-      
+
       type_selection <- switch(
         menu(choices = c("Return categorical variables as short codes (default)",
                          "Return categorical variables in labeled (long) format"),
@@ -661,7 +661,7 @@ get_eurostat_interactive <- function(code = NULL) {
         "code",
         "label"
       )
-      
+
       stringsAsFactors_selection <- switch(
         menu(choices = c("Return categorical data as characters (default)",
                          "Convert categorical data into factors"),
@@ -670,7 +670,7 @@ get_eurostat_interactive <- function(code = NULL) {
         FALSE,
         TRUE
       )
-      
+
       keepFlags_selection <- switch(
         menu(choices = c("Do not return flags, just remove them (default)",
                          "Return flags in separate column")) + 1,
@@ -678,7 +678,7 @@ get_eurostat_interactive <- function(code = NULL) {
         FALSE,
         TRUE
       )
-      
+
       use.data.table_selection <- switch(
         menu(choices = c("Do not use data.table functions (default",
                          "Use data.table functions"),
@@ -718,33 +718,33 @@ get_eurostat_interactive <- function(code = NULL) {
       eurostat_data <- get_eurostat(id = code)
     }
   }
-  
+
   tempfile_for_sinking <- tempfile()
-  
+
   # eurostat_data <- get_eurostat(id = code)
   print_citation <- switch(
-    menu(choices = c("Yes", "No"), 
+    menu(choices = c("Yes", "No"),
          title = "Print dataset citation?") + 1,
-    return(invisible()), 
-    TRUE, 
+    return(invisible()),
+    TRUE,
     FALSE
   )
-  
+
   if (print_citation) {
     citation <- get_bibentry(code, lang = lang_selection)
     capture.output(cat("##### DATASET CITATION:\n\n"), file = tempfile_for_sinking, append = TRUE)
     capture.output(print(citation), file = tempfile_for_sinking, append = TRUE)
     capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
   }
-  
+
   print_code <- switch(
-    menu(choices = c("Yes", "No"), 
+    menu(choices = c("Yes", "No"),
          title = "Print code for downloading dataset?") + 1,
-    return(invisible()), 
+    return(invisible()),
     TRUE,
     FALSE
   )
-  
+
   if (print_code == TRUE && manual_selection == TRUE) {
     capture.output(cat("##### DOWNLOAD PARAMETERS:\n\n"))
     capture.output(print(stringr::str_glue(paste0("get_eurostat(id = '{code}', time_format = '{time_format_selection}', ",
@@ -758,23 +758,23 @@ get_eurostat_interactive <- function(code = NULL) {
     capture.output(print(stringr::str_glue("get_eurostat(id = '{code}')")), file = tempfile_for_sinking, append = TRUE)
     capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
   }
-  
+
   if (exists("eurostat_data")) {
     print_code <- switch(
-      menu(choices = c("Yes", "No"), 
+      menu(choices = c("Yes", "No"),
            title = "Print dataset fixity checksum?") + 1,
       return(invisible()),
       TRUE,
       FALSE
     )
-    
+
     if (print_code) {
       capture.output(cat("##### FIXITY CHECKSUM:\n\n"), file = tempfile_for_sinking, append = TRUE)
       capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {eurostat:::fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
       capture.output(cat("\n"), file = tempfile_for_sinking, append = TRUE)
     }
   }
-  
+
   if (exists("eurostat_data")) {
     cat(readLines(tempfile_for_sinking), sep = "\n")
     return(eurostat_data)
