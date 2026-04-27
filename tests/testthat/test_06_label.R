@@ -2,7 +2,7 @@ test_that("Variable names are labeled", {
   skip_on_cran()
   skip_if_offline()
   expect_equal(label_eurostat_vars(id = "nama_10_lp_ulc", x = "geo", lang = "en"), "Geopolitical entity (reporting)")
-  expect_equal(label_eurostat_tables("nama_10_lp_ulc"), "Labour productivity and unit labour costs")
+  expect_equal(label_eurostat_tables("nama_10_lp_ulc"), "Labour productivity and unit labour costs - annual data")
 
   expect_true(any(grepl(
     "_code",
@@ -38,7 +38,7 @@ test_that("Countrycodes are labelled for factors", {
     )),
     c("Finland", "Germany", "EU28")
   )
-  
+
   # sleep for a while to let the API rest
   Sys.sleep(5)
 })
