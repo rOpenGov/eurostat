@@ -54,6 +54,7 @@ test_that("get_eurostat_geospatial messages", {
 
 
 test_that("get_eurostat_geospatial nuts levels", {
+  skip_if_not_installed(pkg = "giscoR")
   skip_if_not_installed(pkg = "sf")
   # From internal data with default args
   expect_message(all <- get_eurostat_geospatial(nuts_level = "all", verbose = FALSE), "eurostat")
@@ -113,6 +114,7 @@ test_that("get_eurostat_geospatial nuts levels", {
 })
 
 test_that("get_eurostat_geospatial df", {
+  skip_if_not_installed(pkg = "giscoR")
   skip_if_not_installed(pkg = "sf")
   # From internal data with default args
   expect_message(
@@ -274,6 +276,7 @@ test_that("giscoR returns NULL", {
 
 
 test_that("Check column names", {
+  skip_if_not_installed(pkg = "giscoR")
   skip_if_not_installed(pkg = "sf")
 
   # See https://github.com/rOpenGov/eurostat/issues/240
@@ -408,20 +411,20 @@ test_that("Check column names POLYGONS from GISCO", {
 
   expect_s3_class(poly_df, "data.frame")
   expect_identical(names(poly_df), col_order[-length(col_order)])
-  
+
   # Polygons 2024
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2024,
                                   verbose = FALSE)
   expect_s3_class(poly, "sf")
   expect_identical(names(poly), col_order)
-  
+
   # df
   poly_df <- get_eurostat_geospatial(
     output_class = "df", nuts_level = 0,
     resolution = 60, year = 2024,
     verbose = FALSE
   )
-  
+
   expect_s3_class(poly_df, "data.frame")
   expect_identical(names(poly_df), col_order[-length(col_order)])
 })
@@ -560,7 +563,7 @@ test_that("Check column names LABELS from GISCO", {
 
   expect_s3_class(poly_df, "data.frame")
   expect_identical(names(poly_df), col_order[-length(col_order)])
-  
+
   # Labels 2024
   poly <- get_eurostat_geospatial(
     nuts_level = 0, resolution = 60, year = 2024,
@@ -569,14 +572,14 @@ test_that("Check column names LABELS from GISCO", {
   )
   expect_s3_class(poly, "sf")
   expect_identical(names(poly), col_order)
-  
+
   # df
   poly_df <- get_eurostat_geospatial(
     output_class = "df", nuts_level = 0,
     resolution = 60, year = 2024,
     spatialtype = "LB"
   )
-  
+
   expect_s3_class(poly_df, "data.frame")
   expect_identical(names(poly_df), col_order[-length(col_order)])
 })
@@ -699,7 +702,7 @@ test_that("Check column names BORDERS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  
+
   # BORDERS 2024
   poly <- get_eurostat_geospatial(
     nuts_level = 0, resolution = 60, year = 2024,
@@ -707,7 +710,7 @@ test_that("Check column names BORDERS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  
+
   # df
   poly_df <- get_eurostat_geospatial(
     output_class = "df", nuts_level = 0,
@@ -715,6 +718,6 @@ test_that("Check column names BORDERS from GISCO", {
     spatialtype = "BN",
     verbose = FALSE
   )
-  
+
   expect_s3_class(poly_df, "data.frame")
 })
