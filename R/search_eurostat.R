@@ -66,9 +66,9 @@ search_eurostat <- function(pattern,
     column <- "title"
   }
 
-  # Check if you have access to ec.europe.eu.
+  # Check if you have access to ec.europa.eu.
   if (!check_access_to_data()) {
-    message("You have no access to ec.europe.eu.
+    message("You have no access to ec.europa.eu.
       Please check your connection and/or review your proxy settings")
     return(invisible())
   }

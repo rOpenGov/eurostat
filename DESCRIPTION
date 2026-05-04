@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.0.0
-Date: 2023-12-19
+Version: 4.1.0.9007
+Date: 2026-04-29
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -10,6 +10,8 @@ Authors@R: c(
     person("Markus", "Kainu", role = "aut"),
     person("Przemyslaw", "Biecek", role = "aut"),
     person("Daniel", "Antal", role = "ctb"),
+    person("Daniel", "Loos", role = "ctb",
+           comment = c(ORCID = "0000-0002-4024-4443")),
     person("Diego", "Hernangomez", role = "ctb",
            comment = c(ORCID = "0000-0001-8457-4658")),
     person("Joona", "Lehtomaki", role = "ctb"),
@@ -18,8 +20,9 @@ Authors@R: c(
     person("Paul", "Rougieux", role = "ctb"),
     person("Anna", "Vasylytsya", role = "ctb"),
     person("Oliver", "Reiter", role = "ctb"),
-    person("Pyry", "Kantanen", role = "ctb",
+    person("Pyry", "Kantanen", role = "aut",
            comment = c(ORCID = "0000-0003-2853-2765")),
+    person("Akewak", "Jeba", role = "ctb"),
     person("Enrico", "Spinielli", , "enrico.spinielli@gmail.com", role = "ctb",
            comment = c(ORCID = "0000-0001-8584-9131"))
   )
@@ -38,13 +41,14 @@ Imports:
     curl,
     digest,
     dplyr,
-    httr2 (>= 0.2.3),
+    httr2 (>= 1.1.2),
+    purrr,
     ISOweek,
     jsonlite,
     lubridate,
+    R.utils,
     rappdirs,
     readr,
-    RefManageR,
     regions,
     rlang,
     stringi,
@@ -52,13 +56,14 @@ Imports:
     tibble,
     tidyr (>= 1.0.0),
     xml2,
-    data.table (>= 1.14.8)
+    data.table (>= 1.18.2.1)
 Suggests:
-    giscoR,
+    giscoR (>= 1.1.0),
     knitr,
     rmarkdown,
     sf,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    lifecycle
 VignetteBuilder: 
     knitr
 Config/Needs/website: ggplot2, tmap, styler, sessioninfo,
@@ -71,6 +76,6 @@ MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.2.3
+RoxygenNote: 7.3.3
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov

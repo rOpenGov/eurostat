@@ -38,7 +38,7 @@ Categorises a numeric vector into automatic or manually defined
 categories and polishes the labels ready for used in mapping with \code{ggplot2}.
 }
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \donttest{
 # lp <- get_eurostat("nama_aux_lp")
 lp <- get_eurostat("nama_10_lp_ulc")

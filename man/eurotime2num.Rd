@@ -21,7 +21,7 @@ a fraction of the year in beginning of the period. Conversion of daily data
 is not supported.
 }
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 na_q$TIME_PERIOD <- eurotime2num(x = na_q$TIME_PERIOD)

@@ -1,3 +1,33 @@
+# eurostat 4.1.0.9006
+
+## Minor updates
+
+* Removed experimental functions from the codebase, fixed tests that were pointing at datasets renamed by Eurostat
+
+# eurostat 4.1.0.9005
+
+## Deprecated and defunct
+
+* Removed RefManageR dependency from the package due to it being unmaintained
+
+# eurostat 4.1.0.9004
+
+## Major updates
+
+* Add new function `get_eurostat_sdmx()` for implementing functionalities that are specifically targeted for the new SDMX API. It is accompanied by other helper functions that are related to fetching metadata from the SDMX API: `build_api_base_uri()`, `build_agencyID()`, `data_filtering_on_dimension()`, `get_codelist_id()` and `label_eurostat_sdmx()`
+* Add new function `get_eurostat_local()` for reading local SDMX-CSV (.csv) and compressed SDMX-CSV (.csv.gz) files downloaded manually from the Eurostat website. This function relies only on `data.table` functions as it is expected that locally stored files may be larger and require more efficient handling with regards to RAM and processing time constrains. `tidy_eurostat_sdmx()` and `parse_filename()` are helper functions related to this function.
+* New `legacy_data_format()` function and `legacy.data.output` attribute in `get_eurostat()` and `get_eurostat_local()` transforms modern API naming conventions into the format that was used in the old API and eurostat package versions 3.8.* and prior. It is a helper function to other functions.
+* Add internal functions for retrieving SDMX metadata
+
+## Minor updates
+
+* `get_eurostat_geospatial()` documentation mentions that data from 2024 is now available (fixes issue #327 by @yhsong1013)
+* Fix mentions to Eurostat base URLs in `check_access_to_data()`, `get_eurostat()`, `get_eurostat_json()`, `get_eurostat_sdmx()`, `label_eurostat()` and `search_eurostat()` (fixes issue #326 by @olivierchantrel)
+
+## Deprecated and defunct
+
+* Remove deprecated parameter `make_valid` from `get_eurostat_geospatial()`
+
 # eurostat 4.0.0
 
 ## Major updates
@@ -70,7 +100,7 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 
 ## Major updates
 
-* Updated `get_eurostat()` and its assorted functions to download data from the new dissemination API (related to issues #251, #243). See Eurostat web page Transition - from Eurostat Bulk Download to API for a list of differences between old and new data sources: https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API
+* Updated `get_eurostat()` and its assorted functions to download data from the new dissemination API (related to issues #251, #243). See Eurostat web page Transition - from Eurostat Bulk Download to API for a list of differences between old and new data sources: https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload
 * Added new temporary functions for downloading and handling data from the new dissemination API: `get_eurostat_raw2`, `tidy_eurostat2`, `convert_time_col2`, `eurotime2date2`, `eurotime2num2` and `label_eurostat2`. When the old bulk download facilities are decommissioned, these functions will replace the old functions with old naming schemes (without the 2s at the end).
 * `tidy_eurostat2` function is now able to handle multiple time frequencies in one call: For example, you can download annual, quarterly, and monthly data simply by using a vector c("A", "Q", "M") in select_time instead of using these singular frequencies in separate calls. The function will also return multiple time series in one dataset if select_time is NULL (as it is by default). If the dataset contains multiple time series and these are explicitly downloaded / no select_time parameter is given, a message will be printed.
 * `eurotime2num` can now handle monthly and weekly data as well.
@@ -82,7 +112,7 @@ downloading geospatial data (PR #264, thanks to @dieghernan):
 
 # eurostat 3.7.13 (2023-02-01)
 
-* Updated `get_eurostat_json()` to migrate from JSON web service to API Statistics (addressed in issues #243, #251). Please note that the output from JSON API is now slightly different than before: the datasets now contain a freq column to indicate the frequency with which data has been collected, for example annually "A", monthly "M" or quarterly "Q". See Eurostat - Data browser online help website for more information: https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics
+* Updated `get_eurostat_json()` to migrate from JSON web service to API Statistics (addressed in issues #243, #251). Please note that the output from JSON API is now slightly different than before: the datasets now contain a freq column to indicate the frequency with which data has been collected, for example annually "A", monthly "M" or quarterly "Q". See Eurostat - Data browser online help website for more information: https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/json
 * Minor fixes in `get_bibentry()` and `get_eurostat_geospatial()`
 
 # eurostat 3.7.12 (2022-06-28)

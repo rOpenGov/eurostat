@@ -1,9 +1,11 @@
-citHeader("Kindly cite the eurostat R package as follows:")
-
 year <- sub("-.*", "", meta$Date)
-vers <- paste("R package version", meta$Version)
+version_note <- paste("R package version", meta$Version)
+pkg <- meta$Package
+title <- gsub("'", "", meta$Title)
+doi <- paste0("10.32614/CRAN.package.", pkg)
 
 bibentry("Article",
+  header = "Kindly cite this package by citing the following R Journal article:",
   key = "10.32614/RJ-2017-019",
   title = "Retrieval and Analysis of Eurostat Open Data with the eurostat Package",
   author = c(
@@ -28,8 +30,10 @@ bibentry("Article",
 )
 
 bibentry(bibtype = "Misc",
-  key = "eurostat",
+  header = "In addition, please provide a citation to the specific software version used:",
+  key = paste0("R-", pkg),
   title = "eurostat: Tools for Eurostat Open Data",
+  doi = doi,
   author = c(
     person("Leo", "Lahti"),
     person("Janne", "Huovari"),
@@ -42,13 +46,5 @@ bibentry(bibtype = "Misc",
   url = "https://github.com/rOpenGov/eurostat",
   type = "Computer software",
   year = year,
-  note = vers,
-  textVersion =
-    paste0(
-      "Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D., and Kantanen P. (",
-      sub("-.*", "", meta$Date),
-      "). eurostat: Tools for Eurostat Open Data [Computer software]. ",
-      vers,
-      ". https://github.com/rOpenGov/eurostat"
-    )
+  note = version_note
 )

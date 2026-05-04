@@ -20,7 +20,7 @@ United Kingdom. This function turns country codes into to ISO
 3166-1 alpha-2.
 }
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \donttest{
 lp <- get_eurostat("nama_10_lp_ulc")
 lp$geo <- harmonize_country_code(lp$geo)

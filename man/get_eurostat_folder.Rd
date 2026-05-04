@@ -36,14 +36,14 @@ The Eurostat Table of Contents (TOC) is downloaded from
 \url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de}
 
 See Eurostat documentation on TOC items:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/catalogue-api/toc}
 }
 
 \section{Data source: Eurostat SDMX 2.1 Dissemination API}{
 Data is downloaded from Eurostat SDMX 2.1 API endpoint
 as compressed TSV files that are transformed into tabular format.
 See Eurostat documentation for more information:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Dataquery}
 
 The new dissemination API replaces the old bulk download facility that was
 used by Eurostat before October 2023 and by the eurostat R package versions
@@ -51,7 +51,7 @@ before 4.0.0.
 See Eurostat documentation about the transition from Bulk Download to API
 for more information about the differences between the old bulk download
 facility and the data provided by the new API connection:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload}
 
 See especially the document Migrating_to_API_TSV.pdf that describes the
 changes in TSV file format in new applications.

@@ -24,7 +24,7 @@ human-readable labels. To translate codes to labels, use
 \code{\link[=label_eurostat]{label_eurostat()}}.
 }
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \donttest{
 get_eurostat_dic("crop_pro")
 
@@ -36,41 +36,24 @@ get_eurostat_dic("crop_pro", lang = "fr")
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{# Kindly cite this package by citing the following R Journal article:
 # 
 #   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
 #   analysis of Eurostat open data with the eurostat package. The R
 #   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 # 
-# A BibTeX entry for LaTeX users is
+# In addition, please provide a citation to the specific software version
+# used:
 # 
-#   @Article\{10.32614/RJ-2017-019,
-#     title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-#     journal = \{The R Journal\},
-#     volume = \{9\},
-#     number = \{1\},
-#     pages = \{385--392\},
-#     year = \{2017\},
-#     doi = \{10.32614/RJ-2017-019\},
-#     url = \{https://doi.org/10.32614/RJ-2017-019\},
-#   \}
+#   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+#   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+#   doi:10.32614/CRAN.package.eurostat
+#   <https://doi.org/10.32614/CRAN.package.eurostat>, R package version
+#   4.1.0.9007, <https://github.com/rOpenGov/eurostat>.
 # 
-#   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-#   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-#   [Computer software]. R package version 4.0.0.
-#   https://github.com/rOpenGov/eurostat
-# 
-# A BibTeX entry for LaTeX users is
-# 
-#   @Misc\{eurostat,
-#     title = \{eurostat: Tools for Eurostat Open Data\},
-#     author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
-#     url = \{https://github.com/rOpenGov/eurostat\},
-#     type = \{Computer software\},
-#     year = \{2023\},
-#     note = \{R package version 4.0.0\},
-#   \}
+# To see these entries in BibTeX format, use 'print(<citation>,
+# bibtex=TRUE)', 'toBibtex(.)', or set
+# 'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
 }
 \seealso{

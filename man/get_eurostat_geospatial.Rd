@@ -15,19 +15,19 @@ get_eurostat_geospatial(
   output_class = "sf",
   resolution = "60",
   nuts_level = "all",
-  year = "2016",
+  year = "2024",
   cache = TRUE,
   update_cache = FALSE,
   cache_dir = NULL,
   crs = "4326",
-  make_valid = "DEPRECATED",
+  verbose = TRUE,
   ...
 )
 }
 \arguments{
 \item{output_class}{Class of object returned,
 either \code{sf} \verb{simple features} or \code{df} (\code{data_frame}). \code{spdf} output has
-been soft-deprecated, the function would switch to \code{sf}.}
+been soft-deprecated, the function will switch to \code{sf}.}
 
 \item{resolution}{Resolution of the geospatial data. One of
 \itemize{
@@ -42,16 +42,18 @@ been soft-deprecated, the function would switch to \code{sf}.}
 "0", "1", "2", "3" or "all" (mimics the original behaviour)}
 
 \item{year}{NUTS release year. One of
-"2003", "2006", "2010", "2013", "2016" or "2021"}
+"2003", "2006", "2010", "2013", "2016", "2021" or "2024"}
 
 \item{cache}{a logical whether to do caching. Default is \code{TRUE}.}
 
 \item{update_cache}{a logical whether to update cache. Can be set also with
 \code{options(eurostat_update = TRUE)}}
 
-\item{cache_dir}{a path to a cache directory. See
-\code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}. If \code{NULL} and the cache dir has not been set
-globally the file would be stored in the \code{\link[=tempdir]{tempdir()}}.}
+\item{cache_dir}{a path to a cache directory. \code{NULL} (default) uses and creates
+'eurostat' directory in the temporary directory defined by base R
+\code{\link[=tempdir]{tempdir()}} function. The user can set the cache directory to an existing
+directory by using this argument. The cache directory can also be set with
+\code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}} function.}
 
 \item{crs}{projection of the map: 4-digit
 \href{https://spatialreference.org/ref/epsg/}{EPSG code}. One of:
@@ -61,34 +63,20 @@ globally the file would be stored in the \code{\link[=tempdir]{tempdir()}}.}
 \item "3857" - Pseudo-Mercator
 }}
 
-\item{make_valid}{Deprecated}
+\item{verbose}{Output messages when downloading data. Default is \code{TRUE}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts}}
-  \describe{
-    \item{\code{verbose}}{Logical, displays information. Useful for debugging,
-default is \code{FALSE}.}
-    \item{\code{spatialtype}}{Type of geometry to be returned:
-\itemize{
-\item \strong{"BN"}: Boundaries - \code{LINESTRING} object.
-\item \strong{"LB"}: Labels - \code{POINT} object.
-\item \strong{"RG"}: Regions - \code{MULTIPOLYGON/POLYGON} object.
-}}
-    \item{\code{country}}{Optional. A character vector of country codes. It could be
-either a vector of country names, a vector of ISO3 country codes or a
-vector of Eurostat country codes. Mixed types (as \code{c("Turkey","US","FRA")})
-would not work. See also \code{\link[countrycode:countrycode]{countrycode::countrycode()}}.}
-    \item{\code{nuts_id}}{Optional. A character vector of NUTS IDs.}
-  }}
+\item{...}{additional arguments to be passed onto \CRANpkg{giscoR} function
+\code{gisco_get_nuts()}}
 }
 \value{
 a sf or data_frame
 }
 \description{
 Downloads either a simple features (sf) or a data_frame
-of NUTS regions. This function is a wrapper of \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}.
-This function requires to have installed the packages \CRANpkg{sf} and
-\CRANpkg{giscoR}.
+of NUTS regions. This function is a wrapper of \CRANpkg{giscoR} function
+\code{gisco_get_nuts()}.
+This function requires to have packages \CRANpkg{sf} and
+\CRANpkg{giscoR} installed.
 }
 \details{
 The objects downloaded from GISCO should contain all or some of the
@@ -239,6 +227,7 @@ sf <- get_eurostat_geospatial(
   resolution = "60",
   nuts_level = "all"
 )
+\dontrun{
 # Downloads dataset from server
 sf2 <- get_eurostat_geospatial(
   output_class = "sf",
@@ -250,13 +239,14 @@ df <- get_eurostat_geospatial(
   nuts_level = "0"
 )
 }
+}
 
 }
 \seealso{
-\code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}
+giscoR package and its functions
 
 Other geospatial: 
-\code{\link{eurostat_geodata_60_2016}}
+\code{\link{eurostat_geodata_60_2024}}
 }
 \author{
 Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}, Diego Hernangomez

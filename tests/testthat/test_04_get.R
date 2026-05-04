@@ -21,14 +21,14 @@ test_that("get_eurostat (dissemination API) includes TIME_PERIOD and value", {
 test_that("get_eurostat (dissemination API) produces a message with multiple select_time", {
   skip_on_cran()
   skip_if_offline()
-  expect_message(get_eurostat(id = "avia_gonc",
+  expect_message(get_eurostat(id = "avia_gooc",
                               select_time = c("A", "M", "Q")))
 })
 
 test_that("get_eurostat (dissemination API) produces an error with imaginary select_time parameters", {
   skip_on_cran()
   skip_if_offline()
-  expect_error(get_eurostat(id = "avia_gonc",
+  expect_error(get_eurostat(id = "avia_gooc",
                               select_time = c("X", "Y", "Z")))
   # sleep for a while to let the API rest
   Sys.sleep(5)
@@ -37,11 +37,11 @@ test_that("get_eurostat (dissemination API) produces an error with imaginary sel
 test_that("get_eurostat (dissemination API) works correctly with multi-frequency", {
   skip_on_cran()
   skip_if_offline()
-  expect_message(get_eurostat("avia_gonc", 
+  expect_message(get_eurostat("avia_gooc", 
                               cache = FALSE,
                               time_format = "date_last")
                  )
-  expect_match(as.character(unique(get_eurostat("avia_gonc",
+  expect_match(as.character(unique(get_eurostat("avia_gooc",
                                                 select_time = NULL,
                                                 cache = FALSE)$TIME_PERIOD)), 
                "-01-01")

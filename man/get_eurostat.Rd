@@ -18,6 +18,8 @@ get_eurostat(
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
   use.data.table = FALSE,
+  legacy.data.output = FALSE,
+  verbose = TRUE,
   ...
 )
 }
@@ -27,9 +29,9 @@ known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to 
 of contents.}
 
 \item{time_format}{a string giving a type of the conversion of the time column from the
-eurostat format. The default argument "\code{date}" converts to a \code{\link[=Date]{Date()}} class
+eurostat format. The default argument "\code{date}" converts to a \code{\link[lubridate:date_utils]{lubridate::Date()}} class
 with the date being the first day of the period. A "\code{date_last}" argument
-converts the dataset date to a \code{\link[=Date]{Date()}} class object with the difference
+converts the dataset date to a \code{\link[lubridate:date_utils]{lubridate::Date()}} class object with the difference
 that the exact date is the last date of the period. Period can be year,
 semester (half year), quarter, month, or week (See \code{\link[=eurotime2date]{eurotime2date()}} for
 more information).
@@ -86,6 +88,12 @@ can not be used with a \code{filters}.}
 \item{use.data.table}{Use faster data.table functions? Default is FALSE.
 On Windows requires that RTools is installed.}
 
+\item{legacy.data.output}{Use legacy column names and data object structure.
+Default is FALSE. If TRUE, the object will try to emulate the naming
+conventions of eurostat package version 3.7.x and earlier.}
+
+\item{verbose}{Output messages when downloading data. Default is \code{TRUE}.}
+
 \item{...}{
   Arguments passed on to \code{\link[=get_eurostat_json]{get_eurostat_json}}
   \describe{
@@ -108,9 +116,9 @@ Download data sets from Eurostat \url{https://ec.europa.eu/eurostat}
 }
 \details{
 Datasets are downloaded from
-\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}{the Eurostat SDMX 2.1 API}
+\href{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload}{the Eurostat SDMX 2.1 API}
 in TSV format or from The Eurostat
-\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}{API Statistics JSON API}.
+\href{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api}{API Statistics JSON API}.
 If only the table \code{id} is given, the whole table is downloaded from the
 SDMX API. If any \code{filters} are given JSON API is used instead.
 
@@ -252,7 +260,7 @@ Example:
 
 For more information about data filtering see Eurostat documentation
 on API Statistics:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
 }
 }
 
@@ -290,7 +298,7 @@ datasets downloaded through the SDMX Dissemination API is also supported by
 Eurostat. We may support this feature in the future. In the meantime, if you
 are interested in filtering Dissemination API data queries manually, please
 consult the following Eurostat documentation:
-\url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+\url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys}
 }
 
 \section{Strategies for handling large datasets more efficiently}{
@@ -319,7 +327,7 @@ what different arguments do
 }
 
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \dontrun{
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", time_format = "num")
@@ -335,7 +343,7 @@ options(eurostat_update = FALSE)
 set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
-k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
+k <- get_eurostat("avia_gooc", select_time = "Y", cache = FALSE)
 
 dd <- get_eurostat("nama_10_gdp",
   filters = list(
@@ -369,41 +377,24 @@ dd3_filter <- get_eurostat("AVIA_GOR_ME",
 \references{
 See \code{citation("eurostat")}:
 
-\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite the eurostat R package as follows:
+\if{html}{\out{<div class="sourceCode">}}\preformatted{Kindly cite this package by citing the following R Journal article:
 
   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
   analysis of Eurostat open data with the eurostat package. The R
   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-A BibTeX entry for LaTeX users is
+In addition, please provide a citation to the specific software version
+used:
 
-  @Article\{10.32614/RJ-2017-019,
-    title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-    journal = \{The R Journal\},
-    volume = \{9\},
-    number = \{1\},
-    pages = \{385--392\},
-    year = \{2017\},
-    doi = \{10.32614/RJ-2017-019\},
-    url = \{https://doi.org/10.32614/RJ-2017-019\},
-  \}
+  Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+  Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+  doi:10.32614/CRAN.package.eurostat
+  <https://doi.org/10.32614/CRAN.package.eurostat>, R package version
+  4.1.0.9007, <https://github.com/rOpenGov/eurostat>.
 
-  Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-  and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-  [Computer software]. R package version 4.0.0.
-  https://github.com/rOpenGov/eurostat
-
-A BibTeX entry for LaTeX users is
-
-  @Misc\{eurostat,
-    title = \{eurostat: Tools for Eurostat Open Data\},
-    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
-    url = \{https://github.com/rOpenGov/eurostat\},
-    type = \{Computer software\},
-    year = \{2023\},
-    note = \{R package version 4.0.0\},
-  \}
+To see these entries in BibTeX format, use 'print(<citation>,
+bibtex=TRUE)', 'toBibtex(.)', or set
+'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat data"

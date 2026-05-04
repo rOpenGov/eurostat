@@ -93,9 +93,9 @@ label_eurostat <-
            custom_dic = NULL,
            fix_duplicated = FALSE) {
 
-    # Check if you have access to ec.europe.eu.
+    # Check if you have access to ec.europa.eu.
     if (!check_access_to_data()) {
-      message(paste("You have no access to ec.europe.eu. Please check your",
+      message(paste("You have no access to ec.europa.eu. Please check your",
                     "connection and/or review your proxy settings"))
     } else {
 

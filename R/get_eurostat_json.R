@@ -1,11 +1,15 @@
-#' @title Get Data from Eurostat API in JSON
-#' @description Retrieve data from Eurostat API in JSON format.
+#' @title Get Data from Eurostat API Statistics
+#' @description Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
 #' @details
 #'   Data to retrieve from
-#'   [The Eurostat Web Services](https://ec.europa.eu/eurostat/web/main/data/web-services)
+#'   [The Eurostat API Statistics](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
 #'   can be specified with filters. Normally, it is
 #'   better to use JSON query through [get_eurostat()], than to use
-#'   [get_eurostat_json()] directly.
+#'   [get_eurostat_json()] directly. The main reason for this is that 
+#'   [get_eurostat_json()] returns a relatively raw dataset that does not go
+#'   through helper functions in [get_eurostat()], such as [eurotime2date()] or 
+#'   [eurotime2num()] functions or reading data from cache and saving data 
+#'   to cache.
 #'
 #'   Queries are limited to 50 sub-indicators at a time. A time can be
 #'   filtered with fixed "time" filter or with "sinceTimePeriod" and
@@ -26,6 +30,18 @@
 #'   the possible interpretation or cause of each error. These messages are
 #'   returned if the API returns a status indicating a HTTP error
 #'   (400 or greater).
+#'   
+#'   Additionally, there is limit on the size of the returned extractions 
+#'   (error code 413). 
+#'   At the time of publishing this package version, the max authorised size for
+#'   the extraction seems to be 5000000 (5 million) rows. The server seems to
+#'   estimate the size of the returned data object with a method that is
+#'   unknown to us so the number of rows might not be the same as the number
+#'   of returned rows in the JSON-stat object. You can limit the number of rows
+#'   in your extraction by providing more filters to the query. If the
+#'   extraction size continues to go over limit you can try to download the
+#'   whole dataset with [get_eurostat()] and filter it locally on your computer,
+#'   for example with base R or dplyr data wrangling functions.
 #'
 #'   The Eurostat implementation seems to be based on SDMX 2.1, which is the
 #'   reason we've used SDMX Standards guidelines as a supplementary source
@@ -104,20 +120,16 @@ get_eurostat_json <- function(id,
     return(NULL)
   }
 
-  # Check if you have access to ec.europe.eu.
+  # Check if you have access to ec.europa.eu.
   if (!check_access_to_data()) {
     # nocov start
-    message("You have no access to ec.europe.eu.
+    message("You have no access to ec.europa.eu.
       Please check your connection and/or review your proxy settings")
     # nocov end
   }
 
   # construct url
   url <- eurostat_json_url(id = id, filters = filters, lang = lang)
-  # set user agent with version
-  # ua <- httr::user_agent(paste0("eurostat_",
-  # packageDescription("eurostat", fields = "Version")))
-  # ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
   
   if (proxy == TRUE) {
     # Check if "..." has arguments needed for proxy
@@ -150,13 +162,6 @@ get_eurostat_json <- function(id,
     httr2::req_error(is_error = function(resp) FALSE) %>% 
     httr2::req_perform()
 
-  # RETRY GET 3 times
-  # resp <- httr::RETRY(verb = "GET",
-  #                     url = url,
-  #                     times = 3,
-  #                     terminate_on = c(404),
-  #                     ua)
-
   # Source: httr vignette "Best practices for API packages" [httr_vignette]
   if (httr2::resp_content_type(resp) != "application/json") {
     stop("API did not return json", call. = FALSE)
@@ -167,7 +172,6 @@ get_eurostat_json <- function(id,
   result <- httr2::resp_body_json(
       resp = resp,
       simplifyVector = TRUE)
-
   if (httr2::resp_is_error(resp)) {
 
     # These objects are only needed if there is an error
@@ -187,10 +191,10 @@ get_eurostat_json <- function(id,
                              "  Error id: {id} ({faultstring})\n",
                              "  Error label from API: {label}")
       )
-    } else {
+    } else{
       stop(stringr::str_glue("\n",
                              "HTTP status: {status} ({status_code_label})\n",
-                             "  Error id: {id} ({faultstring})\n",
+                             "  Error id: {id} \n",
                              "  Error label from API: {label}")
       )
     }
@@ -211,8 +215,6 @@ get_eurostat_json <- function(id,
                msg)
     )
   }
-
-  #status <- httr::status_code(resp)
 
   # check status and get json
   jdat <- result

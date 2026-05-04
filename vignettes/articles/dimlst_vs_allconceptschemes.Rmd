@@ -32,7 +32,7 @@ AGECHILD	Age of the child
 AGEDEF	Age definition
 ```
 
-An example of the new Concept Scheme file for dataset `NAMA_10_GDP` (see instructions for downloading [here](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+metadata+query#APISDMX2.1metadataquery-SDMX2.1endpoint-REST-SDMX-ML2.1ConceptScheme)):
+An example of the new Concept Scheme file for dataset `NAMA_10_GDP` (see instructions for downloading [here](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Lookingupinthemetadataofadataset)):
 
 ```{xml}
 <s:Concept id="freq" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq">

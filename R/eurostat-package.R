@@ -12,7 +12,7 @@
 #' | **Package**  | eurostat |
 #' | **Type**     | Package  |
 #' | **Version**  | `r packageVersion("eurostat")` |
-#' | **Date**     | 2014-2023     |
+#' | **Date**     | 2014-2025     |
 #' | **License**  | `r as.character(utils::packageDescription("eurostat")["License"])`|
 #' | **LazyLoad** | yes      |
 #'
@@ -50,7 +50,7 @@
 #' Data is downloaded from Eurostat SDMX 2.1 API endpoint 
 #' as compressed TSV files that are transformed into tabular format.
 #' See Eurostat documentation for more information:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Dataquery}
 #' 
 #' The new dissemination API replaces the old bulk download facility that was 
 #' used by Eurostat before October 2023 and by the eurostat R package versions 
@@ -58,7 +58,7 @@
 #' See Eurostat documentation about the transition from Bulk Download to API
 #' for more information about the differences between the old bulk download 
 #' facility and the data provided by the new API connection:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload}
 #' 
 #' See especially the document Migrating_to_API_TSV.pdf that describes the 
 #' changes in TSV file format in new applications.
@@ -75,20 +75,20 @@
 #' Eurostat. We may support this feature in the future. In the meantime, if you
 #' are interested in filtering Dissemination API data queries manually, please
 #' consult the following Eurostat documentation:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys}
 #' 
 #' # Data source: Eurostat API Statistics (JSON API)
 #' 
 #' Data is downloaded from Eurostat API Statistics. See Eurostat documentation
 #' for more information about data queries in API Statistics
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api}
 #' 
 #' This replaces the old JSON Web Services that was used by Eurostat before
 #' February 2023 and by the eurostat R package versions before 3.7.13.
 #' See Eurostat documentation about the migration from JSON web service to API
 #' Statistics for more information about the differences between the old and
 #' the new service:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/json}
 #' 
 #' For easily viewing which filtering options are available -  in addition to
 #' the default ones, time and language - Eurostat Web services Query builder 
@@ -182,7 +182,7 @@
 #' 
 #' For more information about data filtering see Eurostat documentation
 #' on API Statistics:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest}
 #' 
 #' # Data source: Eurostat Table of Contents
 #' 
@@ -193,7 +193,7 @@
 #' \url{https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de}
 #' 
 #' See Eurostat documentation on TOC items:
-#' \url{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC}
+#' \url{https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/catalogue-api/toc}
 #' 
 #' # Data source: GISCO - General Copyright
 #' 
@@ -339,4 +339,4 @@
 #' regions package are imported <https://regions.dataobservatory.eu/>.
 #' @keywords package
 #' @seealso `help("regions")`, <https://regions.dataobservatory.eu/>
-NULL
+"_PACKAGE"

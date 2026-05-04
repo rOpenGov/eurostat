@@ -1,63 +1,49 @@
 #' Geospatial data of Europe from GISCO in 1:60 million scale from
-#'   year 2016
+#'   year 2024
 #'
 #' @description Geospatial data of Europe from GISCO in 1:60 million scale
-#'  from year 2016
+#'  from year 2024
 #'
 #' @family datasets
 #' @family geospatial
 #' @format sf object
 #' @docType data
-#' @name eurostat_geodata_60_2016
+#' @name eurostat_geodata_60_2024
 #'
-#' @details
-#' The dataset contains 2016 observations (rows) and 12 variables (columns).
+#' @format The dataset contains 2016 observations (rows) and 12 variables (columns):
+#' \describe{
+#'   \item{id}{JSON id code, the same as NUTS_ID. See NUTS_ID below for further clarification.}
+#'   \item{LEVL_CODE}{NUTS level code: 0 (national level), 1 (major socio-economic regions), 2 (basic regions for the application of regional policies) or 3 (small regions).}
+#'   \item{NUTS_ID}{NUTS ID code, consisting of country code and numbers (1 for NUTS 1, 2 for NUTS 2 and 3 for NUTS 3)}
+#'   \item{CNTR_CODE}{Country code: two-letter ISO code (ISO 3166 alpha-2), except in the case of Greece (EL).}
+#'   \item{NAME_LATN}{NUTS name in local language, transliterated to Latin script}
+#'   \item{NUTS_NAME}{NUTS name in local language, in local script.}
+#'   \item{MOUNT_TYPE}{Mountain typology for NUTS 3 regions.
+#'   1: "where more than 50 % of the surface is covered by topographic mountain areas"
+#'   2: "in which more than 50 % of the regional population lives in topographic mountain areas"
+#'   3: "where more than 50 % of the surface is covered by topographic mountain areas and where more than 50 % of the regional population lives in these mountain areas"
+#'   4: non-mountain region / other region
+#'   0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 and non-EU countries)}
+#'   \item{URBN_TYPE}{Urban-rural typology for NUTS 3 regions.
+#'   1: predominantly urban region
+#'   2: intermediate region
+#'   3: predominantly rural region
+#'   0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 regions)}
+#'   \item{COAST_TYPE}{Coastal typology for NUTS 3 regions.
+#'   1: coastal (on coast)
+#'   2: coastal (>= 50% of population living within 50km of the coastline)
+#'   3: non-coastal region
+#'   0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 regions)}
+#'   \item{FID}{Same as NUTS_ID}
+#'   \item{geo}{Same as NUTS_ID}
+#'   \item{geometry}{geospatial information}
+#' }
 #'
-#' The object contains the following columns:
-#' * **id**: JSON id code, the same as **NUTS_ID**. See **NUTS_ID** below for
-#'   further clarification.
-#' * **LEVL_CODE**: NUTS level code: 0 (national level), 1 (major
-#'   socio-economic regions), 2 (basic regions for the application of regional
-#'   policies) or 3 (small regions).
-#' * **NUTS_ID**: NUTS ID code, consisting of country code and numbers (1 for
-#'   NUTS 1, 2 for NUTS 2 and 3 for NUTS 3)
-#' * **CNTR_CODE**: Country code: two-letter ISO code (ISO 3166 alpha-2), except
-#'   in the case of Greece (EL).
-#' * **NAME_LATN**: NUTS name in local language, transliterated to Latin script
-#' * **NUTS_NAME**: NUTS name in local language, in local script.
-#' * **MOUNT_TYPE**: Mountain typology for NUTS 3 regions.
-#'   * 1: "where more than 50 % of the surface is covered by topographic
-#'     mountain areas"
-#'   * 2: "in which more than 50 % of the regional population lives in
-#'     topographic mountain areas"
-#'   * 3: "where more than 50 % of the surface is covered by topographic
-#'     mountain areas and where more than 50 % of the regional population lives
-#'     in these mountain areas"
-#'   * 4: non-mountain region / other region
-#'   * 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2 and
-#'     non-EU countries)
-#' * **URBN_TYPE**: Urban-rural typology for NUTS 3 regions.
-#'   * 1: predominantly urban region
-#'   * 2: intermediate region
-#'   * 3: predominantly rural region
-#'   * 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
-#'     regions)
-#' * **COAST_TYPE**: Coastal typology for NUTS 3 regions.
-#'   * 1: coastal (on coast)
-#'   * 2: coastal (>= 50% of population living within 50km of the coastline)
-#'   * 3: non-coastal region
-#'   * 0: no classification provided (e.g. in the case of NUTS 1 and NUTS 2
-#'     regions)
-#' * **FID**: Same as NUTS_ID.
-#' * **geo**: Same as NUTS_ID, added for for easier joins with dplyr. However,
-#'   it is recommended to use other identical fields for this purpose.
-#' * **geometry**: geospatial information.
-#'
-#' Dataset updated: 2023-06-29. For a more recent version, please use
-#'   [giscoR::gisco_get_nuts()] function.
+#' Dataset updated: 2023-06-29. For a possibly more recent version, please use
+#'   \CRANpkg{giscoR} function `gisco_get_nuts()` function.
 #'
 #' @source
-#' Data source: Eurostat via [giscoR::gisco_get_nuts()].
+#' Data source: Eurostat via giscoR package function `gisco_get_nuts()`.
 #'
 #' © EuroGeographics for the administrative boundaries
 #'
@@ -107,22 +93,22 @@
 #' If you intend to use the data commercially, please contact EuroGeographics
 #' for information regarding their licence agreements."
 #'
-#' @seealso [giscoR::gisco_get_nuts()] and
+#' @seealso \CRANpkg{giscoR} function `gisco_get_nuts()` and
 #' [Eurostat. (2019). Methodological manual on territorial typologies -- 2018 edition. Manuals and guidelines.](https://ec.europa.eu/eurostat/web/products-manuals-and-guidelines/-/ks-gq-18-008)
 #'
 #'
 #' @examples
 #'
-#' eurostat_geodata_60_2016 <- eurostat::eurostat_geodata_60_2016
+#' eurostat_geodata_60_2024 <- eurostat::eurostat_geodata_60_2024
 #'
 #' # Manipulate and plot
 #' if (require(sf)) {
 #'   library(sf)
 #'   # Filter NUTS3 from select countries like in a regular data frame
-#'   example_nuts <- subset(eurostat_geodata_60_2016, LEVL_CODE == 3 &
+#'   example_nuts <- subset(eurostat_geodata_60_2024, LEVL_CODE == 3 &
 #'     CNTR_CODE %in% c("DK", "DE", "PL"))
 #'
 #'   plot(example_nuts["CNTR_CODE"])
 #' }
 #'
-NULL
+"eurostat_geodata_60_2024"
