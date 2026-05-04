@@ -15,7 +15,7 @@ get_eurostat_geospatial(
   output_class = "sf",
   resolution = "60",
   nuts_level = "all",
-  year = "2016",
+  year = "2024",
   cache = TRUE,
   update_cache = FALSE,
   cache_dir = NULL,
@@ -27,7 +27,7 @@ get_eurostat_geospatial(
 \arguments{
 \item{output_class}{Class of object returned,
 either \code{sf} \verb{simple features} or \code{df} (\code{data_frame}). \code{spdf} output has
-been soft-deprecated, the function would switch to \code{sf}.}
+been soft-deprecated, the function will switch to \code{sf}.}
 
 \item{resolution}{Resolution of the geospatial data. One of
 \itemize{
@@ -65,33 +65,18 @@ directory by using this argument. The cache directory can also be set with
 
 \item{verbose}{Output messages when downloading data. Default is \code{TRUE}.}
 
-\item{...}{
-  Arguments passed on to \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts}}
-  \describe{
-    \item{\code{spatialtype}}{Type of geometry to be returned:
-\itemize{
-\item \code{"BN"}: Boundaries - \code{LINESTRING} object.
-\item \code{"LB"}: Labels - \code{POINT} object.
-\item \code{"RG"}: Regions - \code{MULTIPOLYGON/POLYGON} object.
-}
-
-\strong{Note that} parameters \code{country}, \code{nuts_level} and \code{nuts_id} would be only
-applied when \code{spatialtype} is \code{"BN"} or \code{"RG"}.}
-    \item{\code{country}}{Optional. A character vector of country codes. It could be
-either a vector of country names, a vector of ISO3 country codes or a
-vector of Eurostat country codes. Mixed types (as \code{c("Italy","ES","FRA")})
-would not work. See also \code{\link[countrycode:countrycode]{countrycode::countrycode()}}.}
-    \item{\code{nuts_id}}{Optional. A character vector of NUTS IDs.}
-  }}
+\item{...}{additional arguments to be passed onto \CRANpkg{giscoR} function
+\code{gisco_get_nuts()}}
 }
 \value{
 a sf or data_frame
 }
 \description{
 Downloads either a simple features (sf) or a data_frame
-of NUTS regions. This function is a wrapper of \code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}.
-This function requires to have installed the packages \CRANpkg{sf} and
-\CRANpkg{giscoR}.
+of NUTS regions. This function is a wrapper of \CRANpkg{giscoR} function
+\code{gisco_get_nuts()}.
+This function requires to have packages \CRANpkg{sf} and
+\CRANpkg{giscoR} installed.
 }
 \details{
 The objects downloaded from GISCO should contain all or some of the
@@ -242,6 +227,7 @@ sf <- get_eurostat_geospatial(
   resolution = "60",
   nuts_level = "all"
 )
+\dontrun{
 # Downloads dataset from server
 sf2 <- get_eurostat_geospatial(
   output_class = "sf",
@@ -253,13 +239,14 @@ df <- get_eurostat_geospatial(
   nuts_level = "0"
 )
 }
+}
 
 }
 \seealso{
-\code{\link[giscoR:gisco_get_nuts]{giscoR::gisco_get_nuts()}}
+giscoR package and its functions
 
 Other geospatial: 
-\code{\link{eurostat_geodata_60_2016}}
+\code{\link{eurostat_geodata_60_2024}}
 }
 \author{
 Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}, Diego Hernangomez

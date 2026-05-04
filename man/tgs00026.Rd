@@ -21,7 +21,7 @@ Data retrieval date: 2022-06-27
 \seealso{
 Other datasets: 
 \code{\link{eu_countries}},
-\code{\link{eurostat_geodata_60_2016}}
+\code{\link{eurostat_geodata_60_2024}}
 }
 \concept{datasets}
 \keyword{datasets}

@@ -15,7 +15,7 @@ utilities.
     \tab  \cr
    \strong{Package} \tab eurostat \cr
    \strong{Type} \tab Package \cr
-   \strong{Version} \tab 4.1.0.9006 \cr
+   \strong{Version} \tab 4.1.0.9007 \cr
    \strong{Date} \tab 2014-2025 \cr
    \strong{License} \tab BSD_2_clause + file LICENSE \cr
    \strong{LazyLoad} \tab yes \cr
@@ -358,10 +358,10 @@ In addition, please provide a citation to the specific software version
 used:
 
   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
-  Kantanen P (2025). "eurostat: Tools for Eurostat Open Data."
+  Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
   doi:10.32614/CRAN.package.eurostat
   <https://doi.org/10.32614/CRAN.package.eurostat>, R package version
-  4.1.0.9006, <https://github.com/rOpenGov/eurostat>.
+  4.1.0.9007, <https://github.com/rOpenGov/eurostat>.
 
 To see these entries in BibTeX format, use 'print(<citation>,
 bibtex=TRUE)', 'toBibtex(.)', or set

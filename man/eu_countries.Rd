@@ -47,7 +47,7 @@ of Greece where EL is used instead of the standard ISO code.
 }
 \seealso{
 Other datasets: 
-\code{\link{eurostat_geodata_60_2016}},
+\code{\link{eurostat_geodata_60_2024}},
 \code{\link{tgs00026}}
 }
 \concept{datasets}

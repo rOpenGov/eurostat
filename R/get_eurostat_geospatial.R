@@ -1,15 +1,15 @@
 #' @title Download Geospatial Data from GISCO
 #'
 #' @description Downloads either a simple features (sf) or a data_frame
-#' of NUTS regions. This function is a wrapper of [giscoR::gisco_get_nuts()].
-#' This function requires to have installed the packages \CRANpkg{sf} and
-#' \CRANpkg{giscoR}.
+#' of NUTS regions. This function is a wrapper of \CRANpkg{giscoR} function
+#' `gisco_get_nuts()`.
+#' This function requires to have packages \CRANpkg{sf} and
+#' \CRANpkg{giscoR} installed.
 #'
-#' @seealso [giscoR::gisco_get_nuts()]
+#' @seealso giscoR package and its functions
 #' @param output_class Class of object returned,
 #'   either `sf` `simple features` or `df` (`data_frame`). `spdf` output has
-#'   been soft-deprecated, the function would switch to `sf`.
-#' @inheritParams giscoR::gisco_get_nuts
+#'   been soft-deprecated, the function will switch to `sf`.
 #' @param resolution Resolution of the geospatial data. One of
 #'    * "60" (1:60million),
 #'    * "20" (1:20million)
@@ -25,6 +25,8 @@
 #'  * "4326" - WGS84
 #'  * "3035" - ETRS89 / ETRS-LAEA
 #'  * "3857" - Pseudo-Mercator
+#' @param ... additional arguments to be passed onto \CRANpkg{giscoR} function
+#' `gisco_get_nuts()`
 #'
 #' @inheritParams get_eurostat
 #'
@@ -96,6 +98,7 @@
 #'   resolution = "60",
 #'   nuts_level = "all"
 #' )
+#' \dontrun{
 #' # Downloads dataset from server
 #' sf2 <- get_eurostat_geospatial(
 #'   output_class = "sf",
@@ -107,123 +110,113 @@
 #'   nuts_level = "0"
 #' )
 #' }
+#' }
+#'
+#' @importFrom utils modifyList
 #'
 #' @export
 get_eurostat_geospatial <- function(output_class = "sf",
                                     resolution = "60",
-                                    nuts_level = "all", year = "2016",
+                                    nuts_level = "all", year = "2024",
                                     cache = TRUE, update_cache = FALSE,
-                                    cache_dir = NULL, crs = "4326", 
+                                    cache_dir = NULL, crs = "4326",
                                     verbose = TRUE, ...) {
-  # nocov start
-  if (!requireNamespace("sf")) {
+
+  # sf is always required
+  if (!requireNamespace("sf", quietly = TRUE)) {
     if (verbose) message("'sf' package is required for geospatial functionalities")
     return(invisible())
   }
-  # nocov end
-  # Simplified and leaving most of the heavy-lifting to giscoR
 
-  # Deprecation messages
+  has_gisco <- requireNamespace("giscoR", quietly = TRUE)
+
+  # Deprecation handling
   stopifnot(length(output_class) == 1L)
   if (output_class == "spdf") {
     if (verbose) message("'spdf' output deprecated. Switching to sf output")
     output_class <- "sf"
   }
 
-  # Leaving only specific validations - rest of call would be handled by giscoR
   output_class <- match.arg(as.character(output_class), c("sf", "df"))
 
-  # ovrewrite default parameters if given
-  default_args <- as.list(formals(giscoR::gisco_get_nuts))
-  args <- modifyList(default_args, list(...))
-  args$resolution <- resolution
-  args$nuts_level <- nuts_level
-  args$epsg <- crs
-
-  # Sanity check for nuts_level
-  stopifnot(length(args$nuts_level) == 1L)
-  args$nuts_level <- regmatches(args$nuts_level, regexpr("^(all|[0-9]+)", args$nuts_level))
-  args$nuts_level <- match.arg(args$nuts_level, c("all", 0:3))
-
-  # Performance - If df requested resolution and crs are meaningless. Switching
-  # to 60 and 4326 for speed (except for 2003, no available)
-  if (output_class == "df") {
-    args$resolution <- "60"
-    args$epsg <- "4326"
-
-    if (as.integer(args$year) == 2003) args$resolution <- "20"
-  }
-
-
-  # Check if the pre-set call to the function has been modified on
-  # relevant parameters
+  # ---- Determine whether we should use local data ----
   use_local <- all(
-    as.character(args$resolution) == "60",
-    as.character(args$year) == "2024",
-    isFALSE(args$update_cache),
+    as.character(resolution) == "60",
+    as.character(year) == "2024",
+    isFALSE(update_cache),
     as.character(crs) == "4326",
     length(list(...)) == 0
   )
 
+  # FORCE local if giscoR not available
+  if (!has_gisco) {
+    use_local <- TRUE
+    if (verbose) {
+      message("Package 'giscoR' not installed: using local dataset only")
+    }
+  }
+
+  # ---- LOCAL BRANCH ----
   if (use_local) {
-    # Not modified - using dataset included with eurostat package
-    message("Extracting data from eurostat::eurostat_geodata_60_2024")
+    if (verbose) {
+      message("Extracting data from eurostat::eurostat_geodata_60_2024")
+    }
+
     shp <- eurostat::eurostat_geodata_60_2024
-    if (args$nuts_level != "all") {
-      shp <- shp[shp$LEVL_CODE == args$nuts_level, ]
+
+    if (nuts_level != "all") {
+      shp <- shp[shp$LEVL_CODE == nuts_level, ]
     }
+
   } else {
-    # Check if package "giscoR" is installed
-    # nocov start
-    if (!requireNamespace("giscoR")) {
-      message("'giscoR' package is required for geospatial functionalities")
-      return(invisible())
-    }
-    # nocov end
 
-    if (verbose) message(paste0(
-      "Extracting data using giscoR package, please report issues",
-      " on https://github.com/rOpenGov/giscoR/issues"
-    ))
+    # ---- REMOTE BRANCH (safe: giscoR exists here) ----
 
-    # Manage cache: Priority is eurostat cache (if set)
-    # If not make use of giscoR default options
-    detect_eurostat_cache <- eur_helper_detect_cache_dir()
-    if (!is.null(args$cache_dir)) {
-      # Already set by the user, no need message
-      args$cache_dir <- eur_helper_cachedir(args$cache_dir)
-    } else if (identical(
-      detect_eurostat_cache,
-      file.path(tempdir(), "eurostat")
-    )) {
-      # eurostat not set, using default giscoR cache management
-      if (verbose) message("Cache management as per giscoR. see 'giscoR::gisco_get_nuts()'")
-    } else {
-      args$cache_dir <- eur_helper_cachedir(args$cache_dir)
+    # defaults only accessed AFTER we know giscoR exists
+    default_args <- as.list(formals(giscoR::gisco_get_nuts))
+    args <- utils::modifyList(default_args, list(...))
+
+    args$resolution <- resolution
+    args$nuts_level <- nuts_level
+    args$year <- year
+    args$epsg <- crs
+    args$cache <- cache
+    args$update_cache <- update_cache
+    args$cache_dir <- cache_dir
+
+    # Sanity check
+    stopifnot(length(args$nuts_level) == 1L)
+    args$nuts_level <- regmatches(args$nuts_level, regexpr("^(all|[0-9]+)", args$nuts_level))
+    args$nuts_level <- match.arg(args$nuts_level, c("all", 0:3))
+
+    # Performance tweak
+    if (output_class == "df") {
+      args$resolution <- "60"
+      args$epsg <- "4326"
+      if (as.integer(args$year) == 2003) args$resolution <- "20"
     }
 
-    # giscoR call with parameters
-    # on input errors giscoR would show warnings, etc
+    if (verbose) {
+      message(
+        "Extracting data using giscoR package, please report issues ",
+        "on https://github.com/rOpenGov/giscoR/issues"
+      )
+    }
+
     shp <- do.call(giscoR::gisco_get_nuts, args)
   }
 
-  # Just to capture potential NULL outputs from giscoR - this can happen
-  # on some errors
-  if (is.null(shp)) {
-    return(NULL)
-  }
+  # Handle NULL safely
+  if (is.null(shp)) return(NULL)
 
-  # Post-data treatments
-  # Manage col names
+  # Post-processing
   shp <- geo_names(shp)
 
-  # to df
   if (output_class == "df") {
-    # Remove geometry
     shp <- sf::st_drop_geometry(shp)
   }
 
-  return(shp)
+  shp
 }
 
 

@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.1.0.9006
-Date: 2025-11-06
+Version: 4.1.0.9007
+Date: 2026-04-29
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -57,7 +57,7 @@ Imports:
     xml2,
     data.table (>= 1.14.8)
 Suggests:
-    giscoR,
+    giscoR (>= 1.1.0),
     knitr,
     rmarkdown,
     sf,
