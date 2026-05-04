@@ -55,7 +55,7 @@ Imports:
     tibble,
     tidyr (>= 1.0.0),
     xml2,
-    data.table (>= 1.14.8)
+    data.table (>= 1.18.2.1)
 Suggests:
     giscoR (>= 1.1.0),
     knitr,
