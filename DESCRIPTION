@@ -46,6 +46,7 @@ Imports:
     ISOweek,
     jsonlite,
     lubridate,
+    R.utils,
     rappdirs,
     readr,
     regions,

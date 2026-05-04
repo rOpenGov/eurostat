@@ -9,12 +9,14 @@
 #'
 #' @importFrom curl curl_download
 #' @importFrom utils download.file
+#' @importFrom R.utils isUrl
 #'
 #' @export
 
 check_access_to_data <- function() {
   temp <- tempfile()
   http_url <- "https://ec.europa.eu/eurostat/cache/GISCO/distribution/v2/nuts/geojson/NUTS_RG_60M_2006_4326_LEVL_0.geojson"
+  stopifnot(R.utils::isUrl(http_url))
   # If unix use curl::curl_download to test connection
   # If windows use download.file with default method 'wininet'
   if (.Platform$OS.type == "unix") {
