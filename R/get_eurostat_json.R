@@ -34,6 +34,9 @@
 #'   in the Eurostat website. We hope you never encounter them.
 #'
 #' @param proxy Use proxy, TRUE or FALSE (default).
+#' @param ask_special_io Whether to ask the user about halting and using
+#'   `iotables::iotables_download()` when the requested table is a special
+#'   input-output table. TRUE (default) or FALSE.
 #' @inheritParams get_eurostat
 #' @inheritDotParams httr2::req_proxy
 #' @inherit get_eurostat references
@@ -93,15 +96,18 @@ get_eurostat_json <- function(id,
                               filters = NULL,
                               type = "code",
                               lang = "en",
+                              ask_special_io = TRUE,
                               stringsAsFactors = FALSE,
                               proxy = FALSE,
                               ...) {
 
   ## Special products that must be built to matrix
   ## User is prompted to halt and use iotables::iotables_download()
-  user_want_stop <- special_id_values(id)
-  if (user_want_stop) {
-    return(NULL)
+  if(ask_special_io){
+    user_want_stop <- special_id_values(id)
+    if (user_want_stop) {
+      return(NULL)
+    }
   }
 
   # Check if you have access to ec.europe.eu.
