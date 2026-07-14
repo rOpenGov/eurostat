@@ -9,6 +9,7 @@ get_eurostat_json(
   filters = NULL,
   type = "code",
   lang = "en",
+  ask_special_io = TRUE,
   stringsAsFactors = FALSE,
   proxy = FALSE,
   ...
@@ -31,6 +32,10 @@ labels as values and codes as names.}
 \item{lang}{2-letter language code, default is "\code{en}" (English), other
 options are "\code{fr}" (French) and "\code{de}" (German). Used for labeling datasets.}
 
+\item{ask_special_io}{Whether to ask the user about halting and using
+\code{iotables::iotables_download()} when the requested table is a special
+input-output table. TRUE (default) or FALSE.}
+
 \item{stringsAsFactors}{if \code{TRUE} (the default) variables are converted to factors in the original
 Eurostat order. If \code{FALSE} they are returned as strings.}
 
@@ -39,11 +44,11 @@ Eurostat order. If \code{FALSE} they are returned as strings.}
 \item{...}{
   Arguments passed on to \code{\link[httr2:req_proxy]{httr2::req_proxy}}
   \describe{
-    \item{\code{req}}{A \link[httr2]{request}.}
+    \item{\code{req}}{A httr2 \link[httr2]{request} object.}
     \item{\code{url,port}}{Location of proxy.}
     \item{\code{username,password}}{Login details for proxy, if needed.}
     \item{\code{auth}}{Type of HTTP authentication to use. Should be one of the
-following: \code{basic}, digest, digest_ie, gssnegotiate, ntlm, any.}
+following: \code{basic}, \code{digest}, \code{digest_ie}, \code{gssnegotiate}, \code{ntlm}, \code{any}.}
   }}
 }
 \value{
@@ -299,35 +304,14 @@ See \code{citation("eurostat")}:
   analysis of Eurostat open data with the eurostat package. The R
   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-A BibTeX entry for LaTeX users is
-
-  @Article\{10.32614/RJ-2017-019,
-    title = \{Retrieval and Analysis of Eurostat Open Data with the eurostat Package\},
-    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek\},
-    journal = \{The R Journal\},
-    volume = \{9\},
-    number = \{1\},
-    pages = \{385--392\},
-    year = \{2017\},
-    doi = \{10.32614/RJ-2017-019\},
-    url = \{https://doi.org/10.32614/RJ-2017-019\},
-  \}
-
   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
   [Computer software]. R package version 4.0.0.
   https://github.com/rOpenGov/eurostat
 
-A BibTeX entry for LaTeX users is
-
-  @Misc\{eurostat,
-    title = \{eurostat: Tools for Eurostat Open Data\},
-    author = \{Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen\},
-    url = \{https://github.com/rOpenGov/eurostat\},
-    type = \{Computer software\},
-    year = \{2023\},
-    note = \{R package version 4.0.0\},
-  \}
+To see these entries in BibTeX format, use 'print(<citation>,
+bibtex=TRUE)', 'toBibtex(.)', or set
+'options(citation.bibtex.max=999)'.
 }\if{html}{\out{</div>}}
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat data"
