@@ -49,12 +49,12 @@ lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
 \seealso{
 \code{\link[classInt:classIntervals]{classInt::classIntervals()}}
 
-Other helpers: 
-\code{\link{dic_order}()},
-\code{\link{eurotime2date}()},
-\code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat}()}
+Other helpers:
+\code{\link[=dic_order]{dic_order()}},
+\code{\link[=eurotime2date]{eurotime2date()}},
+\code{\link[=eurotime2num]{eurotime2num()}},
+\code{\link[=harmonize_country_code]{harmonize_country_code()}},
+\code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
 Markus Kainu \href{mailto:markuskainu@gmail.com}{markuskainu@gmail.com}

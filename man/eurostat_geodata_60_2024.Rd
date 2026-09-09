@@ -119,12 +119,12 @@ for information regarding their licence agreements."
 \CRANpkg{giscoR} function \code{gisco_get_nuts()} and
 \href{https://ec.europa.eu/eurostat/web/products-manuals-and-guidelines/-/ks-gq-18-008}{Eurostat. (2019). Methodological manual on territorial typologies -- 2018 edition. Manuals and guidelines.}
 
-Other datasets: 
+Other datasets:
 \code{\link{eu_countries}},
 \code{\link{tgs00026}}
 
-Other geospatial: 
-\code{\link{get_eurostat_geospatial}()}
+Other geospatial:
+\code{\link[=get_eurostat_geospatial]{get_eurostat_geospatial()}}
 }
 \concept{datasets}
 \concept{geospatial}

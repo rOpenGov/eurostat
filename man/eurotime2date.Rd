@@ -14,11 +14,11 @@ the first date of the period (month, quarter or year). If \code{TRUE}
 the date is the last date of the period.}
 }
 \value{
-an object of class \code{\link[lubridate:date_utils]{lubridate::Date()}}.
+an object of class \code{\link[base:Date]{base::Date()}}.
 }
 \description{
 Date conversion from Eurostat time format. A function to
-convert Eurostat time values to objects of class \code{\link[lubridate:date_utils]{lubridate::Date()}}
+convert Eurostat time values to objects of class \code{\link[base:Date]{base::Date()}}
 representing calendar dates.
 }
 \details{
@@ -58,8 +58,8 @@ See \code{citation("eurostat")}:
 #   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
 #   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
 #   doi:10.32614/CRAN.package.eurostat
-#   <https://doi.org/10.32614/CRAN.package.eurostat>, R package version
-#   4.1.0.9007, <https://github.com/rOpenGov/eurostat>.
+#   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+#   4.1.0.9008, <https://github.com/rOpenGov/eurostat>.
 # 
 # To see these entries in BibTeX format, use 'print(<citation>,
 # bibtex=TRUE)', 'toBibtex(.)', or set
@@ -69,12 +69,12 @@ See \code{citation("eurostat")}:
 \seealso{
 \code{\link[lubridate:ymd]{lubridate::ymd()}}
 
-Other helpers: 
-\code{\link{cut_to_classes}()},
-\code{\link{dic_order}()},
-\code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat}()}
+Other helpers:
+\code{\link[=cut_to_classes]{cut_to_classes()}},
+\code{\link[=dic_order]{dic_order()}},
+\code{\link[=eurotime2num]{eurotime2num()}},
+\code{\link[=harmonize_country_code]{harmonize_country_code()}},
+\code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}

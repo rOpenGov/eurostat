@@ -26,9 +26,9 @@ known \code{\link[=search_eurostat]{search_eurostat()}} function can be used to 
 of contents.}
 
 \item{time_format}{a string giving a type of the conversion of the time column from the
-eurostat format. The default argument "\code{date}" converts to a \code{\link[lubridate:date_utils]{lubridate::Date()}} class
+eurostat format. The default argument "\code{date}" converts to a \code{\link[base:Date]{base::Date()}} class
 with the date being the first day of the period. A "\code{date_last}" argument
-converts the dataset date to a \code{\link[lubridate:date_utils]{lubridate::Date()}} class object with the difference
+converts the dataset date to a \code{\link[base:Date]{base::Date()}} class object with the difference
 that the exact date is the last date of the period. Period can be year,
 semester (half year), quarter, month, or week (See \code{\link[=eurotime2date]{eurotime2date()}} for
 more information).

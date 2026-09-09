@@ -19,7 +19,7 @@ Retrieved with: \code{tgs00026 <- get_eurostat("tgs00026", time_format = "raw") 
 Data retrieval date: 2022-06-27
 }
 \seealso{
-Other datasets: 
+Other datasets:
 \code{\link{eu_countries}},
 \code{\link{eurostat_geodata_60_2024}}
 }

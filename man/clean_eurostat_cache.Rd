@@ -22,8 +22,8 @@ clean_eurostat_cache()
 }
 }
 \seealso{
-Other cache utilities: 
-\code{\link{set_eurostat_cache_dir}()}
+Other cache utilities:
+\code{\link[=set_eurostat_cache_dir]{set_eurostat_cache_dir()}}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari, Markus Kainu and

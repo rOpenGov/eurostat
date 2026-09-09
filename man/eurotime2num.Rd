@@ -31,12 +31,12 @@ unique(na_q$TIME_PERIOD)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other helpers: 
-\code{\link{cut_to_classes}()},
-\code{\link{dic_order}()},
-\code{\link{eurotime2date}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat}()}
+Other helpers:
+\code{\link[=cut_to_classes]{cut_to_classes()}},
+\code{\link[=dic_order]{dic_order()}},
+\code{\link[=eurotime2date]{eurotime2date()}},
+\code{\link[=harmonize_country_code]{harmonize_country_code()}},
+\code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}, Pyry Kantanen

@@ -46,7 +46,7 @@ Country codes are two-letter ISO codes (ISO 3166 alpha-2) except in the case
 of Greece where EL is used instead of the standard ISO code.
 }
 \seealso{
-Other datasets: 
+Other datasets:
 \code{\link{eurostat_geodata_60_2024}},
 \code{\link{tgs00026}}
 }

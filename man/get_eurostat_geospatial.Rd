@@ -245,7 +245,7 @@ df <- get_eurostat_geospatial(
 \seealso{
 giscoR package and its functions
 
-Other geospatial: 
+Other geospatial:
 \code{\link{eurostat_geodata_60_2024}}
 }
 \author{

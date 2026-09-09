@@ -41,10 +41,10 @@ add_nuts_level(dat)
 \seealso{
 \code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
 
-Other regions functions: 
-\code{\link{harmonize_geo_code}()},
-\code{\link{recode_to_nuts_2013}()},
-\code{\link{recode_to_nuts_2016}()},
+Other regions functions:
+\code{\link[=harmonize_geo_code]{harmonize_geo_code()}},
+\code{\link[=recode_to_nuts_2013]{recode_to_nuts_2013()}},
+\code{\link[=recode_to_nuts_2016]{recode_to_nuts_2016()}},
 \code{\link{reexports}}
 }
 \author{
