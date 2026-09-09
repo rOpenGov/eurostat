@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.1.0.9007
-Date: 2026-04-29
+Version: 4.1.0.9008
+Date: 2026-09-09
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -76,6 +76,6 @@ MailingList: rOpenGov <ropengov-forum@googlegroups.com>
 NeedsCompilation: no
 Repository: CRAN
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.3
 X-schema.org-isPartOf: http://ropengov.org/
 X-schema.org-keywords: ropengov
+Config/roxygen2/version: 8.1.0
