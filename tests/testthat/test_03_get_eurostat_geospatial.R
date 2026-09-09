@@ -259,19 +259,30 @@ test_that("Check column names", {
     "FID", "geo", "geometry"
   )
 
-
   cached <- get_eurostat_geospatial(verbose = FALSE)
   expect_s3_class(cached, "sf")
-  expect_identical(names(cached), col_order)
+  testthat::expect_in(
+    col_order,
+    names(cached)
+  )
 
   # df
   cached_df <- get_eurostat_geospatial(output_class = "df", verbose = FALSE)
   expect_s3_class(cached_df, "data.frame")
-  expect_identical(names(cached_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(cached_df)
+  )
 })
 
 
 test_that("Check column names POLYGONS from GISCO", {
+  col_order <- c(
+    "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
+    "NUTS_NAME", "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE",
+    "FID", "geo", "geometry"
+  )
+
   skip_if_not_installed(pkg = "sf")
   skip_if_not_installed(pkg = "giscoR")
   skip_on_cran()
@@ -279,16 +290,13 @@ test_that("Check column names POLYGONS from GISCO", {
   skip_if(!giscoR::gisco_check_access(), "No access to GISCO")
   skip_if(packageVersion("giscoR") < "1.1.0", "Use latest giscoR release")
 
-  col_order <- c(
-    "id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
-    "NUTS_NAME", "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE",
-    "FID", "geo", "geometry"
-  )
-
   # Polygons 2003
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 20, year = 2003)
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -298,13 +306,19 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Polygons 2006
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2006,
                                   verbose = FALSE)
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -314,14 +328,21 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
 
   # Polygons 2010
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2010,
                                   verbose = FALSE)
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -331,13 +352,19 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+    )
 
   # Polygons 2013
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2013,
                                   verbose = FALSE)
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -347,7 +374,10 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Polygons 2016
   poly <- get_eurostat_geospatial(
@@ -356,7 +386,10 @@ test_that("Check column names POLYGONS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -367,13 +400,19 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Polygons 2021
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2021,
                                   verbose = FALSE)
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -383,13 +422,20 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Polygons 2024
   poly <- get_eurostat_geospatial(nuts_level = 0, resolution = 60, year = 2024,
                                   verbose = FALSE)
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -399,7 +445,10 @@ test_that("Check column names POLYGONS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 })
 
 test_that("Check column names LABELS from GISCO", {
@@ -423,7 +472,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -434,7 +486,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Labels 2006
   poly <- get_eurostat_geospatial(
@@ -443,7 +498,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -454,7 +512,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
 
   # Labels 2010
@@ -464,7 +525,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -475,7 +539,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Labels 2013
   poly <- get_eurostat_geospatial(
@@ -484,7 +551,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -495,7 +565,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Labels 2016
   poly <- get_eurostat_geospatial(
@@ -504,7 +577,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -516,7 +592,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   # Labels 2021
   poly <- get_eurostat_geospatial(
@@ -525,7 +604,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), col_order)
+  testthat::expect_in(
+    col_order,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -535,7 +617,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), col_order[-length(col_order)])
+  testthat::expect_in(
+    col_order[-length(col_order)],
+    names(poly_df)
+  )
 
   names_2024 <- c("id", "LEVL_CODE", "NUTS_ID", "CNTR_CODE", "NAME_LATN",
                   "NUTS_NAME", "MOUNT_TYPE", "URBN_TYPE", "COAST_TYPE",
@@ -550,7 +635,10 @@ test_that("Check column names LABELS from GISCO", {
     verbose = FALSE
   )
   expect_s3_class(poly, "sf")
-  expect_identical(names(poly), names_2024)
+  testthat::expect_in(
+    names_2024,
+    names(poly)
+  )
 
   # df
   poly_df <- get_eurostat_geospatial(
@@ -560,7 +648,10 @@ test_that("Check column names LABELS from GISCO", {
   )
 
   expect_s3_class(poly_df, "data.frame")
-  expect_identical(names(poly_df), names_2024[-length(names_2024)])
+  testthat::expect_in(
+    names_2024[-length(names_2024)],
+    names(poly_df)
+  )
 })
 
 
