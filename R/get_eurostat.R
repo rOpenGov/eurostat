@@ -14,9 +14,9 @@
 #' on filters and limitations per query.
 #' @param time_format
 #' a string giving a type of the conversion of the time column from the
-#' eurostat format. The default argument "`date`" converts to a [Date()] class
+#' eurostat format. The default argument "`date`" converts to a [base::Date()] class
 #' with the date being the first day of the period. A "`date_last`" argument
-#' converts the dataset date to a [Date()] class object with the difference
+#' converts the dataset date to a [base::Date()] class object with the difference
 #' that the exact date is the last date of the period. Period can be year,
 #' semester (half year), quarter, month, or week (See [eurotime2date()] for
 #' more information).
@@ -771,13 +771,13 @@ get_eurostat_interactive <- function(code = NULL) {
 
   if (exists("eurostat_data")) {
     print_fixity <- switch(
-      menu(choices = c("Yes", "No"), 
+      menu(choices = c("Yes", "No"),
            title = "Print dataset fixity checksum?") + 1,
       return(invisible()),
       TRUE,
       FALSE
     )
-    
+
   if (print_fixity) {
       capture.output(cat("##### FIXITY CHECKSUM:\n\n"), file = tempfile_for_sinking, append = TRUE)
       capture.output(print(stringr::str_glue("Fixity checksum (md5) for dataset {code}: {eurostat:::fixity_checksum(eurostat_data, algorithm = 'md5')}")), file = tempfile_for_sinking, append = TRUE)
