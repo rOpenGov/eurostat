@@ -1,10 +1,10 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.1.0.9008
-Date: 2026-09-09
+Version: 4.1.0
+Date: 2026-09-10
 Authors@R: c(
-    person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
+    person("Leo", "Lahti", , "pyry.kantanen@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
     person("Janne", "Huovari", role = "aut"),
     person("Markus", "Kainu", role = "aut"),
