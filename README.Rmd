@@ -106,13 +106,11 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this package** by citing the following R Journal article: 
+**Kindly cite this work** as follows:
 
-[Lahti L.](https://github.com/antagomir), Huovari J., Kainu M., and Biecek P. (2017). Retrieval and analysis of Eurostat open data with the eurostat package. [The R Journal 9(1), pp. 385-392](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html). doi: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019).
-
-In addition, please provide a citation to the specific software version used:
-
-Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D., and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data [Computer software]. R package version 4.0.0.9003. https://github.com/rOpenGov/eurostat
+```{r, comment = "", highlight=FALSE}
+print(citation("eurostat"), bibtex = TRUE)
+```
 
 We are grateful to all [contributors](https://github.com/ropengov/eurostat/graphs/contributors), including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the [Eurostat](https://ec.europa.eu/eurostat/) open data portal! This project is part of [rOpenGov](https://ropengov.org).
 
@@ -122,14 +120,14 @@ This project has received funding from the European Union under grant No 1010952
 
 This package is in no way officially related to or endorsed by Eurostat.
 
-When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on [copyright and free re-use of data](https://ec.europa.eu/eurostat/about/policies/copyright) for more detailed information and certain exceptions.
+When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on [copyright and free re-use of data](https://ec.europa.eu/eurostat/web/main/help/copyright-notice) for more detailed information and certain exceptions.
 
 [license-badge]: https://img.shields.io/npm/l/eurostat.svg?style=flat-square
 [license]: https://github.com/ropengov/eurostat/blob/master/LICENSE
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social
-[github-watch]: https://github.com/ropengov/eurostat/watchers
+[github-watch]: https://github.com/rOpenGov/eurostat/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social
-[github-star]: https://github.com/ropengov/eurostat/stargazers
+[github-star]: https://github.com/rOpenGov/eurostat/stargazers
 
 [eurostat]: https://github.com/ropengov/eurostat/

@@ -21,7 +21,7 @@ a fraction of the year in beginning of the period. Conversion of daily data
 is not supported.
 }
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 na_q$TIME_PERIOD <- eurotime2num(x = na_q$TIME_PERIOD)
@@ -31,12 +31,12 @@ unique(na_q$TIME_PERIOD)
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-Other helpers: 
-\code{\link{cut_to_classes}()},
-\code{\link{dic_order}()},
-\code{\link{eurotime2date}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat}()}
+Other helpers:
+\code{\link[=cut_to_classes]{cut_to_classes()}},
+\code{\link[=dic_order]{dic_order()}},
+\code{\link[=eurotime2date]{eurotime2date()}},
+\code{\link[=harmonize_country_code]{harmonize_country_code()}},
+\code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}, Pyry Kantanen

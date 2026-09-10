@@ -4,7 +4,7 @@
 \alias{get_bibentry}
 \title{Create A Data Bibliography}
 \usage{
-get_bibentry(code, keywords = NULL, format = "Biblatex", lang = "en")
+get_bibentry(code, keywords = NULL, format = "bibtex", lang = "en")
 }
 \arguments{
 \item{code}{A Eurostat data code or a vector of Eurostat data codes as
@@ -55,7 +55,7 @@ in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 }
 
 \examples{
-\dontshow{if (check_access_to_data()) (if (getRversion() >= "3.4") withAutoprint else force)(\{ # examplesIf}
+\dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \dontrun{
   my_bibliography <- get_bibentry(
     code = c("tran_hv_frtra", "tec00001"),
@@ -70,7 +70,7 @@ in \code{\link[=get_eurostat]{get_eurostat()}} documentation.
 \dontshow{\}) # examplesIf}
 }
 \seealso{
-\link[utils:bibentry]{utils::bibentry} \link[RefManageR:toBiblatex]{RefManageR::toBiblatex}
+\link[utils:bibentry]{utils::bibentry}
 }
 \author{
 Daniel Antal, Przemyslaw Biecek

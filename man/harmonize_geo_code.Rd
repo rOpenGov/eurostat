@@ -30,10 +30,10 @@ regions::validate_nuts_regions(dat)
 \seealso{
 \code{\link[regions:validate_nuts_regions]{regions::validate_nuts_regions()}}
 
-Other regions functions: 
-\code{\link{add_nuts_level}()},
-\code{\link{recode_to_nuts_2013}()},
-\code{\link{recode_to_nuts_2016}()},
+Other regions functions:
+\code{\link[=add_nuts_level]{add_nuts_level()}},
+\code{\link[=recode_to_nuts_2013]{recode_to_nuts_2013()}},
+\code{\link[=recode_to_nuts_2016]{recode_to_nuts_2016()}},
 \code{\link{reexports}}
 }
 \author{

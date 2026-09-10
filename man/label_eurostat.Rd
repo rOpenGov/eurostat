@@ -127,12 +127,12 @@ label_eurostat(
 \seealso{
 \code{\link[countrycode:countrycode]{countrycode::countrycode()}}
 
-Other helpers: 
-\code{\link{cut_to_classes}()},
-\code{\link{dic_order}()},
-\code{\link{eurotime2date}()},
-\code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()}
+Other helpers:
+\code{\link[=cut_to_classes]{cut_to_classes()}},
+\code{\link[=dic_order]{dic_order()}},
+\code{\link[=eurotime2date]{eurotime2date()}},
+\code{\link[=eurotime2num]{eurotime2num()}},
+\code{\link[=harmonize_country_code]{harmonize_country_code()}}
 }
 \author{
 Janne Huovari \href{mailto:janne.huovari@ptt.fi}{janne.huovari@ptt.fi}
