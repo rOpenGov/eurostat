@@ -23,7 +23,7 @@ utilities.
 }
 \section{Eurostat}{
 Eurostat website: \url{https://ec.europa.eu/eurostat}
-Eurostat database: \url{https://ec.europa.eu/eurostat/web/main/data/database}
+Eurostat database: \url{https://ec.europa.eu/eurostat/data/database}
 
 Information about the data update schedule from Eurostat:
 "Eurostat datasets are updated twice a day at 11:00 and 23:00 CET, if newer
@@ -197,7 +197,7 @@ See Eurostat documentation on TOC items:
 \section{Data source: GISCO - General Copyright}{
 "Eurostat's general copyright notice and licence policy is applicable and
 can be consulted here:
-\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+\url{https://ec.europa.eu/eurostat/help/copyright-notice}
 
 Please also be aware of the European Commission's general conditions:
 \url{https://commission.europa.eu/legal-notice_en}
@@ -221,9 +221,9 @@ GISCO / EuroGeographics.
 \section{Data source: GISCO - Administrative Units / Statistical Units}{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the GISCO website:
-\href{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}{GISCO: Geographical information and maps - Administrative units/statistical units}
+\href{https://ec.europa.eu/eurostat/web/gisco/geodata}{GISCO: General information on geo-datafiles}
 
-"In addition to the \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{general copyright and licence policy} applicable to the whole Eurostat website, the following
+"In addition to the \href{https://ec.europa.eu/eurostat/help/copyright-notice}{general copyright and licence policy} applicable to the whole Eurostat website, the following
 specific provisions apply to the datasets you are downloading. The download
 and usage of these data is subject to the acceptance of the following
 clauses:
@@ -265,7 +265,7 @@ for information regarding their licence agreements."
 \section{Eurostat: Copyright notice and free re-use of data}{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+\url{https://ec.europa.eu/eurostat/help/copyright-notice}
 
 "(c) European Union, 1995 - today
 
@@ -281,7 +281,7 @@ stated clearly to the end user of the information."
 }
 
 For exceptions to the abovementioned principles see
-\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+\href{https://ec.europa.eu/eurostat/help/copyright-notice}{Eurostat website}
 }
 
 \section{Citing Eurostat data}{

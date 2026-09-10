@@ -46,7 +46,7 @@ Data source: Eurostat via giscoR package function \code{gisco_get_nuts()}.
 © EuroGeographics for the administrative boundaries
 
 Data downloaded from:
-\url{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}
+\url{https://ec.europa.eu/eurostat/web/gisco/geodata}
 }
 \usage{
 eurostat_geodata_60_2024
@@ -73,7 +73,7 @@ if (require(sf)) {
 \references{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-\href{https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units}{GISCO: Geographical information and maps - Administrative units/statistical units}
+\href{https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units}{GISCO - Geodata - Administrative units}
 
 "In addition to the
 \href{https://ec.europa.eu/eurostat/web/main/about/policies/copyright}{general copyright and licence policy}

@@ -79,8 +79,8 @@ Eurostat order. If \code{FALSE} they are returned as strings.}
 
 \item{keepFlags}{a logical whether the flags (e.g. "confidential",
 "provisional") should be kept in a separate column or if they
-can be removed. Default is \code{FALSE}. For flag values see:
-\url{https://ec.europa.eu/eurostat/data/database/information}.
+can be removed. Default is \code{FALSE}. For flag values see information:
+\url{https://ec.europa.eu/eurostat/data/database#Flags}.
 Also possible non-real zero "0n" is indicated in flags column.
 Flags are not available for eurostat API, so \code{keepFlags}
 can not be used with a \code{filters}.}
@@ -147,7 +147,7 @@ in parenthesis.
 \section{Eurostat: Copyright notice and free re-use of data}{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+\url{https://ec.europa.eu/eurostat/help/copyright-notice}
 
 "(c) European Union, 1995 - today
 
@@ -163,7 +163,7 @@ stated clearly to the end user of the information."
 }
 
 For exceptions to the abovementioned principles see
-\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+\href{https://ec.europa.eu/eurostat/help/copyright-notice}{Eurostat website}
 }
 
 \section{Filtering datasets}{

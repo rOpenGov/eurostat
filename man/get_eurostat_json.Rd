@@ -220,7 +220,7 @@ on API Statistics:
 \section{Eurostat: Copyright notice and free re-use of data}{
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-\url{https://ec.europa.eu/eurostat/about-us/policies/copyright}
+\url{https://ec.europa.eu/eurostat/help/copyright-notice}
 
 "(c) European Union, 1995 - today
 
@@ -236,7 +236,7 @@ stated clearly to the end user of the information."
 }
 
 For exceptions to the abovementioned principles see
-\href{https://ec.europa.eu/eurostat/about-us/policies/copyright}{Eurostat website}
+\href{https://ec.europa.eu/eurostat/help/copyright-notice}{Eurostat website}
 }
 
 \section{Citing Eurostat data}{

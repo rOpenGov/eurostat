@@ -120,14 +120,14 @@ This project has received funding from the European Union under grant No 1010952
 
 This package is in no way officially related to or endorsed by Eurostat.
 
-When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on [copyright and free re-use of data](https://ec.europa.eu/eurostat/about/policies/copyright) for more detailed information and certain exceptions.
+When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on [copyright and free re-use of data](https://ec.europa.eu/eurostat/web/main/help/copyright-notice) for more detailed information and certain exceptions.
 
 [license-badge]: https://img.shields.io/npm/l/eurostat.svg?style=flat-square
 [license]: https://github.com/ropengov/eurostat/blob/master/LICENSE
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social
-[github-watch]: https://github.com/ropengov/eurostat/watchers
+[github-watch]: https://github.com/rOpenGov/eurostat/watchers
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social
-[github-star]: https://github.com/ropengov/eurostat/stargazers
+[github-star]: https://github.com/rOpenGov/eurostat/stargazers
 
 [eurostat]: https://github.com/ropengov/eurostat/

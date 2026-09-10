@@ -48,12 +48,12 @@
 #' © EuroGeographics for the administrative boundaries
 #'
 #' Data downloaded from:
-#' <https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units>
+#' <https://ec.europa.eu/eurostat/web/gisco/geodata>
 #'
 #' @references
 #' The following copyright notice is provided for end user convenience.
 #' Please check up-to-date copyright information from the eurostat website:
-#' [GISCO: Geographical information and maps - Administrative units/statistical units](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units)
+#' [GISCO - Geodata - Administrative units](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units)
 #'
 #' "In addition to the
 #' [general copyright and licence policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright)

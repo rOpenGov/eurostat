@@ -58,8 +58,8 @@
 #' @param keepFlags
 #' a logical whether the flags (e.g. "confidential",
 #' "provisional") should be kept in a separate column or if they
-#' can be removed. Default is `FALSE`. For flag values see:
-#' <https://ec.europa.eu/eurostat/data/database/information>.
+#' can be removed. Default is `FALSE`. For flag values see information:
+#' <https://ec.europa.eu/eurostat/data/database#Flags>.
 #' Also possible non-real zero "0n" is indicated in flags column.
 #' Flags are not available for eurostat API, so `keepFlags`
 #' can not be used with a `filters`.
