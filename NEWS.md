@@ -1,16 +1,4 @@
-# eurostat 4.1.0.9006
-
-## Minor updates
-
-* Removed experimental functions from the codebase, fixed tests that were pointing at datasets renamed by Eurostat
-
-# eurostat 4.1.0.9005
-
-## Deprecated and defunct
-
-* Removed RefManageR dependency from the package due to it being unmaintained
-
-# eurostat 4.1.0.9004
+# eurostat 4.1.0
 
 ## Major updates
 
@@ -23,10 +11,13 @@
 
 * `get_eurostat_geospatial()` documentation mentions that data from 2024 is now available (fixes issue #327 by @yhsong1013)
 * Fix mentions to Eurostat base URLs in `check_access_to_data()`, `get_eurostat()`, `get_eurostat_json()`, `get_eurostat_sdmx()`, `label_eurostat()` and `search_eurostat()` (fixes issue #326 by @olivierchantrel)
+* Removed experimental functions from the codebase, fixed tests that were pointing at datasets renamed by Eurostat
+* Make interactive prompt in `get_eurostat_json()` into a simple message (related to PR #334 from @pot-belly-mole)
 
 ## Deprecated and defunct
 
 * Remove deprecated parameter `make_valid` from `get_eurostat_geospatial()`
+* Removed RefManageR dependency from the package due to it being unmaintained
 
 # eurostat 4.0.0
 
