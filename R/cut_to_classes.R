@@ -9,6 +9,9 @@
 #' @param decimals Number of decimals to include with labels
 #' @param nodata_label String. Text label for NA category.
 #' @inheritParams classInt::classIntervals
+#' @details Automatic class intervals are computed with
+#'   [classInt::classIntervals()], so the suggested \pkg{classInt} package
+#'   must be installed unless `manual = TRUE`.
 #' @author Markus Kainu <markuskainu@@gmail.com>
 #' @return a factor.
 #' @examplesIf check_access_to_data()
@@ -18,7 +21,6 @@
 #' lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
 #' }
 #'
-#' @importFrom classInt classIntervals
 #' @importFrom stringr str_replace_all
 #' @seealso [classInt::classIntervals()]
 #' @family helpers
@@ -46,6 +48,7 @@ cut_to_classes <- function(x, n = 5, style = "equal", manual = FALSE,
       )
     )
   } else {
+    require_suggested("classInt", "automatic class intervals in cut_to_classes()")
     brs <- data.frame(classInt::classIntervals(x, n = n, style = style)[2])[, 1]
 
     # Ensure that the breaks are unique
@@ -85,7 +88,7 @@ cut_to_classes <- function(x, n = 5, style = "equal", manual = FALSE,
     )
     rm(manual_breaks)
   } else {
-    brs2 <- data.frame(classIntervals(x, n = n, style = style)[2])[, 1]
+    brs2 <- data.frame(classInt::classIntervals(x, n = n, style = style)[2])[, 1]
 
     # Ensure the breaks are unique
     brs2 <- unique(brs2)
