@@ -181,5 +181,5 @@ When using data retrieved from Eurostat database in your work, please
 indicate that the data source is Eurostat. If your re-use involves some
 kind of modification to data or text, please state this clearly to the
 end user. See Eurostat policy on [copyright and free re-use of
-data](https://ec.europa.eu/eurostat/web/main/help/copyright-notice) for
-more detailed information and certain exceptions.
+data](https://ec.europa.eu/eurostat/help/copyright-notice) for more
+detailed information and certain exceptions.

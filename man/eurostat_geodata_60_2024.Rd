@@ -76,7 +76,7 @@ Please check up-to-date copyright information from the eurostat website:
 \href{https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units}{GISCO - Geodata - Administrative units}
 
 "In addition to the
-\href{https://ec.europa.eu/eurostat/web/main/help/copyright-notice}{general copyright and licence policy}
+\href{https://ec.europa.eu/eurostat/help/copyright-notice}{general copyright and licence policy}
 applicable to the whole Eurostat website, the following
 specific provisions apply to the datasets you are downloading. The download
 and usage of these data is subject to the acceptance of the following
