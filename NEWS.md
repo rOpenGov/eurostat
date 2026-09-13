@@ -1,3 +1,29 @@
+# eurostat 4.1.1
+
+## Minor updates
+
+* Reduced the number of hard dependencies from 21 to 17 in order to make the
+  package less vulnerable to any single dependency becoming unavailable
+  (CRAN check note "Imports includes 21 non-default packages"):
+    * `classInt`, `countrycode` and `ISOweek` were moved from Imports to
+      Suggests. They are now used conditionally and are only needed by
+      `cut_to_classes()` (automatic class intervals), `label_eurostat()`
+      (the `countrycode` argument) and `eurotime2date()` (weekly data),
+      respectively. These functions give an informative error asking the user
+      to install the package if it is missing.
+    * `stringi` was dropped in favour of the equivalent `stringr` functions.
+      `stringr` was already imported and is a thin wrapper around `stringi`,
+      so there is no change in behaviour.
+* Fix `eurotime2date()` for daily (`YYYY-MM-DD`) data: the month and day
+  components were read from the wrong character positions, and `last = TRUE`
+  failed with "'from' must be a finite number". A single day already is the
+  last day of the period it denotes, so it is no longer shifted.
+* Fix URLs flagged as invalid by CRAN checks: the Eurostat copyright notice
+  and the Eurostat API documentation now point at pages that are publicly
+  reachable, and the GitHub star/watch badges point at the repository front
+  page instead of the `/stargazers` and `/watchers` pages, which return 404
+  for logged-out visitors.
+
 # eurostat 4.1.0
 
 ## Major updates
