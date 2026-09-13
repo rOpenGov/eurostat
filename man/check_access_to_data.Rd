@@ -2,7 +2,7 @@
 % Please edit documentation in R/check_access_to_data.R
 \name{check_access_to_data}
 \alias{check_access_to_data}
-\title{Check access to ec.europe.eu}
+\title{Check access to ec.europa.eu}
 \usage{
 check_access_to_data()
 }

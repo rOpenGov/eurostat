@@ -1,7 +1,7 @@
 #' @title Date Conversion from New Eurostat Time Format
 #' @description
 #' Date conversion from Eurostat time format. A function to
-#' convert Eurostat time values to objects of class [Date()]
+#' convert Eurostat time values to objects of class [base::Date()]
 #' representing calendar dates.
 #' @details
 #' Available patterns are YYYY (year), YYYY-SN (semester), YYYY-QN (quarter),
@@ -17,7 +17,7 @@
 #' citation("eurostat")
 #' ```
 #'
-#' @return an object of class [Date()].
+#' @return an object of class [base::Date()].
 #' @author Janne Huovari <janne.huovari@@ptt.fi>
 #' @family helpers
 #' @seealso [lubridate::ymd()]

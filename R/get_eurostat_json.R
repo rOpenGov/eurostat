@@ -1,11 +1,15 @@
-#' @title Get Data from Eurostat API in JSON
-#' @description Retrieve data from Eurostat API in JSON format.
+#' @title Get Data from Eurostat API Statistics
+#' @description Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
 #' @details
 #'   Data to retrieve from
-#'   [The Eurostat Web Services](https://ec.europa.eu/eurostat/web/main/data/web-services)
+#'   [The Eurostat API Statistics](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
 #'   can be specified with filters. Normally, it is
 #'   better to use JSON query through [get_eurostat()], than to use
-#'   [get_eurostat_json()] directly.
+#'   [get_eurostat_json()] directly. The main reason for this is that
+#'   [get_eurostat_json()] returns a relatively raw dataset that does not go
+#'   through helper functions in [get_eurostat()], such as [eurotime2date()] or
+#'   [eurotime2num()] functions or reading data from cache and saving data
+#'   to cache.
 #'
 #'   Queries are limited to 50 sub-indicators at a time. A time can be
 #'   filtered with fixed "time" filter or with "sinceTimePeriod" and
@@ -16,7 +20,7 @@
 #'
 #'   To use a proxy to connect, proxy arguments can be
 #'   passed to [httr2::req_perform()] via [httr2::req_proxy()] - see latter
-#'   function documentation for parameter names that can be passed with `...`. 
+#'   function documentation for parameter names that can be passed with `...`.
 #'   A non-functional example:
 #'   `get_eurostat_json(id, filters, proxy = TRUE, url = "127.0.0.1", port = 80)`.
 #'
@@ -26,6 +30,18 @@
 #'   the possible interpretation or cause of each error. These messages are
 #'   returned if the API returns a status indicating a HTTP error
 #'   (400 or greater).
+#'
+#'   Additionally, there is limit on the size of the returned extractions
+#'   (error code 413).
+#'   At the time of publishing this package version, the max authorised size for
+#'   the extraction seems to be 5000000 (5 million) rows. The server seems to
+#'   estimate the size of the returned data object with a method that is
+#'   unknown to us so the number of rows might not be the same as the number
+#'   of returned rows in the JSON-stat object. You can limit the number of rows
+#'   in your extraction by providing more filters to the query. If the
+#'   extraction size continues to go over limit you can try to download the
+#'   whole dataset with [get_eurostat()] and filter it locally on your computer,
+#'   for example with base R or dplyr data wrangling functions.
 #'
 #'   The Eurostat implementation seems to be based on SDMX 2.1, which is the
 #'   reason we've used SDMX Standards guidelines as a supplementary source
@@ -37,7 +53,7 @@
 #' @inheritParams get_eurostat
 #' @inheritDotParams httr2::req_proxy
 #' @inherit get_eurostat references
-#' 
+#'
 #' @return A dataset as an object of `data.frame` class.
 #' @author
 #' Przemyslaw Biecek, Leo Lahti, Janne Huovari Markus Kainu and Pyry Kantanen
@@ -71,19 +87,19 @@
 #'   unit = "CLV_I10"
 #' ))
 #' }
-#' @importFrom httr2 request req_user_agent req_retry req_perform req_proxy 
+#' @importFrom httr2 request req_user_agent req_retry req_perform req_proxy
 #' @importFrom httr2 resp_body_json resp_content_type resp_is_error req_error
 #' @importFrom jsonlite fromJSON
 #' @importFrom tibble as_tibble
 #' @importFrom stringr str_glue
-#' @importFrom httr2 %>% 
-#' 
+#' @importFrom httr2 %>%
+#'
 #' @inheritSection eurostat-package Data source: Eurostat API Statistics (JSON API)
 #' @inheritSection eurostat-package Filtering datasets
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Citing Eurostat data
 #' @inheritSection eurostat-package Disclaimer: Availability of filtering functionalities
-#' 
+#'
 #' @seealso
 #' [httr2::req_proxy()]
 #'
@@ -98,27 +114,34 @@ get_eurostat_json <- function(id,
                               ...) {
 
   ## Special products that must be built to matrix
-  ## User is prompted to halt and use iotables::iotables_download()
-  user_want_stop <- special_id_values(id)
-  if (user_want_stop) {
-    return(NULL)
+  ## User is informed with a message to use iotables::iotables_download()
+  siot_id_codes <- c(
+    "naio_10_cp1700", "naio_10_pyp1700",
+    "naio_10_cp1750", "naio_10_pyp1750",
+    "naio_10_cp15", "naio_10_cp16",
+    "naio_10_cp1610", "naio_10_pyp1610",
+    "naio_10_cp1620", "naio_10_pyp1620",
+    "naio_10_cp1630", "naio_10_pyp1630"
+  )
+  if (id %in% siot_id_codes) {
+    message(
+      "The requested product id is a special input-output matrix.",
+      "\nTo keep the matrix structure for further use, download it with iotables::iotables_download().",
+      "\nThe iotables package is an extension for such cases to the eurostat package."
+    )
   }
 
-  # Check if you have access to ec.europe.eu.
+  # Check if you have access to ec.europa.eu.
   if (!check_access_to_data()) {
     # nocov start
-    message("You have no access to ec.europe.eu.
+    message("You have no access to ec.europa.eu.
       Please check your connection and/or review your proxy settings")
     # nocov end
   }
 
   # construct url
   url <- eurostat_json_url(id = id, filters = filters, lang = lang)
-  # set user agent with version
-  # ua <- httr::user_agent(paste0("eurostat_",
-  # packageDescription("eurostat", fields = "Version")))
-  # ua <- httr::user_agent("https://github.com/rOpenGov/eurostat")
-  
+
   if (proxy == TRUE) {
     # Check if "..." has arguments needed for proxy
     args <- list(...)
@@ -132,30 +155,23 @@ get_eurostat_json <- function(id,
     } else {
       dot_auth <- "basic"
     }
-  
-    resp <- httr2::request(url) %>% 
-      httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
+
+    resp <- httr2::request(url) %>%
+      httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>%
       httr2::req_proxy(url = dot_url,
                        port = dot_port,
                        username = dot_username,
                        password = dot_password,
-                       auth = dot_auth) %>% 
-      httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
+                       auth = dot_auth) %>%
+      httr2::req_retry(max_tries = 3, max_seconds = 60) %>%
       httr2::req_error(is_error = function(resp) FALSE) %>%
       httr2::req_perform()
   }
-  resp <- httr2::request(url) %>% 
-    httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>% 
-    httr2::req_retry(max_tries = 3, max_seconds = 60) %>% 
-    httr2::req_error(is_error = function(resp) FALSE) %>% 
+  resp <- httr2::request(url) %>%
+    httr2::req_user_agent(string = "https://github.com/rOpenGov/eurostat") %>%
+    httr2::req_retry(max_tries = 3, max_seconds = 60) %>%
+    httr2::req_error(is_error = function(resp) FALSE) %>%
     httr2::req_perform()
-
-  # RETRY GET 3 times
-  # resp <- httr::RETRY(verb = "GET",
-  #                     url = url,
-  #                     times = 3,
-  #                     terminate_on = c(404),
-  #                     ua)
 
   # Source: httr vignette "Best practices for API packages" [httr_vignette]
   if (httr2::resp_content_type(resp) != "application/json") {
@@ -167,7 +183,6 @@ get_eurostat_json <- function(id,
   result <- httr2::resp_body_json(
       resp = resp,
       simplifyVector = TRUE)
-
   if (httr2::resp_is_error(resp)) {
 
     # These objects are only needed if there is an error
@@ -187,10 +202,10 @@ get_eurostat_json <- function(id,
                              "  Error id: {id} ({faultstring})\n",
                              "  Error label from API: {label}")
       )
-    } else {
+    } else{
       stop(stringr::str_glue("\n",
                              "HTTP status: {status} ({status_code_label})\n",
-                             "  Error id: {id} ({faultstring})\n",
+                             "  Error id: {id} \n",
                              "  Error label from API: {label}")
       )
     }
@@ -211,8 +226,6 @@ get_eurostat_json <- function(id,
                msg)
     )
   }
-
-  #status <- httr::status_code(resp)
 
   # check status and get json
   jdat <- result
@@ -294,29 +307,6 @@ eurostat_json_url <- function(id, filters = NULL, lang = NULL) {
 
   url <- httr2::url_build(url_list)
   url
-}
-
-# Internal function to give warning if symmetric input-output tables need to download into strict matirx formats.
-special_id_values <- function(id) {
-  siot_id_codes <- c(
-    "naio_10_cp1700", "naio_10_pyp1700",
-    "naio_10_cp1750", "naio_10_pyp1750",
-    "naio_10_cp15", "naio_10_cp16",
-    "naio_10_cp1610", "naio_10_pyp1610",
-    "naio_10_cp1620", "naio_10_pyp1620",
-    "naio_10_cp1630", "naio_10_pyp1630"
-  )
-  if (id %in% siot_id_codes) {
-    message(
-      "The requested product id is a special input-output matrix.",
-      "\nTo keep the matrix structure for further use, download it with iotables::iotables_download().\nThe iotables package is an extension for such cases to the eurostat package."
-    )
-    answer <- readline(prompt = "Do you want to stop downloading now? [y/n] ")
-    if (tolower(answer) == "y") TRUE else FALSE
-  } else {
-    # By default evaluates to FALSE and no interruption happens
-    FALSE
-  }
 }
 
 # Internal function to give warning if sub-national geo codes need validation

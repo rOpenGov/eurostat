@@ -94,23 +94,11 @@ validate_geo_code(my_reg_data$geo)
 }
 }
 \seealso{
-Other regions functions: 
-\code{\link{add_nuts_level}()},
-\code{\link{harmonize_geo_code}()},
-\code{\link{recode_to_nuts_2013}()},
-\code{\link{recode_to_nuts_2016}()}
-
-Other regions functions: 
-\code{\link{add_nuts_level}()},
-\code{\link{harmonize_geo_code}()},
-\code{\link{recode_to_nuts_2013}()},
-\code{\link{recode_to_nuts_2016}()}
-
-Other regions functions: 
-\code{\link{add_nuts_level}()},
-\code{\link{harmonize_geo_code}()},
-\code{\link{recode_to_nuts_2013}()},
-\code{\link{recode_to_nuts_2016}()}
+Other regions functions:
+\code{\link[=add_nuts_level]{add_nuts_level()}},
+\code{\link[=harmonize_geo_code]{harmonize_geo_code()}},
+\code{\link[=recode_to_nuts_2013]{recode_to_nuts_2013()}},
+\code{\link[=recode_to_nuts_2016]{recode_to_nuts_2016()}}
 }
 \concept{regions functions}
 \keyword{internal}
@@ -119,6 +107,6 @@ These objects are imported from other packages. Follow the links
 below to see their documentation.
 
 \describe{
-  \item{regions}{\code{\link[regions]{recode_nuts}}, \code{\link[regions]{validate_geo_code}}, \code{\link[regions]{validate_nuts_regions}}}
+  \item{regions}{\code{\link[regions:recode_nuts]{recode_nuts()}}, \code{\link[regions:validate_geo_code]{validate_geo_code()}}, \code{\link[regions:validate_nuts_regions]{validate_nuts_regions()}}}
 }}
 

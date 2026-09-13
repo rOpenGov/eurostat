@@ -14,6 +14,9 @@ export(get_eurostat_folder)
 export(get_eurostat_geospatial)
 export(get_eurostat_interactive)
 export(get_eurostat_json)
+export(get_eurostat_link)
+export(get_eurostat_local)
+export(get_eurostat_sdmx)
 export(get_eurostat_toc)
 export(grepEurostatTOC)
 export(harmonize_country_code)
@@ -30,67 +33,111 @@ export(set_eurostat_cache_dir)
 export(validate_geo_code)
 export(validate_nuts_regions)
 importFrom(ISOweek,ISOweek2date)
-importFrom(RefManageR,BibEntry)
-importFrom(RefManageR,toBiblatex)
+importFrom(R.utils,isUrl)
 importFrom(classInt,classIntervals)
 importFrom(countrycode,countrycode)
 importFrom(curl,curl_download)
-importFrom(data.table,":=")
-importFrom(data.table,.SD)
-importFrom(data.table,fread)
-importFrom(data.table,melt)
-importFrom(data.table,setDT)
+importFrom(data.table,
+  ":=",
+  .SD,
+  fread,
+  melt,
+  setDT,
+  setcolorder
+)
 importFrom(digest,digest)
-importFrom(dplyr,"%>%")
-importFrom(dplyr,case_when)
-importFrom(dplyr,coalesce)
-importFrom(dplyr,filter)
-importFrom(dplyr,inner_join)
-importFrom(dplyr,mutate)
-importFrom(httr2,"%>%")
-importFrom(httr2,req_error)
-importFrom(httr2,req_perform)
-importFrom(httr2,req_proxy)
-importFrom(httr2,req_retry)
-importFrom(httr2,req_user_agent)
-importFrom(httr2,request)
-importFrom(httr2,resp_body_json)
-importFrom(httr2,resp_content_type)
-importFrom(httr2,resp_is_error)
-importFrom(httr2,url_build)
-importFrom(httr2,url_parse)
-importFrom(jsonlite,fromJSON)
-importFrom(jsonlite,toJSON)
-importFrom(lubridate,day)
-importFrom(lubridate,dmy)
-importFrom(lubridate,month)
-importFrom(lubridate,year)
-importFrom(lubridate,ymd)
-importFrom(readr,col_character)
-importFrom(readr,cols)
-importFrom(readr,read_tsv)
-importFrom(regions,recode_nuts)
-importFrom(regions,validate_geo_code)
-importFrom(regions,validate_nuts_regions)
-importFrom(rlang,"!!")
-importFrom(rlang,sym)
-importFrom(stats,na.omit)
-importFrom(stringi,stri_extract_first_regex)
-importFrom(stringi,stri_replace_all_fixed)
-importFrom(stringi,stri_replace_all_regex)
-importFrom(stringr,str_extract)
-importFrom(stringr,str_glue)
-importFrom(stringr,str_replace_all)
-importFrom(tibble,as_tibble)
-importFrom(tibble,is_tibble)
-importFrom(tidyr,pivot_longer)
-importFrom(tidyr,separate)
-importFrom(utils,capture.output)
-importFrom(utils,download.file)
-importFrom(utils,hasName)
-importFrom(utils,menu)
-importFrom(utils,person)
-importFrom(utils,toBibtex)
-importFrom(xml2,read_xml)
-importFrom(xml2,xml_find_all)
-importFrom(xml2,xml_text)
+importFrom(dplyr,
+  "%>%",
+  case_when,
+  coalesce,
+  filter,
+  inner_join,
+  mutate
+)
+importFrom(httr2,
+  "%>%",
+  req_error,
+  req_perform,
+  req_proxy,
+  req_retry,
+  req_url_path_append,
+  req_url_query,
+  req_user_agent,
+  request,
+  resp_body_json,
+  resp_body_raw,
+  resp_check_status,
+  resp_content_type,
+  resp_is_error,
+  url_build,
+  url_parse
+)
+importFrom(jsonlite,
+  fromJSON,
+  toJSON
+)
+importFrom(lubridate,
+  day,
+  dmy,
+  month,
+  year,
+  ymd
+)
+importFrom(purrr,map_dfr)
+importFrom(readr,
+  col_character,
+  cols,
+  read_csv,
+  read_tsv
+)
+importFrom(regions,
+  recode_nuts,
+  validate_geo_code,
+  validate_nuts_regions
+)
+importFrom(rlang,
+  "!!",
+  .data,
+  sym
+)
+importFrom(stats,
+  na.omit,
+  setNames
+)
+importFrom(stringi,
+  stri_extract_first_regex,
+  stri_replace_all_fixed,
+  stri_replace_all_regex
+)
+importFrom(stringr,
+  str_extract,
+  str_glue,
+  str_replace_all
+)
+importFrom(tibble,
+  as_tibble,
+  is_tibble
+)
+importFrom(tidyr,
+  pivot_longer,
+  separate
+)
+importFrom(utils,
+  capture.output,
+  download.file,
+  hasName,
+  menu,
+  modifyList,
+  person,
+  read.csv,
+  read.delim,
+  toBibtex
+)
+importFrom(xml2,
+  read_xml,
+  xml_attr,
+  xml_find_all,
+  xml_find_first,
+  xml_ns,
+  xml_text
+)

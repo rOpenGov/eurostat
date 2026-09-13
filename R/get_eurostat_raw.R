@@ -7,9 +7,9 @@
 #' 	  years and column names are years with preceding X. Data is in
 #' 	  character format as it contains values together with eurostat
 #' 	  flags for data.
-#' @seealso 
+#' @seealso
 #' [get_eurostat()]
-#' 
+#'
 #' @inheritSection eurostat-package Data source: Eurostat SDMX 2.1 Dissemination API
 #' @inheritSection eurostat-package Eurostat: Copyright notice and free re-use of data
 #' @inheritSection eurostat-package Citing Eurostat data
@@ -56,7 +56,7 @@ get_eurostat_raw <- function(id, use.data.table = FALSE) {
     on.exit(options(op), add = TRUE)
     utils::download.file(url, tfile)
   }
-  
+
   if (!use.data.table) {
     # OLD CODE
     dat <- readr::read_tsv(gzfile(tfile),
@@ -70,10 +70,10 @@ get_eurostat_raw <- function(id, use.data.table = FALSE) {
                              na.strings = ":",
                              header = TRUE,
                              colClasses = "character")
-    
+
     # OLD CODE
-    # data.table object does not need to be converted into a tibble at this 
-    # point as it will handled by data.table functions in tidy_eurostat.    
+    # data.table object does not need to be converted into a tibble at this
+    # point as it will handled by data.table functions in tidy_eurostat.
     # dat <- tibble::as_tibble(dat)
   }
 

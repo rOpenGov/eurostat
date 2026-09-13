@@ -14,7 +14,7 @@
 #' 
 #' @return a bibentry, Bibtex or Biblatex object.
 #' 
-#' @seealso [utils::bibentry] [RefManageR::toBiblatex]
+#' @seealso [utils::bibentry]
 #' 
 #' @examplesIf check_access_to_data()
 #' \dontrun{
@@ -31,13 +31,12 @@
 #' 
 #' @importFrom lubridate dmy year month day
 #' @importFrom utils toBibtex person
-#' @importFrom RefManageR BibEntry toBiblatex
 #' @importFrom stringr str_glue
 #'
 #' @export
 get_bibentry <- function(code,
                          keywords = NULL,
-                         format = "Biblatex",
+                         format = "bibtex",
                          lang = "en") {
   if (!any(class(code) %in% c("character", "factor"))) {
     stop("The code(s) must be added as character vector")
@@ -49,10 +48,10 @@ get_bibentry <- function(code,
   code <- as.character(code)
   format <- tolower(as.character(format))
 
-  if (!format %in% c("bibentry", "bibtex", "biblatex")) {
-    warning("The ", format, " is not recognized, will return Biblatex as
+  if (!format %in% c("bibentry", "bibtex")) {
+    warning("The ", format, " is not recognized, will return bibtex as
               default.")
-    format <- "biblatex"
+    format <- "bibtex"
   }
 
   toc <- get_eurostat_toc(lang = lang)
@@ -66,9 +65,9 @@ get_bibentry <- function(code,
   lang <- check_lang(lang)
   
   lang_long <- switch(lang,
-                      en = "english",
-                      fr = "french",
-                      de = "german")
+                      en = "English",
+                      fr = "French",
+                      de = "German")
 
   if (nrow(toc) == 0) {
     warning(paste(
@@ -119,19 +118,28 @@ get_bibentry <- function(code,
     } else {
       keyword_entry <- NULL
     }
-
-    entry <- RefManageR::BibEntry(
+    
+    sdmx_dataflow <- get_sdmx_dataflow(id = toc$code[i], agency = "Eurostat")
+    
+    unexpanded_doi <- ""
+    if (!is.na(sdmx_dataflow$doi_url)) {
+      unexpanded_doi <- gsub("https://doi.org/", "", sdmx_dataflow$doi_url)
+      unexpanded_doi <- gsub("_", "\\\\_", unexpanded_doi)
+    }
+    
+    entry <- utils::bibentry(
       bibtype = "misc",
       key = dataset_key,
       title = paste0(toc$title[i], " (", dataset_id, ")"),
+      author = c(
+        utils::person(given = "Eurostat")
+      ),
       url = paste0("https://ec.europa.eu/eurostat/web/products-datasets/product?code=",
                    toc$code[i]),
       language = lang_long,
       # date = last_update_date,
       year = last_update_year,
-      author = c(
-        utils::person(given = "Eurostat")
-      ),
+      doi = unexpanded_doi,
       keywords = keyword_entry,
       urldate = urldate,
       type = "Dataset",
@@ -150,8 +158,7 @@ get_bibentry <- function(code,
 
   if (format == "bibtex") {
     entries <- utils::toBibtex(entries)
-  } else if (format == "biblatex") {
-    entries <- RefManageR::toBiblatex(entries)
   }
+  # if entry is bibentry then that will be returned instead of bibtex
   entries
 }

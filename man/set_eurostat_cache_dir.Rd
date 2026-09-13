@@ -14,7 +14,7 @@ set_eurostat_cache_dir(
 \arguments{
 \item{cache_dir}{A path to a cache directory. On missing value the function
 would store the cached files on a temporary dir (See
-\code{\link[base:tempfile]{base::tempdir()}}).}
+\code{\link[base:tempdir]{base::tempdir()}}).}
 
 \item{overwrite}{If this is set to \code{TRUE}, it will overwrite an existing
 \code{EUROSTAT_CACHE_DIR} that you already have in local machine.}
@@ -60,10 +60,10 @@ set_eurostat_cache_dir(verbose = TRUE)
 Sys.getenv("EUROSTAT_CACHE_DIR")
 }
 \seealso{
-\code{\link[rappdirs:user_data_dir]{rappdirs::user_config_dir()}}
+\code{\link[rappdirs:user_config_dir]{rappdirs::user_config_dir()}}
 
-Other cache utilities: 
-\code{\link{clean_eurostat_cache}()}
+Other cache utilities:
+\code{\link[=clean_eurostat_cache]{clean_eurostat_cache()}}
 }
 \author{
 Diego Hernangómez

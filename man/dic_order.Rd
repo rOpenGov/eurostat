@@ -29,12 +29,12 @@ dictionaries. The function \code{\link[=label_eurostat]{label_eurostat()}} can a
 of labels with argument \code{eu_order = TRUE}.
 }
 \seealso{
-Other helpers: 
-\code{\link{cut_to_classes}()},
-\code{\link{eurotime2date}()},
-\code{\link{eurotime2num}()},
-\code{\link{harmonize_country_code}()},
-\code{\link{label_eurostat}()}
+Other helpers:
+\code{\link[=cut_to_classes]{cut_to_classes()}},
+\code{\link[=eurotime2date]{eurotime2date()}},
+\code{\link[=eurotime2num]{eurotime2num()}},
+\code{\link[=harmonize_country_code]{harmonize_country_code()}},
+\code{\link[=label_eurostat]{label_eurostat()}}
 }
 \author{
 Przemyslaw Biecek, Leo Lahti, Janne Huovari and Markus Kainu
