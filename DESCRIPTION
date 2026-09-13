@@ -51,7 +51,6 @@ Imports:
     readr,
     regions,
     rlang,
-    stringi,
     stringr,
     tibble,
     tidyr (>= 1.0.0),
