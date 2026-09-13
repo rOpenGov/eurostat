@@ -78,9 +78,9 @@ eurotime2date <- function(x, last = FALSE) {
     # We need period to be of format "WNN", e.g. W01 for 1st week of the year
     period <- subyear
   } else if (tcode == "-") {
-    # daily data
-    period <- gsub("M", "", subyear)
-    day <- gsub("D", "", days)
+    # daily data, always of the form YYYY-MM-DD
+    period <- substr(unique_times, 6, 7)
+    day <- substr(unique_times, 9, 10)
   } else {
     # nocov start
     warning(
@@ -140,8 +140,9 @@ eurotime2date <- function(x, last = FALSE) {
 
   levels(x) <- paste0(year, "-", period, "-", day)
 
-  # For times other than weeks
-  if (last == TRUE && tcode != "W") {
+  # For times other than weeks and days. A single day already is the last
+  # day of the period it denotes, so it needs no adjustment.
+  if (last == TRUE && !tcode %in% c("W", "-")) {
     shift <- c(
       "Y" = 367, "S" = 186, "Q" = 96, "0" = 32, "1" = 32, "D" = 0
     )[tcode]
