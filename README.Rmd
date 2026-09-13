@@ -126,8 +126,8 @@ When using data retrieved from Eurostat database in your work, please indicate t
 [license]: https://github.com/ropengov/eurostat/blob/master/LICENSE
 
 [github-watch-badge]: https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social
-[github-watch]: https://github.com/rOpenGov/eurostat/watchers
+[github-watch]: https://github.com/rOpenGov/eurostat
 [github-star-badge]: https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social
-[github-star]: https://github.com/rOpenGov/eurostat/stargazers
+[github-star]: https://github.com/rOpenGov/eurostat
 
 [eurostat]: https://github.com/ropengov/eurostat/

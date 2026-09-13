@@ -1,6 +1,5 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-
 <!-- badges: start -->
 
 [![rOG-badge](https://ropengov.github.io/rogtemplate/reference/figures/ropengov-badge.svg)](https://ropengov.org/)
@@ -18,31 +17,21 @@ version](http://www.r-pkg.org/badges/version/eurostat)](https://CRAN.R-project.o
 [![r-universe](https://ropengov.r-universe.dev/badges/eurostat)](https://ropengov.r-universe.dev/)
 
 [![Watch on
-GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/rOpenGov/eurostat/watchers)
+GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/rOpenGov/eurostat)
 [![Star on
-GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)](https://github.com/rOpenGov/eurostat/stargazers)
+GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)](https://github.com/rOpenGov/eurostat)
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/ropengov)
 
 <!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
-
 <!--[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
-
 <!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
-
 <!--[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.399279.svg)](https://doi.org/10.5281/zenodo.399279)-->
-
 <!--[![PRs Welcome][prs-badge]][prs]-->
-
 <!--[![Code of Conduct][coc-badge]][coc]-->
-
 <!--[![Contributors](https://img.shields.io/github/contributors/cdnjs/cdnjs.svg?style=flat-square)](#contributors)-->
-
 <!--[![License](https://img.shields.io/pypi/l/Django.svg)](https://opensource.org/licenses/BSD-2-Clause)-->
-
 <!--[![Stories in Ready](http://badge.waffle.io/ropengov/eurostat.png?label=TODO)](http://waffle.io/ropengov/eurostat)-->
-
 <!--[![CRAN version](http://www.r-pkg.org/badges/version/eurostat)](https://cran.r-project.org/package=eurostat)-->
-
 <!-- badges: end -->
 
 # eurostat R package <a href='https://ropengov.github.io/eurostat/'><img src='man/figures/logo.png' align="right" height="139" /></a>
@@ -92,14 +81,14 @@ passengers <- search_eurostat("passenger transport")
 knitr::kable(head(passengers))
 ```
 
-| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
-|:---|:---|:---|:---|:---|:---|:---|---:|---:|
-| Air passenger transport - ENP-South countries | enps_avia_pa | dataset | 05.03.2026 | 05.03.2026 | 2005 | 2025 | 425 | 6 |
-| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 09.09.2026 | 10.08.2026 | 1993 | 2026-Q2 | 2655229 | 5 |
-| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 09.09.2026 | 13.08.2026 | 1993 | 2026-Q2 | 22257562 | 5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 09.09.2026 | 10.08.2026 | 1993 | 2026-Q2 | 11609611 | 5 |
-| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 09.09.2026 | 23.07.2026 | 1993 | 2026-Q2 | 21913160 | 5 |
-| Air passenger transport by aircraft model, distance bands and transport coverage | avia_paodis | dataset | 03.12.2025 | 29.10.2025 | 2008 | 2024 | 907536 | 5 |
+| title                                                                               | code         | type    | last.update.of.data | last.table.structure.change | data.start | data.end |   values | hierarchy |
+|:------------------------------------------------------------------------------------|:-------------|:--------|:--------------------|:----------------------------|:-----------|:---------|---------:|----------:|
+| Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 05.03.2026          | 05.03.2026                  | 2005       | 2025     |      425 |         6 |
+| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 10.09.2026          | 10.09.2026                  | 1993       | 2026-Q2  |  2657749 |         5 |
+| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 10.09.2026          | 10.09.2026                  | 1993       | 2026-Q2  | 22302742 |         5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 10.09.2026          | 10.09.2026                  | 1993       | 2026-Q2  | 11627539 |         5 |
+| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 10.09.2026          | 10.09.2026                  | 1993       | 2026-Q2  | 21938000 |         5 |
+| Air passenger transport by aircraft model, distance bands and transport coverage    | avia_paodis  | dataset | 03.12.2025          | 29.10.2025                  | 2008       | 2024     |   907536 |         5 |
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
@@ -129,7 +118,7 @@ Contributions are very welcome:
 
 **Kindly cite this work** as follows:
 
-```
+``` text
 print(citation("eurostat"), bibtex = TRUE)
 Kindly cite this package by citing the following R Journal article:
 
@@ -157,8 +146,8 @@ used:
   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
   doi:10.32614/CRAN.package.eurostat
-  <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-  4.1.0.9008, <https://github.com/rOpenGov/eurostat>.
+  <https://doi.org/10.32614/CRAN.package.eurostat>, R package version
+  4.1.1, <https://github.com/rOpenGov/eurostat>.
 
 A BibTeX entry for LaTeX users is
 
@@ -169,7 +158,7 @@ A BibTeX entry for LaTeX users is
     url = {https://github.com/rOpenGov/eurostat},
     type = {Computer software},
     year = {2026},
-    note = {R package version 4.1.0.9008},
+    note = {R package version 4.1.1},
   }
 ```
 
