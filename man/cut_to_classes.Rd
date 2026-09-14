@@ -37,11 +37,6 @@ a factor.
 Categorises a numeric vector into automatic or manually defined
 categories and polishes the labels ready for used in mapping with \code{ggplot2}.
 }
-\details{
-Automatic class intervals are computed with
-\code{\link[classInt:classIntervals]{classInt::classIntervals()}}, so the suggested \pkg{classInt} package
-must be installed unless \code{manual = TRUE}.
-}
 \examples{
 \dontshow{if (check_access_to_data()) withAutoprint(\{ # examplesIf}
 \donttest{

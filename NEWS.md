@@ -2,18 +2,10 @@
 
 ## Minor updates
 
-* Reduced the number of hard dependencies from 21 to 17 in order to make the
-  package less vulnerable to any single dependency becoming unavailable
-  (CRAN check note "Imports includes 21 non-default packages"):
-    * `classInt`, `countrycode` and `ISOweek` were moved from Imports to
-      Suggests. They are now used conditionally and are only needed by
-      `cut_to_classes()` (automatic class intervals), `label_eurostat()`
-      (the `countrycode` argument) and `eurotime2date()` (weekly data),
-      respectively. These functions give an informative error asking the user
-      to install the package if it is missing.
-    * `stringi` was dropped in favour of the equivalent `stringr` functions.
-      `stringr` was already imported and is a thin wrapper around `stringi`,
-      so there is no change in behaviour.
+* Reduced the number of hard dependencies from 21 to 20 (CRAN check note
+  "Imports includes 21 non-default packages"): `stringi` was dropped in favour
+  of the equivalent `stringr` functions. `stringr` was already imported and is
+  a thin wrapper around `stringi`, so there is no change in behaviour.
 * Fix `eurotime2date()` for daily (`YYYY-MM-DD`) data: the month and day
   components were read from the wrong character positions, and `last = TRUE`
   failed with "'from' must be a finite number". A single day already is the

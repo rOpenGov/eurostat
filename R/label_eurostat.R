@@ -76,6 +76,7 @@
 #' )
 #' }
 #'
+#' @importFrom countrycode countrycode
 #' @importFrom tibble as_tibble
 #' @importFrom dplyr filter coalesce
 #' @importFrom stringr str_glue
@@ -177,10 +178,6 @@ label_eurostat <-
           # return factor
           return(y)
         } else if (dic == "geo" && !is.null(countrycode)) {
-          require_suggested(
-            "countrycode",
-            "converting geo codes with the countrycode argument"
-          )
           if (is.null(countrycode_nomatch)) {
             y <- countrycode::countrycode(x,
                                           origin = "eurostat",

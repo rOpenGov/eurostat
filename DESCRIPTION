@@ -1,8 +1,8 @@
 Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
-Version: 4.1.1
-Date: 2026-09-13
+Version: 4.1.2
+Date: 2026-09-14
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -36,11 +36,14 @@ BugReports: https://github.com/rOpenGov/eurostat/issues
 Depends:
     R (>= 3.6.0)
 Imports:
+    classInt,
+    countrycode,
     curl,
     data.table (>= 1.18.2.1),
     digest,
     dplyr,
     httr2 (>= 1.1.2),
+    ISOweek,
     jsonlite,
     lubridate,
     purrr,
@@ -54,10 +57,7 @@ Imports:
     tidyr (>= 1.0.0),
     xml2
 Suggests:
-    classInt,
-    countrycode,
     giscoR (>= 1.1.0),
-    ISOweek,
     knitr,
     lifecycle,
     rmarkdown,

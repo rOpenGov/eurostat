@@ -106,26 +106,3 @@ fixity_checksum <- function(data_object, algorithm = "md5") {
   fixity <- digest::digest(data_object, algo = algorithm)
   fixity
 }
-
-## Check that a package listed in Suggests is available
-##
-## Packages that are only needed by a single function or by an optional
-## code path are listed in Suggests instead of Imports, so that eurostat
-## does not break if any of them becomes unavailable. Call this helper
-## before using such a package.
-##
-## param pkg Name of the suggested package.
-## param use Short description of what the package is needed for.
-require_suggested <- function(pkg, use = NULL) {
-  if (!requireNamespace(pkg, quietly = TRUE)) {
-    stop(
-      "Package \"", pkg, "\" is required ",
-      if (!is.null(use)) paste0("for ", use, " "),
-      "but is not installed.\n",
-      "Install it with: install.packages(\"", pkg, "\")",
-      call. = FALSE
-    )
-  }
-  invisible(TRUE)
-}
-

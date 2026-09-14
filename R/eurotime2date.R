@@ -38,6 +38,7 @@
 #' }
 #'
 #' @importFrom lubridate ymd
+#' @importFrom ISOweek ISOweek2date
 #' @importFrom dplyr inner_join
 #'
 #' @export
@@ -120,7 +121,6 @@ eurotime2date <- function(x, last = FALSE) {
     )
     colnames(d) <- column_names
     d$orig <- unique_dates
-    require_suggested("ISOweek", "converting weekly Eurostat data into dates")
     d$date <- ISOweek::ISOweek2date(unique_dates)
 
     # NEW CODE: data.table
