@@ -229,7 +229,7 @@ Contributions are very welcome:
       Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
       doi:10.32614/CRAN.package.eurostat
       <https://doi.org/10.32614/CRAN.package.eurostat>, R package version
-      4.1.1, <https://github.com/rOpenGov/eurostat>.
+      4.1.2, <https://github.com/rOpenGov/eurostat>.
 
     A BibTeX entry for LaTeX users is
 
@@ -240,7 +240,7 @@ Contributions are very welcome:
         url = {https://github.com/rOpenGov/eurostat},
         type = {Computer software},
         year = {2026},
-        note = {R package version 4.1.1},
+        note = {R package version 4.1.2},
       }
 
 We are grateful to all
