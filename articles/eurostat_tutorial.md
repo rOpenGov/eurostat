@@ -13,12 +13,14 @@ website](http://ropengov.github.io/eurostat/).
 Release version [(CRAN)](https://CRAN.R-project.org/package=eurostat):
 
 ``` r
+
 install.packages("eurostat")
 ```
 
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 ``` r
+
 library(remotes)
 remotes::install_github("ropengov/eurostat")
 ```
@@ -28,6 +30,7 @@ versions in the master branch of eurostat GitHub repository) can be
 installed with the help of R-universe:
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropengov = "https://ropengov.r-universe.dev",
@@ -42,7 +45,7 @@ The package is loaded with the library function.
 Overall, the eurostat package includes the following user-facing
 functions:
 
-    check_access_to_data    Check access to ec.europe.eu
+    check_access_to_data    Check access to ec.europa.eu
     clean_eurostat_cache    Clean Eurostat Cache
     cut_to_classes          Cuts the Values Column into Classes and
                             Polishes the Labels
@@ -51,9 +54,9 @@ functions:
     eu_countries            Countries and Country Codes
     eurostat-defunct        Defunct functions in eurostat
     eurostat-package        R Tools for Eurostat open data
-    eurostat_geodata_60_2016
+    eurostat_geodata_60_2024
                             Geospatial data of Europe from GISCO in 1:60
-                            million scale from year 2016
+                            million scale from year 2024
     eurotime2date           Date Conversion from New Eurostat Time Format
     eurotime2num            Conversion of Eurostat Time Format to Numeric
     get_bibentry            Create A Data Bibliography
@@ -64,8 +67,12 @@ functions:
                             Download Geospatial Data from GISCO
     get_eurostat_interactive
                             Get Eurostat data interactive
-    get_eurostat_json       Get Data from Eurostat API in JSON
+    get_eurostat_json       Get Data from Eurostat API Statistics
+    get_eurostat_link       Download Eurostat Data from API Link (robust,
+                            no list-columns, async-aware)
+    get_eurostat_local      Read Local SDMX-CSV files
     get_eurostat_raw        Download Data from Eurostat Dissemination API
+    get_eurostat_sdmx       Get Eurostat Data from SDMX 2.1 API
     get_eurostat_toc        Download Table of Contents of Eurostat Data
                             Sets
     harmonize_country_code
@@ -80,6 +87,7 @@ functions:
     tgs00026                Auxiliary Data
 
 ``` r
+
 evaluate <- curl::has_internet()
 ```
 
@@ -97,6 +105,7 @@ Function
 downloads a table of contents (TOC) of eurostat datasets.
 
 ``` r
+
 # Load the package
 library(eurostat)
 
@@ -108,14 +117,14 @@ library(knitr)
 kable(tail(toc))
 ```
 
-| title                                                                               | code        | type    | last.update.of.data | last.table.structure.change | data.start | data.end |  values | hierarchy |
-|:------------------------------------------------------------------------------------|:------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
-| Generation of waste by waste category, hazardousness and NACE Rev. 2 activity       | env_wasgen  | dataset | 22.09.2025          | 30.09.2024                  | 2004       | 2022     | 1457402 |         4 |
-| Food waste and food waste prevention by NACE Rev. 2 activity - tonnes of fresh mass | env_wasfw   | dataset | 18.02.2026          | 15.10.2025                  | 2020       | 2023     |    1416 |         4 |
-| Water use by supply category and economical sector                                  | env_wat_cat | dataset | 31.07.2025          | 31.07.2025                  | 1970       | 2023     |    9213 |         4 |
-| Population connected to wastewater treatment plants                                 | env_ww_con  | dataset | 03.11.2025          | 31.07.2025                  | 1970       | 2023     |   16466 |         4 |
-| Population connected to public water supply                                         | env_wat_pop | dataset | 31.07.2025          | 31.07.2025                  | 1990       | 2023     |     569 |         4 |
-| Generation and discharge of wastewater in volume                                    | env_ww_genv | dataset | 31.07.2025          | 31.07.2025                  | 1975       | 2023     |   12625 |         4 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Generation of waste by waste category, hazardousness and NACE Rev. 2 activity | env_wasgen | dataset | 22.09.2025 | 30.09.2024 | 2004 | 2022 | 1457402 | 4 |
+| Food waste and food waste prevention by NACE Rev. 2 activity - tonnes of fresh mass | env_wasfw | dataset | 18.02.2026 | 15.10.2025 | 2020 | 2023 | 1416 | 4 |
+| Water use by supply category and economical sector | env_wat_cat | dataset | 03.07.2026 | 03.07.2026 | 1970 | 2024 | 9811 | 4 |
+| Population connected to wastewater treatment plants | env_ww_con | dataset | 03.07.2026 | 03.07.2026 | 1970 | 2024 | 17178 | 4 |
+| Population connected to public water supply | env_wat_pop | dataset | 03.07.2026 | 03.07.2026 | 1990 | 2024 | 613 | 4 |
+| Generation and discharge of wastewater in volume | env_ww_genv | dataset | 03.07.2026 | 03.07.2026 | 1975 | 2024 | 13250 | 4 |
 
 The values in column ‘code’ are unique identifiers for each dataset that
 have to be used when downloading specific datasets. In the
@@ -137,17 +146,18 @@ mandatory and queries without it continue to deliver the English version
 of the TOC object.
 
 ``` r
+
 kable(head(get_eurostat_toc(lang = "fr")))
 ```
 
-| title                                                           | code        | type   | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
-|:----------------------------------------------------------------|:------------|:-------|:--------------------|:----------------------------|:-----------|:---------|-------:|----------:|
-| Base de données par thèmes                                      | data        | folder |                     |                             |            |          |     NA |         0 |
-| Statistiques générales et régionales                            | general     | folder |                     |                             |            |          |     NA |         1 |
-| Indicateurs européens et nationaux pour l’analyse à court terme | euroind     | folder |                     |                             |            |          |     NA |         2 |
-| Balance des paiements                                           | ei_bp       | folder |                     |                             |            |          |     NA |         3 |
-| Compte courant - données trimestrielles                         | ei_bpm6ca_q | table  | 19.02.2026          | 19.02.2026                  | 1991-Q1    | 2025-Q4  | 298407 |         4 |
-| Compte financier - données trimestrielles                       | ei_bpm6fa_q | table  | 19.02.2026          | 19.02.2026                  | 1991-Q1    | 2025-Q4  |  52746 |         4 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Base de données par thèmes | data | folder |  |  |  |  | NA | 0 |
+| Statistiques générales et régionales | general | folder |  |  |  |  | NA | 1 |
+| Indicateurs européens et nationaux pour l’analyse à court terme | euroind | folder |  |  |  |  | NA | 2 |
+| Balance des paiements | ei_bp | folder |  |  |  |  | NA | 3 |
+| Compte courant - données trimestrielles | ei_bpm6ca_q | table | 19.08.2026 | 19.08.2026 | 1991-Q1 | 2026-Q2 | 311689 | 4 |
+| Compte financier - données trimestrielles | ei_bpm6fa_q | table | 19.08.2026 | 19.08.2026 | 1991-Q1 | 2026-Q2 | 55400 | 4 |
 
 With
 [`search_eurostat()`](https://ropengov.github.io/eurostat/reference/search_eurostat.md)
@@ -167,18 +177,19 @@ on the other hand, described to be “multi-dimensional tables” that have
 for use by statistical and other experts via special applications”.
 
 ``` r
+
 # info about passengers
 kable(head(search_eurostat("passenger transport")))
 ```
 
-| title                                                                               | code         | type    | last.update.of.data | last.table.structure.change | data.start | data.end |   values | hierarchy |
-|:------------------------------------------------------------------------------------|:-------------|:--------|:--------------------|:----------------------------|:-----------|:---------|---------:|----------:|
-| Air passenger transport - ENP-South countries                                       | enps_avia_pa | dataset | 05.03.2026          | 05.03.2026                  | 2005       | 2025     |      425 |         6 |
-| Air passenger transport by type of schedule, transport coverage and country         | avia_paoc    | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  |  2613217 |         5 |
-| Air passenger transport by type of schedule, transport coverage and main airports   | avia_paoa    | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21786106 |         5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc   | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 11292766 |         5 |
-| Air passenger transport between main airports and partner reporting countries       | avia_paoac   | dataset | 25.02.2026          | 28.01.2026                  | 1993       | 2025-Q4  | 21379510 |         5 |
-| Air passenger transport by aircraft model, distance bands and transport coverage    | avia_paodis  | dataset | 03.12.2025          | 29.10.2025                  | 2008       | 2024     |   907536 |         5 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Air passenger transport - ENP-South countries | enps_avia_pa | dataset | 05.03.2026 | 05.03.2026 | 2005 | 2025 | 425 | 6 |
+| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2657749 | 5 |
+| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 22302742 | 5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11627539 | 5 |
+| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 21938000 | 5 |
+| Air passenger transport by aircraft model, distance bands and transport coverage | avia_paodis | dataset | 03.12.2025 | 29.10.2025 | 2008 | 2024 | 907536 | 5 |
 
 From eurostat version 4.0.0 onwards it possible to perform searches also
 from dataset codes. This is done by specifying the search column by
@@ -189,17 +200,18 @@ for migration related statistics and “tran” in the case of (multimodal)
 transport statistics.
 
 ``` r
+
 kable(head(search_eurostat("migr", column = "code")))
 ```
 
-| title                                                                                                                | code          | type    | last.update.of.data | last.table.structure.change | data.start | data.end |  values | hierarchy |
-|:---------------------------------------------------------------------------------------------------------------------|:--------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
-| Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
-| Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009          | 03.01.2024                  | 2001       | 2001     | 1482371 |         6 |
-| Population on 1 January by age, sex and broad group of citizenship                                                   | migr_pop2ctz  | dataset | 05.03.2026          | 20.01.2026                  | 1998       | 2025     |  708590 |         4 |
-| Population on 1 January by age group, sex and citizenship                                                            | migr_pop1ctz  | dataset | 05.03.2026          | 20.01.2026                  | 1998       | 2025     | 8773372 |         4 |
-| Population on 1 January by age group, sex and country of birth                                                       | migr_pop3ctb  | dataset | 05.03.2026          | 03.03.2026                  | 1998       | 2025     | 7057460 |         4 |
-| Population on 1 January by age, sex and group of country of birth                                                    | migr_pop4ctb  | dataset | 05.03.2026          | 03.03.2026                  | 1998       | 2025     |  685165 |         4 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009 | 03.01.2024 | 2001 | 2001 | 1482371 | 6 |
+| Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009 | 03.01.2024 | 2001 | 2001 | 1482371 | 6 |
+| Population on 1 January by age, sex and broad group of citizenship | migr_pop2ctz | dataset | 10.08.2026 | 20.01.2026 | 1998 | 2025 | 709969 | 4 |
+| Population on 1 January by age group, sex and citizenship | migr_pop1ctz | dataset | 10.08.2026 | 20.01.2026 | 1998 | 2025 | 8785137 | 4 |
+| Population on 1 January by age group, sex and country of birth | migr_pop3ctb | dataset | 10.08.2026 | 03.03.2026 | 1998 | 2025 | 7071362 | 4 |
+| Population on 1 January by age, sex and group of country of birth | migr_pop4ctb | dataset | 10.08.2026 | 03.03.2026 | 1998 | 2025 | 686734 | 4 |
 
 Another new addition in version 4.0.0 is the option to perform searches
 from French and German language TOC versions as well by setting the
@@ -208,12 +220,13 @@ between language versions so French and German language searches should
 be conducted only on the title column.
 
 ``` r
+
 kable(head(search_eurostat("flughafen", column = "title", lang = "de")))
 ```
 
-| title                                                                                     | code          | type    | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
-|:------------------------------------------------------------------------------------------|:--------------|:--------|:--------------------|:----------------------------|:-----------|:---------|-------:|----------:|
-| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 09.03.2026          | 09.03.2026                  | 2019-01    | 2026-02  | 674104 |         4 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 10.09.2026 | 10.09.2026 | 2019-01 | 2026-08 | 725600 | 4 |
 
 As mentioned in the beginning, codes for different dataset can be found
 also from the [Eurostat
@@ -254,6 +267,7 @@ Metadata](https://ec.europa.eu/eurostat/cache/metadata/en/tran_hv_ms_esms.htm).
 Pick and print the id of the data set to download:
 
 ``` r
+
 # Perform search, the output is a table of search results
 search_results <- search_eurostat("Modal split of air, sea and inland passenger transport",
   type = "dataset"
@@ -263,11 +277,12 @@ search_results <- search_eurostat("Modal split of air, sea and inland passenger 
 kable(head(search_results))
 ```
 
-| title                                                  | code             | type    | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
-|:-------------------------------------------------------|:-----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|-------:|----------:|
-| Modal split of air, sea and inland passenger transport | tran_hv_ms_psmod | dataset | 05.06.2025          | 05.06.2025                  | 2008       | 2023     |   2272 |         4 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Modal split of air, sea and inland passenger transport | tran_hv_ms_psmod | dataset | 26.08.2026 | 23.07.2026 | 2008 | 2024 | 2414 | 4 |
 
 ``` r
+
 # Get the id from the table
 id <- search_results$code[1]
 
@@ -283,6 +298,7 @@ format, where yearly data would be coerced to be on the first day of the
 year (e.g. 2000-01-01).
 
 ``` r
+
 dat <- get_eurostat(id, time_format = "num", stringsAsFactors = TRUE)
 ```
 
@@ -290,27 +306,29 @@ The structure of the downloaded data set can be investigated by using
 the base R [`str()`](https://rdrr.io/r/utils/str.html) function:
 
 ``` r
+
 str(dat)
 ```
 
-    ## tibble [2,400 × 6] (S3: tbl_df/tbl/data.frame)
+    ## tibble [2,550 × 6] (S3: tbl_df/tbl/data.frame)
     ##  $ freq       : Factor w/ 1 level "A": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ vehicle    : Factor w/ 5 levels "AC","BUS_TOT",..: 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ unit       : Factor w/ 1 level "PC": 1 1 1 1 1 1 1 1 1 1 ...
     ##  $ geo        : Factor w/ 30 levels "AT","BE","BG",..: 1 1 1 1 1 1 1 1 1 1 ...
-    ##  $ TIME_PERIOD: num [1:2400] 2008 2009 2010 2011 2012 ...
-    ##  $ values     : num [1:2400] 16.3 15.9 16.9 17.7 18.2 18.5 18.9 19.2 19 20.1 ...
+    ##  $ TIME_PERIOD: num [1:2550] 2008 2009 2010 2011 2012 ...
+    ##  $ values     : num [1:2550] 15.6 15.2 16.1 16.8 18.2 18.5 18.9 19.3 19 20.1 ...
 
 ``` r
+
 kable(head(dat))
 ```
 
 | freq | vehicle | unit | geo | TIME_PERIOD | values |
 |:-----|:--------|:-----|:----|------------:|-------:|
-| A    | AC      | PC   | AT  |        2008 |   16.3 |
-| A    | AC      | PC   | AT  |        2009 |   15.9 |
-| A    | AC      | PC   | AT  |        2010 |   16.9 |
-| A    | AC      | PC   | AT  |        2011 |   17.7 |
+| A    | AC      | PC   | AT  |        2008 |   15.6 |
+| A    | AC      | PC   | AT  |        2009 |   15.2 |
+| A    | AC      | PC   | AT  |        2010 |   16.1 |
+| A    | AC      | PC   | AT  |        2011 |   16.8 |
 | A    | AC      | PC   | AT  |        2012 |   18.2 |
 | A    | AC      | PC   | AT  |        2013 |   18.5 |
 
@@ -328,22 +346,23 @@ and
 function documentation.
 
 ``` r
+
 dat2 <- get_eurostat(id, filters = list(geo = c("EU27_2020", "FI"), lastTimePeriod = 1), time_format = "num")
 kable(dat2)
 ```
 
 | freq | vehicle | unit | geo       | time | values |
 |:-----|:--------|:-----|:----------|-----:|-------:|
-| A    | TRN     | PC   | EU27_2020 | 2023 |    7.1 |
-| A    | TRN     | PC   | FI        | 2023 |    6.5 |
-| A    | CAR     | PC   | EU27_2020 | 2023 |   70.6 |
-| A    | CAR     | PC   | FI        | 2023 |   76.4 |
-| A    | BUS_TOT | PC   | EU27_2020 | 2023 |    7.2 |
-| A    | BUS_TOT | PC   | FI        | 2023 |    9.1 |
-| A    | SEAV    | PC   | EU27_2020 | 2023 |    0.4 |
-| A    | SEAV    | PC   | FI        | 2023 |    2.1 |
-| A    | AC      | PC   | EU27_2020 | 2023 |   14.7 |
-| A    | AC      | PC   | FI        | 2023 |    5.9 |
+| A    | TRN     | PC   | EU27_2020 | 2024 |    7.5 |
+| A    | TRN     | PC   | FI        | 2024 |    6.7 |
+| A    | CAR     | PC   | EU27_2020 | 2024 |   69.2 |
+| A    | CAR     | PC   | FI        | 2024 |   75.4 |
+| A    | BUS_TOT | PC   | EU27_2020 | 2024 |    7.3 |
+| A    | BUS_TOT | PC   | FI        | 2024 |    9.1 |
+| A    | SEAV    | PC   | EU27_2020 | 2024 |    0.4 |
+| A    | SEAV    | PC   | FI        | 2024 |    2.1 |
+| A    | AC      | PC   | EU27_2020 | 2024 |   15.8 |
+| A    | AC      | PC   | FI        | 2024 |    6.7 |
 
 ### Replacing codes with labels
 
@@ -352,6 +371,7 @@ human-readable labels instead, use a `type = "label"` argument in
 [`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md).
 
 ``` r
+
 dat_labeled2 <- get_eurostat(id,
   filters = list(
     geo = c("EU27_2020", "FI"),
@@ -362,14 +382,14 @@ dat_labeled2 <- get_eurostat(id,
 kable(head(dat_labeled2))
 ```
 
-| freq   | vehicle                                | unit       | geo                                       | time | values |
-|:-------|:---------------------------------------|:-----------|:------------------------------------------|-----:|-------:|
-| Annual | Trains                                 | Percentage | European Union - 27 countries (from 2020) | 2023 |    7.1 |
-| Annual | Trains                                 | Percentage | Finland                                   | 2023 |    6.5 |
-| Annual | Passenger cars                         | Percentage | European Union - 27 countries (from 2020) | 2023 |   70.6 |
-| Annual | Passenger cars                         | Percentage | Finland                                   | 2023 |   76.4 |
-| Annual | Motor coaches, buses and trolley buses | Percentage | European Union - 27 countries (from 2020) | 2023 |    7.2 |
-| Annual | Motor coaches, buses and trolley buses | Percentage | Finland                                   | 2023 |    9.1 |
+| freq | vehicle | unit | geo | time | values |
+|:---|:---|:---|:---|---:|---:|
+| Annual | Trains | Percentage | European Union - 27 countries (from 2020) | 2024 | 7.5 |
+| Annual | Trains | Percentage | Finland | 2024 | 6.7 |
+| Annual | Passenger cars | Percentage | European Union - 27 countries (from 2020) | 2024 | 69.2 |
+| Annual | Passenger cars | Percentage | Finland | 2024 | 75.4 |
+| Annual | Motor coaches, buses and trolley buses | Percentage | European Union - 27 countries (from 2020) | 2024 | 7.3 |
+| Annual | Motor coaches, buses and trolley buses | Percentage | Finland | 2024 | 9.1 |
 
 Eurostat codes in the downloaded data set can be replaced with
 human-readable labels from the Eurostat dictionaries with the
@@ -377,16 +397,17 @@ human-readable labels from the Eurostat dictionaries with the
 function.
 
 ``` r
+
 dat_labeled <- label_eurostat(dat)
 kable(head(dat_labeled))
 ```
 
 | freq   | vehicle  | unit       | geo     | TIME_PERIOD | values |
 |:-------|:---------|:-----------|:--------|------------:|-------:|
-| Annual | Aircraft | Percentage | Austria |        2008 |   16.3 |
-| Annual | Aircraft | Percentage | Austria |        2009 |   15.9 |
-| Annual | Aircraft | Percentage | Austria |        2010 |   16.9 |
-| Annual | Aircraft | Percentage | Austria |        2011 |   17.7 |
+| Annual | Aircraft | Percentage | Austria |        2008 |   15.6 |
+| Annual | Aircraft | Percentage | Austria |        2009 |   15.2 |
+| Annual | Aircraft | Percentage | Austria |        2010 |   16.1 |
+| Annual | Aircraft | Percentage | Austria |        2011 |   16.8 |
 | Annual | Aircraft | Percentage | Austria |        2012 |   18.2 |
 | Annual | Aircraft | Percentage | Austria |        2013 |   18.5 |
 
@@ -395,6 +416,7 @@ The
 allows conversion of variable names as well.
 
 ``` r
+
 print(label_eurostat_vars(id = "tran_hv_ms_psmod", names(dat_labeled)))
 ```
 
@@ -405,6 +427,7 @@ print(label_eurostat_vars(id = "tran_hv_ms_psmod", names(dat_labeled)))
 Vehicle information has 5 levels. You can check them now with:
 
 ``` r
+
 levels(dat_labeled$vehicle)
 ```
 
@@ -535,31 +558,33 @@ country coding systems, see the
 To retrieve the country code list for EFTA, for instance, use:
 
 ``` r
+
 data(efta_countries)
 kable(efta_countries)
 ```
 
-| code | name          | label         |
-|:-----|:--------------|:--------------|
-| IS   | Iceland       | Iceland       |
-| LI   | Liechtenstein | Liechtenstein |
-| NO   | Norway        | Norway        |
-| CH   | Switzerland   | Switzerland   |
+| code | name | label | name_fr | name_de | country_language |
+|:---|:---|:---|:---|:---|:---|
+| IS | Iceland | Iceland | Islande | Island | Ísland |
+| LI | Liechtenstein | Liechtenstein | Liechtenstein | Liechtenstein | Liechtenstein |
+| NO | Norway | Norway | Norvège | Norwegen | Norge |
+| CH | Switzerland | Switzerland | Suisse | Schweiz | Schweiz/Suisse/Svizzera |
 
 ### EU data from 2012 in all vehicles:
 
 ``` r
+
 dat_eu12 <- subset(dat_labeled, geo == "European Union - 27 countries (from 2020)" & TIME_PERIOD == 2012)
 kable(dat_eu12, row.names = FALSE)
 ```
 
-| freq   | vehicle                                | unit       | geo                                       | TIME_PERIOD | values |
-|:-------|:---------------------------------------|:-----------|:------------------------------------------|------------:|-------:|
-| Annual | Aircraft                               | Percentage | European Union - 27 countries (from 2020) |        2012 |   11.6 |
-| Annual | Motor coaches, buses and trolley buses | Percentage | European Union - 27 countries (from 2020) |        2012 |    9.1 |
-| Annual | Passenger cars                         | Percentage | European Union - 27 countries (from 2020) |        2012 |   72.3 |
-| Annual | Seagoing vessels                       | Percentage | European Union - 27 countries (from 2020) |        2012 |    0.4 |
-| Annual | Trains                                 | Percentage | European Union - 27 countries (from 2020) |        2012 |    6.7 |
+| freq | vehicle | unit | geo | TIME_PERIOD | values |
+|:---|:---|:---|:---|---:|---:|
+| Annual | Aircraft | Percentage | European Union - 27 countries (from 2020) | 2012 | 13.7 |
+| Annual | Motor coaches, buses and trolley buses | Percentage | European Union - 27 countries (from 2020) | 2012 | 9.6 |
+| Annual | Passenger cars | Percentage | European Union - 27 countries (from 2020) | 2012 | 68.3 |
+| Annual | Seagoing vessels | Percentage | European Union - 27 countries (from 2020) | 2012 | 0.5 |
+| Annual | Trains | Percentage | European Union - 27 countries (from 2020) | 2012 | 7.9 |
 
 ### EU data from 2008 - 2020 with vehicle types as variables:
 
@@ -568,6 +593,7 @@ Reshaping the data is best done with
 `tidyr`.
 
 ``` r
+
 library("tidyr")
 dat_eu_0012 <- subset(dat, geo == "EU27_2020" & TIME_PERIOD %in% c(2008:2020))
 dat_eu_0012_wide <- spread(dat_eu_0012, vehicle, values)
@@ -576,23 +602,24 @@ kable(subset(dat_eu_0012_wide, select = -geo), row.names = FALSE)
 
 | freq | unit | TIME_PERIOD |   AC | BUS_TOT |  CAR | SEAV | TRN |
 |:-----|:-----|------------:|-----:|--------:|-----:|-----:|----:|
-| A    | PC   |        2008 | 10.4 |     8.9 | 73.7 |  0.5 | 6.5 |
-| A    | PC   |        2009 |  9.7 |     8.5 | 75.0 |  0.5 | 6.3 |
-| A    | PC   |        2010 | 10.3 |     8.8 | 74.0 |  0.5 | 6.5 |
-| A    | PC   |        2011 | 10.9 |     9.0 | 73.0 |  0.4 | 6.6 |
-| A    | PC   |        2012 | 11.6 |     9.1 | 72.3 |  0.4 | 6.7 |
-| A    | PC   |        2013 | 11.9 |     9.0 | 72.1 |  0.4 | 6.6 |
+| A    | PC   |        2008 | 10.3 |     9.2 | 73.6 |  0.5 | 6.5 |
+| A    | PC   |        2009 |  9.8 |     9.0 | 74.4 |  0.5 | 6.4 |
+| A    | PC   |        2010 | 12.2 |     9.6 | 70.1 |  0.5 | 7.6 |
+| A    | PC   |        2011 | 12.9 |     9.6 | 69.2 |  0.5 | 7.8 |
+| A    | PC   |        2012 | 13.7 |     9.6 | 68.3 |  0.5 | 7.9 |
+| A    | PC   |        2013 | 11.8 |     9.0 | 72.1 |  0.4 | 6.6 |
 | A    | PC   |        2014 | 12.2 |     8.6 | 72.1 |  0.4 | 6.6 |
 | A    | PC   |        2015 | 12.5 |     8.6 | 71.9 |  0.4 | 6.6 |
-| A    | PC   |        2016 | 12.8 |     8.4 | 72.0 |  0.4 | 6.5 |
-| A    | PC   |        2017 | 13.7 |     8.0 | 71.4 |  0.4 | 6.5 |
-| A    | PC   |        2018 | 14.4 |     7.9 | 70.8 |  0.4 | 6.6 |
-| A    | PC   |        2019 | 14.8 |     7.9 | 70.2 |  0.4 | 6.7 |
-| A    | PC   |        2020 |  5.7 |     6.9 | 82.1 |  0.3 | 5.1 |
+| A    | PC   |        2016 | 12.9 |     8.5 | 71.7 |  0.4 | 6.6 |
+| A    | PC   |        2017 | 13.7 |     8.0 | 71.3 |  0.4 | 6.6 |
+| A    | PC   |        2018 | 14.5 |     7.9 | 70.6 |  0.4 | 6.6 |
+| A    | PC   |        2019 | 14.9 |     7.9 | 70.1 |  0.4 | 6.7 |
+| A    | PC   |        2020 |  5.7 |     6.9 | 82.0 |  0.3 | 5.1 |
 
 ### Train passengers for selected EU countries in 2008 - 2020
 
 ``` r
+
 dat_trains <- subset(dat_labeled, geo %in% c("Austria", "Belgium", "Finland", "Sweden") &
   TIME_PERIOD %in% c(2008:2020) &
   vehicle == "Trains")
@@ -602,19 +629,19 @@ kable(subset(dat_trains_wide, select = -vehicle), row.names = FALSE)
 
 | freq   | unit       | TIME_PERIOD | Austria | Belgium | Finland | Sweden |
 |:-------|:-----------|------------:|--------:|--------:|--------:|-------:|
-| Annual | Percentage |        2008 |     9.8 |     6.6 |     4.9 |    8.1 |
-| Annual | Percentage |        2009 |     9.9 |     6.8 |     4.7 |    8.2 |
-| Annual | Percentage |        2010 |     9.7 |     6.9 |     4.7 |    8.0 |
-| Annual | Percentage |        2011 |     9.9 |     7.1 |     4.6 |    7.5 |
+| Annual | Percentage |        2008 |     9.4 |     6.6 |     4.9 |    8.1 |
+| Annual | Percentage |        2009 |     9.4 |     6.8 |     4.7 |    8.2 |
+| Annual | Percentage |        2010 |     9.3 |     6.9 |     4.7 |    8.0 |
+| Annual | Percentage |        2011 |     9.5 |     7.1 |     4.6 |    7.5 |
 | Annual | Percentage |        2012 |     9.7 |     6.9 |     4.8 |    7.8 |
 | Annual | Percentage |        2013 |    10.0 |     7.0 |     4.8 |    7.8 |
 | Annual | Percentage |        2014 |     9.9 |     7.4 |     4.6 |    7.8 |
 | Annual | Percentage |        2015 |     9.7 |     7.2 |     4.8 |    8.0 |
 | Annual | Percentage |        2016 |     9.8 |     6.9 |     4.4 |    9.0 |
-| Annual | Percentage |        2017 |     9.6 |     7.0 |     4.9 |    9.1 |
+| Annual | Percentage |        2017 |     9.6 |     7.0 |     4.9 |    9.2 |
 | Annual | Percentage |        2018 |     9.7 |     7.8 |     5.1 |    9.2 |
 | Annual | Percentage |        2019 |     9.6 |     7.9 |     5.5 |    9.9 |
-| Annual | Percentage |        2020 |     7.9 |     7.0 |     3.7 |    7.1 |
+| Annual | Percentage |        2020 |     7.9 |     6.9 |     3.7 |    7.1 |
 
 ### Other packages
 
@@ -665,10 +692,11 @@ This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
 
 ``` r
+
 citation("eurostat")
 ```
 
-    ## Kindly cite the eurostat R package as follows:
+    ## Kindly cite this package by citing the following R Journal article:
     ## 
     ##   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
     ##   analysis of Eurostat open data with the eurostat package. The R
@@ -688,20 +716,25 @@ citation("eurostat")
     ##     url = {https://doi.org/10.32614/RJ-2017-019},
     ##   }
     ## 
-    ##   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-    ##   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-    ##   [Computer software]. R package version 4.0.0.
-    ##   https://github.com/rOpenGov/eurostat
+    ## In addition, please provide a citation to the specific software version
+    ## used:
+    ## 
+    ##   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+    ##   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+    ##   doi:10.32614/CRAN.package.eurostat
+    ##   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+    ##   4.1.0, <https://github.com/rOpenGov/eurostat>.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
-    ##   @Misc{eurostat,
+    ##   @Misc{R-eurostat,
     ##     title = {eurostat: Tools for Eurostat Open Data},
+    ##     doi = {10.32614/CRAN.package.eurostat},
     ##     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
     ##     url = {https://github.com/rOpenGov/eurostat},
     ##     type = {Computer software},
-    ##     year = {2023},
-    ##     note = {R package version 4.0.0},
+    ##     year = {2026},
+    ##     note = {R package version 4.1.0},
     ##   }
 
 #### Contact
@@ -714,85 +747,82 @@ homepage](http://ropengov.github.io/eurostat).
 This tutorial was created with
 
 ``` r
+
 sessioninfo::session_info()
 ```
 
     ## ─ Session info ───────────────────────────────────────────────────────────────
     ##  setting  value
-    ##  version  R version 4.5.2 (2025-10-31)
-    ##  os       Ubuntu 24.04.3 LTS
+    ##  version  R version 4.6.1 (2026-06-24)
+    ##  os       Ubuntu 24.04.5 LTS
     ##  system   x86_64, linux-gnu
     ##  ui       X11
     ##  language en
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-03-10
-    ##  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
+    ##  date     2026-09-14
+    ##  pandoc   3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
     ## ─ Packages ───────────────────────────────────────────────────────────────────
     ##  package     * version  date (UTC) lib source
     ##  assertthat    0.2.1    2019-03-21 [1] RSPM
-    ##  backports     1.5.0    2024-05-23 [1] RSPM
-    ##  bibtex        0.5.2    2026-02-03 [1] RSPM
     ##  bit           4.6.0    2025-03-06 [1] RSPM
-    ##  bit64         4.6.0-1  2025-01-16 [1] RSPM
-    ##  bslib         0.10.0   2026-01-26 [1] RSPM
+    ##  bit64         4.8.6    2026-09-01 [1] RSPM
+    ##  bslib         0.12.0   2026-08-04 [1] RSPM
     ##  cachem        1.1.0    2024-05-16 [1] RSPM
     ##  cellranger    1.1.0    2016-07-27 [1] RSPM
-    ##  class         7.3-23   2025-01-01 [3] CRAN (R 4.5.2)
+    ##  class         7.3-23   2025-01-01 [3] CRAN (R 4.6.1)
     ##  classInt      0.4-11   2025-01-08 [1] RSPM
-    ##  cli           3.6.5    2025-04-23 [1] RSPM
-    ##  countrycode   1.7.0    2026-02-27 [1] RSPM
+    ##  cli           3.6.6    2026-04-09 [1] RSPM
+    ##  countrycode   1.9.0    2026-08-20 [1] RSPM
     ##  crayon        1.5.3    2024-06-20 [1] RSPM
-    ##  curl          7.0.0    2025-08-19 [1] RSPM
-    ##  data.table    1.18.2.1 2026-01-27 [1] RSPM
+    ##  curl          8.0.0    2026-08-25 [1] RSPM
+    ##  data.table    1.18.6.1 2026-08-24 [1] RSPM
     ##  desc          1.4.3    2023-12-10 [1] RSPM
     ##  digest        0.6.39   2025-11-19 [1] RSPM
-    ##  dplyr         1.2.0    2026-02-03 [1] RSPM
+    ##  dplyr         1.2.1    2026-04-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.0.0    2026-03-10 [1] local
+    ##  eurostat    * 4.1.0    2026-09-14 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
-    ##  fs            1.6.7    2026-03-06 [1] RSPM
+    ##  fs            2.1.0    2026-04-18 [1] RSPM
     ##  generics      0.1.4    2025-05-09 [1] RSPM
-    ##  glue          1.8.0    2024-09-30 [1] RSPM
+    ##  glue          1.8.1    2026-04-17 [1] RSPM
     ##  here          1.0.2    2025-09-15 [1] RSPM
     ##  hms           1.1.4    2025-10-17 [1] RSPM
     ##  htmltools     0.5.9    2025-12-04 [1] RSPM
     ##  htmlwidgets   1.6.4    2023-12-06 [1] RSPM
-    ##  httr          1.4.8    2026-02-13 [1] RSPM
-    ##  httr2         1.2.2    2025-12-08 [1] RSPM
+    ##  httr2         1.3.0    2026-07-13 [1] RSPM
     ##  ISOweek       0.6-2    2011-09-07 [1] RSPM
     ##  jquerylib     0.1.4    2021-04-26 [1] RSPM
     ##  jsonlite      2.0.0    2025-03-27 [1] RSPM
-    ##  KernSmooth    2.23-26  2025-01-01 [3] CRAN (R 4.5.2)
-    ##  knitr       * 1.51     2025-12-20 [1] RSPM
+    ##  KernSmooth    2.23-26  2025-01-01 [3] CRAN (R 4.6.1)
+    ##  knitr       * 1.52     2026-09-06 [1] RSPM
     ##  lifecycle     1.0.5    2026-01-08 [1] RSPM
     ##  lubridate     1.9.5    2026-02-04 [1] RSPM
-    ##  magrittr      2.0.4    2025-09-12 [1] RSPM
+    ##  magrittr      2.0.5    2026-04-04 [1] RSPM
     ##  otel          0.2.0    2025-08-29 [1] RSPM
     ##  pillar        1.11.1   2025-09-17 [1] RSPM
     ##  pkgconfig     2.0.3    2019-09-22 [1] RSPM
-    ##  pkgdown       2.2.0    2025-11-06 [1] any (@2.2.0)
-    ##  plyr          1.8.9    2023-10-02 [1] RSPM
+    ##  pkgdown       2.2.1    2026-07-07 [1] any (@2.2.1)
     ##  proxy         0.4-29   2025-12-29 [1] RSPM
-    ##  purrr         1.2.1    2026-01-09 [1] RSPM
+    ##  purrr         1.2.2    2026-04-10 [1] RSPM
+    ##  R.methodsS3   1.8.2    2022-06-13 [1] RSPM
+    ##  R.oo          1.27.1   2025-05-02 [1] RSPM
+    ##  R.utils       2.13.0   2025-02-24 [1] RSPM
     ##  R6            2.6.1    2025-02-15 [1] RSPM
-    ##  ragg          1.5.1    2026-03-06 [1] RSPM
-    ##  rappdirs      0.3.4    2026-01-17 [1] RSPM
-    ##  Rcpp          1.1.1    2026-01-10 [1] RSPM
+    ##  ragg          1.5.2    2026-03-23 [1] RSPM
     ##  readr         2.2.0    2026-02-19 [1] RSPM
-    ##  readxl        1.4.5    2025-03-07 [1] RSPM
-    ##  RefManageR    1.4.0    2022-09-30 [1] RSPM
+    ##  readxl        1.5.0    2026-05-16 [1] RSPM
     ##  regions       0.1.8    2021-06-21 [1] RSPM
-    ##  rlang         1.1.7    2026-01-09 [1] RSPM
-    ##  rmarkdown     2.30     2025-09-28 [1] RSPM
+    ##  rlang         1.3.0    2026-07-05 [1] RSPM
+    ##  rmarkdown     2.32     2026-09-01 [1] RSPM
     ##  rprojroot     2.1.1    2025-08-26 [1] RSPM
     ##  sass          0.4.10   2025-04-11 [1] RSPM
-    ##  sessioninfo   1.2.3    2025-02-05 [1] RSPM
-    ##  stringi       1.8.7    2025-03-27 [1] RSPM
+    ##  sessioninfo   1.2.4    2026-06-04 [1] any (@1.2.4)
+    ##  stringi       1.8.9    2026-08-04 [1] RSPM
     ##  stringr       1.6.0    2025-11-04 [1] RSPM
     ##  systemfonts   1.3.2    2026-03-05 [1] RSPM
     ##  textshaping   1.0.5    2026-03-06 [1] RSPM
@@ -801,16 +831,16 @@ sessioninfo::session_info()
     ##  tidyselect    1.2.1    2024-03-11 [1] RSPM
     ##  timechange    0.4.0    2026-01-29 [1] RSPM
     ##  tzdb          0.5.0    2025-03-15 [1] RSPM
-    ##  vctrs         0.7.1    2026-01-23 [1] RSPM
-    ##  vroom         1.7.0    2026-01-27 [1] RSPM
-    ##  withr         3.0.2    2024-10-28 [1] RSPM
-    ##  xfun          0.56     2026-01-18 [1] RSPM
-    ##  xml2          1.5.2    2026-01-17 [1] RSPM
+    ##  vctrs         0.7.3    2026-04-11 [1] RSPM
+    ##  vroom         1.7.1    2026-03-31 [1] RSPM
+    ##  withr         3.0.3    2026-06-19 [1] RSPM
+    ##  xfun          0.60     2026-07-09 [1] RSPM
+    ##  xml2          1.6.0    2026-06-22 [1] RSPM
     ##  yaml          2.3.12   2025-12-10 [1] RSPM
     ## 
     ##  [1] /home/runner/work/_temp/Library
-    ##  [2] /opt/R/4.5.2/lib/R/site-library
-    ##  [3] /opt/R/4.5.2/lib/R/library
+    ##  [2] /opt/R/4.6.1/lib/R/site-library
+    ##  [3] /opt/R/4.6.1/lib/R/library
     ##  * ── Packages attached to the search path.
     ## 
     ## ──────────────────────────────────────────────────────────────────────────────

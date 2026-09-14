@@ -76,7 +76,7 @@ Markus Kainu <markuskainu@gmail.com>
 # \donttest{
 # lp <- get_eurostat("nama_aux_lp")
 lp <- get_eurostat("nama_10_lp_ulc")
-#> Table nama_10_lp_ulc cached at /tmp/RtmpviRApf/eurostat/ebed1fb317e4f1e669c41695f06dd7ef.rds
+#> Table nama_10_lp_ulc cached at /tmp/Rtmp0H8Say/eurostat/dbb7ce5f08b9dea6611bb922548daf77.rds
 lp$class <- cut_to_classes(lp$values, n = 5, style = "equal", decimals = 1)
 #> Warning: var has missing values, omitted in finding classes
 #> Warning: var has missing values, omitted in finding classes

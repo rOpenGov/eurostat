@@ -15,9 +15,16 @@
 - [`get_eurostat_interactive()`](https://ropengov.github.io/eurostat/reference/get_eurostat_interactive.md)
   : Get Eurostat data interactive
 - [`get_eurostat_json()`](https://ropengov.github.io/eurostat/reference/get_eurostat_json.md)
-  : Get Data from Eurostat API in JSON
+  : Get Data from Eurostat API Statistics
+- [`get_eurostat_link()`](https://ropengov.github.io/eurostat/reference/get_eurostat_link.md)
+  **\[experimental\]** : Download Eurostat Data from API Link (robust,
+  no list-columns, async-aware)
+- [`get_eurostat_local()`](https://ropengov.github.io/eurostat/reference/get_eurostat_local.md)
+  **\[experimental\]** : Read Local SDMX-CSV files
 - [`get_eurostat_raw()`](https://ropengov.github.io/eurostat/reference/get_eurostat_raw.md)
   : Download Data from Eurostat Dissemination API
+- [`get_eurostat_sdmx()`](https://ropengov.github.io/eurostat/reference/get_eurostat_sdmx.md)
+  **\[experimental\]** : Get Eurostat Data from SDMX 2.1 API
 - [`get_eurostat_toc()`](https://ropengov.github.io/eurostat/reference/get_eurostat_toc.md)
   : Download Table of Contents of Eurostat Data Sets
 - [`search_eurostat()`](https://ropengov.github.io/eurostat/reference/search_eurostat.md)
@@ -30,7 +37,7 @@
 - [`set_eurostat_cache_dir()`](https://ropengov.github.io/eurostat/reference/set_eurostat_cache_dir.md)
   : Set Eurostat Cache
 - [`check_access_to_data()`](https://ropengov.github.io/eurostat/reference/check_access_to_data.md)
-  : Check access to ec.europe.eu
+  : Check access to ec.europa.eu
 - [`list_eurostat_cache_items()`](https://ropengov.github.io/eurostat/reference/list_eurostat_cache_items.md)
   : Output cache information as data.frame
 
@@ -58,9 +65,9 @@
   [`efta_countries`](https://ropengov.github.io/eurostat/reference/eu_countries.md)
   [`eu_candidate_countries`](https://ropengov.github.io/eurostat/reference/eu_countries.md)
   : Countries and Country Codes
-- [`eurostat_geodata_60_2016`](https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2016.md)
+- [`eurostat_geodata_60_2024`](https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2024.md)
   : Geospatial data of Europe from GISCO in 1:60 million scale from year
-  2016
+  2024
 - [`tgs00026`](https://ropengov.github.io/eurostat/reference/tgs00026.md)
   : Auxiliary Data
 

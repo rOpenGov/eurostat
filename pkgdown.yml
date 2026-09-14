@@ -1,5 +1,5 @@
-pandoc: 3.1.11
-pkgdown: 2.2.0
+pandoc: 3.8.3
+pkgdown: 2.2.1
 pkgdown_sha: ~
 articles:
   articles/Accessing-culture-datasets-with-the-eurostat-package: Accessing-culture-datasets-with-the-eurostat-package.html
@@ -11,7 +11,7 @@ articles:
   articles/maps: maps.html
   articles/publications: publications.html
   vignette: vignette.html
-last_built: 2026-03-10T15:11Z
+last_built: 2026-09-14T08:05Z
 urls:
   reference: https://ropengov.github.io/eurostat/reference
   article: https://ropengov.github.io/eurostat/articles

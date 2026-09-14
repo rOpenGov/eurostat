@@ -12,6 +12,7 @@ from other parts of the world, this article provides a combined use case
 for the two packages.
 
 ``` r
+
 library(regions)
 library(eurostat)
 library(dplyr)
@@ -35,6 +36,7 @@ R&D workforce, in both sexes, in all sectors and all professional
 positions, and limit our data to two years only:
 
 ``` r
+
 regional_rd_personnel <- get_eurostat_json(
   id = "rd_p_persreg",
   filters = list(
@@ -54,12 +56,14 @@ We have saved this filtered datasets as
 in the [regions](https://regions.dataobservatory.eu/) package.
 
 ``` r
+
 data("regional_rd_personnel")
 ```
 
 We have quiet a few missing cases:
 
 ``` r
+
 summary(is.na(regional_rd_personnel$values))
 #>    Mode   FALSE    TRUE 
 #> logical     673     283
@@ -72,6 +76,7 @@ But this is not the only problem with the dataset.
 Let us try to place the data on a `ggplot2` map.
 
 ``` r
+
 library(ggplot2)
 ```
 
@@ -82,6 +87,7 @@ boundary definition set in 2016 and used in the period 2018-2020. This
 is the most used definition in 2021.
 
 ``` r
+
 # Need to load sf for using dplyr methods with sf objects
 library(sf)
 #> Linking to GEOS 3.12.1, GDAL 3.8.4, PROJ 9.4.0; sf_use_s2() is TRUE
@@ -90,13 +96,14 @@ map_nuts_2 <- get_eurostat_geospatial(
   resolution = "60", nuts_level = "2",
   year = 2016
 )
-#> Extracting data from eurostat::eurostat_geodata_60_2016
+#> Extracting data using giscoR package, please report issues on https://github.com/rOpenGov/giscoR/issues
 ```
 
 You should always join your data with the geometric information of the
 regions starting from left with the map:
 
 ``` r
+
 indicator_with_map <- map_nuts_2 %>%
   left_join(regional_rd_personnel, by = "geo")
 ```
@@ -107,6 +114,7 @@ Albania did not provide this data earlier. Ireland has no regional
 statistics available.
 
 ``` r
+
 indicator_with_map %>%
   ggplot() +
   geom_sf(aes(fill = values),
@@ -142,6 +150,7 @@ task of
 [`regions::validate_nuts_regions()`](https://regions.dataobservatory.eu/reference/validate_nuts_regions.html).
 
 ``` r
+
 validated_indicator <- regions::validate_nuts_regions(regional_rd_personnel)
 ```
 
@@ -149,6 +158,7 @@ If we validate the dataset, we will see many interesting metadata
 observations.
 
 ``` r
+
 library(dplyr)
 validation_summary_2016 <- validated_indicator %>%
   group_by(time, typology) %>%
@@ -167,6 +177,7 @@ in fact, it contains data on country and `NUTS1` levels. And it has data
 on non-EU countries that in 2009 were not part of the NUTS system.
 
 ``` r
+
 validation_summary_2016 %>%
   ungroup() %>%
   filter(time == "2009")
@@ -185,6 +196,7 @@ validation_summary_2016 %>%
 The situation is not better in 2018:
 
 ``` r
+
 validation_summary_2016 %>%
   ungroup() %>%
   filter(time == "2018")
@@ -206,6 +218,7 @@ boundary definition, and therefore on a `NUTS2016` map!
 What are the non-conforming bits?
 
 ``` r
+
 validated_indicator %>%
   filter(!valid_2016) %>%
   pull(geo)
@@ -253,6 +266,7 @@ and the code of the region, which is the task performed by
 [`regions::recode_nuts()`](https://regions.dataobservatory.eu/reference/recode_nuts.html):
 
 ``` r
+
 recoded_indicator <- regional_rd_personnel %>%
   regions::recode_nuts(
     geo_var = "geo", # your geograhical ID variable name
@@ -261,6 +275,7 @@ recoded_indicator <- regional_rd_personnel %>%
 ```
 
 ``` r
+
 recoding_summary <- recoded_indicator %>%
   mutate(observations = nrow(.data)) %>%
   mutate(typology_change = ifelse(grepl("Recoded", typology_change),
@@ -279,6 +294,7 @@ Let us take a look at the problems identified by
 [`regions::recode_nuts()`](https://regions.dataobservatory.eu/reference/recode_nuts.html):
 
 ``` r
+
 recoding_summary
 #> # A tibble: 12 × 5
 #> # Groups:   typology_change [6]
@@ -317,6 +333,7 @@ coding.) We are able to save 27 observations just by fixing the regional
 codes!
 
 ``` r
+
 recoded_indicator %>%
   filter(typology == "nuts_level_2") %>%
   filter(!is.na(typology_change)) %>%
@@ -354,6 +371,7 @@ contains codes that were used, for example, in the `NUTS2010` or
 `NUTS2013` boundary definitions.
 
 ``` r
+
 recoded_with_map <- map_nuts_2 %>%
   left_join(
     recoded_indicator %>%
@@ -370,6 +388,7 @@ variables:
 - `after` which became visible after recoding.
 
 ``` r
+
 regional_rd_personnel_recoded <- recoded_indicator %>%
   mutate(geo = code_2016) %>%
   rename(values_2016 = values) %>%
@@ -388,6 +407,7 @@ regional_rd_personnel_recoded <- recoded_indicator %>%
 And let’s place it now on the map:
 
 ``` r
+
 map_nuts_2 %>%
   left_join(regional_rd_personnel_recoded, by = "geo") %>%
   # remove completely missing cases
@@ -448,17 +468,22 @@ This work can be freely used, modified and distributed under the
 BSD-2-clause (modified FreeBSD) license:
 
 ``` r
+
 citation("eurostat")
-#> Kindly cite the eurostat R package as follows:
+#> Kindly cite this package by citing the following R Journal article:
 #> 
 #>   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
 #>   analysis of Eurostat open data with the eurostat package. The R
 #>   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 #> 
-#>   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-#>   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-#>   [Computer software]. R package version 4.0.0.
-#>   https://github.com/rOpenGov/eurostat
+#> In addition, please provide a citation to the specific software version
+#> used:
+#> 
+#>   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+#>   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+#>   doi:10.32614/CRAN.package.eurostat
+#>   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+#>   4.1.0, <https://github.com/rOpenGov/eurostat>.
 #> 
 #> To see these entries in BibTeX format, use 'print(<citation>,
 #> bibtex=TRUE)', 'toBibtex(.)', or set
@@ -474,6 +499,7 @@ This work can be freely used, modified and distributed under the GPL-3
 license:
 
 ``` r
+
 citation("regions")
 #> To cite package 'regions' in publications use:
 #> 
@@ -501,93 +527,91 @@ homepage](https://ropengov.github.io/eurostat).
 This tutorial was created with
 
 ``` r
+
 sessioninfo::session_info()
 #> ─ Session info ───────────────────────────────────────────────────────────────
 #>  setting  value
-#>  version  R version 4.5.2 (2025-10-31)
-#>  os       Ubuntu 24.04.3 LTS
+#>  version  R version 4.6.1 (2026-06-24)
+#>  os       Ubuntu 24.04.5 LTS
 #>  system   x86_64, linux-gnu
 #>  ui       X11
 #>  language en
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-03-10
-#>  pandoc   3.1.11 @ /opt/hostedtoolcache/pandoc/3.1.11/x64/ (via rmarkdown)
+#>  date     2026-09-14
+#>  pandoc   3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
 #> ─ Packages ───────────────────────────────────────────────────────────────────
 #>  package      * version  date (UTC) lib source
 #>  assertthat     0.2.1    2019-03-21 [1] RSPM
-#>  backports      1.5.0    2024-05-23 [1] RSPM
-#>  bibtex         0.5.2    2026-02-03 [1] RSPM
-#>  bslib          0.10.0   2026-01-26 [1] RSPM
+#>  bslib          0.12.0   2026-08-04 [1] RSPM
 #>  cachem         1.1.0    2024-05-16 [1] RSPM
 #>  cellranger     1.1.0    2016-07-27 [1] RSPM
-#>  class          7.3-23   2025-01-01 [3] CRAN (R 4.5.2)
+#>  class          7.3-23   2025-01-01 [3] CRAN (R 4.6.1)
 #>  classInt       0.4-11   2025-01-08 [1] RSPM
-#>  cli            3.6.5    2025-04-23 [1] RSPM
-#>  countrycode    1.7.0    2026-02-27 [1] RSPM
-#>  curl           7.0.0    2025-08-19 [1] RSPM
-#>  data.table     1.18.2.1 2026-01-27 [1] RSPM
+#>  cli            3.6.6    2026-04-09 [1] RSPM
+#>  countrycode    1.9.0    2026-08-20 [1] RSPM
+#>  curl           8.0.0    2026-08-25 [1] RSPM
+#>  data.table     1.18.6.1 2026-08-24 [1] RSPM
 #>  DBI            1.3.0    2026-02-25 [1] RSPM
 #>  desc           1.4.3    2023-12-10 [1] RSPM
 #>  digest         0.6.39   2025-11-19 [1] RSPM
-#>  dplyr        * 1.2.0    2026-02-03 [1] RSPM
+#>  dplyr        * 1.2.1    2026-04-03 [1] RSPM
 #>  e1071          1.7-17   2025-12-18 [1] RSPM
-#>  eurostat     * 4.0.0    2026-03-10 [1] local
+#>  eurostat     * 4.1.0    2026-09-14 [1] local
 #>  evaluate       1.0.5    2025-08-27 [1] RSPM
 #>  farver         2.1.2    2024-05-13 [1] RSPM
 #>  fastmap        1.2.0    2024-05-15 [1] RSPM
-#>  fs             1.6.7    2026-03-06 [1] RSPM
+#>  fs             2.1.0    2026-04-18 [1] RSPM
 #>  generics       0.1.4    2025-05-09 [1] RSPM
-#>  ggplot2      * 4.0.2    2026-02-03 [1] RSPM
-#>  glue           1.8.0    2024-09-30 [1] RSPM
+#>  ggplot2      * 4.0.3    2026-04-22 [1] RSPM
+#>  giscoR         1.2.0    2026-08-27 [1] RSPM
+#>  glue           1.8.1    2026-04-17 [1] RSPM
 #>  gtable         0.3.6    2024-10-25 [1] RSPM
 #>  here           1.0.2    2025-09-15 [1] RSPM
 #>  hms            1.1.4    2025-10-17 [1] RSPM
 #>  htmltools      0.5.9    2025-12-04 [1] RSPM
 #>  htmlwidgets    1.6.4    2023-12-06 [1] RSPM
-#>  httr           1.4.8    2026-02-13 [1] RSPM
-#>  httr2          1.2.2    2025-12-08 [1] RSPM
+#>  httr2          1.3.0    2026-07-13 [1] RSPM
 #>  ISOweek        0.6-2    2011-09-07 [1] RSPM
 #>  jquerylib      0.1.4    2021-04-26 [1] RSPM
 #>  jsonlite       2.0.0    2025-03-27 [1] RSPM
-#>  KernSmooth     2.23-26  2025-01-01 [3] CRAN (R 4.5.2)
-#>  knitr          1.51     2025-12-20 [1] RSPM
+#>  KernSmooth     2.23-26  2025-01-01 [3] CRAN (R 4.6.1)
+#>  knitr          1.52     2026-09-06 [1] RSPM
 #>  labeling       0.4.3    2023-08-29 [1] RSPM
 #>  lifecycle      1.0.5    2026-01-08 [1] RSPM
 #>  lubridate      1.9.5    2026-02-04 [1] RSPM
-#>  magrittr       2.0.4    2025-09-12 [1] RSPM
+#>  magrittr       2.0.5    2026-04-04 [1] RSPM
 #>  otel           0.2.0    2025-08-29 [1] RSPM
 #>  pillar         1.11.1   2025-09-17 [1] RSPM
 #>  pkgconfig      2.0.3    2019-09-22 [1] RSPM
-#>  pkgdown        2.2.0    2025-11-06 [1] any (@2.2.0)
-#>  plyr           1.8.9    2023-10-02 [1] RSPM
+#>  pkgdown        2.2.1    2026-07-07 [1] any (@2.2.1)
 #>  proxy          0.4-29   2025-12-29 [1] RSPM
-#>  purrr          1.2.1    2026-01-09 [1] RSPM
+#>  purrr          1.2.2    2026-04-10 [1] RSPM
 #>  R.cache        0.17.0   2025-05-02 [1] RSPM
 #>  R.methodsS3    1.8.2    2022-06-13 [1] RSPM
 #>  R.oo           1.27.1   2025-05-02 [1] RSPM
 #>  R.utils        2.13.0   2025-02-24 [1] RSPM
 #>  R6             2.6.1    2025-02-15 [1] RSPM
-#>  ragg           1.5.1    2026-03-06 [1] RSPM
+#>  ragg           1.5.2    2026-03-23 [1] RSPM
 #>  rappdirs       0.3.4    2026-01-17 [1] RSPM
 #>  RColorBrewer   1.1-3    2022-04-03 [1] RSPM
-#>  Rcpp           1.1.1    2026-01-10 [1] RSPM
+#>  Rcpp           1.1.2    2026-07-05 [1] RSPM
 #>  readr          2.2.0    2026-02-19 [1] RSPM
-#>  readxl         1.4.5    2025-03-07 [1] RSPM
-#>  RefManageR     1.4.0    2022-09-30 [1] RSPM
+#>  readxl         1.5.0    2026-05-16 [1] RSPM
 #>  regions      * 0.1.8    2021-06-21 [1] RSPM
-#>  rlang          1.1.7    2026-01-09 [1] RSPM
-#>  rmarkdown      2.30     2025-09-28 [1] RSPM
+#>  rlang          1.3.0    2026-07-05 [1] RSPM
+#>  rmarkdown      2.32     2026-09-01 [1] RSPM
 #>  rprojroot      2.1.1    2025-08-26 [1] RSPM
-#>  S7             0.2.1    2025-11-14 [1] RSPM
+#>  s2             1.1.12   2026-09-03 [1] RSPM
+#>  S7             0.2.2    2026-04-22 [1] RSPM
 #>  sass           0.4.10   2025-04-11 [1] RSPM
 #>  scales         1.4.0    2025-04-24 [1] RSPM
-#>  sessioninfo    1.2.3    2025-02-05 [1] RSPM
-#>  sf           * 1.1-0    2026-02-24 [1] RSPM
-#>  stringi        1.8.7    2025-03-27 [1] RSPM
+#>  sessioninfo    1.2.4    2026-06-04 [1] any (@1.2.4)
+#>  sf           * 1.1-3    2026-09-11 [1] RSPM
+#>  stringi        1.8.9    2026-08-04 [1] RSPM
 #>  stringr        1.6.0    2025-11-04 [1] RSPM
 #>  styler         1.11.0   2025-10-13 [1] RSPM
 #>  systemfonts    1.3.2    2026-03-05 [1] RSPM
@@ -597,17 +621,18 @@ sessioninfo::session_info()
 #>  tidyselect     1.2.1    2024-03-11 [1] RSPM
 #>  timechange     0.4.0    2026-01-29 [1] RSPM
 #>  tzdb           0.5.0    2025-03-15 [1] RSPM
-#>  units          1.0-0    2025-10-09 [1] RSPM
+#>  units          1.0-1    2026-03-11 [1] RSPM
 #>  utf8           1.2.6    2025-06-08 [1] RSPM
-#>  vctrs          0.7.1    2026-01-23 [1] RSPM
-#>  withr          3.0.2    2024-10-28 [1] RSPM
-#>  xfun           0.56     2026-01-18 [1] RSPM
-#>  xml2           1.5.2    2026-01-17 [1] RSPM
+#>  vctrs          0.7.3    2026-04-11 [1] RSPM
+#>  withr          3.0.3    2026-06-19 [1] RSPM
+#>  wk             0.9.5    2025-12-18 [1] RSPM
+#>  xfun           0.60     2026-07-09 [1] RSPM
+#>  xml2           1.6.0    2026-06-22 [1] RSPM
 #>  yaml           2.3.12   2025-12-10 [1] RSPM
 #> 
 #>  [1] /home/runner/work/_temp/Library
-#>  [2] /opt/R/4.5.2/lib/R/site-library
-#>  [3] /opt/R/4.5.2/lib/R/library
+#>  [2] /opt/R/4.6.1/lib/R/site-library
+#>  [3] /opt/R/4.6.1/lib/R/library
 #>  * ── Packages attached to the search path.
 #> 
 #> ──────────────────────────────────────────────────────────────────────────────

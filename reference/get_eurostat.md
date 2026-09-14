@@ -19,6 +19,8 @@ get_eurostat(
   stringsAsFactors = FALSE,
   keepFlags = FALSE,
   use.data.table = FALSE,
+  legacy.data.output = FALSE,
+  verbose = TRUE,
   ...
 )
 ```
@@ -36,12 +38,12 @@ get_eurostat(
 
   a string giving a type of the conversion of the time column from the
   eurostat format. The default argument "`date`" converts to a
-  [`Date()`](https://rdrr.io/r/base/Dates.html) class with the date
-  being the first day of the period. A "`date_last`" argument converts
-  the dataset date to a [`Date()`](https://rdrr.io/r/base/Dates.html)
-  class object with the difference that the exact date is the last date
-  of the period. Period can be year, semester (half year), quarter,
-  month, or week (See
+  [`base::Date()`](https://rdrr.io/r/base/Dates.html) class with the
+  date being the first day of the period. A "`date_last`" argument
+  converts the dataset date to a
+  [`base::Date()`](https://rdrr.io/r/base/Dates.html) class object with
+  the difference that the exact date is the last date of the period.
+  Period can be year, semester (half year), quarter, month, or week (See
   [`eurotime2date()`](https://ropengov.github.io/eurostat/reference/eurotime2date.md)
   for more information). Argument "`num`" converts the date into a
   numeric (integer) meaning that the first day of the year 2000 is close
@@ -110,16 +112,26 @@ get_eurostat(
 
   a logical whether the flags (e.g. "confidential", "provisional")
   should be kept in a separate column or if they can be removed. Default
-  is `FALSE`. For flag values see:
-  <https://ec.europa.eu/eurostat/data/database/information>. Also
-  possible non-real zero "0n" is indicated in flags column. Flags are
-  not available for eurostat API, so `keepFlags` can not be used with a
+  is `FALSE`. For flag values see information:
+  <https://ec.europa.eu/eurostat/data/database#Flags>. Also possible
+  non-real zero "0n" is indicated in flags column. Flags are not
+  available for eurostat API, so `keepFlags` can not be used with a
   `filters`.
 
 - use.data.table:
 
   Use faster data.table functions? Default is FALSE. On Windows requires
   that RTools is installed.
+
+- legacy.data.output:
+
+  Use legacy column names and data object structure. Default is FALSE.
+  If TRUE, the object will try to emulate the naming conventions of
+  eurostat package version 3.7.x and earlier.
+
+- verbose:
+
+  Output messages when downloading data. Default is `TRUE`.
 
 - ...:
 
@@ -146,9 +158,9 @@ from bulk download facility can be completed for example with
 ## Details
 
 Datasets are downloaded from [the Eurostat SDMX 2.1
-API](https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API)
+API](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload)
 in TSV format or from The Eurostat [API Statistics JSON
-API](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query).
+API](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api).
 If only the table `id` is given, the whole table is downloaded from the
 SDMX API. If any `filters` are given JSON API is used instead.
 
@@ -181,7 +193,7 @@ parenthesis.
 
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-<https://ec.europa.eu/eurostat/about-us/policies/copyright>
+<https://ec.europa.eu/eurostat/help/copyright-notice>
 
 "(c) European Union, 1995 - today
 
@@ -198,7 +210,7 @@ that:
   stated clearly to the end user of the information."
 
 For exceptions to the abovementioned principles see [Eurostat
-website](https://ec.europa.eu/eurostat/about-us/policies/copyright)
+website](https://ec.europa.eu/eurostat/help/copyright-notice)
 
 ## Filtering datasets
 
@@ -303,7 +315,7 @@ Example:
 
 For more information about data filtering see Eurostat documentation on
 API Statistics:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest>
 
 ## Citing Eurostat data
 
@@ -345,7 +357,7 @@ API is also supported by Eurostat. We may support this feature in the
 future. In the meantime, if you are interested in filtering
 Dissemination API data queries manually, please consult the following
 Eurostat documentation:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys>
 
 ## Strategies for handling large datasets more efficiently
 
@@ -382,41 +394,24 @@ faster:
 
 See `citation("eurostat")`:
 
-    Kindly cite the eurostat R package as follows:
+    Kindly cite this package by citing the following R Journal article:
 
       Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
       analysis of Eurostat open data with the eurostat package. The R
       Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-    A BibTeX entry for LaTeX users is
+    In addition, please provide a citation to the specific software version
+    used:
 
-      @Article{10.32614/RJ-2017-019,
-        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-        journal = {The R Journal},
-        volume = {9},
-        number = {1},
-        pages = {385--392},
-        year = {2017},
-        doi = {10.32614/RJ-2017-019},
-        url = {https://doi.org/10.32614/RJ-2017-019},
-      }
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-      Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-      and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-      [Computer software]. R package version 4.0.0.
-      https://github.com/rOpenGov/eurostat
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{eurostat,
-        title = {eurostat: Tools for Eurostat Open Data},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-        url = {https://github.com/rOpenGov/eurostat},
-        type = {Computer software},
-        year = {2023},
-        note = {R package version 4.0.0},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat
 data" in `get_eurostat()` documentation.
@@ -449,7 +444,7 @@ options(eurostat_update = FALSE)
 set_eurostat_cache_dir(file.path(tempdir(), "r_cache2"))
 k <- get_eurostat("nama_10_lp_ulc")
 k <- get_eurostat("nama_10_lp_ulc", cache = FALSE)
-k <- get_eurostat("avia_gonc", select_time = "Y", cache = FALSE)
+k <- get_eurostat("avia_gooc", select_time = "Y", cache = FALSE)
 
 dd <- get_eurostat("nama_10_gdp",
   filters = list(

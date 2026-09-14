@@ -1,6 +1,6 @@
-# Get Data from Eurostat API in JSON
+# Get Data from Eurostat API Statistics
 
-Retrieve data from Eurostat API in JSON format.
+Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
 
 ## Usage
 
@@ -59,7 +59,8 @@ get_eurostat_json(
 
   `req`
 
-  :   A [request](https://httr2.r-lib.org/reference/request.html).
+  :   A httr2 [request](https://httr2.r-lib.org/reference/request.html)
+      object.
 
   `url,port`
 
@@ -72,7 +73,8 @@ get_eurostat_json(
   `auth`
 
   :   Type of HTTP authentication to use. Should be one of the
-      following: `basic`, digest, digest_ie, gssnegotiate, ntlm, any.
+      following: `basic`, `digest`, `digest_ie`, `gssnegotiate`, `ntlm`,
+      `any`.
 
 ## Value
 
@@ -80,12 +82,20 @@ A dataset as an object of `data.frame` class.
 
 ## Details
 
-Data to retrieve from [The Eurostat Web
-Services](https://ec.europa.eu/eurostat/web/main/data/web-services) can
-be specified with filters. Normally, it is better to use JSON query
+Data to retrieve from [The Eurostat API
+Statistics](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
+can be specified with filters. Normally, it is better to use JSON query
 through
 [`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md),
-than to use `get_eurostat_json()` directly.
+than to use `get_eurostat_json()` directly. The main reason for this is
+that `get_eurostat_json()` returns a relatively raw dataset that does
+not go through helper functions in
+[`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md),
+such as
+[`eurotime2date()`](https://ropengov.github.io/eurostat/reference/eurotime2date.md)
+or
+[`eurotime2num()`](https://ropengov.github.io/eurostat/reference/eurotime2num.md)
+functions or reading data from cache and saving data to cache.
 
 Queries are limited to 50 sub-indicators at a time. A time can be
 filtered with fixed "time" filter or with "sinceTimePeriod" and
@@ -109,6 +119,19 @@ descriptions about the possible interpretation or cause of each error.
 These messages are returned if the API returns a status indicating a
 HTTP error (400 or greater).
 
+Additionally, there is limit on the size of the returned extractions
+(error code 413). At the time of publishing this package version, the
+max authorised size for the extraction seems to be 5000000 (5 million)
+rows. The server seems to estimate the size of the returned data object
+with a method that is unknown to us so the number of rows might not be
+the same as the number of returned rows in the JSON-stat object. You can
+limit the number of rows in your extraction by providing more filters to
+the query. If the extraction size continues to go over limit you can try
+to download the whole dataset with
+[`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md)
+and filter it locally on your computer, for example with base R or dplyr
+data wrangling functions.
+
 The Eurostat implementation seems to be based on SDMX 2.1, which is the
 reason we've used SDMX Standards guidelines as a supplementary source
 that we have included in the dataset. What this means in practice is
@@ -119,14 +142,14 @@ mentioned in the Eurostat website. We hope you never encounter them.
 
 Data is downloaded from Eurostat API Statistics. See Eurostat
 documentation for more information about data queries in API Statistics
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api>
 
 This replaces the old JSON Web Services that was used by Eurostat before
 February 2023 and by the eurostat R package versions before 3.7.13. See
 Eurostat documentation about the migration from JSON web service to API
 Statistics for more information about the differences between the old
 and the new service:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/json>
 
 For easily viewing which filtering options are available - in addition
 to the default ones, time and language - Eurostat Web services Query
@@ -234,13 +257,13 @@ Example:
 
 For more information about data filtering see Eurostat documentation on
 API Statistics:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest>
 
 ## Eurostat: Copyright notice and free re-use of data
 
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-<https://ec.europa.eu/eurostat/about-us/policies/copyright>
+<https://ec.europa.eu/eurostat/help/copyright-notice>
 
 "(c) European Union, 1995 - today
 
@@ -257,7 +280,7 @@ that:
   stated clearly to the end user of the information."
 
 For exceptions to the abovementioned principles see [Eurostat
-website](https://ec.europa.eu/eurostat/about-us/policies/copyright)
+website](https://ec.europa.eu/eurostat/help/copyright-notice)
 
 ## Citing Eurostat data
 
@@ -300,47 +323,30 @@ API is also supported by Eurostat. We may support this feature in the
 future. In the meantime, if you are interested in filtering
 Dissemination API data queries manually, please consult the following
 Eurostat documentation:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys>
 
 ## References
 
 See `citation("eurostat")`:
 
-    Kindly cite the eurostat R package as follows:
+    Kindly cite this package by citing the following R Journal article:
 
       Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
       analysis of Eurostat open data with the eurostat package. The R
       Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-    A BibTeX entry for LaTeX users is
+    In addition, please provide a citation to the specific software version
+    used:
 
-      @Article{10.32614/RJ-2017-019,
-        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-        journal = {The R Journal},
-        volume = {9},
-        number = {1},
-        pages = {385--392},
-        year = {2017},
-        doi = {10.32614/RJ-2017-019},
-        url = {https://doi.org/10.32614/RJ-2017-019},
-      }
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-      Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-      and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-      [Computer software]. R package version 4.0.0.
-      https://github.com/rOpenGov/eurostat
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{eurostat,
-        title = {eurostat: Tools for Eurostat Open Data},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-        url = {https://github.com/rOpenGov/eurostat},
-        type = {Computer software},
-        year = {2023},
-        note = {R package version 4.0.0},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat
 data" in

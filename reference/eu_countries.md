@@ -19,28 +19,37 @@ eu_candidate_countries
 
 A data_frame:
 
-- **code**: Country code in the Eurostat database.
+- **code**: Country code in the Eurostat database (two-letter ISO code
+  (ISO 3166 alpha-2) except in the case of Greece where EL is used).
 
 - **name**: Country name in English.
 
-- **label**: Country name in the Eurostat database.
+- **label**: Country name in the Eurostat database
 
-An object of class `tbl_df` (inherits from `tbl`, `data.frame`) with 19
-rows and 3 columns.
+- **name_fr**: Country name in French
 
-An object of class `tbl_df` (inherits from `tbl`, `data.frame`) with 4
-rows and 3 columns.
+- **name_de**: Country name in German
 
-An object of class `tbl_df` (inherits from `tbl`, `data.frame`) with 7
-rows and 3 columns.
+- **country_language**: Country name in national language(s).
+
+An object of class `data.frame` with 20 rows and 6 columns.
+
+An object of class `data.frame` with 4 rows and 6 columns.
+
+An object of class `data.frame` with 9 rows and 6 columns.
 
 ## Source
 
 <https://ec.europa.eu/eurostat/statistics-explained/index.php/Tutorial:Country_codes_and_protocol_order>,
 <https://ec.europa.eu/eurostat/statistics-explained/index.php/Glossary:Euro_area>
 
+## Details
+
+Country codes are two-letter ISO codes (ISO 3166 alpha-2) except in the
+case of Greece where EL is used instead of the standard ISO code.
+
 ## See also
 
 Other datasets:
-[`eurostat_geodata_60_2016`](https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2016.md),
+[`eurostat_geodata_60_2024`](https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2024.md),
 [`tgs00026`](https://ropengov.github.io/eurostat/reference/tgs00026.md)

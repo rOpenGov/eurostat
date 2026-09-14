@@ -13,6 +13,9 @@
 
 - **Daniel Antal**. Contributor.
 
+- **Daniel Loos**. Contributor.
+  [](https://orcid.org/0000-0002-4024-4443)
+
 - **Diego Hernangomez**. Contributor.
   [](https://orcid.org/0000-0001-8457-4658)
 
@@ -28,8 +31,9 @@
 
 - **Oliver Reiter**. Contributor.
 
-- **Pyry Kantanen**. Contributor.
-  [](https://orcid.org/0000-0003-2853-2765)
+- **Pyry Kantanen**. Author. [](https://orcid.org/0000-0003-2853-2765)
+
+- **Akewak Jeba**. Contributor.
 
 - **Enrico Spinielli**. Contributor.
   [](https://orcid.org/0000-0001-8584-9131)
@@ -55,16 +59,17 @@ analysis of Eurostat open data with the eurostat package. The R Journal
       url = {https://doi.org/10.32614/RJ-2017-019},
     }
 
-Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-\[Computer software\]. R package version 4.0.0.
-https://github.com/rOpenGov/eurostat
+Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D, Kantanen
+P (2026). “eurostat: Tools for Eurostat Open Data.”
+[doi:10.32614/CRAN.package.eurostat](https://doi.org/10.32614/CRAN.package.eurostat).
+R package version 4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-    @Misc{eurostat,
+    @Misc{R-eurostat,
       title = {eurostat: Tools for Eurostat Open Data},
+      doi = {10.32614/CRAN.package.eurostat},
       author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
       url = {https://github.com/rOpenGov/eurostat},
       type = {Computer software},
-      year = {2023},
-      note = {R package version 4.0.0},
+      year = {2026},
+      note = {R package version 4.1.0},
     }

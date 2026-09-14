@@ -2,10 +2,10 @@
 
 Downloads either a simple features (sf) or a data_frame of NUTS regions.
 This function is a wrapper of
-[`giscoR::gisco_get_nuts()`](https://ropengov.github.io/giscoR/reference/gisco_get_nuts.html).
-This function requires to have installed the packages
+[giscoR](https://CRAN.R-project.org/package=giscoR) function
+`gisco_get_nuts()`. This function requires to have packages
 [sf](https://CRAN.R-project.org/package=sf) and
-[giscoR](https://CRAN.R-project.org/package=giscoR).
+[giscoR](https://CRAN.R-project.org/package=giscoR) installed.
 
 ## Usage
 
@@ -14,12 +14,12 @@ get_eurostat_geospatial(
   output_class = "sf",
   resolution = "60",
   nuts_level = "all",
-  year = "2016",
+  year = "2024",
   cache = TRUE,
   update_cache = FALSE,
   cache_dir = NULL,
   crs = "4326",
-  make_valid = "DEPRECATED",
+  verbose = TRUE,
   ...
 )
 ```
@@ -38,7 +38,7 @@ Data downloaded using giscoR
 
   Class of object returned, either `sf` `simple features` or `df`
   (`data_frame`). `spdf` output has been soft-deprecated, the function
-  would switch to `sf`.
+  will switch to `sf`.
 
 - resolution:
 
@@ -61,8 +61,8 @@ Data downloaded using giscoR
 
 - year:
 
-  NUTS release year. One of "2003", "2006", "2010", "2013", "2016" or
-  "2021"
+  NUTS release year. One of "2003", "2006", "2010", "2013", "2016",
+  "2021" or "2024"
 
 - cache:
 
@@ -75,10 +75,13 @@ Data downloaded using giscoR
 
 - cache_dir:
 
-  a path to a cache directory. See
-  [`set_eurostat_cache_dir()`](https://ropengov.github.io/eurostat/reference/set_eurostat_cache_dir.md).
-  If `NULL` and the cache dir has not been set globally the file would
-  be stored in the [`tempdir()`](https://rdrr.io/r/base/tempfile.html).
+  a path to a cache directory. `NULL` (default) uses and creates
+  'eurostat' directory in the temporary directory defined by base R
+  [`tempdir()`](https://rdrr.io/r/base/tempfile.html) function. The user
+  can set the cache directory to an existing directory by using this
+  argument. The cache directory can also be set with
+  [`set_eurostat_cache_dir()`](https://ropengov.github.io/eurostat/reference/set_eurostat_cache_dir.md)
+  function.
 
 - crs:
 
@@ -91,41 +94,15 @@ Data downloaded using giscoR
 
   - "3857" - Pseudo-Mercator
 
-- make_valid:
+- verbose:
 
-  Deprecated
+  Output messages when downloading data. Default is `TRUE`.
 
 - ...:
 
-  Arguments passed on to
-  [`giscoR::gisco_get_nuts`](https://ropengov.github.io/giscoR/reference/gisco_get_nuts.html)
-
-  `verbose`
-
-  :   Logical, displays information. Useful for debugging, default is
-      `FALSE`.
-
-  `spatialtype`
-
-  :   Type of geometry to be returned:
-
-      - **"BN"**: Boundaries - `LINESTRING` object.
-
-      - **"LB"**: Labels - `POINT` object.
-
-      - **"RG"**: Regions - `MULTIPOLYGON/POLYGON` object.
-
-  `country`
-
-  :   Optional. A character vector of country codes. It could be either
-      a vector of country names, a vector of ISO3 country codes or a
-      vector of Eurostat country codes. Mixed types (as
-      `c("Turkey","US","FRA")`) would not work. See also
-      [`countrycode::countrycode()`](https://vincentarelbundock.github.io/countrycode/man/countrycode.html).
-
-  `nuts_id`
-
-  :   Optional. A character vector of NUTS IDs.
+  additional arguments to be passed onto
+  [giscoR](https://CRAN.R-project.org/package=giscoR) function
+  `gisco_get_nuts()`
 
 ## Value
 
@@ -206,7 +183,7 @@ following variable columns:
 
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-<https://ec.europa.eu/eurostat/about-us/policies/copyright>
+<https://ec.europa.eu/eurostat/help/copyright-notice>
 
 "(c) European Union, 1995 - today
 
@@ -223,13 +200,13 @@ that:
   stated clearly to the end user of the information."
 
 For exceptions to the abovementioned principles see [Eurostat
-website](https://ec.europa.eu/eurostat/about-us/policies/copyright)
+website](https://ec.europa.eu/eurostat/help/copyright-notice)
 
 ## Data source: GISCO - General Copyright
 
 "Eurostat's general copyright notice and licence policy is applicable
 and can be consulted here:
-<https://ec.europa.eu/eurostat/about-us/policies/copyright>
+<https://ec.europa.eu/eurostat/help/copyright-notice>
 
 Please also be aware of the European Commission's general conditions:
 <https://commission.europa.eu/legal-notice_en>
@@ -256,16 +233,14 @@ GISCO / EuroGeographics.
 
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the GISCO website:
-[GISCO: Geographical information and maps - Administrative
-units/statistical
-units](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units)
+[GISCO: General information on
+geo-datafiles](https://ec.europa.eu/eurostat/web/gisco/geodata)
 
 "In addition to the [general copyright and licence
-policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright)
-applicable to the whole Eurostat website, the following specific
-provisions apply to the datasets you are downloading. The download and
-usage of these data is subject to the acceptance of the following
-clauses:
+policy](https://ec.europa.eu/eurostat/help/copyright-notice) applicable
+to the whole Eurostat website, the following specific provisions apply
+to the datasets you are downloading. The download and usage of these
+data is subject to the acceptance of the following clauses:
 
 1.  The Commission agrees to grant the non-exclusive and not
     transferable right to use and process the Eurostat/GISCO
@@ -303,10 +278,10 @@ EuroGeographics for information regarding their licence agreements."
 
 ## See also
 
-[`giscoR::gisco_get_nuts()`](https://ropengov.github.io/giscoR/reference/gisco_get_nuts.html)
+giscoR package and its functions
 
 Other geospatial:
-[`eurostat_geodata_60_2016`](https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2016.md)
+[`eurostat_geodata_60_2024`](https://ropengov.github.io/eurostat/reference/eurostat_geodata_60_2024.md)
 
 ## Author
 
@@ -323,19 +298,18 @@ sf <- get_eurostat_geospatial(
   resolution = "60",
   nuts_level = "all"
 )
-#> Extracting data from eurostat::eurostat_geodata_60_2016
+#> Extracting data from eurostat::eurostat_geodata_60_2024
+if (FALSE) { # \dontrun{
 # Downloads dataset from server
 sf2 <- get_eurostat_geospatial(
   output_class = "sf",
   resolution = "20",
   nuts_level = "all"
 )
-#> Extracting data using giscoR package, please report issues on https://github.com/rOpenGov/giscoR/issues
-#> Cache management as per giscoR. see 'giscoR::gisco_get_nuts()'
 df <- get_eurostat_geospatial(
   output_class = "df",
   nuts_level = "0"
 )
-#> Extracting data from eurostat::eurostat_geodata_60_2016
+} # }
 # }
 ```

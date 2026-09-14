@@ -5,9 +5,9 @@ to see their documentation.
 
 - regions:
 
-  [`recode_nuts`](https://regions.dataobservatory.eu/reference/recode_nuts.html),
-  [`validate_geo_code`](https://regions.dataobservatory.eu/reference/validate_geo_code.html),
-  [`validate_nuts_regions`](https://regions.dataobservatory.eu/reference/validate_nuts_regions.html)
+  [`recode_nuts()`](https://regions.dataobservatory.eu/reference/recode_nuts.html),
+  [`validate_geo_code()`](https://regions.dataobservatory.eu/reference/validate_geo_code.html),
+  [`validate_nuts_regions()`](https://regions.dataobservatory.eu/reference/validate_nuts_regions.html)
 
 ## Arguments
 
@@ -65,18 +65,6 @@ Currently the `2016` is used by Eurostat, but many datasets still
 contain `2013` and sometimes earlier metadata.
 
 ## See also
-
-Other regions functions:
-[`add_nuts_level()`](https://ropengov.github.io/eurostat/reference/add_nuts_level.md),
-[`harmonize_geo_code()`](https://ropengov.github.io/eurostat/reference/harmonize_geo_code.md),
-[`recode_to_nuts_2013()`](https://ropengov.github.io/eurostat/reference/recode_to_nuts_2013.md),
-[`recode_to_nuts_2016()`](https://ropengov.github.io/eurostat/reference/recode_to_nuts_2016.md)
-
-Other regions functions:
-[`add_nuts_level()`](https://ropengov.github.io/eurostat/reference/add_nuts_level.md),
-[`harmonize_geo_code()`](https://ropengov.github.io/eurostat/reference/harmonize_geo_code.md),
-[`recode_to_nuts_2013()`](https://ropengov.github.io/eurostat/reference/recode_to_nuts_2013.md),
-[`recode_to_nuts_2016()`](https://ropengov.github.io/eurostat/reference/recode_to_nuts_2016.md)
 
 Other regions functions:
 [`add_nuts_level()`](https://ropengov.github.io/eurostat/reference/add_nuts_level.md),

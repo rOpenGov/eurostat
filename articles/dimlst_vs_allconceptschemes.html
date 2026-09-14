@@ -13,8 +13,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/B612_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/B612_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Differences between dimlst.dic and ALL_CONCEPTSCHEMES.xml">
@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Differences between dimlst.dic and ALL_CONCEPTSCHEMES.xml</h1>
             
-            <h4 data-toc-skip class="date">2026-03-10</h4>
+            <h4 data-toc-skip class="date">2026-09-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/articles/dimlst_vs_allconceptschemes.Rmd" class="external-link"><code>vignettes/articles/dimlst_vs_allconceptschemes.Rmd</code></a></small>
       <div class="d-none name"><code>dimlst_vs_allconceptschemes.Rmd</code></div>
@@ -124,36 +124,36 @@ AGE Age class
 AGECHILD    Age of the child
 AGEDEF  Age definition</code></pre>
 <p>An example of the new Concept Scheme file for dataset
-<code>NAMA_10_GDP</code> (see instructions for downloading <a href="https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+metadata+query#APISDMX2.1metadataquery-SDMX2.1endpoint-REST-SDMX-ML2.1ConceptScheme" class="external-link">here</a>):</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span><span class="ot"> id=</span><span class="st">"freq"</span><span class="ot"> urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq"</span>&gt;</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
+<code>NAMA_10_GDP</code> (see instructions for downloading <a href="https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Lookingupinthemetadataofadataset" class="external-link">here</a>):</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode xml"><code class="sourceCode xml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span> <span class="ot">id=</span><span class="st">"freq"</span> <span class="ot">urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq"</span>&gt;</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span> <span class="ot">xml:lang=</span><span class="st">"en"</span>&gt;</span>
 <span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a>    Time frequency</span>
 <span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"de"</span>&gt;</span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span> <span class="ot">xml:lang=</span><span class="st">"de"</span>&gt;</span>
 <span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a>    Zeitliche Frequenz</span>
 <span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"fr"</span>&gt;</span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span> <span class="ot">xml:lang=</span><span class="st">"fr"</span>&gt;</span>
 <span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a>    Fréquence (relative au temps)</span>
 <span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
 <span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a>  &lt;<span class="kw">s:CoreRepresentation</span>&gt;</span>
 <span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a>    &lt;<span class="kw">s:Enumeration</span>&gt;</span>
-<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>      &lt;<span class="kw">Ref</span><span class="ot"> agencyID=</span><span class="st">"ESTAT"</span><span class="ot"> class=</span><span class="st">"Codelist"</span><span class="ot"> id=</span><span class="st">"FREQ"</span><span class="ot"> package=</span><span class="st">"codelist"</span><span class="ot"> version=</span><span class="st">"3.2"</span>/&gt;</span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a>      &lt;<span class="kw">Ref</span> <span class="ot">agencyID=</span><span class="st">"ESTAT"</span> <span class="ot">class=</span><span class="st">"Codelist"</span> <span class="ot">id=</span><span class="st">"FREQ"</span> <span class="ot">package=</span><span class="st">"codelist"</span> <span class="ot">version=</span><span class="st">"3.2"</span>/&gt;</span>
 <span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a>    &lt;/<span class="kw">s:Enumeration</span>&gt;</span>
 <span id="cb2-15"><a href="#cb2-15" tabindex="-1"></a>  &lt;/<span class="kw">s:CoreRepresentation</span>&gt;</span>
 <span id="cb2-16"><a href="#cb2-16" tabindex="-1"></a>&lt;/<span class="kw">s:Concept</span>&gt;</span>
-<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span><span class="ot"> id=</span><span class="st">"unit"</span><span class="ot"> urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).unit"</span>&gt;</span>
-<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"en"</span>&gt;</span>
+<span id="cb2-17"><a href="#cb2-17" tabindex="-1"></a>&lt;<span class="kw">s:Concept</span> <span class="ot">id=</span><span class="st">"unit"</span> <span class="ot">urn=</span><span class="st">"urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).unit"</span>&gt;</span>
+<span id="cb2-18"><a href="#cb2-18" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span> <span class="ot">xml:lang=</span><span class="st">"en"</span>&gt;</span>
 <span id="cb2-19"><a href="#cb2-19" tabindex="-1"></a>    Unit of measure</span>
 <span id="cb2-20"><a href="#cb2-20" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"de"</span>&gt;</span>
+<span id="cb2-21"><a href="#cb2-21" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span> <span class="ot">xml:lang=</span><span class="st">"de"</span>&gt;</span>
 <span id="cb2-22"><a href="#cb2-22" tabindex="-1"></a>    Maßeinheit</span>
 <span id="cb2-23"><a href="#cb2-23" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
-<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span><span class="ot"> xml:lang=</span><span class="st">"fr"</span>&gt;</span>
+<span id="cb2-24"><a href="#cb2-24" tabindex="-1"></a>  &lt;<span class="kw">c:Name</span> <span class="ot">xml:lang=</span><span class="st">"fr"</span>&gt;</span>
 <span id="cb2-25"><a href="#cb2-25" tabindex="-1"></a>    Unité de mesure</span>
 <span id="cb2-26"><a href="#cb2-26" tabindex="-1"></a>  &lt;/<span class="kw">c:Name</span>&gt;</span>
 <span id="cb2-27"><a href="#cb2-27" tabindex="-1"></a>  &lt;<span class="kw">s:CoreRepresentation</span>&gt;</span>
 <span id="cb2-28"><a href="#cb2-28" tabindex="-1"></a>    &lt;<span class="kw">s:Enumeration</span>&gt;</span>
-<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>      &lt;<span class="kw">Ref</span><span class="ot"> agencyID=</span><span class="st">"ESTAT"</span><span class="ot"> class=</span><span class="st">"Codelist"</span><span class="ot"> id=</span><span class="st">"UNIT"</span><span class="ot"> package=</span><span class="st">"codelist"</span><span class="ot"> version=</span><span class="st">"22.0"</span>/&gt;</span>
+<span id="cb2-29"><a href="#cb2-29" tabindex="-1"></a>      &lt;<span class="kw">Ref</span> <span class="ot">agencyID=</span><span class="st">"ESTAT"</span> <span class="ot">class=</span><span class="st">"Codelist"</span> <span class="ot">id=</span><span class="st">"UNIT"</span> <span class="ot">package=</span><span class="st">"codelist"</span> <span class="ot">version=</span><span class="st">"22.0"</span>/&gt;</span>
 <span id="cb2-30"><a href="#cb2-30" tabindex="-1"></a>    &lt;/<span class="kw">s:Enumeration</span>&gt;</span>
 <span id="cb2-31"><a href="#cb2-31" tabindex="-1"></a>  &lt;/<span class="kw">s:CoreRepresentation</span>&gt;</span>
 <span id="cb2-32"><a href="#cb2-32" tabindex="-1"></a>&lt;/<span class="kw">s:Concept</span>&gt;</span></code></pre></div>
@@ -452,11 +452,11 @@ any suggestions or corrections you would like to make.</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R package for open government data analytics"></a></p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek, Pyry Kantanen. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R package for open government data analytics"></a></p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

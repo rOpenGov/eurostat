@@ -71,11 +71,12 @@ Diego Hernangómez
 ## Examples
 
 ``` r
+
 # Don't run this! It would modify your current state
 if (FALSE) { # \dontrun{
 set_eurostat_cache_dir(verbose = TRUE)
 } # }
 
 Sys.getenv("EUROSTAT_CACHE_DIR")
-#> [1] "/tmp/RtmpviRApf/eurostat"
+#> [1] "/tmp/Rtmp0H8Say/eurostat"
 ```

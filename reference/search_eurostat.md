@@ -117,47 +117,30 @@ The Eurostat Table of Contents (TOC) is downloaded from
 <https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de>
 
 See Eurostat documentation on TOC items:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/catalogue-api/toc>
 
 ## References
 
 See `citation("eurostat")`:
 
-    Kindly cite the eurostat R package as follows:
+    Kindly cite this package by citing the following R Journal article:
 
       Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
       analysis of Eurostat open data with the eurostat package. The R
       Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-    A BibTeX entry for LaTeX users is
+    In addition, please provide a citation to the specific software version
+    used:
 
-      @Article{10.32614/RJ-2017-019,
-        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-        journal = {The R Journal},
-        volume = {9},
-        number = {1},
-        pages = {385--392},
-        year = {2017},
-        doi = {10.32614/RJ-2017-019},
-        url = {https://doi.org/10.32614/RJ-2017-019},
-      }
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-      Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-      and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-      [Computer software]. R package version 4.0.0.
-      https://github.com/rOpenGov/eurostat
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{eurostat,
-        title = {eurostat: Tools for Eurostat Open Data},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-        url = {https://github.com/rOpenGov/eurostat},
-        type = {Computer software},
-        year = {2023},
-        note = {R package version 4.0.0},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat
 data" in
@@ -186,8 +169,8 @@ head(tmp)
 #> 2 Population … cens… data… 26.08.2015          10.01.2024             2011      
 #> 3 Employed pe… cens… data… 27.03.2009          14.10.2024             2001      
 #> 4 Population … cens… data… 27.03.2009          14.10.2024             2001      
-#> 5 Pupils enro… educ… data… 23.02.2026          02.02.2026             2013      
-#> 6 Pupils enro… educ… data… 23.02.2026          02.02.2026             2013      
+#> 5 Pupils enro… educ… data… 30.04.2026          02.02.2026             2013      
+#> 6 Pupils enro… educ… data… 30.04.2026          02.02.2026             2013      
 #> # ℹ abbreviated name: ¹​last.table.structure.change
 #> # ℹ 3 more variables: data.end <chr>, values <dbl>, hierarchy <dbl>
 # Use "fixed = TRUE" when pattern has characters that would need escaping.

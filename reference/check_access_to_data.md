@@ -1,4 +1,4 @@
-# Check access to ec.europe.eu
+# Check access to ec.europa.eu
 
 Check if R has access to resources at http://ec.europa.eu
 

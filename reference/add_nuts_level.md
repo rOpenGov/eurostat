@@ -52,6 +52,7 @@ Daniel Antal
 ## Examples
 
 ``` r
+
 dat <- data.frame(
   geo    = c("FR", "IE04", "DEB1C"),
   values = c(1000, 23, 12)

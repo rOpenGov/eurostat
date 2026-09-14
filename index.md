@@ -1,9 +1,9 @@
 # eurostat R package
 
 [![Watch on
-GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/watchers)
+GitHub](https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social)](https://github.com/rOpenGov/eurostat/watchers)
 [![Star on
-GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)](https://github.com/ropengov/eurostat/stargazers)
+GitHub](https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social)](https://github.com/rOpenGov/eurostat/stargazers)
 [![Follow](https://img.shields.io/twitter/follow/ropengov.svg?style=social)](https://twitter.com/ropengov)
 
 R tools to access open data from
@@ -15,12 +15,14 @@ manipulation and visualization.
 Install stable version from CRAN:
 
 ``` r
+
 install.packages("eurostat")
 ```
 
 Alternatively, install development version from GitHub:
 
 ``` r
+
 # Install from GitHub
 library(devtools)
 devtools::install_github("ropengov/eurostat")
@@ -30,6 +32,7 @@ Development version can be also installed using the
 [r-universe](https://ropengov.r-universe.dev):
 
 ``` r
+
 # Enable this universe
 options(repos = c(
   ropengov = "https://ropengov.r-universe.dev",
@@ -43,6 +46,7 @@ The package provides several different ways to get datasets from
 Eurostat. Searching for data is one way, if you know what to look for.
 
 ``` r
+
 # Load the package
 library(eurostat)
 
@@ -51,14 +55,14 @@ passengers <- search_eurostat("passenger transport")
 knitr::kable(head(passengers))
 ```
 
-| title                                                                                        | code             | type    | last.update.of.data | last.table.structure.change | data.start | data.end |  values | hierarchy |
-|:---------------------------------------------------------------------------------------------|:-----------------|:--------|:--------------------|:----------------------------|:-----------|:---------|--------:|----------:|
-| Air passenger transport                                                                      | enps_avia_pa     | dataset | 13.03.2023          | 13.03.2023                  | 2005       | 2021     |     406 |         6 |
-| Modal split of air, sea and inland passenger transport                                       | tran_hv_ms_psmod | dataset | 29.06.2023          | 29.06.2023                  | 2008       | 2021     |    2100 |         4 |
-| Modal split of inland passenger transport                                                    | tran_hv_psmod    | dataset | 29.06.2023          | 29.06.2023                  | 1990       | 2021     |    4219 |         4 |
-| Volume of passenger transport relative to GDP                                                | tran_hv_pstra    | dataset | 11.08.2023          | 29.06.2023                  | 1990       | 2021     |     969 |         4 |
-| Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries | mar_tp_pa        | dataset | 21.02.2023          | 21.02.2023                  | 2005       | 2021     |    1752 |         4 |
-| Air passenger transport by reporting country                                                 | avia_paoc        | dataset | 04.12.2023          | 28.11.2023                  | 1993       | 2023-Q3  | 2482969 |         5 |
+| title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
+|:---|:---|:---|:---|:---|:---|:---|---:|---:|
+| Air passenger transport - ENP-South countries | enps_avia_pa | dataset | 05.03.2026 | 05.03.2026 | 2005 | 2025 | 425 | 6 |
+| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 09.09.2026 | 10.08.2026 | 1993 | 2026-Q2 | 2655229 | 5 |
+| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 09.09.2026 | 13.08.2026 | 1993 | 2026-Q2 | 22257562 | 5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 09.09.2026 | 10.08.2026 | 1993 | 2026-Q2 | 11609611 | 5 |
+| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 09.09.2026 | 23.07.2026 | 1993 | 2026-Q2 | 21913160 | 5 |
+| Air passenger transport by aircraft model, distance bands and transport coverage | avia_paodis | dataset | 03.12.2025 | 29.10.2025 | 2008 | 2024 | 907536 | 5 |
 
 See the
 [Tutorial](https://ropengov.github.io/eurostat/articles/articles/eurostat_tutorial.html)
@@ -86,21 +90,49 @@ Contributions are very welcome:
 
 ### Acknowledgements
 
-**Kindly cite this package** by citing the following R Journal article:
+**Kindly cite this work** as follows:
 
-[Lahti L.](https://github.com/antagomir), Huovari J., Kainu M., and
-Biecek P. (2017). Retrieval and analysis of Eurostat open data with the
-eurostat package. [The R Journal 9(1),
-pp. 385-392](https://journal.r-project.org/archive/2017/RJ-2017-019/index.html).
-doi: [10.32614/RJ-2017-019](https://doi.org/10.32614/RJ-2017-019).
+    print(citation("eurostat"), bibtex = TRUE)
+    Kindly cite this package by citing the following R Journal article:
 
-In addition, please provide a citation to the specific software version
-used:
+      Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+      analysis of Eurostat open data with the eurostat package. The R
+      Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-\[Computer software\]. R package version 4.0.0.9003.
-<https://github.com/rOpenGov/eurostat>
+    A BibTeX entry for LaTeX users is
+
+      @Article{10.32614/RJ-2017-019,
+        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
+        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
+        journal = {The R Journal},
+        volume = {9},
+        number = {1},
+        pages = {385--392},
+        year = {2017},
+        doi = {10.32614/RJ-2017-019},
+        url = {https://doi.org/10.32614/RJ-2017-019},
+      }
+
+    In addition, please provide a citation to the specific software version
+    used:
+
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0.9008, <https://github.com/rOpenGov/eurostat>.
+
+    A BibTeX entry for LaTeX users is
+
+      @Misc{R-eurostat,
+        title = {eurostat: Tools for Eurostat Open Data},
+        doi = {10.32614/CRAN.package.eurostat},
+        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
+        url = {https://github.com/rOpenGov/eurostat},
+        type = {Computer software},
+        year = {2026},
+        note = {R package version 4.1.0.9008},
+      }
 
 We are grateful to all
 [contributors](https://github.com/ropengov/eurostat/graphs/contributors),
@@ -121,5 +153,5 @@ When using data retrieved from Eurostat database in your work, please
 indicate that the data source is Eurostat. If your re-use involves some
 kind of modification to data or text, please state this clearly to the
 end user. See Eurostat policy on [copyright and free re-use of
-data](https://ec.europa.eu/eurostat/about/policies/copyright) for more
-detailed information and certain exceptions.
+data](https://ec.europa.eu/eurostat/web/main/help/copyright-notice) for
+more detailed information and certain exceptions.

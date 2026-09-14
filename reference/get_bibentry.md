@@ -6,7 +6,7 @@ Eurostat update, URL access data, and optional keywords set by the user.
 ## Usage
 
 ``` r
-get_bibentry(code, keywords = NULL, format = "Biblatex", lang = "en")
+get_bibentry(code, keywords = NULL, format = "bibtex", lang = "en")
 ```
 
 ## Arguments
@@ -67,7 +67,6 @@ documentation.
 ## See also
 
 [utils::bibentry](https://rdrr.io/r/utils/bibentry.html)
-[RefManageR::toBiblatex](https://docs.ropensci.org/RefManageR/reference/toBiblatex.html)
 
 ## Author
 

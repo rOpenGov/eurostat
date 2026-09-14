@@ -13,8 +13,8 @@
 <link rel="manifest" href="site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="katex-auto.js"></script><script src="lightswitch.js"></script><script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/B612_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="deps/B612_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Tools for Eurostat Open Data">
@@ -34,7 +34,7 @@
 
     <a class="navbar-brand me-2" href="index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@
 </nav><div class="container template-home">
 <div class="row">
   <main id="main" class="col-md-9">
-<p><a href="https://github.com/ropengov/eurostat/watchers" class="external-link"><img src="https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social" alt="Watch on GitHub"></a> <a href="https://github.com/ropengov/eurostat/stargazers" class="external-link"><img src="https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social" alt="Star on GitHub"></a> <a href="https://twitter.com/ropengov" class="external-link"><img src="https://img.shields.io/twitter/follow/ropengov.svg?style=social" alt="Follow"></a></p>
+<p><a href="https://github.com/rOpenGov/eurostat/watchers" class="external-link"><img src="https://img.shields.io/github/watchers/ropengov/eurostat.svg?style=social" alt="Watch on GitHub"></a> <a href="https://github.com/rOpenGov/eurostat/stargazers" class="external-link"><img src="https://img.shields.io/github/stars/ropengov/eurostat.svg?style=social" alt="Star on GitHub"></a> <a href="https://twitter.com/ropengov" class="external-link"><img src="https://img.shields.io/twitter/follow/ropengov.svg?style=social" alt="Follow"></a></p>
 <!--[![Build Status](https://travis-ci.org/rOpenGov/eurostat.svg?branch=master)](https://travis-ci.org/rOpenGov/eurostat)-->
 <!--[![AppVeyor Status](https://ci.appveyor.com/api/projects/status/github/rOpenGov/eurostat?branch=master&svg=true)](https://ci.appveyor.com/project/rOpenGov/eurostat)-->
 <!--[![license](https://img.shields.io/github/license/mashape/apistatus.svg)]()-->
@@ -130,17 +130,17 @@
 <span><span class="fu">knitr</span><span class="fu">::</span><span class="fu"><a href="https://rdrr.io/pkg/knitr/man/kable.html" class="external-link">kable</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">passengers</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
 <table style="width:100%;" class="table">
 <colgroup>
-<col width="44%">
-<col width="8%">
-<col width="4%">
-<col width="9%">
-<col width="13%">
-<col width="5%">
-<col width="4%">
-<col width="4%">
-<col width="5%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
+<col width="11%">
 </colgroup>
-<thead><tr class="header">
+<thead><tr>
 <th align="left">title</th>
 <th align="left">code</th>
 <th align="left">type</th>
@@ -152,70 +152,70 @@
 <th align="right">hierarchy</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="left">Air passenger transport</td>
+<tr>
+<td align="left">Air passenger transport - ENP-South countries</td>
 <td align="left">enps_avia_pa</td>
 <td align="left">dataset</td>
-<td align="left">13.03.2023</td>
-<td align="left">13.03.2023</td>
+<td align="left">05.03.2026</td>
+<td align="left">05.03.2026</td>
 <td align="left">2005</td>
-<td align="left">2021</td>
-<td align="right">406</td>
+<td align="left">2025</td>
+<td align="right">425</td>
 <td align="right">6</td>
 </tr>
-<tr class="even">
-<td align="left">Modal split of air, sea and inland passenger transport</td>
-<td align="left">tran_hv_ms_psmod</td>
-<td align="left">dataset</td>
-<td align="left">29.06.2023</td>
-<td align="left">29.06.2023</td>
-<td align="left">2008</td>
-<td align="left">2021</td>
-<td align="right">2100</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Modal split of inland passenger transport</td>
-<td align="left">tran_hv_psmod</td>
-<td align="left">dataset</td>
-<td align="left">29.06.2023</td>
-<td align="left">29.06.2023</td>
-<td align="left">1990</td>
-<td align="left">2021</td>
-<td align="right">4219</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Volume of passenger transport relative to GDP</td>
-<td align="left">tran_hv_pstra</td>
-<td align="left">dataset</td>
-<td align="left">11.08.2023</td>
-<td align="left">29.06.2023</td>
-<td align="left">1990</td>
-<td align="left">2021</td>
-<td align="right">969</td>
-<td align="right">4</td>
-</tr>
-<tr class="odd">
-<td align="left">Maritime passenger transport performed in the Exclusive Economic Zone (EEZ) of the countries</td>
-<td align="left">mar_tp_pa</td>
-<td align="left">dataset</td>
-<td align="left">21.02.2023</td>
-<td align="left">21.02.2023</td>
-<td align="left">2005</td>
-<td align="left">2021</td>
-<td align="right">1752</td>
-<td align="right">4</td>
-</tr>
-<tr class="even">
-<td align="left">Air passenger transport by reporting country</td>
+<tr>
+<td align="left">Air passenger transport by type of schedule, transport coverage and country</td>
 <td align="left">avia_paoc</td>
 <td align="left">dataset</td>
-<td align="left">04.12.2023</td>
-<td align="left">28.11.2023</td>
+<td align="left">09.09.2026</td>
+<td align="left">10.08.2026</td>
 <td align="left">1993</td>
-<td align="left">2023-Q3</td>
-<td align="right">2482969</td>
+<td align="left">2026-Q2</td>
+<td align="right">2655229</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">Air passenger transport by type of schedule, transport coverage and main airports</td>
+<td align="left">avia_paoa</td>
+<td align="left">dataset</td>
+<td align="left">09.09.2026</td>
+<td align="left">13.08.2026</td>
+<td align="left">1993</td>
+<td align="left">2026-Q2</td>
+<td align="right">22257562</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">Air passenger transport between reporting and partner countries by type of schedule</td>
+<td align="left">avia_paocc</td>
+<td align="left">dataset</td>
+<td align="left">09.09.2026</td>
+<td align="left">10.08.2026</td>
+<td align="left">1993</td>
+<td align="left">2026-Q2</td>
+<td align="right">11609611</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">Air passenger transport between main airports and partner reporting countries</td>
+<td align="left">avia_paoac</td>
+<td align="left">dataset</td>
+<td align="left">09.09.2026</td>
+<td align="left">23.07.2026</td>
+<td align="left">1993</td>
+<td align="left">2026-Q2</td>
+<td align="right">21913160</td>
+<td align="right">5</td>
+</tr>
+<tr>
+<td align="left">Air passenger transport by aircraft model, distance bands and transport coverage</td>
+<td align="left">avia_paodis</td>
+<td align="left">dataset</td>
+<td align="left">03.12.2025</td>
+<td align="left">29.10.2025</td>
+<td align="left">2008</td>
+<td align="left">2024</td>
+<td align="right">907536</td>
 <td align="right">5</td>
 </tr>
 </tbody>
@@ -242,10 +242,48 @@
 <div class="section level3">
 <h3 id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a>
 </h3>
-<p><strong>Kindly cite this package</strong> by citing the following R Journal article:</p>
-<p><a href="https://github.com/antagomir" class="external-link">Lahti L.</a>, Huovari J., Kainu M., and Biecek P. (2017). Retrieval and analysis of Eurostat open data with the eurostat package. <a href="https://journal.r-project.org/archive/2017/RJ-2017-019/index.html" class="external-link">The R Journal 9(1), pp. 385-392</a>. doi: <a href="https://doi.org/10.32614/RJ-2017-019" class="external-link">10.32614/RJ-2017-019</a>.</p>
-<p>In addition, please provide a citation to the specific software version used:</p>
-<p>Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D., and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data [Computer software]. R package version 4.0.0.9003. <a href="https://github.com/rOpenGov/eurostat" class="external-link uri">https://github.com/rOpenGov/eurostat</a></p>
+<p><strong>Kindly cite this work</strong> as follows:</p>
+<pre><code>print(citation("eurostat"), bibtex = TRUE)
+Kindly cite this package by citing the following R Journal article:
+
+  Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
+  analysis of Eurostat open data with the eurostat package. The R
+  Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
+
+A BibTeX entry for LaTeX users is
+
+  @Article{10.32614/RJ-2017-019,
+    title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
+    author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
+    journal = {The R Journal},
+    volume = {9},
+    number = {1},
+    pages = {385--392},
+    year = {2017},
+    doi = {10.32614/RJ-2017-019},
+    url = {https://doi.org/10.32614/RJ-2017-019},
+  }
+
+In addition, please provide a citation to the specific software version
+used:
+
+  Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+  Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+  doi:10.32614/CRAN.package.eurostat
+  &lt;https://doi.org/10.32614/CRAN.package.eurostat&gt;. R package version
+  4.1.0.9008, &lt;https://github.com/rOpenGov/eurostat&gt;.
+
+A BibTeX entry for LaTeX users is
+
+  @Misc{R-eurostat,
+    title = {eurostat: Tools for Eurostat Open Data},
+    doi = {10.32614/CRAN.package.eurostat},
+    author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
+    url = {https://github.com/rOpenGov/eurostat},
+    type = {Computer software},
+    year = {2026},
+    note = {R package version 4.1.0.9008},
+  }</code></pre>
 <p>We are grateful to all <a href="https://github.com/ropengov/eurostat/graphs/contributors" class="external-link">contributors</a>, including Daniel Antal, Joona Lehtomäki, Francois Briatte, and Oliver Reiter, and for the <a href="https://ec.europa.eu/eurostat/" class="external-link">Eurostat</a> open data portal! This project is part of <a href="https://ropengov.org" class="external-link">rOpenGov</a>.</p>
 <p>This project has received funding from the European Union under grant No 101095295 (OpenMUSE), the FIN-CLARIAH research infrastructure and the Strategic Research Council’s YOUNG program by the Research Council of Finland (decisions 345630, 358720, 367756, 352604).</p>
 </div>
@@ -253,7 +291,7 @@
 <h3 id="disclaimer">Disclaimer<a class="anchor" aria-label="anchor" href="#disclaimer"></a>
 </h3>
 <p>This package is in no way officially related to or endorsed by Eurostat.</p>
-<p>When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on <a href="https://ec.europa.eu/eurostat/about/policies/copyright" class="external-link">copyright and free re-use of data</a> for more detailed information and certain exceptions.</p>
+<p>When using data retrieved from Eurostat database in your work, please indicate that the data source is Eurostat. If your re-use involves some kind of modification to data or text, please state this clearly to the end user. See Eurostat policy on <a href="https://ec.europa.eu/eurostat/web/main/help/copyright-notice" class="external-link">copyright and free re-use of data</a> for more detailed information and certain exceptions.</p>
 </div>
 </div>
 
@@ -263,9 +301,8 @@
 <li><a href="https://cloud.r-project.org/package=eurostat" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/rOpenGov/eurostat/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/rOpenGov/eurostat/issues" class="external-link">Report a bug</a></li>
-<li>
-<a href="https://ropengov.org/" class="external-link">Part of<span class="mini_logo ms-2">r<img src="rog_logo.svg" height="20" alt="rOpenGov logo" class="round-logo">penGov</span></a>
-</li>
+<li><a href="https://ropengov.org/" class="external-link">Part of<span class="mini_logo ms-2">r<img src="rog_logo.svg" height="20" alt="rOpenGov logo" class="round-logo">penGov</span>
+</a></li>
 </ul>
 </div>
 
@@ -293,6 +330,7 @@
 <li>Janne Huovari <br><small class="roles"> Author </small>   </li>
 <li>Markus Kainu <br><small class="roles"> Author </small>   </li>
 <li>Przemyslaw Biecek <br><small class="roles"> Author </small>   </li>
+<li>Pyry Kantanen <br><small class="roles"> Author </small> <a href="https://orcid.org/0000-0003-2853-2765" target="orcid.widget" aria-label="ORCID" class="external-link"><span class="fab fa-orcid orcid" aria-hidden="true"></span></a>  </li>
 <li><a href="authors.html">More about authors...</a></li>
 </ul>
 </div>
@@ -319,11 +357,11 @@
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R package for open government data analytics"></a></p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek, Pyry Kantanen. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R package for open government data analytics"></a></p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

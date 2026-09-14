@@ -1,4 +1,4 @@
 # License
 
-    YEAR: 2014-2022
+    YEAR: 2014-2024
     COPYRIGHT HOLDER: Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek

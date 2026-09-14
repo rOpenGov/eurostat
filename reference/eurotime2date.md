@@ -2,8 +2,8 @@
 
 Date conversion from Eurostat time format. A function to convert
 Eurostat time values to objects of class
-[`Date()`](https://rdrr.io/r/base/Dates.html) representing calendar
-dates.
+[`base::Date()`](https://rdrr.io/r/base/Dates.html) representing
+calendar dates.
 
 ## Usage
 
@@ -25,7 +25,7 @@ eurotime2date(x, last = FALSE)
 
 ## Value
 
-an object of class [`Date()`](https://rdrr.io/r/base/Dates.html).
+an object of class [`base::Date()`](https://rdrr.io/r/base/Dates.html).
 
 ## Details
 
@@ -36,41 +36,24 @@ Available patterns are YYYY (year), YYYY-SN (semester), YYYY-QN
 
 See `citation("eurostat")`:
 
-    # Kindly cite the eurostat R package as follows:
+    # Kindly cite this package by citing the following R Journal article:
     #
     #   Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
     #   analysis of Eurostat open data with the eurostat package. The R
     #   Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
     #
-    # A BibTeX entry for LaTeX users is
+    # In addition, please provide a citation to the specific software version
+    # used:
     #
-    #   @Article{10.32614/RJ-2017-019,
-    #     title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-    #     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-    #     journal = {The R Journal},
-    #     volume = {9},
-    #     number = {1},
-    #     pages = {385--392},
-    #     year = {2017},
-    #     doi = {10.32614/RJ-2017-019},
-    #     url = {https://doi.org/10.32614/RJ-2017-019},
-    #   }
+    #   Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+    #   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+    #   doi:10.32614/CRAN.package.eurostat
+    #   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+    #   4.1.0, <https://github.com/rOpenGov/eurostat>.
     #
-    #   Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-    #   and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-    #   [Computer software]. R package version 4.0.0.
-    #   https://github.com/rOpenGov/eurostat
-    #
-    # A BibTeX entry for LaTeX users is
-    #
-    #   @Misc{eurostat,
-    #     title = {eurostat: Tools for Eurostat Open Data},
-    #     author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-    #     url = {https://github.com/rOpenGov/eurostat},
-    #     type = {Computer software},
-    #     year = {2023},
-    #     note = {R package version 4.0.0},
-    #   }
+    # To see these entries in BibTeX format, use 'print(<citation>,
+    # bibtex=TRUE)', 'toBibtex(.)', or set
+    # 'options(citation.bibtex.max=999)'.
 
 ## See also
 
@@ -92,7 +75,7 @@ Janne Huovari <janne.huovari@ptt.fi>
 ``` r
 # \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-#> Table namq_10_pc cached at /tmp/RtmpviRApf/eurostat/1f20a0d4920ace93fe1f21b8d9a61a88.rds
+#> Table namq_10_pc cached at /tmp/Rtmp0H8Say/eurostat/5a54b93a2fe7e024ee9525075e6a51a1.rds
 na_q$TIME_PERIOD <- eurotime2date(x = na_q$TIME_PERIOD)
 unique(na_q$TIME_PERIOD)
 #>   [1] "1995-01-01" "1995-04-01" "1995-07-01" "1995-10-01" "1996-01-01"
@@ -119,19 +102,20 @@ unique(na_q$TIME_PERIOD)
 #> [106] "2021-04-01" "2021-07-01" "2021-10-01" "2022-01-01" "2022-04-01"
 #> [111] "2022-07-01" "2022-10-01" "2023-01-01" "2023-04-01" "2023-07-01"
 #> [116] "2023-10-01" "2024-01-01" "2024-04-01" "2024-07-01" "2024-10-01"
-#> [121] "2025-01-01" "2025-04-01" "2025-07-01" "2025-10-01" "1991-01-01"
-#> [126] "1991-04-01" "1991-07-01" "1991-10-01" "1992-01-01" "1992-04-01"
-#> [131] "1992-07-01" "1992-10-01" "1993-01-01" "1993-04-01" "1993-07-01"
-#> [136] "1993-10-01" "1994-01-01" "1994-04-01" "1994-07-01" "1994-10-01"
-#> [141] "1990-01-01" "1990-04-01" "1990-07-01" "1990-10-01" "1980-01-01"
-#> [146] "1980-04-01" "1980-07-01" "1980-10-01" "1981-01-01" "1981-04-01"
-#> [151] "1981-07-01" "1981-10-01" "1982-01-01" "1982-04-01" "1982-07-01"
-#> [156] "1982-10-01" "1983-01-01" "1983-04-01" "1983-07-01" "1983-10-01"
-#> [161] "1984-01-01" "1984-04-01" "1984-07-01" "1984-10-01" "1985-01-01"
-#> [166] "1985-04-01" "1985-07-01" "1985-10-01" "1986-01-01" "1986-04-01"
-#> [171] "1986-07-01" "1986-10-01" "1987-01-01" "1987-04-01" "1987-07-01"
-#> [176] "1987-10-01" "1988-01-01" "1988-04-01" "1988-07-01" "1988-10-01"
-#> [181] "1989-01-01" "1989-04-01" "1989-07-01" "1989-10-01"
+#> [121] "2025-01-01" "2025-04-01" "2025-07-01" "2025-10-01" "2026-01-01"
+#> [126] "2026-04-01" "1991-01-01" "1991-04-01" "1991-07-01" "1991-10-01"
+#> [131] "1992-01-01" "1992-04-01" "1992-07-01" "1992-10-01" "1993-01-01"
+#> [136] "1993-04-01" "1993-07-01" "1993-10-01" "1994-01-01" "1994-04-01"
+#> [141] "1994-07-01" "1994-10-01" "1990-01-01" "1990-04-01" "1990-07-01"
+#> [146] "1990-10-01" "1980-01-01" "1980-04-01" "1980-07-01" "1980-10-01"
+#> [151] "1981-01-01" "1981-04-01" "1981-07-01" "1981-10-01" "1982-01-01"
+#> [156] "1982-04-01" "1982-07-01" "1982-10-01" "1983-01-01" "1983-04-01"
+#> [161] "1983-07-01" "1983-10-01" "1984-01-01" "1984-04-01" "1984-07-01"
+#> [166] "1984-10-01" "1985-01-01" "1985-04-01" "1985-07-01" "1985-10-01"
+#> [171] "1986-01-01" "1986-04-01" "1986-07-01" "1986-10-01" "1987-01-01"
+#> [176] "1987-04-01" "1987-07-01" "1987-10-01" "1988-01-01" "1988-04-01"
+#> [181] "1988-07-01" "1988-10-01" "1989-01-01" "1989-04-01" "1989-07-01"
+#> [186] "1989-10-01"
 # }
 
 if (FALSE) { # \dontrun{

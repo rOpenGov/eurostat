@@ -1,6 +1,6 @@
-# Transform Data into Row-Column-Value Format
+# Transform TSV files into Row-Column-Value Format
 
-Transform raw Eurostat data table downloaded from the API into a tidy
+Transform raw Eurostat TSV files downloaded from the API into a tidy
 row-column-value format (RCV).
 
 ## Usage
@@ -27,12 +27,12 @@ tidy_eurostat(
 
   a string giving a type of the conversion of the time column from the
   eurostat format. The default argument "`date`" converts to a
-  [`Date()`](https://rdrr.io/r/base/Dates.html) class with the date
-  being the first day of the period. A "`date_last`" argument converts
-  the dataset date to a [`Date()`](https://rdrr.io/r/base/Dates.html)
-  class object with the difference that the exact date is the last date
-  of the period. Period can be year, semester (half year), quarter,
-  month, or week (See
+  [`base::Date()`](https://rdrr.io/r/base/Dates.html) class with the
+  date being the first day of the period. A "`date_last`" argument
+  converts the dataset date to a
+  [`base::Date()`](https://rdrr.io/r/base/Dates.html) class object with
+  the difference that the exact date is the last date of the period.
+  Period can be year, semester (half year), quarter, month, or week (See
   [`eurotime2date()`](https://ropengov.github.io/eurostat/reference/eurotime2date.md)
   for more information). Argument "`num`" converts the date into a
   numeric (integer) meaning that the first day of the year 2000 is close
@@ -59,10 +59,10 @@ tidy_eurostat(
 
   a logical whether the flags (e.g. "confidential", "provisional")
   should be kept in a separate column or if they can be removed. Default
-  is `FALSE`. For flag values see:
-  <https://ec.europa.eu/eurostat/data/database/information>. Also
-  possible non-real zero "0n" is indicated in flags column. Flags are
-  not available for eurostat API, so `keepFlags` can not be used with a
+  is `FALSE`. For flag values see information:
+  <https://ec.europa.eu/eurostat/data/database#Flags>. Also possible
+  non-real zero "0n" is indicated in flags column. Flags are not
+  available for eurostat API, so `keepFlags` can not be used with a
   `filters`.
 
 - use.data.table:
@@ -78,41 +78,24 @@ tibble in the melted format with the last column 'values'.
 
 See `citation("eurostat")`:
 
-    Kindly cite the eurostat R package as follows:
+    Kindly cite this package by citing the following R Journal article:
 
       Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
       analysis of Eurostat open data with the eurostat package. The R
       Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-    A BibTeX entry for LaTeX users is
+    In addition, please provide a citation to the specific software version
+    used:
 
-      @Article{10.32614/RJ-2017-019,
-        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-        journal = {The R Journal},
-        volume = {9},
-        number = {1},
-        pages = {385--392},
-        year = {2017},
-        doi = {10.32614/RJ-2017-019},
-        url = {https://doi.org/10.32614/RJ-2017-019},
-      }
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-      Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-      and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-      [Computer software]. R package version 4.0.0.
-      https://github.com/rOpenGov/eurostat
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{eurostat,
-        title = {eurostat: Tools for Eurostat Open Data},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-        url = {https://github.com/rOpenGov/eurostat},
-        type = {Computer software},
-        year = {2023},
-        note = {R package version 4.0.0},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat
 data" in

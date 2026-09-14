@@ -11,15 +11,15 @@ utilities.
 |              |                             |
 | **Package**  | eurostat                    |
 | **Type**     | Package                     |
-| **Version**  | 4.0.0                       |
-| **Date**     | 2014-2023                   |
+| **Version**  | 4.1.0                       |
+| **Date**     | 2014-2025                   |
 | **License**  | BSD_2_clause + file LICENSE |
 | **LazyLoad** | yes                         |
 
 ## Eurostat
 
 Eurostat website: <https://ec.europa.eu/eurostat> Eurostat database:
-<https://ec.europa.eu/eurostat/web/main/data/database>
+<https://ec.europa.eu/eurostat/data/database>
 
 Information about the data update schedule from Eurostat: "Eurostat
 datasets are updated twice a day at 11:00 and 23:00 CET, if newer data
@@ -35,7 +35,7 @@ versions of the data."
 Data is downloaded from Eurostat SDMX 2.1 API endpoint as compressed TSV
 files that are transformed into tabular format. See Eurostat
 documentation for more information:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+query>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Dataquery>
 
 The new dissemination API replaces the old bulk download facility that
 was used by Eurostat before October 2023 and by the eurostat R package
@@ -43,7 +43,7 @@ versions before 4.0.0. See Eurostat documentation about the transition
 from Bulk Download to API for more information about the differences
 between the old bulk download facility and the data provided by the new
 API connection:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload>
 
 See especially the document Migrating_to_API_TSV.pdf that describes the
 changes in TSV file format in new applications.
@@ -61,20 +61,20 @@ API is also supported by Eurostat. We may support this feature in the
 future. In the meantime, if you are interested in filtering
 Dissemination API data queries manually, please consult the following
 Eurostat documentation:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+data+filtering>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Filteringonseries-keys>
 
 ## Data source: Eurostat API Statistics (JSON API)
 
 Data is downloaded from Eurostat API Statistics. See Eurostat
 documentation for more information about data queries in API Statistics
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api>
 
 This replaces the old JSON Web Services that was used by Eurostat before
 February 2023 and by the eurostat R package versions before 3.7.13. See
 Eurostat documentation about the migration from JSON web service to API
 Statistics for more information about the differences between the old
 and the new service:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/json>
 
 For easily viewing which filtering options are available - in addition
 to the default ones, time and language - Eurostat Web services Query
@@ -185,7 +185,7 @@ Example:
 
 For more information about data filtering see Eurostat documentation on
 API Statistics:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/api#APIStatisticsdataquery-TheparametersdefinedintheRESTrequest>
 
 ## Data source: Eurostat Table of Contents
 
@@ -196,13 +196,13 @@ The Eurostat Table of Contents (TOC) is downloaded from
 <https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de>
 
 See Eurostat documentation on TOC items:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/catalogue-api/toc>
 
 ## Data source: GISCO - General Copyright
 
 "Eurostat's general copyright notice and licence policy is applicable
 and can be consulted here:
-<https://ec.europa.eu/eurostat/about-us/policies/copyright>
+<https://ec.europa.eu/eurostat/help/copyright-notice>
 
 Please also be aware of the European Commission's general conditions:
 <https://commission.europa.eu/legal-notice_en>
@@ -229,16 +229,14 @@ GISCO / EuroGeographics.
 
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the GISCO website:
-[GISCO: Geographical information and maps - Administrative
-units/statistical
-units](https://ec.europa.eu/eurostat/web/gisco/geodata/reference-data/administrative-units-statistical-units)
+[GISCO: General information on
+geo-datafiles](https://ec.europa.eu/eurostat/web/gisco/geodata)
 
 "In addition to the [general copyright and licence
-policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright)
-applicable to the whole Eurostat website, the following specific
-provisions apply to the datasets you are downloading. The download and
-usage of these data is subject to the acceptance of the following
-clauses:
+policy](https://ec.europa.eu/eurostat/help/copyright-notice) applicable
+to the whole Eurostat website, the following specific provisions apply
+to the datasets you are downloading. The download and usage of these
+data is subject to the acceptance of the following clauses:
 
 1.  The Commission agrees to grant the non-exclusive and not
     transferable right to use and process the Eurostat/GISCO
@@ -278,7 +276,7 @@ EuroGeographics for information regarding their licence agreements."
 
 The following copyright notice is provided for end user convenience.
 Please check up-to-date copyright information from the eurostat website:
-<https://ec.europa.eu/eurostat/about-us/policies/copyright>
+<https://ec.europa.eu/eurostat/help/copyright-notice>
 
 "(c) European Union, 1995 - today
 
@@ -295,7 +293,7 @@ that:
   stated clearly to the end user of the information."
 
 For exceptions to the abovementioned principles see [Eurostat
-website](https://ec.europa.eu/eurostat/about-us/policies/copyright)
+website](https://ec.europa.eu/eurostat/help/copyright-notice)
 
 ## Citing Eurostat data
 
@@ -371,41 +369,24 @@ regions package are imported <https://regions.dataobservatory.eu/>.
 
 See `citation("eurostat")`:
 
-    Kindly cite the eurostat R package as follows:
+    Kindly cite this package by citing the following R Journal article:
 
       Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
       analysis of Eurostat open data with the eurostat package. The R
       Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-    A BibTeX entry for LaTeX users is
+    In addition, please provide a citation to the specific software version
+    used:
 
-      @Article{10.32614/RJ-2017-019,
-        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-        journal = {The R Journal},
-        volume = {9},
-        number = {1},
-        pages = {385--392},
-        year = {2017},
-        doi = {10.32614/RJ-2017-019},
-        url = {https://doi.org/10.32614/RJ-2017-019},
-      }
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-      Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-      and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-      [Computer software]. R package version 4.0.0.
-      https://github.com/rOpenGov/eurostat
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{eurostat,
-        title = {eurostat: Tools for Eurostat Open Data},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-        url = {https://github.com/rOpenGov/eurostat},
-        type = {Computer software},
-        year = {2023},
-        note = {R package version 4.0.0},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat
 data" in

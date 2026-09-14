@@ -13,8 +13,8 @@
 <link rel="manifest" href="../site.webmanifest">
 <!-- katex math --><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.css" integrity="sha384-nB0miv6/jRmo5UMMR1wu3Gz6NLsoTkbqJghGIsx//Rlm+ZU03BU6SQNC66uf4l5+" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/katex.min.js" integrity="sha384-7zkQWkzuo3B5mTepMUcHkMB5jZaolc2xDwL6VFqjFALcbeS9Ggm/Yr2r3Dy4lfFg" crossorigin="anonymous"></script><script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.11/dist/contrib/auto-render.min.js" integrity="sha384-43gviWU0YVjaDtb/GhzOouOXtZMP/7XUzwPTstBeZFe/+rCMvRwr4yROQP43s0Xk" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script><script src="../katex-auto.js"></script><script src="../lightswitch.js"></script><script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="../deps/B612_Mono-0.4.10/font.css" rel="stylesheet">
+<link href="../deps/bootstrap-5.3.8/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.8/bootstrap.bundle.min.js"></script><link href="../deps/B612_Mono-0.4.10/font.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/all.min.css" rel="stylesheet">
 <link href="../deps/font-awesome-6.5.2/css/v4-shims.min.css" rel="stylesheet">
 <script src="../deps/headroom-0.11.0/headroom.min.js"></script><script src="../deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="../deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="../deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="../deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="../deps/search-1.0.0/fuse.min.js"></script><script src="../deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="../pkgdown.js"></script><meta property="og:title" content="Accessing culture datasets with the eurostat package">
@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.0.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -81,7 +81,7 @@
   <main id="main" class="col-md-9"><div class="page-header">
       <img src="../logo.png" class="logo" alt=""><h1>Accessing culture datasets with the eurostat package</h1>
             
-            <h4 data-toc-skip class="date">2026-03-10</h4>
+            <h4 data-toc-skip class="date">2026-09-14</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/rOpenGov/eurostat/blob/master/vignettes/articles/Accessing-culture-datasets-with-the-eurostat-package.Rmd" class="external-link"><code>vignettes/articles/Accessing-culture-datasets-with-the-eurostat-package.Rmd</code></a></small>
       <div class="d-none name"><code>Accessing-culture-datasets-with-the-eurostat-package.Rmd</code></div>
@@ -127,7 +127,7 @@ article.</p>
 <span>      nace_r2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"R90"</span>, <span class="st">"R91"</span>, <span class="st">"J59"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Table lfsq_egan22d cached at /tmp/RtmpviRApf/eurostat/0ea3de3a5dc3085eb07abadf56568c89.rds</span></span>
+<span><span class="co">#&gt; Table lfsq_egan22d cached at /tmp/Rtmp0H8Say/eurostat/660aa01340834a6d54ac60751ebeebaf.rds</span></span>
 <span><span class="va">stats_label</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/label_eurostat.html">label_eurostat</a></span><span class="op">(</span><span class="va">stats</span>, code <span class="op">=</span> <span class="st">"nace_r2"</span><span class="op">)</span></span></code></pre></div>
 <p>Quick glance at dataset:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
@@ -196,7 +196,7 @@ code 32.2).</p>
 <span>      nace_r2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"J592"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Table sbs_na_1a_se_r2 cached at /tmp/RtmpviRApf/eurostat/6ffac09dd81503e6fbc67e8d77e04e14.rds</span></span>
+<span><span class="co">#&gt; Table sbs_na_1a_se_r2 cached at /tmp/Rtmp0H8Say/eurostat/ccf494310ad99f9646d82aa386cdf6e7.rds</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">music_business1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
 <span><span class="co">#&gt;   freq  nace_r2 indic_sb geo       time       values</span></span>
@@ -221,7 +221,7 @@ code 32.2).</p>
 <span>      nace_r2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"C322"</span><span class="op">)</span></span>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Table sbs_na_ind_r2 cached at /tmp/RtmpviRApf/eurostat/020fd07b3be54c0fc3de7e5faab89b93.rds</span></span>
+<span><span class="co">#&gt; Table sbs_na_ind_r2 cached at /tmp/Rtmp0H8Say/eurostat/580cc707468e913aec9b6bb82491033d.rds</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">music_business2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
 <span><span class="co">#&gt;   freq  nace_r2 indic_sb geo       time       values</span></span>
@@ -254,8 +254,8 @@ and recorded media.</p>
 <span>                      filters <span class="op">=</span> </span>
 <span>                        <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nace_r2 <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"R90"</span>, <span class="st">"R91"</span>, <span class="st">"J59"</span><span class="op">)</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Dataset query already saved in cache_list.json...</span></span>
-<span><span class="co">#&gt; Reading cache file /tmp/RtmpviRApf/eurostat/0ea3de3a5dc3085eb07abadf56568c89.rds</span></span>
-<span><span class="co">#&gt; Table  lfsq_egan22d  read from cache file:  /tmp/RtmpviRApf/eurostat/0ea3de3a5dc3085eb07abadf56568c89.rds</span></span>
+<span><span class="co">#&gt; Reading cache file /tmp/Rtmp0H8Say/eurostat/660aa01340834a6d54ac60751ebeebaf.rds</span></span>
+<span><span class="co">#&gt; Table  lfsq_egan22d  read from cache file:  /tmp/Rtmp0H8Say/eurostat/660aa01340834a6d54ac60751ebeebaf.rds</span></span>
 <span><span class="va">stats_label</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/label_eurostat.html">label_eurostat</a></span><span class="op">(</span><span class="va">stats</span>, code <span class="op">=</span> <span class="st">"nace_r2"</span><span class="op">)</span></span></code></pre></div>
 </div>
 </div>
@@ -282,12 +282,12 @@ categories:</p>
 <p>Download:</p>
 <div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"ext_lt_intertrd"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Table ext_lt_intertrd cached at /tmp/RtmpviRApf/eurostat/90c956a4066eb21ec7b021b78434e0ad.rds</span></span>
+<span><span class="co">#&gt; Table ext_lt_intertrd cached at /tmp/Rtmp0H8Say/eurostat/0d4ca712c8f2e9fec87c4527d7f70e0e.rds</span></span>
 <span><span class="va">stats_label</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/label_eurostat.html">label_eurostat</a></span><span class="op">(</span><span class="va">stats</span>, code <span class="op">=</span> <span class="st">"sitc06"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># C322: Manufacture of musical instruments</span></span>
 <span><span class="va">stats</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"ext_tec09"</span>, filters <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/list.html" class="external-link">list</a></span><span class="op">(</span>nace_r2 <span class="op">=</span> <span class="st">"C322"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Table ext_tec09 cached at /tmp/RtmpviRApf/eurostat/89f444e610fef6f1a883b484041bf9cc.rds</span></span></code></pre></div>
+<span><span class="co">#&gt; Table ext_tec09 cached at /tmp/Rtmp0H8Say/eurostat/d58dede77e1489987e4da84506f5ab2b.rds</span></span></code></pre></div>
 </div>
 <div class="section level3">
 <h3 id="data-by-domain-culture">Data by domain: Culture<a class="anchor" aria-label="anchor" href="#data-by-domain-culture"></a>
@@ -329,8 +329,8 @@ survey (EU-LFS) statistics:</p>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; Dataset query already saved in cache_list.json...</span></span>
-<span><span class="co">#&gt; Reading cache file /tmp/RtmpviRApf/eurostat/6ffac09dd81503e6fbc67e8d77e04e14.rds</span></span>
-<span><span class="co">#&gt; Table  sbs_na_1a_se_r2  read from cache file:  /tmp/RtmpviRApf/eurostat/6ffac09dd81503e6fbc67e8d77e04e14.rds</span></span>
+<span><span class="co">#&gt; Reading cache file /tmp/Rtmp0H8Say/eurostat/ccf494310ad99f9646d82aa386cdf6e7.rds</span></span>
+<span><span class="co">#&gt; Table  sbs_na_1a_se_r2  read from cache file:  /tmp/Rtmp0H8Say/eurostat/ccf494310ad99f9646d82aa386cdf6e7.rds</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">music_business1</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
 <span><span class="co">#&gt;   freq  nace_r2 indic_sb geo       time       values</span></span>
@@ -356,8 +356,8 @@ survey (EU-LFS) statistics:</p>
 <span>      <span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
 <span><span class="co">#&gt; Dataset query already saved in cache_list.json...</span></span>
-<span><span class="co">#&gt; Reading cache file /tmp/RtmpviRApf/eurostat/020fd07b3be54c0fc3de7e5faab89b93.rds</span></span>
-<span><span class="co">#&gt; Table  sbs_na_ind_r2  read from cache file:  /tmp/RtmpviRApf/eurostat/020fd07b3be54c0fc3de7e5faab89b93.rds</span></span>
+<span><span class="co">#&gt; Reading cache file /tmp/Rtmp0H8Say/eurostat/580cc707468e913aec9b6bb82491033d.rds</span></span>
+<span><span class="co">#&gt; Table  sbs_na_ind_r2  read from cache file:  /tmp/Rtmp0H8Say/eurostat/580cc707468e913aec9b6bb82491033d.rds</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/utils/head.html" class="external-link">head</a></span><span class="op">(</span><span class="va">music_business2</span><span class="op">)</span></span>
 <span><span class="co">#&gt; <span style="color: #949494;"># A tibble: 6 × 6</span></span></span>
 <span><span class="co">#&gt;   freq  nace_r2 indic_sb geo       time       values</span></span>
@@ -387,9 +387,9 @@ logic of the functions, however, is identical to the currently existing
 functions. Here is a non-functional example of how the workflow should
 look:</p>
 <div class="sourceCode" id="cb13"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu"><a href="https://remotes.r-lib.org/reference/install_github.html" class="external-link">install_github</a></span><span class="op">(</span><span class="st">"ropengov/eurostat"</span>, ref <span class="op">=</span> <span class="st">"v4.1"</span><span class="op">)</span></span></code></pre></div>
+<code class="sourceCode R"><span><span class="fu">remotes</span><span class="fu">::</span><span class="fu">install_github</span><span class="op">(</span><span class="st">"ropengov/eurostat"</span>, ref <span class="op">=</span> <span class="st">"v4.1"</span><span class="op">)</span></span></code></pre></div>
 <div class="sourceCode" id="cb14"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">prodcom</span> <span class="op">&lt;-</span> <span class="fu">get_eurostat_sdmx</span><span class="op">(</span></span>
+<code class="sourceCode R"><span><span class="va">prodcom</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eurostat_sdmx.html">get_eurostat_sdmx</a></span><span class="op">(</span></span>
 <span>  id <span class="op">=</span> <span class="st">"DS-059359"</span>,</span>
 <span>  compressed <span class="op">=</span> <span class="cn">FALSE</span>, </span>
 <span>  agency <span class="op">=</span> <span class="st">"eurostat_comext"</span>,</span>
@@ -434,9 +434,9 @@ look:</p>
 </h2>
 <div class="sourceCode" id="cb15"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/sessionInfo.html" class="external-link">sessionInfo</a></span><span class="op">(</span><span class="op">)</span></span>
-<span><span class="co">#&gt; R version 4.5.2 (2025-10-31)</span></span>
+<span><span class="co">#&gt; R version 4.6.1 (2026-06-24)</span></span>
 <span><span class="co">#&gt; Platform: x86_64-pc-linux-gnu</span></span>
-<span><span class="co">#&gt; Running under: Ubuntu 24.04.3 LTS</span></span>
+<span><span class="co">#&gt; Running under: Ubuntu 24.04.5 LTS</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; Matrix products: default</span></span>
 <span><span class="co">#&gt; BLAS:   /usr/lib/x86_64-linux-gnu/openblas-pthread/libblas.so.3 </span></span>
@@ -455,35 +455,33 @@ look:</p>
 <span><span class="co">#&gt; [1] stats     graphics  grDevices utils     datasets  methods   base     </span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; other attached packages:</span></span>
-<span><span class="co">#&gt; [1] eurostat_4.0.0</span></span>
+<span><span class="co">#&gt; [1] eurostat_4.1.0</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; loaded via a namespace (and not attached):</span></span>
-<span><span class="co">#&gt;  [1] xfun_0.56           bslib_0.10.0        httr2_1.2.2        </span></span>
-<span><span class="co">#&gt;  [4] htmlwidgets_1.6.4   tzdb_0.5.0          vctrs_0.7.1        </span></span>
-<span><span class="co">#&gt;  [7] tools_4.5.2         ISOweek_0.6-2       generics_0.1.4     </span></span>
-<span><span class="co">#&gt; [10] curl_7.0.0          parallel_4.5.2      tibble_3.3.1       </span></span>
-<span><span class="co">#&gt; [13] proxy_0.4-29        RefManageR_1.4.0    pkgconfig_2.0.3    </span></span>
-<span><span class="co">#&gt; [16] KernSmooth_2.23-26  data.table_1.18.2.1 desc_1.4.3         </span></span>
-<span><span class="co">#&gt; [19] readxl_1.4.5        assertthat_0.2.1    lifecycle_1.0.5    </span></span>
-<span><span class="co">#&gt; [22] compiler_4.5.2      stringr_1.6.0       textshaping_1.0.5  </span></span>
+<span><span class="co">#&gt;  [1] xfun_0.60           bslib_0.12.0        httr2_1.3.0        </span></span>
+<span><span class="co">#&gt;  [4] htmlwidgets_1.6.4   tzdb_0.5.0          vctrs_0.7.3        </span></span>
+<span><span class="co">#&gt;  [7] tools_4.6.1         ISOweek_0.6-2       generics_0.1.4     </span></span>
+<span><span class="co">#&gt; [10] curl_8.0.0          parallel_4.6.1      tibble_3.3.1       </span></span>
+<span><span class="co">#&gt; [13] proxy_0.4-29        pkgconfig_2.0.3     R.oo_1.27.1        </span></span>
+<span><span class="co">#&gt; [16] KernSmooth_2.23-26  data.table_1.18.6.1 desc_1.4.3         </span></span>
+<span><span class="co">#&gt; [19] readxl_1.5.0        assertthat_0.2.1    lifecycle_1.0.5    </span></span>
+<span><span class="co">#&gt; [22] compiler_4.6.1      stringr_1.6.0       textshaping_1.0.5  </span></span>
 <span><span class="co">#&gt; [25] htmltools_0.5.9     class_7.3-23        sass_0.4.10        </span></span>
-<span><span class="co">#&gt; [28] yaml_2.3.12         pillar_1.11.1       pkgdown_2.2.0      </span></span>
+<span><span class="co">#&gt; [28] yaml_2.3.12         pillar_1.11.1       pkgdown_2.2.1      </span></span>
 <span><span class="co">#&gt; [31] crayon_1.5.3        jquerylib_0.1.4     tidyr_1.3.2        </span></span>
-<span><span class="co">#&gt; [34] regions_0.1.8       classInt_0.4-11     cachem_1.1.0       </span></span>
-<span><span class="co">#&gt; [37] countrycode_1.7.0   tidyselect_1.2.1    digest_0.6.39      </span></span>
-<span><span class="co">#&gt; [40] stringi_1.8.7       dplyr_1.2.0         purrr_1.2.1        </span></span>
-<span><span class="co">#&gt; [43] bibtex_0.5.2        rprojroot_2.1.1     fastmap_1.2.0      </span></span>
-<span><span class="co">#&gt; [46] here_1.0.2          cli_3.6.5           magrittr_2.0.4     </span></span>
-<span><span class="co">#&gt; [49] utf8_1.2.6          e1071_1.7-17        withr_3.0.2        </span></span>
-<span><span class="co">#&gt; [52] readr_2.2.0         backports_1.5.0     rappdirs_0.3.4     </span></span>
-<span><span class="co">#&gt; [55] bit64_4.6.0-1       lubridate_1.9.5     timechange_0.4.0   </span></span>
-<span><span class="co">#&gt; [58] rmarkdown_2.30      httr_1.4.8          bit_4.6.0          </span></span>
-<span><span class="co">#&gt; [61] otel_0.2.0          cellranger_1.1.0    ragg_1.5.1         </span></span>
-<span><span class="co">#&gt; [64] hms_1.1.4           evaluate_1.0.5      knitr_1.51         </span></span>
-<span><span class="co">#&gt; [67] rlang_1.1.7         Rcpp_1.1.1          glue_1.8.0         </span></span>
-<span><span class="co">#&gt; [70] xml2_1.5.2          vroom_1.7.0         jsonlite_2.0.0     </span></span>
-<span><span class="co">#&gt; [73] R6_2.6.1            plyr_1.8.9          systemfonts_1.3.2  </span></span>
-<span><span class="co">#&gt; [76] fs_1.6.7</span></span></code></pre></div>
+<span><span class="co">#&gt; [34] regions_0.1.8       R.utils_2.13.0      classInt_0.4-11    </span></span>
+<span><span class="co">#&gt; [37] cachem_1.1.0        countrycode_1.9.0   tidyselect_1.2.1   </span></span>
+<span><span class="co">#&gt; [40] digest_0.6.39       stringi_1.8.9       dplyr_1.2.1        </span></span>
+<span><span class="co">#&gt; [43] purrr_1.2.2         rprojroot_2.1.1     fastmap_1.2.0      </span></span>
+<span><span class="co">#&gt; [46] here_1.0.2          cli_3.6.6           magrittr_2.0.5     </span></span>
+<span><span class="co">#&gt; [49] utf8_1.2.6          e1071_1.7-17        withr_3.0.3        </span></span>
+<span><span class="co">#&gt; [52] readr_2.2.0         bit64_4.8.6         lubridate_1.9.5    </span></span>
+<span><span class="co">#&gt; [55] timechange_0.4.0    rmarkdown_2.32      bit_4.6.0          </span></span>
+<span><span class="co">#&gt; [58] otel_0.2.0          cellranger_1.1.0    ragg_1.5.2         </span></span>
+<span><span class="co">#&gt; [61] R.methodsS3_1.8.2   hms_1.1.4           evaluate_1.0.5     </span></span>
+<span><span class="co">#&gt; [64] knitr_1.52          rlang_1.3.0         glue_1.8.1         </span></span>
+<span><span class="co">#&gt; [67] xml2_1.6.0          vroom_1.7.1         jsonlite_2.0.0     </span></span>
+<span><span class="co">#&gt; [70] R6_2.6.1            systemfonts_1.3.2   fs_2.1.0</span></span></code></pre></div>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
     </nav></aside>
@@ -492,11 +490,11 @@ look:</p>
 
 
     <footer><div class="pkgdown-footer-left">
-  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R package for open government data analytics"></a></p>
+  <p>Developed by Leo Lahti, Janne Huovari, Markus Kainu, Przemyslaw Biecek, Pyry Kantanen. <br>Part of <a href="http://ropengov.org/" class="external-link"><img src="https://ropengov.github.io/rogtemplate/logo2020_white_orange.svg" height="20" class="d-inline-block mx-1 rog-logo" alt="rOpenGov R package for open government data analytics"></a></p>
 </div>
 
 <div class="pkgdown-footer-right">
-  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.0.</p>
+  <p>Site built with <a href="https://pkgdown.r-lib.org/" class="external-link">pkgdown</a> 2.2.1.</p>
 </div>
 
     </footer>

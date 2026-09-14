@@ -82,47 +82,30 @@ The Eurostat Table of Contents (TOC) is downloaded from
 <https://ec.europa.eu/eurostat/api/dissemination/catalogue/toc/txt?lang=de>
 
 See Eurostat documentation on TOC items:
-<https://wikis.ec.europa.eu/display/EUROSTATHELP/API+-+Detailed+guidelines+-+Catalogue+API+-+TOC>
+<https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-detailed-guidelines/catalogue-api/toc>
 
 ## References
 
 See `citation("eurostat")`:
 
-    Kindly cite the eurostat R package as follows:
+    Kindly cite this package by citing the following R Journal article:
 
       Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
       analysis of Eurostat open data with the eurostat package. The R
       Journal 9(1), pp. 385-392. doi: 10.32614/RJ-2017-019
 
-    A BibTeX entry for LaTeX users is
+    In addition, please provide a citation to the specific software version
+    used:
 
-      @Article{10.32614/RJ-2017-019,
-        title = {Retrieval and Analysis of Eurostat Open Data with the eurostat Package},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek},
-        journal = {The R Journal},
-        volume = {9},
-        number = {1},
-        pages = {385--392},
-        year = {2017},
-        doi = {10.32614/RJ-2017-019},
-        url = {https://doi.org/10.32614/RJ-2017-019},
-      }
+      Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D,
+      Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
+      doi:10.32614/CRAN.package.eurostat
+      <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
-      Lahti, L., Huovari J., Kainu M., Biecek P., Hernangomez D., Antal D.,
-      and Kantanen P. (2023). eurostat: Tools for Eurostat Open Data
-      [Computer software]. R package version 4.0.0.
-      https://github.com/rOpenGov/eurostat
-
-    A BibTeX entry for LaTeX users is
-
-      @Misc{eurostat,
-        title = {eurostat: Tools for Eurostat Open Data},
-        author = {Leo Lahti and Janne Huovari and Markus Kainu and Przemyslaw Biecek and Diego Hernangomez and Daniel Antal and Pyry Kantanen},
-        url = {https://github.com/rOpenGov/eurostat},
-        type = {Computer software},
-        year = {2023},
-        note = {R package version 4.0.0},
-      }
+    To see these entries in BibTeX format, use 'print(<citation>,
+    bibtex=TRUE)', 'toBibtex(.)', or set
+    'options(citation.bibtex.max=999)'.
 
 When citing data downloaded from Eurostat, see section "Citing Eurostat
 data" in
@@ -144,10 +127,6 @@ Przemyslaw Biecek, Leo Lahti and Pyry Kantanen
 ``` r
 # \donttest{
 tmp <- get_eurostat_toc()
-#> Warning: One or more parsing issues, call `problems()` on your data frame for details,
-#> e.g.:
-#>   dat <- vroom(...)
-#>   problems(dat)
 head(tmp)
 #> # A tibble: 6 × 9
 #>   title        code  type  last.update.of.data last.table.structure…¹ data.start
@@ -156,8 +135,8 @@ head(tmp)
 #> 2 General and… gene… fold… " "                 " "                    " "       
 #> 3 European an… euro… fold… " "                 " "                    " "       
 #> 4 Balance of … ei_bp fold… " "                 " "                    " "       
-#> 5 Current acc… ei_b… table "19.02.2026"        "19.02.2026"           "1991-Q1" 
-#> 6 Financial a… ei_b… table "19.02.2026"        "19.02.2026"           "1991-Q1" 
+#> 5 Current acc… ei_b… table "19.08.2026"        "19.08.2026"           "1991-Q1" 
+#> 6 Financial a… ei_b… table "19.08.2026"        "19.08.2026"           "1991-Q1" 
 #> # ℹ abbreviated name: ¹​last.table.structure.change
 #> # ℹ 3 more variables: data.end <chr>, values <dbl>, hierarchy <dbl>
 
@@ -174,13 +153,13 @@ tmp$data.start <- lubridate::as_date(
  x = tmp$data.start, 
  format = c("%Y", "%Y-Q%q", "%Y-W%W", "%Y-S%q", "%Y-%m-%d", "%Y-%m")
  )
-#> Warning:  1929 failed to parse.
+#> Warning:  1928 failed to parse.
 # Data end, same as data start
 tmp$data.end <- gsub("S2", "Q3", tmp$data.end)
 tmp$data.end <- lubridate::as_date(
  x = tmp$data.end, 
  format = c("%Y", "%Y-Q%q", "%Y-W%W", "%Y-S%q", "%Y-%m-%d", "%Y-%m")
  )
-#> Warning:  1929 failed to parse.
+#> Warning:  1928 failed to parse.
 # }
 ```

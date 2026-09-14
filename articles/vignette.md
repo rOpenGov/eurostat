@@ -5,12 +5,14 @@
 Release version [(CRAN)](https://CRAN.R-project.org/package=eurostat):
 
 ``` r
+
 install.packages("eurostat")
 ```
 
 Development version [(Github)](https://github.com/rOpenGov/eurostat):
 
 ``` r
+
 library(remotes)
 remotes::install_github("ropengov/eurostat")
 ```

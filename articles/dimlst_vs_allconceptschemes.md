@@ -39,7 +39,7 @@ AGEDEF  Age definition
 
 An example of the new Concept Scheme file for dataset `NAMA_10_GDP` (see
 instructions for downloading
-[here](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+SDMX+2.1+-+metadata+query#APISDMX2.1metadataquery-SDMX2.1endpoint-REST-SDMX-ML2.1ConceptScheme)):
+[here](https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-getting-started/sdmx2.1#APIGettingstartedwithSDMX2.1API-Lookingupinthemetadataofadataset)):
 
 ``` xml
 <s:Concept id="freq" urn="urn:sdmx:org.sdmx.infomodel.conceptscheme.Concept=ESTAT:NAMA_10_GDP(45.0).freq">
@@ -135,6 +135,7 @@ file to create a list that is similar to the old `dimlst.dic` object to
 see if there are any functional differences.
 
 ``` r
+
 library(xml2)
 # file downloaded from https://ec.europa.eu/eurostat/api/dissemination/sdmx/2.1/conceptscheme/ESTAT/?compressed=true and unpacked
 xml_object <- xml2::read_xml("ALL_CONCEPTSCHEMES.xml")
@@ -156,6 +157,7 @@ We can see that there are more unique codes than labels and that some
 labels are being used in several different codes:
 
 ``` r
+
 length(unique(dic_df$full_name))
 # [1] 586
 length(unique(dic_df$code_name))
@@ -166,6 +168,7 @@ To make the data.frame similar to the one that we would get from reading
 a tab-separated .dic object:
 
 ``` r
+
 # Select unique rows
 library(dplyr)
 
@@ -193,6 +196,7 @@ head(new_df_sort)
 As comparison to the `dimlst.dic` object:
 
 ``` r
+
 # downloaded from https://ec.europa.eu/eurostat/estat-navtree-portlet-prod/BulkDownloadListing?sort=1&dir=dic%2Fen
 dimlst_dic <- readr::read_tsv("dimlst.dic",
                 col_names = c("code_name", "full_name"),
@@ -217,6 +221,7 @@ However, `dimlst.dic` has 623 rows while `new_df` object has 593 rows
 (obs.). Let’s find out what the differences are:
 
 ``` r
+
 setdiff(dimlst_dic$code_name, new_df_sort$code_name)
 #  [1] "AGR_INP"    "CALCMETH"   "DIMLST"     "ECOSYST"    "ECOSYST_C"  "FARMSIZE"   "HLTH_HLE"  
 #  [8] "HOSPCARE"   "HOUS_ANI"   "INDIC_AGR"  "IND_ACCT"   "IND_IMPV"   "ISSUER"     "LEARNING"  
@@ -242,6 +247,7 @@ For more information about the different fields, let’s print the codes
 and their descriptions. Unique to `dimlst_dic` object:
 
 ``` r
+
 print(dimlst_dic[which(dimlst_dic$code_name %in% setdiff(dimlst_dic$code_name, new_df_sort$code_name)),], n = 40)
 # A tibble: 38 × 2
 #    code_name  full_name                                                                     
@@ -289,6 +295,7 @@ print(dimlst_dic[which(dimlst_dic$code_name %in% setdiff(dimlst_dic$code_name, n
 Unique to new_df or new_df_sort:
 
 ``` r
+
 new_df_sort[which(new_df_sort$code_name %in% setdiff(new_df_sort$code_name, dimlst_dic$code_name)),]
 #       code_name                        full_name
 # 152     FIELDID             Agricultural product
@@ -314,6 +321,7 @@ Duplicates exist both in the `code_name` column or in the `full_name`
 column.
 
 ``` r
+
 new_df_sort[duplicated(new_df_sort$code_name),]
 #     code_name               full_name
 # 471    SO_EUR Standardoutput in Euros
@@ -332,6 +340,7 @@ new_df_sort[duplicated(new_df_sort$full_name),]
 The differences can be due to typos (probably ?):
 
 ``` r
+
 new_df_sort[which(new_df_sort$code_name == "SO_EUR"),]
 #     code_name                full_name
 # 470    SO_EUR Standard output in Euros
@@ -357,6 +366,7 @@ new_df_sort[which(new_df_sort$full_name == "Economical indicator for structural 
 also be some kind of a misunderstanding:
 
 ``` r
+
 # Different types of applicants
 new_df_sort[which(new_df_sort$full_name == "Applicant type"),]
 #    code_name      full_name

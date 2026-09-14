@@ -1,5 +1,66 @@
 # Changelog
 
+## eurostat 4.1.0
+
+### Major updates
+
+- Add new function
+  [`get_eurostat_sdmx()`](https://ropengov.github.io/eurostat/reference/get_eurostat_sdmx.md)
+  for implementing functionalities that are specifically targeted for
+  the new SDMX API. It is accompanied by other helper functions that are
+  related to fetching metadata from the SDMX API:
+  `build_api_base_uri()`, `build_agencyID()`,
+  `data_filtering_on_dimension()`, `get_codelist_id()` and
+  `label_eurostat_sdmx()`
+- Add new function
+  [`get_eurostat_local()`](https://ropengov.github.io/eurostat/reference/get_eurostat_local.md)
+  for reading local SDMX-CSV (.csv) and compressed SDMX-CSV (.csv.gz)
+  files downloaded manually from the Eurostat website. This function
+  relies only on `data.table` functions as it is expected that locally
+  stored files may be larger and require more efficient handling with
+  regards to RAM and processing time constrains. `tidy_eurostat_sdmx()`
+  and `parse_filename()` are helper functions related to this function.
+- New `legacy_data_format()` function and `legacy.data.output` attribute
+  in
+  [`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md)
+  and
+  [`get_eurostat_local()`](https://ropengov.github.io/eurostat/reference/get_eurostat_local.md)
+  transforms modern API naming conventions into the format that was used
+  in the old API and eurostat package versions 3.8.\* and prior. It is a
+  helper function to other functions.
+- Add internal functions for retrieving SDMX metadata
+
+### Minor updates
+
+- [`get_eurostat_geospatial()`](https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.md)
+  documentation mentions that data from 2024 is now available (fixes
+  issue [\#327](https://github.com/rOpenGov/eurostat/issues/327) by
+  [@yhsong1013](https://github.com/yhsong1013))
+- Fix mentions to Eurostat base URLs in
+  [`check_access_to_data()`](https://ropengov.github.io/eurostat/reference/check_access_to_data.md),
+  [`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md),
+  [`get_eurostat_json()`](https://ropengov.github.io/eurostat/reference/get_eurostat_json.md),
+  [`get_eurostat_sdmx()`](https://ropengov.github.io/eurostat/reference/get_eurostat_sdmx.md),
+  [`label_eurostat()`](https://ropengov.github.io/eurostat/reference/label_eurostat.md)
+  and
+  [`search_eurostat()`](https://ropengov.github.io/eurostat/reference/search_eurostat.md)
+  (fixes issue [\#326](https://github.com/rOpenGov/eurostat/issues/326)
+  by [@olivierchantrel](https://github.com/olivierchantrel))
+- Removed experimental functions from the codebase, fixed tests that
+  were pointing at datasets renamed by Eurostat
+- Make interactive prompt in
+  [`get_eurostat_json()`](https://ropengov.github.io/eurostat/reference/get_eurostat_json.md)
+  into a simple message (related to PR
+  [\#334](https://github.com/rOpenGov/eurostat/issues/334) from
+  [@pot-belly-mole](https://github.com/pot-belly-mole))
+
+### Deprecated and defunct
+
+- Remove deprecated parameter `make_valid` from
+  [`get_eurostat_geospatial()`](https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.md)
+- Removed RefManageR dependency from the package due to it being
+  unmaintained
+
 ## eurostat 4.0.0
 
 CRAN release: 2023-12-19
@@ -246,7 +307,7 @@ CRAN release: 2023-03-06
   [\#243](https://github.com/rOpenGov/eurostat/issues/243)). See
   Eurostat web page Transition - from Eurostat Bulk Download to API for
   a list of differences between old and new data sources:
-  <https://wikis.ec.europa.eu/display/EUROSTATHELP/Transition+-+from+Eurostat+Bulk+Download+to+API>
+  <https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/bulkdownload>
 - Added new temporary functions for downloading and handling data from
   the new dissemination API: `get_eurostat_raw2`, `tidy_eurostat2`,
   `convert_time_col2`, `eurotime2date2`, `eurotime2num2` and
@@ -287,7 +348,7 @@ CRAN release: 2023-03-06
   which data has been collected, for example annually “A”, monthly “M”
   or quarterly “Q”. See Eurostat - Data browser online help website for
   more information:
-  <https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+migrating+from+JSON+web+service+to+API+Statistics>
+  <https://ec.europa.eu/eurostat/web/user-guides/data-browser/api-data-access/api-migrating/json>
 - Minor fixes in
   [`get_bibentry()`](https://ropengov.github.io/eurostat/reference/get_bibentry.md)
   and
