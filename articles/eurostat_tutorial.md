@@ -185,10 +185,10 @@ kable(head(search_eurostat("passenger transport")))
 | title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
 |:---|:---|:---|:---|:---|:---|:---|---:|---:|
 | Air passenger transport - ENP-South countries | enps_avia_pa | dataset | 05.03.2026 | 05.03.2026 | 2005 | 2025 | 425 | 6 |
-| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2657749 | 5 |
-| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 22302742 | 5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11627539 | 5 |
-| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 10.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 21938000 | 5 |
+| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 14.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2665057 | 5 |
+| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 14.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22385830 | 5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 14.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11687947 | 5 |
+| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 14.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22015841 | 5 |
 | Air passenger transport by aircraft model, distance bands and transport coverage | avia_paodis | dataset | 03.12.2025 | 29.10.2025 | 2008 | 2024 | 907536 | 5 |
 
 From eurostat version 4.0.0 onwards it possible to perform searches also
@@ -226,7 +226,7 @@ kable(head(search_eurostat("flughafen", column = "title", lang = "de")))
 
 | title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
 |:---|:---|:---|:---|:---|:---|:---|---:|---:|
-| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 10.09.2026 | 10.09.2026 | 2019-01 | 2026-08 | 725600 | 4 |
+| Kommerzieller Luftverkehr nach Berichtsflughafen und Typ des Fahrplans - monatliche Daten | avia_tf_airpm | dataset | 14.09.2026 | 14.09.2026 | 2019-01 | 2026-08 | 725658 | 4 |
 
 As mentioned in the beginning, codes for different dataset can be found
 also from the [Eurostat
@@ -761,7 +761,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-09-14
+    ##  date     2026-09-15
     ##  pandoc   3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -784,7 +784,7 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.2.1    2026-04-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.1.0    2026-09-14 [1] local
+    ##  eurostat    * 4.1.0    2026-09-15 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            2.1.0    2026-04-18 [1] RSPM
