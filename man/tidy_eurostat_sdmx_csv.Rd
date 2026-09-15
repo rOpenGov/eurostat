@@ -71,7 +71,7 @@ used:
   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
   doi:10.32614/CRAN.package.eurostat
   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-  4.1.2, <https://github.com/rOpenGov/eurostat>.
+  4.1.3, <https://github.com/rOpenGov/eurostat>.
 
 To see these entries in BibTeX format, use 'print(<citation>,
 bibtex=TRUE)', 'toBibtex(.)', or set
