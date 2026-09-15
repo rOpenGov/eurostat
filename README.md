@@ -120,6 +120,8 @@ Contributions are very welcome:
 - [Use issue tracker](https://github.com/ropengov/eurostat/issues) for
   feedback and bug reports.
 - [Send pull requests](https://github.com/ropengov/eurostat/)
+- [Discuss with developers and other users in GitHub
+  Discussions](https://github.com/rOpenGov/eurostat/discussions)
 - [Star us on the Github page](https://github.com/ropengov/eurostat/)
 
 ### Acknowledgements
@@ -155,7 +157,7 @@ used:
   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
   doi:10.32614/CRAN.package.eurostat
   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-  4.1.2, <https://github.com/rOpenGov/eurostat>.
+  4.1.3, <https://github.com/rOpenGov/eurostat>.
 
 A BibTeX entry for LaTeX users is
 
@@ -166,7 +168,7 @@ A BibTeX entry for LaTeX users is
     url = {https://github.com/rOpenGov/eurostat},
     type = {Computer software},
     year = {2026},
-    note = {R package version 4.1.2},
+    note = {R package version 4.1.3},
   }
 ```
 
