@@ -114,11 +114,11 @@ countries</td>
 schedule, transport coverage and country</td>
 <td style="text-align: left;">avia_paoc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">14.09.2026</td>
+<td style="text-align: left;">15.09.2026</td>
 <td style="text-align: left;">10.09.2026</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2026-Q2</td>
-<td style="text-align: right;">2665057</td>
+<td style="text-align: right;">2665597</td>
 <td style="text-align: right;">5</td>
 </tr>
 <tr class="odd">
@@ -126,11 +126,11 @@ schedule, transport coverage and country</td>
 schedule, transport coverage and main airports</td>
 <td style="text-align: left;">avia_paoa</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">14.09.2026</td>
+<td style="text-align: left;">15.09.2026</td>
 <td style="text-align: left;">14.09.2026</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2026-Q2</td>
-<td style="text-align: right;">22385830</td>
+<td style="text-align: right;">22389430</td>
 <td style="text-align: right;">5</td>
 </tr>
 <tr class="even">
@@ -138,11 +138,11 @@ schedule, transport coverage and main airports</td>
 and partner countries by type of schedule</td>
 <td style="text-align: left;">avia_paocc</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">14.09.2026</td>
+<td style="text-align: left;">15.09.2026</td>
 <td style="text-align: left;">10.09.2026</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2026-Q2</td>
-<td style="text-align: right;">11687947</td>
+<td style="text-align: right;">11691835</td>
 <td style="text-align: right;">5</td>
 </tr>
 <tr class="odd">
@@ -150,11 +150,11 @@ and partner countries by type of schedule</td>
 airports and partner reporting countries</td>
 <td style="text-align: left;">avia_paoac</td>
 <td style="text-align: left;">dataset</td>
-<td style="text-align: left;">14.09.2026</td>
+<td style="text-align: left;">15.09.2026</td>
 <td style="text-align: left;">14.09.2026</td>
 <td style="text-align: left;">1993</td>
 <td style="text-align: left;">2026-Q2</td>
-<td style="text-align: right;">22015841</td>
+<td style="text-align: right;">22020044</td>
 <td style="text-align: right;">5</td>
 </tr>
 <tr class="even">
@@ -228,7 +228,7 @@ Contributions are very welcome:
       Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
       doi:10.32614/CRAN.package.eurostat
       <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-      4.1.4, <https://github.com/rOpenGov/eurostat>.
+      4.1.0, <https://github.com/rOpenGov/eurostat>.
 
     A BibTeX entry for LaTeX users is
 
@@ -239,7 +239,7 @@ Contributions are very welcome:
         url = {https://github.com/rOpenGov/eurostat},
         type = {Computer software},
         year = {2026},
-        note = {R package version 4.1.4},
+        note = {R package version 4.1.0},
       }
 
 We are grateful to all

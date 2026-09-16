@@ -1,4 +1,11 @@
-# eurostat 4.1.1
+# eurostat 4.1.0
+
+## Major updates
+
+* Add new function `get_eurostat_sdmx()` for implementing functionalities that are specifically targeted for the new SDMX API. It is accompanied by other helper functions that are related to fetching metadata from the SDMX API: `build_api_base_uri()`, `build_agencyID()`, `data_filtering_on_dimension()`, `get_codelist_id()` and `label_eurostat_sdmx()`
+* Add new function `get_eurostat_local()` for reading local SDMX-CSV (.csv) and compressed SDMX-CSV (.csv.gz) files downloaded manually from the Eurostat website. This function relies only on `data.table` functions as it is expected that locally stored files may be larger and require more efficient handling with regards to RAM and processing time constrains. `tidy_eurostat_sdmx()` and `parse_filename()` are helper functions related to this function.
+* New `legacy_data_format()` function and `legacy.data.output` attribute in `get_eurostat()` and `get_eurostat_local()` transforms modern API naming conventions into the format that was used in the old API and eurostat package versions 3.8.* and prior. It is a helper function to other functions.
+* Add internal functions for retrieving SDMX metadata
 
 ## Minor updates
 
@@ -15,18 +22,6 @@
   reachable, and the GitHub star/watch badges point at the repository front
   page instead of the `/stargazers` and `/watchers` pages, which return 404
   for logged-out visitors.
-
-# eurostat 4.1.0
-
-## Major updates
-
-* Add new function `get_eurostat_sdmx()` for implementing functionalities that are specifically targeted for the new SDMX API. It is accompanied by other helper functions that are related to fetching metadata from the SDMX API: `build_api_base_uri()`, `build_agencyID()`, `data_filtering_on_dimension()`, `get_codelist_id()` and `label_eurostat_sdmx()`
-* Add new function `get_eurostat_local()` for reading local SDMX-CSV (.csv) and compressed SDMX-CSV (.csv.gz) files downloaded manually from the Eurostat website. This function relies only on `data.table` functions as it is expected that locally stored files may be larger and require more efficient handling with regards to RAM and processing time constrains. `tidy_eurostat_sdmx()` and `parse_filename()` are helper functions related to this function.
-* New `legacy_data_format()` function and `legacy.data.output` attribute in `get_eurostat()` and `get_eurostat_local()` transforms modern API naming conventions into the format that was used in the old API and eurostat package versions 3.8.* and prior. It is a helper function to other functions.
-* Add internal functions for retrieving SDMX metadata
-
-## Minor updates
-
 * `get_eurostat_geospatial()` documentation mentions that data from 2024 is now available (fixes issue #327 by @yhsong1013)
 * Fix mentions to Eurostat base URLs in `check_access_to_data()`, `get_eurostat()`, `get_eurostat_json()`, `get_eurostat_sdmx()`, `label_eurostat()` and `search_eurostat()` (fixes issue #326 by @olivierchantrel)
 * Removed experimental functions from the codebase, fixed tests that were pointing at datasets renamed by Eurostat

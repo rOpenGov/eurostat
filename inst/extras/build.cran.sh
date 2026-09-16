@@ -1,4 +1,4 @@
 #/usr/bin/R CMD BATCH document.R
 ~/bin/R-4.6.1/bin/R CMD build ../../ # --no-build-vignettes
-~/bin/R-4.6.1/bin/R CMD check --as-cran eurostat_4.1.4.tar.gz # --no-build-vignettes
-~/bin/R-4.6.1/bin/R CMD INSTALL eurostat_4.1.4.tar.gz
+~/bin/R-4.6.1/bin/R CMD check --as-cran eurostat_4.1.0.tar.gz # --no-build-vignettes
+~/bin/R-4.6.1/bin/R CMD INSTALL eurostat_4.1.0.tar.gz
