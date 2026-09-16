@@ -1,3 +1,9 @@
+# eurostat 4.1.4
+
+## Minor updates
+
+* Polishing package documentation for CRAN release.
+
 # eurostat 4.1.1
 
 ## Minor updates
