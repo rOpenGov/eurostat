@@ -142,7 +142,7 @@ map2 <- tm_shape(geodata) +
     palette = "Oranges", border.col = "white"
   ) +
   tm_text("NUTS_NAME", just = "center") +
-  tm_scale_bar() +
+  tm_scalebar() +
   tm_layout(legend.outside = TRUE)
 map2
 ```
