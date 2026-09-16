@@ -2,7 +2,7 @@
 #' @description Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
 #' @details
 #'   Data to retrieve from
-#'   [The Eurostat API Statistics](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
+#'   [The Eurostat API Statistics](https://ec.europa.eu/eurostat/data/web-services)
 #'   can be specified with filters. Normally, it is
 #'   better to use JSON query through [get_eurostat()], than to use
 #'   [get_eurostat_json()] directly. The main reason for this is that

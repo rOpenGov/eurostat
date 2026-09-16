@@ -9,11 +9,10 @@
 #' @inherit eurostat-package references
 #' @author Przemyslaw Biecek, Leo Lahti, Janne Huovari and Pyry Kantanen
 #'
-#' @importFrom stringi stri_extract_first_regex stri_replace_all_regex
-#' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tidyr separate pivot_longer
 #' @importFrom dplyr filter
 #' @importFrom data.table setDT melt .SD :=
+#' @importFrom stringr str_extract str_replace_all fixed
 #' @importFrom stats na.omit
 #'
 #' @examples
@@ -65,9 +64,9 @@ tidy_eurostat <- function(dat,
     ## separate flags into separate column
     if (keepFlags == TRUE) {
       dat$flags <- as.vector(
-        stringi::stri_extract_first_regex(
+        stringr::str_extract(
           dat$values,
-          c("(^0n( [A-Za-z]+)*)|[A-Za-z]+")
+          "(^0n( [A-Za-z]+)*)|[A-Za-z]+"
         )
       )
     }
@@ -119,19 +118,18 @@ tidy_eurostat <- function(dat,
     # Use data.table update := for smaller RAM footprint
     if (keepFlags == TRUE) {
       dat[, `:=`(flags = as.vector(
-        stringi::stri_extract_first_regex(values, c("(^0n( [A-Za-z]+)*)|[A-Za-z]+"))
+        stringr::str_extract(values, "(^0n( [A-Za-z]+)*)|[A-Za-z]+")
         ))]
     }
     
     # clean time and values
-    # NEW CODE: use stringi instead of gsub for faster execution
+    # NEW CODE: use stringr (a thin stringi wrapper) instead of gsub
     # Use data.table update := for smaller RAM footprint
-    dat[, TIME_PERIOD := stringi::stri_replace_all_fixed(TIME_PERIOD, "X", "")]
-    # dat$TIME_PERIOD <- stringi::stri_replace_all_fixed(dat$TIME_PERIOD, "X", "")
-    dat[, values := stringi::stri_replace_all_regex(values, "[^0-9.-]+", "")]
+    dat[, TIME_PERIOD := stringr::str_replace_all(TIME_PERIOD, stringr::fixed("X"), "")]
+    dat[, values := stringr::str_replace_all(values, "[^0-9.-]+", "")]
     dat[, values := as.numeric(values)]
     # dat$values <- as.numeric(
-    #  stringi::stri_replace_all_regex(as.character(dat$values), "[^0-9.-]+", "")
+    #  stringr::str_replace_all(as.character(dat$values), "[^0-9.-]+", "")
     # )
     
     # variable columns
@@ -267,8 +265,6 @@ convert_time_col <- function(x, time_format) {
 #' @inherit eurostat-package references
 #' @author Pyry Kantanen
 #'
-#' @importFrom stringi stri_extract_first_regex stri_replace_all_regex
-#' @importFrom stringi stri_replace_all_fixed
 #' @importFrom tidyr separate pivot_longer
 #' @importFrom dplyr filter
 #' @importFrom data.table setDT melt .SD := setcolorder

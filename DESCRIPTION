@@ -2,7 +2,7 @@ Type: Package
 Package: eurostat
 Title: Tools for Eurostat Open Data
 Version: 4.1.0
-Date: 2026-09-10
+Date: 2026-09-16
 Authors@R: c(
     person("Leo", "Lahti", , "leo.lahti@iki.fi", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0001-5537-637X")),
@@ -39,31 +39,30 @@ Imports:
     classInt,
     countrycode,
     curl,
+    data.table (>= 1.18.2.1),
     digest,
     dplyr,
     httr2 (>= 1.1.2),
-    purrr,
     ISOweek,
     jsonlite,
     lubridate,
+    purrr,
     R.utils,
     rappdirs,
     readr,
     regions,
     rlang,
-    stringi,
     stringr,
     tibble,
     tidyr (>= 1.0.0),
-    xml2,
-    data.table (>= 1.18.2.1)
+    xml2
 Suggests:
     giscoR (>= 1.1.0),
     knitr,
+    lifecycle,
     rmarkdown,
     sf,
-    testthat (>= 3.0.0),
-    lifecycle
+    testthat (>= 3.0.0)
 VignetteBuilder: 
     knitr
 Config/Needs/website: ggplot2, tmap, styler, sessioninfo,

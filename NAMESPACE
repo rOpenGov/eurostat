@@ -104,12 +104,8 @@ importFrom(stats,
   na.omit,
   setNames
 )
-importFrom(stringi,
-  stri_extract_first_regex,
-  stri_replace_all_fixed,
-  stri_replace_all_regex
-)
 importFrom(stringr,
+  fixed,
   str_extract,
   str_glue,
   str_replace_all
