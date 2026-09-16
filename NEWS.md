@@ -9,6 +9,7 @@
 
 ## Minor updates
 
+* Polishing package documentation for CRAN release.
 * Reduced the number of hard dependencies from 21 to 20 (CRAN check note
   "Imports includes 21 non-default packages"): `stringi` was dropped in favour
   of the equivalent `stringr` functions. `stringr` was already imported and is
