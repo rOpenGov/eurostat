@@ -1,6 +1,6 @@
 ## R CMD check results
 
-On R 4.6.1 (2026-06-24) under aarch64-apple-darwin23 (64-bit), macOS Tahoe 26.6.2
+On R 4.6.1 (2026-06-24) under aarch64-apple-darwin23 (64-bit), macOS Tahoe 27.0
 
 0 errors | 0 warnings | 0 notes
 
@@ -15,8 +15,6 @@ On R version 4.6.1 (2026-06-24 ucrt) using platform x86_64-w64-mingw32 (devtools
 On r-release-macosx-arm64|4.6.1|macosx|macOS 26.6 (25G72) (devtools::check_mac_release)
 
 0 errors | 0 warnings | 0 notes
-
-Problems related to "following (possibly) invalid URLs" checked manually and URLs found to be ok.
 
 ## Downstream dependencies
 

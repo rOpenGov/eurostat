@@ -54,7 +54,7 @@ Retrieve data from Eurostat API Statistics in JSON-stat 2.0 format.
 }
 \details{
 Data to retrieve from
-\href{https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query}{The Eurostat API Statistics}
+\href{https://ec.europa.eu/eurostat/data/web-services}{The Eurostat API Statistics}
 can be specified with filters. Normally, it is
 better to use JSON query through \code{\link[=get_eurostat]{get_eurostat()}}, than to use
 \code{\link[=get_eurostat_json]{get_eurostat_json()}} directly. The main reason for this is that
