@@ -78,5 +78,5 @@ set_eurostat_cache_dir(verbose = TRUE)
 } # }
 
 Sys.getenv("EUROSTAT_CACHE_DIR")
-#> [1] "/tmp/RtmplkzLHc/eurostat"
+#> [1] "/tmp/RtmpP44Z08/eurostat"
 ```

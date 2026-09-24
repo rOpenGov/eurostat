@@ -75,7 +75,7 @@ Janne Huovari <janne.huovari@ptt.fi>
 ``` r
 # \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-#> Table namq_10_pc cached at /tmp/RtmplkzLHc/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
+#> Table namq_10_pc cached at /tmp/RtmpP44Z08/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
 na_q$TIME_PERIOD <- eurotime2date(x = na_q$TIME_PERIOD)
 unique(na_q$TIME_PERIOD)
 #>   [1] "1995-01-01" "1995-04-01" "1995-07-01" "1995-10-01" "1996-01-01"

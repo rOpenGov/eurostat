@@ -41,7 +41,7 @@
 ## Citation
 
 Source:
-[`inst/CITATION`](https://github.com/rOpenGov/eurostat/blob/master/inst/CITATION)
+[`inst/CITATION`](https://github.com/rOpenGov/eurostat/blob/v4.1.1/inst/CITATION)
 
 Lahti L., Huovari J., Kainu M., and Biecek P. (2017). Retrieval and
 analysis of Eurostat open data with the eurostat package. The R Journal
