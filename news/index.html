@@ -61,7 +61,11 @@
 </ul></div>
 <div class="section level3">
 <h3 id="minor-updates-4-1-0">Minor updates<a class="anchor" aria-label="anchor" href="#minor-updates-4-1-0"></a></h3>
-<ul><li>
+<ul><li>Polishing package documentation for CRAN release.</li>
+<li>Reduced the number of hard dependencies from 21 to 20 (CRAN check note “Imports includes 21 non-default packages”): <code>stringi</code> was dropped in favour of the equivalent <code>stringr</code> functions. <code>stringr</code> was already imported and is a thin wrapper around <code>stringi</code>, so there is no change in behaviour.</li>
+<li>Fix <code><a href="../reference/eurotime2date.html">eurotime2date()</a></code> for daily (<code>YYYY-MM-DD</code>) data: the month and day components were read from the wrong character positions, and <code>last = TRUE</code> failed with “‘from’ must be a finite number”. A single day already is the last day of the period it denotes, so it is no longer shifted.</li>
+<li>Fix URLs flagged as invalid by CRAN checks: the Eurostat copyright notice and the Eurostat API documentation now point at pages that are publicly reachable, and the GitHub star/watch badges point at the repository front page instead of the <code>/stargazers</code> and <code>/watchers</code> pages, which return 404 for logged-out visitors.</li>
+<li>
 <code><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial()</a></code> documentation mentions that data from 2024 is now available (fixes issue <a href="https://github.com/rOpenGov/eurostat/issues/327" class="external-link">#327</a> by <a href="https://github.com/yhsong1013" class="external-link">@yhsong1013</a>)</li>
 <li>Fix mentions to Eurostat base URLs in <code><a href="../reference/check_access_to_data.html">check_access_to_data()</a></code>, <code><a href="../reference/get_eurostat.html">get_eurostat()</a></code>, <code><a href="../reference/get_eurostat_json.html">get_eurostat_json()</a></code>, <code><a href="../reference/get_eurostat_sdmx.html">get_eurostat_sdmx()</a></code>, <code><a href="../reference/label_eurostat.html">label_eurostat()</a></code> and <code><a href="../reference/search_eurostat.html">search_eurostat()</a></code> (fixes issue <a href="https://github.com/rOpenGov/eurostat/issues/326" class="external-link">#326</a> by <a href="https://github.com/olivierchantrel" class="external-link">@olivierchantrel</a>)</li>
 <li>Removed experimental functions from the codebase, fixed tests that were pointing at datasets renamed by Eurostat</li>

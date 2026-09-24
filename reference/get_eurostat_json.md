@@ -83,9 +83,8 @@ A dataset as an object of `data.frame` class.
 ## Details
 
 Data to retrieve from [The Eurostat API
-Statistics](https://wikis.ec.europa.eu/display/EUROSTATHELP/API+Statistics+-+data+query)
-can be specified with filters. Normally, it is better to use JSON query
-through
+Statistics](https://ec.europa.eu/eurostat/data/web-services) can be
+specified with filters. Normally, it is better to use JSON query through
 [`get_eurostat()`](https://ropengov.github.io/eurostat/reference/get_eurostat.md),
 than to use `get_eurostat_json()` directly. The main reason for this is
 that `get_eurostat_json()` returns a relatively raw dataset that does

@@ -53,7 +53,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/RtmpX6lvNn/eurostat/42fdd27c32713154cb00b0b6bb4ef6e8.rds
+#> Table tgs00026 cached at /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -148,7 +148,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/RtmpX6lvNn/eurostat/42dc2dde292b74c7d92535446755c34c.rds
+#> Table tgs00026 cached at /tmp/RtmpefTnfY/eurostat/9ac10df1442a44e7cdb5ec8687bbabdb.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -207,8 +207,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpX6lvNn/eurostat/42fdd27c32713154cb00b0b6bb4ef6e8.rds
-#> Table  tgs00026  read from cache file:  /tmp/RtmpX6lvNn/eurostat/42fdd27c32713154cb00b0b6bb4ef6e8.rds
+#> Reading cache file /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
+#> Table  tgs00026  read from cache file:  /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
@@ -303,7 +303,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-09-15
+#>  date     2026-09-24
 #>  pandoc   3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -333,7 +333,7 @@ sessioninfo::session_info()
 #>  digest              0.6.39    2025-11-19 [1] RSPM
 #>  dplyr             * 1.2.1     2026-04-03 [1] RSPM
 #>  e1071               1.7-17    2025-12-18 [1] RSPM
-#>  eurostat          * 4.1.0     2026-09-15 [1] local
+#>  eurostat          * 4.1.0     2026-09-24 [1] local
 #>  evaluate            1.0.5     2025-08-27 [1] RSPM
 #>  farver              2.1.2     2024-05-13 [1] RSPM
 #>  fastmap             1.2.0     2024-05-15 [1] RSPM
@@ -355,7 +355,7 @@ sessioninfo::session_info()
 #>  knitr               1.52      2026-09-06 [1] RSPM
 #>  lattice             0.22-9    2026-02-09 [3] CRAN (R 4.6.1)
 #>  leafem              0.2.5     2025-08-28 [1] RSPM
-#>  leaflegend          1.2.8     2026-05-16 [1] RSPM
+#>  leaflegend          1.3.0     2026-09-16 [1] RSPM
 #>  leaflet             2.2.3     2025-09-04 [1] RSPM
 #>  leaflet.providers   3.0.0     2026-03-18 [1] RSPM
 #>  leafsync            0.1.0     2019-03-05 [1] RSPM
@@ -383,7 +383,7 @@ sessioninfo::session_info()
 #>  RColorBrewer        1.1-3     2022-04-03 [1] RSPM
 #>  Rcpp                1.1.2     2026-07-05 [1] RSPM
 #>  readr               2.2.0     2026-02-19 [1] RSPM
-#>  readxl              1.5.0     2026-05-16 [1] RSPM
+#>  readxl              1.5.0.1   2026-09-16 [1] RSPM
 #>  regions             0.1.8     2021-06-21 [1] RSPM
 #>  rlang               1.3.0     2026-07-05 [1] RSPM
 #>  rmarkdown           2.32      2026-09-01 [1] RSPM
@@ -415,7 +415,7 @@ sessioninfo::session_info()
 #>  vroom               1.7.1     2026-03-31 [1] RSPM
 #>  withr               3.0.3     2026-06-19 [1] RSPM
 #>  wk                  0.9.5     2025-12-18 [1] RSPM
-#>  xfun                0.60      2026-07-09 [1] RSPM
+#>  xfun                0.61      2026-09-16 [1] RSPM
 #>  XML                 3.99-0.24 2026-08-21 [1] RSPM
 #>  xml2                1.6.0     2026-06-22 [1] RSPM
 #>  yaml                2.3.12    2025-12-10 [1] RSPM

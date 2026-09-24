@@ -38,7 +38,7 @@ stats <- get_eurostat(
       nace_r2 = c("R90", "R91", "J59")
       )
   )
-#> Table lfsq_egan22d cached at /tmp/RtmpX6lvNn/eurostat/a7cc98a77ed9b8860c46c52ce27281a9.rds
+#> Table lfsq_egan22d cached at /tmp/RtmpefTnfY/eurostat/1645e05595bcc5baffaddf220c949593.rds
 stats_label <- label_eurostat(stats, code = "nace_r2")
 ```
 
@@ -122,7 +122,7 @@ music_business1 <- get_eurostat(
       nace_r2 = c("J592")
       )
   )
-#> Table sbs_na_1a_se_r2 cached at /tmp/RtmpX6lvNn/eurostat/6a36e2f2ab8fdf612aadf86c3e62805c.rds
+#> Table sbs_na_1a_se_r2 cached at /tmp/RtmpefTnfY/eurostat/a79e30c29469a0fa20c779236f38172e.rds
 head(music_business1)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -148,7 +148,7 @@ music_business2 <- get_eurostat(
       nace_r2 = c("C322")
       )
   )
-#> Table sbs_na_ind_r2 cached at /tmp/RtmpX6lvNn/eurostat/064e207ea0ffa273582867d219103210.rds
+#> Table sbs_na_ind_r2 cached at /tmp/RtmpefTnfY/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
 head(music_business2)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -184,8 +184,8 @@ stats <- get_eurostat("lfsq_egan22d",
                       filters = 
                         list(nace_r2 = c("R90", "R91", "J59")))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpX6lvNn/eurostat/a7cc98a77ed9b8860c46c52ce27281a9.rds
-#> Table  lfsq_egan22d  read from cache file:  /tmp/RtmpX6lvNn/eurostat/a7cc98a77ed9b8860c46c52ce27281a9.rds
+#> Reading cache file /tmp/RtmpefTnfY/eurostat/1645e05595bcc5baffaddf220c949593.rds
+#> Table  lfsq_egan22d  read from cache file:  /tmp/RtmpefTnfY/eurostat/1645e05595bcc5baffaddf220c949593.rds
 stats_label <- label_eurostat(stats, code = "nace_r2")
 ```
 
@@ -213,7 +213,7 @@ Download:
 ``` r
 
 stats <- get_eurostat("ext_lt_intertrd")
-#> Table ext_lt_intertrd cached at /tmp/RtmpX6lvNn/eurostat/c14dc38152ae6603d5242bf0aa0918a2.rds
+#> Table ext_lt_intertrd cached at /tmp/RtmpefTnfY/eurostat/4dc4d78d03f6ae309065425c8974a96e.rds
 stats_label <- label_eurostat(stats, code = "sitc06")
 ```
 
@@ -221,7 +221,7 @@ stats_label <- label_eurostat(stats, code = "sitc06")
 
 # C322: Manufacture of musical instruments
 stats <- get_eurostat("ext_tec09", filters = list(nace_r2 = "C322"))
-#> Table ext_tec09 cached at /tmp/RtmpX6lvNn/eurostat/22b1e376cdc32008cf56bc904c2fcc3a.rds
+#> Table ext_tec09 cached at /tmp/RtmpefTnfY/eurostat/06f88fc841db727847b751d87e346105.rds
 ```
 
 ### Data by domain: Culture
@@ -259,8 +259,8 @@ music_business1 <- get_eurostat(
       )
   )
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpX6lvNn/eurostat/6a36e2f2ab8fdf612aadf86c3e62805c.rds
-#> Table  sbs_na_1a_se_r2  read from cache file:  /tmp/RtmpX6lvNn/eurostat/6a36e2f2ab8fdf612aadf86c3e62805c.rds
+#> Reading cache file /tmp/RtmpefTnfY/eurostat/a79e30c29469a0fa20c779236f38172e.rds
+#> Table  sbs_na_1a_se_r2  read from cache file:  /tmp/RtmpefTnfY/eurostat/a79e30c29469a0fa20c779236f38172e.rds
 head(music_business1)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -287,8 +287,8 @@ music_business2 <- get_eurostat(
       )
   )
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpX6lvNn/eurostat/064e207ea0ffa273582867d219103210.rds
-#> Table  sbs_na_ind_r2  read from cache file:  /tmp/RtmpX6lvNn/eurostat/064e207ea0ffa273582867d219103210.rds
+#> Reading cache file /tmp/RtmpefTnfY/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
+#> Table  sbs_na_ind_r2  read from cache file:  /tmp/RtmpefTnfY/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
 head(music_business2)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -395,13 +395,13 @@ sessionInfo()
 #> [1] eurostat_4.1.0
 #> 
 #> loaded via a namespace (and not attached):
-#>  [1] xfun_0.60           bslib_0.12.0        httr2_1.3.0        
+#>  [1] xfun_0.61           bslib_0.12.0        httr2_1.3.0        
 #>  [4] htmlwidgets_1.6.4   tzdb_0.5.0          vctrs_0.7.3        
 #>  [7] tools_4.6.1         ISOweek_0.6-2       generics_0.1.4     
 #> [10] curl_8.0.0          parallel_4.6.1      tibble_3.3.1       
 #> [13] proxy_0.4-29        pkgconfig_2.0.3     R.oo_1.27.1        
 #> [16] KernSmooth_2.23-26  data.table_1.18.6.1 desc_1.4.3         
-#> [19] readxl_1.5.0        assertthat_0.2.1    lifecycle_1.0.5    
+#> [19] readxl_1.5.0.1      assertthat_0.2.1    lifecycle_1.0.5    
 #> [22] compiler_4.6.1      stringr_1.6.0       textshaping_1.0.5  
 #> [25] htmltools_0.5.9     class_7.3-23        sass_0.4.10        
 #> [28] yaml_2.3.12         pillar_1.11.1       pkgdown_2.2.1      

@@ -102,11 +102,10 @@ Please check up-to-date copyright information from the eurostat website:
 units](https://ec.europa.eu/eurostat/web/gisco/geodata/administrative-units)
 
 "In addition to the [general copyright and licence
-policy](https://ec.europa.eu/eurostat/web/main/about/policies/copyright)
-applicable to the whole Eurostat website, the following specific
-provisions apply to the datasets you are downloading. The download and
-usage of these data is subject to the acceptance of the following
-clauses:
+policy](https://ec.europa.eu/eurostat/help/copyright-notice) applicable
+to the whole Eurostat website, the following specific provisions apply
+to the datasets you are downloading. The download and usage of these
+data is subject to the acceptance of the following clauses:
 
 1.  The Commission agrees to grant the non-exclusive and not
     transferable right to use and process the Eurostat/GISCO

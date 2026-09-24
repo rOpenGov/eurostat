@@ -32,6 +32,23 @@
 
 ### Minor updates
 
+- Polishing package documentation for CRAN release.
+- Reduced the number of hard dependencies from 21 to 20 (CRAN check note
+  “Imports includes 21 non-default packages”): `stringi` was dropped in
+  favour of the equivalent `stringr` functions. `stringr` was already
+  imported and is a thin wrapper around `stringi`, so there is no change
+  in behaviour.
+- Fix
+  [`eurotime2date()`](https://ropengov.github.io/eurostat/reference/eurotime2date.md)
+  for daily (`YYYY-MM-DD`) data: the month and day components were read
+  from the wrong character positions, and `last = TRUE` failed with
+  “‘from’ must be a finite number”. A single day already is the last day
+  of the period it denotes, so it is no longer shifted.
+- Fix URLs flagged as invalid by CRAN checks: the Eurostat copyright
+  notice and the Eurostat API documentation now point at pages that are
+  publicly reachable, and the GitHub star/watch badges point at the
+  repository front page instead of the `/stargazers` and `/watchers`
+  pages, which return 404 for logged-out visitors.
 - [`get_eurostat_geospatial()`](https://ropengov.github.io/eurostat/reference/get_eurostat_geospatial.md)
   documentation mentions that data from 2024 is now available (fixes
   issue [\#327](https://github.com/rOpenGov/eurostat/issues/327) by

@@ -122,7 +122,7 @@ kable(tail(toc))
 | Generation of waste by waste category, hazardousness and NACE Rev. 2 activity | env_wasgen | dataset | 22.09.2025 | 30.09.2024 | 2004 | 2022 | 1457402 | 4 |
 | Food waste and food waste prevention by NACE Rev. 2 activity - tonnes of fresh mass | env_wasfw | dataset | 18.02.2026 | 15.10.2025 | 2020 | 2023 | 1416 | 4 |
 | Water use by supply category and economical sector | env_wat_cat | dataset | 03.07.2026 | 03.07.2026 | 1970 | 2024 | 9811 | 4 |
-| Population connected to wastewater treatment plants | env_ww_con | dataset | 03.07.2026 | 03.07.2026 | 1970 | 2024 | 17178 | 4 |
+| Population connected to wastewater treatment plants | env_ww_con | dataset | 18.09.2026 | 03.07.2026 | 1970 | 2024 | 17181 | 4 |
 | Population connected to public water supply | env_wat_pop | dataset | 03.07.2026 | 03.07.2026 | 1990 | 2024 | 613 | 4 |
 | Generation and discharge of wastewater in volume | env_ww_genv | dataset | 03.07.2026 | 03.07.2026 | 1975 | 2024 | 13250 | 4 |
 
@@ -185,10 +185,10 @@ kable(head(search_eurostat("passenger transport")))
 | title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
 |:---|:---|:---|:---|:---|:---|:---|---:|---:|
 | Air passenger transport - ENP-South countries | enps_avia_pa | dataset | 05.03.2026 | 05.03.2026 | 2005 | 2025 | 425 | 6 |
-| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 14.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2665057 | 5 |
-| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 14.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22385830 | 5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 14.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11687947 | 5 |
-| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 14.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22015841 | 5 |
+| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 17.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2666317 | 5 |
+| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 17.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22395010 | 5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 17.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11696875 | 5 |
+| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 17.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22026776 | 5 |
 | Air passenger transport by aircraft model, distance bands and transport coverage | avia_paodis | dataset | 03.12.2025 | 29.10.2025 | 2008 | 2024 | 907536 | 5 |
 
 From eurostat version 4.0.0 onwards it possible to perform searches also
@@ -208,10 +208,10 @@ kable(head(search_eurostat("migr", column = "code")))
 |:---|:---|:---|:---|:---|:---|:---|---:|---:|
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009 | 03.01.2024 | 2001 | 2001 | 1482371 | 6 |
 | Total and active population by sex, age, employment status, residence one year prior to the census and NUTS 3 region | cens_01ramigr | dataset | 27.03.2009 | 03.01.2024 | 2001 | 2001 | 1482371 | 6 |
-| Population on 1 January by age, sex and broad group of citizenship | migr_pop2ctz | dataset | 10.08.2026 | 20.01.2026 | 1998 | 2025 | 709969 | 4 |
-| Population on 1 January by age group, sex and citizenship | migr_pop1ctz | dataset | 10.08.2026 | 20.01.2026 | 1998 | 2025 | 8785137 | 4 |
-| Population on 1 January by age group, sex and country of birth | migr_pop3ctb | dataset | 10.08.2026 | 03.03.2026 | 1998 | 2025 | 7071362 | 4 |
-| Population on 1 January by age, sex and group of country of birth | migr_pop4ctb | dataset | 10.08.2026 | 03.03.2026 | 1998 | 2025 | 686734 | 4 |
+| Population on 1 January by age, sex and broad group of citizenship | migr_pop2ctz | dataset | 22.09.2026 | 20.01.2026 | 1998 | 2025 | 710281 | 4 |
+| Population on 1 January by age group, sex and citizenship | migr_pop1ctz | dataset | 22.09.2026 | 20.01.2026 | 1998 | 2025 | 8785218 | 4 |
+| Population on 1 January by age group, sex and country of birth | migr_pop3ctb | dataset | 22.09.2026 | 03.03.2026 | 1998 | 2025 | 7071443 | 4 |
+| Population on 1 January by age, sex and group of country of birth | migr_pop4ctb | dataset | 22.09.2026 | 03.03.2026 | 1998 | 2025 | 687046 | 4 |
 
 Another new addition in version 4.0.0 is the option to perform searches
 from French and German language TOC versions as well by setting the
@@ -761,7 +761,7 @@ sessioninfo::session_info()
     ##  collate  C.UTF-8
     ##  ctype    C.UTF-8
     ##  tz       UTC
-    ##  date     2026-09-15
+    ##  date     2026-09-24
     ##  pandoc   3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/ (via rmarkdown)
     ##  quarto   NA
     ## 
@@ -784,7 +784,7 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.2.1    2026-04-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.1.0    2026-09-15 [1] local
+    ##  eurostat    * 4.1.0    2026-09-24 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            2.1.0    2026-04-18 [1] RSPM
@@ -815,7 +815,7 @@ sessioninfo::session_info()
     ##  R6            2.6.1    2025-02-15 [1] RSPM
     ##  ragg          1.5.2    2026-03-23 [1] RSPM
     ##  readr         2.2.0    2026-02-19 [1] RSPM
-    ##  readxl        1.5.0    2026-05-16 [1] RSPM
+    ##  readxl        1.5.0.1  2026-09-16 [1] RSPM
     ##  regions       0.1.8    2021-06-21 [1] RSPM
     ##  rlang         1.3.0    2026-07-05 [1] RSPM
     ##  rmarkdown     2.32     2026-09-01 [1] RSPM
@@ -834,7 +834,7 @@ sessioninfo::session_info()
     ##  vctrs         0.7.3    2026-04-11 [1] RSPM
     ##  vroom         1.7.1    2026-03-31 [1] RSPM
     ##  withr         3.0.3    2026-06-19 [1] RSPM
-    ##  xfun          0.60     2026-07-09 [1] RSPM
+    ##  xfun          0.61     2026-09-16 [1] RSPM
     ##  xml2          1.6.0    2026-06-22 [1] RSPM
     ##  yaml          2.3.12   2025-12-10 [1] RSPM
     ## 

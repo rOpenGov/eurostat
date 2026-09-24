@@ -539,7 +539,7 @@ sessioninfo::session_info()
 #>  collate  C.UTF-8
 #>  ctype    C.UTF-8
 #>  tz       UTC
-#>  date     2026-09-15
+#>  date     2026-09-24
 #>  pandoc   3.8.3 @ /opt/hostedtoolcache/pandoc/3.8.3/x64/ (via rmarkdown)
 #>  quarto   NA
 #> 
@@ -560,7 +560,7 @@ sessioninfo::session_info()
 #>  digest         0.6.39   2025-11-19 [1] RSPM
 #>  dplyr        * 1.2.1    2026-04-03 [1] RSPM
 #>  e1071          1.7-17   2025-12-18 [1] RSPM
-#>  eurostat     * 4.1.0    2026-09-15 [1] local
+#>  eurostat     * 4.1.0    2026-09-24 [1] local
 #>  evaluate       1.0.5    2025-08-27 [1] RSPM
 #>  farver         2.1.2    2024-05-13 [1] RSPM
 #>  fastmap        1.2.0    2024-05-15 [1] RSPM
@@ -600,7 +600,7 @@ sessioninfo::session_info()
 #>  RColorBrewer   1.1-3    2022-04-03 [1] RSPM
 #>  Rcpp           1.1.2    2026-07-05 [1] RSPM
 #>  readr          2.2.0    2026-02-19 [1] RSPM
-#>  readxl         1.5.0    2026-05-16 [1] RSPM
+#>  readxl         1.5.0.1  2026-09-16 [1] RSPM
 #>  regions      * 0.1.8    2021-06-21 [1] RSPM
 #>  rlang          1.3.0    2026-07-05 [1] RSPM
 #>  rmarkdown      2.32     2026-09-01 [1] RSPM
@@ -626,7 +626,7 @@ sessioninfo::session_info()
 #>  vctrs          0.7.3    2026-04-11 [1] RSPM
 #>  withr          3.0.3    2026-06-19 [1] RSPM
 #>  wk             0.9.5    2025-12-18 [1] RSPM
-#>  xfun           0.60     2026-07-09 [1] RSPM
+#>  xfun           0.61     2026-09-16 [1] RSPM
 #>  xml2           1.6.0    2026-06-22 [1] RSPM
 #>  yaml           2.3.12   2025-12-10 [1] RSPM
 #> 
