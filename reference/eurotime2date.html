@@ -11,7 +11,7 @@ representing calendar dates."><meta property="og:image" content="https://ropengo
 
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -104,7 +104,7 @@ YYYY-MM (month), YYYY-WNN (week) and YYYY-MM-DD (day).</p>
 <span id="cb1-11"><a href="#cb1-11" tabindex="-1"></a><span class="co">#   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."</span></span>
 <span id="cb1-12"><a href="#cb1-12" tabindex="-1"></a><span class="co">#   doi:10.32614/CRAN.package.eurostat</span></span>
 <span id="cb1-13"><a href="#cb1-13" tabindex="-1"></a><span class="co">#   &lt;https://doi.org/10.32614/CRAN.package.eurostat&gt;. R package version</span></span>
-<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#   4.1.0, &lt;https://github.com/rOpenGov/eurostat&gt;.</span></span>
+<span id="cb1-14"><a href="#cb1-14" tabindex="-1"></a><span class="co">#   4.1.1, &lt;https://github.com/rOpenGov/eurostat&gt;.</span></span>
 <span id="cb1-15"><a href="#cb1-15" tabindex="-1"></a><span class="co">#</span></span>
 <span id="cb1-16"><a href="#cb1-16" tabindex="-1"></a><span class="co"># To see these entries in BibTeX format, use 'print(&lt;citation&gt;,</span></span>
 <span id="cb1-17"><a href="#cb1-17" tabindex="-1"></a><span class="co"># bibtex=TRUE)', 'toBibtex(.)', or set</span></span>
@@ -129,7 +129,7 @@ YYYY-MM (month), YYYY-WNN (week) and YYYY-MM-DD (day).</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="co"># \donttest{</span></span></span>
 <span class="r-in"><span><span class="va">na_q</span> <span class="op">&lt;-</span> <span class="fu"><a href="get_eurostat.html">get_eurostat</a></span><span class="op">(</span><span class="st">"namq_10_pc"</span>, time_format <span class="op">=</span> <span class="st">"raw"</span><span class="op">)</span></span></span>
-<span class="r-msg co"><span class="r-pr">#&gt;</span> Table namq_10_pc cached at /tmp/RtmpefTnfY/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds</span>
+<span class="r-msg co"><span class="r-pr">#&gt;</span> Table namq_10_pc cached at /tmp/RtmplkzLHc/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds</span>
 <span class="r-in"><span><span class="va">na_q</span><span class="op">$</span><span class="va">TIME_PERIOD</span> <span class="op">&lt;-</span> <span class="fu">eurotime2date</span><span class="op">(</span>x <span class="op">=</span> <span class="va">na_q</span><span class="op">$</span><span class="va">TIME_PERIOD</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/unique.html" class="external-link">unique</a></span><span class="op">(</span><span class="va">na_q</span><span class="op">$</span><span class="va">TIME_PERIOD</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span>   [1] "1995-01-01" "1995-04-01" "1995-07-01" "1995-10-01" "1996-01-01"</span>

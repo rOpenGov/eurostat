@@ -28,7 +28,7 @@
 
     <a class="navbar-brand me-2" href="../index.html">eurostat</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.0</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">4.1.1</small>
 
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -142,7 +142,7 @@ package.</p>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/filter.html" class="external-link">filter</a></span><span class="op">(</span><span class="va">TIME_PERIOD</span> <span class="op">==</span> <span class="fl">2016</span>, <span class="fu"><a href="https://rdrr.io/r/base/nchar.html" class="external-link">nchar</a></span><span class="op">(</span><span class="va">geo</span><span class="op">)</span> <span class="op">==</span> <span class="fl">4</span><span class="op">)</span> <span class="op"><a href="https://magrittr.tidyverse.org/reference/pipe.html" class="external-link">%&gt;%</a></span></span>
 <span>  <span class="co"># categorise</span></span>
 <span>  <span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>income <span class="op">=</span> <span class="fu"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span>, n <span class="op">=</span> <span class="fl">5</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; Table tgs00026 cached at /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds</span></span>
+<span><span class="co">#&gt; Table tgs00026 cached at /tmp/RtmplkzLHc/eurostat/657639a12e8aa489ae21d3bf7640549d.rds</span></span>
 <span></span>
 <span><span class="co"># Download geospatial data from GISCO</span></span>
 <span><span class="va">geodata</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span>nuts_level <span class="op">=</span> <span class="fl">2</span>, year <span class="op">=</span> <span class="fl">2016</span><span class="op">)</span></span>
@@ -226,7 +226,7 @@ with labels at 1:1mln resolution using tmap<a class="anchor" aria-label="anchor"
 <span>    label <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/paste.html" class="external-link">paste0</a></span><span class="op">(</span><span class="fu"><a href="../reference/label_eurostat.html">label_eurostat</a></span><span class="op">(</span><span class="va">.</span><span class="op">)</span><span class="op">[[</span><span class="st">"geo"</span><span class="op">]</span><span class="op">]</span>, <span class="st">"\n"</span>, <span class="va">values</span>, <span class="st">"€"</span><span class="op">)</span>,</span>
 <span>    income <span class="op">=</span> <span class="fu"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span></span>
 <span>  <span class="op">)</span></span>
-<span><span class="co">#&gt; Table tgs00026 cached at /tmp/RtmpefTnfY/eurostat/9ac10df1442a44e7cdb5ec8687bbabdb.rds</span></span>
+<span><span class="co">#&gt; Table tgs00026 cached at /tmp/RtmplkzLHc/eurostat/9ac10df1442a44e7cdb5ec8687bbabdb.rds</span></span>
 <span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="st">"Download geospatial data from GISCO"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "Download geospatial data from GISCO"</span></span>
@@ -284,8 +284,8 @@ resolution using ggplot2<a class="anchor" aria-label="anchor" href="#disposable-
 <span>  <span class="co"># classifying the values the variable</span></span>
 <span>  <span class="fu">dplyr</span><span class="fu">::</span><span class="fu"><a href="https://dplyr.tidyverse.org/reference/mutate.html" class="external-link">mutate</a></span><span class="op">(</span>cat <span class="op">=</span> <span class="fu"><a href="../reference/cut_to_classes.html">cut_to_classes</a></span><span class="op">(</span><span class="va">values</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; Dataset query already saved in cache_list.json...</span></span>
-<span><span class="co">#&gt; Reading cache file /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds</span></span>
-<span><span class="co">#&gt; Table  tgs00026  read from cache file:  /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds</span></span>
+<span><span class="co">#&gt; Reading cache file /tmp/RtmplkzLHc/eurostat/657639a12e8aa489ae21d3bf7640549d.rds</span></span>
+<span><span class="co">#&gt; Table  tgs00026  read from cache file:  /tmp/RtmplkzLHc/eurostat/657639a12e8aa489ae21d3bf7640549d.rds</span></span>
 <span></span>
 <span><span class="co"># Download geospatial data from GISCO</span></span>
 <span><span class="va">data_geo</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/get_eurostat_geospatial.html">get_eurostat_geospatial</a></span><span class="op">(</span></span>
@@ -349,7 +349,7 @@ BSD-2-clause (modified FreeBSD) license:</p>
 <span><span class="co">#&gt;   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."</span></span>
 <span><span class="co">#&gt;   doi:10.32614/CRAN.package.eurostat</span></span>
 <span><span class="co">#&gt;   &lt;https://doi.org/10.32614/CRAN.package.eurostat&gt;. R package version</span></span>
-<span><span class="co">#&gt;   4.1.0, &lt;https://github.com/rOpenGov/eurostat&gt;.</span></span>
+<span><span class="co">#&gt;   4.1.1, &lt;https://github.com/rOpenGov/eurostat&gt;.</span></span>
 <span><span class="co">#&gt; </span></span>
 <span><span class="co">#&gt; To see these entries in BibTeX format, use 'print(&lt;citation&gt;,</span></span>
 <span><span class="co">#&gt; bibtex=TRUE)', 'toBibtex(.)', or set</span></span>
@@ -407,7 +407,7 @@ BSD-2-clause (modified FreeBSD) license:</p>
 <span><span class="co">#&gt;  digest              0.6.39    <span style="color: #555555;">2025-11-19</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  dplyr             * 1.2.1     <span style="color: #555555;">2026-04-03</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  e1071               1.7-17    <span style="color: #555555;">2025-12-18</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
-<span><span class="co">#&gt;  eurostat          * 4.1.0     <span style="color: #555555;">2026-09-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
+<span><span class="co">#&gt;  eurostat          * 4.1.1     <span style="color: #555555;">2026-09-24</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">local</span></span></span>
 <span><span class="co">#&gt;  evaluate            1.0.5     <span style="color: #555555;">2025-08-27</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  farver              2.1.2     <span style="color: #555555;">2024-05-13</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>
 <span><span class="co">#&gt;  fastmap             1.2.0     <span style="color: #555555;">2024-05-15</span> <span style="color: #555555;">[1]</span> <span style="color: #BB00BB; font-weight: bold;">RSPM</span></span></span>

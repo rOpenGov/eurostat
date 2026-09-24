@@ -723,7 +723,7 @@ citation("eurostat")
     ##   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
     ##   doi:10.32614/CRAN.package.eurostat
     ##   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-    ##   4.1.0, <https://github.com/rOpenGov/eurostat>.
+    ##   4.1.1, <https://github.com/rOpenGov/eurostat>.
     ## 
     ## A BibTeX entry for LaTeX users is
     ## 
@@ -734,7 +734,7 @@ citation("eurostat")
     ##     url = {https://github.com/rOpenGov/eurostat},
     ##     type = {Computer software},
     ##     year = {2026},
-    ##     note = {R package version 4.1.0},
+    ##     note = {R package version 4.1.1},
     ##   }
 
 #### Contact
@@ -784,7 +784,7 @@ sessioninfo::session_info()
     ##  digest        0.6.39   2025-11-19 [1] RSPM
     ##  dplyr         1.2.1    2026-04-03 [1] RSPM
     ##  e1071         1.7-17   2025-12-18 [1] RSPM
-    ##  eurostat    * 4.1.0    2026-09-24 [1] local
+    ##  eurostat    * 4.1.1    2026-09-24 [1] local
     ##  evaluate      1.0.5    2025-08-27 [1] RSPM
     ##  fastmap       1.2.0    2024-05-15 [1] RSPM
     ##  fs            2.1.0    2026-04-18 [1] RSPM

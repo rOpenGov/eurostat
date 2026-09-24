@@ -38,7 +38,7 @@ stats <- get_eurostat(
       nace_r2 = c("R90", "R91", "J59")
       )
   )
-#> Table lfsq_egan22d cached at /tmp/RtmpefTnfY/eurostat/1645e05595bcc5baffaddf220c949593.rds
+#> Table lfsq_egan22d cached at /tmp/RtmplkzLHc/eurostat/1645e05595bcc5baffaddf220c949593.rds
 stats_label <- label_eurostat(stats, code = "nace_r2")
 ```
 
@@ -122,7 +122,7 @@ music_business1 <- get_eurostat(
       nace_r2 = c("J592")
       )
   )
-#> Table sbs_na_1a_se_r2 cached at /tmp/RtmpefTnfY/eurostat/a79e30c29469a0fa20c779236f38172e.rds
+#> Table sbs_na_1a_se_r2 cached at /tmp/RtmplkzLHc/eurostat/a79e30c29469a0fa20c779236f38172e.rds
 head(music_business1)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -148,7 +148,7 @@ music_business2 <- get_eurostat(
       nace_r2 = c("C322")
       )
   )
-#> Table sbs_na_ind_r2 cached at /tmp/RtmpefTnfY/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
+#> Table sbs_na_ind_r2 cached at /tmp/RtmplkzLHc/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
 head(music_business2)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -184,8 +184,8 @@ stats <- get_eurostat("lfsq_egan22d",
                       filters = 
                         list(nace_r2 = c("R90", "R91", "J59")))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpefTnfY/eurostat/1645e05595bcc5baffaddf220c949593.rds
-#> Table  lfsq_egan22d  read from cache file:  /tmp/RtmpefTnfY/eurostat/1645e05595bcc5baffaddf220c949593.rds
+#> Reading cache file /tmp/RtmplkzLHc/eurostat/1645e05595bcc5baffaddf220c949593.rds
+#> Table  lfsq_egan22d  read from cache file:  /tmp/RtmplkzLHc/eurostat/1645e05595bcc5baffaddf220c949593.rds
 stats_label <- label_eurostat(stats, code = "nace_r2")
 ```
 
@@ -213,7 +213,7 @@ Download:
 ``` r
 
 stats <- get_eurostat("ext_lt_intertrd")
-#> Table ext_lt_intertrd cached at /tmp/RtmpefTnfY/eurostat/4dc4d78d03f6ae309065425c8974a96e.rds
+#> Table ext_lt_intertrd cached at /tmp/RtmplkzLHc/eurostat/4dc4d78d03f6ae309065425c8974a96e.rds
 stats_label <- label_eurostat(stats, code = "sitc06")
 ```
 
@@ -221,7 +221,7 @@ stats_label <- label_eurostat(stats, code = "sitc06")
 
 # C322: Manufacture of musical instruments
 stats <- get_eurostat("ext_tec09", filters = list(nace_r2 = "C322"))
-#> Table ext_tec09 cached at /tmp/RtmpefTnfY/eurostat/06f88fc841db727847b751d87e346105.rds
+#> Table ext_tec09 cached at /tmp/RtmplkzLHc/eurostat/06f88fc841db727847b751d87e346105.rds
 ```
 
 ### Data by domain: Culture
@@ -259,8 +259,8 @@ music_business1 <- get_eurostat(
       )
   )
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpefTnfY/eurostat/a79e30c29469a0fa20c779236f38172e.rds
-#> Table  sbs_na_1a_se_r2  read from cache file:  /tmp/RtmpefTnfY/eurostat/a79e30c29469a0fa20c779236f38172e.rds
+#> Reading cache file /tmp/RtmplkzLHc/eurostat/a79e30c29469a0fa20c779236f38172e.rds
+#> Table  sbs_na_1a_se_r2  read from cache file:  /tmp/RtmplkzLHc/eurostat/a79e30c29469a0fa20c779236f38172e.rds
 head(music_business1)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -287,8 +287,8 @@ music_business2 <- get_eurostat(
       )
   )
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpefTnfY/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
-#> Table  sbs_na_ind_r2  read from cache file:  /tmp/RtmpefTnfY/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
+#> Reading cache file /tmp/RtmplkzLHc/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
+#> Table  sbs_na_ind_r2  read from cache file:  /tmp/RtmplkzLHc/eurostat/edaaf4bdd9bf25f6fb63d830f956d828.rds
 head(music_business2)
 #> # A tibble: 6 × 6
 #>   freq  nace_r2 indic_sb geo       time       values
@@ -392,7 +392,7 @@ sessionInfo()
 #> [1] stats     graphics  grDevices utils     datasets  methods   base     
 #> 
 #> other attached packages:
-#> [1] eurostat_4.1.0
+#> [1] eurostat_4.1.1
 #> 
 #> loaded via a namespace (and not attached):
 #>  [1] xfun_0.61           bslib_0.12.0        httr2_1.3.0        

@@ -54,10 +54,10 @@ knitr::kable(head(passengers))
 | title | code | type | last.update.of.data | last.table.structure.change | data.start | data.end | values | hierarchy |
 |:---|:---|:---|:---|:---|:---|:---|---:|---:|
 | Air passenger transport - ENP-South countries | enps_avia_pa | dataset | 05.03.2026 | 05.03.2026 | 2005 | 2025 | 425 | 6 |
-| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 15.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2665597 | 5 |
-| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 15.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22389430 | 5 |
-| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 15.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11691835 | 5 |
-| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 15.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22020044 | 5 |
+| Air passenger transport by type of schedule, transport coverage and country | avia_paoc | dataset | 17.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 2666317 | 5 |
+| Air passenger transport by type of schedule, transport coverage and main airports | avia_paoa | dataset | 17.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22395010 | 5 |
+| Air passenger transport between reporting and partner countries by type of schedule | avia_paocc | dataset | 17.09.2026 | 10.09.2026 | 1993 | 2026-Q2 | 11696875 | 5 |
+| Air passenger transport between main airports and partner reporting countries | avia_paoac | dataset | 17.09.2026 | 14.09.2026 | 1993 | 2026-Q2 | 22026776 | 5 |
 | Air passenger transport by aircraft model, distance bands and transport coverage | avia_paodis | dataset | 03.12.2025 | 29.10.2025 | 2008 | 2024 | 907536 | 5 |
 
 See the
@@ -117,7 +117,7 @@ used:
   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
   doi:10.32614/CRAN.package.eurostat
   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-  4.1.0, <https://github.com/rOpenGov/eurostat>.
+  4.1.1, <https://github.com/rOpenGov/eurostat>.
 
 A BibTeX entry for LaTeX users is
 
@@ -128,7 +128,7 @@ A BibTeX entry for LaTeX users is
     url = {https://github.com/rOpenGov/eurostat},
     type = {Computer software},
     year = {2026},
-    note = {R package version 4.1.0},
+    note = {R package version 4.1.1},
   }
 ```
 

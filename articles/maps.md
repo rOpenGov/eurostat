@@ -53,7 +53,7 @@ sp_data <- eurostat::get_eurostat("tgs00026", time_format = "raw") %>%
   filter(TIME_PERIOD == 2016, nchar(geo) == 4) %>%
   # categorise
   mutate(income = cut_to_classes(values, n = 5))
-#> Table tgs00026 cached at /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
+#> Table tgs00026 cached at /tmp/RtmplkzLHc/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
 
 # Download geospatial data from GISCO
 geodata <- get_eurostat_geospatial(nuts_level = 2, year = 2016)
@@ -148,7 +148,7 @@ euro_sf2 <- get_eurostat("tgs00026",
     label = paste0(label_eurostat(.)[["geo"]], "\n", values, "€"),
     income = cut_to_classes(values)
   )
-#> Table tgs00026 cached at /tmp/RtmpefTnfY/eurostat/9ac10df1442a44e7cdb5ec8687bbabdb.rds
+#> Table tgs00026 cached at /tmp/RtmplkzLHc/eurostat/9ac10df1442a44e7cdb5ec8687bbabdb.rds
 
 print("Download geospatial data from GISCO")
 #> [1] "Download geospatial data from GISCO"
@@ -207,8 +207,8 @@ data_eurostat <- get_eurostat("tgs00026", time_format = "raw") %>%
   # classifying the values the variable
   dplyr::mutate(cat = cut_to_classes(values))
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
-#> Table  tgs00026  read from cache file:  /tmp/RtmpefTnfY/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
+#> Reading cache file /tmp/RtmplkzLHc/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
+#> Table  tgs00026  read from cache file:  /tmp/RtmplkzLHc/eurostat/657639a12e8aa489ae21d3bf7640549d.rds
 
 # Download geospatial data from GISCO
 data_geo <- get_eurostat_geospatial(
@@ -274,7 +274,7 @@ citation("eurostat")
 #>   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
 #>   doi:10.32614/CRAN.package.eurostat
 #>   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-#>   4.1.0, <https://github.com/rOpenGov/eurostat>.
+#>   4.1.1, <https://github.com/rOpenGov/eurostat>.
 #> 
 #> To see these entries in BibTeX format, use 'print(<citation>,
 #> bibtex=TRUE)', 'toBibtex(.)', or set
@@ -333,7 +333,7 @@ sessioninfo::session_info()
 #>  digest              0.6.39    2025-11-19 [1] RSPM
 #>  dplyr             * 1.2.1     2026-04-03 [1] RSPM
 #>  e1071               1.7-17    2025-12-18 [1] RSPM
-#>  eurostat          * 4.1.0     2026-09-24 [1] local
+#>  eurostat          * 4.1.1     2026-09-24 [1] local
 #>  evaluate            1.0.5     2025-08-27 [1] RSPM
 #>  farver              2.1.2     2024-05-13 [1] RSPM
 #>  fastmap             1.2.0     2024-05-15 [1] RSPM

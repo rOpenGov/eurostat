@@ -62,7 +62,7 @@ analysis of Eurostat open data with the eurostat package. The R Journal
 Lahti L, Huovari J, Kainu M, Biecek P, Hernangomez D, Antal D, Kantanen
 P (2026). “eurostat: Tools for Eurostat Open Data.”
 [doi:10.32614/CRAN.package.eurostat](https://doi.org/10.32614/CRAN.package.eurostat).
-R package version 4.1.0, <https://github.com/rOpenGov/eurostat>.
+R package version 4.1.1, <https://github.com/rOpenGov/eurostat>.
 
     @Misc{R-eurostat,
       title = {eurostat: Tools for Eurostat Open Data},
@@ -71,5 +71,5 @@ R package version 4.1.0, <https://github.com/rOpenGov/eurostat>.
       url = {https://github.com/rOpenGov/eurostat},
       type = {Computer software},
       year = {2026},
-      note = {R package version 4.1.0},
+      note = {R package version 4.1.1},
     }

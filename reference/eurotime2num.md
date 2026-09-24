@@ -43,8 +43,8 @@ Janne Huovari <janne.huovari@ptt.fi>, Pyry Kantanen
 # \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
 #> Dataset query already saved in cache_list.json...
-#> Reading cache file /tmp/RtmpefTnfY/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
-#> Table  namq_10_pc  read from cache file:  /tmp/RtmpefTnfY/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
+#> Reading cache file /tmp/RtmplkzLHc/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
+#> Table  namq_10_pc  read from cache file:  /tmp/RtmplkzLHc/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
 na_q$TIME_PERIOD <- eurotime2num(x = na_q$TIME_PERIOD)
 
 unique(na_q$TIME_PERIOD)

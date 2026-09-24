@@ -49,7 +49,7 @@ See `citation("eurostat")`:
     #   Kantanen P (2026). "eurostat: Tools for Eurostat Open Data."
     #   doi:10.32614/CRAN.package.eurostat
     #   <https://doi.org/10.32614/CRAN.package.eurostat>. R package version
-    #   4.1.0, <https://github.com/rOpenGov/eurostat>.
+    #   4.1.1, <https://github.com/rOpenGov/eurostat>.
     #
     # To see these entries in BibTeX format, use 'print(<citation>,
     # bibtex=TRUE)', 'toBibtex(.)', or set
@@ -75,7 +75,7 @@ Janne Huovari <janne.huovari@ptt.fi>
 ``` r
 # \donttest{
 na_q <- get_eurostat("namq_10_pc", time_format = "raw")
-#> Table namq_10_pc cached at /tmp/RtmpefTnfY/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
+#> Table namq_10_pc cached at /tmp/RtmplkzLHc/eurostat/c24bf4d30e0b8d4ae4b266455393ee05.rds
 na_q$TIME_PERIOD <- eurotime2date(x = na_q$TIME_PERIOD)
 unique(na_q$TIME_PERIOD)
 #>   [1] "1995-01-01" "1995-04-01" "1995-07-01" "1995-10-01" "1996-01-01"
